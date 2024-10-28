@@ -1,0 +1,28 @@
+<h3>Erklärung</h3>
+<ul>
+    <li>
+        <strong>Aufruf von <code>FloatingWorld.show()</code>:</strong>
+        <p>Diese Methode wird aufgerufen, um die <code>FloatingWorld</code> anzuzeigen. Sie ist
+            statisch und gehört zur Klasse <code>FloatingWorld</code>.</p>
+    </li>
+    <li>
+        <strong>Erzeugung von Spielerinstanzen:</strong>
+        <p><code>FloatingWorld.addPlayer()</code> wird aufgerufen, um einen neuen Spieler in die Welt einzufügen. Das
+            Ergebnis der Methode ist eine Referenz auf ein <code>Player</code>-Objekt.</p>
+        <p>Durch die Zuweisung wird diese zurückgegebene Referenz in der entsprechenden Variable (<code>kara</code> bzw.
+            <code>lee</code>) abgelegt. Damit haben wir nun eine Variable über die wir auf die durch
+            <code>addPlayer()</code> erzeugten Objekte zugreifen können.
+        </p>
+        <pre code>Player kara = FloatingWorld.addPlayer();
+Player lee = FloatingWorld.addPlayer();</pre>
+    </li>
+    <li>
+        <strong>Bewegung eines Spielers:</strong>
+        <p><code> kara.moveLeft();</code> Die Instanzmethode <code>moveLeft()</code> wird auf dem von <code>kara</code>
+            referenzeirten
+            Objekt
+            aufgerufen. Durch den Aufruf wird der Interne Zustand (in diesem Fall die x-Koordinate) des referenzierten
+            Objekts verändert.
+        </p>
+    </li>
+</ul>

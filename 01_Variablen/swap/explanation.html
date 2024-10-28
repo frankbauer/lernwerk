@@ -1,0 +1,37 @@
+<h3>Erklärung</h3>
+
+<p>Dieses Programm demonstriert den Tausch von Werten zwischen zwei Variablen unter Verwendung einer temporären
+    Hilfsvariablen.</p>
+
+<ul>
+    <li>
+        <strong>Initialisierung der Variablen:</strong>
+        <p>Zwei <code>double</code>-Variablen, <code>a</code> und <code>b</code>, werden mit den Werten 42 bzw. 58
+            initialisiert.</p>
+        <pre code>double a = 42;
+double b = 58;</pre>
+    </li>
+    <li>
+        <strong>Verwendung einer Hilfsvariablen:</strong>
+        <p>Eine temporäre Variable <code>temp</code> wird verwendet, um den Wert von <code>a</code> zu speichern, bevor
+            dieser überschrieben wird. Der Wert von <code>temp</code> ist nun 42.</p>
+        <pre code>double temp = a;</pre>
+    </li>
+    <li>
+        <strong>Austausch der Werte:</strong>
+        <p>Der Wert von <code>b</code> wird <code>a</code> zugewiesen. Damit ist enthält <code>a</code> nun den Wert 58.
+        </p>
+        <p>Der ursprüngliche Wert von <code>a</code>, der im Moment in <code>temp</code> gespeichert ist, wird nun an
+            <code>b</code> zugewiesen. Der neue Wert von <code>b</code> ist nun 42. Damit sind die Werte von
+            <code>a</code> und <code>b</code> getauscht.
+        </p>
+        <pre code>a = b;
+b = temp;</pre>
+    </li>
+    <li>
+        <strong>Ausgabe der Ergebnisse:</strong>
+        <p>Die neuen Werte von <code>a</code> und <code>b</code> werden ausgegeben.</p>
+        <pre code>System.out.println("a = " + a);
+System.out.println("b = " + b);</pre>
+    </li>
+</ul>

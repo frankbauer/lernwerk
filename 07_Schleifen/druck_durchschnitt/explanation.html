@@ -1,0 +1,83 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm berechnet den durchschnittlichen Luftdruck aus einer Serie von Messungen, die zu unterschiedlichen
+    Zeitpunkten durchgeführt wurden. Es illustriert insbesondere die Verwendung einer <code>while</code>-Schleife, um
+    alle Messungen zu durchlaufen, und zeigt, wie aufeinanderfolgende Paare von Messungen verarbeitet werden können.</p>
+
+<ul>
+    <li>
+        <strong>Initialisierung der ersten Messung:</strong>
+        <p>Die erste Messung wird mit <code>Recorder.getNext()</code> abgerufen und in der Variablen
+            <code>current</code> gespeichert.
+        </p>
+        <pre code>Measurement current = Recorder.getNext();</pre>
+    </li>
+
+    <li>
+        <strong>Verwendung der <code>while</code>-Schleife:</strong>
+        <p>Die <code>while</code>-Schleife iteriert über alle verbleibenden Messungen, solange noch welche vorhanden
+            sind (<code>Recorder.hasMore()</code>). In jeder Iteration werden die aktuelle Messung
+            (<code>current</code>) und die nächste Messung
+            (<code>next</code>) verwendet, um den Mittelwert der gemessenen Werte und die Zeitdifferenz zwischen den
+            Messungen zu
+            berechnen. Diese Werte fließen in die Berechnung des durchschnittlichen Luftdrucks ein.</p>
+        <pre code>while (Recorder.hasMore()) {
+    Measurement next = Recorder.getNext();
+    int midValue = (next.value + current.value) / 2;
+    int deltaTime = next.timeInHours - current.timeInHours;
+    /*...*/
+}</pre>
+    </li>
+
+    <li>
+        <strong>Aktualisieren der Gesamtzeit:</strong>
+        <p>Die Zeitdifferenz zwischen den Messungen wird in jeder Iteration der Schleife zur Gesamtzeit hinzugefügt. Die
+            Gesamtzeit muss vor der Schleife initialisiert (zum einen, damit sie nicht in jedem Schleifendurchlauf
+            zurückgesetzt wird, zum anderen damit sie auch nach der Schleife noch verwendet werden kan) und während
+            jeder Schleifeniteration um die aktuelle
+            Zeitdifferenz erhöht.</p>
+        <pre code>double totalTime = 0;
+while (/*...*/) {
+    /*...*/
+    totalTime += deltaTime;
+}
+System.out.println("Gesamtzeit: " + totalTime);</pre>
+    </li>
+
+    <li>
+        <strong>Berechnung der Flächensumme:</strong>
+        <p>Für jedes Paar von Messungen wird die außerdem die Flächensumme berechnet, indem der Mittelwert der beiden
+            Messungen
+            (<code>midValue</code>) mit der Zeitdifferenz multipliziert wird. Diese Flächen werden summiert, um einen
+            gewichteten Beitrag zur Berechnung des durchschnittlichen Luftdrucks zu erhalten.</p>
+        <pre code>areaSum += deltaTime * midValue;</pre>
+    </li>
+
+    <li>
+        <strong>Weiterrücken von <code>current</code> auf <code>next</code>:</strong>
+        <p>Nach jeder Berechnung wird die in <code>next</code> gespeicherte Referenz nach <code>current</code> kopiert.
+            Ohne diese Zeile würde in jedem Schleifendurchlauf immer die Differenz zum aller ersten Messwert bestimmt
+            werden. Durch das umkopieren des Wertes, wird sichergestellt, dass immer die Differenz zu zuletzt gelesenen
+            Messwert bestimmt wird.</p>
+        <pre code>current = next;</pre>
+        <p>Auch für die Variable <code>current</code> ist es wichtig, dass sie vor der Schleife angelegt und
+            initialisiert wird.</p>
+    </li>
+
+    <li>
+        <strong>Berechnung des durchschnittlichen Luftdrucks:</strong>
+        <p>Nach Abschluss der Schleife wird der durchschnittliche Luftdruck berechnet, indem die aufaddierte
+            Flächensumme durch die Gesamtzeit geteilt wird. Dieses Ergebnis gibt den durchschnittlichen Luftdruck für
+            den gesamten Zeitraum der Messungen an.</p>
+        <pre code>double average = areaSum / totalTime;</pre>
+        <p>Die Variablen <code>areaSum</code> und <code>totalTime</code> mussten vor der Schleife angelegt werden,
+            damit sie in der Schleife verwendet werden können und nach der Schleife noch verfügbar sind.</p>
+    </li>
+
+    <li>
+        <strong>Runden auf zwei Dezimalstellen:</strong>
+        <p>Das Ergebnis wird auf zwei Dezimalstellen gerundet.
+            Anschließend wird der berechnete durchschnittliche Luftdruck ausgegeben.</p>
+        <pre code>average = Math.round(average * 100.0) / 100.0;
+System.out.println("Durchschnittlicher Luftdruck: " + average + " hPa");</pre>
+    </li>
+</ul>

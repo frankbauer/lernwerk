@@ -1,0 +1,17 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Recorder</code> dient zur Aufzeichnung und Verwaltung von Messungen. Sie verwendet eine statische
+    Liste von <code>Measurement</code>-Objekten, um Daten zu speichern und darauf zuzugreifen. Die Klasse bietet
+    Methoden, um auf die gespeicherten Messwerte sequentiell zuzugreifen.</p>
+
+<h4>Methoden</h4>
+<ul>
+    <li><code>public static boolean hasMore()</code><br>Prüft, ob noch weitere Messungen in der Sammlung verfügbar sind.
+        Gibt <code>true</code> zurück, wenn weitere Messungen vorhanden sind, andernfalls <code>false</code>.</li>
+
+    <li><code>public static Measurement getNext()</code><br>Gibt die nächste Messung in der Sammlung zurück. Falls keine
+        weiteren Messungen vorhanden sind, wird <code>null</code> zurückgegeben.</li>
+
+    <li><code>public static void reset()</code><br>Setzt den Recorder zurück, sodass die Messungen von Anfang an erneut
+        abgerufen werden können. Diese Methode sollte aufgerufen werden, wenn eine neue Durchsicht der Messwerte
+        gestartet werden soll.</li>
+</ul>

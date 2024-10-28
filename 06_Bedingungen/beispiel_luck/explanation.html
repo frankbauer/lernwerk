@@ -1,0 +1,40 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm simuliert den Würfelwurf eines Halblings in einem Rollenspiel, bei dem die besondere Fähigkeit
+    "Halfling Luck" verwendet wird. Diese Fähigkeit ermöglicht es, kritische Fehlschläge (eine 1 auf einem 20-seitigen
+    Würfel) erneut zu würfeln.</p>
+
+<ul>
+    <li>
+        <strong>Initialisierung der Glück-Variable:</strong>
+        <p>Die <code>halflingLuck</code> Variable wird auf <code>true</code> gesetzt, um anzudeuten, dass der Spieler
+            Glück hat.</p>
+        <pre code>final boolean halflingLuck = true;</pre>
+    </li>
+    <li>
+        <strong>Bedingung für kein Glück:</strong>
+        <p>Es wird geprüft, ob der Halbling kein Glück hat (<code>!halflingLuck</code> entspricht
+            <code>halflingLuck==false</code>). Wenn <code>halflingLuck</code> den Wert <code>false</code> hat, zeigt
+            das
+            Programm an, dass der Spieler kein Glück hat.
+        </p>
+        <pre code>if (!halflingLuck) {
+    System.out.println("Du hast kein Glueck!");
+}</pre>
+    </li>
+    <li>
+        <strong>Generierung eines Würfelwurfs:</strong>
+        <p>Ein Würfelwurf wird simuliert, indem eine zufällige Ganzzahl zwischen 1 und 20 generiert wird. Dieser Wert
+            wird dem Benutzer immer angezeigt.</p>
+        <pre code>int d = (int)(Math.random() * 20) + 1;
+System.out.println("Der Wuerfel zeigt: " + d);</pre>
+    </li>
+    <li>
+        <strong>Überprüfung und Anwendung von Halfling Luck:</strong>
+        <p>Wenn der Spieler Glück hat (<code>halflingLuck</code>) <b>und</b> (<code>&&</code>) der Würfel eine 1 zeigt
+            (<code>d == 1</code>), wird der Wurf wiederholt und das neue Ergebnis angezeigt.</p>
+        <pre code>if (halflingLuck && d == 1) {
+    d = (int)(Math.random() * 20) + 1;
+    System.out.println("Aber mit Glueck eine " + d);
+}</pre>
+    </li>
+</ul>

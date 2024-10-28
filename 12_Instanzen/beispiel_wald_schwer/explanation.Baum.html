@@ -1,0 +1,96 @@
+<h3>Erklärung - Baum</h3>
+<p>Die Klasse <code>Baum</code> besitzt mehrere wichtige Bestandteile, die die Erstellung und Darstellung der
+    Baumobjekte ermöglichen:</p>
+
+<ul>
+    <li>
+        <strong>Statisches Attribut <code>INSTANCE_COUNT</code>:</strong>
+        <p>Ein statisches Attribut, das die Anzahl der erstellten Baum-Instanzen zählt. Dieses Attribut wird in den
+            Konstruktoren verwendet,
+            um sicherzustellen, dass jede Baum-Instanz eine eindeutige, fortlaufende ID erhält.</p>
+        <code>private static int INSTANCE_COUNT = 0;</code>
+    </li>
+    <li>
+        <strong>Attribut <code>id</code>:</strong>
+        <p>Jeder Baum hat eine eindeutige ID, die bei der Erstellung des Baumes festgelegt wird. Diese ID wird
+            verwendet, um die Position und den Maßstab des Baumes zu bestimmen. Die ID wird basierend auf der Anzahl der
+            erstellten Baumobjekte inkrementiert.</p>
+        <pre code>private final int id;</pre>
+    </li>
+    <li>
+        <strong>Konstruktoren:</strong>
+        <p>Die Konstruktoren legen die ID des Baumes fest und registrieren den Baum zum Rendern. Es gibt zwei
+            Konstruktoren. Der Standardkonstruktor, ändert den Wert des Attributs <code>jahreszeit</code>. </p>
+        <pre code>public Baum() {
+    this.id = ++INSTANCE_COUNT;
+    Graphics2D.instance().registerForRender(this);
+}</pre>
+        Da das Attribute mit "herbst" vorbelegt wurde (<code>public String jahreszeit = "herbst";</code>) wird der Baum
+        der Jahreszeit "herbst" initialisiert.</p>
+
+        <p>Der zweite Konstruktor (ein Parameterkonstruktor) erlaubt es, die Jahreszeit des Baumes bei der Erstellung
+            festzulegen. Dieser Konstruktor wird verwendet, um Bäume mit unterschiedlichen Jahreszeiten zu erstellen.
+        </p>
+        <pre code>public Baum(String jahreszeit) {
+    this.jahreszeit = jahreszeit;
+    /* ... */
+}</pre>
+    </li>
+    <li>
+        <strong>Methode <code>render(Graphics2D g)</code>:</strong>
+        <p>Diese Methode zeichnet den Baum auf die Grafikoberfläche. Die Position und der Maßstab des Baumes werden
+            basierend auf der ID berechnet:</p>
+        <ul>
+            <li><strong>Links, mitte oder Rechts</string>
+                    <p>Ob der Baum links, in der Mitte oder rechts gezeichnet wird, hängt von dessen ID
+                        (<code>this.id</code>) ab.</p>
+                    <pre><code>final int POS_INDEX = this.id % 3;</code></pre>
+                    <p>Für die folgenden Berechnungen nehmen wir an, dass 0=links, 1=mitte und 2=rechts ist.</p>
+            </li>
+            <li>
+                <strong>Berechnung der Position:</strong>
+                <p>Die X-Position wird durch den Index (ID modulo 3) bestimmt, der den Baum an einer von drei Positionen
+                    im Bereich von 150 bis 650 platziert.</p>
+                <pre><code>final int x = (int)(POS_INDEX / 2.0 * (MAX_X - MIN_X) + MIN_X);</code></pre>
+                <p>Die Y-Position wird ebenfalls durch den Index bestimmt, wodurch die Bäume in verschiedenen Höhen
+                    gezeichnet werden.</p>
+                <pre><code>final int y = 430 - Math.abs(POS_INDEX - 1) * 20;</code></pre>
+                <p><code>Math.abs(POS_INDEX - 1)</code> is 0 für Bäume in der mitte (<code>POS_INDEX=1</code>) und in
+                    allen anderen Fällen 1. Dh. der Baum in der Mitte wird an der y-Position <b>430</b> gezeichnet,
+                    während die beiden seitlichen Bäume an <b>430-20</b> dargestellt werden</p>
+            </li>
+            <li>
+                <strong>Berechnung des Maßstabs:</strong>
+                <p>Der Maßstab des Baumes variiert ebenfalls je nach Index, wodurch die Bäume in verschiedenen Größen
+                    gezeichnet werden.</p>
+                <pre><code>final double scale = 1.25 - Math.abs(POS_INDEX - 1) * 0.5;</code></pre>
+            </li>
+            <li>
+                <strong>Bestimmung des Bildes:</strong>
+                <p>Das zu zeichnende Bild wird basierend auf der Jahreszeit des Baumes ausgewählt.</p>
+                <pre code>final Image img;
+if (this.jahreszeit.equals("herbst")) {
+    img = TreeLibrary.AUTUMN;
+} else if (this.jahreszeit.equals("winter")) {
+    img = TreeLibrary.WINTER;
+} else if (this.jahreszeit.equals("frühling")) {
+    img = TreeLibrary.SPRING;
+} else if (this.jahreszeit.equals("sommer")) {
+    img = TreeLibrary.SUMMER;
+} else if (this.jahreszeit.equals("spätherbst")) {
+    img = TreeLibrary.LATE_AUTUMN;
+} else {
+    img = TreeLibrary.POW;
+}</pre>
+            </li>
+            <li>
+                <strong>Zeichnen des Bildes:</strong>
+                <p>Das ausgewählte Bild wird an der berechneten Position mit dem berechneten Maßstab gezeichnet. Dazu
+                    wird die Instanzmethode <code>drawImage</code> auf dem Zeichenkontext <code>g</code> (Parameter der
+                    Methode <code>render</code>) aufgerufen. Die Variable <code>img</code> referenziert zu diesem
+                    Zeitpunkt das für die Jahreszeit passende Bild.</p>
+                <pre code>g.drawImage(img, x, y, scale);</pre>
+            </li>
+        </ul>
+    </li>
+</ul>

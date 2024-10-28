@@ -1,0 +1,47 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Änder Sie die Klasse Baum so, dass die Jahrezeit nicht unkontrolliert verändert werden kan.
+    <hint>Das Attribut <code>jahreszeit</code> muss private gemacht werden. Außerdem nüssen neue Methoden zum einstellen
+        der Jahreszeit erstellt werden.</hint>
+    <hint solution>
+        <pre code>private String jahreszeit = "herbst";
+
+public void setWinter(){
+    this.jahreszeit = "winter";
+}
+
+public boolean isWinter(){
+    return this.jahreszeit.equals("winter");
+}
+
+public void setAutumn(){
+    this.jahreszeit = "herbst";
+}
+
+/*...*/</pre>
+    </hint>
+</div>
+<div class="colored">
+    Halbieren Sie die Größe der Bäume.
+    <hint>Passen Sie den Wert von <code>scale</code> entsprechend an</hint>
+    <hint solution>
+        <pre code>final double scale = (1.25 - Math.abs(POS_INDEX - 1) * 0.5) / 2;</pre>
+    </hint>
+</div>
+<div class="colored">
+    Ändern Sie die <code>render</code>-Methode so ab. Das der Positionsindex wie folgt interpretiert wird:
+    0=mitte, 1=links, 2=rechts
+    <hint>Welcher Index der Mitte entspricht können Sie durch Verschieben (also vor dem Modulo einen Wert addieren oder
+        Subtrahieren) von <code>this.id</code> erreichen.</hint>
+    <hint solution>
+        <pre code>int POS_INDEX = (this.id+1) % 3;</pre>
+        Nun sind aber links und rechts noch vertauscht.
+    </hint>
+    <hint>Die Vertauschung von links und rechts können Sie durch die Invertierung
+        des Wertes in <code>POS_INDEX</code> erreichen. Aus <code>POS_INDEX=0</code> soll eine 2 werden aus
+        <code>POS_INDEX=2</code> eine 0.
+    </hint>
+    <hint solution>
+        <pre code>POS_INDEX = 2 - POS_INDEX;</pre>
+    </hint>
+</div>

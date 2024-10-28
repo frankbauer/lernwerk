@@ -1,0 +1,47 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm durchsucht eine Serie von Luftdruckmessungen und findet den Messwert mit dem kleinsten Wert. Es
+    verwendet eine <code>while</code>-Schleife, um alle Messungen zu durchlaufen und den minimalen Messwert zu
+    bestimmen.</p>
+
+<ul>
+    <li>
+        <strong>Initialisierung der ersten Messung:</strong>
+        <p>Die erste Messung wird abgerufen und in der Variablen <code>min</code> gespeichert. Diese Messung wird als
+            Ausgangswert für den minimalen Wert verwendet, gegen den alle weiteren Messungen verglichen werden.</p>
+        <pre code>Measurement min = Recorder.getNext();</pre>
+    </li>
+
+    <li>
+        <strong>Verwendung der <code>while</code>-Schleife:</strong>
+        <p>Die <code>while</code>-Schleife wird verwendet, um durch alle verbleibenden Messungen zu iterieren. Die
+            Schleife läuft, solange noch weitere Messungen verfügbar sind.</p>
+        <pre code>while (Recorder.hasMore()) {
+    /*...*/
+}</pre>
+        <p>Sobald keine weiteren Messungen mehr verfügbar sind, endet die Wiederholung der Schleife.</p>
+    </li>
+
+    <li>
+        <strong>Lesen der nächsten Messung:</strong>
+        <p>In jeder Iteration der Schleife wird die nächste Messung abgerufen und in der Variablen <code>now</code>
+            gespeichert.</p>
+        <pre code>Measurement now = Recorder.getNext();</pre>
+    </li>
+
+    <li>
+        <strong>Vergleich der aktuellen Messung mit dem Minimum:</strong>
+        <p>Die aktuelle Messung (<code>now</code>) wird mit der bisher kleinsten Messung (<code>min</code>) verglichen.
+            Wenn der Wert der aktuellen Messung kleiner ist als der bisherige Minimalwert, wird <code>min</code> mit der
+            neuen Messung aktualisiert.</p>
+        <pre code>if (now.value < min.value) {
+    min = now;
+}</pre>
+    </li>
+
+    <li>
+        <strong>Ausgabe des minimalen Messwerts:</strong>
+        <p>Nachdem alle Messungen durchlaufen wurden, wird die Messung mit dem kleinsten Wert in der Konsole ausgegeben.
+        </p>
+        <pre code>System.out.println("Minimum: " + min);</pre>
+    </li>
+</ul>

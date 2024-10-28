@@ -1,0 +1,25 @@
+<p>Dieses Beispiel illustriert die Anwendung von Typumwandlungen (Type Casting) und die Unterschiede zwischen Ganzzahl-
+    und Gleitkommaberechnungen. Es verdeutlicht, wie das Ergebnis durch die Reihenfolge der Operationen und den
+    Zeitpunkt der Typumwandlung beeinflusst wird:</p>
+
+<ul>
+    <li><strong>Ganzzahl vs. Gleitkommadivision:</strong> Die Division der Gleitkommazahl 7.0 durch 2.0 ergibt eine
+        Gleitkommazahl
+        (3.5). Je nachdem, wann und wie diese Zahl in eine Ganzzahl umgewandelt wird, ändert sich das Endergebnis.</li>
+    <li><strong>Typumwandlung vor der Multiplikation:</strong>
+        <code>int a = (int)(7.0 / 2.0) * 10;</code> wandelt das Ergebnis der Division (3.5) zuerst in die Ganzzahl 3 um,
+        bevor es mit 10 multipliziert wird, was zu einem Endergebnis von 30 führt.
+    </li>
+    <li><strong>Typumwandlung nach der Multiplikation:</strong>
+        <code>int b = (int)((7.0 / 2.0) * 10);</code> führt die Multiplikation von 3.5 mit 10 durch, was 35.0 ergibt,
+        und wandelt dieses Ergebnis dann in die Ganzzahl 35 um.
+    </li>
+    <li><strong>Automatische Typumwandlung nach Ganzzahldivision:</strong>
+        <code>float c = 7 / 2;</code> berechnet zuerst die Ganzzahldivision von 7 durch 2, was 3 ergibt, und wandelt
+        diese Ganzzahl dann automatisch in den Gleitkommatyp (float) um, was zu 3.0 führt.
+    </li>
+</ul>
+
+<p>Die Position / der Zeitpunkt der Typumwandlung ist entscheidend für das Endergebnis. Darüberhinaus beinflussen
+    verschiedene
+    Datentypen das Verhalten von Rechenoperationen in Java.</p>

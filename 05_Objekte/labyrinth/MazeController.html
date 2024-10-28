@@ -1,0 +1,20 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>MazeController</code> steuert die Bewegung des Spielers im Labyrinth. Sie ermöglicht die Verarbeitung von Befehlen.</p>
+
+<h4>Konstruktoren</h4>
+<ul>
+    <li><code>public MazeController(String[] args)</code><br>Erstellt einen neuen MazeController. Die Argumente <code>args</code> können verwendet werden, um die Initialisierung des Controllers anzupassen.</li>
+</ul>
+
+<h4>Methoden</h4>
+<ul>
+    <li><code>public void setDelay(int delayInMs)</code><br>Setzt die Verzögerung der Animationsschritte in Millisekunden.</li>
+    <li><code>public void command(int opCode)</code><br>Verarbeitet den Befehl, der durch den <code>opCode</code> spezifiziert wird. Folgende Bewegungsbefehle Können mit Hilfe von Konstanten aus der Klasse <code>Labyrinth</code> ausgeführt werden:
+        <ul>
+            <li><code>Labyrinth.GO_LEFT</code>: Bewegt den Spieler nach links.</li>
+            <li><code>Labyrinth.GO_UP</code>: Bewegt den Spieler nach oben.</li>
+            <li><code>Labyrinth.GO_RIGHT</code>: Bewegt den Spieler nach rechts.</li>
+            <li><code>Labyrinth.GO_DOWN</code>: Bewegt den Spieler nach unten.</li>
+        </ul>
+        Wenn ein ungültiger <code>opCode</code> übergeben wird, wird eine Fehlermeldung ausgegeben.</li>
+</ul>

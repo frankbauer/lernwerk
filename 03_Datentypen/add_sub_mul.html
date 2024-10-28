@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../">
+    <title>[GdI] Subtraktion und Multiplikation</title>
+    <link rel="stylesheet" href="../css/editor.css?v=1.0.0">
+    <script src="../js/jquery/jquery.min.js?v=3.5.1"></script>
+    <script src="../js/vue/vue.runtime.min.js?v=2.6.11"></script>
+    <script src="../helper.js?v=1.0.0"></script>
+    <link rel="stylesheet" href="../js/codeblocks-js/codeblocks.css">
+</head>
+
+<body>
+    <div class="topbar">
+        <h1>Addition, Subtraktion und Multiplikation</h1>
+        <a href="../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+        <div class="aufgabe boxed">
+            <h3>Aufgabe</h3>
+            <p>Schreiben Sie ein Programm, das zwei Ganzzahlen (z.B. <i>11</i> und <i>3</i>) addiert, subtrahiert und dividiert und alle Ergebnisse ausgibt.
+            </p>
+        </div>
+
+        <tabbar class="code">
+            <div data-tab="work" data-name="Ihre Lösung">
+                <div codeblocks data-compiler="java" data-run-code="true" data-compiler-version=101 data-compiler="java"
+                    data-execution-timeout="5000" data-max-characters="6000" data-run-code="true"
+                    data-output-parser="data" data-scope-selector="div#content">
+                    <loading>
+                        <div></div>
+                        <div></div>
+                    </loading>
+                    <pre as="block" data-visible-lines="auto">public class ArithmeticOperations {
+    public static void main(String[] args) {
+
+    }
+}</pre>
+                </div>
+            </div>
+
+
+            <div data-tab="solution" data-name="Beispiellösung">
+                <div codeblocks data-compiler="java" data-run-code="true" data-compiler-version=101 data-compiler="java"
+                    data-execution-timeout="5000" data-max-characters="6000" data-run-code="true"
+                    data-scope-selector="div#content">
+                    <loading>
+                        <div></div>
+                        <div></div>
+                    </loading>
+                    <pre as="block" data-static>public class ArithmeticOperations {
+    public static void main(String[] args) {
+        // Deklaration und Initialisierung der Ganzzahlen
+        int a = 11; // Erste Ganzzahl
+        int b = 3; // Zweite Ganzzahl
+
+        // Ausgabe der Variablenwerte
+        System.out.println("a=" + a + ", b=" + b + "\n");
+        
+        // Addition der beiden Ganzzahlen und Ausgabe des Ergebnisses
+        int sum = a + b;
+        System.out.println("Summe: " + sum);
+        
+        // Subtraktion der zweiten von der ersten Ganzzahl und Ausgabe des Ergebnisses
+        int difference = a - b;
+        System.out.println("Differenz: " + difference);
+        
+        // Division der ersten Ganzzahl durch die zweite und Ausgabe des Ergebnisses
+        // Beachte: Hier wird eine Ganzzahldivision durchgeführt, daher wird das 
+        //          Ergebnis automatisch abgerundet
+        int quotient = a / b;
+        System.out.println("Quotient: " + quotient);
+    }
+}</pre>
+                </div>
+
+                <div class="explain boxed q-mt-xl">
+                    <h3>Erklärung</h3>
+
+                    <p>Das Programm führt arithmetische Operationen (Addition, Subtraktion und Ganzzahldivision) auf zwei Ganzzahlen <b>a</b> und <b>b</b> aus und gibt die Ergebnisse aus.</p>
+                    <ul>
+                        <li><code>public class ArithmeticOperations {</code> Definiert eine öffentliche Klasse mit dem Namen <b>ArithmeticOperations</b>, die die Funktionen für arithmetische Operationen enthält.</li>
+                        <li><code>public static void main(String[] args) {</code> Die Hauptmethode des Programms, die beim Start ausgeführt wird.</li>
+                        <li><code>int a = 11;</code> Deklaration und Initialisierung einer Variablen <b>a</b> mit dem Wert 11.</li>
+                        <li><code>int b = 3;</code> Deklaration und Initialisierung einer Variablen <b>b</b> mit dem Wert 3.</li>
+                        <li><code>System.out.println("a=" + a + ", b=" + b)</code> Ausgabe der Werte für die Variablen <b>a</b> und <b>b</b> mit einer zusätzlichen Leerzeile (wird durch <i>"\n"</i> eingefügt).</li>
+                        <li><code>int sum = a + b;</code> Berechnung der Summe der Variablen <b>a</b> und <b>b</b> und Speicherung des Ergebnisses in der Variablen <b>sum</b>.</li>
+                        <li><code>System.out.println("Summe: " + sum);</code> Ausgabe der Summe mit einer Textzeile <i>"Summe: "</i> und dem Wert der Variablen <b>sum</b>.</li>
+                        <li><code>int difference = a - b;</code> Berechnung der Differenz zwischen den Variablen <b>a</b> und <b>b</b> und Speicherung des Ergebnisses in der Variablen <b>difference</b>.</li>
+                        <li><code>System.out.println("Differenz: " + difference);</code> Ausgabe der Differenz mit einer Textzeile <i>"Differenz: "</i> und dem Wert der Variablen <b>difference</b>.</li>
+                        <li><code>int quotient = a / b;</code> Berechnung des Quotienten von <b>a</b> durch <b>b</b> und Speicherung des Ergebnisses in der Variablen <b>quotient</b>. Hier findet eine Ganzzahldivision statt, bei der der Nachkommanateil des Ergebnisses ignoriert wird.</li>
+                        <li><code>System.out.println("Quotient: " + quotient);</code> Ausgabe des Quotienten mit einer Textzeile <i>"Quotient: "</i> und dem Wert der Variablen <b>quotient</b>.</li>
+                        </ul>
+                </div>
+            </div>
+        </tabbar>
+
+
+
+        <div class="experiment boxed">
+            <h3>Experimente</h3>  
+            
+            <div class="colored">
+                Berechnen Sie zuätzlich noch den Ganzzahligen Rest der Division.
+                <hint>Den ganzzahligen Rest können sie mit dem <code>%</code>-Operator (Modulo) bestimmen.</hint>
+                <hint solution>
+                    <pre code>int remainder = a % b;
+System.out.println("Rest: " + remainder);</pre>
+                </hint>
+            </div>          
+            <div class="colored">
+                Ändern Sie das Beispiel so, dass die Division nicht das abgerundete, sonder das korrekte Ergebnis bestimmt.
+                <hint>
+                    Um ein Ergebnis mit Nachkommanateil zu speichern, muss der Datentyp <code>double</code> für die Variable <code>quotient</code> verwendet werden. Außerdem müssen <code>a</code> oder <code>b</code> (oder beide) explizit in eine Gleitkommazahl umgewandelt werden.
+                </hint>
+                
+                <hint solution>
+                    <pre code>double quotient = a / (double)b;</pre>
+                </hint>
+            </div>
+        </div>
+
+
+        <script>
+            document.body.onload = () => {
+                import("../js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+                initHelpers()
+            }
+        </script>
+</body>
+
+</html>

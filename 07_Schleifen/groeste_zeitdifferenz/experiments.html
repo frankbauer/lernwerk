@@ -1,0 +1,24 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Gib zusätzlich die Messwerte zwischen denen die größte Differenz gefunden wurde auf der Konsole aus.
+    <hint>
+        Du musst vor der Schleife zwei Variablen anlegen, in denen sich das Programm merken kann, welche Messwerte die
+        größte Differenz hatten. Immer wenn du eine größere Differenz findest, musst du diese Variablen aktualisieren.
+    </hint>
+    <hint solution>
+        <pre code>Measurement mFirst = null;
+Measurement mLast = null;
+
+while (/*...*/) {
+    /*...*/
+    if (deltaTime > maxDiff) {
+        maxDiff = deltaTime;
+        mFirst = current;
+        mLast = next;
+    }
+}
+
+System.out.println("Erste Messung: " + mFirst);
+System.out.println("Zweite Messung: " + mLast);</pre>
+    </hint>
+</div>

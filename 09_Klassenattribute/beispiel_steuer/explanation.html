@@ -1,0 +1,46 @@
+<h3>Erklärung</h3>
+<p>Die Klasse <code>Steuer</code> dient der Berechnung des Brutto-Preises unter Berücksichtigung der Mehrwertsteuer.
+    Dieses Beispiel konzentriert sich auf die Verwendung von Klassenattributen.</p>
+
+
+<ul>
+    <li>
+        <strong>Klassenattribut <code>mehrwertSteuer</code>:</strong>
+        <p>
+            <code>public static double mehrwertSteuer = 0.19;</code><br>
+            Dieses Attribut hält den aktuellen Mehrwertsteuersatz. Als <code>static</code>-Attribut gehört es zur Klasse
+            selbst und nicht zu einzelnen Instanzen der Klasse. Es wird initial mit 19% (0.19 als Dezimalzahl)
+            festgelegt.
+        </p>
+    </li>
+    <li>
+        <strong>Klassenmethode <code>berechnePreis</code>:</strong>
+        <p>
+            <code>public static double berechnePreis(double nettoPreis)</code><br>
+            Diese Methode berechnet den Brutto-Preis basierend auf dem übergebenen Netto-Preis, indem der Netto-Preis
+            mit
+            <code>(1.0 + Steuer.mehrwertSteuer)</code> multipliziert wird. Die Nutzung des Klassenattributs
+            <code>mehrwertSteuer</code> ermöglicht die Anwendung des aktuellen Mehrwertsteuersatzes auf alle
+            Berechnungen, die über diese Methode ausgeführt werden.
+        </p>
+    </li>
+    <li>
+        <strong>Klassenmethode <code>setMehrwertSteuer</code>:</strong>
+        <p>
+            <code>public static void setMehrwertSteuer(double prozent)</code><br>
+            Diese Methode erlaubt das Ändern des Mehrwertsteuersatzes. Die Methode überprüft zuerst, ob der neue Satz
+            zwischen 0 und 1 liegt, um ungültige Werte zu vermeiden. Bei einer gültigen Eingabe wird das Klassenattribut
+            <code>mehrwertSteuer</code> entsprechend aktualisiert. Diese Flexibilität ist nützlich, um auf Änderungen
+            der Steuerpolitik reagieren zu können.
+        </p>
+    </li>
+    <li>
+        <strong>Hauptmethode <code>main</code>:</strong>
+        <p>
+            <code>public static void main(String[] args)</code><br>
+            Die Hauptmethode dient als Einstiegspunkt für die Ausführung des Programms. Hier wird die Methode
+            <code>berechnePreis</code> aufgerufen, um den Brutto-Preis für einen spezifischen Netto-Preis zu berechnen
+            und das Ergebnis wird ausgegeben.
+        </p>
+    </li>
+</ul>

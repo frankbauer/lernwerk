@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../../">
+    <title>[GdI]</title>
+    <link rel="stylesheet" href="../../css/editor.css?v=1.0.3">
+    <script src="../../js/jquery/jquery.min.js?v=3.6.2"></script>
+    <script src="../../js/vue/vue.runtime.min.js?v=2.6.12"></script>
+    <script src="../../helper.js?v=1.0.2"></script>
+    <script src="../../content.js?v=1.0.2"></script>
+    <link rel="stylesheet" href="../../js/codeblocks-js/codeblocks.css?v=1.0.2">
+    <link rel="stylesheet" href="../../common/scene/hill/hill.css">
+</head>
+
+<body>
+    <div class="topbar">
+        <h1></h1>
+        <a href="../../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+
+    </div>
+    <script>
+        const elements = {
+            title: "<b>Vorlesungsbeispiel:</b> Bäume anpflanzen (for)",
+            short: "Bäume (for)",
+            content: [
+                {
+                    type: "tabs",
+                    class: "code",
+                    tabs: [
+                        {
+                            name: "Vorlesungsbeispiel",
+
+                            content: [{
+                                type: "codeblocks",
+                                attributes: {},
+                                blocks: [
+                                    {
+                                        type: "student",
+                                        content: "./Nature.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        content: "./MainOverride.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        content: "../../common/scene/hill/SunnyHill.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        content: "../../common/scene/hill/Tree.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
+                                        content: "../../common/CommandBuffer.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
+                                        content: "../../common/json/JsonLibrary.java"
+                                    },
+                                    {
+                                        type: "playground",
+                                        attributes: {
+                                            width: "600px",
+                                            height: "338px"
+                                        },
+                                        content: "../../common/scene/hill/hill.js"
+                                    }
+                                ]
+                            }, {
+                                type: "explain",
+                                content: "./explanation.html"
+                            }]
+                        },
+                        {
+                            name: "SunnyHill",
+                            class: "api",
+                            content: [{
+                                type: "aufgabe",
+                                content: "../../common/scene/hill/SunnyHill.html"
+                            }]
+                        },
+                        {
+                            name: "Tree",
+                            class: "api",
+                            content: [{
+                                type: "aufgabe",
+                                content: "../../common/scene/hill/Tree.html"
+                            }]
+                        }
+                    ]
+                },
+                {
+                    type: "experiment",
+                    content: "./experiments.html"
+                }
+            ]
+        }
+
+        document.body.onload = async () => {
+            await buildContent(elements)
+            import("../../js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+            initHelpers()
+        }
+    </script>
+</body>
+
+</html>

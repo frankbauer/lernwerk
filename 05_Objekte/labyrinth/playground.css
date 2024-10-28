@@ -1,0 +1,90 @@
+#content div.playground {
+    --color-filled: #AB0078;
+    --color-fillder-dark: #7E0038;
+    --color-filled-light: #D800B8;
+    --color-tested: #BEFF26;
+    --color-tested-filled: #6eb846;
+    --color-tested-dark: #597712;
+    margin-top: 20px;
+    position: relative;
+    border: 1px dotted #d0d0d0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 8px;
+}
+
+#theMaze {
+    background-color: white;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+#theMaze table {
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#theMaze table td {
+    border: 1px dashed rgba(160, 160, 170, 1);
+    width: 32px;
+    height: 32px;
+    position: relative;
+    background-size: 32px 32px;
+    border-radius:4px;
+}
+
+#theMaze table td.wall {
+    background-color: black;
+}
+
+#theMaze table tr td.start {
+    border: 1px solid black;
+    background-color: yellow;
+}
+
+#theMaze table tr td.wall.start {
+    background-color: red;
+    border: 1px solid orange;
+}
+
+
+#theMaze table tr td.visited div {
+    position: relative;
+    left: 8px;
+    top: 1px;
+    width: 13px;
+    height: 13px;
+    border-radius: 7px;
+    background-color: rgba(24, 174, 255, 0.477);
+    border: 2px solid rgb(24, 174, 255);
+    box-shadow: 0 0 3px rgba(24, 174, 255, 0.75);
+}
+
+#theMaze table tr td.visited.wall div {
+    background-color: rgba(200, 0, 53, 0.75);
+    border-color: rgb(29, 0, 8);
+    box-shadow: 0 0 4px white,0 0 12px white, 0 0 8px white, 0 0 6px white, 0 0 24px white;
+    left: 7px;
+    top: 0px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+}
+#theMaze table tr td.player div {
+    position: relative;
+    left: 5px;
+    top: 1px;
+    width: 18px;
+    height: 28px;
+    background-image: url(../../common/scene/floatingworld/img/Player1.png);
+    background-size: 18px 30px;
+    background-repeat: no-repeat;
+}
+
+#theMaze #player{
+    border: 2px solid red;
+    width: 7px;
+    height: 7px;
+}

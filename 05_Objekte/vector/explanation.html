@@ -1,0 +1,54 @@
+<h4>Beschreibung</h4>
+<p>Dieses Programm demonstriert die grundlegende Verwendung von Instanzen der Klasse <code>Vec2D</code>.</p>
+
+<h4>Codeerläuterung</h4>
+<ul>
+    <li>
+        <strong>Erstellen von Vektoren:</strong>
+        <p>Im ersten Schritt werden zwei Vektoren <code>v1</code> und <code>v2</code> mit einem Parameterkonstruktor
+            erstellt. <code>v1</code> hat die
+            Komponenten (-3, 4) und <code>v2</code> die Komponenten (5, 12).</p>
+        <pre code>Vec2D v1 = new Vec2D(-3, 4);
+Vec2D v2 = new Vec2D(5, 12);</pre>
+    </li>
+
+    <li>
+        <strong>Berechnung der Länge der Vektoren:</strong>
+        <p>Die Länge jedes Vektors wird mit der Instanzmethode <code>length()</code> berechnet, z.B:
+        <pre code>double len = v1.length();</pre>
+        </p>
+        <p>In unserem Beispiel werden die Längen von <code>v1</code> und <code>v2</code> nicht in Variablen
+            zwischengespeichert, sondern direkt in der Ausgabe bestimmt und mit der Zeichenkette verknüpft.
+        </p>
+        <pre code>System.out.println("v1 = " + v1 + ", len: " + v1.length());</pre>
+    </li>
+
+    <li>
+        <strong>Addition der Vektoren:</strong>
+        <p>Der Vektor <code>v3</code> ist das Ergebnis der Addition von <code>v1</code> und <code>v2</code>. Dies wird
+            mit der Instanzmethode <code>add(Vec2D v)</code> erreicht. Die Komponenten und die Länge von <code>v3</code>
+            werden
+            anschließend ausgegeben.</p>
+        <pre code>Vec2D v3 = v1.add(v2);</pre>
+    </li>
+
+    <li>
+        <strong>Skalierung und Subtraktion der Vektoren:</strong>
+        <p>Zur Bestimmung von v4 müssen wir zuerst denn Vektor <code>v1</code> mit dem Wert 3 multiplizieren. Dazu
+            nutzen wir die Instanzmethode <code>mul(double f)</code>
+        <pre code>Vec2D t1 = v1.mul(3);</pre>
+        </p>
+        <p>Als nächstes bestimmen wir die Hälfte von <code>v2</code> mit Hilfe der Instanzmethode
+            <code>div(double f)</code>:
+        <pre code>Vec2D t2 = v2.div(2);</pre>
+        </p>
+        <p>Im letzten Schritt subtrahieren wir <code>t2</code> von <code>t1</code> und speichern das Ergebnis in
+            <code>v4</code>. Dazu verwenden wir die Instanzmethode <code>sub(Vec2D v)</code>:
+        <pre code>Vec2D v4 = t1.sub(t2);</pre>
+        </p>
+
+        <p>Für diese Berechnung müssen wir nicht unbedingt Hilfsvariable (also <code>t1</code> und <code>t2</code>)
+            einführen. Wir können die Berechnung auch in einer Zeile durchführen:</p>
+        <pre code>Vec2D v4 = v1.mul(3).sub(v2.div(2));</pre>
+    </li>
+</ul>

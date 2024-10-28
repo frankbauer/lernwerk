@@ -1,0 +1,65 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm zählt, wie oft eine bestimmte Methode aufgerufen wurde. Es verwendet eine Endlosschleife, die mit
+    einer Wahrscheinlichkeit von 20% unterbrochen wird. Die Anzahl der Methodenaufrufe wird nach dem Verlassen der
+    Schleife ausgegeben.</p>
+
+<ul>
+    <li>
+        <strong>Zähler für Methodenaufrufe:</strong>
+        <p>Die Klasse <code>Watched</code> enthält eine Klassenattribut <code>callCounter</code>, die speichert, wie oft
+            die Methode <code>watchedMethod()</code> aufgerufen wurde. Die Variable wird bei jedem Aufruf der Methode um
+            1 erhöht. Die Sichtbarkeit wurde auf <code>private</code> gesetzt, da der Wert des Klassenattributes nicht
+            von anderen Klassen verändert werden soll.</p>
+        <pre code>private static int callCounter = 0;</pre>
+        <p>
+            <code>callCounter</code> muss ein Klassenattribut (statisch) sein, damit alle Aufrufe der Methode
+            <code>watchedMethod()</code> den gleichen Zähler aktualisieren. Wäre <code>callCounter</code> eine lokale
+            Variable innerhalb der Methode, würde der Zähler bei jedem Aufruf der Methode zurückgesetzt werden. Wäre es
+            ein Instanzattribut, würde jeder Instanz von <code>Watched</code> ein eigener Zähler zugeordnet, was nicht
+            den gewünschten globalen Zähler für alle Aufrufe widerspiegeln würde.
+        </p>
+    </li>
+
+    <li>
+        <strong>Klassenmethode <code>watchedMethod()</code>:</strong>
+        <p>Diese Methode erhöht den Aufrufzähler und gibt eine einfache Meldung in der Konsole aus, um zu bestätigen,
+            dass die Methode aufgerufen wurde. Sie ist öffentlich, weil Sie aus einer anderen Klasse
+            (<code>CallCounter</code>) verwendet werden soll.</p>
+        <pre code>public static void watchedMethod() {
+    Watched.callCounter++;
+    System.out.println("Method called");
+}</pre>
+    </li>
+
+    <li>
+        <strong>Methode <code>printCallCounter()</code>:</strong>
+        <p>Am Ende gibt die Methode <code>printCallCounter()</code> die Anzahl der Aufrufe von
+            <code>watchedMethod()</code> in aus, indem Sie den Wert des Klassenattributes <code>callCounter</code>
+            ausließt.
+        </p>
+        <pre code>public static void printCallCounter() {
+    System.out.println("Method was called " + Watched.callCounter + " times");
+}</pre>
+    </li>
+
+    <li>
+        <strong>Endlosschleife im Hauptprogramm:</strong>
+        <p>Im Hauptprogramm läuft eine Endlosschleife, die jedoch mit einer Wahrscheinlichkeit von 20% unterbrochen
+            wird. Dies wird durch die Bedingung <code>Math.random() < 0.2</code> erreicht. Wenn diese Bedingung
+            <code>true</code> ergibt, wird die Schleife mit dem Befehl <code>break</code> beendet.
+        </p>
+        <pre code>while (true) {
+    if (Math.random() < 0.2) {
+        break;
+    }
+}</pre>
+    </li>
+
+    <li>
+        <strong>Ausgabe der Aufrufanzahl:</strong>
+        <p>Nachdem die Schleife beendet wurde, wird die Anzahl der Aufrufe von <code>watchedMethod()</code> über
+            <code>printCallCounter()</code> in der Konsole ausgegeben.
+        </p>
+        <pre code>Watched.printCallCounter();</pre>
+    </li>
+</ul>

@@ -1,0 +1,44 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Schreiben Sie eine Klasse <code>Ellipse</code> mit Flächeninhalt <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <mrow>
+            <mi>A</mi>
+            <mo>=</mo>
+            <mi>&#x3C0;</mi>
+            <msub>
+                <mi>r</mi>
+                <mi>a</mi>
+            </msub>
+            <msub>
+                <mi>r</mi>
+                <mi>b</mi>
+            </msub>
+        </mrow>
+    </math>, die ebenfalls die beiden Schnittstellen <code>Form2D</code> und
+    <code>Verortbar</code> implementiert.
+</div>
+<div class="colored">
+    Erweitern Sie die Schnittstelle <code>Verortbar</code> um eine Methode, mit der die y-Position des Objektes
+    ausgelesen werden kan.
+    <hint solution>
+        <pre code>interface Verortbar {
+    public void setLocation(double x, double y);
+    public double getX();
+}</pre>
+    </hint>
+    <hint>Wenn Sie die Schnittstelle verändern, dann müssen auch alle Klassen die diese implementieren angepasst werden.
+    </hint>
+</div>
+<div class="colored">
+    Schreiben Sie in der Klasse <code>App</code> eine Methode, die die x-Position eines verortbaren Objektes auf den
+    Wert des Flächeninhalts
+    eines zweiten Objektes setzt und die y-Position beibehält.
+    <hint>Ihre Methode sollte einen Parameter mit dem Typ <code>Verortbar</code> und einen für den Typ
+        <code>Form2D</code> haben.
+    </hint>
+    <hint solution>
+        <pre code>static void move(Verortbar v, Form2D form){
+    v.setLocation(form.berechneFlaeche(), v.getY());
+}</pre>
+    </hint>
+</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../">
+    <title>[GdI] MeinExperiment</title>
+    <link rel="stylesheet" href="../css/editor.css">
+    <script src="../js/jquery/jquery.min.js?v=3.5.1"></script>
+    <script src="../js/vue/vue.runtime.min.js?v=2.6.11"></script>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../js/codeblocks-js/codeblocks.css">
+</head>
+
+<body>
+    <div class="topbar">
+        <h1><b>Sandkasten:</b> MeinExperiment</h1>
+        <a href="../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+        <div class="aufgabe boxed">
+            <h3>Aufgabe</h3>
+            <p>Schreiben Sie (in einer Datei <i>MeinExperiment.java</i>) ein Programm, das Ihren Namen anzeigt.
+                Erweitern Sie es so, dass in einer zweiten Zeile Ihr Studiengang angezeigt wird.</p>
+        </div>
+
+        <tabbar class="code">
+            <div data-tab="work" data-name="Ihre Lösung">
+                <div codeblocks data-compiler="java" data-run-code="true" data-compiler-version=101 data-compiler="java"
+                    data-execution-timeout="5000" data-max-characters="6000" data-run-code="true"
+                    data-output-parser="data" data-scope-selector="div#content">
+                    <loading>
+                        <div></div>
+                        <div></div>
+                    </loading>
+                    <pre as="block" data-visible-lines="auto">public class
+
+}</pre>
+                </div>
+            </div>
+        </tabbar>
+
+
+        <script>
+            document.body.onload = () => {
+                import("../js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+                setTimeout(() => processTabs(), 10);
+            }
+        </script>
+</body>
+
+</html>

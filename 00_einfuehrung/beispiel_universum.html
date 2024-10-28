@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../">
+    <title>[GdI] Universum</title>
+    <link rel="stylesheet" href="../css/editor.css?v=1.0.0">
+    <script src="../js/jquery/jquery.min.js?v=3.5.1"></script>
+    <script src="../js/vue/vue.runtime.min.js?v=2.6.11"></script>
+    <script src="../helper.js?v=1.0.0"></script>
+    <link rel="stylesheet" href="../js/codeblocks-js/codeblocks.css">
+
+    <style>
+        :root {
+            --planet-size: 1286px;
+            --rocket-width: 65px;
+            --rocket-height: 125px;
+        }
+
+        .playground {
+            position: relative;
+        }
+
+        div.universe {
+            position: relative;
+            width: 640px;
+            height: 400px;
+            background-image: url('../common/scene/universum/img/background.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 50;
+            overflow: hidden;
+        }
+
+        div.universe div.planet {
+            position: absolute;
+            width: var(--planet-size);
+            aspect-ratio: 1 / 1;
+            left: calc(var(--planet-size) / -2);
+            top: calc(var(--planet-size) / -2);
+            background-image: url('../common/scene/universum/img/planet.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 100;
+            transition: left 0.2s ease-in-out, top 0.2s ease-in-out;
+        }
+
+        div.universe.simulate div.planet {
+            animation: spin 1000s linear infinite;
+        }
+
+        div.universe.simulate div.planet div.clouds {
+            animation: spin 190s linear infinite;
+        }
+
+        div.universe div.planet div.clouds {
+            position: absolute;
+            width: var(--planet-size);
+            aspect-ratio: 1 / 1;
+            left: 0;
+            top: 0;
+            background-image: url('../common/scene/universum/img/clouds.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 300;
+            opacity: 0.0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        div.universe div.planet div.clouds.added {
+            opacity: 1.0;
+        }
+
+        div.universe div.planet div.clouds.fallen {
+            opacity: 0.0;
+        }
+
+        div.rocket {
+            position: absolute;
+            width: var(--rocket-width);
+            height: var(--rocket-height);
+            left: calc(var(--rocket-width) / -2);
+            top: calc(var(--rocket-height) * -1);
+            background-image: url('../common/scene/universum/img/rocket.off.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 200;
+            opacity: 1;
+        }
+
+        div.rocket.state_0 {
+            background-image: url('../common/scene/universum/img/rocket.0001.png');
+        }
+
+        div.rocket.state_1 {
+            background-image: url('../common/scene/universum/img/rocket.0002.png');
+        }
+
+        div.rocket.state_2 {
+            background-image: url('../common/scene/universum/img/rocket.0003.png');
+        }
+
+        div.rocket {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        div.rocket.animated {
+            transition: left 0.2s ease-in-out, top 0.2s ease-in-out, opacity 0.2s ease-in-out;
+        }
+
+        div.rocket.fallen {
+            opacity: 0;
+        }
+
+        div.universe div.planet div.rocket {
+            left: calc(var(--planet-size) / 2 - var(--rocket-width) / 2);
+            top: calc(var(--planet-size) / 2 - var(--rocket-height));
+        }
+
+        div.countdown {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 9em;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 500;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+        div.countdown.over {
+            opacity: 0;
+        }
+
+        @keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <h1><b>Vorlesungsbeispiel:</b> Universum</h1>
+        <a href="../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+        <tabbar class="code">
+            <div data-tab="solution" data-name="Vorlesungsbeispiel">
+                <div codeblocks data-compiler="java" data-run-code="true" data-compiler-version=101 data-compiler="java"
+                     data-execution-timeout="5000" data-max-characters="6000" data-run-code="true"
+                     data-output-parser="data" data-scope-selector="div#content">
+                    <loading>
+                        <div></div>
+                        <div></div>
+                    </loading>
+                    <pre as="block">// Definition der Hauptklasse des Programms mit dem Namen "Sandbox"
+public class Sandbox {
+
+    // Hauptmethode, die das Programm startet und die Eingabeparameter erhält
+    public static void main(String[] args) {
+        // Erstellen einer neuen Instanz des Universums und Übergabe der Eingabeparameter
+        Universe u = new Universe(args);
+
+        // Erstellen eines neuen Planeten vom Typ M und Hinzufügen zum Universum
+        Planet p = new Planet(Type.M);
+        u.addEntity(p);
+        
+        // Festlegen der Position des Planeten und Bestätigen, dass er Wolken hat
+        p.setLocation(-75.7, 341.042);
+        p.setHasClouds(true);
+
+        // Erstellen einer neuen Rakete
+        Rocket r = new Rocket();
+        
+        // Festlegen der Position der Rakete relativ zum Planeten
+        r.setLocationRelativeTo(p, 12.2, -200.0);
+        
+        // Hinzufügen der Rakete zum Universum und Starten ihres Countdowns
+        u.addEntity(r);
+        r.launchIn(5);
+
+        // Starten der Simulation des Universums
+        u.simulate();
+    }
+}</pre>
+                    <pre as="block" data-hidden data-static>
+                        class Entity {
+                            protected static int LAST_ID = 0;
+                            protected final int id;
+                            protected double x, y;
+                            public Entity() {
+                                this.id = ++LAST_ID;
+                            }
+                            protected String toJson(){ return "{}"; }
+                        }
+
+                        class Universe {
+                            private static boolean didSimulate = false;                            
+                            private java.util.List&lt;Entity> entities = new java.util.LinkedList&lt;>(); 
+                            protected static java.util.List&lt;String> commands = new java.util.LinkedList&lt;>();
+
+                            public Universe(String[] args) {
+                                commands.add("{\"command\":\"Universe\"}");                                
+                             }
+
+                            public void addEntity(Entity entity) {
+                                if (entities.contains(entity)) {
+                                    System.err.println("Entity was already added!");
+                                    return;
+                                }
+                                entities.add(entity);
+                                commands.add("{\"command\":\"addEntity\", \"entity\": " + entity.id + "}");
+                            }
+
+                            protected String toJson(){
+                                StringBuilder sb = new StringBuilder();
+                                sb.append("[");
+                                boolean didAdd = false;
+                                for (Entity e : entities){
+                                    if (didAdd) sb.append(",");
+                                    sb.append(e.toJson());
+                                    didAdd = true;
+                                }
+                                sb.append("]");
+                                return sb.toString();
+                            }
+
+                            public void simulate() { 
+                                commands.add("{\"command\":\"simulate\"}");
+                                if (!didSimulate) {
+                                    didSimulate = true;
+                                    //System.out.println(commands.toString());
+                                    de.fau.tf.lgdv.CodeBlocks.postResult(commands.toString());
+                                } else {
+                                    System.err.println("Simulation was already started!");                                
+                                }
+                            }
+                        }
+
+                        class Planet extends Entity{
+                            private final int type;
+                            private boolean hasClouds;
+
+                            public Planet(int type) {
+                                if (type != Type.M){
+                                    System.err.println("Invalid planet type!");
+                                } else {
+                                    Universe.commands.add("{\"command\":\"Planet\", \"type\": " + type + ", \"id\": " + id + "}");
+                                }
+                                this.type = type;
+                            }
+
+                            public void setLocation(double x, double y) {
+                                Universe.commands.add("{\"command\":\"setLocation\", \"x\": " + x + ", \"y\": " + y + ", \"id\": " + id + "}");
+                                this.x = x;
+                                this.y = y;
+                            }
+
+                            public void setHasClouds(boolean hasClouds) {
+                                Universe.commands.add("{\"command\":\"setHasClouds\", \"hasClouds\": " + hasClouds + ", \"id\": " + id + "}");
+                                this.hasClouds = hasClouds;
+                            }
+
+                            protected String toJson(){
+                                return "{\"class\":\"Planet\", \"type\": " + type + ", \"x\": " + x + ", \"y\": " + y + ", \"hasClouds\": " + hasClouds + ", \"id\": " + id + "}";                                
+                            }
+                        }
+
+                        class Rocket extends Entity{
+                            private Planet planet;
+                            private int launchTime;
+
+                            public Rocket() {
+                                Universe.commands.add("{\"command\":\"Rocket\", \"id\": " + id + "}");
+                             }
+                            public void setLocationRelativeTo(Planet planet, double offsetX, double offsetY) {
+                                Universe.commands.add("{\"command\":\"setLocationRelativeTo\", \"planet\": " + planet.id + ", \"offsetX\": " + offsetX + ", \"offsetY\": " + offsetY + ", \"id\": " + id + "}");
+                                this.planet = planet;
+                                this.x = planet.x + offsetX;
+                                this.y = planet.y + offsetY;
+                            }
+                            public void launchIn(int seconds) { 
+                                Universe.commands.add("{\"command\":\"launchIn\", \"seconds\": " + seconds + ", \"id\": " + id + "}");
+                                this.launchTime = seconds;
+                            }
+
+                            protected String toJson(){
+                                double x = this.x;
+                                double y = this.y;
+                                if (planet!=null){
+                                    x += planet.x;
+                                    y += planet.y;
+                                }
+                                return "{\"class\":\"Rocket\", \"x\": " + x + ", \"y\": " + y + ", \"launchTime\": " + launchTime + ", \"id\": " + id + "}";                                
+                            }
+                        }
+
+                        class Type{
+                            public static final int M = 0;
+                        }
+                    </pre>
+                    <script as="playground" data-version="101" data-code-expanded=0 width="642px" height="402px"
+                            align="center">
+                                {
+                                    entities: { },
+                                    setupDOM: function(canvasElement, outputElement, scope) { },
+                                    init: function(canvasElement, outputElement, scope, runner) {
+                                        // const planetSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--planet-size'));
+                                        // const rocketWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--rocket-width'));
+                                        // const rocketHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--rocket-height'));
+                                        // this.runCommand(canvasElement, [{ "command": "Universe" }, { "command": "Planet", "type": 0, "id": 1 }, { "command": "addEntity", "entity": 1 }, { "command": "setLocation", "x": -75.7, "y": 341.0420000000001, "id": 1 }, { "command": "setHasClouds", "hasClouds": true, "id": 1 }, { "command": "Rocket", "id": 2 }, { "command": "setLocationRelativeTo", "planet": 1, "offsetX": 12.5, "offsetY": -200, "id": 2 }, { "command": "addEntity", "entity": 2 }, { "command": "launchIn", "seconds": 2, "id": 2 }, { "command": "simulate" }], 0, planetSize, rocketWidth, rocketHeight)
+                                    },
+                                    addArgumentsTo(args) {
+
+                                    },
+                                    reset(canvasElement) { },
+                                    update: function(txt, json, canvasElement, outputElement) {
+                                        //get the css variable --planet-size defined on the :root of this site
+                                        const planetSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--planet-size'));
+                                        const rocketWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--rocket-width'));
+                                        const rocketHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--rocket-height'));
+
+                                        canvasElement.html('')
+                                        Object.keys(this.entities).map(k => this.entities[k]).filter(e => e.timer).forEach(e => clearInterval(e.timer))
+                                        this.entities = {}
+                                        console.log("Running - All", json, planetSize)
+                                        if (Array.isArray(json) && json.length > 0) {
+                                            this.runCommand(canvasElement, json, 0, planetSize, rocketWidth, rocketHeight)
+                                        }
+                                    },
+                                    runCommand(canvasElement, commands, index, planetSize, rocketWidth, rocketHeight) {
+                                        const cmd = commands[index]
+                                        console.log("Running", cmd)
+                                        if (cmd.command === 'Universe') {
+                                            const universe = $('<div class="universe"></div>')
+                                            const countdown = $('<div class="countdown over"></div>')
+                                            universe.append(countdown)
+                                            canvasElement.append(universe)
+                                        } else if (cmd.command === 'Planet') {
+                                            const planet = $('<div class="planet"></div>')
+                                            planet.attr('data-id', cmd.id)
+                                            this.entities[cmd.id] = {
+                                                element: planet,
+                                                clouds: false,
+                                                x: 0,
+                                                y: 0,
+                                                added: false
+                                            }
+                                        } else if (cmd.command === 'Rocket') {
+                                            const rocket = $('<div class="rocket fallen animated"></div>')
+                                            rocket.attr('data-id', cmd.id)
+                                            this.entities[cmd.id] = {
+                                                element: rocket,
+                                                planet: -1,
+                                                x: 0,
+                                                y: 0,
+                                                launch: 0,
+                                                added: false
+                                            }
+                                        } else if (cmd.command === 'addEntity') {
+                                            const entity = this.entities[cmd.entity]
+                                            if (entity && !entity.added) {
+                                                entity.added = true
+                                                let pPos = { left: 0, top: 0 }
+                                                const universe = $('.universe');
+                                                if (entity.planet > 0) {
+                                                    const planet = this.entities[entity.planet]
+                                                    const uPos = universe.offset()
+                                                    pPos = planet.element.offset()
+                                                    pPos = { left: pPos.left - uPos.left + planetSize / 2, top: pPos.top - uPos.top + planetSize / 2 }
+
+                                                    entity.element.css('left', `${pPos.left - rocketWidth / 2}px`)
+                                                    entity.element.css('top', `${pPos.top - rocketHeight}px`)
+                                                } else {
+                                                    entity.element.css('left', `${- rocketWidth / 2}px`)
+                                                    entity.element.css('top', `${- rocketHeight}px`)
+                                                }
+                                                universe.append(entity.element)
+
+                                                setTimeout(() => {
+                                                    entity.element.removeClass('fallen')
+                                                    if (entity.planet > 0) {
+                                                        entity.element.css('left', `${pPos.left - rocketWidth / 2 + entity.x}px`)
+                                                        entity.element.css('top', `${pPos.top - rocketHeight + entity.y}px`)
+                                                    } else {
+                                                        entity.element.css('left', `${- rocketWidth / 2 + entity.x}px`)
+                                                        entity.element.css('top', `${- rocketHeight + entity.y}px`)
+                                                    }
+                                                }, 10)
+                                            }
+                                        } else if (cmd.command === 'setLocation') {
+                                            const planet = this.entities[cmd.id]
+                                            if (planet) {
+                                                planet.x = cmd.x
+                                                planet.y = cmd.y
+                                                planet.element.css('left', `calc(${planetSize / -2 + 320 + cmd.x}px)`)
+                                                planet.element.css('top', `calc(${planetSize / -2 + 200 + cmd.y}px)`)
+                                            }
+                                        } else if (cmd.command === "setHasClouds") {
+                                            const planet = this.entities[cmd.id]
+                                            if (planet) {
+                                                if (cmd.hasClouds && !planet.clouds) {
+                                                    const clouds = $('<div class="clouds"></div>')
+                                                    planet.element.append(clouds)
+                                                    planet.clouds = true
+                                                    setTimeout(() => clouds.addClass('added'), 10)
+                                                } else if (!cmd.hasClouds && planet.clouds) {
+                                                    planet.element.find('.clouds').remove()
+                                                    planet.clouds = false
+                                                }
+                                            }
+                                        } else if (cmd.command === 'setLocationRelativeTo') {
+                                            const rocket = this.entities[cmd.id]
+                                            if (rocket) {
+                                                let pPos = { left: 0, top: 0 }
+
+                                                if (cmd.planet >= 0) {
+                                                    const universe = $('.universe');
+                                                    const planet = this.entities[cmd.planet]
+                                                    const uPos = universe.offset()
+                                                    pPos = planet.element.offset()
+                                                    pPos = { left: pPos.left - uPos.left + planetSize / 2, top: pPos.top - uPos.top + planetSize / 2 }
+                                                }
+
+                                                rocket.x = cmd.offsetX
+                                                rocket.y = cmd.offsetY
+                                                rocket.planet = cmd.planet
+                                                setTimeout(() => {
+                                                    rocket.element.css('left', `${pPos.left - rocketWidth / 2 + cmd.offsetX}px`)
+                                                    rocket.element.css('top', `${pPos.top - rocketHeight + cmd.offsetY}px`)
+                                                }, 10)
+
+                                            }
+                                        } else if (cmd.command === 'launchIn') {
+                                            const rocket = this.entities[cmd.id]
+                                            if (rocket) {
+                                                rocket.launch = cmd.seconds
+                                            }
+                                        } else if (cmd.command === 'simulate') {
+                                            $('.universe').addClass('simulate')
+                                            Object.keys(this.entities).map(k => this.entities[k]).filter(e => e.launch !== undefined).forEach(rocket => {
+                                                //get the position of rocket relative to canvasElement and append it to the canvasElement
+                                                const cPos = canvasElement.offset()
+
+                                                //add countdown layer
+                                                if (rocket.launch >= 1 && rocket.added) {
+                                                    rocket.cd = rocket.launch
+                                                    const countdown = $('.countdown')
+                                                    countdown.removeClass('over')
+                                                    countdown.html(rocket.launch)
+                                                    const cTimer = setInterval(() => {
+                                                        if (rocket.cd > 1) {
+                                                            countdown.html(--rocket.cd)
+                                                        } else {
+                                                            countdown.html(0)
+                                                            countdown.addClass('over')
+                                                            clearInterval(cTimer)
+                                                        }
+                                                    }, 1000)
+                                                }
+
+                                                setTimeout(() => {
+                                                    const rPos = rocket.element.offset()
+                                                    rocket.time = 0
+                                                    rocket.state = 0
+
+                                                    rocket.pox = rPos.left - cPos.left - 1
+                                                    rocket.poy = rPos.top - cPos.top - 1
+                                                    rocket.element.css('left', rocket.pox + "px")
+                                                    rocket.element.css('top', rocket.poy + "px")
+                                                    rocket.element.addClass(`state_${rocket.state}`)
+                                                    rocket.simulate = true
+
+                                                    rocket.element.removeClass('animated')
+                                                    canvasElement.append(rocket.element)
+                                                    rocket.timer = setInterval(() => this.updateRocket(rocket), 1000 / 25)
+                                                }, rocket.launch * 1000)
+                                            })
+
+                                        }
+
+                                        if (commands.length > index + 1) {
+                                            setTimeout(() => this.runCommand(canvasElement, commands, index + 1, planetSize, rocketWidth, rocketHeight), 300)
+                                        }
+                                    },
+                                    updateRocket(rocket) {
+                                        if (!rocket.simulate) return;
+                                        const a_up = 20;
+                                        const a_down = -9.81;
+                                        const v0 = 0;
+                                        rocket.time += 1 / 25
+                                        const oldState = rocket.state
+                                        rocket.state = (rocket.state + 1) % 3
+
+
+
+                                        if (rocket.time < 3) {
+                                            rocket.lastY = rocket.poy + v0 * rocket.time - 0.5 * a_up * rocket.time * rocket.time
+                                            rocket.lastV = v0 - a_up * rocket.time
+                                            rocket.lastT = rocket.time
+                                            rocket.element.css('top', rocket.lastY + "px")
+                                            if (oldState !== rocket.state) {
+                                                rocket.element.removeClass(`state_${oldState}`).addClass(`state_${rocket.state}`)
+                                            }
+                                        } else {
+                                            if (rocket.element.hasClass(`state_${oldState}`))
+                                                rocket.element.removeClass(`state_${oldState}`)
+                                            const t = rocket.time - rocket.lastT
+                                            const p = rocket.lastY + rocket.lastV * t - 0.5 * a_down * t * t;
+                                            rocket.element.css('top', p + "px")
+                                            if (p > 700) {
+                                                clearInterval(rocket.timer)
+                                                rocket.simulate = false;
+                                            } else if (p > 400 && !rocket.element.hasClass('fallen')) {
+                                                rocket.element.addClass('fallen')
+                                            }
+                                        }
+                                    }
+                                }
+                            </script>
+                </div>
+
+
+                <div class="explain boxed q-mt-xl">
+                    <h3>Erklärung</h3>
+
+                    <p>Das Programm erstellt eine Instanz des Universe, fügt einen Planeten und eine Rakete hinzu, setzt
+                        verschiedene Eigenschaften und startet schließlich die Simulation. Hier ist eine kurze
+                        Erläuterung der Schritte:</p>
+                    <ol>
+                        <li><b>Erstellen des Universums und des Planeten:</b>
+                            <pre code>Universe u = new Universe(args);
+Planet p = new Planet(Type.M);</pre>
+                            Diese Zeilen erstellen eine neue Instanz
+                            des Universe mit den übergebenen Programmargumenten <code>args</code> und einen neuen
+                            Planeten des Typs M.<br>
+                            In Java ist <code>args</code> ein Array von String-Elementen, das im Methodenkopf der
+                            main-Methode auftritt. Dieses Array enthält die Kommandozeilenargumente, die einem Programm
+                            übergeben werden, wenn es gestartet wird.
+                        </li>
+                        <li><b>Eigenschaften des Planeten setzen und zum Universum hinzufügen:</b>
+                            <pre code>u.addEntity(p);
+p.setLocation(-75.7, 341.042);
+p.setHasClouds(true);</pre>
+                            Der Planet wird zunächst dem Universum <code>u</code> hinzugefügt, seine Position wird
+                            festgelegt und es
+                            wird angegeben, dass er Wolken hat.
+                        </li>
+                        <li><b>Erstellen und Konfigurieren der Rakete:</b>
+                            <pre code>Rocket r = new Rocket();
+r.setLocationRelativeTo(p, 12.2, -200.0);
+u.addEntity(r);
+r.launchIn(5);</pre>
+                            Eine Rakete wird erstellt, relativ zu dem Planeten <code>p</code> positioniert, dem
+                            Universum <code>u</code> hinzugefügt und dann so eingestellt, dass sie in 5 Zeiteinheiten
+                            startet.
+                        </li>
+                        <li><b>Simulation starten:</b>
+                            <pre code>u.simulate();</pre>
+                            Diese Zeile startet die Simulation des Universums <code>u</code> mit den hinzugefügten
+                            Entitäten und deren Konfigurationen.
+                        </li>
+                    </ol>
+                </div>
+
+
+            </div>
+
+
+            <div data-tab="universe" data-name="Universe" class="api">
+                <div class="aufgabe boxed">
+                    <h4>Beschreibung</h4>
+                    <p>Repräsentiert das Universum, in dem die Simulation stattfindet.</p>
+
+
+                    <h4>Konstruktor</h4>
+                    <ul>
+                        <li><code>public Universe(String[] args)</code> Erstellt eine neue Instanz des
+                            Universums
+                            mit
+                            den
+                            angegebenen Eingabeparametern.</li>
+                    </ul>
+                    <h4>Instanzmethoden</h4>
+                    <ul>
+                        <li><code>public void addEntity(Planet entity)</code> Fügt einen Planeten zum Universum
+                            hinzu.</li>
+                        <li><code>public void addEntity(Rocket entity)</code> Fügt eine Rakete zum Universum
+                            hinzu.</li>
+                        <li><code>public void simulate()</code> Startet die Simulation des Universums.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div data-tab="planet" data-name="Planet" class="api">
+                <div class="aufgabe boxed">
+                    <h4>Beschreibung</h4>
+                    <p>Repräsentiert einen Planeten im Universum.</p>
+
+
+                    <h4>Konstruktor</h4>
+                    <ul>
+                        <li><code>public Planet(int type)</code> Erstellt einen neuen Planeten mit dem
+                            angegebenen
+                            Typ
+                            (z.B. M).</li>
+                    </ul>
+                    <h4>Instanzmethoden</h4>
+                    <ul>
+                        <li><code>public void setLocation(double x, double y)</code> Setzt die Position des
+                            Planeten
+                            auf
+                            die angegebenen Koordinaten.</li>
+                        <li><code>public void setHasClouds(boolean hasClouds)</code> Legt fest, ob der Planet
+                            Wolken
+                            hat.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div data-tab="rocket" data-name="Rocket" class="api">
+                <div class="aufgabe boxed">
+                    <h4>Beschreibung</h4>
+                    <p>Repräsentiert eine Rakete im Universum.</p>
+
+
+                    <h4>Konstruktor</h4>
+                    <ul>
+                        <li><code>public Rocket()</code> Erstellt eine neue Instanz einer Rakete.</li>
+                    </ul>
+                    <h4>Instanzmethoden</h4>
+                    <ul>
+                        <li><code>public void setLocationRelativeTo(Planet planet, double offsetX, double offsetY)</code>
+                            Setzt die Position der Rakete relativ zu einem Planeten.</li>
+                        <li><code>public void launchIn(int seconds)</code> Startet die Rakete nachdem
+                            die angegebenen Anzahl von Sekunden vergangen ist.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div data-tab="type" data-name="Type" class="api">
+                <div class="aufgabe boxed">
+                    <h4>Beschreibung</h4>
+                    <p>Eine Klasse, die verschiedene Konstanten für Planetentypen repräsentiert (z.B. M, N,
+                        etc.)
+                    </p>
+
+
+                    <h4>Klassenkonstanten</h4>
+                    <ul>
+                        <li><code>M</code>
+                            Ein Bewohnbarer Planet.</li>
+                    </ul>
+                </div>
+            </div>
+        </tabbar>
+        <div class="experiment boxed">
+            <h3>Experimente</h3>
+            <div class="colored">Was ändert sich, wenn Sie die Position der Rakete auf (0,0) festlegen?</div>
+            <div class="colored">
+                Versuchen Sie eine zweite Rakete einzufügen (Position: (142, -180) &bull; Start: 2s)?
+                <hint>Fügen Sie den Code aus Punkt 3 ein zweites mal ein. Vergessen Sie nicht die Bezeichnung
+                    von <code>r</code> sowie die zugehörigen Werte anzupassen.</hint>
+                <hint solution>Bevor die Simulation mit <code>u.simulate();</code> gestartet wird, können Sie folgendes
+                    einfügen:
+                    <pre code>Rocket r2 = new Rocket();
+r2.setLocationRelativeTo(p, 142, -180);
+u.addEntity(r2);
+r2.launchIn(2);</pre>
+                </hint>
+            </div>
+        </div>
+
+        <script>
+            document.body.onload = () => {
+                import("../js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+                initHelpers()
+            }
+        </script>
+</body>
+
+</html>

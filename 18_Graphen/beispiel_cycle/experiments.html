@@ -1,0 +1,41 @@
+<div class="colored">
+    Bauen Sie den Graphen aus der Vorlesung nach.
+</div>
+<div class="colored">
+    Vergleichen Sie das Ergebnis für verschiedene Startknoten.
+</div>
+
+<div class="colored">
+    Schreiben Sie eine Methode <code>isCyclic</code> die überprüft, ob ein Graph zyklisch ist.
+    <hint>Ein Graph ist dann zyklisch, wenn es einen Pfad gibt der bei einem Knoten beginnt und bei demselben Knoten
+        endet. Wenn ein Knoten mehr als einmal besucht wird, ist dies noch kein Zyklus!</hint>
+    <hint>Sie müssen eine <code>visited</code>-Liste mitführen in der ein Knoten vor dem Besuchen der Kindknoten
+        eingefügt, und nach dem Besuch aller Kindknoten wieder entfernt wird.</hint>
+    <hint solution>
+        <pre code>static boolean isCyclic(
+            Node&lt;Integer> cur, 
+            java.util.List&lt;Node&lt;Integer>> path
+) {
+    if (cur == null) { return false; }
+
+    //Knoten ist bereits teil des aktuellen pfades in path
+    if (path.contains(cur)) return true;
+    
+    //Knoten als Station auf dem Pfad aufnehmen
+    path.add(cur); 
+
+    //Alle Kindknoten prüfen
+    for (Node&lt;Integer> child : cur.childNodes()) {        
+        if (isCyclic(child, path)) return true;
+    }
+    //Knoten wieder aus dem Pfad entfernen
+    path.remove(cur);
+
+    return false;
+}</pre>
+    </hint>
+</div>
+
+<div class="colored">
+    Testen Sie Ihre Methode mit verschiedenen zyklischen und nicht-zyklischen Graphen.
+</div>

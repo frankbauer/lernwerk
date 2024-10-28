@@ -1,0 +1,29 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Setze den Wert der Variablen <code>d</code> und <code>halflingLuck</code> von Hand auf beliebige Werte und
+    versuche das Ergebnis vorherzusagen, ohne das Programm zu starten.
+</div>
+<div class="colored">
+    Ergänze für die erste Bedingung einen Alternativfall (else) und gebe darin einen beliebigen Text aus.
+</div>
+<div class="colored">
+    Ändere die Bedingung so ab, dass für alle Ergebnise die echt kleiner als 10 sind neu gewürfelt wird.
+</div>
+
+<div class="colored">
+    Ändere das Programm so ab, dass zu Beginn im Vorteil gewürfelt wird (also zwei Würfel geworfen werden und der
+    größere der beiden gewürfelten Werte in <code>d</code> verwendet wird).
+    <hint>
+        Es müssen zwei zufällige Würfelwürfe simuliert und in jeweils einer Variablen gespeichert werden.
+    </hint>
+    <hint>
+        Mit einer Fallunterscheidung kann dann der größere der beiden Werte in <code>d</code> gespeichert werden.
+    </hint>
+    <hint solution>
+        <pre code>int d = (int)(Math.random() * 20) + 1;
+int d2 = (int)(Math.random() * 20) + 1;
+if (d2 > d) {
+    d = d2;
+}</pre>
+    </hint>
+</div>

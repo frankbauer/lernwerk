@@ -1,0 +1,70 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm durchsucht eine Serie von Luftdruckmessungen und findet die beiden Messungen, die den größten
+    zeitlichen Abstand haben. Es verwendet eine <code>while</code>-Schleife, um durch die Messwerte zu iterieren und die
+    maximale Zeitdifferenz zu berechnen.</p>
+
+<ul>
+    <li>
+        <strong>Initialisierung der ersten Messung:</strong>
+        <p>Die erste Messung wird mit <code>Recorder.getNext()</code> abgerufen und in der Variablen
+            <code>current</code> gespeichert. Diese Messung dient als Ausgangspunkt, mit dem die folgenden Messungen
+            verglichen werden.
+        </p>
+        <pre code>Measurement current = Recorder.getNext();</pre>
+    </li>
+
+    <li>
+        <strong>Anlegen einer Aggregationsvariable:</strong>
+        <p>Noch vor der Schleife legen wir eine Variable <code>maxDiff</code> an, die wir in jedem Schleifendurchlauf
+            anpassen und am Ende ausgeben können. Die Variable "merkt" sich die bisher gefundene, größte Zeitdiferenz.
+            Da beim anlegen der Variable noch keine Differenz berechnet wurde, setzten wir Sie auf den Wert 0 (das
+            Ergebnis, dass wir erwarten würden, wenn es keine Messwerte gibt).</p>
+        <p>Würde die Variable nicht vor, sondern in der Schleife angelegt werden, könnte deren Wert nicht nach Ende der
+            Schleife für die Ausgabe verwendet werden. Außerdem würde der Wert in jedem Schleifendurchlauf
+            zurückgesetzt.
+        </p>
+        <pre code>int maxDiff = 0;</pre>
+    </li>
+
+    <li>
+        <strong>Verwendung der <code>while</code>-Schleife:</strong>
+        <p>Die <code>while</code>-Schleife iteriert über die restlichen Messungen, bis keine weiteren Messwerte mehr
+            verfügbar sind. In jeder Iteration wird eine neue Messung (<code>next</code>) abgerufen und mit der
+            aktuellen Messung (<code>current</code>) verglichen.</p>
+        <pre code>while (Recorder.hasMore()) {
+    Measurement next = Recorder.getNext();
+    int deltaTime = next.timeInHours - current.timeInHours;
+    /*...*/
+}</pre>
+    </li>
+
+    <li>
+        <strong>Berechnung der Zeitdifferenz:</strong>
+        <p>In jeder Iteration wird die Zeitdifferenz zwischen dem aktuellen (<code>current</code>) und nächsten
+            (<code>next</code>) Messwert berechnet. Ist diese Differenz größer als die bisher gefundene
+            größte Zeitdifferenz, so wird letztere aktualisiert.</p>
+        <pre code>int deltaTime = next.timeInHours - current.timeInHours;
+if (deltaTime > maxDiff) {
+    maxDiff = deltaTime;
+}</pre>
+    </li>
+
+    <li>
+        <strong>Weiterrücken von <code>current</code>:</strong>
+        <p>Nach jeder Berechnung wird die in <code>next</code> gespeicherte Referenz nach <code>current</code> kopiert.
+            Ohne diese Zeile würde in jedem Schleifendurchlauf immer die Differenz zum aller ersten Messwert bestimmt
+            werden. Durch das umkopieren des Wertes, wird sichergestellt, dass immer die Differenz zu zuletzt gelesenen
+            Messwert bestimmt wird.</p>
+        <pre code>current = next;</pre>
+        <p>Auch für die Variable <code>current</code> ist es wichtig, dass sie vor der Schleife angelegt und
+            initialisiert wird.</p>
+    </li>
+
+    <li>
+        <strong>Ausgabe der maximalen Zeitdifferenz:</strong>
+        <p>Nach Abschluss der Schleife wird die größte gefundene Zeitdifferenz in Stunden in der Konsole ausgegeben.</p>
+        <pre code>System.out.println("Zeitdifferenz: " + maxDiff + " Stunden");</pre>
+        <p>Die Variable musste vor der Schleife angelegt werden, damit sie in der Schleife verwendet werden kan und nach
+            der Schleife noch verfügbar ist.</p>
+    </li>
+</ul>

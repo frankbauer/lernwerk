@@ -1,0 +1,97 @@
+<h3>Erklärung</h3>
+<p>Die Klasse <code>Kreis</code> implementiert zwei Schnittstellen: <code>Form2D</code> und <code>Verortbar</code>.</p>
+
+<ul>
+    <li>
+        <strong>Interface <code>Form2D</code>:</strong>
+        <p>
+            <code>public double berechneFlaeche();</code><br>
+            Dieses Interface deklariert eine Methode zur Berechnung der Fläche einer zweidimensionalen Form. Es zwingt
+            jede Klasse, die es implementiert, eine öffentliche Methode <code>berechneFlaeche</code> zu definieren.
+        </p>
+    </li>
+    <li>
+        <strong>Interface <code>Verortbar</code>:</strong>
+        <p>
+            <code>public void setLocation(double x, double y);</code><br>
+            Dieses Interface deklariert eine Methode zur Festlegung der Position eines Objekts. Es zwingt jede Klasse,
+            die es implementiert, eine öfentliche Methode <code>setLocation</code> zu definieren.
+        </p>
+    </li>
+    <li>
+        <strong>Klasse <code>Kreis</code>:</strong>
+        <p>
+            <code>public class Kreis implements Form2D, Verortbar</code><br>
+            Die Klasse <code>Kreis</code> implementiert sowohl die <code>Form2D</code> als auch die
+            <code>Verortbar</code> Schnittstelle. Sie muss daher die Methoden <code>berechneFlaeche</code> und
+            <code>setLocation</code> definieren.
+        </p>
+        <p>Jedes Kreis Objekt hat die drei Attribute <code>radius</code>, <code>x</code> und <code>y</code>, die den
+            Radius des Kreises und seine Position speichern.</p>
+        <ul>
+            <li>
+                <strong>Methode <code>berechneFlaeche</code>:</strong>
+                <p>
+                    <code>public double berechneFlaeche()</code><br>
+                    Diese Methode berechnet die Fläche des Kreises anhand seines Radius. Die Formel lautet:
+                    <code>this.radius * this.radius * Math.PI</code>.
+                </p>
+            </li>
+            <li>
+                <strong>Methode <code>setLocation</code>:</strong>
+                <p>
+                    <code>public void setLocation(double xIn, double yIn)</code><br>
+                    Diese Methode setzt die Position des Kreises, indem sie die Parameter <code>xIn</code> und
+                    <code>yIn</code> den entsprechenden Attributen der Klasse zuweist.
+                </p>
+            </li>
+            <li>
+                <strong>Konstruktor <code>Kreis</code>:</strong>
+                <p>
+                    <code>public Kreis(double radius)</code><br>
+                    Dieser Konstruktor initialisiert den Kreis mit einem angegebenen Radius.
+                </p>
+            </li>
+            <li>
+                <strong>Methode <code>toString</code>:</strong>
+                <p>
+                    <code>public String toString()</code><br>
+                    Diese Methode überschreibt die Standard-<code>toString</code>-Methode und gibt eine Beschreibung des
+                    Kreises aus, die den Radius und die Position des Kreises enthält.</code>.
+                </p>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>Hauptmethode <code>main</code>:</strong>
+        <p>
+            Die Hauptmethode dient als Einstiegspunkt für die Ausführung des Programms. Hier werden drei Objekte der
+            Klasse <code>Kreis</code> erstellt und in Variablen unterschiedlicher Typen gespeichert. Das Beispiel soll
+            zeigen, welche Datentypen für die Referenzvariablen verwendet werden können, wenn ein Objekt einer Klasse
+            erstellt wird, die mehrere Schnittstellen implementiert.
+        <ul>
+            <li>
+                <code>Kreis k = new Kreis(2);</code><br>
+                Ein Kreisobjekt mit einem Radius von 2 wird erstellt und in einer Variablen vom Typ <code>Kreis</code>
+                gespeichert.
+            </li>
+            <li>
+                <code>Form2D f = new Kreis(4);</code><br>
+                Ein Kreisobjekt mit einem Radius von 4 wird erstellt und einer <code>Form2D</code> Variablen zugewiesen.
+                Da die Klasse <code>Kreis</code> das <code>Form2D</code> Interface implementiert, kann ein Kreisobjekt
+                als <code>Form2D</code> behandelt werden. Über <code>f</code> können nur Methoden aufgerufen werden,
+                die in <code>Form2D</code> deklariert sind. Der Aufruf <code>f.setLocation(0, 0)</code> ist also zum
+                Beispiel ungültig.
+            </li>
+            <li>
+                <code>Verortbar v = new Kreis(6);</code><br>
+                Ein Kreisobjekt mit einem Radius von 6 wird erstellt und einer <code>Verortbar</code> Variablen
+                zugewiesen. Da die Klasse <code>Kreis</code> das <code>Verortbar</code> Interface implementiert, kann
+                ein Kreisobjekt als <code>Verortbar</code> behandelt werden. Über <code>v</code> können nur Methoden
+                aufgerufen werden, die in <code>Verortbar</code> deklariert sind. Der Aufruf
+                <code>v.berechneFlaeche()</code> ist also zum Beispiel ungültig.
+            </li>
+        </ul>
+        </p>
+    </li>
+</ul>

@@ -1,0 +1,21 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Baum</code> repräsentiert einen Baum, der in verschiedenen Jahreszeiten dargestellt werden kann.
+    Diese Klasse implementiert das <code>Renderable</code>-Interface, sodass Bäume gezeichnet werden können. Jeder Baum
+    hat eine eindeutige ID und wird automatisch bei der Erstellung registriert, um gerendert (gezeichnet) zu werden.</p>
+<h4>Attribute</h4>
+<ul>
+    <li><code>public String jahreszeit</code><br>Die aktuelle Jahreszeit des Baumes.</li>
+</ul>
+<h4>Konstruktoren</h4>
+<ul>
+    <li><code>public Baum()</code><br>Erstellt einen neuen Baum im Herbst. Der Baum wird automatisch zum Rendern
+        registriert.</li>
+    <li><code>public Baum(String jahreszeit)</code><br>Erstellt einen neuen Baum in der angegebenen Jahreszeit. Der Baum
+        wird automatisch zum Rendern registriert.</li>
+</ul>
+<h4>Methoden</h4>
+<ul>
+    <li><code>public void render(Graphics2D g)</code><br>Zeichnet den Baum auf die <code>Graphics2D</code>-Oberfläche.
+        Die Position und der Maßstab des Baums hängen von seiner ID ab. Der Baum wird entsprechend der angegebenen
+        Jahreszeit gezeichnet.</li>
+</ul>

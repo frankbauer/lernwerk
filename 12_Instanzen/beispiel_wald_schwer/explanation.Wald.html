@@ -1,0 +1,47 @@
+<h3>Erklärung - Wald</h3>
+<p>Dieses Programm simuliert die Erstellung und Darstellung von Bäumen auf eine Bühne. Es demonstriert die
+    grundlegende Nutzung von Objektorientierung, indem es Objekte der Klassen <code>Baum</code> verwendet und das
+    Aussehen einzelner Instanzen über das Instanzattribut <code>jahreszeit</code> ändert.</p>
+
+<ul>
+    <li>
+        <strong>Erstellen eines Baumes in der Mitte:</strong>
+        <p>Ein neues <code>Baum</code>-Objekt wird erstellt, das die Jahreszeit <b>"herbst"</b> als Standardwert
+            verwendet.
+            Dieser Baum wird mit <code>id=1</code> erstellt. Beim Darstellen des Baums auf der Bühne (in der Methode
+            <code>render</code>) wird die ID verwendet, um die Position des Baumes zu bestimmen.
+            Eingesetzt in die Formel <code>(int)(POS_INDEX / 2.0 * (MAX_X - MIN_X) + MIN_X)</code> ergibt sich für den
+            Baum die Position <code>400</code> (entspricht der Mitte der Bühne, siehe Beschreibung von
+            <code>render</code> weiter unten).
+        </p>
+
+        <p>Über die Variable <code>mitte</code> kann anschließend auf diesen Baum zugegriffen werden.</p>
+        <code>Baum mitte = new Baum();</code>
+    </li>
+    <li>
+        <strong>Erstellung und Festlegung der Jahreszeit des rechten Baumes:</strong>
+        <p>Ein <code>Baum</code>-Objekt mit <code>id=2</code> wird erstellt. Die Variable <code>rechts</code>
+            referenziert die neue Instanz.
+            Die Jahreszeit des Baumes wird bei der Erstellung auf <b>"winter"</b> festgelegt.</p>
+        <pre code>Baum links = new Baum("winter");</pre>
+    </li>
+    <li>
+        <strong>Erstellung und Festlegung der Jahreszeit des linken Baumes:</strong>
+        <p>Ein weiteres <code>Baum</code>-Objekt mit <code>id=3</code> wird erstellt und eine Referenz darauf in der
+            Variable
+            <code>links</code> gespeichert. Die Jahreszeit des Baumes wird bei der Erstellung auf <b>"spätherbst"</b>
+            festgelegt.
+        </p>
+        <pre code>Baum rechts = new Baum("spätherbst");</pre>
+    </li>
+    <li>
+        <strong>Änderung der Jahreszeit des mittleren Baumes:</strong>
+        <p>Die Jahreszeit des Baumes, der durch die Variable <code>mitte</code> referenziert wird, wird zweimal
+            geändert: zuerst auf <b>"frühling"</b> und dann auf <b>"fasching"</b>. Dies zeigt, dass Attribute von
+            Objekten nach ihrer
+            Erstellung geändert werden können. Da der Zugriff auf das Attribut unkntrolliert erfolgt, kann so auch eine
+            ungültige Jahreszeit (im Beispiel "fasching") zugewiesen werden.</p>
+        <pre code>mitte.jahreszeit = "frühling";
+mitte.jahreszeit = "fasching";</pre>
+    </li>
+</ul>

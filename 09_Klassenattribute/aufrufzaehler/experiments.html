@@ -1,0 +1,17 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Ändere das Programm so ab, dass die <b>while</b>-Schleife in der <code>main</code>-Methode abgebrochen wird, sobald
+    die Methode mehr als dreimal aufgerufen wurde. Achte darauf, dass das Klassenattribut zum Zählen der Aufrufe nur
+    innerhalb der Klasse <code>Watched</code> verändert werden kann.
+    <hint>Du musst eine Methode einführen, mit der der Wert des Zählattributs gelesen werden kann.</hint>
+    <hint solution>
+        <pre code>class Watched {
+    public static int getCallCounter(){
+        return Watched.callCounter;
+    }
+    /*...*/
+}</pre>
+        Außerdem muss in der while-Schleife die Bedingung angepasst werden:
+        <pre code>if (Math.random() &lt; 0.2 || Watched.getCallCounter() &gt; 3) { break; }</pre>
+    </hint>
+</div>

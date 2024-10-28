@@ -1,0 +1,67 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Geben Sie für jeden Vektor neben der Länge auch dessen L2-Norm aus.
+    <hint>
+        Sie können die Instanzmethode <code>norm()</code> verwenden, um die L2-Norm eines Vektors zu berechnen.
+    </hint>
+</div>
+
+<div class="colored">
+    Berechnen Sie für jeden Vektor den Winkel, den dieser mit der X-Achse einschließt, und geben Sie diesen aus.
+    <hint>
+        Der von den <b>normalisierten</b> Vektoren <math>
+            <mover>
+                <mi>a</mi>
+                <mo stretchy="false" style="transform:scale(0.75) translate(10%, 30%);">→</mo>
+            </mover>
+        </math> und <math>
+            <mover>
+                <mi>b</mi>
+                <mo stretchy="false" style="transform:scale(0.75) translate(10%, 30%);">→</mo>
+            </mover>
+        </math>
+        eingeschlossene Winkel kan mit der Formel
+        <math>
+            <mrow>
+                <mi>acos</mi>
+                <mo form="prefix" stretchy="false">(</mo>
+                <mover>
+                    <mi>a</mi>
+                    <mo stretchy="false" style="transform:scale(0.75) translate(10%, 30%);">→</mo>
+                </mover>
+                <mo>⋅</mo>
+                <mover>
+                    <mi>b</mi>
+                    <mo stretchy="false" style="transform:scale(0.75) translate(10%, 30%);">→</mo>
+                </mover>
+                <mo form="postfix" stretchy="false">)</mo>
+            </mrow>
+        </math> bestimmt werden. Die Rechenoperation <b>⋅</b> ist das Skalarprodukt der beiden Vektoren.
+    </hint>
+    <hint solution>
+        Die obige Formel kann mit Hilfe geeigneter Instanzmethoden der Klasse <code>Vec2D</code> wie folgt berechnet
+        werden:
+        <pre code>Vec2D n1 = v1.normalize();
+double scalar = Vec2D.XAxis.dot(n1);            
+double rad = Math.acos(scalar);</pre>
+    </hint>
+</div>
+
+<div class="colored">
+    In Java werden Winkel immer in Radianten und nicht in Grad angegeben. Rechnen Sie den Winkel aus der vorherigen
+    Aufgabe in Grad um, bevor Sie den Winkel ausgeben.
+    <hint>
+        Um einen
+        Winkel in Grad zu erhalten, können Sie die Methode <code>Math.toDegrees()</code> verwenden.
+    </hint>
+    <hint solution>
+        <pre code>double deg = Math.toDegrees(rad);</pre>
+    </hint>
+</div>
+
+<div class="colored">
+    Schreiben Sie die Winkelberechnung in einer Zeile.
+    <hint solution>
+        <pre code>Math.toDegrees( Math.acos(Vec2D.XAxis.dot(v1.normalize())) );</pre>
+    </hint>
+</div>

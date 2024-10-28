@@ -1,0 +1,21 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Pflanze 32 Bäume.
+</div>
+<div class="colored">
+    Lasse die Abbruchbedingung aus dem vorherigen Beispiel unverändert. Wieviele Bäume werden gepflanzt wenn
+    das update der Zählvariable <code>i</code> von <code>i++</code> auf <code>i = i * 2</code> geämdert wird? Versuche
+    die
+    Anzahl zu bestimmen ohne das Programm zu starten.
+    <hint>
+        Es werden unendlich viele Bäume gepflanzt.<br>
+        Die Zählvariable wird in jedem Schleifendurchlauf verdoppelt, da <code>i</code> allerdings mit <code>i=0</code>
+        beginnt, entsteht eine Endlosschleife. <b>Versuche dieses Problem zu beheben.</b> Wie oft wird nach der
+        Korrektur ein Baum gepflanzt?
+    </hint>
+    <hint solution>
+        <pre code>for (int i = 1; i &lt; 32; i = i * 2) {</pre>
+        In diesem Beispiel würde <code>i</code> die Werte 1, 2, 4, 8, 16 und 32 annehmen. Da die Schleife bei
+        <code>i = 32</code> endet (und nicht erneut durchlaufen wird), wird insgesamt 5 mal ein Baum gepflanzt.
+    </hint>
+</div>
