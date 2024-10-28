@@ -1,0 +1,32 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Ändere die Zahlenwerte und versuche voruaszusagen, was ausgegeben wird, bevor Du das Programm ausführst.
+</div>
+<div class="colored">
+    Wie verändert sich die Ausgabe wenn man in beiden Fällen <code>++a</code> statt <code>a++</code> verwendet?
+    <hint explain>
+        <p>Der Unterschied zwischen Post-Increment (a++) und Pre-Increment (++a) liegt darin, dass Post-Increment den
+            aktuellen Wert zurückgibt und dann erhöht, während Pre-Increment zuerst den Wert erhöht und dann den neuen
+            Wert zurückgibt.</p>
+        <ol>
+            <li><strong>Beim Ersetzen des ersten <code>a++</code> durch <code>++a</code>:</strong>
+                <ul>
+                    <li>In beiden Fällen wird <code>a</code> von 10 auf 11 erhöht. Der einzige Unterschied besteht
+                        darin, dass der Wert von <code>a</code> bei <code>++a</code> sofort erhöht wird, bevor er in der
+                        nächsten Zeile verwendet oder ausgegeben wird.</li>
+                </ul>
+            </li>
+            <li><strong>Beim Ersetzen des zweiten <code>a++</code> durch <code>++a</code> in der Zuweisung zu
+                    <code>b</code>:</strong>
+                <ul>
+                    <li>Im ursprünglichen Code (<code>int b = a++;</code>) wird <code>b</code> zuerst der aktuelle Wert
+                        von <code>a</code> (11) zugewiesen, und dann wird <code>a</code> erhöht (auf 12).</li>
+                    <li>Im modifizierten Code (<code>int b = ++a;</code>) wird <code>a</code> zuerst erhöht (von 11 auf
+                        12) und dann wird dieser erhöhte Wert (<code>a</code> = 12) <code>b</code> zugewiesen. Beide,
+                        <code>a</code> und <code>b</code>, haben somit den Wert 12.
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </hint>
+</div>

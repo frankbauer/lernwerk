@@ -1,0 +1,58 @@
+#content div.playground {
+    --color-filled: #AB0078;
+    --color-fillder-dark: #7E0038;
+    --color-filled-light: #D800B8;
+    --color-tested: #BEFF26;
+    --color-tested-filled: #6eb846;
+    --color-tested-dark: #597712;
+    margin-top: 20px;
+    position: relative;
+    border: 1px dotted #d0d0d0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 8px;
+}
+
+#content div.playground table {
+    width: 100%;
+    height: 100%;
+}
+
+#content div.playground table td {
+    width: 28px;
+    height: 28px;
+    border: 1px solid silver;
+    border-radius: 3px;
+}
+
+#content div.playground table td.start_cell {
+    border-width: 3px;
+    border-color: var(--color-filled-light);
+    background-color: #f0f0f0
+}
+
+#content div.playground table td.filled_cell {
+    background-color: var(--color-filled-light);
+    border-color: var(--color-fillder-dark);
+}
+
+#content div.playground table td.source_cell {
+    background-color: var(--color-filled);
+}
+
+#content div.playground table td.empty_cell {
+    background-color: white;
+}
+
+#content div.playground table td.tested {
+    border-color: var(--color-tested-dark)
+}
+
+#content div.playground table td.filled_cell.tested {
+    background-color: var(--color-tested-filled);
+}
+
+#content div.playground table td.empty_cell.tested {
+    background-color: var(--color-tested);
+}

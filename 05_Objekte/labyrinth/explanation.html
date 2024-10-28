@@ -1,0 +1,28 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm illustriert die Steuerung einer Spielfigur innerhalb eines Labyrinths mittels einer objektorientierten
+    Struktur. Es zeigt insbesondere die Verwendung von Instanzmethoden und Konstanten, um die Spielfigur zu navigieren.</p>
+
+<ul>
+    <li>
+        <strong>Erstellung des <code>MazeController</code>-Objekts:</strong>
+        <p>Ein <code>MazeController</code>-Objekt wird erstellt, das die Steuerung der Spielfigur im Labyrinth übernimmt. Dieses Objekt wird von der Variablen
+            <code>controller</code> referenziert und erlaubt es, die Spielfigur durch das Labyrinth zu bewegen.</p>
+        <code>MazeController controller = new MazeController(args);</code>
+    </li>
+    <li>
+        <strong>Setzen der Verzögerung für Befehle:</strong>
+        <p>Die Methode <code>setDelay(int delayInMs)</code> wird verwendet, um die Zeitverzögerung für Befehle zu setzen. In diesem Fall
+            wird die Verzögerung auf 100 Millisekunden festgelegt, was bedeutet, dass nach jeder Bewegung der Spielfigur eine kurze Pause eingelegt wird.</p>
+            
+        <code>controller.setDelay(100);</code>
+        <p>Man sagt, die Methode <code>setDelay()</code> wird auf/für <code>controller</code> aufgerufen. Der Wert 100 wird an die Methode <code>setDelay()</code> übergeben.</p>
+    </li>
+    <li>
+        <strong>Bewegung der Spielfigur:</strong>
+        <p>Die Methode <code>command(int opCode)</code> wird verwendet, um der Spielfigur eine Anweisung zu geben, in die er sich bewegen soll. Die Bewegung wird durch den übergebenen <code>opCode</code> gesteuert, der auf eine der vordefinierten Konstanten der Klasse <code>Labyrinth</code> verweist.</p>
+       
+        <p>Die Bewegungen erfolgen nacheinander durch mehrfachen Aufruf der Methode <code>command()</code>, um die Spielfigur durch das Labyrinth zu navigieren. Folgender Aufruf bewegt die Spielfigur zum Beispiel nach rechts.</p>
+
+        <code>controller.command(Labyrinth.GO_RIGHT);</code>
+    </li>
+</ul>

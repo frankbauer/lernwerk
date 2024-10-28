@@ -1,0 +1,38 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm demonstriert die Verwendung der Klasse <code>Baum</code> und zeigt, wie man mit finalen
+    Objektreferenzen arbeitet. Es erstellt einen Baum in der Jahreszeit <i>Herbst</i> und ändert dann die Jahreszeit auf
+    <i>Winter</i>.
+</p>
+
+<ul>
+    <li>
+        <strong>Erstellen eines finalen Baum-Objekts:</strong>
+        <p>Ein neues <code>Baum</code>-Objekt wird erstellt und die Jahreszeit wird auf Herbst gesetzt. Die Referenz
+            auf dieses Objekt wird in der Konstante <code>b</code> gespeichert. Durch die Verwendung des
+            Schlüsselworts <code>final</code> wird sichergestellt, dass die Referenz <code>b</code> nach der
+            Initialisierung nicht mehr geändert werden kann, obwohl die Eigenschaften des Objekts selbst weiterhin
+            geändert werden können.</p>
+        <code>final Baum b = new Baum("herbst");</code>
+    </li>
+    <li>
+        <strong>Überprüfung der Jahreszeit:</strong>
+        <p>Die Methode <code>isWinter()</code> wird aufgerufen, um zu überprüfen, ob die aktuelle Jahreszeit
+            <i>Winter</i>
+            ist. Da der Baum mit der Jahreszeit <i>Herbst</i> erstellt wurde, wird <code>false</code> ausgegeben.</p>
+        <pre><code>System.out.println(b.isWinter());</code></pre>
+    </li>
+    <li>
+        <strong>Änderung der Jahreszeit:</strong>
+        <p>Die Methode <code>setWinter()</code> wird aufgerufen, um die Jahreszeit des Baumes auf <i>Winter</i> zu
+            ändern.
+        </p>
+        <pre><code>b.setWinter();</code></pre>
+    </li>
+    <li>
+        <strong>Erneute Überprüfung der Jahreszeit:</strong>
+        <p>Die Methode <code>isWinter()</code> wird erneut aufgerufen, um zu überprüfen, ob die Jahreszeit nun
+            <i>Winter</i>
+            ist. Da die Jahreszeit geändert wurde, wird <code>true</code> ausgegeben.</p>
+        <pre><code>System.out.println(b.isWinter());</code></pre>
+    </li>
+</ul>

@@ -1,0 +1,88 @@
+<h3>Aufgabe</h3>
+<p>Berechnen Sie die Lösung einer quadratischen Gleichung der Form <math>
+                <mrow>
+                        <mi>a</mi>
+                        <msup>
+                                <mi>x</mi>
+                                <mn>2</mn>
+                        </msup>
+                        <mo>+</mo>
+                        <mi>b</mi>
+                        <mi>x</mi>
+                        <mo>+</mo>
+                        <mi>c</mi>
+                        <mo>=</mo>
+                        <mn>0</mn>
+                </mrow>
+        </math> für beliebige Werte von
+        <math>
+                <mi>a</mi>
+        </math>,
+        <math>
+                <mi>b</mi>
+        </math> und
+        <math>
+                <mi>c</mi>
+        </math>. Bestimmen Sie dazu zunächst die Diskriminante <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>D</mi>
+                <mo>=</mo>
+                <mrow>
+                        <msup>
+                                <mi>b</mi>
+                                <mn>2</mn>
+                        </msup>
+                        <mo>-</mo>
+                        <mrow>
+                                <mn>4</mn>
+                                <mi>a</mi>
+                                <mi>c</mi>
+                        </mrow>
+                </mrow>
+        </math>.
+</p>
+
+<p>Ist die Diskriminante negativ, so soll der Text <em>"Keine Lösung"</em> ausgegeben werden. Ist sie <math>
+                <mn>0</mn>
+        </math>, so soll die
+        eine mögliche Lösung angezeigt werden (<math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>x</mi>
+                <mo>=</mo>
+                <mfrac>
+                        <mrow>
+                                <mo>-</mo>
+                                <mi>b</mi>
+                        </mrow>
+                        <mrow>
+                                <mn>2</mn>
+                                <mi>a</mi>
+                        </mrow>
+                </mfrac>
+        </math>
+        ). In allen anderen Fällen sollen beide Lösungen ausgegeben werden (<math
+              xmlns="http://www.w3.org/1998/Math/MathML">
+                <msub>
+                        <mi>x</mi>
+                        <mrow>
+                                <mn>0</mn>
+                                <mo>,</mo>
+                                <mn>1</mn>
+                        </mrow>
+                </msub>
+                <mo>=</mo>
+                <mfrac>
+                        <mrow>
+                                <mo>-</mo>
+                                <mi>b</mi>
+                                <mo>&#xB1;</mo>
+                                <msqrt>
+                                        <mi>D</mi>
+                                </msqrt>
+                        </mrow>
+                        <mrow>
+                                <mn>2</mn>
+                                <mi>a</mi>
+                        </mrow>
+                </mfrac>
+        </math>
+        ).</p>
+<p><b>Hinweis:</b> Die Wurzel kann mit <code>Math.sqrt(double)</code> bestimmt werden.</p>

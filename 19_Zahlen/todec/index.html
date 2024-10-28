@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../../">
+    <title>[GdI]</title>
+    <link rel="stylesheet" href="../../css/editor.css?v=1.0.3">
+    <script src="../../js/jquery/jquery.min.js?v=3.6.2"></script>
+    <script src="../../js/vue/vue.runtime.min.js?v=2.6.12"></script>
+    <script src="../../helper.js?v=1.0.2"></script>
+    <script src="../../content.js?v=1.0.2"></script>
+    <link rel="stylesheet" href="../../js/codeblocks-js/codeblocks.css?v=1.0.2">
+    <link rel="stylesheet" href="../../common/scene/graph/graph.css">
+
+    <style>
+        body {
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 24pt !important;
+            margin-bottom: 5px !important;
+            margin-top: 30px !important;
+            height: fit-content;
+            line-height: 3rem !important;
+        }
+
+        div#content {
+            position: absolute;
+            left: calc(50% - 400px);
+            right: calc(50% - 400px);
+            width: 800px;
+        }
+
+        codeblockseditor>*,
+        codeblocks>*,
+        [codeblockseditor]>*,
+        [codeblocks]>* {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <h1></h1>
+        <a href="../../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+
+    </div>
+    <script src="numeric.js"></script>
+    <script>
+        const elements = {
+            title: "<b>Taschenrechner:</b> Binär zu Dezimal",
+            short: "Bin2Dec",
+            content: [
+                {
+                    type: "explain",
+                    content: "./binary.html"
+                }
+            ]
+        }
+
+        document.body.onload = async () => {
+            await buildContent(elements)
+            import("../../js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+            await initHelpers()
+
+            $('#binary').keyup(() => {
+                const binIn = $('#binary').val().trim();
+                const binPrint = new Binary(binIn, ENC_UNSIGNED, binIn.length).prettyBin()
+                const bin = binPrint.replace(/[^01]/g, '')
+                const bits = bin.length;
+                const usg = new Binary(bin, ENC_UNSIGNED, bits)
+                const b1 = new Binary(bin, ENC_B1, bits)
+                const b2 = new Binary(bin, ENC_B2, bits)
+                let str = ''
+                str += `<b>Binär: </b> ${binPrint}<br>`
+                str += `<b>Bits : </b> ${bits}<br><br>`
+
+                str += `<b>Vorzeichenlos: </b> ${usg.asDec()}<br>`
+                str += `<b>B1           : </b> ${b1.asDec()}<br>`
+                str += `<b>B2           : </b> ${b2.asDec()}<br>`
+                $('#out').html(str)
+            })
+        }
+    </script>
+
+
+    <script>
+
+    </script>
+</body>
+
+</html>

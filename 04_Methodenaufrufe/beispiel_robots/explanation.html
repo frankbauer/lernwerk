@@ -1,0 +1,24 @@
+<h3>Erklärung</h3>
+<ul>
+    <li><b>Variable Deklaration und Initialisierung:</b> Im Programm werden Variablen wie <code>x</code> und
+        <code>y</code> deklariert, um die
+        Position des Roboters festzulegen. Die Verwendung von final bedeutet, dass diese Variablen nach ihrer
+        Initialisierung nicht mehr geändert werden können.
+    </li>
+    <li><b>Zufallsberechnungen:</b> Die Berechnung der Positionen <code>x</code> und <code>y</code> erfolgt über die
+        <code>Math.random()</code>-Funktion, die
+        eine zufällige Zahl zwischen 0 (eingeschlossen) und 1 (ausgeschlossen) generiert.<br>
+        Die Formel für <code>x</code> berechnet eine Position, die immer mindestens 100 Einheiten vom linken und rechten
+        Rand des Raumes entfernt sind. Die Formel für <code>y</code> stellt sicher, dass die Roboter auf dem Boden
+        stehen.
+    </li>
+    <li><b>Roboter Hinzufügen:</b> Der Roboter wird durch die <code>addRobotToMainRoom</code> Methode der
+        <code>RobotFactory</code> in den Hauptraum eingefügt. Die übergebenen Werte legen die anfängliche POsition des
+        Roboters fest
+    </li>
+    <li><b>Roboter Bewegung:</b> Schließlich wird die automatische Bewegung der Roboter gestartet.</li>
+    <li><b>Klassen- bzw. statische Methoden:</b> Das Programm verwendet Methoden von Klassen wie <code>Room</code>
+        und <code>RobotFactory</code>, die nicht an einzelne Instanzen der Klassen gebunden sind. Diese Methoden werden
+        direkt über den Klassennamen aufgerufen.
+    </li>
+</ul>

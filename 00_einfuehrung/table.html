@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../">
+    <title>[GdI] Ausgabe</title>
+    <link rel="stylesheet" href="../css/editor.css?v=1.0.0">
+    <script src="../js/jquery/jquery.min.js?v=3.5.1"></script>
+    <script src="../js/vue/vue.runtime.min.js?v=2.6.11"></script>
+    <script src="../helper.js?v=1.0.0"></script>
+    <link rel="stylesheet" href="../js/codeblocks-js/codeblocks.css">
+</head>
+
+<body>
+    <div class="topbar">
+        <h1>Formatierte Ausgabe</h1>
+        <a href="../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+        <div class="aufgabe boxed">
+            <h3>Aufgabe</h3>
+            <p>Schreibe ein Java-Programm in der Datei <b>Main.java</b>, das die Eigenschaften einer fiktiven Person in
+                einer gut strukturierten Tabelle ausgibt. Die folgenden Eigenschaften und Werte sollen angezeigt werden:
+            </p>
+            <ul>
+                <li>Alter: 21</li>
+                <li>Name: Dorian</li>
+                <li>Klasse: Barde</li>
+            </ul>
+            <p>Die Ausgabe sollte exakt wie folgt aussehen:</p>
+            <pre output>Eigenschaft | Wert
+------------+--------
+      Alter | 21
+       Name | Dorian
+     Klasse | Barde</pre>
+            </p>
+        </div>
+
+        <tabbar class="code">
+            <div data-tab="work" data-name="Ihre Lösung">
+                <div codeblocks data-compiler="java" data-run-code="true" data-compiler-version=101 data-compiler="java"
+                     data-execution-timeout="5000" data-max-characters="6000" data-run-code="true"
+                     data-output-parser="data" data-scope-selector="div#content">
+                    <loading>
+                        <div></div>
+                        <div></div>
+                    </loading>
+                    <pre as="block" data-visible-lines="auto"></pre>
+                </div>
+            </div>
+
+
+            <div data-tab="solution" data-name="Beispiellösung">
+                <div codeblocks data-compiler="java" data-run-code="true" data-compiler-version=101 data-compiler="java"
+                     data-execution-timeout="5000" data-max-characters="6000" data-run-code="true"
+                     data-scope-selector="div#content">
+                    <loading>
+                        <div></div>
+                        <div></div>
+                    </loading>
+                    <pre as="block" data-static>public class Main {
+    public static void main(String[] args) {
+        // Druckt die Kopfzeile der Tabelle. Diese Zeile beschreibt, was in den zwei Spalten steht.
+        // "Eigenschaft" ist die Beschreibung der Eigenschaft und "Wert" ist der dazugehörige Wert.
+        System.out.println("Eigenschaft | Wert");
+
+        // Druckt eine Trennlinie, um die Kopfzeile von den Datenzeilen zu unterscheiden.
+        // "+" ist der Schnittpunkt der Trennlinie zwischen den Spalten.
+        System.out.println("------------+--------");
+
+        // Druckt die Eigenschaft/Wert-Paare (oft auch Schlüssel/Wert-Paare genannt)
+        System.out.println("      Alter | 21");
+        System.out.println("       Name | Dorian");
+        System.out.println("     Klasse | Barde");
+    }
+}</pre>
+                </div>
+
+                <div class="explain boxed q-mt-xl">
+                    <h3>Erklärung</h3>
+
+                    <p>Das Programm gibt eine einfache Tabelle auf der Konsole aus, die verschiedene Eigenschaften einer
+                        Person darstellt. Es werden drei spezifische Informationen angezeigt: Alter, Name und Klasse der
+                        Person.</p>
+                    <ul>
+
+                        <li><code>public class Main {</code> Definiert die Klasse <code>Main</code>. In Java muss
+                            jede ausführbare Anwendung mindestens eine Klasse haben.</li>
+                        <li><code>public static void main(String[] args) {</code> Definiert die
+                            <code>main</code>-Methode, die der Startpunkt jeder Java-Anwendung ist.
+                            <code>String[] args</code> ermöglicht es der Methode, Argumente von der Kommandozeile zu
+                            empfangen. Diese werden in diesem Programm jedoch nicht verwendet.
+                        </li>
+                        <li><code>System.out.println("Eigenschaft | Wert");</code> Gibt die Kopfzeile der Tabelle aus.
+                            Diese Zeile zeigt die Spaltenüberschriften "Eigenschaft" und "Wert".</li>
+                        <li><code>System.out.println("------------+--------");</code> Gibt eine Trennlinie aus, um die
+                            Kopfzeile von den Datenzeilen optisch zu trennen. Das +-Zeichen setzt die Trennlinie für die
+                            Spalten fort.</li>
+                        <li><b>Eigenschafts / Wert-Paaren ausgeben:</b>
+                            <pre code>System.out.println("      Alter | 21");
+System.out.println("       Name | Dorian");
+System.out.println("     Klasse | Barde");</pre>
+                            Die Einrückung mit Leerzeichen sorgt dafür, dass die Bezeichnung der Eigenschaft
+                            rechts-gebunden in der Spalte "Eigenschaft" steht.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </tabbar>
+
+
+
+        <div class="experiment boxed">
+            <h3>Experimente</h3>
+            <div class="colored">
+                Fügen Sie noch zwei weitere Eigenschaften mit Werten in die Tabelle ein.
+            </div>
+            <div class="colored">
+                Alle Ausgaben in der Wert-Spalte sollen zentriert angezeigt werden, also:
+                <pre output>  Wert
+--------
+   21
+ Dorian
+ Barde</pre>
+            </div>
+        </div>
+
+
+        <script>
+            document.body.onload = () => {
+                import("../js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+                initHelpers()
+            }
+        </script>
+</body>
+
+</html>

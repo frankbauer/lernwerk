@@ -1,0 +1,40 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm simuliert die Erstellung und Steuerung von zwei Robotern in einem Raum. Es demonstriert die
+    grundlegende Nutzung von Objektorientierung, indem es Objekte der Klassen <code>Room</code> und <code>Robot</code>
+    verwendet und deren Methoden aufruft, um Roboter in einem spezifischen Raum zu positionieren und zu
+    aktivieren.Ferner zeigt es die Art und Weise, wie Instanzen durch Variablen referenziert werden.</p>
+
+<ul>
+    <li>
+        <strong>Erstellen eines Raumes:</strong>
+        <p>Ein neues <code>Room</code>-Objekt wird erstellt, das als "Wohnzimmer" fungiert. Über die Variable
+            <code>livingRoom</code> kan anschließend auf den Raum zugegriffen werden.
+        </p>
+        <code>Room livingRoom = new Room();</code>
+    </li>
+    <li>
+        <strong>Erstellung und Positionierung des Roboters 'robi':</strong>
+        <p>Ein <code>Robot</code>-Objekt wird erstellt. Die Variable <code>robi</code> referenziert die neue Instanz.
+            Anschließend wird die Position der Instanz auf die Koordinaten <i>(690, 410)</i> gesetzt und die Instanz in
+            das Wohnzimmer aufgenommen.</p>
+        <pre code>Robot robi = new Robot();
+robi.setLocation(690, 410);
+robi.setRoom(livingRoom);</pre>
+    </li>
+    <li>
+        <strong>Erstellung und Positionierung des Roboters 'anna':</strong>
+        <p>Ein weiteres <code>Robot</code>-Objekt wird erstellt und eine Referenz darauf in der Variable namens 'anna'
+            gespeichert. Ihre Position wird auf <i>(260, 430)</i>
+            festgelegt und sie wird ebenfalls dem Wohnzimmer zugeordnet.</p>
+        <pre code>Robot anna = new Robot();
+anna.setLocation(260, 430);
+anna.setRoom(livingRoom);</pre>
+    </li>
+    <li>
+        <strong>Aktivierung der Bewegung der Roboter:</strong>
+        <p>Die Bewegung für beide Roboter wird aktiviert, was es ihnen ermöglicht, sich innerhalb des Wohnzimmers zu
+            bewegen.</p>
+        <pre code>robi.setMoving(true);
+anna.setMoving(true);</pre>
+    </li>
+</ul>

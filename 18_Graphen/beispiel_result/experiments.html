@@ -1,0 +1,21 @@
+<div class="colored">
+    Erweitern Sie die <code>max</code>-Methode so, dass sie auch für einen zyklischen Graphen funktioniert.
+    <hint>Sie müssen eine <code>visited</code>-Liste mitführen.</hint>
+    <hint solution>
+        <pre code>static Integer max(Node&lt;Integer> cur, java.util.List&lt;Node&lt;Integer>> visited) {
+    if (cur == null) { return 0; }
+    if (visited.contains(cur)) return 0;
+    visited.add(cur);
+    /* ... */</pre>
+    </hint>
+
+</div>
+<div class="colored">
+    Testen Sie Ihre Methode mit einem zyklischen Graphen.
+</div>
+<div class="colored">
+    Schreiben Sie eine weitere Methode die nach dem Minimum in einem Graphen sucht.
+    <hint>Sie müssen eigentlich nur alle Vorkommen von <code>Math.max</code> durch <code>Math.min</code> ersetzen
+    </hint>
+</div>
+</div>

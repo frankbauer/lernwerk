@@ -1,0 +1,53 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm demonstriert die Verwendung einer Endlosschleife mit bedingten Anweisungen für <code>continue</code>
+    und <code>break</code>. Es verdoppelt fortlaufend einen Startwert, überspringt bestimmte Ausgaben und bricht die
+    Schleife unter einer vorgegebenen Bedingung ab.</p>
+
+
+<ul>
+    <li>
+        <strong>Initialisierung:</strong>
+        <p>Eine Variable <code>i</code> wird mit dem Wert 1 initialisiert.</p>
+        <code>int i = 1;</code>
+    </li>
+    <li>
+        <strong>Endlosschleife:</strong>
+        <p>Die Schleife startet ohne spezifische Abbruchbedingung (<code>while (true)</code>).</p>
+        <ul>
+            <li>
+                <strong>Wertverdopplung:</strong>
+                <p>Der Wert von <code>i</code> wird bei jedem Durchlauf der Schleife verdoppelt.</p>
+                <code>i *= 2;</code>
+            </li>
+            <li>
+                <strong>Bedingte Anweisung <code>continue</code>:</strong>
+                <p>Wenn <code>i</code> gleich 4 ist, wird <code>continue</code> aufgerufen und damit die aktuelle
+                    Iteration der
+                    Schleife beendet (also alle nachfolgende Anweisungen übersprungen) und (da die Schleifenbedingung
+                    immer
+                    erfüllzt ist) ein neuer Schleifendurchlauf gestartet.</p>
+                <code>if (i == 4) { continue; }</code>
+            </li>
+            <li>
+                <strong>Bedingte Anweisung <code>break</code>:</strong>
+                <p>Wenn <code>i</code> größer als 10 ist, wird <code>break</code> aufgerufen und dadurch die Ausführung
+                    der
+                    Schleife beendet. Als nächstest wird dadurch die erste Anweisung nach der Schleife
+                    (<code>System.out.println("Result: " + i);</code>) ausgeführt.</p>
+                <code>if (i > 10) { break; }</code>
+            </li>
+            <li>
+                <strong>Ausgabe von <code>i</code>:</strong>
+                <p>Der aktuelle Wert von <code>i</code> wird ausgegeben, es sei denn, er ist 4 oder die Schleife wird
+                    beendet,
+                    weil <code>i</code> größer als 10 ist.</p>
+                <code>System.out.println(i);</code>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>Abschlussausgabe:</strong>
+        <p>Nach Beendigung der Schleife wird das Ergebnis von <code>i</code> ausgegeben.</p>
+        <code>System.out.println("Result: " + i);</code>
+    </li>
+</ul>

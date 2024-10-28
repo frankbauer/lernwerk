@@ -1,0 +1,14 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Falls du schon das Kapitel über Schleifen gelernt hast, dann verwende eine geeignete Kontrollstruktur, wenn du die Spielfigur mehr als zweimal in dieselbe Richtung bewegst.
+    <hint solution><pre code>for (int i=0; i<4; i++) {
+    controller.command(Labyrinth.GO_RIGHT);
+}
+for (int i=0; i<2; i++) {
+    controller.command(Labyrinth.GO_DOWN);
+}
+for (int i=0; i<3; i++) {
+    controller.command(Labyrinth.GO_LEFT);
+}
+/* usw. */</pre>
+</div>

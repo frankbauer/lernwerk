@@ -1,0 +1,39 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm illustriert die Verwendung einer <code>for</code>-Schleife in Java, um mehrere Bäume auf einem Hügel
+    zu pflanzen. Es zeigt wie eine Schleife verwendet werden kan um widerholt die selbe Sequenz von Anweisungen
+    auszuführen.</p>
+
+
+<ul>
+    <li>
+        <strong>Erstellen des Umgebungsobjekts:</strong>
+        <p>Ein Objekt der Klasse <code>SunnyHill</code> wird erstellt.</p>
+        <pre code>SunnyHill hill = new SunnyHill(args);</pre>
+    </li>
+    <li>
+        <strong>Initialisierung und Ausführung der <code>for</code>-Schleife:</strong>
+        <p>Die <code>for</code>-Schleife wird eingerichtet, um den Code im Schleifenrumpf vier Mal zu durchlaufen. In
+            jeder Iteration der Schleife wird ein Baum gepflanzt. Der Index <code>i</code> (wird in diesem Beispiel
+            nicht verwendet) ändert sich in jedem Schleifendruchlauf (von
+            0 bis 3). </p>
+        <pre code>for (int i = 0; i &lt; 4; i++) {</pre>
+        <ul>
+            <li>
+                <strong>Erstellung und Pflanzung eines Baumes (Schleifenrumpf):</strong>
+                <p>In jedem Durchlauf der Schleife wird ein neues Baumobjekt (<code>Tree</code>) erstellt. Anschließend
+                    wird der
+                    Baum durch Aufrufen der Methode <code>plantAtHill</code> auf dem Hügel gepflanzt.</p>
+                <pre code>Tree t = new Tree();
+t.plantAtHill(hill);</pre>
+            </li>
+            <li>
+                <strong>Iteration und Schleifenende:</strong>
+                <p>Nachdem ein Baum gepflanzt wurde, beendet die Schleife den aktuellen Durchlauf und inkrementiert den
+                    Index
+                    <code>i</code> um eins (<code>i++</code>). Wenn <code>i</code> den Wert 4 erreicht, wird die
+                    Schleife beendet, da die Bedingung <code>i &lt; 4</code> nicht mehr erfüllt ist.
+                </p>
+            </li>
+        </ul>
+    </li>
+</ul>

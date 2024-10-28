@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../">
+    <title>[GdI] Addition</title>
+    <link rel="stylesheet" href="../css/editor.css?v=1.0.0">
+    <script src="../js/jquery/jquery.min.js?v=3.5.1"></script>
+    <script src="../js/vue/vue.runtime.min.js?v=2.6.11"></script>
+    <script src="../helper.js?v=1.0.0"></script>
+    <link rel="stylesheet" href="../js/codeblocks-js/codeblocks.css">
+</head>
+
+<body>
+    <div class="topbar">
+        <h1>Zahlen Addieren und Ausgeben</h1>
+        <a href="../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+        <div class="aufgabe boxed">
+            <h3>Aufgabe</h3>
+            <p>Schreiben Sie ein Programm (für die Datei <b>AddTwoNumbers.java</b>), das zwei Ganzzahlen (z.B. <i>5</i>
+                und <i>10</i>) addiert und das Ergebnis ausgibt.
+            </p>
+        </div>
+
+        <tabbar class="code">
+            <div data-tab="work" data-name="Ihre Lösung">
+                <div codeblocks data-compiler="java" data-run-code="true" data-compiler-version=101 data-compiler="java"
+                    data-execution-timeout="5000" data-max-characters="6000" data-run-code="true"
+                    data-output-parser="data" data-scope-selector="div#content">
+                    <loading>
+                        <div></div>
+                        <div></div>
+                    </loading>
+                    <pre as="block" data-visible-lines="auto"></pre>
+                </div>
+            </div>
+
+
+            <div data-tab="solution" data-name="Beispiellösung">
+                <div codeblocks data-compiler="java" data-run-code="true" data-compiler-version=101 data-compiler="java"
+                    data-execution-timeout="5000" data-max-characters="6000" data-run-code="true"
+                    data-scope-selector="div#content">
+                    <loading>
+                        <div></div>
+                        <div></div>
+                    </loading>
+                    <pre as="block" data-static>public class AddTwoNumbers {
+    public static void main(String[] args) {
+        // Deklaration und Initialisierung von Variablen
+        int num1 = 5; // Erste Ganzzahl
+        int num2 = 10; // Zweite Ganzzahl
+        int sum; // Variable zur Speicherung der Summe
+
+        // Addition der beiden Zahlen
+        sum = num1 + num2;
+
+        // Ausgabe des Ergebnisses
+        System.out.println("Die Summe von " + num1 + " und " + num2 + " ist: " + sum);
+    }
+}</pre>
+                </div>
+
+                <div class="explain boxed q-mt-xl">
+                    <h3>Erklärung</h3>
+
+                    <p>Diese Programm führt die Addition von <code>num1</code> und <code>num2</code> durch
+                        und gibt das Ergebnis aus.</p>
+                    <ul>
+                        <li><code>public class AddTwoNumbers {</code> Beginn der Klassendefinition mit dem
+                            Bezeichner / Namen <b>AddTwoNumbers</b>.</li>
+                        <li><code>public static void main(String[] args) {</code> Beginn der Hauptmethode main, die
+                            das
+                            Programm startet.</li>
+                        <li><code>int num1 = 5;</code> Deklaration und Initialisierung der ersten Ganzzahl
+                            <b>num1</b> mit dem
+                            Wert <i>5</i>.
+                        </li>
+                        <li><code>int num2 = 10;</code> Deklaration und Initialisierung der zweiten Ganzzahl
+                            <b>num2</b> mit
+                            dem Wert <i>10</i>.
+                        </li>
+                        <li><code>int sum;</code> Deklaration der Variable <b>sum</b>, die später die Summe der
+                            beiden Zahlen
+                            speichern wird.</li>
+                        <li><code>sum = num1 + num2;</code> Addition der beiden Zahlen und Speicherung des
+                            Ergebnisses in der
+                            Variablen <b>sum</b>.</li>
+                        <li><code>System.out.println("Die Summe von " + num1 + " und " + num2 + " ist: " +
+                            sum);</code> Ausgabe
+                            des Ergebnisses unter Verwendung von System.out.println. Es wird eine Zeichenkette (Datentyp
+                            <code>String</code>) mit den Werten von <b>num1</b>, <b>num2</b> und <b>sum</b> erstellt
+                            und
+                            ausgegeben.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </tabbar>
+
+
+
+        <div class="experiment boxed">
+            <h3>Experimente</h3>
+            <div class="colored">
+                Ändern Sie das ihr Programm so, dass die Summe von <i>23</i> und <i>19</i> berechnet und angezeigt wird.
+            </div>
+            <div class="colored">
+                Ändern Sie das Beispiel so, dass die Differenz der beiden Zahlen berechnet und angezeigt wird.                
+            </div>
+        </div>
+
+
+        <script>
+            document.body.onload = () => {
+                import("../js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+                initHelpers()
+            }
+        </script>
+</body>
+
+</html>

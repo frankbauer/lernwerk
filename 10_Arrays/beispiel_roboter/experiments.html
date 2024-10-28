@@ -1,0 +1,87 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Ändern Sie das Programm so, dass mit einer Schleife 10 Roboter an zufälligen Positionen angelegt werden.
+    <hint>Legen Sie ein Feld vom Typ <code>Robot</code> in der entsprechenden Größe an und füllen Sie es in einer
+        Schleife.</hint>
+    <hint>Um eine zufällige Position im Raum zu wählen können Sie vom <code>Room</code> die verfügbare Breite <math>
+            <mi>w</mi>
+        </math> und Höhe <math>
+            <mi>h</mi>
+        </math>
+        </math> abfragen und so zum Beispiel die Position für jeden Roboter bestimmen:
+        <div style="margin-left:8px">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>x</mi>
+                <mo>=</mo>
+                <mrow>
+                    <mo>&#8970;</mo> <!-- Left floor bracket -->
+                    <mrow>
+                        <mi>random()</mi>
+                        <mo>&#x22C5;</mo> <!-- Multiplication dot -->
+                        <mrow>
+                            <mo>(</mo>
+                            <mi>w</mi>
+                            <mo>-</mo>
+                            <mn>200</mn>
+                            <mo>)</mo>
+                        </mrow>
+                        <mo>+</mo>
+                        <mn>100</mn>
+                    </mrow>
+                    <mo>&#8971;</mo> <!-- Right floor bracket -->
+                </mrow>
+            </math><br>
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>y</mi>
+                <mo>=</mo>
+                <mrow>
+                    <mo>&#8970;</mo> <!-- Left floor bracket -->
+                    <mrow>
+                        <mi>random()</mi>
+                        <mo>&#x22C5;</mo> <!-- Multiplication dot -->
+                        <mn>40</mn>
+                        <mo>+</mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi>h</mi>
+                            <mo>-</mo>
+                            <mn>50</mn>
+                            <mo>)</mo>
+                        </mrow>
+                    </mrow>
+                    <mo>&#8971;</mo> <!-- Right floor bracket -->
+                </mrow>
+            </math>
+        </div>
+    </hint>
+    <hint solution>
+        <pre code>Robot[] robots = new Robot[10];
+final int wd = Room.getRoomWidth();
+final int hg = Room.getRoomHeight();
+
+for (int i = 0; i < robots.length; i++) {
+    final int x = (int)(Math.random() * (wd - 2 * 100) + 100);
+    final int y = (int)(Math.random() * 40 + (hg - 50));
+    
+    robots[i] = new Robot(x, y, livingRoom);
+}</pre>
+    </hint>
+</div>
+<div class="colored">
+    Ergänzen Sie das Programm so, dass die Positionen der 10 Roboter nicht zufällig, sondern durch zwei weitere
+    <code>int</code>-Felder vordefiniert werden.
+    <hint>Eines der Felder speichert pro Roboter die zugehörige x-Position, das andere die y-Position. Zugehörig
+        heißt
+        in diesem Fall, dass die x-Position an der gleichen Stelle im Feld steht wie die y-Position im anderen un
+        der
+        Roboter im <code>robots</code>-Feld.</hint>
+    <hint solution>
+        <pre code>Robot[] robots = new Robot[10];
+int[] xPos = {103, 169, 235, 301, 367, 433, 499, 565, 631, 697};
+int[] yPos = {439, 427, 413, 429, 408, 434, 416, 419, 437, 408};
+
+for (int i = 0; i < robots.length; i++) {
+    robots[i] = new Robot(xPos[i], yPos[i], livingRoom);            
+}</pre>
+    </hint>
+</div>

@@ -1,0 +1,28 @@
+<h3>Erklärung</h3>
+
+<p>Dieses Java-Programm liest eine Temperatur in Grad Celsius von der Webseite ein und rechnet diese in Fahrenheit um.
+    Das Ergebnis wird auf der Konsole ausgegeben.
+</p>
+<ul>
+    <li><code>public class Convert {</code> - Definiert die Klasse <b>Convert</b>, in der das
+        Programm ausgeführt wird.</li>
+    <li><code>public static void main(String[] args) {</code> Die <b>main</b>-Methode, die
+        der Einstiegspunkt für das Programm ist. Sie Methode bekommt beim start ein Array von
+        Strings (<b>args</b>)
+        als Parameter, welcher die Programmargumente enthält. Im speziellen enthält <b>args[0]</b> die Zeichenkette aus
+        dem Eingabefeld oben.</li>
+    <li><code>final double celsius = Input.getTemperature(args);</code> Ruft die statische Methode
+        <code>getTemperature</code> der Klasse <b>Input</b> auf, um die eingegebene
+        Celsius-Temperatur zu lesen und weist sie einer konstanten Variablen
+        <b>celsius</b> zu, was bedeutet, dass der Wert nach der Zuweisung nicht verändert
+        werden kann.
+    </li>
+    <li><code>double fahrenheit = celsius * 9 / 5 + 32;</code> Rechnet den Celsius-Wert in
+        Fahrenheit um.</li>
+    <li><code>System.out.print(celsius + " Grad Celsius entsprechen ");</code> Gibt den
+        Celsius-Wert gefolgt von einem Text auf der Konsole aus, ohne einen Zeilenumbruch am Ende zu
+        erzeugen.</li>
+    <li><code>System.out.println(fahrenheit + " Grad Fahrenheit.");</code> Gibt den umgerechneten
+        Fahrenheit-Wert auf der Konsole aus und beendet die ausgegebene Zeile mit einem
+        Zeilenumbruch.</li>
+</ul>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../../">
+    <title>[GdI]</title>
+    <link rel="stylesheet" href="../../css/editor.css?v=1.0.3">
+    <script src="../../js/jquery/jquery.min.js?v=3.6.2"></script>
+    <script src="../../js/vue/vue.runtime.min.js?v=2.6.12"></script>
+    <script src="../../helper.js?v=1.0.2"></script>
+    <script src="../../content.js?v=1.0.2"></script>
+    <link rel="stylesheet" href="../../js/codeblocks-js/codeblocks.css?v=1.0.2">
+</head>
+
+<body>
+    <div class="topbar">
+        <h1></h1>
+        <a href="../../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+    </div>
+    <script>
+        const elements = {
+            title: "<b>Sandkasten:</b> MeinBruch",
+            short: "MeinBruch",
+            content: [
+                {
+                    type: "aufgabe",
+                    content: "./exercise.html"
+                },
+                {
+                    type: "tabs",
+                    class: "code",
+                    tabs: [
+                        {
+                            name: "Ihre Lösung",
+
+                            content: [{
+                                type: "codeblocks",
+                                attributes: {},
+                                blocks: [
+                                    {
+                                        type: "code",
+                                        content: "./MeinBruch.java"
+                                    }
+                                ]
+                            }]
+                        }
+                    ]
+                }
+            ]
+        }
+
+        document.body.onload = async () => {
+            await buildContent(elements)
+            import("../../js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+            initHelpers()
+        }
+    </script>
+</body>
+
+</html>

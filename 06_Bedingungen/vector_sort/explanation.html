@@ -1,0 +1,32 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm illustriert das Arbeiten mit 2D-Vektoren und die Berechnung von Winkeln, die diese Vektoren mit der
+    X-Achse aufspannen. Es zeigt insbesondere die Verwendung von Methoden zur Normalisierung von Vektoren und zur
+    Berechnung des Skalarprodukts, um den eingeschlossenen Winkel zu bestimmen.</p>
+
+<ul>
+    <li>
+        <strong>Erstellung von <code>Vec2D</code>-Objekten:</strong>
+        <p>Es werden zwei <code>Vec2D</code>-Instanzen erstellt, die jeweils zufällige Werte für ihre x-
+            und y-Komponenten im Bereich [-25, 25[ erhalten.</p>
+        <code>Vec2D v1 = new Vec2D(Math.random()*50 - 25, Math.random()*50 - 25);</code>
+    </li>
+    <li>
+        <strong>Berechnung des Winkels:</strong>
+        <p>Die Methode <code>normalize()</code> wird auf den Vektoren aufgerufen, um deren Länge auf 1 zu normieren.
+            Danach wird das Skalarprodukt des Vektors mit der X-Achse berechnet, und mit der Funktion
+            <code>Math.acos()</code> der Winkel in Radianten ermittelt.
+        </p>
+        <code>double w1 = Math.acos(Vec2D.XAxis.dot(v1.normalize()));</code>
+    </li>
+    <li>
+        <strong>Vergleich der Winkel und Ausgabe:</strong>
+        <p>Nachdem die Winkel für beide Vektoren berechnet wurden, vergleicht das Programm die beiden Winkel. Die
+            Vektoren werden in der Konsole in aufsteigender Reihenfolge nach ihrem Winkel ausgegeben, beginnend mit dem
+            Vektor, der den kleineren Winkel aufspannt.</p>
+        <pre code>if (w1 > w2) { 
+    /* v2 vor v1 */ 
+} else { 
+    /* v1 vor v2 */ 
+}</pre>
+    </li>
+</ul>

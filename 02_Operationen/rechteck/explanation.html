@@ -1,0 +1,34 @@
+<h3>Erklärung</h3>
+
+<p>Dieses Programm berechnet die Fläche und den Umfang eines Rechtecks. Es liest die Maße des Rechtecks aus den
+    Kommandozeilenargumenten, führt die Berechnungen durch und gibt die Ergebnisse aus.</p>
+
+<ul>
+    <li>
+        <strong>Initialisierung der Maße:</strong>
+        <p>Die Breite (<code>width</code>) und Höhe (<code>height</code>) des Rechtecks werden durch Aufrufe der
+            Klassenmethoden <code>getWidth</code> und <code>getHeight</code> aus der Klasse <code>Input</code>
+            abgerufen. Diese Methoden nehmen die Kommandozeilenargumente (<code>args</code>) als Parameter.</p>
+        <pre code>int width = Input.getWidth(args);
+int height = Input.getHeight(args);</pre>
+    </li>
+    <li>
+        <strong>Berechnung der Fläche:</strong>
+        <p>Die Fläche des Rechtecks wird berechnet, indem die Breite mit der Höhe multipliziert wird. Dieses Ergebnis
+            wird in der Variablen <code>area</code> gespeichert.</p>
+        <pre code>int area = width * height;</pre>
+    </li>
+    <li>
+        <strong>Berechnung des Umfangs:</strong>
+        <p>Der Umfang des Rechtecks wird berechnet, indem die Summe aus Breite und Höhe verdoppelt wird. Dieses Ergebnis
+            wird in der Variablen <code>perimeter</code> gespeichert.</p>
+        <pre code>int perimeter = 2 * (width + height);</pre>
+    </li>
+    <li>
+        <strong>Ausgabe der Ergebnisse:</strong>
+        <p>Die berechnete Fläche und der Umfang des Rechtecks werden ausgegeben, um dem Benutzer die Ergebnisse der
+            Berechnungen zu präsentieren.</p>
+        <pre code>System.out.println("Flaeche: " + area);
+System.out.println("Umfang: " + perimeter);</pre>
+    </li>
+</ul>

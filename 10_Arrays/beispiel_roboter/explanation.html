@@ -1,0 +1,49 @@
+<h3>Erklärung</h3>
+
+<p>Dieses Beispiel demonstriert die Verwendung eines Arrays zum Speichern und Verwalten mehrerer
+    Roboterobjekte.
+</p>
+<ul>
+    <li><strong>Erstellung und Initialisierung des Robot-Arrays</strong>
+        <p>Ein Array namens <code>robots</code> wird verwendet, um eine feste Anzahl von referenzen auf
+            Roboter-Instanzen zu speichern.
+            In diesem Fall hat das Array eine Länge von zwei, was bedeutet, dass es zwei Roboterreferenzen aufnehmen
+            kann:</p>
+        <pre code>Robot[] robots = new Robot[2];</pre>
+        <p>Der Zugriff auf einen Eintrag aus dem Array ist wie der Zugriff auf eine Variable mit dem Datentyp
+            <code>Robot</code>. Speziell ist <code>robots[0]</code> aus Ausdruck dessen Ergebnistyp <code>Robot</code>
+            sein wird. Der Wert ist die am Index 0 gespeicherte Referenz.
+        </p>
+    </li>
+
+    <li><strong>Platzierung der Roboter im Raum</strong>
+        <p>Jeder Roboter wird individuell mit spezifischen Koordinaten und einem Verweis auf das gleiche
+            <code>Room</code>-Objekt (Wohnzimmer) initialisiert. Dies zeigt, wie Objektreferenzen in einem Array
+            gespeichert werden können:
+        </p>
+        <ul>
+            <li>Der erste Roboter wird bei den Koordinaten (690, 410) platziert.
+                <pre code>robots[0] = new Robot(690, 410, livingRoom);</pre>
+            </li>
+            <li>Der zweite Roboter wird bei den Koordinaten (260, 430) platziert.
+                <pre code>robots[1] = new Robot(260, 430, livingRoom);</pre>
+            </li>
+        </ul>
+
+        <p>Steht ein Ausdruck wie <code>robots[0]</code> links von einer Zuweisung, so wird der Wert der zugewiesene
+            Wert an
+            der Stelle 0 im Array gespeichert. In diesem Beispiel ist der Wert eine
+            Referenz auf ein neues <code>Robot</code>-Objekt, das bei den Koordinaten (690, 410) im Wohnzimmer platziert
+            wird.</p>
+    </li>
+
+    <li><strong>Aktivierung der Bewegung der Roboter</strong>
+        <p>Eine einfache For-Schleife durchläuft das Array und aktiviert die Bewegung jedes Roboters. Dies verdeutlicht,
+            wie
+            man
+            über die Elemente eines Arrays iterieren und Aktionen auf jedes Element anwenden kann:</p>
+        <pre code>for (int i = 0; i < robots.length; i++) {
+    robots[i].setMoving(true);
+}</pre>
+    </li>
+</ul>
