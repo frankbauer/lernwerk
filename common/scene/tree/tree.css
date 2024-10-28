@@ -1,0 +1,11 @@
+#main_canvas {
+    --width: 800px;
+    --height: 450px;
+    --canvas-scale: 0.75;
+
+    position: relative;
+    border: 1px dotted #d0d0d0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}

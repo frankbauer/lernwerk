@@ -1,0 +1,21 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Robot</code> repräsentiert einen Roboter, der in verschiedenen Räumen innerhalb einer simulierten
+    Umgebung platziert und bewegt werden kann. Jeder Roboter hat einen eindeutigen Typ.</p>
+
+<h4>Konstruktoren</h4>
+<ul>
+    <li><code>public Robot()</code><br>Erstellt einen neuen Roboter mit einem automatisch zugewiesenen Typ.</li>
+    <li><code>Robot(int type)</code><br>Erstellt einen Roboter mit einem spezifischen Typ.</li>
+    <li><code>public Robot(int x, int y, Room room)</code><br>Erstellt einen Roboter, setzt seine Anfangsposition auf
+        die gegebenen Koordinaten und weist ihm einen Raum zu.</li>
+</ul>
+
+<h4>Methoden</h4>
+<ul>
+    <li><code>public void setLocation(int x, int y)</code><br>Setzt die Position des Roboters auf die angegebenen
+        Koordinaten.</li>
+    <li><code>public void setRoom(Room room)</code><br>Weist den Roboter einem spezifischen Raum zu und aktualisiert den
+        Raumstatus entsprechend. Diese Methode wirft eine Ausnahme, wenn der Raum <code>null</code> ist.</li>
+    <li><code>public void setMoving(boolean moving)</code><br>Aktualisiert den Bewegungsstatus des Roboters.</li>
+</ul>
+</ul>

@@ -1,0 +1,159 @@
+#content div.playground {
+    margin-top: 20px;
+}
+
+#nature {
+    --width: 797px;
+    --height: 453px;
+    --hill-scale: 0.75;
+    width: calc(var(--hill-scale) * var(--width));
+    height: calc(var(--hill-scale) * var(--height));
+    position: relative;
+    border: 1px dotted #d0d0d0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#nature.with-hill {
+    border: none;
+}
+
+#nature .transparent {
+    opacity: 0;
+}
+
+#nature .hill {
+    width: var(--width);
+    height: var(--height);
+    left: 0;
+    top: 0;
+    transform-origin: top left;
+    transform: scale(var(--hill-scale));
+    background-size: cover;
+    background-position: left 80%;
+    border-radius: calc(8px / var(--hill-scale));
+    overflow: hidden;
+    position: absolute;
+}
+
+#nature .hill.sunny {
+    background-image: url(img/sky.jpg);
+}
+
+#nature .tree {
+    --tree-scale: 0.75;
+    width: calc(var(--tree-scale) * var(--tree-width));
+    height: calc(var(--tree-scale) * var(--tree-height));
+    position: absolute;
+    top: calc(var(--tree-scale) * var(--tree-height) * -1);
+    left: calc(var(--tree-scale) * var(--tree-width) / -2);
+    transform-origin: bottom center;
+    background-size: contain;
+    transition: transform 0.3s cubic-bezier(0.5, 1.5, 0.3, 0.8), opacity 0.1s cubic-bezier(0.5, 1.5, 0.3, 0.8);
+    transform: scale(1);
+}
+
+#nature .control {
+    position: absolute;
+}
+
+#nature .tree.small {
+    transform: scale(0.2);
+}
+
+#nature .tree.t0 {
+    --tree-width: 178px;
+    --tree-height: 298px;
+    background-image: url(img/tree.stylized.00.png);
+}
+
+#nature .tree.t1 {
+    --tree-width: 256px;
+    --tree-height: 288px;
+    background-image: url(img/tree.stylized.01.png);
+}
+
+#nature .tree.t2 {
+    --tree-width: 156px;
+    --tree-height: 284px;
+    background-image: url(img/tree.stylized.02.png);
+}
+
+#nature .tree.t3 {
+    --tree-width: 130px;
+    --tree-height: 288px;
+    background-image: url(img/tree.stylized.03.png);
+}
+
+#nature .tree.t4 {
+    --tree-width: 178px;
+    --tree-height: 274px;
+    background-image: url(img/tree.stylized.04.png);
+}
+
+#nature .tree.t5 {
+    --tree-width: 184px;
+    --tree-height: 290px;
+    background-image: url(img/tree.stylized.05.png);
+}
+
+#nature .tree.t6 {
+    --tree-width: 266px;
+    --tree-height: 284px;
+    background-image: url(img/tree.stylized.06.png);
+}
+
+#nature .tree.t7 {
+    --tree-width: 138px;
+    --tree-height: 278px;
+    background-image: url(img/tree.stylized.07.png);
+}
+
+#nature .tree.t8 {
+    --tree-width: 260px;
+    --tree-height: 274px;
+    background-image: url(img/tree.stylized.08.png);
+}
+
+#nature .tree.t9 {
+    --tree-width: 278px;
+    --tree-height: 276px;
+    background-image: url(img/tree.stylized.09.png);
+}
+
+#nature .tree.t10 {
+    --tree-width: 256px;
+    --tree-height: 278px;
+    background-image: url(img/tree.stylized.10.png);
+}
+
+#nature .tree.t11 {
+    --tree-width: 120px;
+    --tree-height: 292px;
+    background-image: url(img/tree.stylized.11.png);
+}
+
+#nature .tree.t12 {
+    --tree-width: 222px;
+    --tree-height: 282px;
+    background-image: url(img/tree.stylized.12.png);
+}
+
+#nature .tree.t13 {
+    --tree-width: 258px;
+    --tree-height: 280px;
+    background-image: url(img/tree.stylized.13.png);
+}
+
+#nature .tree.t14 {
+    --tree-width: 136px;
+    --tree-height: 286px;
+    background-image: url(img/tree.stylized.14.png);
+}
+
+#nature .tree.t15 {
+    --tree-width: 170px;
+    --tree-height: 256px;
+    background-image: url(img/tree.stylized.15.png);
+}

@@ -1,0 +1,151 @@
+#content div.playground {
+    margin-top: 20px;
+}
+
+#factory {
+    --width: 800px;
+    --height: 450px;
+    --room-scale: 0.75;
+    width: calc(var(--room-scale) * var(--width));
+    height: calc(var(--room-scale) * var(--height));
+    position: relative;
+    border: 1px dotted #d0d0d0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#factory.with-room {
+    border: none;
+}
+
+#factory .room {
+    width: var(--width);
+    height: var(--height);
+    left: 0;
+    top: 0;
+    transform-origin: top left;
+    transform: scale(var(--room-scale));
+    background-size: cover;
+    background-position: left 80%;
+    border-radius: calc(8px / var(--room-scale));
+    overflow: hidden;
+    position: absolute;
+}
+
+#factory .room.main {
+    background-image: url(img/room.jpg);
+}
+
+#factory .animated {
+    transition: opacity 0.4s cubic-bezier(0.5, 1.5, 0.3, 0.8);
+}
+
+#factory .animated.fast {
+    transition: opacity 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+#factory .transparent {
+    opacity: 0;
+}
+
+#factory .robot {
+    --robot-scale: 0.75;
+
+    position: absolute;
+    transform-origin: bottom center;
+    left: calc(var(--robot-scale) * var(--robot-width) / -2);
+    top: calc(var(--robot-scale) * var(--robot-height) * -1);
+    width: calc(var(--robot-scale) * var(--robot-width));
+    height: calc(var(--robot-scale) * var(--robot-height));
+    background-size: contain;
+    transform: translate(0, 0);
+}
+
+#factory .robot.r8 {
+    --robot-width: 171px;
+    --robot-height: 336px;
+    background-image: url(img/robot.001.png);
+}
+
+#factory .robot.r12 {
+    --robot-width: 206px;
+    --robot-height: 336px;
+    background-image: url(img/robot.002.png);
+}
+
+#factory .robot.r3 {
+    --robot-width: 227px;
+    --robot-height: 339px;
+    background-image: url(img/robot.003.png);
+}
+
+#factory .robot.r4 {
+    --robot-width: 172px;
+    --robot-height: 303px;
+    background-image: url(img/robot.004.png);
+}
+
+#factory .robot.r5 {
+    --robot-width: 149px;
+    --robot-height: 288px;
+    background-image: url(img/robot.005.png);
+}
+
+#factory .robot.r6 {
+    --robot-width: 169px;
+    --robot-height: 317px;
+    background-image: url(img/robot.006.png);
+}
+
+#factory .robot.r7 {
+    --robot-width: 188px;
+    --robot-height: 293px;
+    background-image: url(img/robot.007.png);
+}
+
+#factory .robot.r1 {
+    --robot-width: 168px;
+    --robot-height: 293px;
+    background-image: url(img/robot.008.png);
+}
+
+#factory .robot.r9 {
+    --robot-width: 216px;
+    --robot-height: 285px;
+    background-image: url(img/robot.009.png);
+    animation: floating 2s infinite;
+}
+
+#factory .robot.r10 {
+    --robot-width: 215px;
+    --robot-height: 298px;
+    background-image: url(img/robot.010.png);
+}
+
+#factory .robot.r11 {
+    --robot-width: 153px;
+    --robot-height: 326px;
+    background-image: url(img/robot.011.png);
+}
+
+#factory .robot.r2 {
+    --robot-width: 205px;
+    --robot-height: 248px;
+    background-image: url(img/robot.012.png);
+    animation: floating 2s infinite;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

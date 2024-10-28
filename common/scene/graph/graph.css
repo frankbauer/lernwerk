@@ -1,0 +1,71 @@
+#content div.playground {
+    margin-top: 20px;
+    border: none;
+}
+
+
+.lightLinks line {
+    stroke-width: 1px;
+    stroke: #BC8958;
+}
+
+.lightLinks text {
+    pointer-events: none;
+    font: 12px sans-serif;
+    font-weight: bold
+}
+
+.lightLineLabelBox {
+    fill: #fff;
+    stroke: #BC8958
+}
+
+.lightLineLabelSelected {
+    fill: #BC8958;
+    stroke: #fff
+}
+
+.lineSelected line {
+    stroke-width: 1px;
+    stroke: #FFE1C5
+}
+
+rect.lightLineLabelSelected+text.lightLineLabel {
+    fill: white;
+}
+
+rect.clickable {
+    cursor: pointer
+}
+
+.nodes text {
+    pointer-events: none;
+    font: 18px sans-serif;
+    font-weight: bold;
+    fill: white;
+    filter: drop-shadow(0px 0px 2px #437094);
+}
+
+.nodes circle,
+.nodes rect {
+    pointer-events: all;
+    stroke: white;
+    stroke-width: 3px;
+    fill: #437094
+}
+
+.lightContainer {
+    background-color: #ffff;
+    border: 1px dashed rgba(128, 48, 48, 0.66);
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    border: 1px dotted #d0d0d0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.arrowhead {
+    fill: #BC8958
+}
