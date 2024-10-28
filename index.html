@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>codeblocks - simple</title>
+
+  <link rel="stylesheet" href="./css/editor.css">
+  <script src="./js/jquery/jquery.min.js?v=3.5.1"></script>
+  <script src="./js/vue/vue.runtime.min.js?v=2.6.11"></script>
+  <link rel="stylesheet" href="./js/codeblocks-js/codeblocks.css">
+  <style>
+    input:focus-visible {
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="content">
+    <div style="margin: 10px 16px 10px 16px;color:gray;">
+      <p>Auf dieser Seite haben Sie direkten Zugriff auf den Web-Compiler aus der Veranstaltung Grundlagen der
+        Informatik. Sie können diese Seite verwenden um schnell Java-Code zu testen. <!--Eine Übersicht weiterer Beispiele
+        finden Sie <a href="uebersicht.html" target="_blank">hier</a>.--></p>
+      <p><b>Wichtig:</b> Der Seiteninhalt wir nicht gespeichert und wird beim erneuten laden der Seite zurückgesetzt.
+      </p>
+    </div>
+
+    <h1>Java Editor</h1>
+    <div codeblocks data-compiler="java" data-run-code="true" data-compiler-version=101>
+      <loading>
+        <div></div>
+        <div></div>
+      </loading>
+
+      <text>&lt;input id="args" style="width:100%"
+        placeholder="Eingabeparemeter" /></text>
+      <block data-visible-lines="auto"></block>
+
+      <block data-hidden>
+        class Universum { }
+        class Sonne {
+        public Sonne(){}
+        public Sonne(Universum u){}
+        }
+        class Planet {
+        public Planet(){}
+        public Planet(Sonne s) {
+
+        }
+        private double radius;
+        public void setRadius(double d){
+        this.radius = d;
+        }
+
+        private double speed;
+        public void setSpeed(double d){
+        this.speed = d;
+        }
+
+        public String toString(){
+        return "s: " + this.speed + ", r: " + this.radius;
+        }
+        }
+      </block>
+
+      <script as="playground" data-version="101" data-code-expanded=0 width="0" height="0" align="center"
+        type="text/javascript">
+          {
+            scope: undefined,
+              setupDOM: function (canvasElement, outputElement, scope) {
+                this.scope = scope
+                canvasElement.hide()
+              },
+            init: function (canvasElement, outputElement, scope, runner) {
+              this.scope = scope
+            },
+            addArgumentsTo(args) {
+              if (this.scope) {
+                const input = this.scope.find('#args')
+
+                const text = input.val()
+                const parts = text.replace(/\s+/g, ' ').split(' ')
+                args.push(...parts)
+              }
+            },
+            reset(canvasElement) { },
+            update: function (txt, json, canvasElement, outputElement) { }
+          }
+        </script>
+    </div>
+  </div>
+  </div>
+  <script>
+    document.body.onload = () => {
+      import("./js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+    }
+  </script>
+</body>
+
+</html>

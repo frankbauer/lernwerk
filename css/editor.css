@@ -1,0 +1,502 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-experiment-old: rgb(244, 87, 202);
+    --color-experiment: rgb(156, 39, 176);
+    --color-aufgabe: rgb(247, 235, 71);
+    --color-explain: rgb(103, 194, 255);
+    --color-explain-dark: rgb(2, 123, 227);
+    --color-quote: var(--color-explain-dark);
+    --color-quote-back: rgb(152, 207, 255);
+}
+
+body {
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-family: Roboto, Open Sans, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+p {
+    hyphens: auto;
+}
+
+div.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    padding: 0 32px;
+    border-bottom: 1px solid #F1F1F1;
+}
+
+div.topbar>a.backlink {
+    font-size: 12pt;
+    font-weight: 100;
+    text-decoration: none;
+}
+
+div.topbar>a.backlink::before {
+    content: "← ";
+}
+
+div#content {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+
+}
+
+div.intro,
+div.aufgabe,
+div.explain,
+div.experiment,
+div.boxed,
+tabbar.code {
+    position: relative;
+    margin: 10px 16px 10px 16px;
+
+}
+
+div.intro {
+    color: gray;
+}
+
+div.aufgabe {
+    border-color: var(--color-aufgabe);
+    color: black;
+}
+
+div.explain {
+    border-color: var(--color-explain);
+    color: black;
+}
+
+div.experiment {
+    border-color: var(--color-experiment);
+    color: black;
+}
+
+div.boxed,
+tabbar.code {
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-right-width: 4px;
+    border-right-style: solid;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 24px;
+    font-size: 14pt;
+}
+
+div.boxed h3,
+div.boxed h3,
+div.boxed h3 {
+    position: relative;
+    margin: -4px 0 6px 0;
+    background-color: white;
+    padding: 0;
+    border-radius: 4px;
+}
+
+div.boxed p,
+div.boxed div {
+    position: relative;
+    padding: 0;
+}
+
+div.boxed p,
+div.boxed div,
+div.boxed ul,
+div.boxed ol {
+    font-weight: 100;
+}
+
+div.boxed> :last-child {
+    margin-bottom: 0;
+}
+
+div.boxed p:nth-child(2),
+div.boxed div:nth-child(2) {
+    font-style: italic;
+}
+
+div.explain p:nth-child(2) {
+    font-style: normal;
+}
+
+div.experiment>div {
+    position: relative;
+    margin-bottom: 34px !important;
+    margin-top: 34px !important;
+    margin-left: 16px !important;
+    margin-right: -8px;
+    background-color: var(--color-experiment);
+    border-radius: 4px 0 0 4px;
+    padding: 8px;
+    font-style: normal !important;
+    color: white;
+    font-weight: 400;
+}
+
+div.experiment>div:nth-child(2) {
+    margin-top: 20px !important;
+}
+
+div.experiment>div:last-child {
+    margin-bottom: 8px !important;
+}
+
+
+
+.small {
+    font-size: 7pt !important;
+}
+
+.small p {
+    margin-bottom: 6px;
+}
+
+h1 {
+    font-size: 24pt !important;
+    margin-bottom: 5px !important;
+    margin-top: 30px !important;
+    height: fit-content;
+    line-height: 3rem !important;
+}
+
+h2 {
+    font-size: 20pt !important;
+    margin-bottom: 5px !important;
+    margin-top: 30px !important;
+    height: fit-content;
+    line-height: 3rem !important;
+}
+
+codeblockseditor>*,
+codeblocks>*,
+[codeblockseditor]>*,
+[codeblocks]>* {
+    display: none;
+}
+
+tabbar {
+    display: block;
+    width: calc(100% - 32px);
+    border-color: #F5F5F5;
+}
+
+tabbar>div[data-tab] {
+    min-height: 40px
+}
+
+tabbar>div[data-tab] {
+    visibility: hidden;
+    padding: 0px;
+}
+
+tabbar>div[data-tab] div.codeblocks {
+    padding: 0;
+    margin: 12px 0 0 0;
+}
+
+tabbar>div[data-tab].inactive {
+    display: none;
+    visibility: hidden;
+}
+
+tabbar>div[data-tab].active {
+    display: block;
+    visibility: visible;
+}
+
+tabbar>div.buttonbar {
+    display: flex;
+    justify-content: start;
+    gap: 8px;
+    padding: 2px 8px 0 8px;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid var(--color-explain);
+}
+
+tabbar>div.buttonbar button {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 2px 2px 4px 4px;
+    background-color: transparent;
+    color: black;
+    font-size: 14pt;
+    font-weight: 400;
+    margin-bottom: -5px;
+    cursor: pointer;
+}
+
+tabbar>div.buttonbar button:hover {
+    color: var(--color-explain) !important;
+}
+
+tabbar>div.buttonbar button.active {
+    color: var(--color-explain-dark);
+
+
+    border-bottom: 5px solid var(--color-explain-dark);
+    padding-bottom: 0px
+}
+
+tabbar>div.buttonbar button.inactive {
+    color: rgb(38, 105, 150);
+    padding-bottom: 5px
+}
+
+tabbar>div[data-tab]>div.boxed {
+    margin-left: -12px;
+    margin-right: -12px
+}
+
+code,
+pre[code] {
+    box-sizing: border-box;
+    font-family: "Source Code Pro" 'Courier New', Courier, monospace;
+    font-size: 14pt;
+    font-weight: 500;
+    color: black;
+    background-color: #F5F5F5;
+    border-radius: 3px;
+    margin: 0 0px 0 0px;
+}
+
+pre[code] {
+    padding: 2px 8px;
+    margin: 8px;
+}
+
+code {
+    display: inline-block;
+    padding: 0px 2px 0px 2px;
+}
+
+code[output].inline-code>span[code] {
+    background-color: var(--color-explain-dark);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+code.inline-code {
+    padding: 1px;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+code.inline-code>span[code] {
+    background-color: #f4f4f4;
+    padding: 2px 3px;
+    margin: 0;
+    border-radius: 3px;
+}
+
+.colored code.inline-code>span[code] {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+
+.colored pre[code] {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    margin-left: 0
+}
+
+.colored pre[code]:first-child {
+    margin-top: 0
+}
+
+.colored pre[code]:last-child {
+    margin-bottom: 0
+}
+
+.colored a {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+div.api {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 0 8px 0 8px !important;
+    font-style: normal !important;
+}
+
+tabbar>div[data-tab].api>div.boxed {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 16px;
+}
+
+div.api h4 {
+    margin: 24px 0 0 0;
+}
+
+div.api ul {
+    margin: 0;
+}
+
+div.api p {
+    margin: 0;
+}
+
+ol>li {
+    margin-top: 20px;
+}
+
+ul>li {
+    margin-top: 12px;
+}
+
+
+ol>li:first-child,
+ul>li:first-child {
+    margin-top: 0;
+}
+
+hint {
+    position: relative;
+    left: 0px;
+    opacity: 0.75;
+    display: block;
+    overflow: hidden;
+    transform: scaleX(1);
+    transform-origin: left center;
+    z-index: 3;
+    filter: blur(6px);
+}
+
+hint.animate {
+    transition: left 0.1s ease-out, opacity 0.3s ease-in-out, transform 0.1s ease-in-out, filter 0.3s ease-in-out;
+}
+
+hint.expanded {
+    left: 0;
+    opacity: 1;
+    transform: scaleX(1);
+    filter: blur(0px);
+    margin-left: 20px;
+    border-left: 4px solid #F5F5F577;
+    padding-left: 8px;
+    border-radius: 4px;
+}
+
+.hint-container {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.hint-container button {
+    padding: 2px 8px;
+    margin-left: -30px;
+    border: none;
+    background-color: var(--color-explain-dark);
+    border-radius: 4px;
+
+    color: black;
+    font-size: 14pt;
+    font-weight: 400;
+    cursor: pointer;
+
+    font-weight: 700;
+    z-index: 5;
+    font-style: normal;
+
+    transition: width 0.1s ease-in-out, opacity 0.1s ease-in, margin 0.1s ease-in, margin 0.1s ease-in;
+    overflow: hidden;
+    min-width: 0px;
+    width: 0px;
+    opacity: 0;
+}
+
+.hint-container button.expanded {
+    margin-left: 20px;
+    opacity: 1;
+    width: 130px;
+    min-width: 130px;
+}
+
+.hint-container button.slim {
+    white-space: nowrap;
+}
+
+.hint-container button.expanded.slim {
+    width: 170px;
+}
+
+
+.colored .hint-container button {
+    background-color: #F5F5F577;
+    color: rgba(0, 0, 0, 0.5)
+}
+
+pre[output] {
+    background-color: var(--color-explain-dark);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.colored pre[output] {
+    background-color: rgba(var(--color-explain), 0.3);
+}
+
+.cm-s-solarized .CodeMirror-gutters {
+    min-width: 33px
+}
+
+.CodeMirror-gutters {
+    min-width: 32px
+}
+
+new::before {
+    font-weight: 700;
+    color: rgb(255, 103, 171);
+    content: "[neu]";
+    padding-right: 4px;
+}
+
+.float_left {
+    float: left;
+    margin-right: 20px;
+}
+
+.float_right {
+    float: right;
+    margin-left: 20px;
+}
+
+quote {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    font-style: italic;
+    color: rgb(10, 110, 197);
+    font-weight: 400;
+
+    border-left: 2px solid var(--color-quote);
+    border-right: 2px solid var(--color-quote);
+    background-color: var(--color-quote-back);
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 4px;
+}
