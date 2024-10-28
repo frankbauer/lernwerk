@@ -1,0 +1,19 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Node</code> repräsentiert einen Knoten in einem Graphen.
+    Jeder Knoten speichert einen generischen Wert von Type <code>T</code> als Nutzlast (<code>payload</code>) und eine
+    Liste von Kanten
+    (<code>children</code>), die die Verbindungen zu anderen Knoten darstellen.</p>
+<h4>Konstruktoren</h4>
+<ul>
+    <li><code>public Node(T payload)</code><br>Erstellt einen neuen Knoten mit der angegebenen Nutzlast.</li>
+</ul>
+<h4>Methoden</h4>
+<ul>
+    <li><code>public T getPayload()</code><br>Gibt die Nutzlast dieses Knotens zurück.</li>
+    <li><code>public List&lt;Node&lt;T&gt;&gt; childNodes()</code><br>Gibt eine Liste der Kindknoten zurück.
+    </li>
+    <li><code>public Edge&lt;T&gt; addEdge(Node&lt;T&gt; target)</code><br> Fügt eine neue Kante zum aktuellen Knoten
+        hinzu, die auf einen Zielknoten zeigt und setzt das Gewicht auf 1.0.</li>
+    <li><code>public Edge&lt;T&gt; addEdge(Node&lt;T&gt; target, double weight)</code><br>Fügt eine neue Kante zum
+        aktuellen Knoten hinzu, die auf einen Zielknoten zeigt und ein Gewicht hat.</li>
+</ul>

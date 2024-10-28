@@ -1,0 +1,28 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Graphics2D</code> repräsentiert eine 2D-Grafik-Rendering-Engine. Sie verwaltet eine Liste von
+    Render-Objekten und ermöglicht das Zeichnen von Bildern auf einer grafischen Oberfläche. Diese Klasse verwendet
+    einen <code>CommandBuffer</code> zur Verwaltung der Zeichenbefehle.</p>
+
+<h4>Konstruktoren</h4>
+<ul>
+    <li>Kein öffentlicher Konstruktor verfügbar. Verwenden Sie die Methode <code>instance()</code>, um die
+        Singleton-Instanz (also einzige verfügbare Instanz) zu erhalten.</li>
+</ul>
+
+<h4>Methoden</h4>
+<ul>
+    <li><code>public static Graphics2D instance()</code><br>Gibt die Singleton-Instanz von <code>Graphics2D</code>
+        zurück. Erstellt die Instanz, falls sie noch nicht existiert.</li>
+    <li><code>public void registerForRender(Renderable r)</code><br>Registriert ein neues Render-Objekt zur
+        Rendering-Liste.</li>
+    <li><code>public void render()</code><br>Rendert alle registrierten Objekte, indem die <code>render()</code>-Methode
+        jedes Objekts aufgerufen wird.</li>
+    <li><code>public void drawImage(Image img, int x, int y)</code><br>Zeichnet ein Bild an die angegebene Position
+        <code>(x, y)</code> in der Originalgröße.
+    </li>
+    <li><code>public void drawImage(Image img, int x, int y, double scale)</code><br>Zeichnet ein Bild an die angegebene
+        Position <code>(x, y)</code> mit der angegebenen Vergrößerung <code>scale</code>.</li>
+    <li><code>public void drawImage(Image img, int x, int y, double sx, double sy)</code><br>Zeichnet ein Bild an die
+        angegebene Position <code>(x, y)</code> mit den angegebenen Vergrößerungen <code>sx</code> und <code>sy</code>.
+    </li>
+</ul>

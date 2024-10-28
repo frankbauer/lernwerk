@@ -1,0 +1,21 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Sonne</code> repräsentiert eine Sonne in einem Universum und ist für die Verwaltung einer Sammlung
+    von Planeten zuständig.</p>
+
+<h4>Konstruktoren</h4>
+<ul>
+    <li><code>public Sonne()</code><br>Erstellt eine neue Sonne ohne zugeordnetes Universum.</li>
+    <li><code>public Sonne(Universum u)</code><br>Erstellt eine neue Sonne und ordnet sie einem spezifischen Universum
+        zu. Wenn das Universum <code>null</code> ist, wird diese Sonne nicht zugeordnet.</li>
+</ul>
+
+<h4>Öffentliche Methoden</h4>
+<ul>
+    <li><code>public void print()</code><br>Druckt Informationen über die Sonne und ihre Planeten ohne Einrückung. Diese
+        Methode ist eine Überladung von <code>print(String indent)</code>, die mit einem Standardwert für eine leere
+        Einrückung aufgerufen wird. Die Methode ist damit eine Kurzschreibweise für <code>print("")</code>.</li>
+    <li><code>public void print(String indent)</code><br>Druckt Informationen über die Sonne und alle zugehörigen
+        Planeten, wobei für jeden Planeten eine zusätzliche Einrückung hinzugefügt wird, um die hierarchische Struktur
+        zu verdeutlichen. Ist <code>indent</code> <code>null</code>, wird die Einrückung auf einen leeren String
+        (<code>""</code>) gesetzt.</li>
+</ul>

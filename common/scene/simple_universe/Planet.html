@@ -1,0 +1,30 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Planet</code> repräsentiert einen Planeten, der einer Sonne zugeordnet ist und Eigenschaften wie
+    Radius und Geschwindigkeit besitzt.</p>
+
+<h4>Konstruktoren</h4>
+<ul>
+    <li><code>public Planet()</code><br>Erstellt einen neuen Planeten ohne zugeordnete Sonne. Ruft den anderen
+        Konstruktor mit <code>null</code> als Argument auf.</li>
+    <li><code>public Planet(Sonne s)</code><br> Erstellt einen neuen Planeten und ordnet ihn einer spezifischen Sonne
+        zu. Wenn die Sonne nicht <code>null</code> ist, wird dieser Planet automatisch bei der gegebenen Sonne
+        registriert.</li>
+</ul>
+
+<h4>Öffentliche Methoden</h4>
+<ul>
+    <li><code>public void setRadius(double d)</code><br>Setzt den Radius des Planeten auf den angegebenen Wert.</li>
+    <li><code>public void setSpeed(double d)</code><br>Setzt die Umlaufgeschwindigkeit des Planeten auf den angegebenen
+        Wert.</li>
+    <li><code>public String toString()</code><br>Gibt eine Zeichenkettendarstellung des Planeten zurück, die
+        Geschwindigkeit und Radius beinhaltet. Dies Methpde überschreibt das Standardverhalten wenn eine
+        Planeten-Instanz in eine Zeichenkette (zum Beispiel bei der Verwendung mit <code>System.out.println</code>)
+        umgewandelt werden soll.</li>
+    <li><code>public void print()</code><br>Druckt Informationen über den Planeten ohne Einrückung. Diese
+        Methode ist eine Überladung von <code>print(String indent)</code>, die mit einem Standardwert für eine leere
+        Einrückung aufgerufen wird. Die Methode ist damit eine Kurzschreibweise für <code>print("")</code>.</li>
+    <li><code>public void print(String indent)</code><br>Druckt Informationen über den Planeten, wobei
+        <code>indent</code> als Einrückung verwendet wird, um die Ausgabe zu strukturieren. Ist <code>indent</code>
+        <code>null</code>, wird es auf einen leeren String (<code>""</code>) gesetzt.
+    </li>
+</ul>
