@@ -1,0 +1,31 @@
+<h3>Erklärung</h3>
+<p>Dieses Programm zeigt, wie zwei Vektoren im zweidimensionalen Raum addiert werden können. Der Code verwendet die
+    <code>Vec2D</code>-Klasse, um Vektoren zu erstellen und zu addieren.</p>
+
+<ul>
+    <li>
+        <strong>Instanzen der Klasse Vec2D:</strong>
+        <p>Die Vektoren <code>v1</code> und <code>v2</code> sind Objekte (Instanzen) der Klasse <code>Vec2D</code>. Jede
+            Instanz besitzt ihre eigenen <code>x</code>- und <code>y</code>-Werte, um die Koordinaten eines Punktes im
+            zweidimensionalen Raum zu repräsentieren.</p>
+        <pre code>Vec2D v1 = new Vec2D(1, 2);
+Vec2D v2 = new Vec2D(3, 4);</pre>
+    </li>
+    <li>
+        <strong>Der Punkt-Operator (`.`):</strong>
+        <p>In Java wird der Punkt-Operator verwendet, um auf Methoden und Attribute eines Objekts zuzugreifen. Hier
+            ruft <code>v1.add(v2);</code> die <code>add()</code>-Methode des <code>v1</code>-Objekts auf und verwendet
+            <code>v2</code> als Argument.</p>
+    </li>
+    <li>
+        <strong>Die Methode <code>add()</code>:</strong>
+        <p>Die <code>add()</code>-Methode in der Klasse <code>Vec2D</code> addiert die <code>x</code>- und
+            <code>y</code>-Koordinaten der beiden Vektoren <code>v1</code> und <code>v2</code>. Sie gibt einen neuen
+            Vektor mit den summierten Koordinaten zurück, der in <code>v3</code> gespeichert wird.</p>
+        <pre code>Vec2D v3 = v1.add(v2);</pre>
+    </li>
+    <li>
+        <strong>Die Ausgabe des Ergebnisses:</strong>
+        <p>Das Statement <code>System.out.println(v3);</code> gibt den Inhalt des Vektors <code>v3</code> aus.
+    </li>    
+</ul>

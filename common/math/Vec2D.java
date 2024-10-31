@@ -46,9 +46,9 @@ class Vec2D {
      * 
      * @param p The Point to convert.
      */
-    public Vec2D(Point p) {
-        this(p.x, p.y);
-    }
+    // public Vec2D(Point p) {
+    //     this(p.x, p.y);
+    // }
 
     /**
      * Creates a new Vector
@@ -84,9 +84,9 @@ class Vec2D {
      * 
      * @return The Point representing this Vector. The components are rounded!
      */
-    public Point toPoint() {
-        return new Point((int) Math.round(x), (int) Math.round(y));
-    }
+    // public Point toPoint() {
+    //     return new Point((int) Math.round(x), (int) Math.round(y));
+    // }
 
     /**
      * Creates a normalized Vector
