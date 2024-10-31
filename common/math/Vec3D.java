@@ -84,6 +84,10 @@ class Vec3D {
         this.z = z;
     }
 
+    public int hashCode() {
+        return (int) (x * 1000 + y * 1000 + z * 1000);
+    }
+
     /**
      * Compares two Vectors for equality.
      * 
@@ -319,10 +323,10 @@ class Vec3D {
      * @param plane The plane to project this vector on.
      * @return The projected Vector.
      */
-    final public Vec3D project(final Plane plane) {
-        final double d = signedDistance(plane);
-        return this.sub(plane.normal.mul(d));
-    }
+    // final public Vec3D project(final Plane plane) {
+    //     final double d = signedDistance(plane);
+    //     return this.sub(plane.normal.mul(d));
+    // }
 
     /**
      * Projects the Vector to the given ray and returns the result as a new Vector.
@@ -330,16 +334,16 @@ class Vec3D {
      * @param ray The ray to project this vector on.
      * @return The projected Vector or {@code null} if no projection exists.
      */
-    final public Vec3D project(final Ray ray) {
-        final Vec3D A = ray.origin;
-        final Vec3D AP = this.sub(ray.origin);
-        final Vec3D AB = ray.dir;
+    // final public Vec3D project(final Ray ray) {
+    //     final Vec3D A = ray.origin;
+    //     final Vec3D AP = this.sub(ray.origin);
+    //     final Vec3D AB = ray.dir;
 
-        final Vec3D proj = AB.mul(AP.dot(AB) / AB.dot(AB));
-        /*if (proj.dot(AB) < 0)
-            return null;*/
-        return A.add(proj);
-    }
+    //     final Vec3D proj = AB.mul(AP.dot(AB) / AB.dot(AB));
+    //     /*if (proj.dot(AB) < 0)
+    //         return null;*/
+    //     return A.add(proj);
+    // }
 
     /**
      * Calculates the signed distance between this Vector (as Point) and a Plane
@@ -347,9 +351,9 @@ class Vec3D {
      * @param p The Plane
      * @return The signed-distance (this - p).
      */
-    public double signedDistance(Plane p) {
-        return p.normal.dot(this.sub(p.origin));
-    }
+    // public double signedDistance(Plane p) {
+    //     return p.normal.dot(this.sub(p.origin));
+    // }
 
     /**
      * Calculates the distance between this Vector (as Point) and a Plane
@@ -357,7 +361,7 @@ class Vec3D {
      * @param p The Plane
      * @return The eucledian-distance |this - p|.
      */
-    public double distance(Plane p) {
-        return Math.abs(signedDistance(p));
-    }
+    // public double distance(Plane p) {
+    //     return Math.abs(signedDistance(p));
+    // }
 }
