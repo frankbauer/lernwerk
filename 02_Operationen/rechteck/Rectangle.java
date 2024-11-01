@@ -1,9 +1,9 @@
 //#START STATIC
 public class Rectangle {
     public static void main(String[] args) {    
-        // Liest die Breite des Rechtecks aus den Kommandozeilenargumenten
+        // Liest die Breite des Rechtecks aus den Kommandozeilenargumenten (args)
         int width = Input.getWidth(args);
-        // Liest die Höhe des Rechtecks aus den Kommandozeilenargumenten
+        // Liest die Höhe des Rechtecks aus den Kommandozeilenargumenten (args)
         int height = Input.getHeight(args);
 //#START STUDENT
 
