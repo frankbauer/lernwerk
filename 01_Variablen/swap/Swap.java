@@ -8,7 +8,7 @@ public class Swap {
 
 //#START SOLUTION
         
-        // Tausch der Werte mit einer Hilfsvariable
+        // Tausch der Werte mithilfe einer Hilfsvariablen
         double temp = a;
         a = b;
         b = temp;

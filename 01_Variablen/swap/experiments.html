@@ -1,4 +1,4 @@
-<h3>Experimente</h3>
+<h3>zusätzliches Experiment:</h3>
 <div class="colored">
     Können Sie den Wertetausch zweier Variablen auch ohne eine Hilfsvariable realisieren?
     <hint>
@@ -6,8 +6,8 @@
             werden.</p>
     </hint>
     <hint solution>
-        <pre code>a = a + b;
-b = a - b;  //b = (a + b) - b = a
-a = a - b;  //a = (a + b) - a = b</pre>
+        <pre code>a = a + b;  //fuer Erklaerung im Kommentar sei initiales a = a' und initiales b = b'
+b = a - b;  //b = (a' + b') - b' = a' (nach Aufloesen der Klammern bleibt initiales a uebrig)
+a = a - b;  //a = (a' + b') - a' = b' (nach Aufloesen der Klammern bleibt initiales b uebrig)</pre>
     </hint>
 </div>
