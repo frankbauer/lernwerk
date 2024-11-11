@@ -4,10 +4,13 @@
     wird.
 </div>
 <div class="colored">
-    Die eigentlichen Zahlenwerte (in unserem Bespiel <code>zahl1</code> und <code>zahl1</code>) sollen nun
+    Die eigentlichen Zahlenwerte (in unserem Bespiel <code>zahl1</code> und <code>zahl2</code>) sollen nun
     in <code>int</code>-Variablen gespiechert werden.
-    Was müssen geändert werden, damit der Durchschnitt korrekt (also mit Nachkommanateil) berechnet wird?
+    Was müssen geändert werden, damit der Durchschnitt korrekt (also mit Nachkomma-Anteil) berechnet wird?
     <hint>Einer der Operanden der Division muss zu einem Fließkommadatentyp umgewandelt werden.</hint>
-    <hint solution>Zum Beispiel <code>double durchschnitt = (zahl1 + zahl2) / 2.0;</code>
+    <hint solution> <p>
+        Zum Beispiel <code>double durchschnitt = (zahl1 + zahl2) / 2.0;</code><br>
+        Durch die Wahl des Divisors als <i>2.0</i> statt <i>2</i> wird die Berechnung mit dem genaueren Datentyp, 
+        in diesem Fall <code>double</code>, durchgeführt.</p>
     </hint>
 </div>
