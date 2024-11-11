@@ -4,25 +4,22 @@
     Das Ergebnis wird auf der Konsole ausgegeben.
 </p>
 <ul>
-    <li><code>public class Convert {</code> - Definiert die Klasse <b>Convert</b>, in der das
+    <li><code>public class Convert {</code> - Deklariert die Klasse <b>Convert</b>, in der das
         Programm ausgeführt wird.</li>
-    <li><code>public static void main(String[] args) {</code> Die <b>main</b>-Methode, die
-        der Einstiegspunkt für das Programm ist. Sie Methode bekommt beim start ein Array von
-        Strings (<b>args</b>)
-        als Parameter, welcher die Programmargumente enthält. Im speziellen enthält <b>args[0]</b> die Zeichenkette aus
-        dem Eingabefeld oben.</li>
-    <li><code>final double celsius = Input.getTemperature(args);</code> Ruft die statische Methode
-        <code>getTemperature</code> der Klasse <b>Input</b> auf, um die eingegebene
-        Celsius-Temperatur zu lesen und weist sie einer konstanten Variablen
-        <b>celsius</b> zu, was bedeutet, dass der Wert nach der Zuweisung nicht verändert
-        werden kann.
+    <li><code>public static void main(String[] args) {</code> - Definiert die <b>main</b>-Methode, die
+        der Einstiegspunkt für das Programm ist. Ihr Programm führt nur das aus, was in der main-Methode steht oder von dort durch einen Methodenaufruf o.Ä. in Gang gesetzt wird. Sie bekommt beim Start (Klick auf "Ausführen") ein Array von Strings (<code>args</code>) als Parameter, welches die Programmargumente enthält. Im vorliegenden Fall enthält <code>args[0]</code> den Zahlenwert aus dem Eingabefeld oben als Zeichenkette (String). Der Aufruf der main-Methode mit den entsprechenden Parametern erfolgt automatisch im Hintergrund, sobald Sie auf "Ausführen" klicken.</li>
+    <li><code>final double celsius = Input.getTemperature(args);</code> - Ruft die statische Methode
+        <code>getTemperature</code> der Klasse <code>Input</code> auf, um die eingegebene
+        Celsius-Temperatur zu lesen und weist sie einer konstanten (final) Variablen
+        <code>celsius</code> zu. Konstant bedeutet, dass der Wert nach der Zuweisung nicht verändert
+        werden kann. Im gegebenen Anwendungsfall ist es sinnvoll aber nicht verpflichtend, die Variable als konstant zu deklarieren. 
+        <p>Die Methode <code>getTemperature</code> erwartet laut API (siehe Reiter "Input") ein String-Array als Parameter. Hierfür wird der Übergabeparameter der main-Methode <code>args</code> übergeben und damit die aus dem Textfeld eingelesene Zeichenkette mit der eingestellten Temperatur an die getTemperature-Methode weitergegeben. Die Methode liest nun aus dem übergebenen Argument die Temperatur aus und gibt diese als Zahlenwert (double) zurück.</p>
     </li>
-    <li><code>double fahrenheit = celsius * 9 / 5 + 32;</code> Rechnet den Celsius-Wert in
-        Fahrenheit um.</li>
-    <li><code>System.out.print(celsius + " Grad Celsius entsprechen ");</code> Gibt den
-        Celsius-Wert gefolgt von einem Text auf der Konsole aus, ohne einen Zeilenumbruch am Ende zu
-        erzeugen.</li>
-    <li><code>System.out.println(fahrenheit + " Grad Fahrenheit.");</code> Gibt den umgerechneten
+    <li><code>double fahrenheit = celsius * 9 / 5 + 32;</code> - Rechnet den Celsius-Wert <code>celsius</code> mittels arithmetischen Operationen entsprechend der gegebenen Formel in Fahrenheit um und speichert das Ergebnis in der neuen Variable <code>fahrenheit</code>. Die Variable <code>celsius</code> wird dadurch nicht verändert!</li>
+    <li><code>System.out.print(celsius + " Grad Celsius entsprechen ");</code> - Gibt den
+        Celsius-Wert gefolgt von einem Text (inklusive Leerzeichen) auf der Konsole aus, ohne einen Zeilenumbruch am Ende zu
+        erzeugen (keine <code>ln</code>-Endung bei <code>System.out.print</code>).</li>
+    <li><code>System.out.println(fahrenheit + " Grad Fahrenheit.");</code> - Gibt den umgerechneten
         Fahrenheit-Wert auf der Konsole aus und beendet die ausgegebene Zeile mit einem
-        Zeilenumbruch.</li>
+        Zeilenumbruch (Endung <code>ln</code>).</li>
 </ul>
