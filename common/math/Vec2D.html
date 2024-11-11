@@ -1,7 +1,8 @@
+<h2><b>class Vec2D</b></h2>
 <h4>Beschreibung</h4>
-<p>Die Klasse <code>Vec2D</code> repräsentiert einen unveränderlichen 2-dimensionalen Vektor. Sie stellt grundlegende
-    Operationen auf 2D-Vektoren zur Verfügung, wie z. B. Addition, Subtraktion, Skalierung und Berechnung des
-    Skalarprodukts. Die Klasse enthält auch Methoden zur Berechnung der Länge, Normalisierung sowie Umwandlungen
+<p>Eine Instanz der Klasse <code>Vec2D</code> repräsentiert einen unveränderlichen 2-dimensionalen Vektor. Die Klasse stellt grundlegende
+    Operationen für 2D-Vektoren zur Verfügung, wie z. B. Addition, Subtraktion, Skalierung und Berechnung des
+    Skalarprodukts. Sie enthält auch Methoden zur Berechnung der Länge, Normalisierung sowie Umwandlungen
     zwischen Vektoren und Punkten.</p>
 
 <h4>Konstruktoren</h4>
@@ -16,9 +17,9 @@
     <li><code>public double getY()</code><br>Gibt die vertikale Komponente des Vektors zurück.</li>
     <li><code>public Vec2D normalize()</code><br>Gibt einen normierten Vektor (Länge 1) in die gleiche Richtung
         zurück. Wenn der Vektor die Länge 0 hat, wird der Nullvektor zurückgegeben.</li>
-    <li><code>public Vec2D toPerpendicular()</code><br>Erstellt einen Vektor, der senkrecht zum aktuellen Vektor steht.
+    <li><code>public Vec2D toPerpendicular()</code><br>Erstellt einen Vektor gleicher Länge, der senkrecht zum aktuellen Vektor steht.
     </li>
-    <li><code>public Vec2D toInverted()</code><br>Erstellt einen Vektor, der in die entgegengesetzte Richtung zeigt.
+    <li><code>public Vec2D toInverted()</code><br>Erstellt einen Vektor gleicher Länge, der in die entgegengesetzte Richtung zeigt.
     </li>
     <li><code>public double norm()</code><br>Berechnet die quadratische Länge des Vektors (auch als l2-Norm bekannt).
     </li>
@@ -42,18 +43,18 @@
         Vektoren <code>a</code> und <code>b</code>.</li>
     <li><code>public double distance(Vec2D v)</code><br>Berechnet die euklidische Distanz zwischen diesem Vektor und
         einem anderen Vektor <code>v</code>.</li>
-    <li><code>public Vec2D rotateAround(Vec2D pivot, double angle)</code><br>Dreht diesen Vektor um einen gegebenen
-        Drehpunkt <code>pivot</code> um den Winkel <code>angle</code> (in Grad) und gibt das Ergebnis als neuen Vektor
+    <li><code>public Vec2D rotateAround(Vec2D pivot, double angle)</code><br>Dreht diesen Vektor um den Winkel <code>angle</code> (in Grad) um einen gegebenen
+        Drehpunkt <code>pivot</code>  und gibt das Ergebnis als neuen Vektor
         zurück.</li>
 </ul>
 
 <h4>Konstanten</h4>
 <ul>
-    <li><code>public static final Vec2D XAxis</code><br>Ein Vektor, der in die positive X-Richtung zeigt (1,0).</li>
-    <li><code>public static final Vec2D YAxis</code><br>Ein Vektor, der in die positive Y-Richtung zeigt (0,1).</li>
-    <li><code>public static final Vec2D NegativeXAxis</code><br>Ein Vektor, der in die negative X-Richtung zeigt (-1,0).
+    <li><code>public static final Vec2D XAxis</code><br>Ein Vektor der Länge 1, der in die positive X-Richtung zeigt (1,0).</li>
+    <li><code>public static final Vec2D YAxis</code><br>Ein Vektor der Länge 1, der in die positive Y-Richtung zeigt (0,1).</li>
+    <li><code>public static final Vec2D NegativeXAxis</code><br>Ein Vektor der Länge 1, der in die negative X-Richtung zeigt (-1,0).
     </li>
-    <li><code>public static final Vec2D NegativeYAxis</code><br>Ein Vektor, der in die negative Y-Richtung zeigt (0,-1).
+    <li><code>public static final Vec2D NegativeYAxis</code><br>Ein Vektor der Länge 1, der in die negative Y-Richtung zeigt (0,-1).
     </li>
     <li><code>public static final Vec2D ZERO</code><br>Der Nullvektor (0,0).</li>
 </ul>
