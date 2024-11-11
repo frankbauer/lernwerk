@@ -5,27 +5,25 @@
 <ul>
     <li>
         <strong>Instanzen der Klasse Vec2D:</strong>
-        <p>Die Vektoren <code>v1</code> und <code>v2</code> sind Objekte (Instanzen) der Klasse <code>Vec2D</code>. Jede
-            Instanz besitzt ihre eigenen <code>x</code>- und <code>y</code>-Werte, um die Koordinaten eines Punktes im
-            zweidimensionalen Raum zu repräsentieren.</p>
+        <p>Die Vektoren <code>v1</code> und <code>v2</code> sind Objekte (=Instanzen) der Klasse <code>Vec2D</code>. Jede
+            Instanz besitzt ihren eigenen <code>x</code>- und <code>y</code>-Wert, um die Koordinaten ihres Endpunktes im
+            zweidimensionalen Raum bezogen auf ihren Fußpunkt zu repräsentieren. Um eine neue Instanz anzulegen, wird der Parameterkonstruktur von <code>Vec2D</code> mit "<code>new</code>" aufgerufen und es werden zwei Fließkommazahlen für <code>x</code> und <code>y</code> übergeben. In der Beispiellösung ist also der x-Wert des Vektors <code>v1</code> 1.0 und der y-Wert 2.0.</p>
         <pre code>Vec2D v1 = new Vec2D(1, 2);
 Vec2D v2 = new Vec2D(3, 4);</pre>
     </li>
     <li>
         <strong>Der Punkt-Operator (`.`):</strong>
-        <p>In Java wird der Punkt-Operator verwendet, um auf Methoden und Attribute eines Objekts zuzugreifen. Hier
-            ruft <code>v1.add(v2);</code> die <code>add()</code>-Methode des <code>v1</code>-Objekts auf und verwendet
-            <code>v2</code> als Argument.</p>
+        <p>In Java wird der Punkt-Operator verwendet, um auf Methoden und Attribute eines Objekts oder einer Klasse zuzugreifen. Hier ruft <code>v1.add(v2);</code> die <code>add()</code>-Methode des <code>v1</code>-Objekts auf und verwendet <code>v2</code> als Argument. Dieser Aufbau des Methodenaufrufs geht aus der API der Klasse <code>Vec2D</code> hervor. Das Fehlen des Schlagwortes <code>static</code> in "<code>public Vec2D add(Vec2D v)</code>" signalisiert, dass es sich um eine Instanzmethode handelt. Folglich muss die Methode auf dem Namen einer <code>Vec2D</code>-Instanz wie z.B. <code>v1</code> aufgerufen werden und nicht auf dem Klassennamen. Als Übergabeparameter der Methode <code>add</code> ist ebenfalls ein Vec2D-Objekt gefordert, erkennbar an "<code>Vec2D v</code>" in den Klammern nach dem Methodennamen. Hierfür wird im Beispiel <code>v2</code> übergeben.</p>
     </li>
     <li>
         <strong>Die Methode <code>add()</code>:</strong>
-        <p>Die <code>add()</code>-Methode in der Klasse <code>Vec2D</code> addiert die <code>x</code>- und
+        <p>Die <code>add()</code>-Methode aus der Klasse <code>Vec2D</code> addiert die <code>x</code>- und
             <code>y</code>-Koordinaten der beiden Vektoren <code>v1</code> und <code>v2</code>. Sie gibt einen neuen
             Vektor mit den summierten Koordinaten zurück, der in <code>v3</code> gespeichert wird.</p>
         <pre code>Vec2D v3 = v1.add(v2);</pre>
     </li>
     <li>
         <strong>Die Ausgabe des Ergebnisses:</strong>
-        <p>Das Statement <code>System.out.println(v3);</code> gibt den Inhalt des Vektors <code>v3</code> aus.
+        <p>Das Statement <code>System.out.println(v3);</code> gibt den Inhalt des Vektors <code>v3</code> gefolgt von einem Zeilenumbruch aus.
     </li>    
 </ul>
