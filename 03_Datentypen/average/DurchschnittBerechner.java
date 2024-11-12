@@ -1,5 +1,5 @@
 public class DurchschnittBerechner {
-//#IF SOLUTION
+//#START SOLUTION
     public static void main(String[] args) {
         // Deklariert die erste Fließkommazahl und initialisiert sie mit 5.5
         double zahl1 = 5.5;
@@ -15,5 +15,5 @@ public class DurchschnittBerechner {
         System.out.print  (" und " + zahl2);
         System.out.println(" ist: " + durchschnitt);
     }
-//#ENDIF SOLUTION    
+   
 }
