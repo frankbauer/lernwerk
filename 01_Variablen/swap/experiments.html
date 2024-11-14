@@ -5,9 +5,16 @@
         <p>Der Wertetausch ohne eine Hilfsvariable kann durch die Verwendung von arithmetischen Operationen realisiert
             werden.</p>
     </hint>
-    <hint solution>
-        <pre code>a = a + b;  //fuer Erklaerung im Kommentar sei initiales a = a' und initiales b = b'
+    <hint solution>        
+
+    <pre code>a = a + b;  //fuer Erklaerung im Kommentar sei initiales a = a' und initiales b = b'
 b = a - b;  //b = (a' + b') - b' = a' (nach Aufloesen der Klammern bleibt initiales a uebrig)
 a = a - b;  //a = (a' + b') - a' = b' (nach Aufloesen der Klammern bleibt initiales b uebrig)</pre>
+
+    <pre>Zahlenbeispiel: a = 1, b = 2
+a = 1 + 2 (= 3)
+b = 3 - 2 (= 1)
+a = 3 - 1 (= 2)</pre>
+
     </hint>
 </div>
