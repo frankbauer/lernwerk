@@ -7,7 +7,7 @@ public class FindMin {
         // Lese die erste Messung
         Measurement min = Recorder.getNext();
         
-        // Iteriere über alle Messungen.
+        // Iteriere über alle Messungen, indem solange wiederholt wird, wie noch unbearbeitete Messungen vorliegen.
         while (Recorder.hasMore()) {
             // Hole die nächste Messung 
             Measurement now = Recorder.getNext();

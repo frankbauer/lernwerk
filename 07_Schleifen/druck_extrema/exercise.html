@@ -3,17 +3,21 @@
 <p class="goal">In dieser Aufgabe wirst du lernen, wie man mit einer while-Schleife über eine unbekannte Anzahl an
     Werten iterieren kann.</p>
 
-<p>In dieser Aufgabe ist eine Messreihe des Luftdrucks gegeben. Die Messungen wurden in unregelmäßigen Abständen
-    durchgeführt. Jeder Messwert wird zusammen mit der aufgezeichneten Zeit in einer Instanz der Klasse
-    <code>Measurement</code> gespeichert. Auf die verfügbaren Messwerte kann über Klassenmethoden der
+<p>In dieser Aufgabe ist eine Messreihe in Form von unbekannt vielen Messungen des Luftdrucks gegeben. Die Messungen wurden in zeitlich unregelmäßigen Abständen
+    durchgeführt. Jeder Messwert wird zusammen mit der aufgezeichneten Zeit in Form von Attributen in einer Instanz der Klasse
+    <code>Measurement</code> gespeichert. Auf die verfügbaren Messwerte kann über die Klassenmethoden der
     <code>Recorder</code>-Klasse zugegriffen werden.
 </p>
 
-<p>Finde in der Messreihe die Messung mit dem geringsten Messwert und gebe diesen aus.</p>
+<p>Finde nun in dieser Messreihe die Messung mit dem geringsten Messwert und gebe diesen aus.</p>
 <pre output>Minimum: 28. August, 03:00 Uhr = 963 hPa</pre>
 
-<p>Der Teil <quote>28. August, 03:00 Uhr = 963 hPa</quote> in der Ausgabe wird automatisch erzeugt, wenn eine Instantz
+<p>Die Formatierung <quote>28. August, 03:00 Uhr = 963 hPa</quote> in der Ausgabe wird automatisch erzeugt, wenn eine Instanz
     von
-    <code>Measurement</code> in eine Zeichenkette umgewandelt wird, also zum Beispiel durch
-    <code>System.out.println()</code>.
-</p>
+    <code>Measurement</code> in eine Zeichenkette umgewandelt wird. 
+    Beispielsweise liefert die Instanz <code>Measurement messwert</code> mit dem Messwert <code>1000 hPa</code> um <code>06:00Uhr</code> 
+    nach dem Aufruf <code>System.out.println("testwert:" + messwert)</code>
+    folgende Zeile: 
+    <br>
+    <br>
+    <quote>testwert: 28. August, 06:00 Uhr = 1000 hPa</quote>
