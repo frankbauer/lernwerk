@@ -19,7 +19,9 @@
             (<code>current</code>) und die nächste Messung
             (<code>next</code>) verwendet, um den Mittelwert der gemessenen Werte und die Zeitdifferenz zwischen den
             Messungen zu
-            berechnen. Diese Werte fließen in die Berechnung des durchschnittlichen Luftdrucks ein.</p>
+            berechnen. Diese Werte fließen in die Berechnung des durchschnittlichen Luftdrucks ein. Hierzu wird
+            werden die passenden Attribute <code>value</code> und <code>timeInHours</code> der Measurement Instanzen (<code>current</code> und <code>next</code>)
+            über den Punktoperator ausgelesen.</p> 
         <pre code>while (Recorder.hasMore()) {
     Measurement next = Recorder.getNext();
     int midValue = (next.value + current.value) / 2;
@@ -30,11 +32,11 @@
 
     <li>
         <strong>Aktualisieren der Gesamtzeit:</strong>
-        <p>Die Zeitdifferenz zwischen den Messungen wird in jeder Iteration der Schleife zur Gesamtzeit hinzugefügt. Die
+        <p>Die Zeitdifferenz zwischen den Messungen wird in jeder Iteration der Schleife durch <code>+=</code> zur Gesamtzeit hinzugefügt. Die
             Gesamtzeit muss vor der Schleife initialisiert (zum einen, damit sie nicht in jedem Schleifendurchlauf
-            zurückgesetzt wird, zum anderen damit sie auch nach der Schleife noch verwendet werden kan) und während
+            zurückgesetzt wird, zum anderen damit sie auch nach der Schleife noch verwendet werden kann) und während
             jeder Schleifeniteration um die aktuelle
-            Zeitdifferenz erhöht.</p>
+            Zeitdifferenz erhöht wird.</p>
         <pre code>double totalTime = 0;
 while (/*...*/) {
     /*...*/
@@ -56,7 +58,7 @@ System.out.println("Gesamtzeit: " + totalTime);</pre>
         <strong>Weiterrücken von <code>current</code> auf <code>next</code>:</strong>
         <p>Nach jeder Berechnung wird die in <code>next</code> gespeicherte Referenz nach <code>current</code> kopiert.
             Ohne diese Zeile würde in jedem Schleifendurchlauf immer die Differenz zum aller ersten Messwert bestimmt
-            werden. Durch das umkopieren des Wertes, wird sichergestellt, dass immer die Differenz zu zuletzt gelesenen
+            werden. Durch das umkopieren des Wertes, wird sichergestellt, dass immer die Differenz zum zuletzt gelesenen
             Messwert bestimmt wird.</p>
         <pre code>current = next;</pre>
         <p>Auch für die Variable <code>current</code> ist es wichtig, dass sie vor der Schleife angelegt und
