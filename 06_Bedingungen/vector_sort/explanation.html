@@ -1,5 +1,5 @@
 <h3>Erklärung</h3>
-<p>Dieses Programm illustriert das Arbeiten mit 2D-Vektoren und die Berechnung von Winkeln, die diese Vektoren mit der
+<p>Dieses Programm veranschaulicht das Arbeiten mit 2D-Vektoren und die Berechnung von Winkeln, die diese Vektoren mit der
     X-Achse aufspannen. Es zeigt insbesondere die Verwendung von Methoden zur Normalisierung von Vektoren und zur
     Berechnung des Skalarprodukts, um den eingeschlossenen Winkel zu bestimmen.</p>
 
@@ -7,26 +7,35 @@
     <li>
         <strong>Erstellung von <code>Vec2D</code>-Objekten:</strong>
         <p>Es werden zwei <code>Vec2D</code>-Instanzen erstellt, die jeweils zufällige Werte für ihre x-
-            und y-Komponenten im Bereich [-25, 25[ erhalten.</p>
-        <code>Vec2D v1 = new Vec2D(Math.random()*50 - 25, Math.random()*50 - 25);</code>
+            und y-Komponenten im Bereich [-25, 25[ erhalten. Die Klasse Vec2D besitzt laut API einen Parameterkonstruktor, dem ein double-Wert für die x-Komponente und ein double-Wert für die y-Komponente in dieser Reihenfolge übergeben werden. Dieser wird zur Erstellung von Instanzen mit <code>new</code> aufgerufen.</p>
+            <p>Zur Generierung eines zufälligen Zahlenwertes wird die Methode <code>Math.random</code> verwendet. Diese Methode gibt einen Zahlenwert zwischen 0.0 und 1.0 zurück, 0 eingeschlossen, 1.0 ausgeschlossen ([0.0, 1.0[). Multipliziert man diesen Wert mit der gewünschten Intervallbreite (25-(-25)=50) und addiert den unteren Grenzwert des Intervalls (hier -25) dazu, erhält man Zahlenwerte im gewünschten Intervall. Der kleinste mögliche Wert entspricht dann dem unteren Grenzwert; der obere Grenzwert wird gerade nicht erreicht (im Intervall ausgeschlossen ([-25, 25[)), da Math.random nie 1.0 zurückgibt.</p>
+            <pre><code>Vec2D v1 = new Vec2D(Math.random()*50 - 25, Math.random()*50 - 25);
+Vec2D v2 = new Vec2D(Math.random()*50 - 25, Math.random()*50 - 25);</code></pre>
     </li>
     <li>
         <strong>Berechnung des Winkels:</strong>
-        <p>Die Methode <code>normalize()</code> wird auf den Vektoren aufgerufen, um deren Länge auf 1 zu normieren.
-            Danach wird das Skalarprodukt des Vektors mit der X-Achse berechnet, und mit der Funktion
-            <code>Math.acos()</code> der Winkel in Radianten ermittelt.
+        <p>Die Methode <code>normalize()</code> wird auf dem Vektor v1 bzw. v2 aufgerufen (Instanzmethode!), um dessen Länge auf 1 zu normieren.
+            Danach wird das Skalarprodukt des normalisierten Vektors mit dem Einheitsvektor in Richtung der X-Achse mithilfe der Methode <code>dot</code> berechnet. Diese Methode ist ebenfalls eine Instanzmethode und wird hier auf dem Einheitsvektor in x-Richtung aufgerufen, welcher in der Klassenkonstante <code>XAxis</code> der Klasse <code>Vec2D</code> hinterlegt ist. Diese Vec2D-Instanz vor dem Punktoperator bestimmt den ersten Vektor im Skalarprodukt. Der zweite Vektor, mit dem das Skalarprodukt gebildet werden soll (hier der normalisierte v1- bzw. v2-Vektor), wird der Methode <code>dot</code> als Übergabeparameter übergeben. Mit der Klassenmethode <code> Math.acos()</code> kann am Ende der Winkel in Radianten ermittelt. Dafür wird der Methode das zuvor bestimmte Skalarprodukt übergeben.
+            <pre><code>Vec2D v1Normalized = v1.normalize();
+double scalarProduct = Vec2D.XAxis.dot(v1Normalized);
+double w1 = Math.acos(scalarProduct);</code></pre>
+                oder zusammengefasst:
+                
         </p>
         <code>double w1 = Math.acos(Vec2D.XAxis.dot(v1.normalize()));</code>
     </li>
     <li>
         <strong>Vergleich der Winkel und Ausgabe:</strong>
-        <p>Nachdem die Winkel für beide Vektoren berechnet wurden, vergleicht das Programm die beiden Winkel. Die
-            Vektoren werden in der Konsole in aufsteigender Reihenfolge nach ihrem Winkel ausgegeben, beginnend mit dem
+        <p>Nachdem die Winkel für beide Vektoren berechnet wurden, vergleicht das Programm die beiden Winkel w1 und w2 in einer if-Bedingung. Abhängig davon, ob die Bedingung <code>true</code> (Winkel w1 größer als w2) oder <code>false</code> (Winkel w1 kleiner als w2) ist, wird der Anweisungsteil im if- oder im else-Block ausgeführt. Dort werden die Vektoren entsprechend in aufsteigender Reihenfolge, sortiert nach ihrem Winkel, mit <code>System.out.println</code> auf der Konsole ausgegeben, beginnend mit dem
             Vektor, der den kleineren Winkel aufspannt.</p>
         <pre code>if (w1 > w2) { 
     /* v2 vor v1 */ 
+    System.out.println("v2 = " + v2 + " Winkel: " + w2); 
+    System.out.println("v1 = " + v1 + " Winkel: " + w1);  
 } else { 
-    /* v1 vor v2 */ 
+    /* v1 vor v2 */
+    System.out.println("v1 = " + v1 + " Winkel: " + w1);
+    System.out.println("v2 = " + v2 + " Winkel: " + w2);   
 }</pre>
     </li>
 </ul>

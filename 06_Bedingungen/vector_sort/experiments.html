@@ -1,13 +1,13 @@
-<h3>Experimente</h3>
+<h3>zusätzliche Experimente:</h3>
 <div class="colored">
-    Gib den Vektor zusammen mit dem berechneten Winkel in Grad auf der Konsole aus.
+    Geben Sie den Vektor zusammen mit dem berechneten Winkel in Grad auf der Konsole aus.
     <hint solution>
         <pre code>System.out.println("v1 = " + v1 + " Winkel: " + Math.toDegrees(w1));</pre>
     </hint>
 </div>
 
 <div class="colored">
-    Erstelle einen dritten Vektor, der die Summe der beiden Vektoren repräsentiert.
+    Erstellen Sie einen dritten Vektor, der die Summe der beiden Vektoren repräsentiert.
     <hint solution>
         <pre code>Vec2D v3 = v1.add(v2);</pre>
     </hint>
@@ -16,33 +16,45 @@
 
 
 <div class="colored">
-    Gib alle drei Vektoren sortiert aus.
+    Geben Sie alle drei Vektoren sortiert aus.
     <hint solution>
-        <pre code>double w3 = Math.acos(Vec2D.XAxis.dot(v3.normalize()));
-            
+        Fortsetzung/ Anpassung der Lösung für die Sortierung dreier Vektoren nach deren Winkel zur X-Achse:
+        
+        <pre code>//Winkel zwischen dem dritten Vektor und der X-Achse
+double w3 = Math.acos(Vec2D.XAxis.dot(v3.normalize()));
+
+//Ist v1 der Vektor mit dem kleinsten Winkel?            
 if (w1 < w2 && w1 < w3) {
     System.out.println("v1 = " + v1 + " Winkel: " + w1); 
+    //Ist der Winkel w2 kleiner als der Winkel w3?
     if (w2 < w3) {
         System.out.println("v2 = " + v2 + " Winkel: " + w2); 
         System.out.println("v3 = " + v3 + " Winkel: " + w3); 
+    //Winkel w2 groesser w3
     } else {
         System.out.println("v3 = " + v3 + " Winkel: " + w3); 
         System.out.println("v2 = " + v2 + " Winkel: " + w2); 
     }
+//Ist v2 der Vektor mit dem kleinsten Winkel?     
 } else if (w2 < w1 && w2 < w3) {
     System.out.println("v2 = " + v2 + " Winkel: " + w2); 
+    //Ist der Winkel w1 kleiner als der Winkel w3?
     if (w1 < w3) {
         System.out.println("v1 = " + v1 + " Winkel: " + w1); 
         System.out.println("v3 = " + v3 + " Winkel: " + w3); 
+    //Winkel w1 groesser w3    
     } else {
         System.out.println("v3 = " + v3 + " Winkel: " + w3); 
         System.out.println("v1 = " + v1 + " Winkel: " + w1); 
     }
+//v3 ist der Vektor mit dem kleinsten Winkel
 } else {
     System.out.println("v3 = " + v3 + " Winkel: " + w3); 
+    //Ist der Winkel w1 kleiner als der Winkel w2?
     if (w1 < w2) {
         System.out.println("v1 = " + v1 + " Winkel: " + w1); 
         System.out.println("v2 = " + v2 + " Winkel: " + w2); 
+    //Winkel w1 groesser w2
     } else {
         System.out.println("v2 = " + v2 + " Winkel: " + w2); 
         System.out.println("v1 = " + v1 + " Winkel: " + w1); 
