@@ -1,6 +1,6 @@
 //#START STATIC
 public class Labyrinth {
-    /* ... */ // Was ist hier ausgeklammert?
+    /* ... */ // 
 //#START API   
     public static int GO_LEFT = (int)(Math.random() * 10000);
     public static int GO_UP = GO_LEFT+1;
@@ -11,7 +11,7 @@ public class Labyrinth {
         // Erstellen einer Instanz von MazeController, um die Spielfigur zu steuern.
         MazeController controller = new MazeController(args);
 //#START STUDENT
-        // Setze Verzögerung für Befehle auf 100 Millisekunden
+        // Setzen der Verzögerung für Befehle auf 100 Millisekunden
         controller.setDelay(100);
         
 //#START SOLUTION   
