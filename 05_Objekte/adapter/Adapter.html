@@ -1,0 +1,25 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Adapter</code> ist eine Art Fernsteuerungsklasse. Sie ermöglicht
+    es, beliebige Befehle und Werte an verschiedene Geräte zu senden. Die Glühbirnen in unserem Beispiel können die
+    Befehle <b>"hue"</b> (Farbwinkel, [0° ... 360°[ ), <b>"brightness"</b> (Helligkeit, [0.01 ... 1.0]),
+    <b>"saturation"</b> (Sättigung, [0.0 ... 1.0]), <b>"on"</b> oder <b>"off"</b> empfangen und verarbeiten.</p>
+
+<h4>Konstruktoren</h4>
+<ul>
+    <li><code>public Adapter(String ip, short port, String endpoint)</code><br>Erstellt eine neue Instanz des Adapters mit
+        den angegebenen Verbindungsdaten. Die IP-Adresse des Geräts, der Port und der Endpunkt können Sie aus der Abbildung
+        entnehmen.</li>
+</ul>
+
+<h4>Methoden</h4>
+<ul>
+    <li><code>public void send(String command, double value)</code><br>Sendet den angegebenen Befehl <code>command</code>
+        mit einem Fließkommawert <code>value</code> an das Gerät. Mögliche Befehle sind <b>"brightness"</b> 
+        (Helligkeit, [0.01 ... 1.0]), <b>"saturation"</b> (Sättigung, [0.0 ... 1.0])
+    </li>
+    <li><code>public void send(String command, int value)</code><br>Sendet den angegebenen Befehl <code>command</code>
+        mit einem Ganzzahlwert <code>value</code> an das Gerät. Mögliche Befehle sind <b>"hue"</b> (Farbwinkel, [0° ...
+        360°[)</li>
+    <li><code>public void send(String command)</code><br>Sendet den angegebenen Befehl <code>command</code> ohne weitere Werte 
+      an das Gerät.Mögliche Befehle sind <b>"on"</b> oder <b>"off"</b></li>    
+</ul>
