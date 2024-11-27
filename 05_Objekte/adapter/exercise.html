@@ -1,0 +1,21 @@
+<h3>Aufgabe</h3>
+<p class="goal">In dieser Aufgabe wirst du lernen, wie man Instanzen erstellt und mit deren Methoden umgeht.</p>
+
+<p>Gegeben sind drei Glühbirnen, die über einen sogenannten <code>Adapter</code> gesteuert werden können. 
+    Ein Adapter ist eine Art Übersetzer zwischen Java und der Glühbirne, der es ermöglicht, beliebige Befehle und Werte an verschiedene Geräte zu senden. 
+    Die Glühbirnen in unserem Beispiel können die Befehle <b>"hue"</b> (Farbwinkel, [0° ... 360°[ ), <b>"brightness"</b> (Helligkeit, [0.01 ... 1.0]), 
+    <b>"saturation"</b> (Sättigung, [0.0 ... 1.0]), <b>"on"</b> oder <b>"off"</b> empfangen und verarbeiten.</p>
+<p>Zum Herstellen einer Verbindung zu einer Glühbirne müssen Sie eine Instanz des Adapters mit den entsprechenden Verbindungsdaten erstellen. 
+    Anschließend können Sie diese Instanz verwenden, um mit der Glühbirne zu kommunizieren.</p>
+<p>Setzen Sie die Farbe einer der drei unten abgebildeten Glühbrinen auf 240°, die Helligkeit auf 50% und die Sättigung auf 80%. Schalten Sie die Glühbrine zuletzt an.</p>
+
+<div id="lsPanel" class="row" style="margin-top:0px;margin-left:auto;margin-right:auto;">
+    <div id="lsLights">
+        <div class="row">    
+            <div data-ip="192.168.7.50" data-port="80" data-end="light/0" class="gdiLight"></div>
+            <div data-ip="192.168.7.51" data-port="80" data-end="light/1" class="gdiLight"></div>
+            <div data-ip="192.168.7.51" data-port="81" data-end="light/1" class="gdiLight"></div>
+        </div>
+    </div>
+
+</div>    
