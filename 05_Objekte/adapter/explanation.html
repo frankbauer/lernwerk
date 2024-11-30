@@ -1,0 +1,21 @@
+<h4>Beschreibung</h4>
+<p>Dieses Programm demonstriert die Steuerung einer smarten Glühbirne mittels der Klasse <code>Adapter</code>. Es zeigt, wie man eine Verbindung herstellt und grundlegende Befehle zur Steuerung der Beleuchtung sendet.</p>
+<h4>Codeerläuterung</h4>
+<ul>
+    <li>
+        <strong>Erstellen einer Adapter-Instanz:</strong>
+        <p>Zunächst wird mit dem Parameterkonstruktor eine neue Instanz der Klasse <code>Adapter</code> erstellt. Der Konstruktor erwartet drei Parameter: IP-Adresse, Port und Endpunkt. Eine Referenz auf die Instanz wird in der Variable <code>a</code> gespeichert und ermöglicht die Kommunikation mit der Lampe.</p>
+        <pre code>Adapter a = new Adapter("192.168.7.50", (short)80, "light/0");</pre>
+    </li>
+    <li>
+        <strong>Senden von Befehlen mittels Instanzmethoden:</strong>
+        <p>Mit dem Punktoperator wird auf die Instanzmethode <code>send()</code> des durch <code>a</code> referenzierten Adapter-Objekts zugegriffen. Je nach Befehlsart wird die passende Überladung der Methode verwendet:</p>
+        <ul>
+            <li>Farbsteuerung durch <code>send("hue", 240)</code> - setzt die Farbe auf blau</li>
+            <li>Sättigungssteuerung durch <code>send("saturation", 0.75)</code> - bestimmt die Farbintensität</li>
+            <li>Helligkeitssteuerung durch <code>send("brightness", 0.5)</code> - setzt die Leuchtintensität</li>
+            <li>Ein-/Ausschalten durch <code>send("on")</code> - schaltet die Lampe ein</li>
+        </ul>
+        <p>Jeder Aufruf der Methode <code>send()</code> über den Punktoperator bewirkt, dass die entsprechende Instanz den Befehl an die verbundene Lampe sendet.</p>
+    </li>
+</ul>    
