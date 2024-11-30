@@ -1,24 +1,44 @@
 <h3>Erklärung</h3>
+<p> Das Programm basiert auf einem Koordinatensystem links oben in der Bildecke mit einer x-Achse nach rechts und einer y-Achse 
+nach unten.
 <ul>
-    <li><b>Variable Deklaration und Initialisierung:</b> Im Programm werden Variablen wie <code>x</code> und
-        <code>y</code> deklariert, um die
-        Position des Roboters festzulegen. Die Verwendung von final bedeutet, dass diese Variablen nach ihrer
-        Initialisierung nicht mehr geändert werden können.
-    </li>
-    <li><b>Zufallsberechnungen:</b> Die Berechnung der Positionen <code>x</code> und <code>y</code> erfolgt über die
-        <code>Math.random()</code>-Funktion, die
-        eine zufällige Zahl zwischen 0 (eingeschlossen) und 1 (ausgeschlossen) generiert.<br>
-        Die Formel für <code>x</code> berechnet eine Position, die immer mindestens 100 Einheiten vom linken und rechten
-        Rand des Raumes entfernt sind. Die Formel für <code>y</code> stellt sicher, dass die Roboter auf dem Boden
-        stehen.
-    </li>
-    <li><b>Roboter Hinzufügen:</b> Der Roboter wird durch die <code>addRobotToMainRoom</code> Methode der
-        <code>RobotFactory</code> in den Hauptraum eingefügt. Die übergebenen Werte legen die anfängliche POsition des
-        Roboters fest
-    </li>
-    <li><b>Roboter Bewegung:</b> Schließlich wird die automatische Bewegung der Roboter gestartet.</li>
-    <li><b>Klassen- bzw. statische Methoden:</b> Das Programm verwendet Methoden von Klassen wie <code>Room</code>
-        und <code>RobotFactory</code>, die nicht an einzelne Instanzen der Klassen gebunden sind. Diese Methoden werden
-        direkt über den Klassennamen aufgerufen.
-    </li>
+<li><b>Klassenmethoden (= statische Methoden):</b><p>Das Programm verwendet Methoden von Klassen wie <code>Room</code>
+        und <code>RobotFactory</code>, die nicht an einzelne Instanzen der Klassen gebunden sind. Beispiele dafür sind die Methoden 
+        <code>displayMainRoom()</code> und <code>addRobotToMainRoom</code>. Bei diesen Methoden handelt sich um Klassenmethoden, erkennbar am Signalwort <code>static</code> in der Methodensignatur in der API.
+        Deslhalb werden diese Methoden auf dem Klassennamen der Klasse, in der sie deklariert wurden, aufgerufen.</p>
+</li>
+<li><b>Raum sichtbar machen</b>: <p>Zu Beginn wird zunächst das Hauptzimmer mit <code>Room.displayMainRoom(true)</code> sichtbar gemacht.</p></li>
+<li><b>Variablendeklaration und -initialisierung:</b> <p>Im Programm werden Variablen wie <code>x</code> und
+    <code>y</code> deklariert, um die
+    Position des Roboters festzulegen. Die Verwendung von <code>final</code> bedeutet, dass diese Variablen nach ihrer
+    Initialisierung nicht mehr geändert werden können.</p>
+</li>
+<li><b>Zufallsberechnungen:</b> <p>Die Berechnung der Positionen <code>x</code> und <code>y</code> erfolgt über die
+    <code>random()</code>-Methode der Klasse <code>Math</code>, die
+    eine zufällige Zahl zwischen 0 (eingeschlossen) und 1 (ausgeschlossen) generiert.<br>
+    Die Formel für <code>x</code> berechnet eine Position, die immer mindestens 100 Einheiten vom linken und rechten
+    Rand des Raumes entfernt ist. Dafür wird das Ergebnis des Math.random-Aufrufs mit der Größe des Bereichs, in dem 
+    der Roboter platziert werden soll, multipliziert. Diese berechnet sich aus der Raumbreite <code>wd</code> abzüglich
+    der beiden 100-Einheiten-Bereiche am Rand. Auf die Multiplikation wird am Ende noch der minimale x-Wert aufaddiert, 
+    sodass die bestimmte Position mindestens 100 Einheiten vom linken Rand entfernt ist (kleinster x-Wert 100 statt 0). 
+    <br>Hinweis: Dadurch dass 1 als Ergebnis bei Math.random ausgeschlossen ist, muss auf die Bereichsbreite <code>+1</code> 
+    aufaddiert werden, um auch die Position <i>(wd - 2 * 100) + 100 </i> zu ermöglichen, denn durch den int-Cast werden 
+    Kommastellen einfach weggeschnitten. D.h. bei einer Breite von 400 Einheiten ergibt <i>400 - 2 * 100+1</i> zwar 201 aber selbst
+    bei der Multiplikation mit 0,9999... ist das maximale Ergebnis nach dem int-Cast 200. 100 addiert, erhält man den maximalen x-Wert für
+    diese Breite von 300.<br>
+    Die Formel für <code>y</code> stellt sicher, dass der Roboter auf dem Boden steht. Da das Bildformat, also das Verhältnis 
+    zwischen Höhe und Breite konstant ist, kann der Bodenbereich aus der Breite berechnet werden. Basierend auf hier nicht erwähnten 
+    Kenntnissen der Bildgeometrie wird ein 40-Einheiten-Bereich im unteren Bildbereich definiert. Der minimale y-Wert ist dabei 
+    die halbe Breite.</p>
+
+</li>
+<li><b>Roboter hinzufügen:</b> <p>Der Roboter wird durch die <code>addRobotToMainRoom</code>-Methode der
+    <code>RobotFactory</code> in den Hauptraum eingefügt. Die übergebenen Werte legen die anfängliche Position des
+    Roboters fest. Hier werden die zuvor berechneten Werte, die in den Konstanten <code>x</code> und <code>y</code> gespeichert 
+    wurden, als Übergabeparameter verwendet. Diese heißen hier zufällig genauso wie in der Methodensignatur in der API; 
+    dies ist <strong>nicht</strong> erforderlich. Es kann jede beliebige Variable vom passenden Datentyp (hier int) oder auch ein Zahlenwert 
+    für einen gültigen Methodenaufruf von <code>addRobotToMainRoom</code> verwendet werden.</p>
+</li>
+<li><b>Roboter-Bewegung:</b> <p>Schließlich wird die automatische Bewegung des Roboters mit <code>startMovingRobots</code> gestartet.</p></li>
+
 </ul>
