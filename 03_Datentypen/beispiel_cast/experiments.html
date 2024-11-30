@@ -1,9 +1,13 @@
 <h3>Experimente</h3>
 <div class="colored">
-    Welches Ergebnis erwartest Du für <code>7 / 2.0f</code>? Erweitere das Programm, um Deine Vermutung zu
+    Welches Ergebnis erwarten Sie für <code>7 / 2.0f</code>? Erweiteren Sie das Programm, um Ihre Vermutung zu
     überprüfen.
     <hint solution>
         <pre code>float d = 7 / 2.0f;
-System.out.println(c);</pre>
+System.out.println(d);</pre>
+Als Ergebnis werden Sie 3.5 erhalten. Bei <code>7 / 2.0f</code> handelt es sich um eine Gleitkommadivision, da <code>2.0f</code> 
+vom Datentyp float und damit eine Gleitkommazahl ist. Entsprechend ist das Ergebnis ebenfalls vom Datentyp float, weil dies der
+größte Datentyp in der Berechnung ist. Da die Variable <code>d</code> genauso als float deklariert wurde, findet keine Aufwertung 
+zu einem double-Wert statt. Eine solche wäre hier aber in der Ausgabe auch nicht sichtbar.
     </hint>
 </div>

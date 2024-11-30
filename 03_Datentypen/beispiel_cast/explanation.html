@@ -1,25 +1,39 @@
 <p>Dieses Beispiel illustriert die Anwendung von Typumwandlungen (Type Casting) und die Unterschiede zwischen Ganzzahl-
     und Gleitkommaberechnungen. Es verdeutlicht, wie das Ergebnis durch die Reihenfolge der Operationen und den
-    Zeitpunkt der Typumwandlung beeinflusst wird:</p>
+    Zeitpunkt der Typumwandlung beeinflusst wird. Grundlegend lässt sich sagen, dass bei der Umwandlung einer Gleitkommazahl
+    in eine Ganzzahl stets die Zahlen nach dem Komma einfach weggestrichen werden, also immer ab- und nie aufgerundet wird,
+    unabhängig von Art oder Zeitpunkt der Umwandlung. </p>
 
 <ul>
-    <li><strong>Ganzzahl vs. Gleitkommadivision:</strong> Die Division der Gleitkommazahl 7.0 durch 2.0 ergibt eine
+    <li><strong>Ganzzahl vs. Gleitkommadivision:</strong> <p>Die Division der Gleitkommazahl 7.0 durch 2.0 ergibt eine
         Gleitkommazahl
-        (3.5). Je nachdem, wann und wie diese Zahl in eine Ganzzahl umgewandelt wird, ändert sich das Endergebnis.</li>
+        (3.5). Je nachdem, wann und wie diese Zahl anschließend in eine Ganzzahl umgewandelt wird, ändert sich das Endergebnis.</p>
+    <p>Anders ist dies bei der Ganzzahldivision, da hier die Umwandlung des Ergebnisses in eine Ganzzahl unmittelbar erfolgt.
+        Teilt man die Ganzzahl 7 durch die Ganzzahl 2, erhält man als Ergebnis ebenfalls eine Ganzzahl ohne Kommastellen.
+        Auch hier wird nie aufgerundet. Sobald jedoch mindestens eine der beiden in der Rechnung enthaltenen Zahlen vom Datentyp keine 
+        Ganzzahl sondern eine Gleitkommazahl ist, handelt es sich um eine Gleitkommadivision und das Ergebnis ist entsprechend eine Gleitkommazahl.
+    </p> </li>
     <li><strong>Typumwandlung vor der Multiplikation:</strong>
-        <code>int a = (int)(7.0 / 2.0) * 10;</code> wandelt das Ergebnis der Division (3.5) zuerst in die Ganzzahl 3 um,
-        bevor es mit 10 multipliziert wird, was zu einem Endergebnis von 30 führt.
+       <p> <code>int a = (int)(7.0 / 2.0) * 10;</code> wandelt das Ergebnis der Division (3.5) zuerst in die Ganzzahl (int) 3 um,
+        bevor es mit 10 multipliziert wird, was zu einem Endergebnis von 30 führt. Der Typecast bezieht sich also immer auf das,
+    was unmittelbar nach "([gewünschter Datentyp])" kommt, hier <code>(7.0/2.0)</code>. </p>
+    <p> Hinweis: Ohne die Klammern um die Division, würde nur die <code>7.0</code> 
+gecastet werden. Dann würde es aber zu Problemen bei der Zuordnung kommen, weil 7/2.0 eine Gleitkommazahl ergibt, das Gesamtergebnis am
+Ende also keine Ganzzahl mehr und deshalb zu groß für die als <code>int</code> deklarierte Variable <code>a</code> ist. </p>
     </li>
     <li><strong>Typumwandlung nach der Multiplikation:</strong>
-        <code>int b = (int)((7.0 / 2.0) * 10);</code> führt die Multiplikation von 3.5 mit 10 durch, was 35.0 ergibt,
-        und wandelt dieses Ergebnis dann in die Ganzzahl 35 um.
+        <p><code>int b = (int)((7.0 / 2.0) * 10);</code> führt die Multiplikation von 3.5 mit 10 durch, was 35.0 ergibt,
+        und wandelt dieses Ergebnis dann erst in die Ganzzahl 35 um, da nun <code>*10</code> in den Klammern miteingeschlossen ist, die nach 
+        "([gewünschter Datentyp])" folgen.</p>
     </li>
     <li><strong>Automatische Typumwandlung nach Ganzzahldivision:</strong>
-        <code>float c = 7 / 2;</code> berechnet zuerst die Ganzzahldivision von 7 durch 2, was 3 ergibt, und wandelt
-        diese Ganzzahl dann automatisch in den Gleitkommatyp (float) um, was zu 3.0 führt.
+        <p><code>float c = 7 / 2;</code> berechnet zuerst die Ganzzahldivision von 7 durch 2, was 3 ergibt. Dann wird
+        diese Ganzzahl automatisch in den Gleitkommatyp (float) umgewandelt, da <code>c</code> den Datentyp <i>float</i> hat, 
+        was zu 3.0 als Endergebnis führt. Dieser automatische Cast funktioniert nur, wenn das ursprüngliche Ergebnis vom Datentyp kleiner
+    ist, als der Datentyp der Variable, in die das Ergebnis geschrieben werden soll.</p>
     </li>
 </ul>
 
-<p>Die Position / der Zeitpunkt der Typumwandlung ist entscheidend für das Endergebnis. Darüberhinaus beinflussen
+<p>Die Position / der Zeitpunkt der Typumwandlung ist also entscheidend für das Endergebnis. Darüberhinaus beinflussen
     verschiedene
     Datentypen das Verhalten von Rechenoperationen in Java.</p>
