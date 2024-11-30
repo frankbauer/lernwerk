@@ -17,7 +17,7 @@ nach unten.
     <code>random()</code>-Methode der Klasse <code>Math</code>, die
     eine zufällige Zahl zwischen 0 (eingeschlossen) und 1 (ausgeschlossen) generiert.<br>
     Die Formel für <code>x</code> berechnet eine Position, die immer mindestens 100 Einheiten vom linken und rechten
-    Rand des Raumes entfernt ist. Dafür wird das Ergebnis des Math.random-Aufrufs mit der Größe des Bereichs, in dem 
+    Rand des Raumes entfernt ist (von einer Raumbreite von mindestens 200 Einheiten wird ausgegangen). Dafür wird das Ergebnis des Math.random-Aufrufs mit der Größe des Bereichs, in dem 
     der Roboter platziert werden soll, multipliziert. Diese berechnet sich aus der Raumbreite <code>wd</code> abzüglich
     der beiden 100-Einheiten-Bereiche am Rand. Auf die Multiplikation wird am Ende noch der minimale x-Wert aufaddiert, 
     sodass die bestimmte Position mindestens 100 Einheiten vom linken Rand entfernt ist (kleinster x-Wert 100 statt 0). 
