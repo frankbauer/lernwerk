@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../../">
+    <title>[GdI]</title>
+    <link rel="stylesheet" href="../../css/editor.css?v=1.0.3">
+    <script src="../../js/jquery/jquery.min.js?v=3.6.2"></script>
+    <script src="../../js/vue/vue.runtime.min.js?v=2.6.12"></script>
+    <script src="../../helper.js?v=1.0.2"></script>
+    <script src="../../content.js?v=1.0.2"></script>
+    <link rel="stylesheet" href="../../js/codeblocks-js/codeblocks.css?v=1.0.2">
+    <link rel="stylesheet" href="lights.css">
+</head>
+
+<body>
+    <div class="topbar">
+        <h1></h1>
+        <a href="../../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    
+    <div id="content">
+    </div>
+    <script>
+        const elements = {
+            title: "Glühbirnen-Adapter",
+            short: "Adapter",
+            content: [
+                {
+                    type: "aufgabe",
+                    content: "./exercise.html"
+                },
+                {
+                    type: "tabs",
+                    class: "code",
+                    tabs: [
+                        {
+                            codeblocks: {
+                                attributes: {},
+                                blocks: [
+                                    {
+                                        type: "code",
+                                        content: "./Conductor.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        content: "./CommonAdapter.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        content: "./Home.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        content: "./IPMessage.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        content: "./Result.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        content: "./MainOverride.java"
+                                    },
+                                    {
+                                        type: "playground",
+                                        attributes: {
+                                            width: "0",
+                                            height: "0"
+                                        },
+                                        content: "./playground.js"
+                                    }
+                                ]
+                            },
+                            content: [],
+                            solution: [
+                                {
+                                    type: "explain",
+                                    class: "q-mt-xl",
+                                    content: "./explanation.html"
+                                }
+                            ]
+                        },
+                        {
+                            name: "Adapter",
+                            class: "api",
+                            content: [{
+                                type: "aufgabe",
+                                content: "./Adapter.html"
+                            }]
+                        }
+                    ]
+                },
+                {
+                    type: "experiment",
+                    content: "./experiments.html"
+                }
+            ]
+        }
+
+        document.body.onload = async () => {
+            await buildContent(elements)
+            import("../../js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+            initHelpers()
+        }
+    </script>
+</body>
+
+</html>
