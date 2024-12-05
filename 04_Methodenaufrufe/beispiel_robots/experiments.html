@@ -1,12 +1,12 @@
 <h3>Experimente</h3>
 <div class="colored">
-    Erstelleeinen zweiten Roboter an einer beliebigen Position.
+    Fügen Sie einen zweiten Roboter an einer von Ihnen beliebig gewählten Position in den Raum ein.
     <hint solution>
         <pre code>RobotFactory.addRobotToMainRoom(420, 420);</pre>
     </hint>
 </div>
 <div class="colored">
-    Positioniere den zweiten Roboter in der unteren rechten Ecke des Raumes. Verwende passende Methoden um die
+    Positionieren Sie den zweiten Roboter in der unteren rechten Ecke des Raumes. Verwenden Sie passende Methoden, um die
     Koordinaten zu bestimmen.
     <hint>
         Der Ursprung des Koordinatensystems befindet sich in der oberen linken Ecke des Raumes. Die positive X-Achse
@@ -14,5 +14,8 @@
     </hint>
     <hint>
         Mit <code>Room.getRoomHeight()</code> kann die Höhe des Raumes bestimmt werden.
+    </hint>
+    <hint solution>
+        <pre code>RobotFactory.addRobotToMainRoom(Room.getRoomWidth(), Room.getRoomHeight());</pre>
     </hint>
 </div>
