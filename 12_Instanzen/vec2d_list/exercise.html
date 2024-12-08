@@ -1,0 +1,17 @@
+<h3>Aufgabe</h3>
+
+<p class="goal">In diesem Beispiel lernst du den grundlegenden Umgang mit Arrays in Java - insbesondere die Iteration und null-Behandlung - sowie die praktische Anwendung von Objektreferenzen im Kontext einer selbst implementierten Datenstruktur.</p>
+
+<p style="margin-bottom:4px;">Implementiere die Klasse <code>Vec2DList</code> mit einem Array fester Größe zur Speicherung von <code>Vec2D</code>-Objekten. Die Klasse soll folgende Methoden bereitstellen:</p>
+    <ul style="margin-top:0px;">
+      <li>Einen Konstruktor, der die Kapazität der Liste als Parameter erhält (also wie viele Vektoren maximal gespeichert werden können)</li>
+      <li><code>add(Vec2D p)</code>: Fügt einen neuen Vektor an der ersten freien Stelle der Liste hinzu</li>
+      <li><code>delete(Vec2D p)</code>: Entfernt einen Vektor aus der Liste</li>
+      <li><code>sum()</code>: Berechnet die Summe aller Vektoren in der Liste</li>
+    </ul>
+<h4 style="margin-bottom:4px;">Hinweise:</h4>
+<ul style="margin-top:0px;">
+    <li>Der Konstruktor soll ein Array der übergebenen Größe erstellen</li>
+    <li>Die <code>add</code>-Methode soll den Vektor nur einfügen, wenn noch Platz vorhanden ist</li>
+    <li>Die <code>sum</code>-Methode soll null-Einträge ignorieren und einen neuen Vektor mit den Summen der x- und y-Koordinaten zurückgeben</li>
+  </ul>

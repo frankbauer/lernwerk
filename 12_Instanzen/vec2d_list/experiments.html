@@ -1,0 +1,62 @@
+<h3>Experimente</h3>
+<div class="colored">
+   Ergänzen Sie die <code>add</code>-Methode so, dass sie zurückgibt ob ein Vektor hinzugefügt wurde oder nicht.
+    <hint>
+        Ändern Sie den Rückgabetyp der Methode auf <code>boolean</code> und geben Sie <code>true</code> zurück, wenn der Vektor hinzugefügt wurde, und <code>false</code> sonst.
+    </hint>
+    <hint solution>
+        <pre code>public boolean add(Vec2D p) {
+    for (int i = 0; i &lt; this.data.length; i++) {
+        if (this.data[i] == null) {
+            this.data[i] = p;
+            return true;
+        }
+    }
+    return false;
+}</pre>
+    </hint>
+</div>
+<div class="colored">
+    Schreiben Sie eine weitere Instanzmethode <code>print</code>, die Ihnen den Inhalt des Arrays ausgibt. Testen Sie die Methode in der <code>main</code>-Methode.
+    
+    <hint solution>
+        <pre code>public void print() {
+    for (int i = 0; i &lt; this.data.length; i++) {
+        System.out.println(i + ": " + this.data[i]);     
+    }
+}</pre>
+    </hint>
+</div>
+
+
+<div class="colored">
+    Wenn Sie Instanzen der Klasse <code>Vec2DList</code> mit <code>System.out.println</code> anzeigen lassen, dann soll der Inhalt des Arrays ausgegeben werden. Ergänzen Sie Ihre Klasse um eine sntsprechende Methode.
+    <hint>
+        Implementieren Sie dazu die Methode <code>public String toString()</code> in der Klasse <code>Vec2DList</code>.
+    </hint>        
+    
+    <hint solution>
+        <pre code>public String toString() {
+    String result = "";
+    for (int i = 0; i &lt; this.data.length; i++) {
+        result += i + ": " + this.data[i] + "\n";
+    }
+    return result;
+}</pre>
+    </hint>
+</div>
+
+<div class="colored">
+    Schreiben Sie eine Methode <code>contains(Vec2D p)</code>, die überprüft, ob ein Vektor bereits in der Liste enthalten ist. Die Methode soll <code>true</code> zurückgeben, wenn der Vektor gefunden wurde, und <code>false</code> sonst.
+    
+    <hint solution>
+        <pre code>public boolean contains(Vec2D p) {
+    for (int i = 0; i &lt; this.data.length; i++) {
+        if (this.data[i] == p) {
+            return true;
+        }            
+    }
+    return false;
+}</pre>
+    </hint>
+</div>

@@ -9,7 +9,7 @@
     </li>
     <li>
         <strong>Senden von Befehlen mittels Instanzmethoden:</strong>
-        <p>Mit dem Punktoperator wird auf die Instanzmethode <code>send()</code> des durch <code>a</code> referenzierten Adapter-Objekts zugegriffen. Je nach Befehlsart wird die passende Überladung der Methode verwendet:</p>
+        <p>Mit dem Punktoperator wird die Instanzmethode <code>send()</code> für die durch <code>a</code> referenzierte Adapter-Instanz aufgerufen. Je nach Befehlsart wird die passende Überladung (Passende Variante verschiedener Methoden mit demselben Namen) der Methode verwendet:</p>
         <ul>
             <li>Farbsteuerung durch <code>send("hue", 240)</code> - setzt die Farbe auf blau</li>
             <li>Sättigungssteuerung durch <code>send("saturation", 0.75)</code> - bestimmt die Farbintensität</li>

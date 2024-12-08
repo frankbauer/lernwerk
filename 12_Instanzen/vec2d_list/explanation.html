@@ -1,0 +1,94 @@
+<h3>Erklärung</h3>
+<p>Diese Klasse implementiert eine Liste für zweidimensionale Vektoren mit einer festen Kapazität. Sie ermöglicht das Hinzufügen und Entfernen von Vektoren sowie die Berechnung der Summe aller gespeicherten Vektoren.</p>
+
+<ul>
+    <li>
+        <strong>Array für Vektoren:</strong>
+        <p>Die Klasse verwendet ein Array vom Typ <code>Vec2D[]</code> zur Speicherung der Vektoren. Das Array wird als <code>final</code> deklariert, da die Referenz auf das Array sich nicht ändern soll. Die Länge des Arrays wird im Konstruktor festgelegt und kann danach nicht mehr verändert werden.</p>
+        <pre code>public final Vec2D[] data;</pre>
+        <p>
+            Das Array ist private (<code>private</code>), damit andere Klassen <b>nicht</b> direkt auf die gespeicherten Vektoren zugreifen können. 
+            Nicht belegte Positionen im Array enthalten den Wert <code>null</code>.
+        </p>
+    </li>
+
+    <li>
+        <strong>Konstruktor:</strong>
+        <p>Der Konstruktor erstellt ein neues Array mit der übergebenen Kapazität. Die Kapazität legt fest, wie viele Vektoren maximal gespeichert werden können. Alle Werte im Array werden automatisch mit 
+            <code>null</code> initialisiert.
+        </p>
+        <pre code>public Vec2DList(int capacity){
+    this.data = new Vec2D[capacity];
+}</pre>
+    </li>
+
+    [Die ersten beiden Abschnitte bleiben gleich bis zum Beginn der sum() Methode]
+
+    <li>
+        <strong>Methode sum():</strong>
+        <p>Diese Methode berechnet die Summe aller gespeicherten Vektoren:</p>
+        <ol>
+            <li>Initialisierung der Summenvariablen:
+                <p>Zwei separate Variablen werden für die Summen der x- und y-Koordinaten angelegt und mit 0 initialisiert.</p>
+                <pre code>int xSum = 0;
+int ySum = 0;</pre>
+            </li>
+            <li>Iteration und Addition:
+                <p>Eine Schleife durchläuft das komplette Array. Bei jedem nicht-null Eintrag werden die Koordinaten zu den jeweiligen Summen addiert.</p>
+                <pre code>for (int i=0; i&lt;this.data.length; i++){
+    if (this.data[i] != null){
+        xSum = xSum + this.data[i].x;
+        ySum = ySum + this.data[i].y;
+    }
+}</pre>
+            </li>
+            <li>Rückgabe des Ergebnisvektors:
+                <p>Die berechneten Summen werden in einem neuen Vektor zusammengefasst und zurückgegeben.</p>
+                <pre code>return new Vec2D(xSum, ySum);</pre>
+            </li>
+        </ol>
+    </li>
+
+    <li>
+        <strong>Methode add():</strong>
+        <p>Die <code>add</code>-Methode fügt einen neuen Vektor in die Liste ein:</p>
+        <ol>
+            <li>Suche nach freiem Platz:
+                <p>Eine Schleife durchsucht das Array nach der ersten Position mit dem Wert <code>null</code>.</p>
+                <pre code>for (int i=0; i&lt;this.data.length; i++){
+    if (this.data[i] == null){</pre>
+            </li>
+            <li>Einfügen des Vektors:
+                <p>An der gefundenen Position wird die Referenz auf den neuen Vektor gespeichert.</p>
+                <pre code>        this.data[i] = p;</pre>
+            </li>
+            <li>Beenden der Methode:
+                <p>Nach erfolgreichem Einfügen wird die Methode sofort beendet. Wurde kein freier Platz gefunden, wird der Vektor ignoriert.</p>
+                <pre code>        return;
+    }
+}</pre>
+            </li>
+        </ol>
+    </li>
+
+    <li>
+        <strong>Methode delete():</strong>
+        <p>Die <code>delete</code>-Methode entfernt einen spezifischen Vektor aus der Liste:</p>
+        <ol>
+            <li>Suche nach dem Vektor:
+                <p>Eine Schleife durchsucht das Array nach einer Referenz auf den zu löschenden Vektor.</p>
+                <pre code>for (int i=0; i&lt;this.data.length; i++){
+    if (this.data[i] == p){</pre>
+            </li>
+            <li>Referenzvergleich:
+                <p>Der Operator <code>==</code> vergleicht die Referenzen der Vektoren, nicht deren Inhalt. Es wird also nach genau dem übergebenen Vektorobjekt gesucht und nicht nach eine anderen Vektor, der dieselben Koordinaten spichert.</p>
+            </li>
+            <li>Löschen des Vektors:
+                <p>Gefundene Positionen werden mit <code>null</code> überschrieben, wodurch die Referenz auf den Vektor entfernt wird.</p>
+                <pre code>        this.data[i] = null;
+    }
+}</pre>
+            </li>
+        </ol>
+    </li>
+</ul>
