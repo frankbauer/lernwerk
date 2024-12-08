@@ -2,7 +2,9 @@
 <p>Die Klasse <code>Adapter</code> ist eine Art Fernsteuerungsklasse. Sie ermöglicht
     es, beliebige Befehle und Werte an verschiedene Geräte zu senden. Die Glühbirnen in unserem Beispiel können die
     Befehle <b>"hue"</b> (Farbwinkel, [0° ... 360°[ ), <b>"brightness"</b> (Helligkeit, [0.01 ... 1.0]),
-    <b>"saturation"</b> (Sättigung, [0.0 ... 1.0]), <b>"on"</b> oder <b>"off"</b> empfangen und verarbeiten.</p>
+    <b>"saturation"</b> (Sättigung, [0.0 ... 1.0]), <b>"on"</b> oder <b>"off"</b> empfangen und verarbeiten. 
+    Jede Adapter-Instanz wird durch die Parameter im Konstruktor genau einem Gerät zugewiesen, das dann mit den verschiedenen 
+    Instanzmethoden gesteuert werden kann. </p>
 
 <h4>Konstruktoren</h4>
 <ul>

@@ -22,8 +22,8 @@
     </div>
     <script>
         const elements = {
-            title: "<b>Sandkasten:</b> MeineOperatoren",
-            short: "MeineOperatoren",
+            title: "Verwaltung von 2D-Vektoren",
+            short: "Vec2D Liste",
             content: [
                 {
                     type: "aufgabe",
@@ -34,17 +34,33 @@
                     class: "code",
                     tabs: [
                         {
-                            name: "Ihre Lösung",
-
-                            content: [{
-                                type: "codeblocks",
+                            codeblocks: {
                                 attributes: {},
                                 blocks: [
                                     {
-                                        type: "student",
-                                        content: "./MeineOperatoren.java"
+                                        type: "code",
+                                        content: "./Vec2DList.java"
+                                    }, {
+                                        type: "api",
+                                        content: "../../common/math/Vec2D.java"
                                     }
                                 ]
+                            },
+                            content: [],
+                            solution: [
+                                {
+                                    type: "explain",
+                                    class: "q-mt-xl",
+                                    content: "./explanation.html"
+                                }
+                            ]
+                        },
+                        {
+                            name: "Vec2D",
+                            class: "api",
+                            content: [{
+                                type: "aufgabe",
+                                content: "../../common/math/Vec2D.html"
                             }]
                         }
                     ]
