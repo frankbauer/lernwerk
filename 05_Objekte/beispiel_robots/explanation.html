@@ -2,21 +2,31 @@
 <p>Dieses Programm simuliert die Erstellung und Steuerung von zwei Robotern in einem Raum. Es demonstriert die
     grundlegende Nutzung von Objektorientierung, indem es Objekte der Klassen <code>Room</code> und <code>Robot</code>
     verwendet und deren Methoden aufruft, um Roboter in einem spezifischen Raum zu positionieren und zu
-    aktivieren.Ferner zeigt es die Art und Weise, wie Instanzen durch Variablen referenziert werden.</p>
+    aktivieren. Ferner zeigt es die Art und Weise, wie Instanzen durch Variablen referenziert werden.</p>
 
 <ul>
     <li>
         <strong>Erstellen eines Raumes:</strong>
-        <p>Ein neues <code>Room</code>-Objekt wird erstellt, das als "Wohnzimmer" fungiert. Über die Variable
-            <code>livingRoom</code> kan anschließend auf den Raum zugegriffen werden.
+        <p>Ein neues <code>Room</code>-Objekt wird erstellt, das als "Wohnzimmer" fungiert. Dazu wird der Standardkonstruktor
+            der Klasse <code>Room</code> mittels <code>new</code> aufgerufen. Über die Variable
+            <code>livingRoom</code> kann anschließend auf den Raum zugegriffen werden. Diese ist vom Datentyp <code>Room</code> 
+            und enthält die Speicheradresse des neu erstellten Raumes. Auf dem Variablennamen können nun alle Instanzmethoden 
+            (Methoden, die kein <code>static</code> in der Methodensignatur aufweisen) über den Punktoperator aufgerufen werden.
+            Zudem kann dieser anderen Methoden übergeben werden, wenn diese einen Übergabeparameter vom Datentyp <code>Room</code> erwarten.
         </p>
         <code>Room livingRoom = new Room();</code>
     </li>
     <li>
         <strong>Erstellung und Positionierung des Roboters 'robi':</strong>
-        <p>Ein <code>Robot</code>-Objekt wird erstellt. Die Variable <code>robi</code> referenziert die neue Instanz.
-            Anschließend wird die Position der Instanz auf die Koordinaten <i>(690, 410)</i> gesetzt und die Instanz in
-            das Wohnzimmer aufgenommen.</p>
+        <p>Ein <code>Robot</code>-Objekt wird über den Standardkonstruktor der Klasse <code>Robot</code>
+            erstellt. Die Variable <code>robi</code> referenziert die neue Instanz, das heißt in der Variable ist die Speicheradresse
+            des neuen Roboters gespeichert.
+            Anschließend wird mittels der Instanzmethode <code>setLocation</code> die Position der Instanz auf die Koordinaten <i>(690, 410)</i> gesetzt 
+            und die Instanz mit <code>setRoom</code> in
+            das Wohnzimmer aufgenommen. Die Methode <code>setRoom</code> ist eine Instanzmethode der Klasse <code>Robot</code>, 
+        weshalb sie auf dem Namen einer Variable vom Datentyp <code>Robot</code> aufgerufen werden muss, hier <code>robi</code>. 
+        Laut API benötigt die Methode als Übergabeparameter ein Objekt der Klasse <code>Room</code>, wofür <code>livingRoom</code> übergeben wird. 
+    Der Aufruf von <code>setRoom</code> ist notwendig, damit Sie den Roboter im Bild, das das Wohnzimmer zeigt, sehen.</p>
         <pre code>Robot robi = new Robot();
 robi.setLocation(690, 410);
 robi.setRoom(livingRoom);</pre>
@@ -32,7 +42,7 @@ anna.setRoom(livingRoom);</pre>
     </li>
     <li>
         <strong>Aktivierung der Bewegung der Roboter:</strong>
-        <p>Die Bewegung für beide Roboter wird aktiviert, was es ihnen ermöglicht, sich innerhalb des Wohnzimmers zu
+        <p>Die Bewegung für beide Roboter wird durch Aufruf von <code>setMoving</code> aktiviert, was es ihnen ermöglicht, sich innerhalb des Wohnzimmers zu
             bewegen.</p>
         <pre code>robi.setMoving(true);
 anna.setMoving(true);</pre>
