@@ -3,7 +3,7 @@ public class Robots {
         // Erstellen eines neuen Room-Objekts namens livingRoom.
         Room livingRoom = new Room();
         
-        // Erstellen eines Arrays, das zwei Roboter-Objekte aufnehmen kann.
+        // Erstellen eines Arrays vom Typ Robot, welches mit seiner festgelegten größe maximal zwei Roboter-Objekte aufnehmen kann.
         Robot[] robots = new Robot[2];
 
         // Initialisieren des ersten Roboters und Zuweisung zu einem Standort im Wohnzimmer.
