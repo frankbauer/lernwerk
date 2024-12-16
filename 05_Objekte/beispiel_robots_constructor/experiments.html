@@ -1,6 +1,6 @@
 <h3>Experimente</h3>
 <div class="colored">
-    Erstelle einen dritten Roboter mit dem Typ 8.
+    Erstellen Sie einen dritten Roboter mit dem Typ 8.
     <hint>
         Die Klasse <code>Robot</code> enthält keinen Parameterkonstruktor mit dem sowohl der Typ als auch die Position
         festgelegt werden können. Der Roboter muss also
@@ -10,9 +10,45 @@
         <pre code>Robot robot = new Robot(8);
 robot.setLocation(420, 420);
 robot.setRoom(livingRoom);</pre>
-
     </hint>
 </div>
 
-<div class="colored">Änder den Code so, dass (wo möglich) der Standardkonstruktor verwendet wird, das Verhalten des
-    Programmes ansonsten aber unverändert bleibt.</div>
+<div class="colored">Ändern Sie den Code so, dass wo möglich der Standardkonstruktor verwendet wird, das Verhalten des
+    Programmes ansonsten aber unverändert bleibt.
+    <hint solution>
+        <pre code>public class RoboticConstruct {
+        public static void main(String[] args) {
+            // Erstellt einen neuen Raum, in diesem Fall das Wohnzimmer.
+            Room livingRoom = new Room();
+    
+            // Erstellt einen neuen Roboter und speichert ihn in der Variable 'robi'.
+            Robot robi = new Robot();   //Standardkonstruktor
+            // Setzt die Anfangsposition von 'robi'
+            robi.setLocation(690, 410);
+            // Weist den Roboter 'robi' dem Wohnzimmer zu.
+            robi.setRoom(livingRoom);
+    
+            // Erstellt einen weiteren neuen Roboter und speichert ihn in der Variable 'anna'
+            Robot anna = new Robot();   //Standardkonstruktor
+            // Setzt die Anfangsposition von 'anna'
+            anna.setLocation(260, 430);
+            // Weist den Roboter 'anna' dem Wohnzimmer zu.
+            anna.setRoom(livingRoom);
+            
+            // Erstellt den dritten Roboter vom Typ 8
+            // Verwendung des Parameterkonstruktors statt dem Standardkonstruktor,
+            // da Typ nicht nachtraeglich festgelegt werden kann.
+            Robot robot = new Robot(8);
+            // Setzt die Anfangsposition von 'robot'
+            robot.setLocation(420, 420);
+            // Weist den Roboter 'robot' dem Wohnzimmer zu.
+            robot.setRoom(livingRoom);
+    
+            // Aktiviert die Bewegung für beide Roboter.
+            robi.setMoving(true);
+            anna.setMoving(true);
+            robot.setMoving(true);
+        }
+}</pre>
+</hint>
+</div>
