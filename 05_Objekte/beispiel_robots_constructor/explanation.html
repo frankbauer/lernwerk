@@ -8,28 +8,32 @@
     <li>
         <strong>Erstellung des Raums:</strong>
         <p>Ein <code>Room</code>-Objekt wird erstellt, das als "Wohnzimmer" dient. Dieses Objekt wird von der Variablen
-            <code>livingRoom</code> referenziert.
+            <code>livingRoom</code> referenziert, d.h. in dieser Variablen ist die Speicheradresse hinterlegt
+            und sie kann verwendet werden, um auf den neuen Raum zuzugreifen.
         </p>
         <code>Room livingRoom = new Room();</code>
     </li>
     <li>
-        <strong>Erstellen und Initialisieren der Roboter 'robi':</strong>
-        <p>Ein <code>Robot</code>-Objekt namens <b>robi</b> wird mittels eines Parameterkonstruktors erstellt, der die
-            Anfangsposition (690, 410) und die Zuweisung zum <code>livingRoom</code> direkt umfasst. Die komplette
-            Konfiguration des Roboters wird hier in einem Schritt durchgeführt.</p>
+        <strong>Erstellen und Initialisieren des Roboters 'robi':</strong>
+        <p>Ein <code>Robot</code>-Objekt wird mittels eines Parameterkonstruktors erstellt, der die
+            Anfangsposition (690, 410) und die Zuweisung zum <code>livingRoom</code> direkt umfasst. Beides wird anders als beim 
+            Standardkonstruktor als Übergabeparameter beim Aufruf des Konstruktors mit <code>new</code> übergeben.
+             Die komplette Konfiguration des Roboters wird hier also in einem Schritt durchgeführt. Gespeichert wird der Roboter in der Variable 
+            <code>robi</code>.</p>
         <code>Robot robi = new Robot(690, 410, livingRoom);</code>
     </li>
     <li>
         <strong>Erstellung und Initialisierung des Roboters 'anna':</strong>
-        <p>Ein weiterer <code>Robot</code> namens <b>anna</b> wird mit spezifischen Koordinaten (260, 430) und Zuweisung
+        <p>Ein weiterer <code>Robot</code> wird mit den spezifischen Koordinaten (260, 430) und Zuweisung
             zum
-            selben Raum (<code>livingRoom</code>) durch einen weiteren Parameterkonstruktor erstellt.</p>
+            selben Raum (<code>livingRoom</code>) durch einen weiteren Parameterkonstruktor erstellt und in der Variable 
+            <code>anna</code> gespeichert.</p>
         <code>Robot anna = new Robot(260, 430, livingRoom);</code>
     </li>
     <li>
         <strong>Aktivierung der Bewegung:</strong>
-        <p>Die Bewegung für <b>robi</b> und <b>anna</b> wird aktiviert, wodurch beide Roboter innerhalb des Wohnzimmers
-            interagieren und sich bewegen können. Dies wird durch Aufrufen der Methode <code>setMoving(true)</code> für
+        <p>Die Bewegung für <code>robi</code> und <code>anna</code> wird aktiviert, wodurch sich beide Roboter innerhalb des Wohnzimmers
+            bewegen können. Dies wird durch Aufrufen der Instanzmethode <code>setMoving(true)</code> für
             beide Roboter erreicht.</p>
         <pre code>robi.setMoving(true);
 anna.setMoving(true);</pre>

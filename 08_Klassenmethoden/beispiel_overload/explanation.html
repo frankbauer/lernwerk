@@ -1,6 +1,6 @@
 <h3>Erklärung</h3>
-<p>Die Klasse <code>Overload</code> demonstriert das Konzept der Methodenüberladung in Java. Methodenüberladung
-    ermöglicht es, innerhalb einer Klasse mehrere Methoden mit demselben Namen, aber unterschiedlichen Parameterlisten
+<p>Die Klasse <code>Overload</code> demonstriert das Konzept der Methodenüberladung in Java. Methodenüberladungen
+    ermöglichen es, innerhalb einer Klasse mehrere Methoden mit demselben Namen, aber unterschiedlichen Parameterlisten
     zu definieren.</p>
 
 
@@ -12,10 +12,10 @@
     <li>
         <strong>Erste Methode <code>square</code>:</strong>
         <p>
-            <code>public static int square(int x)</code> ist eine Methode, die das Quadrat einer ganzen Zahl berechnet.
-            Der einzige Parameter x ist vom Typ <code>int</code>. Mit der Zeile <code>return x * x;</code> gibt das
-            Ergebnis von <code>x</code> multipliziert mit sich selbst zurück. Da der Parameter vom Typ <code>int</code>
-            ist, ist auch das Ergebnis eine ganze Zahl.
+            <code>public static int square(int x)</code> ist eine Methode, welche den quadrierten Wert einer ganzen Zahl berechnet.
+            Der einzige Parameter x ist vom Typ <code>int</code>. Die Zeile <code>return x * x;</code> gibt das
+            Ergebnis von <code>x</code> multipliziert mit sich selbst zurück. Da der übergebene Parameter vom Typ <code>int</code>
+            ist, resultieren auch alle Berechnungen mit sich selbst in einer ganze Zahl.
         </p>
     </li>
     <li>
@@ -23,7 +23,7 @@
         <p>
             <code>public static double square(double x)</code> ist eine überladene Methode. Die Methode hat denselben
             Namen wie die erste Methode, aber einen Parameter vom Typ <code>double</code>. Mit der Zeile
-            <code>return x * x;</code> wird auch hier das Quadrat der Zahl berechnet. Da der Parameter vom Typ
+            <code>return x * x;</code> wird auch hier der quadrierte Wert der Zahl berechnet. Da der Parameter vom Typ
             <code>double</code> ist, ist aber in diesem Fall auch das Ergebnis eine Fließkommazahl.
         </p>
     </li>
@@ -40,7 +40,7 @@
             <li>
                 Da der Aufruf von <code>System.out.println( Overload.square(3.0) );</code> einen
                 <code>double</code>-Parameter
-                verwendet, wird die zweite Methode <code>square</code> aufgerufen. Das Ergebnis ist eine Fließkommazahl
+                verwendet, wird stattdessen die zweite Methode <code>square</code> aufgerufen. Das Ergebnis ist eine Fließkommazahl
                 und die Ausgabe ist deshalb <code output>9.0</code>.
             </li>
         </ul>
