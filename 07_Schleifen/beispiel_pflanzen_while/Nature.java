@@ -9,7 +9,8 @@ public class Nature {
 
         // Solange der Gärtner noch Setzlinge hat, pflanze Bäume
         while (gardener.hasSapling()) {
-            gardener.plantTree();            
+            gardener.plantTree();    
+            //System.out.println(gardener.hasSapling());        
         }        
     }
 }
