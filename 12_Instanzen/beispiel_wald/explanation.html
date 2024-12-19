@@ -1,12 +1,12 @@
 <h3>Erklärung - Wald</h3>
 <p>Dieses Programm simuliert die Erstellung und Darstellung von Bäumen auf einer Bühne. Es demonstriert die
-    grundlegende Nutzung von Objektorientierung, indem es Objekte der Klassen <code>Baum</code> verwendet und das
+    grundlegende Nutzung von Objektorientierung, indem es Objekte der Klasse <code>Baum</code> verwendet und das
     Aussehen einzelner Instanzen über das Instanzattribut <code>jahreszeit</code> ändert.</p>
 
 <ul>
     <li>
         <strong>Erstellen eines Baumes in der Mitte:</strong>
-        <p>Ein neues <code>Baum</code>-Objekt wird mittels dem Standardkonstruktor (keine Übergabeparameter) erstellt. Deshalb wird als Jahreszeit der Standardwert <b>"herbst"</b> 
+        <p>Ein neues <code>Baum</code>-Objekt wird mittels dem Standardkonstruktor (keine Übergabeparameter) erstellt. Deshalb wird als Jahreszeit der Standardwert <code>"herbst"</code> 
             gesetzt. </p>
 
         <p>Über die Variable <code>mitte</code> kann anschließend auf diesen Baum zugegriffen werden.</p>
@@ -17,30 +17,30 @@
         <p>Ein weiteres <code>Baum</code>-Objekt wird mittels dem Parameterkonstruktor erstellt. Die Variable <code>rechts</code>
             referenziert die neue Instanz, das heißt darin befindet sich die Speicheradresse,
              über die auf die neue Instanz zugegriffen werden kann.
-            Die Jahreszeit des Baumes wird bei der Erstellung auf den übergebenen Wert <b>"winter"</b> festgelegt.</p>
+            Die Jahreszeit des Baumes wird bei der Erstellung auf den übergebenen Wert <code>"winter"</code> festgelegt.</p>
         <pre code>Baum links = new Baum("winter");</pre>
     </li>
     <li>
         <strong>Erstellung und Festlegung der Jahreszeit des linken Baumes:</strong>
         <p>Über den Parameterkonstruktor wird ein weiteres <code>Baum</code>-Objekt erstellt und eine Referenz darauf in der
             Variable
-            <code>links</code> gespeichert. Die Jahreszeit des Baumes wird bei der Erstellung auf <b>"spätherbst"</b>
+            <code>links</code> gespeichert. Die Jahreszeit des Baumes wird bei der Erstellung auf <code>"spaetherbst"</code>
             festgelegt.
         </p>
-        <pre code>Baum rechts = new Baum("spätherbst");</pre>
+        <pre code>Baum rechts = new Baum("spaetherbst");</pre>
     </li>
     <li>
         <strong>Änderung der Jahreszeit des mittleren Baumes:</strong>
         <p>Die Jahreszeit des Baumes, der durch die Variable <code>mitte</code> referenziert wird, wird zweimal
-            geändert: zuerst auf <b>"frühling"</b> und dann auf <b>"fasching"</b>. Dies zeigt, dass Attribute (und damit
+            geändert: zuerst auf <code>"fruehling"</code> und dann auf <code>"fasching"</code>. Dies zeigt, dass Attribute (und damit
             der Zustand) von
             Objekten nach ihrer
             Erstellung geändert werden können. Der Zugriff auf das Attribut erfolgt stets mit [Name der Instanz].[Name des Attributs]. 
             So kann mit de Attribut wie mit einer lokalen Variable gearbeitet werden.</p><p>
-            Achtung : Da der Zugriff auf das Attribut unkontrolliert erfolgt, kann auch eine
-            ungültige Jahreszeit (im Beispiel "fasching") zugewiesen werden. Deshalb werden Attribute beim schreiben einer neuen Klasse
+            Achtung: Da der Zugriff auf das Attribut unkontrolliert erfolgt, kann auch eine
+            ungültige Jahreszeit (im Beispiel <code>"fasching"</code>) zugewiesen werden. Deshalb werden Attribute beim Schreiben einer neuen Klasse
             in der Regel als <code>private</code> deklariert und ein Zugriff aus anderen Klassen nur mittels Methoden (Getter/Setter) erlaubt.</p>
-        <pre code>mitte.jahreszeit = "frühling";
+        <pre code>mitte.jahreszeit = "fruehling";
 mitte.jahreszeit = "fasching";</pre>
     </li>
 </ul>
