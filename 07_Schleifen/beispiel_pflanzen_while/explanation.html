@@ -1,17 +1,17 @@
 <h3>Erklärung</h3>
-<p>Dieses Programm simuliert die Pflanzung von Bäumen auf einem Hügel durch einen Gärtner. Da ein Gärtner nicht weiß
-    weiviele Setzlinge zur Verfügung stehen nutzen wir eine <code>while</code>-Schleife, um Bäume zu pflanzen, solange
+<p>Dieses Programm simuliert das Pflanzen von Bäumen auf einem Hügel durch einen Gärtner. Da ein Gärtner nicht weiß
+    wieviele Setzlinge zur Verfügung stehen, nutzen wir eine <code>while</code>-Schleife, um Bäume zu pflanzen, solange
     der Gärtner Setzlinge hat.</p>
 
 <ul>
     <li>
-        <strong>Erstellung des Pflanzhügels:</strong>
+        <strong>Erstellen des Pflanzhügels:</strong>
         <p>Ein Objekt der Klasse <code>SunnyHill</code> wird erstellt. Dieser Hügel dient als Standort für die zu
             pflanzenden Bäume.</p>
         <pre code>SunnyHill hill = new SunnyHill(args);</pre>
     </li>
     <li>
-        <strong>Erstellung und Initialisierung des Gärtners:</strong>
+        <strong>Erstellen und Initialisierung des Gärtners:</strong>
         <p>Ein neues Objekt der Klasse <code>Gardener</code> wird erstellt. Anschließend wird der Gärtner zum zuvor
             erstellten Hügel bewegt, was durch die Methode <code>moveToHill</code> ausgeführt wird.</p>
         <pre code>Gardener gardener = new Gardener();
@@ -21,7 +21,7 @@ gardener.moveToHill(hill);</pre>
         <strong>Funktionsweise der <code>while</code>-Schleife:</strong>
         <p>Die <code>while</code>-Schleife prüft <b>vor</b> jeden Durchlauf, ob der Gärtner noch Setzlinge hat
             (<code>gardener.hasSapling()</code>). Ist dies Überprüfung erfolgreich, wird eine neue Iteration der
-            Schleife durchgeführt. Im Schleifenrumpf wird in jeder Iteration ein Baum gepflanzt, was durch den Aufruf
+            Schleife durchgeführt. Dies lässt sich durch einen print-Aufruf visualisieren, entklammern Sie dazu einfach Zeile 13. Im Schleifenrumpf wird in jeder Iteration ein Baum gepflanzt, was durch den Aufruf
             von <code>gardener.plantTree()</code> realisiert wird. Die Schleife endet, sobald der Gärtner keine
             Setzlinge
             mehr hat.
