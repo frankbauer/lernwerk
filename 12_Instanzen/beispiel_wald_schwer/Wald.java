@@ -5,10 +5,10 @@ public class Wald {
         // Erstellt einen neuen Baum mit der Jahreszeit Winter
         Baum rechts = new Baum("winter");
         // Erstellt einen neuen Baum mit der Jahreszeit Spätherbst
-        Baum links = new Baum("spätherbst");
+        Baum links = new Baum("spaetherbst");
 
         // Ändert die Jahreszeit des mittleren Baums zu Frühling
-        mitte.jahreszeit = "frühling";
+        mitte.jahreszeit = "fruehling";
         // Ändert die Jahreszeit des mittleren Baums erneut zu Fasching
         mitte.jahreszeit = "fasching";
     }

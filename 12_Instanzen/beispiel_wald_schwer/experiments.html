@@ -1,11 +1,37 @@
 <h3>Experimente</h3>
 <div class="colored">
-    Änder Sie die Klasse Baum so, dass die Jahrezeit nicht unkontrolliert verändert werden kan.
-    <hint>Das Attribut <code>jahreszeit</code> muss private gemacht werden. Außerdem nüssen neue Methoden zum einstellen
+    Ändern Sie die Klasse Baum so, dass die Jahrezeit nicht unkontrolliert verändert werden kann.
+    <hint>Das Attribut <code>jahreszeit</code> muss <code>private</code> gemacht werden. Außerdem müssen neue Methoden zum Einstellen
         der Jahreszeit erstellt werden.</hint>
     <hint solution>
         <pre code>private String jahreszeit = "herbst";
 
+public void setSeason(String jahreszeit){
+    //sofern fuer den Uebergabeparameter "jahreszeit"
+    //ein gueltiger String uebergeben wird (z.B. "winter"),
+    if(jahreszeit.equals("winter")||jahreszeit.equals("fruehling")||
+       jahreszeit.equals("sommer")||jahreszeit.equals("herbst")||
+       jahreszeit.equals("spaetherbst"))
+    {
+        //wird in das Instanzattribut "jahreszeit" der Instanz, 
+        //auf der die Methode aufgerufen wurde, der uebergebene 
+        //String geschrieben
+        this.jahreszeit = jahreszeit;
+
+        //Achtung: hier "this" vor dem ersten "jahreszeit" notwendig,
+        //damit das Instanzattribut verwendet wird und nicht die
+        //lokale Variable (hier der Uebergabeparameter)
+        //"jahreszeit = jahreszeit" wuerde dies nicht erfuellen
+    }
+    //keine Aenderung des Attributs sofern eine
+    //ungueltige Jahreszeit uebergeben wird
+}
+
+public void getSeason(){
+    return this.jahreszeit;
+}
+
+//oder fuer jede Jahreszeit separat:
 public void setWinter(){
     this.jahreszeit = "winter";
 }
@@ -19,6 +45,10 @@ public void setAutumn(){
 }
 
 /*...*/</pre>
+Entsprechend sehen die Codezeilen zur Änderung der Jahresezeit eines Baumes ebenfalls anders aus:
+<pre code>mitte.setSeason("fruehling");
+mitte.setSeason("fasching");
+</pre>
     </hint>
 </div>
 <div class="colored">
@@ -39,7 +69,7 @@ public void setAutumn(){
     </hint>
     <hint>Die Vertauschung von links und rechts können Sie durch die Invertierung
         des Wertes in <code>POS_INDEX</code> erreichen. Aus <code>POS_INDEX=0</code> soll eine 2 werden aus
-        <code>POS_INDEX=2</code> eine 0.
+        <code>POS_INDEX=2</code> eine 0. Auch dies lässt sich mit einer mathematischen Gleichung lösen.
     </hint>
     <hint solution>
         <pre code>POS_INDEX = 2 - POS_INDEX;</pre>
