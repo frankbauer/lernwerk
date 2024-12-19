@@ -2,20 +2,21 @@
 
 class Baum implements Renderable {
 //#START STUDENT    
-    // Öffentliches Attribut, das die Jahreszeit des Baumes speichert
+    // Oeffentliches Attribut, das die Jahreszeit des Baumes speichert
     public String jahreszeit = "herbst";
 //#START STATIC    
-    // Endgültiges (konstantes) Attribut für die ID des Baumes
+    // Endgueltiges (konstantes) Attribut für die ID des Baumes
     private final int id;
     
-    // Statische Zählvariable für die Anzahl der Baum-Instanzen
+    // Statische Zaehlvariable für die Anzahl der Baum-Instanzen
     private static int INSTANCE_COUNT = 0;
 
     // Standardkonstruktor, setzt die ID und registriert den Baum 
     // zum Rendern
     public Baum() {
         // Erhöht die Instanzanzahl und legt die ID für die Instanz fest
-        this.id = ++INSTANCE_COUNT;
+        INSTANCE_COUNT++;
+        this.id = INSTANCE_COUNT;
         // Registriert den Baum zur Anzeige in der Grafikengine
         Graphics2D.instance().registerForRender(this);
     }
@@ -23,10 +24,11 @@ class Baum implements Renderable {
     // Konstruktor, der die Jahreszeit festlegt, die ID setzt und 
     // den Baum zum Rendern registriert
     public Baum(String jahreszeit) {
-        // Setzt die übergebene Jahreszeit
+        // Setzt die uebergebene Jahreszeit
         this.jahreszeit = jahreszeit;
-        // Erhöht die Instanzanzahl und legt die ID für die Instanz fest
-        this.id = ++INSTANCE_COUNT;
+        // Erhoeht die Instanzanzahl und legt die ID für die Instanz fest
+        INSTANCE_COUNT++;
+        this.id = INSTANCE_COUNT;
         // Registriert den Baum zur Anzeige in der Grafikengine
         Graphics2D.instance().registerForRender(this);
     }
@@ -54,17 +56,17 @@ class Baum implements Renderable {
             img = TreeLibrary.AUTUMN;
         } else if (this.jahreszeit.equals("winter")) {
             img = TreeLibrary.WINTER;
-        } else if (this.jahreszeit.equals("frühling")) {
+        } else if (this.jahreszeit.equals("fruehling")) {
             img = TreeLibrary.SPRING;
         } else if (this.jahreszeit.equals("sommer")) {
             img = TreeLibrary.SUMMER;
-        } else if (this.jahreszeit.equals("spätherbst")) {
+        } else if (this.jahreszeit.equals("spaetherbst")) {
             img = TreeLibrary.LATE_AUTUMN;
         } else {
             img = TreeLibrary.POW;
         }
 
-        // Zeichnet das ausgewählte Bild an der berechneten Position 
+        // Zeichnet das ausgewaehlte Bild an der berechneten Position 
         // mit dem berechneten Maßstab
         g.drawImage(img, x, y, scale);
 //#START STATIC        
