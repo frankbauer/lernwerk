@@ -3,7 +3,7 @@
 </div>
 <div class="colored">
     Schreiben Sie eine Methode mit der Sie eine ungerichtete Kante zwischen zwei Städten hinzufügen können.
-    <hint>Eine ungerichtete Kante zwischen den Knoten A und B entspricht zwei Kantene, eine von A nach B und eine von B
+    <hint>Eine ungerichtete Kante zwischen den Knoten A und B entspricht zwei Kanten, eine von A nach B und eine von B
         nach A.</hint>
     <hint>
         Die Methode könnte so aussehen:
@@ -20,15 +20,14 @@
 </div>
 
 <div class="colored">
-    Vergeben Sie Kantengewichte die der Entfernung in km entsprechen.
-    <hint solution>
-        <pre code>g.addEdge("Berlin", "Amsterdam", 660)</pre>
-    </hint>
+    Passen Sie Ihren Code so an, dass Sie Kantengewichte angeben, die der Entfernung in km entsprechen.
     <hint>
         Die Signatur Ihrer <code>addEdge</code> Methode muss angepasst werden um das Gewicht zu übergeben.
     </hint>
     <hint>
         <pre code>public static void addEdge(Graph<String> g, String a, String b, double weight)</pre>
     </hint>
-
+    <hint solution>
+        <pre code>g.addEdge(g, "Berlin", "Amsterdam", 660)</pre>
+    </hint>
 </div>
