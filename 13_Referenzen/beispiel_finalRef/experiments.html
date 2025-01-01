@@ -1,4 +1,9 @@
 <h3>Experimente</h3>
 <div class="colored">
-    Versuchen Sie, <code>b</code> eine neue Instanz zuzuweisen. Was passiert?
+    <p>Erstellen Sie eine neue Instanz der Klasse Baum und versuchen Sie, <code>b</code> diese Instanz zuzuweisen. Was passiert?</p>
+    <hint solution>
+        <pre code>Baum c = new Baum("frühling");<br>b = c;</pre>
+        Da <code>b</code> eine konstante Referenz ist, kann keine neue Instanz von <code>b</code> referenziert werden.
+        Es wird der Fehler: <font color="red">cannot assign a value to final variable b</font> angezeigt.
+    </hint>
 </div>
