@@ -8,8 +8,8 @@ public class Nature {
             // Erstellt ein neues Objekt der Klasse Tree.
             Tree t = new Tree();
             
-            // Ruft die Instanz-Methode plantAtHill auf, um den Baum 
-            // am erstellten Hügel zu pflanzen.
+            // der Baum "t" wird mit der Instanzmethode "plantAtHill(SunnyHill hill)"
+            //auf den zuvor erstellten Hügel "hill" gepflanzt
             t.plantAtHill(hill);
         }
     }

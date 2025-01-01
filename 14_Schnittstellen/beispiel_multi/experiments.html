@@ -20,14 +20,13 @@
 <div class="colored">
     Erweitern Sie die Schnittstelle <code>Verortbar</code> um eine Methode, mit der die y-Position des Objektes
     ausgelesen werden kan.
+    <hint>Wenn Sie die Schnittstelle verändern, dann müssen auch alle Klassen die diese implementieren angepasst werden.
+    </hint>
     <hint solution>
         <pre code>interface Verortbar {
     public void setLocation(double x, double y);
     public double getX();
-}</pre>
-    </hint>
-    <hint>Wenn Sie die Schnittstelle verändern, dann müssen auch alle Klassen die diese implementieren angepasst werden.
-    </hint>
+    }</pre>
 </div>
 <div class="colored">
     Schreiben Sie in der Klasse <code>App</code> eine Methode, die die x-Position eines verortbaren Objektes auf den

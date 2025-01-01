@@ -5,28 +5,36 @@
 <ul>
     <li>
         <strong>Statisches Attribut <code>INSTANCE_COUNT</code>:</strong>
-        <p>Ein statisches Attribut, das die Anzahl der erstellten Baum-Instanzen zählt. Dieses Attribut wird in den
+        <p>Ein privates, statisches Attribut, das die Anzahl der erstellten Baum-Instanzen zählt. Dieses Attribut wird in den
             Konstruktoren verwendet,
-            um sicherzustellen, dass jede Baum-Instanz eine eindeutige, fortlaufende ID erhält.</p>
+            um sicherzustellen, dass jede Baum-Instanz eine eindeutige, fortlaufende ID erhält. Dort wird es stets um 1 erhöht, bevor es dem <code>id</code>-Attribut einer Instanz zugewiesen wird.
+        Dieses Attribut verdeutlicht den Unterschied zwischen Instanz- und (statischen) Klassenattributen. 
+    Während die Klassenvariable <code>INSTANCE_COUNT</code> unabhänging von einzelnen Instanzen ist und deshalb
+    die Anzahl von allen Instanzen speichern kann, ist die Instanzvariable<code>id</code> eine Eigenschaft einer
+     einzelnen Instanz und zur Bestimmung der richtigen Zahl muss auf <code>INSTANCE_COUNT</code> zurückgegriffen werden.</p>
         <code>private static int INSTANCE_COUNT = 0;</code>
+        <br> und
+        <pre code>INSTANCE_COUNT++;
+this.id = INSTANCE_COUNT;</pre>
     </li>
     <li>
         <strong>Attribut <code>id</code>:</strong>
-        <p>Jeder Baum hat eine eindeutige ID, die bei der Erstellung des Baumes festgelegt wird. Diese ID wird
-            verwendet, um die Position und den Maßstab des Baumes zu bestimmen. Die ID wird basierend auf der Anzahl der
-            erstellten Baumobjekte inkrementiert.</p>
+        <p>Jeder Baum hat eine eindeutige, konstante ID, die bei der Erstellung des Baumes (im Konstruktor) festgelegt wird. Diese ID wird
+            verwendet, um die Position und den Maßstab des Baumes zu bestimmen (siehe unten). Die ID wird basierend auf der Anzahl der
+            erstellten Baumobjekte vergeben.</p>
         <pre code>private final int id;</pre>
     </li>
     <li>
         <strong>Konstruktoren:</strong>
         <p>Die Konstruktoren legen die ID des Baumes fest und registrieren den Baum zum Rendern. Es gibt zwei
-            Konstruktoren. Der Standardkonstruktor, ändert den Wert des Attributs <code>jahreszeit</code>. </p>
+            Konstruktoren. Der Standardkonstruktor (keine Übergabeparameter), ändert den Wert des Attributs <code>jahreszeit</code> nicht. </p>
         <pre code>public Baum() {
-    this.id = ++INSTANCE_COUNT;
+    INSTANCE_COUNT++;
+    this.id = INSTANCE_COUNT;
     Graphics2D.instance().registerForRender(this);
 }</pre>
-        Da das Attribute mit "herbst" vorbelegt wurde (<code>public String jahreszeit = "herbst";</code>) wird der Baum
-        der Jahreszeit "herbst" initialisiert.</p>
+        Da das Attribut <code>jahreszeit</code> bei der Deklaration mit <code>"herbst"</code> vorbelegt wurde (<code>public String jahreszeit = "herbst";</code>) wird es bei der Erstellung eines Baums mit dem Standardkonstruktor mit
+        der Jahreszeit <code>"herbst"</code> initialisiert.</p>
 
         <p>Der zweite Konstruktor (ein Parameterkonstruktor) erlaubt es, die Jahreszeit des Baumes bei der Erstellung
             festzulegen. Dieser Konstruktor wird verwendet, um Bäume mit unterschiedlichen Jahreszeiten zu erstellen.
@@ -35,39 +43,51 @@
     this.jahreszeit = jahreszeit;
     /* ... */
 }</pre>
+Im Parameterkonstruktor wird die übergebene Jahreszeit <code>jahreszeit</code> dem Instanzattribut <code>jahreszeit</code> zugewiesen. Da der Übergabeparameter genauso heißt, wie das Instanzattribut, ist es nötig 
+<code>this.</code> vor den Variablennamen zu schreiben, wenn das Instanzattribut gemeint ist. <code>this</code> 
+steht hier für die neu erstellte Instanz. Es wird verwendet, da der Variablenname, mit dem die Instanz später referenziert wird,
+innerhalb des Konstruktors nicht bekannt ist.
     </li>
     <li>
         <strong>Methode <code>render(Graphics2D g)</code>:</strong>
-        <p>Diese Methode zeichnet den Baum auf die Grafikoberfläche. Die Position und der Maßstab des Baumes werden
+        <p>Diese Methode zeichnet den Baum auf die Grafikoberfläche (wird im Hintergrund aufgerufen). Die Position und der Maßstab des Baumes werden
             basierend auf der ID berechnet:</p>
         <ul>
-            <li><strong>Links, mitte oder Rechts</string>
+            <li><strong>links, Mitte oder rechts</string>
                     <p>Ob der Baum links, in der Mitte oder rechts gezeichnet wird, hängt von dessen ID
-                        (<code>this.id</code>) ab.</p>
+                        (<code>this.id</code>) ab, mithilfe derer der Positionsindex <code>POS_INDEX</code> bestimmt wird.</p>
                     <pre><code>final int POS_INDEX = this.id % 3;</code></pre>
-                    <p>Für die folgenden Berechnungen nehmen wir an, dass 0=links, 1=mitte und 2=rechts ist.</p>
+                    <p>Für die folgenden Berechnungen nehmen wir an, dass 0=links, 1=Mitte und 2=rechts ist. 
+                        Da nur drei Positionsindizes zur Verfügung stehen, wird bei der Berechnung der Modulooperator <code>%</code> verwendet. Da hier immer der Rest einer Division durch 3 
+                        als Positionsindex verwendet wird, liegen die Indizes zwischen 0 und 2, obwohl die IDs bei 1 beginnen.
+                    </p>
             </li>
             <li>
                 <strong>Berechnung der Position:</strong>
-                <p>Die X-Position wird durch den Index (ID modulo 3) bestimmt, der den Baum an einer von drei Positionen
-                    im Bereich von 150 bis 650 platziert.</p>
+                <p>Die X-Position wird anhand des Positionsindex im vorhandenen Bereich zur Platzierung von Bäumen (zwischen X_MIN und X_MAX) bestimmt. Da drei Positionsindizes möglich sind, ergeben sich drei Positionen im Bereich von 150 bis 650, wo ein Baum platziert werden kann.</p>
                 <pre><code>final int x = (int)(POS_INDEX / 2.0 * (MAX_X - MIN_X) + MIN_X);</code></pre>
                 <p>Die Y-Position wird ebenfalls durch den Index bestimmt, wodurch die Bäume in verschiedenen Höhen
                     gezeichnet werden.</p>
                 <pre><code>final int y = 430 - Math.abs(POS_INDEX - 1) * 20;</code></pre>
-                <p><code>Math.abs(POS_INDEX - 1)</code> is 0 für Bäume in der mitte (<code>POS_INDEX=1</code>) und in
-                    allen anderen Fällen 1. Dh. der Baum in der Mitte wird an der y-Position <b>430</b> gezeichnet,
-                    während die beiden seitlichen Bäume an <b>430-20</b> dargestellt werden</p>
+                <p><code>Math.abs(POS_INDEX - 1)</code> ist 0 für Bäume in der Mitte (<code>POS_INDEX=1</code>) und in
+                    allen anderen Fällen dank des Betrages (<code>Math.abs</code>) 1. D.h. der Baum in der Mitte wird an der y-Position <b>430</b> gezeichnet,
+                    während die beiden seitlichen Bäume an <b>430-20 = 410</b> dargestellt werden</p>
             </li>
             <li>
                 <strong>Berechnung des Maßstabs:</strong>
                 <p>Der Maßstab des Baumes variiert ebenfalls je nach Index, wodurch die Bäume in verschiedenen Größen
                     gezeichnet werden.</p>
                 <pre><code>final double scale = 1.25 - Math.abs(POS_INDEX - 1) * 0.5;</code></pre>
-            </li>
+                <p>Auch hier ist <code>Math.abs(POS_INDEX - 1)</code> 0 für Bäume in der Mitte (<code>POS_INDEX=1</code>) und 1 für Bäume links oder rechts. Der Skalierungsfaktor ist also 
+                    entweder <b>1.25</b> oder <b>0.75</b>.</p>
+                        </li>
             <li>
                 <strong>Bestimmung des Bildes:</strong>
-                <p>Das zu zeichnende Bild wird basierend auf der Jahreszeit des Baumes ausgewählt.</p>
+                <p>Das zu zeichnende Bild wird basierend auf der Jahreszeit des Baumes ausgewählt. 
+                    Zum Vergleich von Strings wird stets die Instanzmethode <code>equals</code>  der Klasse <code>String</code> verwendet. Diese wird auf dem Instanzattribut <code>jahreszeit</code> aufgerufen 
+                    und dessen Inhalt jeweils mit dem übergebenen String verglichen. Sofern kein passender String gefunden
+                    wurde, wird das "POW"-Bild angezeigt, d.h. es wurde eine ungültige Jahreszeit im Attribut abgelegt. Auf die einzelnen Bilder kann mit Konstanten der Klasse <code>TreeLibrary</code> zugegriffen werden.
+                </p>
                 <pre code>final Image img;
 if (this.jahreszeit.equals("herbst")) {
     img = TreeLibrary.AUTUMN;
@@ -86,7 +106,7 @@ if (this.jahreszeit.equals("herbst")) {
             <li>
                 <strong>Zeichnen des Bildes:</strong>
                 <p>Das ausgewählte Bild wird an der berechneten Position mit dem berechneten Maßstab gezeichnet. Dazu
-                    wird die Instanzmethode <code>drawImage</code> auf dem Zeichenkontext <code>g</code> (Parameter der
+                    wird die Instanzmethode <code>drawImage</code> auf dem Zeichenkontext <code>g</code> (Übergabeparameter der
                     Methode <code>render</code>) aufgerufen. Die Variable <code>img</code> referenziert zu diesem
                     Zeitpunkt das für die Jahreszeit passende Bild.</p>
                 <pre code>g.drawImage(img, x, y, scale);</pre>
