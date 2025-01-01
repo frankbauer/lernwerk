@@ -1,6 +1,6 @@
 <h4>Beschreibung</h4>
 <p>Die Klasse <code>Leinwand</code> repräsentiert eine Leinwand, die aus einer bestimmten Anzahl von Zeilen und Spalten
-    besteht. Sie ermöglicht das Überprüfen und Füllen von Zellen sowie das Festlegen einer Verzögerung für Befehle.</p>
+    besteht. Sie ermöglicht das Überprüfen und Füllen von Zellen sowie das Festlegen einer zeitlichen Verzögerung für Befehle.</p>
 <h4>Konstruktoren</h4>
 <ul>
     <li><code>public Leinwand(String[] args)</code><br>Erstellt eine neue Leinwand mit den angegebenen Dimensionen und
@@ -12,9 +12,9 @@
         wird auf mindestens 1 Millisekunde gesetzt.</li>
     <li><code>public boolean istGefuellt(int r, int c)</code><br>Überprüft, ob die Zelle an der angegebenen Position
         gefüllt ist. Gibt <code>true</code> zurück, wenn die Zelle gefüllt ist, und <code>false</code>, wenn sie nicht
-        gefüllt ist. Bei ungültigen Zellenkoordinaten wird eine Fehlermeldung ausgegeben.</li>
+        gefüllt ist. Bei ungültigen Zellenkoordinaten wird eine Fehlermeldung im Textfeld ausgegeben.</li>
     <li><code>public void fuellen(int r, int c)</code><br>Füllt die Zelle an der angegebenen Position. Bei ungültigen
-        Zellenkoordinaten wird eine Fehlermeldung ausgegeben.</li>
+        Zellenkoordinaten wird eine Fehlermeldung im Textfeld ausgegeben.</li>
 </ul>
 <h4>Attribute</h4>
 <ul>
