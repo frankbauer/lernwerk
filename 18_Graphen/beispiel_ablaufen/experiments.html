@@ -1,23 +1,28 @@
 <div class="colored">
-    Geben Sie für jeden Knoten im Graphen den Ausgangsgrad (= Anzahl der ausgehenden Kanten) an.
+    Geben Sie für jeden Knoten im Graphen den Ausgangsgrad (= Anzahl der ausgehenden Kanten) aus.
     <hint>Mit <code>.childNodes()</code> bekommen Sie eine Liste mit allen Kindknoten. Die Größe dieser Liste
         entspricht dem Ausgangsgrad.</hint>
     <hint solution>
-        <pre code>System.out.println(n + ": " + n.childNodes().size());</pre>
+        <pre code>for (Node&ltString&gt n : g) {
+    System.out.println(n + ": " + n.childNodes().size());
+}</pre>
     </hint>
 </div>
 
 
 <div class="colored">
-    Geben Sie für jeden Knoten außerdem noch den Eingangsgrad an.
+    Geben Sie für jeden Knoten außerdem noch den Eingangsgrad (= Anzahl der eingehenden Kanten) aus.
     <hint>Der Eingangsgrad lässt sich nicht direkt ablesen. Sie müssen dazu für jeden Knoten alle Knoten besuchen, und
         zählen wie häufig der gesuchte Knoten als Kindknoten vorkommt.</hint>
     <hint solution>
-        <pre code>int count = 0;
-for (Node&ltString&gt n : g) {
-    for (Node&ltString&gt child : n.childNodes()){
-        if (child == n) count++;
+        <pre code>for (Node<String> n : g) { 
+    int count = 0;
+    for (Node<String> k : g) {
+        for (Node<String> child : k.childNodes()){
+            if (child == n) count++;
+        }
     }
+    //Ausgabe im Format: Knoten: Ausgangsgrad, Eingangsgrad
     System.out.println(n + ": " + n.childNodes().size() + ", " + count);
 }</pre>
     </hint>

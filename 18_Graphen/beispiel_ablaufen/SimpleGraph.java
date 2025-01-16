@@ -8,8 +8,9 @@ public class SimpleGraph {
         g.addEdge("C", "B");
         g.addEdge("B", "A");
 
-        //Die ForEach-Schleife iteriert über als Node-Instanzen (Knoten) des Graphen g.
-        //Die Laufvariable n, entspricht für jedem Durchlauf dem aktuellen Knoten und wird ausgegeben.  
+        //Die forEach-Schleife iteriert ueber alle Node-Instanzen (Knoten) des Graphen g.
+        //Die Laufvariable n entspricht fuer jeden Durchlauf dem aktuellen Knoten, 
+        //dessen Nutzlast dann ausgegeben wird.  
         for (Node<String> n : g) {
             System.out.println(n);
         }
