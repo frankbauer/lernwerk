@@ -12,10 +12,7 @@
     <hint>Sie müssen eine <code>visited</code>-Liste mitführen in der ein Knoten vor dem Besuchen der Kindknoten
         eingefügt, und nach dem Besuch aller Kindknoten wieder entfernt wird.</hint>
     <hint solution>
-        <pre code>static boolean isCyclic(
-            Node&lt;Integer> cur, 
-            java.util.List&lt;Node&lt;Integer>> path
-) {
+        <pre code>static boolean isCyclic(Node&lt;Integer> cur, java.util.List&lt;Node&lt;Integer>> path) {
     if (cur == null) { return false; }
 
     //Knoten ist bereits teil des aktuellen pfades in path
