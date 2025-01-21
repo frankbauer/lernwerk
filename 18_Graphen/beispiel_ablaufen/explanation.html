@@ -1,0 +1,29 @@
+<h3>Erklärung</h3>
+Dieses Programm zeigt, wie ein Graph komplett durchlaufen werden kann.
+<ul>
+    <li><strong>Initialisieren eines neuen leeren Graphen:</strong>
+        <p>
+            Mit dem Standardkonstruktor wird eine neue Graph-Instanz erstellt. Die Referenz darauf wird in der Variablen <code>g</code> gespeichert. Der Inhalt der Klammern '&lt;&gt;' enthält den Datentyp der Knotenelemente, hier <code>String</code>.
+        </p>
+        <code>Graph&lt;String&gt; g = new Graph<>();</code>
+    </li>
+    <li><strong>Einfügen von Knoten und Kanten:</strong>
+        <p>
+            Mit der Instanzmethode <code>add</code> werden fünf Knoten zum Graphen <code>g</code> hinzufügt. Da der Graph Elemente vom Datentyp "String" speichert (vgl. Initialisierung), wird auch als Nutzlast ein <code>String</code> übergeben.
+        </p>
+        <code>g.add("A", "B", "C", "D", "E");</code>
+        <p><br>
+            Mit der Instanzmethode <code>addEdge</code> werden gerichtete Kanten zwischen je 2 Knoten mit dem Kantengewicht 1 hinzugefügt.</p>
+        <code>g.addEdge("D", "B");</code>
+    </li>
+    <li><strong>Durchlaufen des Graphen:</strong>
+        <p>
+            Mittels einer forEach-Schleife werden alle Knoten des kompletten Graphen durchlaufen und die Nutzlast der einzelnen Knoten ausgegeben. Dabei ist <code>n</code> die Iterationsvariable, mittels derer auf die einzelnen Knoten-Instanzen zugegriffen werden kann (Datentyp <code>Node&lt;String&gt;</code>). Nach dem Doppelpunkt steht der Bereich, der durchlaufen werden soll, hier der (komplette) Graph, der mit <code>g</code> referenziert wird.
+        </p>
+    </li>
+    <li><strong>Visualisierung des Graphen:</strong>
+        <p>Mit der Methode <code>visualize</code>, die auf der Graph-Instanz <code>g</code> aufgerufen wird, wird eine Anzeige des Graphen mit den hinzugefügten Knoten und Kanten generiert.
+        </p>
+        <code>g.visualize();</code>
+    </li>
+</ul>
