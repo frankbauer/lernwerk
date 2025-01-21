@@ -1,18 +1,20 @@
 <div class="colored">
-    Versuchen Sie den Graphen zu erweitern.
+    Versuchen Sie, den Graphen zu erweitern.
+    <hint solution>Es können wie zuvor Knoten mit <code>g.add()</code> und Kanten mit <code>g.addEdge()</code> hinzugefügt werden.</hint>
 </div>
 <div class="colored">
-    Schreiben Sie eine Methode mit der Sie eine ungerichtete Kante zwischen zwei Städten hinzufügen können.
+    Schreiben Sie eine Methode, mit der Sie eine ungerichtete Kante zwischen zwei Städten hinzufügen können.
     <hint>Eine ungerichtete Kante zwischen den Knoten A und B entspricht zwei Kanten, eine von A nach B und eine von B
         nach A.</hint>
     <hint>
-        Die Methode könnte so aussehen:
-        <pre code>public static void addEdge(Graph<String> g, String a, String b) {}</pre>
+        Die Methodensignatur könnte so aussehen:
+        <pre code>public static void addEdge(Graph&lt;String&gt; g, String a, String b) {}</pre>
+        Da Sie die neue Methode nicht in der Klasse <code>Graph</code> sondern in der Klasse <code>SimpleGraph</code> schreiben, schreiben Sie die Methode am besten als Klassenmethode (<code>static</code>).
     </hint>
 
     <hint solution>
         Die Methode könnte so aussehen:
-        <pre code>public static void addEdge(Graph<String> g, String a, String b) {
+        <pre code>public static void addEdge(Graph&lt;String&gt; g, String a, String b) {
     g.addEdge(a, b);
     g.addEdge(b, a);
 }</pre>
@@ -22,12 +24,17 @@
 <div class="colored">
     Passen Sie Ihren Code so an, dass Sie Kantengewichte angeben, die der Entfernung in km entsprechen.
     <hint>
-        Die Signatur Ihrer <code>addEdge</code> Methode muss angepasst werden um das Gewicht zu übergeben.
+        Die Signatur Ihrer <code>addEdge</code> Methode muss angepasst werden, um das Gewicht zu übergeben.
     </hint>
-    <hint>
-        <pre code>public static void addEdge(Graph<String> g, String a, String b, double weight)</pre>
+    <hint>Ihre neue Methodensignatur könnte wie folgt aussehen:
+        <pre code>public static void addEdge(Graph&lt;String&gt; g, String a, String b, double weight)</pre>
     </hint>
-    <hint solution>
-        <pre code>g.addEdge(g, "Berlin", "Amsterdam", 660)</pre>
+    <hint solution>Die angepasste Methode könnte dann so aussehen:<br>
+<pre code>public static void addEdge(Graph&lt;String&gt; g, String a, String b, double weight){
+    g.addEdge(a, b, 660);
+    g.addEdge(b,a,660);
+}</pre>
+Ein Methodenaufruf könnte dann so aussehen: <br>
+<code>SimpleGraph.addEdge(g, "Berlin", "Amsterdam", 660);</code>
     </hint>
 </div>

@@ -1,0 +1,29 @@
+<h3>Erklärung</h3>
+Dieses Programm zeigt, wie ein Graph mit verschiedenen Knoten und Kanten erstellt werden kann.
+<ul>
+    <li><strong>Initialisieren eines neuen leeren Graphen:</strong>
+        <p>
+            Mit dem Standardkonstruktor wird eine neue Graph-Instanz erstellt. Die Referenz darauf wird in der Variablen <code>g</code> gespeichert. Der Inhalt der Klammern '&lt;&gt;' enthält den Datentyp der Knotenelemente, hier <code>String</code>.
+        </p>
+        <code>Graph&lt;String&gt; g = new Graph<>();</code>
+    </li>
+    <li><strong>Einfügen von Knoten:</strong>
+        <p>
+            Mit der Instanzmethode <code>add</code> werden fünf Knoten zum Graphen <code>g</code> hinzufügt. Da der Graph Elemente vom Datentyp "String" speichert (vgl. Initialisierung), wird auch als Nutzlast ein <code>String</code> übergeben.
+        </p>
+        <code>g.add("Berlin");</code>
+    </li>
+    <li><strong>Hinzufügen von Kanten:</strong>
+        <p>
+            Mit der Instanzmethode <code>addEdge</code> werden gerichtete Kanten zwischen je 2 Knoten hinzugefügt. Die Kante verläuft stets von dem Knoten, dessen Nutzlast dem ersten übergebenen String entspricht, zum dem des zweiten Strings. Da kein Gewicht übergeben wurde, besitzen die Kanten das Standardgewicht 1. Ein anderes Kantengewicht müsste als dritter Parameter beim Methodenaufruf übergeben werden.
+            <br>Dadurch dass jeweils zwei gerichtete Kanten in entgegengesetzten Richtungen hinzugefügt werden, werden die Kanten im Graph als ungerichtet angezeigt.
+        </p>
+        <pre code>g.addEdge("Berlin", "Amsterdam");
+g.addEdge("Amsterdam", "Berlin");</pre>
+    </li>
+    <li><strong>Visualisierung des Graphen:</strong>
+        <p>Mit der Methode <code>visualize</code>, die auf der Graph-Instanz <code>g</code> aufgerufen wird, wird eine Anzeige des Graphen mit den hinzugefügten Knoten und Kanten generiert.
+        </p>
+        <code>g.visualize();</code>
+    </li>
+</ul>
