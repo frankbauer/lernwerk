@@ -1,6 +1,6 @@
 <h4>Beschreibung</h4>
-<p>Die Klasse <code>Graph</code> repräsentiert einen generischen Graphen, der Knoten und Kanten zwischen diesen Knoten
-    enthält. Diese Klasse implementiert das <code>Iterable</code>-Interface, wodurch es möglich ist, über alle Knoten im
+<p>Die Klasse <code>Graph</code> repräsentiert einen generischen Graphen, der Knoten und Kanten 
+    enthält, wobei eine Kante immer zwischen zwei Knoten liegt. Diese Klasse implementiert das <code>Iterable</code>-Interface, wodurch es möglich ist, über alle Knoten im
     Graphen mit einer ForEach-Schleife zu iterieren.</p>
 
 <h4>Konstruktoren</h4>
@@ -15,14 +15,14 @@
     <li><code>public void add(T... payload)</code><br>Fügt mehrere Knoten mit den gegebenen Nutzlasten zum Graphen
         hinzu.</li>
     <li><code>public Edge&lt;T&gt; addEdge(T n1, T n2)</code><br>Fügt eine Kante mit einem Standardgewicht von 1.0
-        zwischen den Knoten mit den Nutzlasten <code>n1</code> und <code>n2</code> hinzu, wenn diese existieren.</li>
+        zwischen zwei Knoten mit den Nutzlasten <code>n1</code> und <code>n2</code> hinzu, wenn diese existieren.</li>
     <li><code>public Edge&lt;T&gt; addEdge(T n1, T n2, double weight)</code><br>Fügt eine Kante mit einem spezifischen
-        Gewicht zwischen den Knoten mit den Nutzlasten <code>n1</code> und <code>n2</code> hinzu.</li>
+        Gewicht zwischen zwei Knoten mit den Nutzlasten <code>n1</code> und <code>n2</code> hinzu.</li>
     <li><code>public Edge&lt;T&gt; addEdge(Node&lt;T&gt; source, Node&lt;T&gt; target)</code><br>Fügt eine Kante mit
-        einem Standardgewicht von 1.0 zwischen den spezifizierten Knoten <code>source</code> und <code>target</code>
+        einem Standardgewicht von 1.0 zwischen die spezifizierten Knoten <code>source</code> und <code>target</code>
         hinzu.</li>
     <li><code>public Edge&lt;T&gt; addEdge(Node&lt;T&gt; source, Node&lt;T&gt; target, double weight)</code><br>Fügt
-        eine Kante mit einem spezifischen Gewicht zwischen den spezifizierten Knoten hinzu.</li>
+        eine Kante mit einem spezifischen Gewicht zwischen die spezifizierten Knoten hinzu.</li>
     <li><code>public Node&lt;T&gt; find(T payload)</code><br>Sucht und gibt den Knoten zurück, der die gegebene
         Nutzlast trägt, oder <code>null</code> falls kein Knoten gefunden wurde.</li>
     <li><code>public void visualize()</code><br>Visualisiert den Graphen.</li>
