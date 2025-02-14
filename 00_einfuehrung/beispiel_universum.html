@@ -307,12 +307,13 @@ public class Sandbox {
                             public static final int M = 0;
                         }
                     </pre>
-                    <script as="playground" data-version="101" data-code-expanded=0 width="642px" height="402px"
+                    <script as="playground" type="text/json" data-version="101" data-code-expanded=0 width="642px" height="402px"
                             align="center">
                                 {
                                     entities: { },
                                     setupDOM: function(canvasElement, outputElement, scope) { },
                                     init: function(canvasElement, outputElement, scope, runner) {
+                                        console.log("Init", canvasElement, outputElement, scope, runner)
                                         // const planetSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--planet-size'));
                                         // const rocketWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--rocket-width'));
                                         // const rocketHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--rocket-height'));
@@ -323,6 +324,7 @@ public class Sandbox {
                                     },
                                     reset(canvasElement) { },
                                     update: function(txt, json, canvasElement, outputElement) {
+                                        console.log("Update", txt, json, canvasElement, outputElement)
                                         //get the css variable --planet-size defined on the :root of this site
                                         const planetSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--planet-size'));
                                         const rocketWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--rocket-width'));
@@ -337,12 +339,14 @@ public class Sandbox {
                                         }
                                     },
                                     runCommand(canvasElement, commands, index, planetSize, rocketWidth, rocketHeight) {
+                                        console.log("Running - Command", commands, index, canvasElement)
                                         const cmd = commands[index]
                                         console.log("Running", cmd)
                                         if (cmd.command === 'Universe') {
                                             const universe = $('<div class="universe"></div>')
                                             const countdown = $('<div class="countdown over"></div>')
                                             universe.append(countdown)
+                                            console.log("Running - Universe", universe, canvasElement)
                                             canvasElement.append(universe)
                                         } else if (cmd.command === 'Planet') {
                                             const planet = $('<div class="planet"></div>')
@@ -684,7 +688,7 @@ r2.launchIn(2);</pre>
 
         <script>
             document.body.onload = () => {
-                import("../js/codeblocks-js/codeblocks.umd.min.js?s=00013")
+                import("../js/codeblocks-js/codeblocks.umd.js?s=00016")
                 initHelpers()
             }
         </script>
