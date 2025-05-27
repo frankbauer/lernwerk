@@ -1,0 +1,17 @@
+<h3>Aufgabe</h3>
+
+<p>Sie sitzen gut gelaunt in Ihrem PKW unterwegs in den Urlaub, als plötzlich die Tankanzeige aufleuchtet und Sie darauf hinweist, dass Sie doch bitte tanken sollen. Da Sie noch einige Kilometer vor sich haben, wollen Sie das auch tun, aber wo befindet sich die nächste Tankstelle? Sie versuchen mittels Sprachassistenten über <code>getFillingStation</code> eine passende Tankstelle zu finden, wobei folgende zwei Parameter relevant sind:</p>
+<ul>
+    <li>
+        Die Tankstelle soll in der aktuellen Fahrtrichtung liegen, damit Sie keine Umwege machen müssen. Die Fahrtrichtung <code>richtung</code> können Sie mit der Klassenmethode <code>getDircetion</code> bestimmen.
+    </li>
+    <li>
+        <p>Die Entfernung bis zur Tankstelle muss kleiner sein als die derzeit verbleibende Reichweite, damit die Tankstelle auch erreicht werden kann. Die Reichweite <code>range</code> in <i>km</i> ergibt sich anhand des aktuellen Verbrauchs <code>consumption</code> und der noch vorhandenen Tankfüllung <code>fillLevel</code>:  
+            range = fillLevel/(consumption * 100).          
+        Der aktuelle Verbrauch in <i>l/100km</i> und die noch vorhandene Tankfüllung in <i>l</i> lassen sich mithilfe der Methoden <code>getConsumption</code> und <code>getFillLevel</code> auslesen.</p>
+    <p>Hinweis: Es kann davon ausgegangen werden, dass die Reichweite während des Suchvorgangs konstant bleibt.</p>
+        </li>
+</ul> 
+<p>
+Die Suche war erfolgreich und <code>getFillingStation</code> hat Ihnen eine passende Tankstelle zurückgegeben. Starten Sie nun unter Verwendung von <code>startNavigation</code> die Navigation zur Tankstelle.
+</p> 
