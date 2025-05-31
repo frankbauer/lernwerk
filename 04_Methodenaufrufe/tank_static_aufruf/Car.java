@@ -1,17 +1,84 @@
 class Car {
+    public static final int NORD = 0;
+    public static final int NORDOST = 1;
+    public static final int OST = 2;
+    public static final int SUEDOST = 3;
+    public static final int SUED = 4;
+    public static final int SUEDWEST = 5;
+    public static final int WEST = 6;
+    public static final int NORDWEST = 7;
+
     public static int getDirection(){
-        return 0;
+        return (int) (Math.random()*8);
     }
+
+    public static void printDirection(int direction){
+        if (direction == NORD){
+            System.out.println("Fahrtrichtung: Norden");
+        } else if (direction == NORDOST){
+            System.out.println("Fahrtrichtung: Nordosten");
+        } else if (direction == OST){
+            System.out.println("Fahrtrichtung: Osten");
+        } else if (direction == SUEDOST){
+            System.out.println("Fahrtrichtung: Suedosten");
+        } else if (direction == SUED){
+            System.out.println("Fahrtrichtung: Sueden");
+        } else if (direction == SUEDWEST){
+            System.out.println("Fahrtrichtung: Suedwesten");
+        } else if (direction == WEST){
+            System.out.println("Fahrtrichtung: Westen");
+        }else if (direction == NORDWEST){
+            System.out.println("Fahrtrichtung: Nordwesten");
+        }
+    }
+
     public static float getConsumption(){
-        return 0.0f;
+        return 3.0f+(float)(Math.random()*10);
     }
+
     public static float getFillLevel(){
-        return 0.0f;
+        return (float) (Math.random()*8);
     }
+
     public static String getFillingStation(float direction, float range){
-        return "Test";
+        String fillingStation = null;
+        if (direction == NORD){
+            fillingStation = "Esso-Tankstelle Albaching Nord";
+        } else if (direction == NORDOST){
+            if (range>=50){
+                fillingStation = "JET-Tankstelle Weissensee Nordost";
+            }else{
+                fillingStation = "Esso-Tankstelle Albaching Nord";
+            }
+        } else if (direction == OST){
+            fillingStation = "ARAL-Tankstelle Knilch Ost";
+        } else if (direction == SUEDOST){
+            if (range>=55){
+                fillingStation = "OMV-Tankstelle Steinach Suedost";
+            }else{
+                fillingStation = "Shell-Tankstelle Welzer Sued";
+            }
+        } else if (direction == SUED){
+            fillingStation = "Shell-Tankstelle Welzer Sued";
+        } else if (direction == SUEDWEST){
+            if (range>=45){
+            fillingStation = "TOTAL-Tankstelle Waldbad Suedwest";
+            } else{
+                fillingStation = "Shell-Tankstelle Welzer Sued";
+            }
+        } else if (direction == WEST){
+            fillingStation = "Agip-Tankstelle Reuther West";
+        } else if (direction == NORDWEST){
+            if (range>=40){
+                fillingStation = "BayWa-Tankstelle Heller Nordwest";
+            } else{
+                fillingStation = "Esso-Tankstelle Albaching Nord";
+            }
+        }
+        return fillingStation;
     }
+
     public static void startNavigation(String destination){
-        System.out.println("Navigation nach" + destination + " wird gestartet.")
+        System.out.println("Navigation nach " + destination + " wird gestartet.");
     }
 }
