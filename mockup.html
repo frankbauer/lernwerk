@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lernwerk - Übungsplaner</title>
+
+    <link rel="stylesheet" href="./css/editor.css?v=1.0.3" />
+    <script src="./js/jquery/jquery.min.js?v=3.6.2"></script>
+    <link rel="stylesheet" href="./js/codeblocks-js/codeblocks.css?v=1.0.3" />
+    <link rel="stylesheet" href="./css/font.geist.css?v=1.0.3" />
+    <script src="./mockup.js?v=1.0.3"></script>
+    <link rel="stylesheet" href="./css/mockup.css?v=1.0.3" />
+</head>
+
+<body>
+    <div class="container">
+         <div class="filters-section">
+            <div class="filters-header" onclick="toggleFilters()">
+                <div>
+                    <h2>Lernwerk - Übungsplaner</h2>
+                    <p>
+                    Finde die perfekten Übungen basierend auf deinem aktuellen Wissensstand. 
+                    Plane deinen Lernweg und entdecke neue Herausforderungen.
+                </p>
+                </div>
+                <div class="collapse-icon">▼</div>
+            </div>
+            
+            <div class="filters-content" id="filters-content">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <div class="filter-label">Konzepte die ich bereits kenne</div>
+                        <div class="toggle-section">
+                            <button type="button" class="toggle-button active" id="concept-mode-any">Mindestens eins</button>
+                            <button type="button" class="toggle-button" id="concept-mode-only">Nur diese</button>
+                        </div>
+                        <div class="checkbox-group multi-columns" id="concept-filters">
+                            <!-- Concepts will be generated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="sub-filter">
+                            <div class="filter-label">Übungstyp</div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="type" value="sandbox"> Sandkasten
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="type" value="lecture"> Vorlesungsbeispiel
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="type" value="example"> Übung
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="sub-filter">
+                            <div class="filter-label">Kapitel (bereits bearbeitet)</div>
+                            <select class="range-input" id="chapter-filter">
+                                <!-- Chapters will be generated dynamically -->
+                            </select>
+                        </div>
+
+                        <div class="sub-filter">
+                            <div class="filter-label">Maximale Schwierigkeit</div>
+                            <select class="range-input" id="difficulty-filter">
+                                <option value="5" selected>Alle Schwierigkeiten</option>
+                                <option value="1">Sehr einfach (1/5)</option>
+                                <option value="2">Einfach (2/5)</option>
+                                <option value="3">Mittel (3/5)</option>
+                                <option value="4">Schwer (4/5)</option>
+                                <option value="5">Sehr schwer (5/5)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                
+                </div>
+            </div>
+        </div>
+
+        <input type="text" class="search-bar" placeholder="🔍 Suche nach Übungen..." id="search-input">
+
+        <div class="results-header">
+            <div class="results-count" id="results-count">42 Übungen gefunden</div>
+            <div class="view-toggle">
+                <button type="button" class="toggle-button active" id="view-card">Karten</button>
+                <button type="button" class="toggle-button" id="view-list">Liste</button>
+            </div>
+        </div>
+
+        <div id="exercises-container">
+            <!-- Exercises will be generated dynamically -->
+        </div>
+    </div>
+
+    <script>
+        // Generate concept mapping dynamically from data
+        function generateConceptMapping() {
+            const conceptMapping = {};
+            const allConcepts = new Set();
+            
+            // Collect all unique concepts
+            chaptersData.forEach(chapter => {
+                chapter.exercises.forEach(exercise => {
+                    exercise.concepts.forEach(concept => {
+                        allConcepts.add(concept);
+                    });
+                });
+            });
+
+            // Generate normalized values for each concept
+            allConcepts.forEach(concept => {
+                conceptMapping[concept] = concept
+                    .toLowerCase()
+                    .replace(/ä/g, 'ae')
+                    .replace(/ö/g, 'oe')
+                    .replace(/ü/g, 'ue')
+                    .replace(/ß/g, 'ss')
+                    .replace(/\s+/g, '-')
+                    .replace(/[^a-z0-9-]/g, '');
+            });
+
+            return conceptMapping;
+        }
+
+        // Generate concept mapping from data
+        const conceptMapping = generateConceptMapping();
+
+        // Type mapping
+        const typeMapping = {
+            'lecture': 'Vorlesungsbeispiel',
+            'sandbox': 'Sandkasten',
+            'exercice': 'Übung',
+            'tool': 'Tool'
+        };
+
+        // Generate chapter filters
+        function generateChapterFilters() {
+            const chapterFilter = document.getElementById('chapter-filter');
+            let html = '<option value="none">Noch kein Kapitel</option>';
+            
+            const lastChapterIndex = chaptersData.length - 1;
+            
+            chaptersData.forEach((chapter, index) => {
+                const selected = index === lastChapterIndex ? 'selected' : ''; // Default to last chapter
+                html += `<option value="${index}" ${selected}>${chapter.number}. ${chapter.title}</option>`;
+            });
+            
+            chapterFilter.innerHTML = html;
+        }
+
+        // Generate concept filters
+        function generateConceptFilters() {
+            const conceptFilters = document.getElementById('concept-filters');
+            const allConcepts = new Set();
+            
+            // Collect all unique concepts
+            chaptersData.forEach(chapter => {
+                chapter.exercises.forEach(exercise => {
+                    exercise.concepts.forEach(concept => {
+                        allConcepts.add(concept);
+                    });
+                });
+            });
+
+            // Convert to sorted array and generate HTML
+            const conceptsArray = Array.from(allConcepts).sort();
+            let html = '';
+            
+            conceptsArray.forEach(concept => {
+                const value = conceptMapping[concept] || concept.toLowerCase();
+                html += `<label class="checkbox-item">
+                    <input type="checkbox" name="concept" value="${value}"> ${concept}
+                </label>`;
+            });
+            
+            conceptFilters.innerHTML = html;
+        }
+
+        // Generate difficulty indicator
+        function generateDifficultyIndicator(difficulty) {
+            let html = '';
+            for (let i = 1; i <= 5; i++) {
+                const active = i <= difficulty ? 'active' : '';
+                html += `<div class="difficulty-dot ${active}"></div>`;
+            }
+            return html;
+        }
+
+        // Generate exercise card
+        function generateExerciseCard(exercise, chapterIndex) {
+            const concepts = exercise.concepts.map(concept => conceptMapping[concept] || concept.toLowerCase()).join(',');
+            const conceptTags = exercise.concepts.map(concept => `<span class="concept-tag">${concept}</span>`).join('');
+            
+            const solutionFeature = exercise.hasSolution ? 
+                '<div class="feature available"><span>✓</span> Beispiellösung</div>' :
+                '<div class="feature"><span>✗</span> Beispiellösung</div>';
+            
+            const explanationFeature = exercise.hasExplanation ?
+                '<div class="feature available"><span>✓</span> Erklärung</div>' :
+                '<div class="feature"><span>✗</span> Erklärung</div>';
+
+            return `
+                <div class="exercise-card" data-chapter="${chapterIndex}" data-concepts="${concepts}" data-type="${exercise.type}" data-difficulty="${exercise.difficulty}">
+                    <div class="exercise-header">
+                        <div>
+                            <h3 class="exercise-title">
+                                <a href="${exercise.link}">${exercise.title}</a>
+                            </h3>
+                        </div>
+                        <div class="exercise-type type-${exercise.type}">${typeMapping[exercise.type] || exercise.type}</div>
+                    </div>
+                    <p class="exercise-description">
+                        ${exercise.description}
+                    </p>
+                    <div class="exercise-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">Schwierigkeit:</span>
+                            <div class="difficulty-indicator">
+                                ${generateDifficultyIndicator(exercise.difficulty)}
+                            </div>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Konzepte:</span>
+                            <div class="concepts-list">
+                                ${conceptTags}
+                            </div>
+                        </div>
+                        <div class="features-list">
+                            ${solutionFeature}
+                            ${explanationFeature}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Generate exercise list item
+        function generateExerciseListItem(exercise, chapterIndex) {
+            const concepts = exercise.concepts.map(concept => conceptMapping[concept] || concept.toLowerCase()).join(',');
+            const conceptTags = exercise.concepts.slice(0, 4).map(concept => `<span class="concept-tag">${concept}</span>`).join('');
+            const moreConceptsText = exercise.concepts.length > 4 ? `<span class="concept-tag">+${exercise.concepts.length - 4}</span>` : '';
+            
+            const solutionFeature = exercise.hasSolution ? 
+                '<div class="feature available"><span>✓</span> Lösung</div>' :
+                '<div class="feature"><span>✗</span> Lösung</div>';
+            
+            const explanationFeature = exercise.hasExplanation ?
+                '<div class="feature available"><span>✓</span> Erklärung</div>' :
+                '<div class="feature"><span>✗</span> Erklärung</div>';
+
+            return `
+                <div class="exercise-list-item" data-chapter="${chapterIndex}" data-concepts="${concepts}" data-type="${exercise.type}" data-difficulty="${exercise.difficulty}">
+                    <h3 class="exercise-list-title">
+                        <a href="${exercise.link}">${exercise.title}</a>
+                    </h3>
+                    <div class="exercise-list-concepts">
+                        ${conceptTags}${moreConceptsText}
+                    </div>
+                    <div class="exercise-list-type type-${exercise.type}">${typeMapping[exercise.type] || exercise.type}</div>
+                    <div class="exercise-list-difficulty">
+                        <div class="difficulty-indicator">
+                            ${generateDifficultyIndicator(exercise.difficulty)}
+                        </div>
+                    </div>
+                    <div class="exercise-list-features">
+                        ${solutionFeature}
+                        ${explanationFeature}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Generate all exercises
+        function generateExercises() {
+            const exercisesContainer = document.getElementById('exercises-container');
+            let html = '';
+
+            chaptersData.forEach((chapter, chapterIndex) => {
+                html += `
+                    <div class="chapter-section" data-chapter="${chapterIndex}">
+                        <div class="chapter-header">
+                            <div class="chapter-number">${chapter.number}</div>
+                            <h2 class="chapter-title">${chapter.title}</h2>
+                        </div>
+                        <div class="exercises-grid">
+                `;
+
+                chapter.exercises.forEach(exercise => {
+                    html += generateExerciseCard(exercise, chapterIndex);
+                });
+
+                html += `
+                        </div>
+                        <div class="exercises-list">
+                `;
+
+                chapter.exercises.forEach(exercise => {
+                    html += generateExerciseListItem(exercise, chapterIndex);
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            exercisesContainer.innerHTML = html;
+        }
+
+        // Initialize dynamic content generation
+        function initializeDynamicContent() {
+            generateChapterFilters();
+            generateConceptFilters();
+            generateExercises();
+            initializeEventHandlers();
+            filterExercises();
+        }
+
+        // Initialize event handlers
+        function initializeEventHandlers() {
+            // View toggle functionality
+            const viewButtons = document.querySelectorAll('[id^="view-"]');
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    viewButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const container = document.getElementById('exercises-container');
+                    if (this.id === 'view-list') {
+                        container.classList.add('list-view');
+                    } else {
+                        container.classList.remove('list-view');
+                    }
+                });
+            });
+
+            // Concept filter mode toggle
+            const conceptModeButtons = document.querySelectorAll('[id^="concept-mode-"]');
+            conceptModeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    conceptModeButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    conceptMode = this.id.includes('any') ? 'any' : 'only';
+                    filterExercises();
+                });
+            });
+
+            // Checkbox handling
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    this.closest('.checkbox-item').classList.toggle('active', this.checked);
+                    filterExercises();
+                });
+            });
+
+            // Search input and dropdown filters
+            const searchInput = document.getElementById('search-input');
+            const difficultyFilter = document.getElementById('difficulty-filter');
+            const chapterFilter = document.getElementById('chapter-filter');
+            
+            searchInput.addEventListener('input', filterExercises);
+            difficultyFilter.addEventListener('change', filterExercises);
+            chapterFilter.addEventListener('change', filterExercises);
+        }
+
+        // Collapsible filters functionality
+        function toggleFilters() {
+            const filtersContent = document.getElementById('filters-content');
+            const collapseIcon = document.querySelector('.collapse-icon');
+            
+            filtersContent.classList.toggle('collapsed');
+            collapseIcon.classList.toggle('collapsed');
+        }
+
+        // Exercise filtering and search functionality
+        let conceptMode = 'any'; // 'any' or 'only'
+
+        function filterExercises() {
+            const exercises = document.querySelectorAll('.exercise-card');
+            const chapters = document.querySelectorAll('.chapter-section');
+            const searchInput = document.getElementById('search-input');
+            const resultsCount = document.getElementById('results-count');
+            const difficultyFilter = document.getElementById('difficulty-filter');
+            const chapterFilter = document.getElementById('chapter-filter');
+            
+            const searchTerm = searchInput.value.toLowerCase();
+            const maxDifficulty = parseInt(difficultyFilter.value);
+            
+            // Get selected filters
+            const selectedChapterValue = chapterFilter.value;
+            const selectedConcepts = Array.from(document.querySelectorAll('input[name="concept"]:checked'))
+                .map(cb => cb.value);
+            const selectedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked'))
+                .map(cb => cb.value);
+
+            let visibleCount = 0;
+            const visibleChapters = new Set();
+
+            exercises.forEach(exercise => {
+                const exerciseChapter = parseInt(exercise.dataset.chapter);
+                const exerciseConcepts = exercise.dataset.concepts.split(',');
+                const exerciseType = exercise.dataset.type;
+                const exerciseDifficulty = parseInt(exercise.dataset.difficulty);
+                const exerciseText = exercise.textContent.toLowerCase();
+
+                let isVisible = true;
+
+                // Search filter
+                if (searchTerm && !exerciseText.includes(searchTerm)) {
+                    isVisible = false;
+                }
+
+                // Difficulty filter
+                if (exerciseDifficulty > maxDifficulty) {
+                    isVisible = false;
+                }
+
+                // Chapter filter (only show exercises from chapters we've completed + next chapter)
+                if (selectedChapterValue === 'none') {
+                    // If no chapter completed yet, only show first chapter (chapter 0)
+                    if (exerciseChapter > 0) {
+                        isVisible = false;
+                    }
+                } else {
+                    const maxCompletedChapter = parseInt(selectedChapterValue);
+                    if (exerciseChapter > maxCompletedChapter + 1) {
+                        isVisible = false;
+                    }
+                }
+
+                // Concept filter
+                if (selectedConcepts.length > 0) {
+                    if (conceptMode === 'any') {
+                        // Show exercises that contain ANY of the selected concepts
+                        const hasAnyConcept = selectedConcepts.some(concept => 
+                            exerciseConcepts.includes(concept)
+                        );
+                        if (!hasAnyConcept) {
+                            isVisible = false;
+                        }
+                    } else {
+                        // Show exercises that contain ONLY the selected concepts (or subset)
+                        const hasUnknownConcept = exerciseConcepts.some(concept => 
+                            !selectedConcepts.includes(concept) && 
+                            !['basics'].includes(concept) // Allow basic concepts
+                        );
+                        if (hasUnknownConcept) {
+                            isVisible = false;
+                        }
+                    }
+                }
+
+                // Type filter
+                if (selectedTypes.length > 0 && !selectedTypes.includes(exerciseType)) {
+                    isVisible = false;
+                }
+
+                exercise.style.display = isVisible ? 'block' : 'none';
+                
+                if (isVisible) {
+                    visibleCount++;
+                    visibleChapters.add(exerciseChapter);
+                }
+            });
+
+            // Show/hide chapter sections
+            chapters.forEach(chapter => {
+                const chapterNum = parseInt(chapter.dataset.chapter);
+                const hasVisibleExercises = visibleChapters.has(chapterNum);
+                chapter.style.display = hasVisibleExercises ? 'block' : 'none';
+            });
+
+            // Update results count
+            resultsCount.textContent = `${visibleCount} Übung${visibleCount !== 1 ? 'en' : ''} gefunden`;
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeDynamicContent);
+    </script>
+</body>
+
+</html>
