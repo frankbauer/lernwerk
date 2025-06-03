@@ -44,7 +44,7 @@ export default {
         this.world = floatingWorld
     },
     runCommand(commands, idx) {
-        //get css var called --width
+        //get css var called --cb-fw-width
         this.commandTimer = undefined
         if (idx < 0 || idx >= commands.length) return
         const cmd = commands[idx]
@@ -71,8 +71,8 @@ export default {
 
         function isOnWorld(obj) {
             if (self.objects['island'] === undefined) return true
-            const width = parseFloat(self.objects['island'].element.css('--width'))
-            const padding = parseFloat(self.objects['island'].element.css('--padding'))
+            const width = parseFloat(self.objects['island'].element.css('--cb-fw-width'))
+            const padding = parseFloat(self.objects['island'].element.css('--cb-fw-padding'))
 
             const wminx = padding + self.objects['island'].x
             const wmaxx = padding + width + self.objects['island'].x
@@ -110,7 +110,7 @@ export default {
                 return
             }
             if (!isOnWorld(obj)) {
-                const height = parseFloat(self.objects['island'].element.css('--height'))
+                const height = parseFloat(self.objects['island'].element.css('--cb-fw-height'))
                 moveObject(obj, obj.x, height + 230)
             }
         }

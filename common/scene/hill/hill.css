@@ -3,11 +3,12 @@
 }
 
 #nature {
-    --width: 797px;
-    --height: 453px;
+    --cb-hill-width: 797px;
+    --cb-hill-height: 453px;
     --hill-scale: 0.75;
-    width: calc(var(--hill-scale) * var(--width));
-    height: calc(var(--hill-scale) * var(--height));
+
+    width: calc(var(--hill-scale) * var(--cb-hill-width));
+    height: calc(var(--hill-scale) * var(--cb-hill-height));
     position: relative;
     border: 1px dotted #d0d0d0;
     border-radius: 8px;
@@ -24,8 +25,8 @@
 }
 
 #nature .hill {
-    width: var(--width);
-    height: var(--height);
+    width: var(--cb-hill-width);
+    height: var(--cb-hill-height);
     left: 0;
     top: 0;
     transform-origin: top left;
