@@ -1,14 +1,52 @@
 <h3>Aufgabe</h3>
 
-<p>Sie sitzen gut gelaunt in Ihrem Pkw unterwegs in den Urlaub, als plötzlich die Tankanzeige aufleuchtet und Sie darauf hinweist, dass Sie doch bitte tanken sollen. Da Sie noch einige Kilometer vor sich haben, wollen Sie das auch tun, aber wo befindet sich die nächste Tankstelle? Sie versuchen mittels Sprachassistenten über <code>getFillingStation</code> eine passende Tankstelle zu finden, wobei folgende zwei Parameter relevant sind:</p>
+<p style="font-style:normal">Sie sitzen gut gelaunt in Ihrem Pkw unterwegs in den Urlaub, als plötzlich die Tankanzeige aufleuchtet und Sie darauf hinweist, dass Sie doch bitte tanken sollen. Da Sie noch einige Kilometer vor sich haben, wollen Sie das auch tun, aber wo befindet sich die nächste Tankstelle? Sie versuchen mittels Sprachassistenten über <code>getFillingStation</code> (für diese und alle weiteren vorgegebenen Methoden siehe API der Klasse <code>Car</code>) eine passende Tankstelle zu finden, wobei folgende zwei Parameter relevant sind:</p>
 <ul>
     <li>
-        Die Tankstelle soll in der aktuellen Fahrtrichtung liegen, damit Sie keine Umwege machen müssen. Die Fahrtrichtung <code>richtung</code> können Sie mit der Klassenmethode <code>getDircetion</code> bestimmen. Nutzen Sie die Methode <code>printDirection</code>, um die Richtung auszugeben.
+        Die Tankstelle soll in der aktuellen Fahrtrichtung liegen, damit Sie keine Umwege machen müssen. Die Fahrtrichtung <code>direction</code> können Sie mit der Klassenmethode <code>getDircetion</code> bestimmen. Nutzen Sie die Methode <code>printDirection</code>, um die Richtung als Text auszugeben.
     </li>
     <li>
         <p>Die Entfernung bis zur Tankstelle muss kleiner sein als die derzeit verbleibende Reichweite, damit die Tankstelle auch erreicht werden kann. Die Reichweite <code>range</code> in <i>km</i> ergibt sich anhand des aktuellen Verbrauchs <code>consumption</code> und der noch vorhandenen Tankfüllung <code>fillLevel</code>:  
-            range = fillLevel/consumption * 100.          
-        Der aktuelle Verbrauch in <i>l/100km</i> und die noch vorhandene Tankfüllung in <i>l</i> lassen sich mithilfe der Methoden <code>getConsumption</code> und <code>getFillLevel</code> auslesen. Geben Sie zur Kontrolle Ihre Zwischenergebnisse und ihr Endergebnis aus.</p>
+            <math display="block" class="tml-display" style="display:block math;">
+            <mrow>
+                <mi>r</mi>
+                <mi>a</mi>
+                <mi>n</mi>
+                <mi>g</mi>
+                <mi>e</mi>
+                <mo>=</mo>
+                <mfrac>
+                <mrow>
+                    <mi>f</mi>
+                    <mi>i</mi>
+                    <mi>l</mi>
+                    <mi>l</mi>
+                    <mi>L</mi>
+                    <mi>e</mi>
+                    <mi>v</mi>
+                    <mi>e</mi>
+                    <mi>l</mi>
+                </mrow>
+                <mrow>
+                    <mi>c</mi>
+                    <mi>o</mi>
+                    <mi>n</mi>
+                    <mi>s</mi>
+                    <mi>u</mi>
+                    <mi>m</mi>
+                    <mi>p</mi>
+                    <mi>t</mi>
+                    <mi>i</mi>
+                    <mi>o</mi>
+                    <mi>n</mi>
+                </mrow>
+                </mfrac>
+                <mo>⋅</mo>
+                <mn>100</mn>
+            </mrow>
+            </math>
+       
+        Der aktuelle Verbrauch in <i>l/100km</i> und die noch vorhandene Tankfüllung in <i>l</i> lassen sich mithilfe der Methoden <code>getConsumption</code> und <code>getFillLevel</code> auslesen. Geben Sie zur Kontrolle Ihre Zwischenergebnisse und Ihr Endergebnis aus.</p>
     <p>Hinweis: Es kann davon ausgegangen werden, dass die Reichweite während des Suchvorgangs konstant bleibt.</p>
         </li>
 </ul> 
