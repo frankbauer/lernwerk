@@ -1,3 +1,4 @@
 # Env Files
 .env
 .env*local
+.vscode/settings.json
