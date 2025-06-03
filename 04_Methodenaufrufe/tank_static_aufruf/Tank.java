@@ -4,11 +4,11 @@ public class Tank {
 //#START STUDENT
 
 //#START SOLUTION
-        // Auslesen der Fahrtrichtung
+        // Auslesen und Ausgabe der Fahrtrichtung
         int direction = Car.getDirection();
         Car.printDirection(direction);
 
-        // Berechnen der Reichweite aus Verbrauch und Füllstand
+        // Berechnen der Reichweite aus Verbrauch und Fuellstand und Ausgabe der Ergebnisse
         float consumption = Car.getConsumption();
         System.out.println("Verbrauch: " + consumption + " l/100km");
         float fillLevel = Car.getFillLevel();
