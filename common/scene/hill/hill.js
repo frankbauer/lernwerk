@@ -65,7 +65,7 @@ export default {
         this.factory = factory
     },
     runCommand(commands, idx) {
-        //get css var called --width
+        //get css var called --cb-hill-width
         this.commandTimer = undefined
         if (idx < 0 || idx >= commands.length) return
         const cmd = commands[idx]
@@ -93,8 +93,8 @@ export default {
                 newObjElement.addClass("small transparent")
                 hasDelay = false
                 const scale = parseFloat(this.factory.css('--hill-scale'))
-                const width = parseFloat(this.factory.css('--width'))
-                const height = parseFloat(this.factory.css('--height'))
+                const width = parseFloat(this.factory.css('--cb-hill-width'))
+                const height = parseFloat(this.factory.css('--cb-hill-height'))
 
                 const controlElement = $(document.createElement('div'))
                 controlElement.addClass('control')

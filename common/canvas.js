@@ -68,8 +68,8 @@ export default {
 
 
         const scale = parseFloat(mainCanvas.css('--canvas-scale'))
-        const width = parseFloat(mainCanvas.css('--width'))
-        const height = parseFloat(mainCanvas.css('--height'))
+        const width = parseFloat(mainCanvas.css('--canvas-width'))
+        const height = parseFloat(mainCanvas.css('--canvas-height'))
         //console.log('DEBUG: Retina Scaling Factor:', retinaScalingFactor, scale, width, height);
 
         // Set the canvas width and height to account for the retina scaling factor
