@@ -40,7 +40,7 @@ class Car {
         return (float) (Math.random()*8);
     }
 
-    public static String getFillingStation(float direction, float range){
+    public static String getFillingStation(int direction, float range){
         String fillingStation = null;
         if (direction == NORD){
             fillingStation = "Esso-Tankstelle Albaching Nord";
