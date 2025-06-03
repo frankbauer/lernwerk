@@ -72,7 +72,7 @@ export default {
         this.factory = factory
     },
     runCommand(commands, idx) {
-        //get css var called --width
+        //get css var called --cb-rf-width
         this.commandTimer = undefined
         if (idx < 0 || idx >= commands.length) return
         const cmd = commands[idx]
@@ -106,8 +106,8 @@ export default {
                 if (this.renderTimer === undefined) {
                     const now = new Date()
                     const scale = parseFloat(this.factory.css('--room-scale'))
-                    const width = parseFloat(this.factory.css('--width'))
-                    const height = parseFloat(this.factory.css('--height'))
+                    const width = parseFloat(this.factory.css('--cb-rf-width'))
+                    const height = parseFloat(this.factory.css('--cb-rf-height'))
 
                     let lastTime = 0;
                     this.renderTimer = setInterval(() => {
