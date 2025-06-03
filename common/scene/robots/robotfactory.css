@@ -3,11 +3,11 @@
 }
 
 #factory {
-    --width: 800px;
-    --height: 450px;
+    --cb-rf-width: 800px;
+    --cb-rf-height: 450px;
     --room-scale: 0.75;
-    width: calc(var(--room-scale) * var(--width));
-    height: calc(var(--room-scale) * var(--height));
+    width: calc(var(--room-scale) * var(--cb-rf-width));
+    height: calc(var(--room-scale) * var(--cb-rf-height));
     position: relative;
     border: 1px dotted #d0d0d0;
     border-radius: 8px;
@@ -20,8 +20,8 @@
 }
 
 #factory .room {
-    width: var(--width);
-    height: var(--height);
+    width: var(--cb-rf-width);
+    height: var(--cb-rf-height);
     left: 0;
     top: 0;
     transform-origin: top left;

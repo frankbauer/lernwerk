@@ -1,10 +1,13 @@
-#floatingworld {
-    --width: 550px;
-    --height: 609px;
-    --padding: 10px;
+
+#floatingworld {      
+    --cb-fw-width: 550px;
+    --cb-fw-height: 609px;
+    --cb-fw-padding: 10px;
+    
     position: relative;
-    width: calc(var(--width) + 2 * var(--padding));
-    height: calc(var(--height) + 2 * var(--padding));
+    width: calc(var(--cb-fw-width) + 2 * var(--cb-fw-padding));
+    height: calc(var(--cb-fw-height) + 2 * var(--cb-fw-padding));
+
     background-image: url("./img/Background.jpg");
     background-size: cover;
     border-radius: 8px;
@@ -79,7 +82,7 @@ div#content .playground {
     }
 
     100% {
-        left: var(--width);
+        left: var(--cb-fw-width);
     }
 }
 
@@ -89,16 +92,16 @@ div#content .playground {
     }
 
     100% {
-        left: var(--width);
+        left: var(--cb-fw-width);
     }
 }
 
 #floatingworld .islandcontainer {
     position: absolute;
-    left: var(--padding);
-    top: var(--padding);
-    width: var(--width);
-    height: var(--height);
+    left: var(--cb-fw-padding);
+    top: var(--cb-fw-padding);
+    width: var(--cb-fw-width);
+    height: var(--cb-fw-height);
     transform-origin: center bottom;
     z-index: 99;
 }
@@ -112,16 +115,16 @@ div#content .playground {
     background-position-y: center;
     left: 0;
     top: 0;
-    width: var(--width);
-    height: var(--height);
+    width: var(--cb-fw-width);
+    height: var(--cb-fw-height);
     z-index: 100;
     transform-origin: center bottom;
 }
 
 #floatingworld .island.ghost {
     background-image: url("./img/GhostWorld.png");
-    left: calc(var(--padding) + (var(--width) - 554px)/2);
-    top: calc(var(--padding) + (var(--height) - 613px)/2);
+    left: calc(var(--cb-fw-padding) + (var(--cb-fw-width) - 554px)/2);
+    top: calc(var(--cb-fw-padding) + (var(--cb-fw-height) - 613px)/2);
     width: 554px;
     height: 613px;
     z-index: 98;

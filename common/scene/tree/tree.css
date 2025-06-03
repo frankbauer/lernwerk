@@ -1,6 +1,6 @@
 #main_canvas {
-    --width: 800px;
-    --height: 450px;
+    --canvas-width: 800px;
+    --canvas-height: 450px;
     --canvas-scale: 0.75;
 
     position: relative;
