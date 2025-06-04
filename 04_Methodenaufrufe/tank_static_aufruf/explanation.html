@@ -1,2 +1,62 @@
 <h3>Erklärung</h3>
+<p>Dieses Programm zeigt, wie mit in einer API vorgegebenen Klassenmethoden gearbeitet werden kann. Klassenmethoden sind stets an dem Schlagwort <code>static</code> in der Methodensignatur in der API erkennbar.</p>
 
+<ul>
+    <li>
+        <strong>Auslesen der Fahrtrichtung:</strong>
+        <p>Zum Auslesen der Fahrtrichtung wird die Klasssenmethode <code>getDircetion</code> der Klasse <code>Car</code> verwendet. Wie für Klassenmethoden üblich, wird diese auf dem Namen der Klasse aufgerufen, in der sie steht - hier <code>Car</code>. Die Methode erwartet laut API keine Parameter, weshalb die runden Klammern nach dem Methodennamen leer bleiben. Zurückgegeben wird ein <code>int</code>-Wert, der in der dafür angelegten Variablen <code>direction</code> gespeichert wird und die Fahrtrichtung codiert.
+        </p>    
+        <code>int direction = Car.getDirection();</code>
+    </li>
+    <li>
+        <strong>Ausgabe der Fahrtrichtung:</strong>
+        <p>
+           Die Methode <code>getDirection</code> gibt lediglich einen Zahlenwert zurück, der die Richtung codiert. Das Programm selbst ist dazu ausgelegt mit diesem Zahlenwert zu arbeiten, aber für den menschlichen Benutzer ist anhand dessen nicht erkenntlich, um welche Richtung es sich handelt, weil die Zuordnung der Zahlen zu den Konstanten nicht in der API steht. Deshalb wird die Methode <code>printDirection</code> benötigt. Diese gibt die zum übergebenen Zahlenwert gehörige Richtung als Text aus - nicht zurück (Rückgabedatentyp <code>void</code>). Da die aktuelle Fahrtrichtung ausgegeben werden soll, welche zuvor in der Variable <code>direction</code> gespeichert wurde, wird <code>direction</code> als Parameter beim Methodenaufruf übergeben. Weil es sich um einen Methodenaufruf und keine Methodendeklaration handelt, steht in den runden Klammern vor <code>direction</code> <i>kein</i> Datentyp!
+        </p>
+        <code> Car.printDirection(direction);</code>
+    </li>
+    <li>
+        <strong>Auslesen von Verbrauch und Füllstand:</strong>
+        <p>
+            Wie bei der Fahrtrichtung gibt es auch zum Auslesen von Verbrauch und Füllstand jeweils eine Klassenmethode in der Klasse <code>Car</code>: <code>getConsumption</code> bzw. <code>getFillLevel</code>. Beide bekommen keinen Parameter übergeben (leere Klammern) und geben entsprechend der API einen <code>float</code>-Wert zurück. Um die zurückgegebenen Werte zu speichern, werden mit <code>float consumption</code> und <code>float fillLevel</code> zwei Variablen angelegt. Diesen wird mit "<code>=</code>" der jeweilige Methodenaufruf zugewiesen, was darin resultiert, dass sobald das Programm abläuft, die jeweilige Methode ausgeführt und der zurückgegebene Wert in die Variable links des "<code>=</code>" geschrieben wird. 
+        </p>
+        <pre code>float consumption = Car.getConsumption();
+float fillLevel = Car.getFillLevel();</pre>
+    </li>
+    <li>
+        <strong>Berechnung der Reichweite:</strong>
+        <p>
+            Mit der in der Angabe gegebenen Formel wird aus den zuvor ausgelesenen Werten für Verbrauch und Füllstand, die in den Variablen <code>consumption</code> und <code>fillLevel</code> gespeichert wurden, die Reichweite berechnet. Das Ergebnis wird in der <code>float</code>-Variable <code>range</code> gespeichert. Für <code>range</code> wurde der Datentyp <code>float</code> gewählt, da <code>consumption</code> und <code>fillLevel</code> vom Datentyp <code>float</code> sind und aus deren Division entsprechend ein <code>float</code>-Wert resultiert. Auch nach der Multiplikation mit dem <code>int</code>-Wert "100" ist das Ergebnis ein <code>float</code>-Wert, denn <code>float</code> ist gegenüber <code>int</code> dominant. Zudem erwartet die Methode <code>getFillingStation</code> einen <code>float</code>-Wert für die Reichweite. Würde man also statt <code>float</code> <code>double</code> für <code>range</code> verwenden, müsste man die Variable dann wieder zu <code>float</code> casten, wenn man sie an die Methode übergibt, da <code>double</code> größer ist als <code>float</code>.
+        </p>
+        <pre code>float range = fillLevel/consumption*100;</pre>
+    </li>
+    <li>
+        <strong>Ausgabe von Verbrauch, Füllstand und Reichweite:</strong>
+        <p>
+            Mittels <code>System.out.println</code> können Verbrauch, Füllstand und Reichweite als Text ausgegeben werden. Zur Verknüpfung von <code>String</code>-Elementen (z.B. "Verbrauch: ") und Variableninhalten (z.B. Variablenname <code>consumption</code> außerhalb von <code>" "</code>) in einem Ausgabe-Statement wird ein "<code>+</code>" zwischen den einzelnen Teilen gesetzt.
+        </p>
+        <pre code>System.out.println("Verbrauch: " + consumption + " l/100km");
+System.out.println("Fuellstand: " + fillLevel + " l");
+System.out.println("verbleibende Reichweite: " + range + " km");</pre>
+    </li>
+    <li>
+        <strong>Bestimmen einer passenden Tankstelle:</strong>
+        <p>
+            Um letzlich eine Tankstelle zu erhalten, die die gewünschten Kriterien erfüllt, wird die Methode <code>getFillingStation</code> aufgerufen. Diese erwartet als Übergabeparameter einen <code>int</code>-Parameter, der die Richtung codiert, und die berechnete Reichweite als <code>float</code>-Wert. Die Richtung haben wir zuvor in der Variable <code>direction</code> und die Reichweite in der Variable <code>range</code> abgespeichert. Deshalb können wir beim Methodenaufruf nun diese beiden Variablennamen in den runden Klammern übergeben. 
+        </p>
+        <p>
+            Achtung: Dass die Parameter in der Methodensignatur in der API auch <code>direction</code> und <code>range</code> heißen, also genau wie unsere angelegten Variabelen, ist reiner Zufall und nicht zwingend nötig. Theoretisch kann jede Variable vom passenden Datentyp oder auch Zahlenwerte übergeben werden. Auch hier gilt, es handelt sich um einen Methodenaufruf, weshalb in den runden Klammern keine Datentypen vor den Variablennamen mehr stehen!
+        </p>
+        <p>
+            <code>getFillingStation</code> gibt einen <code>String</code> zurück, welcher in der Variablen <code>fillingStation</code> gespeichert wird.
+        </p>
+        <pre code>String fillingStation = Car.getFillingStation(direction, range);</pre>
+    </li>
+    <li>
+        <strong>Starten der Navigation:</strong>
+        <p>
+            Zu guter Letzt soll die Navigation zur Tankstelle gestartet werden. Dazu wird die Klassenmethode <code>startNavigation</code> verwendet. Dieser erwartet als Übergabeparameter einen <code>String</code>, der das Ziel der Navigation angibt. Im vorliegenden Fall wird die Variable <code>fillingStation</code> übergeben, die den Namen der gefundenen Tankstelle als <code>String</code> enthält. Hier wird nochmal deutlich, dass der Parametername in der API und der Name der beim Aufruf übergebenen Variable nicht übereinstimmen müssen (<code>destination</code> vs. <code>fillingStation</code>). Lediglich der Datentyp ist entscheidend.
+        </p>
+        <pre code>Car.startNavigation(fillingStation);</pre>
+    </li>
+</ul>
