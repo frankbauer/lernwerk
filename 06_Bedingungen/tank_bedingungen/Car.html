@@ -1,0 +1,27 @@
+<h2><b>class Car</b></h2>
+
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Car</code> dient zum Auslesen von Daten eines Pkw und zur Verwendung einiger im Fahrzeug integrierten Funktionen.</p>
+
+<h4>Konstanten</h4>
+<ul>
+    <li><code>public static final int NORD</code><br>Fahrt in Richtung Norden</li>
+    <li><code>public static final int NORDOST</code><br>Fahrt in Richtung Nordosten</li>
+    <li><code>public static final int OST</code><br>Fahrt in Richtung Osten</li>
+    <li><code>public static final int SUEDOST</code><br>Fahrt in Richtung Südosten</li>
+    <li><code>public static final int SUED</code><br>Fahrt in Richtung Süden</li>
+    <li><code>public static final int SUEDWEST</code><br>Fahrt in Richtung Südwesten</li>
+    <li><code>public static final int WEST</code><br>Fahrt in Richtung Westen</li>
+    <li><code>public static final int NORDWEST</code><br>Fahrt in Richtung Nordwesten</li>
+</ul>
+<h4>Methoden</h4>
+<ul>
+    <li><code>public static int getDirection()</code><br>Gibt die Fahrtrichtung als Zahlenwert codiert zurück.</li>
+    <li><code>public static void printDirection(int direction)</code><br>Gibt die übergebene Fahrtrichtung als Text aus.</li>
+    <li><code>public static float getConsumption()</code><br>Gibt den aktuellen Verbrauch des Pkw in <i>l/100km</i> zurück.</li>
+    <li><code>public static float getFillLevel()</code><br>Gibt die im Tank verbleibende Kraftstoffmenge in <i>l</i> zurück.</li>
+    <li><code>public static String getFillingStation(int direction, float range)</code><br>Gibt die Tankstelle mit dem geringsten Umweg bei der übergebenen Fahrtrichtung zurück, zu der die Entfernung kleiner als die übergebene Reichweite ist. Falls keine gültige Richtung übergeben wird oder keine erreichbare Tankstelle gefunden wird, wird null zurückgegeben. </li>
+    <li><code>public static String getNearestFillingStation()</code><br>Gibt die Tankstelle mit der geringsten Entfernung zum aktuellen Standort zurück. </li>
+    <li><code>public static String getDistance(String destination)</code><br>Gibt die Entfernung vom aktuellen Standort bis zum übergebenen Ziel in <i>km</i> zurück. </li>
+    <li><code>public static void startNavigation(String destination)</code><br>Startet die Navigation zum übergebenen Ziel.</li>
+</ul>
