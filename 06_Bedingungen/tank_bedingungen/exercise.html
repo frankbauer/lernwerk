@@ -1,9 +1,94 @@
 <h3>Aufgabe</h3>
 
-<p style="font-style:normal"></p>
+<p style="font-style: italic">Sie sitzen gut gelaunt in Ihrem Pkw unterwegs in den Urlaub. Plötzlich sehen Sie, dass ihre Tankanzeige leuchtet und Sie darauf hinweist, dass Sie doch bitte tanken sollen! Da Sie noch einige Kilometer vor sich haben, wollen Sie das auch tun, aber wo befindet sich die nächste Tankstelle? Ist diese überhaupt noch erreichbar oder haben Sie die Anzeige zu lange übersehen?</p>
+<p >Der vorgegebene Code bestimmt bereits die Fahrtrichtung <code>direction</code>, den derzeitigen Verbrauch <code>consumption</code>, die noch verbleibende Treibstoffmenge im Tank <code>fillLevel</code> und die damit noch mögliche Reichweite <code>range</code>. Mithilfe dieser Werte wird versucht, mit der Methode <code>getFillingStation</code> die optimale Tankstelle zu finden. Dabei haben Tankstellen, die in Fahrtrichtung liegen, Priorität, aber wenn in dieser Richtung keine erreichbare Tankstelle gefunden wird, sucht die Methode automatisch auch in allen anderen Richtungen. Sofern jedoch keine Tankstelle innerhalb der noch verfügbaren Reichweite liegt, also alle Tankstellen zu weit entfernt sind, gibt die Methode <code>null</code> zurück.</p>
+<p>Ihre Aufgabe ist es nun:</p>
 <ul>
     <li>
-
+        <p>die Navigation zur Tankstelle zur starten, sofern <code>getFillingStation</code> eine geeignete Tankstelle gefunden hat.</p>
+    </li>
+    <li>
+        <p>die Information auszugeben, dass bei dem aktuellen Verbrauch keine erreichbare Tankstelle gefunden wurde, sofern die Suche mit <code>getFillingStation</code> erfolglos war.</p>
+        <p style="font-style:normal">In diesem Fall haben Sie nur noch die Möglichkeit, ab jetzt so spritfahrend zu fahren, dass ihr Verbrauch ausreichend sinkt, um doch noch eine Tankstelle zu erreichen.</p>
+        <ul>
+            <li>
+            Suchen Sie mithilfe der Methode <code>getNearestFillingStation</code> nach der am wenigsten weit entfernten Tankstelle. Bestimmen Sie dann mit <code>getDistance</code> die Entfernung zu dieser Tankstelle. Geben Sie beide Ergebnisse in einer geminsamen Zeile aus.
+            </li>
+            <li>
+                Berechnen Sie mit 
+                <math display="inline" class="tml-display" style="display: inline math;">
+  <mrow>
+    <mi>m</mi>
+    <mi>a</mi>
+    <mi>x</mi>
+    <mi>C</mi>
+    <mi>o</mi>
+    <mi>n</mi>
+    <mi>s</mi>
+    <mi>u</mi>
+    <mi>m</mi>
+    <mi>p</mi>
+    <mi>t</mi>
+    <mi>i</mi>
+    <mi>o</mi>
+    <mi>n</mi>
+    <mo>=</mo>
+    <mfrac>
+      <mrow>
+        <mi>f</mi>
+        <mi>i</mi>
+        <mi>l</mi>
+        <mi>l</mi>
+        <mi>L</mi>
+        <mi>e</mi>
+        <mi>v</mi>
+        <mi>e</mi>
+        <mi>l</mi>
+      </mrow>
+      <mrow>
+        <mi>d</mi>
+        <mi>i</mi>
+        <mi>s</mi>
+        <mi>t</mi>
+        <mi>a</mi>
+        <mi>n</mi>
+        <mi>c</mi>
+        <mi>e</mi>
+      </mrow>
+    </mfrac>
+    <mo>⋅</mo>
+    <mn style="font-style: italic";>100</mn>
+  </mrow>
+</math>
+            den Verbrauch, den Sie maximal haben dürfen, um die nächste Tankstelle zu erreichen.
+            </li>
+            <li>
+              <p style="font-style: normal">Sie können Ihren Verbrauch leider nicht unendlich weit drosseln. Der minimale Verbrauch liegt bei 3,5<i>l/100km</i>. <br>
+              Liegt der von Ihnen berechnete Wert für den maximal erlaubten Verbrauch bei diesem Wert oder darüber, so können Sie ausgeben, von welchem auf welchen Wert der Verbrauch gesenkt werden muss. Zudem kann die Navigation zur nächsten Tankstelle gestartet werden, die mit dem reduzierten Verbrauch erreichbar wäre.<br>
+              Liegt der maximal erlaubte Verbrauch allerdings unter dem Grenzwert von 3,5<i>l/100km</i>, ist keine Tankstelle mehr erreichbar, selbst wenn der Verbrauch auf ein Minimum reduziert werden würde. Nun kann nur noch angehalten und Hilfe gerufen werden. Geben Sie diese Information auf der Konsole aus.</p>
+            </li>
+        </ul>
     </li>
 </ul> 
-<p></p> 
+<p>Hier einige Beispielausgaben für die unterschiedlichen Fälle:</p>
+<pre code>Fahrtrichtung: Nordosten
+Verbrauch: 12.737686 l/100km
+Fuellstand: 6.774276 l
+verbleibende Reichweite: 53.182938 km
+Navigation nach JET-Tankstelle Weissensee Nordost wird gestartet.</pre>
+<pre code>Fahrtrichtung: Sueden
+Verbrauch: 11.330742 l/100km
+Fuellstand: 1.4467449 l
+verbleibende Reichweite: 12.768316 km
+Keine bei aktuellem Verbrauch erreichbare Tankstelle gefunden.
+Naechste Tankstelle in 30.751215 km: Esso-Tankstelle Albaching Nord
+Verbrauch muss von 11.330742 l/100km auf 4.7046757 l/100km gesenkt werden.
+Navigation nach Esso-Tankstelle Albaching Nord wird gestartet.</pre>
+<pre code>Fahrtrichtung: Norden
+Verbrauch: 9.265052 l/100km
+Fuellstand: 0.31036302 l
+verbleibende Reichweite: 3.3498247 km
+Keine bei aktuellem Verbrauch erreichbare Tankstelle gefunden.
+Naechste Tankstelle in 37.16577 km: TOTAL-Tankstelle Waldbad Suedwest
+Auch bei Verbrauchsreduktion kann die Tankstelle nicht erreicht werden. 
+Halten Sie an und rufen Sie Hilfe.</pre>
