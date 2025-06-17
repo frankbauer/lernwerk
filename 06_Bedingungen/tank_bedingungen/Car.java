@@ -8,6 +8,28 @@ class Car {
     public static final int WEST = 6;
     public static final int NORDWEST = 7;
 
+    private int direction;
+    private float distance;
+    private String name;
+    private static java.util.ArrayList<Car> fillStat = new java.util.ArrayList<Car>();
+
+    private Car (String name, int direction, float distance){
+        this.name = name;
+        this.direction = direction;
+        this.distance = distance;
+        fillStat.add(this);
+    }
+
+    private static Car tankN = new Car("Esso-Tankstelle Albaching Nord", NORD, (float)(Math.random()*150));
+    private static Car tankNO = new Car("JET-Tankstelle Weissensee Nordost", NORDOST, (float)(Math.random()*150));
+    private static Car tankO = new Car("ARAL-Tankstelle Knilch Ost", OST, (float)(Math.random()*150));
+    private static Car tankSO = new Car("OMV-Tankstelle Steinach Suedost", SUEDOST, (float)(Math.random()*150));
+    private static Car tankS = new Car("Shell-Tankstelle Welzer Sued", SUED, (float)(Math.random()*150));
+    private static Car tankSW = new Car("TOTAL-Tankstelle Waldbad Suedwest", SUEDWEST, (float)(Math.random()*150));
+    private static Car tankW = new Car("Agip-Tankstelle Reuther West", WEST, (float)(Math.random()*150));
+    private static Car tankNW = new Car("BayWa-Tankstelle Heller Nordwest", NORDWEST, (float)(Math.random()*150));
+    
+
     public static int getDirection(){
         return (int) (Math.random()*8);
     }
@@ -42,66 +64,113 @@ class Car {
         return (float) (Math.random()*7);
     }
 
+    private static float getDiversion(int drivingDir, int direction, float distance){
+        float diversion;
+        if (Math.abs(direction - drivingDir)<3){
+            diversion = (float)(2*distance * Math.sin((direction-drivingDir)*Math.PI/4));
+        }else{
+            diversion = 2*distance;
+        }
+        return diversion;
+    }
+
     public static String getFillingStation(int direction, float range){
         String fillingStation = null;
-        if (direction == NORD){
-            if (range>=50){
-                fillingStation = "Esso-Tankstelle Albaching Nord";
-            }/*else{
-                fillingStation = "JET-Tankstelle Weissensee Nordost";
-            }*/
-        } else if (direction == NORDOST){
-            if (range>=50){
-                fillingStation = "JET-Tankstelle Weissensee Nordost";
-            }/*else{
-                fillingStation = "Esso-Tankstelle Albaching Nord";
-            }*/
-        } else if (direction == OST){
-            if (range>=55){
-                fillingStation = "ARAL-Tankstelle Knilch Ost";
-            }/*else{
-                fillingStation = "OMV-Tankstelle Steinach Suedost";
-            }*/
-        } else if (direction == SUEDOST){
-            if (range>=55){
-                fillingStation = "OMV-Tankstelle Steinach Suedost";
-            }/*else{
-                fillingStation = "Shell-Tankstelle Welzer Sued";
-            }*/
-        } else if (direction == SUED){
-            if (range>=45){
-            fillingStation = "Shell-Tankstelle Welzer Sued";
-            } /*else{
-                fillingStation = "TOTAL-Tankstelle Waldbad Suedwest";
-            }*/
-        } else if (direction == SUEDWEST){
-            if (range>=45){
-            fillingStation = "TOTAL-Tankstelle Waldbad Suedwest";
-            }/* else{
-                fillingStation = "Shell-Tankstelle Welzer Sued";
-            }*/
-        } else if (direction == WEST){
-            if (range>=40){
-            fillingStation = "Agip-Tankstelle Reuther West";
-            }/*else{
-                fillingStation = "BayWa-Tankstelle Heller Nordwest";
-            }*/
-        } else if (direction == NORDWEST){
-            if (range>=40){
-                fillingStation = "BayWa-Tankstelle Heller Nordwest";
-            }/* else{
-                fillingStation = "Esso-Tankstelle Albaching Nord";
-            }*/
+        int newDir;
+        float diversion = 1500.0f;
+        for(int i=0; i<8; i++){
+            newDir = (direction+i)%8;
+            if (newDir == NORD){
+                if (range>=tankN.distance){
+                    float div = getDiversion(direction, newDir, tankN.distance);
+                    if (diversion > div){
+                        diversion = div;
+                        fillingStation = tankN.name;
+                    }
+                }
+            } else if (newDir == NORDOST){
+                if (range>=tankNO.distance){
+                    float div = getDiversion(direction, newDir, tankNO.distance);
+                    if (diversion > div){
+                        diversion = div;
+                        fillingStation = tankNO.name;
+                    }
+                }
+            } else if (newDir == OST){
+                if (range>=tankO.distance){
+                    float div = getDiversion(direction, newDir, tankO.distance);
+                    if (diversion > div){
+                        diversion = div;
+                        fillingStation = tankO.name;
+                    }
+                }
+            } else if (newDir == SUEDOST){
+                if (range>=tankSO.distance){
+                    float div = getDiversion(direction, newDir, tankSO.distance);
+                    if (diversion > div){
+                        diversion = div;
+                        fillingStation = tankSO.name;
+                    }
+                }
+            } else if (newDir == SUED){
+                if (range>=tankS.distance){
+                    float div = getDiversion(direction, newDir, tankS.distance);
+                    if (diversion > div){
+                        diversion = div;
+                        fillingStation = tankS.name;
+                    }
+                }
+            } else if (newDir == SUEDWEST){
+                if (range>=tankSW.distance){
+                    float div = getDiversion(direction, newDir, tankSW.distance);
+                    if (diversion > div){
+                        diversion = div;
+                        fillingStation = tankSW.name;
+                    }
+                }
+            } else if (newDir == WEST){
+                if (range>=tankW.distance){
+                    float div = getDiversion(direction, newDir, tankW.distance);
+                    if (diversion > div){
+                        diversion = div;
+                        fillingStation = tankW.name;
+                    }
+                }
+            } else if (newDir == NORDWEST){
+                if (range>=tankNW.distance){
+                    float div = getDiversion(direction, newDir, tankNW.distance);
+                    if (diversion > div){
+                        diversion = div;
+                        fillingStation = tankNW.name;
+                    }
+                }
+            }
         }
         return fillingStation;
     }
 
     public static String getNearestFillingStation(){
-        return "Esso-Tankstelle Albaching Nord";
+        Car fillingStation = null;
+        float dist = 200.0f;
+        for(int t=0; t<fillStat.size(); t++){
+            if (dist > fillStat.get(t).distance){
+                fillingStation = fillStat.get(t);
+                dist = fillStat.get(t).distance;
+            }
+        }
+        if(fillingStation == null){
+            return null;
+        }
+        return fillingStation.name;
     }
 
     public static float getDistance(String destination){
-        return 60;
+        for(int t=0; t<fillStat.size(); t++){
+            if ((fillStat.get(t).name).equals(destination)){
+                return fillStat.get(t).distance;
+            }
+        }
+        return 200.0f;
     }
 
     public static void startNavigation(String destination){
