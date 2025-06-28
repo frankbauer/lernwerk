@@ -170,7 +170,8 @@ class Car {
                 return fillStat.get(t).distance;
             }
         }
-        return 200.0f;
+        System.out.println("Ziel nicht gefunden");
+        return -1.0f;
     }
 
     public static void startNavigation(String destination){
