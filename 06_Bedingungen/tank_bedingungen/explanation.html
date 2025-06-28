@@ -1,2 +1,73 @@
 <h3>Erklärung</h3>
-<p></p>
+<p>Diese Aufgabe zeigt, wie mithilfe von <code>if</code> und <code>else</code> Fallunterscheidungen vorgenommen werden können. Sofern Sie eine ausführliche Erklärung zum bereits vorgegebenen Code-Teil wünschen, schauen Sie sich die Aufgabe <i>Tankstellensuche</i> im Kapitel <i>Methodenaufrufe</i> an.</p>
+<ul>
+    <li>
+        <strong>Fallunterscheidung: Ist eine Tankstelle in Reichweite?:</strong>
+        <p>Die Methode <code>getFillingStation</code> der Klasse <code>Car</code> prüft, ob innerhalb der übergebenen Reichweite eine Tankstelle vorhanden ist. Dabei wird die Tankstelle bevorzugt, bei der mit Bezug auf die übergebene Richtung der kleinste Umweg nötig ist. Wird eine Tankstelle innerhalb der Reichweite gefunden, wird diese als <code>String</code> zurückgegeben, andernfalls wird <code>null</code> zurückgegeben. Der Rückgabewert wird in der Variablen <code>fillingStation</code> gespeichert. Entsprechend kann diese Variable im Anschluss für die Bedingung verwendet werden, um zu bestimmen, welcher Codeteil ausgeführt werden soll - der, der ablaufen soll, wenn eine Tankstelle in Reichweite gefunden wurde oder der, wenn keine gefunden wurde. </p>
+        <pre code style="overflow-x: scroll;">String fillingStation = Car.getFillingStation(direction, range);</pre>
+        <p>In der Beispiellösung wurde sich dazu entschieden, mittels eines if-Statements zu überprüfen, ob <code>fillingStation</code> ungleich (<code>!=</code>) <code>null</code> ist. Das ist der Fall, wenn eine Tankstelle in Reichweite gefunden wurde, da dann der <code>String</code> mit dem Tankstellennamen in <code>fillingStation</code> steht. Falls die Bedingung zutrifft, ist das Ergebnis der Bedingung <code>true</code> und der Code in den geschweiften Klammern <code>{...}</code> nach dem <code>if</code>-Statement wird ausgeführt. Der Abschnitt <code>else{...}</code> wird nicht beachtet. Ist die Bedingung nicht erfüllt, das heißt, <code>fillingStation</code> ist gleich <code>null</code>, so wurde keine Tankstelle in Reichweite gefunden. In diesem Fall wird der Teil innerhalb der geschweiften Klammern nach der if-Bedingung übersprungen und stattdessen der Abschnitt in den geschweiften Klammern <code>{...}</code> nach <code>else</code> ausgeführt.</p>
+        <pre code>if(fillingStation != null){
+    ...
+} else {
+    ...
+}</pre>
+        <p>Alternativ könnte auch geprüft werden ob, <code>fillingStation</code> gleich (<code>==</code>) <code>null</code> ist und der Inhalt innerhalb der geschweiften Klammern von if- und else-Statement getauscht werden.</p>
+        <pre code style="overflow-x: scroll;">if(fillingStation == null){
+    ... //Inhalt hier der von else {...} in Beispiellösung
+} else {
+    ... //Inhalt hier der von if {...} in Beispiellösung
+}</pre>
+    </li>
+    <li>
+        <strong>Fall: Tankstelle in Reichweite:</strong>
+        <p>Sofern die Tankstelle in Reichweite liegt, wird mithilfe der Methode <code>startNavigation</code> der Klasse <code>Car</code> die Navigation zur Tankstelle gestartet.</p>
+        <pre code>Car.startNavigation(fillingStation);</pre>
+    </li>
+    <li>
+        <strong>Fall: Tankstelle nicht innerhalb der aktuellen Reichweite:</strong>
+        <ul>
+            <li>
+                <strong>Ausgabe "bei aktuellem Verbrauch nicht erreichbar":</strong>
+        <p>In diesem Fall hat <code>getFillingStation</code> <code>null</code> zurückgegeben und wir befinden uns nun im <code>else</code>-Block. Zunächst wird mittels <code>System.out.prinln</code> ausgegeben, dass bei dem aktuellen Verbrauch keine erreichbare Tankstelle gefunden wurde.</p>
+        <pre code style="overflow-x: scroll;">System.out.println("Keine bei aktuellem Verbrauch erreichbare Tankstelle gefunden.");</pre>
+            </li>
+            <li>
+                <strong>Suche nach der nächsten Tankstelle:</strong>
+        <p>
+            Im Anschluss wird mithilfe der Methode <code>getNearestFillingStation</code> nach der am wenigsten weit entfernten Tankstelle gesucht. Das Ergebnis der Suche wird der Variablen <code>fillingStation</code> zugewiesen und überschreibt damit den bisherigen Inhalt (<code>null</code>).
+        </p>
+        <pre code>fillingStation = Car.getNearestFillingStation();</pre>
+            </li>
+            <li>
+                <strong>Entfernung zur nächsten Tankstelle:</strong>
+        <p>
+            Danach wird die Entfernung zu eben dieser Tankstelle bestimmt, indem die Methode <code>getDistance</code> mit <code>fillingStation</code> als Parameter aufgerufen wird. Diese Methode gibt einen <code>float</code>-Wert zurück, der in der Variablen <code>distance</code> abgelegt wird. Mit <code>System.out.println</code> werden die Ergebnisse als Textnachricht ausgegeben.
+        </p>
+        <pre code style="overflow-x: scroll;">float distance = Car.getDistance(fillingStation);
+System.out.println("Naechste Tankstelle in " + distance + " km: " + fillingStation);</pre>
+            </li>
+            <li>
+                <strong>Bestimmung des maximal erlaubten Verbrauchs:</strong>
+        <p>
+            Aus dem Füllstand und der Entfernung kann dann der Verbrauch berechnet werden, der maximal erlaubt ist, um die nächste Tankstelle zu erreichen. Die Berechnungsformel dazu ist in der Angabe gegeben. Der Füllstand wurde im vorgegebenen Code-Teil in der Variablen <code>fillLvel</code> gespeichert, während die Entfernung in der Variablen <code>distance</code> hinterlegt ist. Das Ergebnis der Berechnung wird in der Variablen <code>maxConsumption</code> abgelegt. Nachdem sowohl <code>fillLevel</code> als auch <code>distance</code> <code>float</code>-Werte sind, wurde auch <code>maxConsumption</code> als float-Variable deklariert.
+        </p>
+        <pre code style="overflow-x: scroll;">float maxConsumption = fillLevel/distance*100;</pre>
+            </li>
+            <li>
+                <strong>Fallunterscheidung: Verbrauchsreduktion ausreichend möglich?:</strong>
+        <p>Zum Schluss muss anhand des berechneten maximal erlaubten Verbrauchs noch eine Fallunterscheidung vorgenommen werden. Der Verbrauch kann minimal bis zu einem Wert von 3,5<i>l/100km</i> reduziert werden, eine weitere Reduktion ist nicht möglich. Deshalb wird in einer if-Bedingung geprüft, ob <code>maxConsumption</code> größer gleich <i>3,5</i> ist. </p>
+        <pre code>if (maxConsumption >= 3.5f){...}</pre>
+            <p>
+                Falls ja, ist es möglich, den Verbrauch ausreichend zu reduzieren, um die nächste Tankstelle zu erreichen. Es kann also ausgegeben werden, auf welchen Wert der Verbrauch reduziert werden muss. Der derzeitige Verbrauch steht in der Variablen <code>consumption</code>, der Verbrauch, auf den reduziert werden muss, in der Variablen <code>maxConsumption</code>. Beide werden mittels "<code>+</code>" in das <code>System.out.println</code>-Statement aufgenommen. Zusätzlich kann die Navigation zur mit <code>getNearestFillingStation</code> gefundenen Tankstelle <code>fillingStation</code> gestartet werden. Dazu wird auch hier die Methode <code>startNavigation</code> verwendet.
+            </p>
+            <pre code style="overflow-x: scroll;">System.out.println("Verbrauch muss von " + consumption + " l/100km auf " + maxConsumption + " l/100km gesenkt werden.");
+Car.startNavigation(fillingStation);</pre>
+            <p>
+                Falls der Verbrauch unter 3,5<i>l/100km</i> reduziert werden müsste, besteht keine Hoffnung mehr, dass noch eine Tankstelle erreicht werden kann. Deshalb wird im <code>else</code>-Teil keine Navigation gestartet. Stattdessen wird ausgegeben, dass auch mit Verbrauchsreduktion keine Tankstelle erreicht werden kann und dass angehalten und Hilfe gerufen werden sollte. Dies erfolgt auch hier wieder mittels <code>System.out.println</code>.
+            </p>
+            <pre code style="overflow-x: scroll;">System.out.println("Auch bei Verbrauchsreduktion kann die Tankstelle nicht erreicht werden. "); 
+System.out.println("Halten Sie an und rufen Sie Hilfe.");</pre>
+            </li>
+        </ul>
+    </li>
+</ul>
