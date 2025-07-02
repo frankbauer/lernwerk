@@ -28,7 +28,7 @@
         <ul>
             <li>
                 <strong>Ausgabe "bei aktuellem Verbrauch nicht erreichbar":</strong>
-        <p>In diesem Fall hat <code>getFillingStation</code> <code>null</code> zurückgegeben und wir befinden uns nun im <code>else</code>-Block. Zunächst wird mittels <code>System.out.prinln</code> ausgegeben, dass bei dem aktuellen Verbrauch keine erreichbare Tankstelle gefunden wurde.</p>
+        <p>In diesem Fall hat <code>getFillingStation</code> <code>null</code> zurückgegeben und wir befinden uns nun im <code>else</code>-Block. Zunächst wird mittels <code>System.out.println</code> ausgegeben, dass bei dem aktuellen Verbrauch keine erreichbare Tankstelle gefunden wurde.</p>
         <pre code style="overflow-x: scroll;">System.out.println("Keine bei aktuellem Verbrauch erreichbare Tankstelle gefunden.");</pre>
             </li>
             <li>
@@ -49,7 +49,7 @@ System.out.println("Naechste Tankstelle in " + distance + " km: " + fillingStati
             <li>
                 <strong>Bestimmung des maximal erlaubten Verbrauchs:</strong>
         <p>
-            Aus dem Füllstand und der Entfernung kann dann der Verbrauch berechnet werden, der maximal erlaubt ist, um die nächste Tankstelle zu erreichen. Die Berechnungsformel dazu ist in der Angabe gegeben. Der Füllstand wurde im vorgegebenen Code-Teil in der Variablen <code>fillLvel</code> gespeichert, während die Entfernung in der Variablen <code>distance</code> hinterlegt ist. Das Ergebnis der Berechnung wird in der Variablen <code>maxConsumption</code> abgelegt. Nachdem sowohl <code>fillLevel</code> als auch <code>distance</code> <code>float</code>-Werte sind, wurde auch <code>maxConsumption</code> als float-Variable deklariert.
+            Aus dem Füllstand und der Entfernung kann dann der Verbrauch berechnet werden, der maximal erlaubt ist, um die nächste Tankstelle zu erreichen. Die Berechnungsformel dazu ist in der Angabe gegeben. Der Füllstand wurde im vorgegebenen Code-Teil in der Variablen <code>fillLevel</code> gespeichert, während die Entfernung in der Variablen <code>distance</code> hinterlegt ist. Das Ergebnis der Berechnung wird in der Variablen <code>maxConsumption</code> abgelegt. Nachdem sowohl <code>fillLevel</code> als auch <code>distance</code> <code>float</code>-Werte sind, wurde auch <code>maxConsumption</code> als <code>float</code>-Variable deklariert.
         </p>
         <pre code style="overflow-x: scroll;">float maxConsumption = fillLevel/distance*100;</pre>
             </li>
