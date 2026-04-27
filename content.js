@@ -138,7 +138,7 @@ async function generateCodeBlocks(item) {
     setAttributes({
         dataCompiler: "java",
         dataRunCode: true,
-        dataCompilerVersion: 101,
+        dataCompilerVersion: 102,
         dataExecutionTimeout: 5000,
         dataMaxCharacters: 6000,
         dataOutputParser: "data",

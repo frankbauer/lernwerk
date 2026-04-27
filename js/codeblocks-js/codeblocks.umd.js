@@ -22026,7 +22026,7 @@ var OA = dA({
 				else {
 					X.compilerState.displayGlobalState("Executing <b>" + v + "</b>");
 					let n = this.getOrCreateRunWorker(), i = (t) => {
-						if (t.data.id == "" + e && t.data.command != "run-finished-setup") if (t.data.command == "w-exit-keepalive" || t.data.command == "exit-keepalive") r.keepAlive && n.postMessage({
+						if (t.data.command == "f-FINAL" && (r.resultData = JSON.parse(t.data.value)), t.data.id != "" + e && console.warn("Received message for different session.", t.data.id, e, JSON.stringify(t.data)), t.data.command != "run-finished-setup") if (t.data.command == "w-exit-keepalive" || t.data.command == "exit-keepalive") r.keepAlive && n.postMessage({
 							command: "session-ended",
 							id: "" + e
 						});
@@ -22038,7 +22038,7 @@ var OA = dA({
 							t.data.command = e, r.didReceiveMessage(e, t.data);
 						} else t.data.command == "main-finished" ? (r.postMessageFunction = (t, r) => {
 							r = { ...r }, r.command = t, r.id = e, n.postMessage(r);
-						}, r.postMessageFunction("main-finished", {}), r.dequeuePostponedMessages(), r.whenFinishedHandler && r.whenFinishedHandler(t.data.args)) : t.data.command == "main-will-start" ? r.beforeStartHandler && r.beforeStartHandler() : t.data.command == "f-FINAL" && (r.resultData = JSON.parse(t.data.value));
+						}, r.postMessageFunction("main-finished", {}), r.dequeuePostponedMessages(), r.whenFinishedHandler && r.whenFinishedHandler(t.data.args)) : t.data.command == "main-will-start" && r.beforeStartHandler && r.beforeStartHandler();
 					};
 					n.addEventListener("message", i), n.postMessage({
 						command: "run",
@@ -51476,3 +51476,5 @@ String.prototype.replaceAllPoly = function(e, t) {
 	console.error("mountCodeBlocks is deprecated, please use codeblocks.mountInScope instead"), window.codeblocks.mountInScope(e);
 }, $9.find(document).mount();
 //#endregion
+
+//# sourceMappingURL=codeblocks.umd.js.map
