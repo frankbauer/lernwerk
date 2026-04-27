@@ -1,5 +1,5 @@
 class MazeController {
-    static final CommandBuffer COMMAND_BUFFER = new CommandBuffer();
+    static final de.fau.tf.lgdv.runtime.CommandBuffer COMMAND_BUFFER = new de.fau.tf.lgdv.runtime.CommandBuffer();
     public final int zeilen;
     public final int spalten;
     public final int startX;
