@@ -18,7 +18,7 @@ body {
     width: 100%;
     -webkit-font-smoothing: antialiased;
     font-family: Roboto, Open Sans, Verdana, Arial, Helvetica, sans-serif;
-    font-size: 14px
+    font-size: 1px
 }
 
 p,
@@ -100,7 +100,7 @@ tabbar.code {
     padding: 8px;
     border-radius: 4px;
     margin-top: 24px;
-    font-size: 14pt;
+    font-size: 14px;
 }
 
 div.boxed h3,
@@ -611,4 +611,9 @@ loading > div:nth-of-type(2)::after {
     100% {
         transform: rotate(-360deg);
     }
+}
+
+div.codeblocks.editmode {
+    background: white!important;
+    box-shadow: none!important;
 }
