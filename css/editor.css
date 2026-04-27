@@ -18,7 +18,7 @@ body {
     width: 100%;
     -webkit-font-smoothing: antialiased;
     font-family: Roboto, Open Sans, Verdana, Arial, Helvetica, sans-serif;
-    font-size: 1px
+    font-size: 14px
 }
 
 p,
@@ -100,7 +100,7 @@ tabbar.code {
     padding: 8px;
     border-radius: 4px;
     margin-top: 24px;
-    font-size: 14px;
+    font-size: 14pt;
 }
 
 div.boxed h3,

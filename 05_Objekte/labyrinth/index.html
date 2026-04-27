@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../css/editor.css?v=1.0.3">
     <script src="../../js/jquery/jquery.min.js?v=3.6.2"></script>
     <script src="../../helper.js?v=1.0.2"></script>
-    <script src="../../content.js?v=1.0.2"></script>
+    <script src="../../content.js?v=1.0.3"></script>
     <link rel="stylesheet" href="../../js/codeblocks-js/codeblocks.css?v=1.0.2">
     <link rel="stylesheet" href="./playground.css">
 </head>
@@ -39,6 +39,13 @@
                                 attributes: {},
                                 blocks: [
                                     {
+                                        type: "playground",
+                                        attributes: {
+                                            width: "380px",
+                                            height: "340px"
+                                        },
+                                        content: "playground.js"
+                                    },{
                                         type: "data",
                                         content: "./preset.json",
                                         name: "preset"
@@ -51,15 +58,7 @@
                                     }, {
                                         type: "api",
                                         content: "./MazeController.java"
-                                    },
-                                    {
-                                        type: "playground",
-                                        attributes: {
-                                            width: "380px",
-                                            height: "340px"
-                                        },
-                                        content: "playground.js"
-                                    }
+                                    }                                    
                                 ]
                             },
                             content: [],

@@ -145,9 +145,9 @@ async function generateCodeBlocks(item) {
         dataScopeSelector: "div#content"
     }, codeblocks)
     setAttributes(item.attributes, codeblocks)
-    //codeblocks.attr('codeblockseditor', 'true')
+    // codeblocks.attr('codeblockseditor', 'true')
     codeblocks.attr('codeblocks', 'true')
-    for (block of item.blocks) {
+    for (let block of item.blocks) {
         await generateCodeBlockElement(block, codeblocks)
     }
     return codeblocks
@@ -254,7 +254,7 @@ async function generateCodeBlockElement(blockData, codeblocks) {
         blockData.loadPlaygroundContent = true
         blockElement = $(document.createElement('playground'))
         setAttributes({
-            dataVersion: 101,
+            dataVersion: 102,
             dataCodeExpanded: 0,
             align: "center"
         }, blockElement)
@@ -268,10 +268,10 @@ async function generateCodeBlockElement(blockData, codeblocks) {
 
 
     if (blockElement === undefined) {
-        console.error("Unknown block type", block.type)
+        console.error("Unknown block type", blockData.type)
     } else {
-        setAttributes(block.attributes, blockElement)
-        await addContent(block, blockElement, true);
+        setAttributes(blockData.attributes, blockElement)
+        await addContent(blockData, blockElement, true);
         codeblocks.append(blockElement);
     }
 }
