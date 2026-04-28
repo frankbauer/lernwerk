@@ -60,7 +60,7 @@ async function addContent(item, domElement) {
         if (item.loadPlaygroundContent === true) {
             if (item.content.endsWith('.js')) {
                 text = text
-                    .replace(/^export\s+default\s+\{/gs, '{')
+                    //.replace(/^export\s+default\s+\{/gs, '{')
                     .replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;');
             }
