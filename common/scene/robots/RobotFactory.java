@@ -1,5 +1,5 @@
 class RobotFactory {
-    public static final CommandBuffer COMMAND_BUFFER = new CommandBuffer();
+    public static final de.fau.tf.lgdv.runtime.CommandBuffer COMMAND_BUFFER = new de.fau.tf.lgdv.runtime.CommandBuffer();
 
     public static Robot addRobotToMainRoom(int x, int y){
         Robot robot = new Robot();
