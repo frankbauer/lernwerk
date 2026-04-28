@@ -1,25 +1,18 @@
 export default {
-    scope: undefined,
-    setupDOM: function (canvasElement, outputElement, scope) {
-        canvasElement.hide()
-        this.scope = scope
+    setupDOM: function () {
+        this.canvasElement.hide()    
     },
-    init: function (canvasElement, outputElement, scope, runner) {
-        this.scope = scope
+    init: function () {},
+    addArgumentsTo(args) {        
+        let nr = 0
+        while (true) {
+            const input = this.scope.find(`input#args_${nr}`)
+            if (input.length === 0) break
+            console.log("INPUT", input, input.val())
+            args[nr] = (`${input.val()}`)
+            nr++
+        }        
     },
-    addArgumentsTo(args) {
-        if (this.scope) {
-            let nr = 0
-            while (true) {
-                const input = $(`input#args_${nr}`)
-                if (input.length === 0) break
-                console.log("INPUT", input, input.val())
-                args[nr] = (`${input.val()}`)
-                nr++
-            }
-        }
-    },
-    reset(canvasElement) { },
-    update: function (txt, json, canvasElement, outputElement) {
-    }
+    reset() {},
+    update: function (txt, json) {}
 }

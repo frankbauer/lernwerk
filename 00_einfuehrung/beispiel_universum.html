@@ -310,9 +310,11 @@ public class Sandbox {
                     <script as="playground" type="text/json" data-version="101" data-code-expanded=0 width="642px" height="402px"
                             align="center">
                                 {
+                                    scope: undefined,
                                     entities: { },
                                     setupDOM: function(canvasElement, outputElement, scope) { },
                                     init: function(canvasElement, outputElement, scope, runner) {
+                                        this.scope = scope
                                         console.log("Init", canvasElement, outputElement, scope, runner)
                                         // const planetSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--planet-size'));
                                         // const rocketWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--rocket-width'));
@@ -374,7 +376,7 @@ public class Sandbox {
                                             if (entity && !entity.added) {
                                                 entity.added = true
                                                 let pPos = { left: 0, top: 0 }
-                                                const universe = $('.universe');
+                                                const universe = this.scope.find('.universe');
                                                 if (entity.planet > 0) {
                                                     const planet = this.entities[entity.planet]
                                                     const uPos = universe.offset()
@@ -427,7 +429,7 @@ public class Sandbox {
                                                 let pPos = { left: 0, top: 0 }
 
                                                 if (cmd.planet >= 0) {
-                                                    const universe = $('.universe');
+                                                    const universe = this.scope.find('.universe');
                                                     const planet = this.entities[cmd.planet]
                                                     const uPos = universe.offset()
                                                     pPos = planet.element.offset()
@@ -449,7 +451,7 @@ public class Sandbox {
                                                 rocket.launch = cmd.seconds
                                             }
                                         } else if (cmd.command === 'simulate') {
-                                            $('.universe').addClass('simulate')
+                                            this.scope.find('.universe').addClass('simulate')
                                             Object.keys(this.entities).map(k => this.entities[k]).filter(e => e.launch !== undefined).forEach(rocket => {
                                                 //get the position of rocket relative to canvasElement and append it to the canvasElement
                                                 const cPos = canvasElement.offset()
@@ -457,7 +459,7 @@ public class Sandbox {
                                                 //add countdown layer
                                                 if (rocket.launch >= 1 && rocket.added) {
                                                     rocket.cd = rocket.launch
-                                                    const countdown = $('.countdown')
+                                                    const countdown = this.scope.find('.countdown')
                                                     countdown.removeClass('over')
                                                     countdown.html(rocket.launch)
                                                     const cTimer = setInterval(() => {
