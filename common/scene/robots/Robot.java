@@ -1,4 +1,4 @@
-class Robot extends RemoteObject{
+class Robot extends de.fau.tf.lgdv.runtime.RemoteObject{
     private static int NEXT_ROBOT_TYPE = 0;    
     private final int robotType;
     private Room room;
@@ -20,14 +20,14 @@ class Robot extends RemoteObject{
         RobotFactory.COMMAND_BUFFER.addNewObject(this);
     }
 
-    protected void addAttributes(JsonObject json){
+    protected void addAttributes(de.fau.tf.lgdv.json.JsonObject json){
         json.put("robotType", this.robotType);
         if (this.room != null)
             json.put("room", this.room.toJsonReference());
     }
 
     public void setLocation(int x, int y){
-        RobotFactory.COMMAND_BUFFER.addCommand("setLocation", this, new JsonObject().put("x", x).put("y", y));
+        RobotFactory.COMMAND_BUFFER.addCommand("setLocation", this, new de.fau.tf.lgdv.json.JsonObject().put("x", x).put("y", y));
     }
 
     public void setRoom(Room room){
@@ -35,10 +35,10 @@ class Robot extends RemoteObject{
         if (this.room != null) this.room.unregisterRobot(this);
         room.registerRobot(this);
         this.room = room;
-        RobotFactory.COMMAND_BUFFER.addCommand("setRoom", this,  new JsonObject().put("room", room.toJsonReference()));
+        RobotFactory.COMMAND_BUFFER.addCommand("setRoom", this,  new de.fau.tf.lgdv.json.JsonObject().put("room", room.toJsonReference()));
     }
 
     public void setMoving(boolean moving){
-        RobotFactory.COMMAND_BUFFER.addCommand("setMoving", this, new JsonObject().put("moving", moving));
+        RobotFactory.COMMAND_BUFFER.addCommand("setMoving", this, new de.fau.tf.lgdv.json.JsonObject().put("moving", moving));
     }
 }
