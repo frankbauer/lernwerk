@@ -617,3 +617,16 @@ div.codeblocks.editmode {
     background: white!important;
     box-shadow: none!important;
 }
+
+div.codeblocks {
+    font-size: 12pt;
+}
+
+div.codeblocks .cm-gutter{
+    font-size: 11pt;
+}
+
+div.codeblocks .cm-gutter .cm-gutterElement {
+    padding-top: 1px;
+    opacity:0.5;
+}
