@@ -3,7 +3,7 @@ interface Renderable{
 }
 
 class Graphics2D {   
-    static final CommandBuffer COMMAND_BUFFER = new CommandBuffer();
+    static final de.fau.tf.lgdv.runtime.CommandBuffer COMMAND_BUFFER = new de.fau.tf.lgdv.runtime.CommandBuffer();
     private final java.util.List<Renderable> objects = new java.util.LinkedList<>();
     private static Graphics2D INSTANCE;    
 
@@ -33,6 +33,6 @@ class Graphics2D {
     }
 
     public void drawImage(Image img, int x, int y, double sx, double sy){
-        COMMAND_BUFFER.addCommand("drawImage", img, new JsonObject().put("x", x).put("y", y).put("sx", sx).put("sy", sy));
+        COMMAND_BUFFER.addCommand("drawImage", img, new de.fau.tf.lgdv.json.JsonObject().put("x", x).put("y", y).put("sx", sx).put("sy", sy));
     }
 }

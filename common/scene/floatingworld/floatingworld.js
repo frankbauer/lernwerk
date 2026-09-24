@@ -1,28 +1,27 @@
 export default {
-    scope: undefined,
     world: undefined,
     commandDelay: 500,
     commandTimer: undefined,
     playerCount: 0,
     objects: {},
-    setupDOM: function (canvasElement, outputElement, scope) {
-        canvasElement.html('')
-        this.scope = scope
-        this.resetFloatingWorld(canvasElement)
+    setupDOM: function () {
+        this.canvasElement.html('')
+        this.resetFloatingWorld(this.canvasElement)
     },
-    init: function (canvasElement, outputElement, scope, runner) {
-        this.scope = scope
-        this.resetFloatingWorld(canvasElement)
+    init: function () {
+        this.resetFloatingWorld(this.canvasElement)
 
         // this.runCommand([{ "command": "show" }, { "command": "new", "object": { "type": "Player", "playerType": 0, "id": 1 } }, { "command": "addPlayer", "object": { "type": "Player", "id": 1 } }, { "command": "new", "object": { "type": "Player", "playerType": 1, "id": 2 } }, { "command": "addPlayer", "object": { "type": "Player", "id": 2 } }, { command: "movePlayer", "object": { "type": "Player", "id": 1 }, value: -90 }, { command: "movePlayer", "object": { "type": "Player", "id": 1 }, value: -90 }, { command: "removePlayer", "object": { "type": "Player", "id": 1 } }], 0)
     },
     addArgumentsTo(args) {
     },
-    reset(canvasElement) {
-        this.resetFloatingWorld(canvasElement)
+    reset() {
+
+        this.resetFloatingWorld(this.canvasElement)
     },
-    update: function (txt, json, canvasElement, outputElement) {
-        this.resetFloatingWorld(canvasElement)
+    update: function (txt, json) {
+
+        this.resetFloatingWorld(this.canvasElement)
         this.runCommand(json, 0)
     },
     //custom functions

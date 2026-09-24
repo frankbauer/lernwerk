@@ -1,4 +1,4 @@
-class Node<T>  extends RemoteObject {
+class Node<T>  extends de.fau.tf.lgdv.runtime.RemoteObject {
     public final T payload; 
     public final java.util.List<Edge<T>> children;       
     
@@ -24,7 +24,7 @@ class Node<T>  extends RemoteObject {
     public Edge<T> addEdge(Node<T> target, double weight){
         Edge<T> e = new Edge<>(this, target, weight);
         this.children.add(e);
-        Graph.COMMAND_BUFFER.addCommand("addEdge", this, new JsonObject().put("edge", e.toJsonReference()));
+        Graph.COMMAND_BUFFER.addCommand("addEdge", this, new de.fau.tf.lgdv.json.JsonObject().put("edge", e.toJsonReference()));
         return e;
     }
 
@@ -35,7 +35,7 @@ class Node<T>  extends RemoteObject {
         Graph.COMMAND_BUFFER.addNewObject(this);
     }
 
-    protected void addAttributes(JsonObject json){
+    protected void addAttributes(de.fau.tf.lgdv.json.JsonObject json){
         json.put("payload", this.payload.toString());
     }
 

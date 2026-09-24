@@ -1,0 +1,63 @@
+<h3>Erklärung</h3>
+<p>In dieser Aufgabe wird ein Programm in mehrere kleine Klassenmethoden aufgeteilt. Jede Methode erledigt genau eine Teilaufgabe, und die Methoden rufen sich gegenseitig auf. So wird der Code übersichtlicher und einzelne Teile können wiederverwendet werden.</p>
+<ul>
+    <li>
+        <strong>Aufbau eines Methodenkopfes:</strong>
+        <p>Jede Methode beginnt mit einem Methodenkopf, der festlegt, wie die Methode aufgerufen wird:</p>
+        <pre code style="overflow-x: scroll;">private static int waterAmount(int baseAmount, int season)</pre>
+        <ul>
+            <li><code>private</code> bzw. <code>public</code> legt fest, wer die Methode aufrufen darf. <code>private</code>-Methoden können nur innerhalb der Klasse <code>Irrigation</code> verwendet werden, <code>public</code>-Methoden auch von anderen Klassen.</li>
+            <li><code>static</code> macht die Methode zu einer Klassenmethode. Sie gehört zur Klasse selbst und kann ohne Objekt über den Klassennamen aufgerufen werden, z.B. <code>Irrigation.plantCare(...)</code>, genauso wie Sie bereits <code>Sensor.getSeason()</code> aufrufen.</li>
+            <li><code>int</code> ist der Rückgabetyp, also der Datentyp des Ergebnisses. Liefert eine Methode kein Ergebnis, wird stattdessen <code>void</code> geschrieben.</li>
+            <li><code>waterAmount</code> ist der Name der Methode.</li>
+            <li>In den runden Klammern stehen die Parameter mit Datentyp und Namen. Innerhalb der Methode verhalten sie sich wie Variablen, die beim Aufruf mit den übergebenen Werten belegt werden.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Methode mit Rückgabewert: <code>waterAmount</code></strong>
+        <p>Die Methode berechnet die Wassermenge und gibt sie mit <code>return</code> zurück. Mit <code>return</code> wird die Methode sofort beendet. Wird also im Sommer <code>baseAmount * 2</code> zurückgegeben, werden die restlichen Zeilen nicht mehr ausgeführt. Nur wenn weder Sommer noch Winter ist, wird die letzte Zeile erreicht und die unveränderte Menge zurückgegeben.</p>
+        <pre code style="overflow-x: scroll;">private static int waterAmount(int baseAmount, int season) {
+    if (season == Sensor.SUMMER) {
+        return baseAmount * 2;
+    } else if (season == Sensor.WINTER) {
+        return baseAmount / 2;
+    }
+    return baseAmount;
+}</pre>
+        <p>Da der Rückgabetyp <code>int</code> ist, muss die Methode auf jedem möglichen Weg einen <code>int</code>-Wert zurückgeben. Würde das letzte <code>return</code> fehlen, meldet der Compiler einen Fehler.</p>
+    </li>
+    <li>
+        <strong>Methoden ohne Rückgabewert: <code>water</code> und <code>fertilize</code></strong>
+        <p>Diese beiden Methoden berechnen nichts, sondern führen nur eine Aktion aus, hier eine Ausgabe auf der Konsole. Deshalb ist ihr Rückgabetyp <code>void</code> und sie benötigen kein <code>return</code>.</p>
+        <pre code style="overflow-x: scroll;">private static void water(String plant, int amount) {
+    System.out.println(plant + " wird mit " + amount + " ml Wasser gegossen.");
+}</pre>
+        <p><code>waterAmount</code>, <code>water</code> und <code>fertilize</code> sind <code>private</code>, weil sie nur Hilfsmethoden für <code>plantCare</code> sind. Von außen soll nur <code>plantCare</code> aufgerufen werden.</p>
+    </li>
+    <li>
+        <strong>Methoden kombinieren: <code>plantCare</code></strong>
+        <p>Die Methode <code>plantCare</code> nutzt die Hilfsmethoden. Zuerst wird die Bodenfeuchte über die Klassenmethode <code>Sensor.getMoisture</code> ausgelesen. Ist der Boden zu trocken, wird die Wassermenge mit <code>waterAmount</code> berechnet, in der Variablen <code>amount</code> gespeichert und an <code>water</code> übergeben.</p>
+        <pre code style="overflow-x: scroll;">int amount = 0;
+if (moisture &lt; 30) {
+    amount = waterAmount(baseAmount, season);
+    water(plant, amount);
+} else {
+    System.out.println(plant + " muss nicht gegossen werden.");
+}</pre>
+        <p>Beachten Sie, dass <code>waterAmount</code> und <code>water</code> hier ohne Klassennamen aufgerufen werden. Innerhalb derselben Klasse darf der Klassenname weggelassen werden: <code>water(plant, amount)</code> bedeutet dasselbe wie <code>Irrigation.water(plant, amount)</code>. Für Methoden einer anderen Klasse wie <code>Sensor.getMoisture</code> ist der Klassenname dagegen nötig.</p>
+        <p>Die Variable <code>amount</code> wird mit <code>0</code> initialisiert, damit am Ende auch dann ein sinnvoller Wert zurückgegeben wird, wenn nicht gegossen wurde. Die Variablen <code>moisture</code> und <code>amount</code> sind lokale Variablen: Sie existieren nur während des Aufrufs von <code>plantCare</code>. Bei jedem Aufruf werden sie neu angelegt.</p>
+        <pre code style="overflow-x: scroll;">if (season == Sensor.SPRING || season == Sensor.SUMMER) {
+    fertilize(plant);
+}
+return amount;</pre>
+        <p>Der Rückgabewert wird in der <code>main</code>-Methode verwendet, um den gesamten Wasserverbrauch aufzusummieren: <code>total = total + Irrigation.plantCare("Kaktus", 50);</code>. Beim Probelauf im Winter wird der Rückgabewert dagegen nicht benötigt. Er darf dann einfach ignoriert werden.</p>
+    </li>
+    <li>
+        <strong>Überladen: die zweite Variante von <code>plantCare</code></strong>
+        <p>Die Klasse enthält zwei Methoden mit dem Namen <code>plantCare</code>, die sich in ihrer Parameterliste unterscheiden (zwei bzw. drei Parameter). Das nennt man Überladen. Beim Aufruf entscheidet Java anhand der übergebenen Parameter, welche Variante ausgeführt wird. <code>plantCare("Kaktus", 50)</code> ruft die Variante mit zwei Parametern auf, <code>plantCare("Tomate", 400, Sensor.WINTER)</code> die mit drei Parametern.</p>
+        <pre code style="overflow-x: scroll;">public static int plantCare(String plant, int baseAmount) {
+    return plantCare(plant, baseAmount, Sensor.getSeason());
+}</pre>
+        <p>Die Variante mit zwei Parametern enthält selbst keine Logik. Sie bestimmt nur die aktuelle Jahreszeit und gibt die Arbeit an die Variante mit drei Parametern weiter. Deren Ergebnis wird direkt zurückgegeben. So steht die eigentliche Versorgungslogik nur an einer Stelle im Code. Soll z.B. der Grenzwert von <i>30 %</i> geändert werden, muss das nur in einer Methode passieren.</p>
+    </li>
+</ul>

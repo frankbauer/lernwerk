@@ -1,18 +1,15 @@
 export default {
-    scope: undefined,
     factory: undefined,
     commandDelay: 500,
     commandTimer: undefined,
     renderTimer: undefined,
     objects: {},
-    setupDOM: function (canvasElement, outputElement, scope) {
-        canvasElement.html('')
-        this.scope = scope
-        this.resetFactory(canvasElement)
+    setupDOM: function () {
+        this.canvasElement.html('')        
+        this.resetFactory(this.canvasElement)
     },
-    init: function (canvasElement, outputElement, scope, runner) {
-        this.scope = scope
-        this.resetFactory(canvasElement)
+    init: function () {
+        this.resetFactory(this.canvasElement)
 
         // this.runCommand([
         //     { "command": "new", "object": { "style": "main", "visible": false, "type": "Room", "id": 1 } },
@@ -25,11 +22,13 @@ export default {
     },
     addArgumentsTo(args) {
     },
-    reset(canvasElement) {
-        this.resetFactory(canvasElement)
+    reset() {
+
+        this.resetFactory(this.canvasElement)
     },
-    update: function (txt, json, canvasElement, outputElement) {
-        this.resetFactory(canvasElement)
+    update: function (txt, json) {
+
+        this.resetFactory(this.canvasElement)
         this.runCommand(json, 0)
     },
     render: function (passedTime, delta, width, height, scale) {

@@ -1,6 +1,6 @@
 class FloatingWorld {
     private static final java.util.List<Player>players = new java.util.LinkedList<>();
-    public static final CommandBuffer COMMAND_BUFFER = new CommandBuffer();
+    public static final de.fau.tf.lgdv.runtime.CommandBuffer COMMAND_BUFFER = new de.fau.tf.lgdv.runtime.CommandBuffer();
     private static int NEXT_PLAYER_TYPE = 0;    
     public static void show(){
         FloatingWorld.COMMAND_BUFFER.addEmptyCommand("show");

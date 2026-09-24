@@ -60,7 +60,7 @@ async function addContent(item, domElement) {
         if (item.loadPlaygroundContent === true) {
             if (item.content.endsWith('.js')) {
                 text = text
-                    .replace(/^export\s+default\s+\{/gs, '{')
+                    //.replace(/^export\s+default\s+\{/gs, '{')
                     .replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;');
             }
@@ -138,7 +138,7 @@ async function generateCodeBlocks(item) {
     setAttributes({
         dataCompiler: "java",
         dataRunCode: true,
-        dataCompilerVersion: 101,
+        dataCompilerVersion: 102,
         dataExecutionTimeout: 5000,
         dataMaxCharacters: 6000,
         dataOutputParser: "data",
@@ -147,7 +147,7 @@ async function generateCodeBlocks(item) {
     setAttributes(item.attributes, codeblocks)
     //codeblocks.attr('codeblockseditor', 'true')
     codeblocks.attr('codeblocks', 'true')
-    for (block of item.blocks) {
+    for (let block of item.blocks) {
         await generateCodeBlockElement(block, codeblocks)
     }
     return codeblocks
@@ -254,24 +254,33 @@ async function generateCodeBlockElement(blockData, codeblocks) {
         blockData.loadPlaygroundContent = true
         blockElement = $(document.createElement('playground'))
         setAttributes({
-            dataVersion: 101,
+            dataVersion: 102,
             dataCodeExpanded: 0,
-            align: "center"
+            dataAlign: "center"
         }, blockElement)
         if (blockData.type === 'script') {
             setAttributes({
-                width: 0,
-                height: 0
+                dataWidth: 0,
+                dataHeight: 0
             }, blockElement)
         }
     }
 
 
     if (blockElement === undefined) {
-        console.error("Unknown block type", block.type)
+        console.error("Unknown block type", blockData.type)
     } else {
-        setAttributes(block.attributes, blockElement)
-        await addContent(block, blockElement, true);
+        let attributes = blockData.attributes
+        if (attributes && (blockData.type === 'playground' || blockData.type === 'script')) {
+            // v102 playgrounds read their size/alignment from data-* attributes
+            const { width, height, align, ...rest } = attributes
+            attributes = { ...rest }
+            if (width !== undefined) attributes.dataWidth = width
+            if (height !== undefined) attributes.dataHeight = height
+            if (align !== undefined) attributes.dataAlign = align
+        }
+        setAttributes(attributes, blockElement)
+        await addContent(blockData, blockElement, true);
         codeblocks.append(blockElement);
     }
 }

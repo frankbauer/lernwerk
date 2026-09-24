@@ -1,4 +1,4 @@
-class Player extends RemoteObject{
+class Player extends de.fau.tf.lgdv.runtime.RemoteObject{
     private final int playerType;
     
     public Player(){
@@ -13,7 +13,7 @@ class Player extends RemoteObject{
         FloatingWorld.COMMAND_BUFFER.addNewObject(this);
     }
 
-    protected void addAttributes(JsonObject json){
+    protected void addAttributes(de.fau.tf.lgdv.json.JsonObject json){
         json.put("playerType", this.playerType);
     }
 

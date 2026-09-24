@@ -1,0 +1,14 @@
+<h3>Experimente</h3>
+<div class="colored">Was ändert sich, wenn Sie die Position der Rakete auf (0,0) festlegen?</div>
+<div class="colored">
+    Versuchen Sie eine zweite Rakete einzufügen (Position: (142, -180) &bull; Start: 2s)?
+    <hint>Fügen Sie den Code aus Punkt 3 ein zweites mal ein. Vergessen Sie nicht die Bezeichnung
+        von <code>r</code> sowie die zugehörigen Werte anzupassen.</hint>
+    <hint solution>Bevor die Simulation mit <code>u.simulate();</code> gestartet wird, können Sie folgendes
+        einfügen:
+        <pre code>Rocket r2 = new Rocket();
+r2.setLocationRelativeTo(p, 142, -180);
+u.addEntity(r2);
+r2.launchIn(2);</pre>
+    </hint>
+</div>

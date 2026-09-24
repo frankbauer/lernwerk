@@ -1,0 +1,18 @@
+<h2><b>class Sensor</b></h2>
+
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Sensor</code> liefert die Messwerte der im Gewächshaus verbauten Sensoren. Alle Methoden sind Klassenmethoden und werden daher direkt über den Klassennamen aufgerufen, z.B. <code>Sensor.getSeason()</code>.</p>
+
+<h4>Konstanten</h4>
+<ul>
+    <li><code>public static final int SPRING</code><br>Jahreszeit Frühling</li>
+    <li><code>public static final int SUMMER</code><br>Jahreszeit Sommer</li>
+    <li><code>public static final int AUTUMN</code><br>Jahreszeit Herbst</li>
+    <li><code>public static final int WINTER</code><br>Jahreszeit Winter</li>
+</ul>
+<h4>Methoden</h4>
+<ul>
+    <li><code>public static int getSeason()</code><br>Gibt die aktuelle Jahreszeit als Zahlenwert codiert zurück (siehe Konstanten). Während eines Programmlaufs liefert die Methode immer dieselbe Jahreszeit.</li>
+    <li><code>public static String getSeasonName(int season)</code><br>Gibt den Namen der übergebenen Jahreszeit als Text zurück.</li>
+    <li><code>public static int getMoisture(String plant)</code><br>Misst die Bodenfeuchte im Topf der übergebenen Pflanze und gibt sie in Prozent (<i>0</i> bis <i>100</i>) zurück.</li>
+</ul>
