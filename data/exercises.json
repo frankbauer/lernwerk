@@ -259,7 +259,23 @@
       "icon": "img/types/tool.png"
     }
   ],
-  "exercises": [
+  "exercises": [    
+    {
+      "id": "00_einfuehrung/nachricht",
+      "title": "Einfaches Programm",
+      "description": "Schreibe in der Datei Nachricht.java ein erstes Programm, das deinen Namen auf der Konsole ausgibt.",
+      "link": "00_einfuehrung/nachricht",
+      "chapter": 0,
+      "type": "exercise",
+      "difficulty": 0,
+      "tags": [
+        "grundlagen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true
+    },
     {
       "id": "00_einfuehrung/beispiel_universum",
       "title": "Universum",
@@ -270,7 +286,9 @@
       "difficulty": 1,
       "tags": [
         "grundlagen",
-        "objekte"
+        "variablen",
+        "objekte",
+        "methodenaufrufe-instanz"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -312,6 +330,24 @@
       "hasExperiments": true,
       "isNew": false,
       "image": "img/previews/00_einfuehrung-table.webp"
+    },
+    {
+      "id": "00_einfuehrung/anordnen",
+      "title": "Anweisungen anordnen",
+      "description": "Bringe vorgegebene Codezeilen in eine Reihenfolge, sodass ein kompilierbares Programm entsteht.",
+      "link": "00_einfuehrung/anordnen",
+      "chapter": 0,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "grundlagen",
+        "variablen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true
     },
     {
       "id": "01_Variablen/sandkasten_42",

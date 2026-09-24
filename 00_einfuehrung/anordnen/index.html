@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../../">
+    <title>[GdI]</title>
+    <link rel="stylesheet" href="../../css/editor.css?v=1.0.4">
+    <script src="../../js/jquery/jquery.min.js?v=3.6.2"></script>
+    <script src="../../helper.js?v=1.0.2"></script>
+    <script src="../../content.js?v=1.0.5"></script>
+    <link rel="stylesheet" href="../../js/codeblocks-js/codeblocks.css?v=1.0.2">
+    <link rel="stylesheet" href="../../common/parsons/parsons.css?v=1.0.2">
+    <script src="../../common/parsons/parsons.js?v=1.0.1"></script>
+</head>
+
+<body>
+    <div class="topbar">
+        <h1></h1>
+        <a href="../../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+    </div>
+    <script>
+        const elements = {
+            title: "Anweisungen anordnen",
+            short: "Anordnen",
+            content: [
+                {
+                    type: "aufgabe",
+                    content: "./exercise.html"
+                },
+                {
+                    type: "tabs",
+                    class: "code",
+                    tabs: [
+                        {
+                            name: "Ihre Lösung",
+                            content: [{
+                                type: "parsons-host"
+                            }]
+                        },
+                        {
+                            name: "Beispiellösung",
+                            content: [{
+                                type: "codeblocks",
+                                attributes: {},
+                                blocks: [
+                                    {
+                                        type: "solution",
+                                        content: "./MyOrder.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        content: "./House.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        content: "./Floor.java"
+                                    }
+                                ]
+                            }, {
+                                type: "explain",
+                                class: "q-mt-xl",
+                                content: "./explanation.html"
+                            }]
+                        }
+                    ]
+                }
+            ]
+        }
+
+        // Zeilennummern in `rules` beziehen sich auf die Reihenfolge in `lines` (= Startreihenfolge)
+        const puzzle = {
+            lines: [
+                { code: "public class MyOrder {", indent: 0 },                   // 0
+                { code: "}", indent: 0 },                                        // 1
+                { code: "public static void main(String[] args) {", indent: 1 }, // 2
+                { code: "}", indent: 1 },                                        // 3
+                { code: "House h = new House();", indent: 2 },                   // 4
+                { code: "h.setTown(\"Erlangen\");", indent: 2 },                 // 5
+                { code: "final int FIRST_FLOOR;", indent: 2 },                   // 6
+                { code: "FIRST_FLOOR = 0;", indent: 2 },                         // 7
+                { code: "Floor floor = new Floor(FIRST_FLOOR);", indent: 2 },    // 8
+                { code: "h.addFloor(floor);", indent: 2 },                       // 9
+                { code: "floor = new Floor(FIRST_FLOOR+1);", indent: 2 },        // 10
+                { code: "h.addFloor(floor);", indent: 2 },                       // 11
+            ],
+            rules: [
+                { first: 0, message: "Die Klassendeklaration <code>public class MyOrder {</code> muss ganz oben stehen." },
+                { position: 2, index: 1, message: "Die <code>main</code>-Methode muss direkt nach der Klassendeklaration beginnen." },
+                { last: 1, message: "Die schließende Klammer der Klasse muss ganz unten stehen." },
+                { position: 3, index: -2, message: "Die <code>main</code>-Methode muss vor der schließenden Klammer der Klasse enden. Anweisungen außerhalb einer Methode sind nicht erlaubt." },
+                { before: [4, 5], message: "<code>h</code> wird verwendet, bevor es deklariert wurde." },
+                { before: [4, 9], message: "<code>h</code> wird verwendet, bevor es deklariert wurde." },
+                { before: [4, 11], message: "<code>h</code> wird verwendet, bevor es deklariert wurde." },
+                { before: [6, 7], message: "<code>FIRST_FLOOR</code> bekommt einen Wert, bevor die Variable deklariert wurde." },
+                { before: [7, 8], message: "<code>FIRST_FLOOR</code> wird gelesen, bevor die Variable einen Wert hat." },
+                { before: [7, 10], message: "<code>FIRST_FLOOR</code> wird gelesen, bevor die Variable einen Wert hat." },
+                { before: [8, 9], message: "<code>floor</code> wird verwendet, bevor es deklariert wurde." },
+                { before: [8, 11], message: "<code>floor</code> wird verwendet, bevor es deklariert wurde." },
+                { before: [8, 10], message: "<code>floor</code> bekommt einen neuen Wert, bevor es deklariert wurde." },
+                {
+                    // die beiden identischen addFloor-Zeilen sind austauschbar: je eine vor und eine nach Zeile 10
+                    warning: true,
+                    lines: [9, 10, 11],
+                    check: pos => {
+                        const after = [9, 11].filter(l => pos[l] > pos[10]).length
+                        if (after === 0) return "Das Stockwerk <code>FIRST_FLOOR+1</code> wird nie zum Haus hinzugefügt."
+                        if (after === 2) return "Das Stockwerk <code>FIRST_FLOOR</code> wird nie zum Haus hinzugefügt, weil <code>floor</code> vorher überschrieben wird."
+                        return null
+                    }
+                }
+            ],
+            successMessage: "<b>Richtig!</b> Das Programm ist kompilierbar und fügt beide Stockwerke zum Haus hinzu. Vergleichen Sie Ihre Reihenfolge mit der Beispiellösung."
+        }
+
+        document.body.onload = async () => {
+            await buildContent(elements)
+            mountParsons('div.parsons-host', puzzle)
+            import("../../js/codeblocks-js/codeblocks.umd.js?s=00017")
+            initHelpers()
+        }
+    </script>
+</body>
+
+</html>

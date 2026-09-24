@@ -1,0 +1,23 @@
+<h3>Erklärung</h3>
+
+<p>Der Rahmen des Programms ist fest vorgegeben: Außen steht die Klasse, darin die <code>main</code>-Methode.
+    Innerhalb der <code>main</code>-Methode gibt es dagegen mehrere richtige Reihenfolgen. Entscheidend ist nur,
+    dass jede Variable <b>deklariert</b> ist und einen <b>Wert</b> hat, bevor sie verwendet wird.</p>
+<ul>
+    <li><code>public class MyOrder {</code> und die letzte <code>}</code> umschließen das gesamte Programm.</li>
+    <li><code>public static void main(String[] args) {</code> und die vorletzte <code>}</code> umschließen alle
+        Anweisungen. Anweisungen außerhalb einer Methode sind in Java nicht erlaubt.</li>
+    <li><code>final int FIRST_FLOOR;</code> muss vor <code>FIRST_FLOOR = 0;</code> stehen, und die Zuweisung
+        wiederum vor jeder Verwendung von <code>FIRST_FLOOR</code>. Eine <code>final</code>-Variable darf genau
+        einmal einen Wert bekommen.</li>
+    <li><code>House h = new House();</code> muss vor <code>h.setTown(...)</code> und vor
+        <code>h.addFloor(...)</code> stehen.</li>
+    <li><code>Floor floor = new Floor(FIRST_FLOOR);</code> deklariert <code>floor</code>. Erst danach darf
+        <code>floor</code> verwendet oder mit <code>floor = new Floor(FIRST_FLOOR+1);</code> neu belegt werden.
+    </li>
+    <li>Sinnvoll ist das Programm erst, wenn nach jedem <code>new Floor(...)</code> ein
+        <code>h.addFloor(floor);</code> folgt. Sonst wird ein Stockwerk nie zum Haus hinzugefügt. Kompilieren
+        würde es trotzdem.</li>
+</ul>
+<p>Ob <code>FIRST_FLOOR</code> oder <code>h</code> zuerst angelegt wird, ist dagegen egal. Auch
+    <code>h.setTown(...)</code> darf an beliebiger Stelle nach <code>new House()</code> stehen.</p>
