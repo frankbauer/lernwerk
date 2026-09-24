@@ -346,7 +346,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/01_Variablen-swap.webp"
     },
     {
       "id": "02_Operationen/beispiel_increment",
@@ -364,7 +364,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/02_Operationen-beispiel_increment.webp"
     },
     {
       "id": "02_Operationen/sandkasten_mod",
