@@ -1030,7 +1030,8 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": true,
-      "image": null
+      "image": null,
+      "isHidden": true
     },
     {
       "id": "09_Klassenattribute/beispiel_steuer",
