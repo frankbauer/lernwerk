@@ -102,115 +102,115 @@
       "id": "grundlagen",
       "label": "Grundlagen",
       "chapter": 0,
-      "icon": null
+      "icon": "img/concepts/grundlagen.png"
     },
     {
       "id": "variablen",
       "label": "Variablen",
       "chapter": 1,
-      "icon": null
+      "icon": "img/concepts/variablen.png"
     },
     {
       "id": "operationen",
       "label": "Operationen",
       "chapter": 2,
-      "icon": null
+      "icon": "img/concepts/operationen.png"
     },
     {
       "id": "datentypen",
       "label": "Datentypen",
       "chapter": 3,
-      "icon": null
+      "icon": "img/concepts/datentypen.png"
     },
     {
       "id": "methodenaufrufe",
       "label": "Methodenaufrufe",
       "chapter": 4,
-      "icon": null
+      "icon": "img/concepts/methodenaufrufe.png"
     },
     {
       "id": "objekte",
       "label": "Objekte",
       "chapter": 5,
-      "icon": null
+      "icon": "img/concepts/objekte.png"
     },
     {
       "id": "bedingungen",
       "label": "Bedingungen",
       "chapter": 6,
-      "icon": null
+      "icon": "img/concepts/bedingungen.png"
     },
     {
       "id": "schleifen",
       "label": "Schleifen",
       "chapter": 7,
-      "icon": null
+      "icon": "img/concepts/schleifen.png"
     },
     {
       "id": "klassenmethoden",
       "label": "Klassenmethoden",
       "chapter": 8,
-      "icon": null
+      "icon": "img/concepts/klassenmethoden.png"
     },
     {
       "id": "klassenattribute",
       "label": "Klassenattribute",
       "chapter": 9,
-      "icon": null
+      "icon": "img/concepts/klassenattribute.png"
     },
     {
       "id": "arrays",
       "label": "Arrays",
       "chapter": 10,
-      "icon": null
+      "icon": "img/concepts/arrays.png"
     },
     {
       "id": "arrays-ndim",
       "label": "Mehrdimensionale Arrays",
       "chapter": 11,
-      "icon": null
+      "icon": "img/concepts/arrays-ndim.png"
     },
     {
       "id": "instanzen",
       "label": "Instanzen",
       "chapter": 12,
-      "icon": null
+      "icon": "img/concepts/instanzen.png"
     },
     {
       "id": "referenzen",
       "label": "Referenzen",
       "chapter": 13,
-      "icon": null
+      "icon": "img/concepts/referenzen.png"
     },
     {
       "id": "schnittstellen",
       "label": "Schnittstellen",
       "chapter": 14,
-      "icon": null
+      "icon": "img/concepts/schnittstellen.png"
     },
     {
       "id": "rekursion",
       "label": "Rekursion",
       "chapter": 16,
-      "icon": null
+      "icon": "img/concepts/rekursion.png"
     },
     {
       "id": "collections",
       "label": "Collections",
       "chapter": 17,
-      "icon": null
+      "icon": "img/concepts/collections.png"
     },
     {
       "id": "graphen",
       "label": "Graphen",
       "chapter": 18,
-      "icon": null
+      "icon": "img/concepts/graphen.png"
     },
     {
       "id": "zahlen",
       "label": "Zahlendarstellung",
       "chapter": 19,
-      "icon": null
+      "icon": "img/concepts/zahlen.png"
     }
   ],
   "types": [
@@ -240,7 +240,7 @@
       "id": "00_einfuehrung/beispiel_universum",
       "title": "Universum",
       "description": "Lerne den Aufbau eines Java-Programms kennen und schicke eine Rakete durch ein simuliertes Universum.",
-      "link": "00_einfuehrung/beispiel_universum.html",
+      "link": "00_einfuehrung/beispiel_universum",
       "chapter": 0,
       "type": "lecture",
       "difficulty": 1,
@@ -252,13 +252,14 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/00_einfuehrung-beispiel_universum.webp",
+      "imagePosition": "30% center"
     },
     {
       "id": "00_einfuehrung/sandkasten_print",
       "title": "MeinExperiment",
       "description": "Schreibe dein erstes Programm, das deinen Namen und deinen Studiengang auf der Konsole ausgibt.",
-      "link": "00_einfuehrung/sandkasten_print.html",
+      "link": "00_einfuehrung/sandkasten_print",
       "chapter": 0,
       "type": "sandbox",
       "difficulty": 1,
@@ -275,7 +276,7 @@
       "id": "00_einfuehrung/table",
       "title": "Formatierte Ausgabe",
       "description": "Gib die Eigenschaften einer fiktiven Person als sauber formatierte Tabelle auf der Konsole aus.",
-      "link": "00_einfuehrung/table.html",
+      "link": "00_einfuehrung/table",
       "chapter": 0,
       "type": "exercise",
       "difficulty": 1,
@@ -540,7 +541,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/04_Methodenaufrufe-beispiel_floating.webp"
     },
     {
       "id": "04_Methodenaufrufe/beispiel_robots",
@@ -557,7 +558,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/04_Methodenaufrufe-beispiel_robots.webp",
+      "imagePosition": "65% center"
     },
     {
       "id": "04_Methodenaufrufe/beispiel_floating_int",
@@ -575,7 +577,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/04_Methodenaufrufe-beispiel_floating_int.webp"
     },
     {
       "id": "04_Methodenaufrufe/tank_static_aufruf",
@@ -613,7 +615,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/05_Objekte-beispiel_floating.webp"
     },
     {
       "id": "05_Objekte/sandkasten_instanzen",
@@ -648,7 +650,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/05_Objekte-beispiel_robots.webp",
+      "imagePosition": "left center"
     },
     {
       "id": "05_Objekte/beispiel_robots_constructor",
@@ -666,7 +669,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/05_Objekte-beispiel_robots_constructor.webp",
+      "imagePosition": "85% center"
     },
     {
       "id": "05_Objekte/sandkasten_sonnensystem",
@@ -756,7 +760,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/05_Objekte-labyrinth.webp"
     },
     {
       "id": "06_Bedingungen/beispiel_luck",
@@ -851,7 +855,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/07_Schleifen-beispiel_pflanzen_for.webp",
+      "imagePosition": "25% center"
     },
     {
       "id": "07_Schleifen/sandkasten_odds",
@@ -887,7 +892,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/07_Schleifen-beispiel_pflanzen_while.webp"
     },
     {
       "id": "07_Schleifen/beispiel_break",
@@ -1093,7 +1098,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/10_Arrays-beispiel_roboter.webp",
+      "imagePosition": "60% center"
     },
     {
       "id": "10_Arrays/sandkasten_zahlen",
@@ -1149,7 +1155,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/12_Instanzen-beispiel_wald.webp",
+      "imagePosition": "left center"
     },
     {
       "id": "12_Instanzen/beispiel_wald_schwer",
@@ -1169,7 +1176,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/12_Instanzen-beispiel_wald_schwer.webp",
+      "imagePosition": "left center"
     },
     {
       "id": "12_Instanzen/sandkasten_bruch",
@@ -1244,7 +1252,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/13_Referenzen-beispiel_finalRef.webp",
+      "imagePosition": "45% center"
     },
     {
       "id": "14_Schnittstellen/sandkasten_interface",
@@ -1299,7 +1308,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/16_Rekusrion-sandkasten_flood.webp"
     },
     {
       "id": "17_Collections/sandkasten_remove",
@@ -1355,7 +1364,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/18_Graphen-beispiel_graph.webp"
     },
     {
       "id": "18_Graphen/beispiel_ablaufen",
@@ -1374,7 +1383,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/18_Graphen-beispiel_ablaufen.webp"
     },
     {
       "id": "18_Graphen/beispiel_traversieren",
@@ -1393,7 +1402,7 @@
       "hasExplanation": false,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/18_Graphen-beispiel_traversieren.webp"
     },
     {
       "id": "18_Graphen/beispiel_result",
@@ -1412,7 +1421,7 @@
       "hasExplanation": false,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/18_Graphen-beispiel_result.webp"
     },
     {
       "id": "18_Graphen/beispiel_cycle",
@@ -1432,7 +1441,7 @@
       "hasExplanation": false,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/18_Graphen-beispiel_cycle.webp"
     },
     {
       "id": "18_Graphen/sandkasten_needle",
@@ -1451,7 +1460,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/18_Graphen-sandkasten_needle.webp"
     },
     {
       "id": "18_Graphen/sandkasten_sum",
