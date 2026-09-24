@@ -1240,28 +1240,12 @@ h1 {
     display: inline;
 }
 
-/*
- * Badges sit on the title's baseline with their bottom edge: an inline-block with clipped
- * overflow uses its bottom edge as baseline. Content is centred via line-height (24px - 2px border).
- */
+/* "middle" instead of a baseline offset: the type badge starts with an icon (no text baseline) */
 .card-head .type-badge,
 .card-head .new,
 .card-head .hidden-badge {
-    display: inline-block;
     margin: 0 3px 0 0;  /* separated by spaces, which vanish at the start of a wrapped line */
-    overflow: hidden;
-    line-height: 22px;
-    vertical-align: baseline;
-}
-
-.card-head .type-badge .type-icon {
-    display: inline-block;
-    margin-right: 5px;
-    vertical-align: -4px;
-}
-
-.card-head .type-badge > span {
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .card-title {
