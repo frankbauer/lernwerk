@@ -123,16 +123,22 @@
       "icon": "img/concepts/datentypen.png"
     },
     {
-      "id": "methodenaufrufe",
-      "label": "Methodenaufrufe",
+      "id": "methodenaufrufe-statisch",
+      "label": "Methodenaufrufe (statisch)",
       "chapter": 4,
-      "icon": "img/concepts/methodenaufrufe.png"
+      "icon": "img/concepts/methodenaufrufe-statisch.png"
     },
     {
       "id": "objekte",
       "label": "Objekte",
       "chapter": 5,
       "icon": "img/concepts/objekte.png"
+    },
+    {
+      "id": "methodenaufrufe-instanz",
+      "label": "Methodenaufrufe (Instanzen)",
+      "chapter": 5,
+      "icon": "img/concepts/methodenaufrufe-instanz.png"
     },
     {
       "id": "bedingungen",
@@ -171,10 +177,22 @@
       "icon": "img/concepts/arrays-ndim.png"
     },
     {
-      "id": "instanzen",
-      "label": "Instanzen",
+      "id": "klassen",
+      "label": "Klassen",
       "chapter": 12,
-      "icon": "img/concepts/instanzen.png"
+      "icon": "img/concepts/klassen.png"
+    },
+    {
+      "id": "instanzattribute",
+      "label": "Instanzattribute",
+      "chapter": 12,
+      "icon": "img/concepts/instanzattribute.png"
+    },
+    {
+      "id": "instanzmethoden",
+      "label": "Instanzmethoden",
+      "chapter": 12,
+      "icon": "img/concepts/instanzmethoden.png"
     },
     {
       "id": "referenzen",
@@ -449,7 +467,7 @@
       "tags": [
         "datentypen",
         "operationen",
-        "methodenaufrufe"
+        "methodenaufrufe-statisch"
       ],
       "hasSolution": false,
       "hasExplanation": false,
@@ -522,7 +540,7 @@
       "type": "sandbox",
       "difficulty": 2,
       "tags": [
-        "methodenaufrufe",
+        "methodenaufrufe-statisch",
         "datentypen",
         "operationen"
       ],
@@ -541,7 +559,7 @@
       "type": "lecture",
       "difficulty": 1,
       "tags": [
-        "methodenaufrufe"
+        "methodenaufrufe-statisch"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -558,7 +576,7 @@
       "type": "lecture",
       "difficulty": 1,
       "tags": [
-        "methodenaufrufe"
+        "methodenaufrufe-statisch"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -576,7 +594,7 @@
       "type": "lecture",
       "difficulty": 2,
       "tags": [
-        "methodenaufrufe",
+        "methodenaufrufe-statisch",
         "variablen"
       ],
       "hasSolution": true,
@@ -594,7 +612,7 @@
       "type": "exercise",
       "difficulty": 3,
       "tags": [
-        "methodenaufrufe",
+        "methodenaufrufe-statisch",
         "variablen",
         "datentypen",
         "operationen"
@@ -615,7 +633,7 @@
       "difficulty": 2,
       "tags": [
         "objekte",
-        "methodenaufrufe"
+        "methodenaufrufe-instanz"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -650,7 +668,7 @@
       "difficulty": 1,
       "tags": [
         "objekte",
-        "methodenaufrufe"
+        "methodenaufrufe-instanz"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -669,7 +687,7 @@
       "difficulty": 2,
       "tags": [
         "objekte",
-        "methodenaufrufe"
+        "methodenaufrufe-instanz"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -705,7 +723,7 @@
       "difficulty": 2,
       "tags": [
         "objekte",
-        "methodenaufrufe"
+        "methodenaufrufe-instanz"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -723,7 +741,7 @@
       "difficulty": 3,
       "tags": [
         "objekte",
-        "methodenaufrufe",
+        "methodenaufrufe-instanz",
         "operationen"
       ],
       "hasSolution": true,
@@ -742,7 +760,7 @@
       "difficulty": 3,
       "tags": [
         "objekte",
-        "methodenaufrufe"
+        "methodenaufrufe-instanz"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -760,7 +778,7 @@
       "difficulty": 2,
       "tags": [
         "objekte",
-        "methodenaufrufe"
+        "methodenaufrufe-instanz"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -779,7 +797,7 @@
       "tags": [
         "bedingungen",
         "datentypen",
-        "methodenaufrufe"
+        "methodenaufrufe-statisch"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -798,7 +816,7 @@
       "tags": [
         "bedingungen",
         "operationen",
-        "methodenaufrufe"
+        "methodenaufrufe-statisch"
       ],
       "hasSolution": false,
       "hasExplanation": false,
@@ -817,7 +835,8 @@
       "tags": [
         "bedingungen",
         "objekte",
-        "methodenaufrufe",
+        "methodenaufrufe-instanz",
+        "methodenaufrufe-statisch",
         "operationen"
       ],
       "hasSolution": true,
@@ -836,7 +855,7 @@
       "difficulty": 3,
       "tags": [
         "bedingungen",
-        "methodenaufrufe",
+        "methodenaufrufe-statisch",
         "operationen"
       ],
       "hasSolution": true,
@@ -930,7 +949,7 @@
         "schleifen",
         "bedingungen",
         "objekte",
-        "methodenaufrufe"
+        "methodenaufrufe-statisch"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -950,7 +969,7 @@
         "schleifen",
         "bedingungen",
         "objekte",
-        "methodenaufrufe"
+        "methodenaufrufe-statisch"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -969,7 +988,7 @@
       "tags": [
         "schleifen",
         "objekte",
-        "methodenaufrufe",
+        "methodenaufrufe-statisch",
         "operationen"
       ],
       "hasSolution": true,
@@ -1024,10 +1043,10 @@
       "tags": [
         "klassenmethoden",
         "bedingungen",
-        "methodenaufrufe"
+        "methodenaufrufe-statisch"
       ],
-      "hasSolution": false,
-      "hasExplanation": false,
+      "hasSolution": true,
+      "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
       "image": null,
@@ -1155,7 +1174,7 @@
       "type": "lecture",
       "difficulty": 2,
       "tags": [
-        "instanzen",
+        "instanzattribute",
         "objekte"
       ],
       "hasSolution": true,
@@ -1174,7 +1193,9 @@
       "type": "lecture",
       "difficulty": 4,
       "tags": [
-        "instanzen",
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden",
         "klassenattribute",
         "bedingungen",
         "operationen"
@@ -1195,7 +1216,9 @@
       "type": "sandbox",
       "difficulty": 3,
       "tags": [
-        "instanzen",
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden",
         "bedingungen"
       ],
       "hasSolution": false,
@@ -1213,7 +1236,9 @@
       "type": "exercise",
       "difficulty": 4,
       "tags": [
-        "instanzen",
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden",
         "arrays",
         "schleifen",
         "bedingungen",
@@ -1235,7 +1260,8 @@
       "difficulty": 3,
       "tags": [
         "referenzen",
-        "instanzen"
+        "instanzattribute",
+        "instanzmethoden"
       ],
       "hasSolution": false,
       "hasExplanation": false,
@@ -1272,7 +1298,8 @@
       "difficulty": 2,
       "tags": [
         "schnittstellen",
-        "instanzen"
+        "klassen",
+        "instanzmethoden"
       ],
       "hasSolution": false,
       "hasExplanation": false,
@@ -1290,7 +1317,9 @@
       "difficulty": 3,
       "tags": [
         "schnittstellen",
-        "instanzen"
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden"
       ],
       "hasSolution": true,
       "hasExplanation": true,
