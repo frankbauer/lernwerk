@@ -19,17 +19,6 @@
     --radius-lg: 28px;
     --radius: 14px;
     --shadow: 0 1px 2px rgb(16 24 40 / 0.05), 0 4px 16px rgb(16 24 40 / 0.05);
-
-    --type-lecture: #1d4ed8;
-    --type-lecture-soft: #dbe6fb;
-    --type-sandbox: #a14b06;
-    --type-sandbox-soft: #fde9cf;
-    --type-exercise: #1f6a35;
-    --type-exercise-soft: #dcf0e0;
-    --type-test: #b42318;
-    --type-test-soft: #fde2df;
-    --type-tool: #4b5563;
-    --type-tool-soft: #e7e9ee;
 }
 
 * {
@@ -1050,69 +1039,180 @@ h1 {
     gap: 20px;
 }
 
+/* Exercise types: colours used by cards, badges and filter chips */
+.type-lecture { --type: #1d4ed8; --type-soft: #dfe8fc; --type-line: #b3c7f0; --type-bg: #f7f9ff; }
+/* Sandkasten: same green as the sandbox slides in the lecture (#74A537) */
+.type-sandbox { --type: #3d6a10; --type-soft: #e7f2d8; --type-line: #b5d48c; --type-bg: #74a537; }
+.type-exercise { --type: #9a3f28; --type-soft: #f8e5de; --type-line: #e7b7a8; --type-bg: #fdf8f6; }
+.type-test { --type: #7e22ce; --type-soft: #f1e7fb; --type-line: #d6bbf0; --type-bg: #fbf8fe; }
+.type-tool { --type: #4b5563; --type-soft: #e8eaee; --type-line: #c9cdd4; --type-bg: #f8f9fa; }
+
+.type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 24px;
+    padding: 0 9px 0 4px;
+    border: 1px solid var(--type-line);
+    border-radius: 999px;
+    background: var(--type-soft);
+    color: var(--type);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* the chalkboard fills its whole height, so it needs more room at the round edge */
+.type-badge.type-lecture {
+    padding-left: 7px;
+}
+
+.type-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+}
+
 .card {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 160px; /* preview: 160 x 240 = 2:3 */
-    grid-template-rows: 1fr auto;
-    column-gap: 20px;
-    padding: 28px 22px 16px 28px;
-    background: var(--surface);
-    border: 1.5px solid var(--line-strong);
-    border-radius: var(--radius-lg);
-    transition: box-shadow 0.15s, transform 0.15s;
-    --type: var(--type-lecture);
-    --type-soft: var(--type-lecture-soft);
+    grid-template-columns: minmax(0, 1fr) 124px; /* preview: 124 x 186 = 2:3 */
+    grid-template-rows: auto auto 1fr;
+    column-gap: 18px;
+    padding: 20px 20px 18px 22px;
+    border: 1.5px solid var(--type-line);
+    border-radius: 24px;
+    background-color: var(--type-bg);
+    transition: box-shadow 0.15s;
 }
 
 .card:hover {
     box-shadow: 0 8px 28px rgb(16 24 40 / 0.1);
 }
 
-.card.type-sandbox { --type: var(--type-sandbox); --type-soft: var(--type-sandbox-soft); }
-.card.type-exercise { --type: var(--type-exercise); --type-soft: var(--type-exercise-soft); }
-.card.type-test { --type: var(--type-test); --type-soft: var(--type-test-soft); }
-.card.type-tool { --type: var(--type-tool); --type-soft: var(--type-tool-soft); }
+/* subtle per-type patterns */
+/* concentric rings from the top left corner */
+.card.type-lecture {
+    background-image: repeating-radial-gradient(circle at 0 0, rgb(29 78 216 / 0.07) 0 1.5px, transparent 1.5px 22px);
+}
 
-.card-tab {
-    position: absolute;
-    top: -1.5px;
-    right: 22px;
-    width: 160px;
-    padding: 8px 18px 10px;
-    border-radius: 0 0 22px 22px;
-    background: var(--type-soft);
-    color: var(--type);
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.2;
-    text-align: center;
-    z-index: 2;
+/* solid lecture green, no pattern */
+.card.type-sandbox {
+    border-color: #5e8c29;
+}
+
+.card.type-sandbox .concept {
+    border-color: rgb(18 36 2 / 0.22);
+    background: rgb(255 255 255 / 0.22);
+}
+
+.card.type-sandbox .concept:hover {
+    border-color: rgb(18 36 2 / 0.5);
+}
+
+.card.type-sandbox .concept-unknown {
+    border-color: rgb(18 36 2 / 0.35);
+    background: rgb(18 36 2 / 0.06);
+}
+
+.card.type-sandbox .concept-shaky {
+    border-color: var(--shaky);
+}
+
+.card.type-sandbox .concept-confident {
+    border-color: var(--confident);
+}
+
+.card.type-sandbox .done-btn {
+    border-color: rgb(18 36 2 / 0.22);
+    background: rgb(255 255 255 / 0.22);
+    color: #16310a;
+}
+
+.card.type-sandbox .done-btn:hover {
+    border-color: rgb(18 36 2 / 0.5);
+}
+
+.card.type-sandbox .done-btn[aria-pressed="true"] {
+    border-color: #16310a;
+    background: rgb(255 255 255 / 0.4);
+    color: #16310a;
+}
+
+.card.type-sandbox .card-desc,
+.card.type-sandbox .feature-none {
+    color: rgb(18 36 2 / 0.75);
+}
+
+.card.type-sandbox .card-flag,
+.card.type-sandbox .feature,
+.card.type-sandbox .reason {
+    color: #16310a;
+}
+
+.card.type-sandbox .dot {
+    background: rgb(18 36 2 / 0.25);
+}
+
+.card.type-sandbox .dot.on {
+    background: var(--ink);
+}
+
+.card.type-sandbox .type-badge {
+    border-color: transparent;
+    background: rgb(255 255 255 / 0.88);
+}
+
+/* fine dots */
+.card.type-exercise {
+    background-image: radial-gradient(rgb(154 63 40 / 0.14) 1px, transparent 1.4px);
+    background-size: 12px 12px;
+}
+
+.card.type-test {
+    background-image: repeating-linear-gradient(0deg, rgb(126 34 206 / 0.06) 0 1px, transparent 1px 13px);
+}
+
+.card.type-tool {
+    background-image:
+        repeating-linear-gradient(45deg, rgb(75 85 99 / 0.05) 0 1px, transparent 1px 10px),
+        repeating-linear-gradient(-45deg, rgb(75 85 99 / 0.05) 0 1px, transparent 1px 10px);
 }
 
 .card-body {
+    grid-column: 1;
+    grid-row: 1 / -1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
     min-width: 0;
-    padding-top: 8px;
 }
 
 .card-flag {
-    margin-bottom: -6px;
-    font-size: 12px;
+    margin-bottom: -4px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--accent);
 }
 
+.card-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+}
+
 .card-title {
     margin: 0;
     font-size: 20px;
     font-weight: 800;
-    line-height: 1.15;
+    line-height: 1.2;
     letter-spacing: -0.01em;
 }
 
@@ -1125,7 +1225,7 @@ h1 {
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: var(--radius-lg);
+    border-radius: 24px;
 }
 
 .card-title a:hover {
@@ -1135,7 +1235,7 @@ h1 {
 
 .card-desc {
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     line-height: 1.35;
     color: var(--muted);
@@ -1144,29 +1244,32 @@ h1 {
 .card-level {
     display: flex;
     align-items: center;
-    gap: 16px;
-    font-size: 16px;
+    gap: 12px;
+    font-size: 15px;
 }
 
 .card-level .dot {
-    width: 15px;
-    height: 15px;
+    width: 13px;
+    height: 13px;
 }
 
 .card-media {
     position: relative;
-    grid-row: 1 / 3;
     grid-column: 2;
+    grid-row: 1;
     display: grid;
     place-items: center;
-    align-self: start;
-    width: 160px;
+    width: 124px;
     aspect-ratio: 2 / 3;
-    margin-top: 44px;
-    border-radius: 24px;
+    border-radius: 16px;
     background: linear-gradient(160deg, hsl(var(--hue) 45% 26%), hsl(calc(var(--hue) + 40) 45% 17%));
     overflow: hidden;
     z-index: 1;
+}
+
+/* no background behind previews: it would bleed through the anti-aliased rounded corners */
+.card-media.has-image {
+    background: none;
 }
 
 .card-image {
@@ -1174,6 +1277,7 @@ h1 {
     inset: 0;
     width: 100%;
     height: 100%;
+    border-radius: inherit;
     object-fit: cover;
     transition: transform 0.2s;
 }
@@ -1183,8 +1287,8 @@ h1 {
 }
 
 .card-icon {
-    width: 128px;
-    height: 128px;
+    width: 96px;
+    height: 96px;
     image-rendering: pixelated;
     filter: drop-shadow(0 6px 0 rgb(0 0 0 / 0.25));
     transition: transform 0.2s;
@@ -1196,28 +1300,32 @@ h1 {
 
 .card-chapter {
     position: absolute;
-    left: 12px;
-    bottom: 10px;
+    left: 10px;
+    bottom: 9px;
     padding: 2px 8px;
     border-radius: 999px;
-    background: rgb(255 255 255 / 0.16);
+    background: rgb(15 20 35 / 0.55);
     color: #fff;
     font-size: 12px;
     font-weight: 600;
+    backdrop-filter: blur(4px);
 }
 
+/* sits directly under the preview image */
 .done-btn {
     position: relative;
     z-index: 1;
-    justify-self: start;
-    margin-top: 14px;
-    padding: 4px 10px;
-    border: 1px solid var(--line);
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 9px;
+    padding: 5px 8px;
+    border: 1px solid var(--line-strong);
     border-radius: 999px;
     background: var(--surface);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--muted);
+    white-space: nowrap;
 }
 
 .done-btn:hover {
@@ -1233,8 +1341,13 @@ h1 {
 }
 
 .card.is-locked {
-    background: #fafbfc;
     border-style: dashed;
+}
+
+/* the solid green already reads as a frame, a dashed line on top looks doubled */
+.card.type-sandbox.is-locked {
+    border-style: solid;
+    border-color: var(--type-bg);
 }
 
 .card.is-locked .card-media {
@@ -1250,7 +1363,7 @@ h1 {
     content: "✓";
     position: absolute;
     top: 10px;
-    right: 12px;
+    right: 10px;
     display: grid;
     place-items: center;
     width: 28px;
@@ -1429,21 +1542,6 @@ h1 {
     font-weight: 600;
 }
 
-.type-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 6px;
-    background: var(--type-lecture-soft);
-    color: var(--type-lecture);
-    font-size: 12px;
-    font-weight: 700;
-    white-space: nowrap;
-}
-
-tr.type-sandbox .type-badge { background: var(--type-sandbox-soft); color: var(--type-sandbox); }
-tr.type-exercise .type-badge { background: var(--type-exercise-soft); color: var(--type-exercise); }
-tr.type-test .type-badge { background: var(--type-test-soft); color: var(--type-test); }
-tr.type-tool .type-badge { background: var(--type-tool-soft); color: var(--type-tool); }
 
 .table .dot {
     width: 9px;
@@ -1580,39 +1678,31 @@ tr.is-done .c-title a {
 
     .card {
         grid-template-columns: minmax(0, 1fr);
-        padding: 24px 16px 14px 18px;
-        border-radius: 22px;
+        grid-template-rows: auto;
+        padding: 16px 16px 14px;
+        border-radius: 20px;
     }
 
-    .card-tab {
-        right: 16px;
-        width: auto;
-        font-size: 12px;
-        padding: 6px 12px 8px;
+    .card-body {
+        grid-row: auto;
     }
 
-    .card-title,
+    .card-head,
     .card-desc {
-        padding-right: 78px;
+        padding-right: 76px;
     }
 
     .card-title {
         font-size: 18px;
     }
 
-    .card-desc {
-        font-size: 15px;
-    }
-
     .card-media {
         position: absolute;
-        top: 44px;
+        top: 16px;
         right: 16px;
         width: 64px;
         aspect-ratio: 2 / 3;
-        min-height: 0;
-        margin: 0;
-        border-radius: 18px;
+        border-radius: 14px;
     }
 
     .card-icon {
@@ -1624,4 +1714,10 @@ tr.is-done .c-title a {
         display: none;
     }
 
+    .done-btn {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: start;
+        margin-top: 12px;
+    }
 }
