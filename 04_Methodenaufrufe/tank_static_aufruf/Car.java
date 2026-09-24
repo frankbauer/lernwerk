@@ -29,21 +29,27 @@ class Car {
             System.out.println("Fahrtrichtung: Westen");
         }else if (direction == NORDWEST){
             System.out.println("Fahrtrichtung: Nordwesten");
+        }else{
+            System.out.println("keine gueltige Fahrtrichtung fuer uebergebenen Wert gefunden");
         }
     }
 
     public static float getConsumption(){
-        return 3.0f+(float)(Math.random()*10);
+        return 3.5f+(float)(Math.random()*10);
     }
 
     public static float getFillLevel(){
-        return (float) (Math.random()*8);
+        return (float) (Math.random()*7);
     }
 
     public static String getFillingStation(int direction, float range){
         String fillingStation = null;
         if (direction == NORD){
-            fillingStation = "Esso-Tankstelle Albaching Nord";
+            if (range>=50){
+                fillingStation = "Esso-Tankstelle Albaching Nord";
+            }else{
+                fillingStation = "JET-Tankstelle Weissensee Nordost";
+            }
         } else if (direction == NORDOST){
             if (range>=50){
                 fillingStation = "JET-Tankstelle Weissensee Nordost";
@@ -51,7 +57,11 @@ class Car {
                 fillingStation = "Esso-Tankstelle Albaching Nord";
             }
         } else if (direction == OST){
-            fillingStation = "ARAL-Tankstelle Knilch Ost";
+            if (range>=55){
+                fillingStation = "ARAL-Tankstelle Knilch Ost";
+            }else{
+                fillingStation = "OMV-Tankstelle Steinach Suedost";
+            }
         } else if (direction == SUEDOST){
             if (range>=55){
                 fillingStation = "OMV-Tankstelle Steinach Suedost";
@@ -59,7 +69,11 @@ class Car {
                 fillingStation = "Shell-Tankstelle Welzer Sued";
             }
         } else if (direction == SUED){
+            if (range>=45){
             fillingStation = "Shell-Tankstelle Welzer Sued";
+            } else{
+                fillingStation = "TOTAL-Tankstelle Waldbad Suedwest";
+            }
         } else if (direction == SUEDWEST){
             if (range>=45){
             fillingStation = "TOTAL-Tankstelle Waldbad Suedwest";
@@ -67,7 +81,11 @@ class Car {
                 fillingStation = "Shell-Tankstelle Welzer Sued";
             }
         } else if (direction == WEST){
+            if (range>=40){
             fillingStation = "Agip-Tankstelle Reuther West";
+            } else{
+                fillingStation = "BayWa-Tankstelle Heller Nordwest";
+            }
         } else if (direction == NORDWEST){
             if (range>=40){
                 fillingStation = "BayWa-Tankstelle Heller Nordwest";
@@ -79,6 +97,9 @@ class Car {
     }
 
     public static void startNavigation(String destination){
+        if (destination == null){
+            System.out.println("Ziel nicht gefunden");
+        }
         System.out.println("Navigation nach " + destination + " wird gestartet.");
     }
 }

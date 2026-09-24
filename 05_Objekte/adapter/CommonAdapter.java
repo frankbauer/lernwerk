@@ -36,7 +36,6 @@ class CommonAdapter {
   private DoubleMessage createMessage(String cmd, double value){
       DoubleMessage msg = de.fau.tf.lgdv.CodeBlocks.createJSObject();
       msg.setCommand("w-"+cmd);
-      msg.setId(0);
       msg.setValue(value);
       msg.setIP(this.ip);
       msg.setPort(this.port);
@@ -47,7 +46,6 @@ class CommonAdapter {
   private BooleanMessage createMessage(String cmd, boolean value){
       BooleanMessage msg = de.fau.tf.lgdv.CodeBlocks.createJSObject();
       msg.setCommand("w-"+cmd);
-      msg.setId(0);
       msg.setValue(value);
       msg.setIP(this.ip);
       msg.setPort(this.port);

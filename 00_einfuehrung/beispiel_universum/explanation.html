@@ -1,0 +1,39 @@
+<h3>Erklärung</h3>
+
+<p>Das Programm erstellt eine Instanz des Universe, fügt einen Planeten und eine Rakete hinzu, setzt
+    verschiedene Eigenschaften und startet schließlich die Simulation. Hier ist eine kurze
+    Erläuterung der Schritte:</p>
+<ol>
+    <li><b>Erstellen des Universums und des Planeten:</b>
+        <pre code>Universe u = new Universe(args);
+Planet p = new Planet(Type.M);</pre>
+        Diese Zeilen erstellen eine neue Instanz
+        des Universe mit den übergebenen Programmargumenten <code>args</code> und einen neuen
+        Planeten des Typs M.<br>
+        In Java ist <code>args</code> ein Array von String-Elementen, das im Methodenkopf der
+        main-Methode auftritt. Dieses Array enthält die Kommandozeilenargumente, die einem Programm
+        übergeben werden, wenn es gestartet wird.
+    </li>
+    <li><b>Eigenschaften des Planeten setzen und zum Universum hinzufügen:</b>
+        <pre code>u.addEntity(p);
+p.setLocation(-75.7, 341.042);
+p.setHasClouds(true);</pre>
+        Der Planet wird zunächst dem Universum <code>u</code> hinzugefügt, seine Position wird
+        festgelegt und es
+        wird angegeben, dass er Wolken hat.
+    </li>
+    <li><b>Erstellen und Konfigurieren der Rakete:</b>
+        <pre code>Rocket r = new Rocket();
+r.setLocationRelativeTo(p, 12.2, -200.0);
+u.addEntity(r);
+r.launchIn(5);</pre>
+        Eine Rakete wird erstellt, relativ zu dem Planeten <code>p</code> positioniert, dem
+        Universum <code>u</code> hinzugefügt und dann so eingestellt, dass sie in 5 Zeiteinheiten
+        startet.
+    </li>
+    <li><b>Simulation starten:</b>
+        <pre code>u.simulate();</pre>
+        Diese Zeile startet die Simulation des Universums <code>u</code> mit den hinzugefügten
+        Entitäten und deren Konfigurationen.
+    </li>
+</ol>

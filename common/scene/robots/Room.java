@@ -1,4 +1,4 @@
-class Room extends RemoteObject{   
+class Room extends de.fau.tf.lgdv.runtime.RemoteObject{   
     private final java.util.List<Robot> robots = new java.util.LinkedList<>();
     public static Room MAIN_ROOM = null;
     private boolean visible;
@@ -20,7 +20,7 @@ class Room extends RemoteObject{
 
     public void show(boolean display){
         this.visible = display;
-        RobotFactory.COMMAND_BUFFER.addCommand("show", this, new JsonObject().put("visible", display));
+        RobotFactory.COMMAND_BUFFER.addCommand("show", this, new de.fau.tf.lgdv.json.JsonObject().put("visible", display));
     }
 
     protected void registerRobot(Robot r){
@@ -31,7 +31,7 @@ class Room extends RemoteObject{
         this.robots.remove(r);
     }
 
-    protected void addAttributes(JsonObject json){
+    protected void addAttributes(de.fau.tf.lgdv.json.JsonObject json){
         json.put("visible", this.visible);        
         json.put("style", this.roomStyle);
     }
