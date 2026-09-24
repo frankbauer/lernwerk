@@ -4,6 +4,8 @@
     "use strict";
 
     const DATA_URL = "./data/exercises.json";
+    /** Exercises marked `isHidden` only show up with ?showHidden in the URL. */
+    const SHOW_HIDDEN = new URLSearchParams(location.search).has("showHidden");
     const STORAGE_KEY = "lernwerk.uebungsplaner.v1";
 
     /** Self-assessment per concept; everything but "unknown" counts as learned. */
@@ -445,7 +447,9 @@
             <div class="card-body">
                 ${recommended ? `<span class="card-flag">★ Empfehlung</span>` : ""}
                 <div class="card-head">
-                    <h3 class="card-title"><a href="${esc(ex.link)}">${esc(ex.title)}</a>${ex.isNew ? `<span class="new">Neu</span>` : ""}</h3>
+                    <h3 class="card-title"><a href="${esc(ex.link)}">${esc(ex.title)}</a></h3>
+                    ${ex.isNew ? `<span class="new">Neu</span>` : ""}
+                    ${ex.isHidden ? `<span class="hidden-badge" title="Nur mit ?showHidden sichtbar">Versteckt</span>` : ""}
                     ${typeBadge(ex.type)}
                 </div>
                 <p class="card-desc">${esc(ex.description)}</p>
@@ -476,7 +480,7 @@
                 <div class="c-title-inner">
                     ${ex.image ? preview(ex, "c-thumb") : `<span class="c-thumb c-thumb-icon">${icon(ex.tags[0])}</span>`}
                     <div>
-                        <a href="${esc(ex.link)}">${esc(ex.title)}</a>${ex.isNew ? `<span class="new">Neu</span>` : ""}
+                        <a href="${esc(ex.link)}">${esc(ex.title)}</a>${ex.isNew ? `<span class="new">Neu</span>` : ""}${ex.isHidden ? `<span class="hidden-badge" title="Nur mit ?showHidden sichtbar">Versteckt</span>` : ""}
                         <span class="c-desc">${esc(ex.description)}</span>
                     </div>
                 </div>
@@ -699,6 +703,7 @@
             return;
         }
 
+        if (!SHOW_HIDDEN) catalog.exercises = catalog.exercises.filter((ex) => !ex.isHidden);
         chapters = [...catalog.chapters].sort((x, y) => x.number - y.number);
         concepts = [...catalog.concepts].sort((x, y) => x.chapter - y.chapter);
         conceptById = Object.fromEntries(concepts.map((c) => [c.id, c]));

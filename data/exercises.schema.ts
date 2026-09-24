@@ -61,6 +61,8 @@ export const ExerciseSchema = z.object({
     hasExperiments: z.boolean(),
     /** Marked with <new> in uebersicht.html. */
     isNew: z.boolean(),
+    /** Work in progress: only listed in the Übungsplaner with ?showHidden in the URL. */
+    isHidden: z.boolean().optional(),
     /** Preview image, relative to the site root (see tools/capture_previews.mjs). */
     image: z.string().nullable().optional(),
     /**
