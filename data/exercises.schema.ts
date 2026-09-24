@@ -33,6 +33,10 @@ export const ConceptSchema = z.object({
 export const TypeInfoSchema = z.object({
     id: ExerciseTypeSchema,
     label: z.string().min(1),
+    /** Shorter label for the type badge next to the title (falls back to `label`). */
+    short: z.string().min(1).optional(),
+    /** Pixel-art icon shown in the type badge and filter, e.g. "img/types/lecture.png". */
+    icon: z.string().nullable().optional(),
 });
 
 export const ExerciseSchema = z.object({

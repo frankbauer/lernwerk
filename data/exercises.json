@@ -216,23 +216,29 @@
   "types": [
     {
       "id": "lecture",
-      "label": "Vorlesungsbeispiel"
+      "label": "Vorlesungsbeispiel",
+      "short": "Vorlesung",
+      "icon": "img/types/lecture.png"
     },
     {
       "id": "sandbox",
-      "label": "Sandkasten"
+      "label": "Sandkasten",
+      "icon": "img/types/sandbox.png"
     },
     {
       "id": "exercise",
-      "label": "Übung"
+      "label": "Übung",
+      "icon": "img/types/exercise.png"
     },
     {
       "id": "test",
-      "label": "Test"
+      "label": "Test",
+      "icon": "img/types/test.png"
     },
     {
       "id": "tool",
-      "label": "Tool"
+      "label": "Tool",
+      "icon": "img/types/tool.png"
     }
   ],
   "exercises": [
@@ -270,7 +276,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/00_einfuehrung-sandkasten_print.webp"
     },
     {
       "id": "00_einfuehrung/table",
@@ -287,7 +293,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/00_einfuehrung-table.webp"
     },
     {
       "id": "01_Variablen/sandkasten_42",
@@ -305,7 +311,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/01_Variablen-sandkasten_42.webp"
     },
     {
       "id": "01_Variablen/swap",

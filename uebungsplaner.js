@@ -73,7 +73,7 @@
     });
 
     let state = load();
-    let catalog, concepts, chapters, typeLabel, conceptById, chapterByNumber;
+    let catalog, concepts, chapters, typeLabel, typeById, conceptById, chapterByNumber;
 
     const $ = (id) => document.getElementById(id);
 
@@ -222,6 +222,15 @@
         const c = conceptById[conceptId];
         return c.icon ? `<img class="${cls}" src="${esc(c.icon)}" alt="" width="64" height="64" />` : "";
     }
+
+    function typeIcon(typeId) {
+        const t = typeById[typeId];
+        return t?.icon ? `<img class="type-icon" src="${esc(t.icon)}" alt="" width="64" height="64" />` : "";
+    }
+
+    /** Coloured badge with the exercise type's icon and label (cards, table). */
+    const typeBadge = (typeId) =>
+        `<span class="type-badge type-${typeId}" title="${esc(typeLabel[typeId])}">${typeIcon(typeId)}<span>${esc(typeById[typeId]?.short || typeLabel[typeId])}</span></span>`;
 
     function levelDots(level) {
         let dots = "";
@@ -372,7 +381,7 @@
         $("facet-type").innerHTML = catalog.types
             .filter((t) => catalog.exercises.some((ex) => ex.type === t.id))
             .map((t) =>
-                chip("toggle-type", "type", t.id, esc(t.label), state.types.includes(t.id),
+                chip("toggle-type", "type", t.id, `${typeIcon(t.id)}${esc(t.label)}`, state.types.includes(t.id),
                     count("type", (ex) => ex.type === t.id))
             )
             .join("");
@@ -433,23 +442,26 @@
             ? preview(ex, "card-image")
             : icon(ex.tags[0], "card-icon");
         return `<article class="card type-${ex.type}${locked ? " is-locked" : ""}${a.done ? " is-done" : ""}">
-            <div class="card-tab">${esc(typeLabel[ex.type])}</div>
             <div class="card-body">
                 ${recommended ? `<span class="card-flag">★ Empfehlung</span>` : ""}
-                <h3 class="card-title"><a href="${esc(ex.link)}">${esc(ex.title)}</a>${ex.isNew ? `<span class="new">Neu</span>` : ""}</h3>
+                <div class="card-head">
+                    <h3 class="card-title"><a href="${esc(ex.link)}">${esc(ex.title)}</a>${ex.isNew ? `<span class="new">Neu</span>` : ""}</h3>
+                    ${typeBadge(ex.type)}
+                </div>
                 <p class="card-desc">${esc(ex.description)}</p>
                 <div class="card-level"><span>Übungslevel</span>${levelDots(ex.difficulty)}</div>
                 <div class="concepts">${ex.tags.map((t) => pill(t, true)).join("")}</div>
                 <div class="features">${features(ex)}</div>
                 ${r ? `<p class="reason reason-${r.kind}">${esc(r.text)}</p>` : ""}
             </div>
-            <a class="card-media" href="${esc(ex.link)}" tabindex="-1" aria-hidden="true"
+            <a class="card-media${ex.image ? " has-image" : ""}" href="${esc(ex.link)}" tabindex="-1" aria-hidden="true"
                 style="--hue:${195 + ((ex.chapter * 37) % 80)}">
                 ${media}
                 <span class="card-chapter">Kap. ${ex.chapter}</span>
             </a>
             <button type="button" class="done-btn" data-action="toggle-done" data-id="${esc(ex.id)}"
-                aria-pressed="${a.done}">${a.done ? "✓ Erledigt" : "Als erledigt markieren"}</button>
+                aria-pressed="${a.done}" aria-label="Als erledigt markieren"
+                title="${a.done ? "Erledigt – klicken zum Zurücksetzen" : "Als erledigt markieren"}">${a.done ? "✓" : "○"} Erledigt</button>
         </article>`;
     }
 
@@ -469,7 +481,7 @@
                     </div>
                 </div>
             </td>
-            <td><span class="type-badge">${esc(typeLabel[ex.type])}</span></td>
+            <td>${typeBadge(ex.type)}</td>
             <td class="c-chapter" title="${esc(chapterByNumber[ex.chapter].title)}">${ex.chapter}</td>
             <td>${levelDots(ex.difficulty)}</td>
             <td><div class="pills">${ex.tags.map((t) => pill(t)).join("")}</div></td>
@@ -692,6 +704,7 @@
         conceptById = Object.fromEntries(concepts.map((c) => [c.id, c]));
         chapterByNumber = Object.fromEntries(chapters.map((c) => [c.number, c]));
         typeLabel = Object.fromEntries(catalog.types.map((t) => [t.id, t.label]));
+        typeById = Object.fromEntries(catalog.types.map((t) => [t.id, t]));
         catalog.exercises.forEach((ex) => (ex._search = searchText(ex)));
 
         // drop stale settings (e.g. a concept that no longer exists)
