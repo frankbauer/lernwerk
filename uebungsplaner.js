@@ -24,15 +24,15 @@
         },
         main: {
             label: "Thema bekannt",
-            hint: "Das Hauptkonzept kennst du – einzelne Nebenkonzepte dürfen noch neu sein.",
+            hint: "Das Hauptkonzept kennst du, einzelne Nebenkonzepte dürfen noch neu sein.",
         },
         next: {
             label: "Nächster Schritt",
-            hint: "Übungen, die genau ein neues Konzept brauchen – ideal zum Vorarbeiten.",
+            hint: "Übungen, die genau ein neues Konzept brauchen. Ideal zum Vorarbeiten.",
         },
         all: {
             label: "Alle",
-            hint: "Alle Übungen. Was noch Unbekanntes braucht, ist gekennzeichnet.",
+            hint: "Alle Übungen angzeigen. Falls Konzepte noch unbenakkt sind, werden die Übungen speziell gekennzeichnet.",
         },
     };
 
@@ -334,7 +334,7 @@
 
         const fits = entries().filter((e) => e.a.ready && e.a.heard).length;
         $("profile-stats").textContent = hasProfile()
-            ? `${fits} Übungen aus gehörten Vorlesungen passen zu deinem Wissensstand.`
+            ? `${fits} Übungen passen zu deinem Wissensstand.`
             : "";
         $("reset-ratings").hidden = !Object.keys(state.overrides).length;
     }
