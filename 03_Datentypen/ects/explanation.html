@@ -1,0 +1,16 @@
+<h3>Erklärung</h3>
+
+<p>Zwei Dinge fehlen im vorgegebenen Code: Die Variable <code>ECTS</code> ist deklariert, hat aber noch keinen Wert,
+    und die Variable <code>load</code> wird verwendet, aber nirgends deklariert.</p>
+<ul>
+    <li><code>ECTS = 7.5f;</code> Weist der bereits deklarierten Variablen den Wert zu. Das <code>f</code> ist nötig:
+        <code>7.5</code> allein ist ein <code>double</code>-Literal und passt nicht ohne Weiteres in eine
+        <code>float</code>-Variable. Eine erneute Deklaration mit <code>float ECTS = 7.5f;</code> wäre falsch, da es
+        <code>ECTS</code> dann zweimal gäbe.</li>
+    <li><code>float load = ECTS * hoursPerECTS / weeks;</code> Deklariert <code>load</code> und berechnet die Formel.
+        Da <code>ECTS</code> ein <code>float</code> ist, wird mit Nachkommastellen gerechnet, obwohl
+        <code>hoursPerECTS</code> und <code>weeks</code> ganze Zahlen sind: <code>7.5 · 30 / 13 ≈ 17.307692</code>.
+    </li>
+    <li>Die Reihenfolge ist wichtig: Stünde vorne <code>hoursPerECTS / weeks</code>, würde zuerst ganzzahlig geteilt
+        (<code>30 / 13 = 2</code>). Das Ergebnis wäre dann falsch.</li>
+</ul>

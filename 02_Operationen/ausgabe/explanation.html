@@ -1,0 +1,23 @@
+<h3>Erklärung</h3>
+
+<p>In der Beispiellösung steht hinter jeder Zeile als Kommentar, was sie ausgibt. Mit <i>Ausführen</i> sehen Sie die Ausgabe des ganzen Programms.</p>
+
+<p>Entscheidend ist, was zwischen den Klammern von <code>System.out.println(...)</code> steht und wie der
+    Operator <code>+</code> ausgewertet wird.</p>
+<ul>
+    <li><code>System.out.println("GdI");</code> Text in Anführungszeichen wird genau so ausgegeben:
+        <code output>GdI</code>.</li>
+    <li><code>System.out.println(wert1);</code> Ohne Anführungszeichen ist <code>wert1</code> eine Variable. Ausgegeben
+        wird ihr Wert: <code output>12</code>.</li>
+    <li><code>System.out.println("wert2");</code> Mit Anführungszeichen ist <code>"wert2"</code> nur ein Text. Der
+        Name der Variablen spielt keine Rolle: <code output>wert2</code>.</li>
+    <li><code>"wert2=" + wert1</code> und <code>"Hallo" + wert1</code> Steht links vom <code>+</code> ein Text,
+        wird der Wert rechts daran angehängt (verkettet): <code output>wert2=12</code> und
+        <code output>Hallo12</code>. Leerzeichen entstehen dabei nur, wenn sie im Text stehen.</li>
+    <li><code>"Welt " + wert2</code> Hier steht das Leerzeichen im Text, daher <code output>Welt 8</code>.</li>
+    <li><code>wert1 + wert2</code> Sind beide Seiten Zahlen, wird addiert: <code output>20</code>.</li>
+    <li><code>"Summe: " + wert1 + wert2</code> Java wertet <code>+</code> von links nach rechts aus. Zuerst entsteht
+        der Text <code>"Summe: 12"</code>, daran wird dann <code>8</code> angehängt: <code output>Summe: 128</code>.</li>
+    <li><code>"Summe: " + (wert1 + wert2)</code> Die Klammern werden zuerst ausgewertet. <code>12 + 8</code> ergibt
+        <code>20</code>, erst dann wird verkettet: <code output>Summe: 20</code>.</li>
+</ul>

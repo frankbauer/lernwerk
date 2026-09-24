@@ -1,0 +1,15 @@
+<h3>Erklärung</h3>
+
+<p>Der vorgegebene Code verwendet die Variablen <code>a</code> und <code>b</code>, ohne sie zu deklarieren. In Java
+    muss jede Variable deklariert werden, bevor sie verwendet wird.</p>
+<ul>
+    <li><code>int a = 8;</code> Deklariert die Variable <code>a</code> und initialisiert sie direkt mit dem Wert
+        <code>8</code>. Der Wert muss 8 sein, da die Ausgabe <code>a: 8</code> verlangt wird.</li>
+    <li><code>int b;</code> Deklariert die Variable <code>b</code> ohne Wert. Den Wert <code>13</code> bekommt sie
+        erst in der nächsten (vorgegebenen) Zeile <code>b = 13;</code>. Eine erneute Deklaration mit
+        <code>int b = 13;</code> an dieser Stelle wäre falsch, weil <code>b</code> dann zweimal deklariert würde.</li>
+    <li><code>int c = a + b;</code> ist bereits vorgegeben: <code>c</code> wird deklariert und bekommt die Summe
+        <code>8 + 13 = 21</code>.</li>
+</ul>
+<p>Andere Lösungen sind ebenfalls möglich, z.B. <code>int a = 8, b;</code> in einer Zeile oder
+    <code>int b = 0;</code>. Der Wert <code>0</code> wird in der nächsten Zeile ohnehin überschrieben.</p>

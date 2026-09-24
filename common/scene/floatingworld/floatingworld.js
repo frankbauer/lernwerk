@@ -184,7 +184,7 @@ export default {
                 }
 
                 if (player.element) player.element.remove()
-                if (player.ghost) player.ghost.remove()
+                if (player.ghost) player.ghost.element.remove()
                 delete this.objects[cmd.object.id]
             }
         } else if (cmdName === 'moveIsland') {

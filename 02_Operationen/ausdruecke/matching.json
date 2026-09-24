@@ -1,0 +1,14 @@
+{
+    "options": ["true", "false", "1", "2", "2.4", "8"],
+    "items": [
+        { "code": "12 == 5", "answer": "false" },
+        { "code": "12 > 5", "answer": "true" },
+        { "code": "8 % 7 * 2", "answer": "2" },
+        { "code": "12 / (2 + 3)", "answer": "2" },
+        { "code": "12 >= 5 == false", "answer": "false" },
+        { "code": "7 == 5 == false", "answer": "true" },
+        { "code": "(7 - 3) == 4 && 7 < 5", "answer": "false" }
+    ],
+    "hint": "Achten Sie auf die Rangfolge der Operatoren und darauf, dass <code>/</code> bei ganzen Zahlen ganzzahlig teilt.",
+    "successMessage": "<b>Richtig!</b> Alle Ausdrücke sind korrekt ausgewertet. In der Beispiellösung können Sie die Ausdrücke auch ausführen."
+}

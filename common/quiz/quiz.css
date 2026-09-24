@@ -1,0 +1,281 @@
+/* Gemeinsame Styles der nicht ausführbaren Quiz-Playgrounds (parsons.js, output.js, matching.js) */
+
+.playground.quiz-canvas {
+    height: auto !important;
+    overflow: visible !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+}
+
+.quiz {
+    --quiz-back: #fdf6e3;
+    --quiz-line: #ffffff;
+    --quiz-border: rgba(0, 0, 0, 0.25);
+    --quiz-bad: rgb(211, 47, 47);
+    --quiz-ok: rgb(46, 125, 50);
+    --quiz-warn: rgb(230, 126, 0);
+    --quiz-accent: var(--color-explain-dark, rgb(2, 123, 227));
+    --quiz-mono: "Source Code Pro", "Courier New", Courier, monospace;
+    width: 100%;
+    text-align: left;
+    font-size: 13pt;
+    container-type: inline-size;
+}
+
+.quiz pre,
+.quiz code {
+    font-family: var(--quiz-mono);
+    font-weight: 600;
+    background: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+.quiz .q-kw { color: #859900; }
+.quiz .q-str { color: #2aa198; }
+.quiz .q-num { color: #d33682; }
+
+.quiz-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.quiz-actions button {
+    font-size: 13pt;
+    padding: 6px 16px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: var(--quiz-accent);
+    color: white;
+}
+
+.quiz-actions button.secondary {
+    background-color: transparent;
+    color: var(--quiz-accent);
+}
+
+.quiz-feedback:empty {
+    display: none;
+}
+
+.quiz-feedback {
+    margin-top: 12px;
+    padding: 8px 12px;
+    border-left: 4px solid;
+    border-radius: 4px;
+}
+
+.quiz-feedback.error { border-color: var(--quiz-bad); background: rgba(211, 47, 47, 0.08); }
+.quiz-feedback.warning { border-color: var(--quiz-warn); background: rgba(230, 126, 0, 0.08); }
+.quiz-feedback.success { border-color: var(--quiz-ok); background: rgba(46, 125, 50, 0.08); }
+
+.quiz-feedback code {
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.06);
+    padding: 0 3px;
+    border-radius: 3px;
+}
+
+/* ---------- Parsons-Puzzle ---------- */
+
+.quiz-parsons-list {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    max-width: 800px;
+    background-color: var(--quiz-back);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.quiz .quiz-parsons-list>li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 0 calc(var(--indent) * 32px);
+    padding: 4px 4px 4px 8px;
+    background-color: var(--quiz-line);
+    border: 1px solid var(--quiz-border);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    transition: transform 0.12s ease;
+}
+
+.quiz .quiz-parsons-list>li.dragging {
+    cursor: grabbing;
+    z-index: 2;
+    opacity: 0.85;
+    transition: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.quiz .quiz-parsons-list>li.bad {
+    border-color: var(--quiz-bad);
+    box-shadow: 0 0 0 2px var(--quiz-bad);
+}
+
+.quiz-grip {
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 12pt;
+    letter-spacing: -3px;
+}
+
+.quiz-parsons-list pre {
+    flex: 1;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.quiz-move {
+    display: flex;
+    gap: 2px;
+}
+
+.quiz-move button {
+    border: none;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 10pt;
+    padding: 4px 6px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.quiz-move button:hover:not([disabled]) {
+    background: rgba(0, 0, 0, 0.08);
+    color: black;
+}
+
+.quiz-move button[disabled] {
+    visibility: hidden;
+}
+
+/* ---------- Ausgabe vorhersagen ---------- */
+
+/* ein gemeinsames Raster, damit die Code-Spalte so breit wie die längste Zeile ist und die Felder bündig stehen */
+.quiz-output-code {
+    display: grid;
+    grid-template-columns: max-content minmax(8em, 1fr);
+    column-gap: 16px;
+    align-items: center;
+    padding: 8px;
+    background-color: var(--quiz-back);
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.quiz-output-line {
+    display: contents;
+}
+
+.quiz-output-line pre {
+    white-space: pre;
+    line-height: 1.6;
+}
+
+.quiz-output-label {
+    grid-column: 1 / -1;
+    font-weight: 500;
+    margin: 12px 0 2px 0;
+}
+
+.quiz-output-label:first-child {
+    margin-top: 0;
+}
+
+.quiz-output-line.has-gap>* {
+    margin: 2px 0;
+}
+
+.quiz input.quiz-answer {
+    font-family: var(--quiz-mono);
+    font-size: 12pt;
+    padding: 3px 6px;
+    border: 1px solid var(--quiz-border);
+    border-radius: 3px;
+    background: white;
+    width: 100%;
+}
+
+.quiz input.quiz-answer.ok { border-color: var(--quiz-ok); box-shadow: 0 0 0 1px var(--quiz-ok); background: rgba(46, 125, 50, 0.06); }
+.quiz input.quiz-answer.bad { border-color: var(--quiz-bad); box-shadow: 0 0 0 1px var(--quiz-bad); background: rgba(211, 47, 47, 0.06); }
+
+/* ---------- Zuordnen ---------- */
+
+.quiz-match-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.quiz-match-row {
+    display: grid;
+    grid-template-columns: minmax(12em, 18em) minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    background-color: var(--quiz-back);
+    border-left: 4px solid transparent;
+}
+
+.quiz-match-row.ok { border-left-color: var(--quiz-ok); }
+.quiz-match-row.bad { border-left-color: var(--quiz-bad); }
+
+.quiz-match-row pre {
+    white-space: pre-wrap;
+}
+
+.quiz-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.quiz-options button {
+    font-family: var(--quiz-mono);
+    font-size: 12pt;
+    font-weight: 600;
+    min-width: 3em;
+    padding: 3px 10px;
+    border: 1px solid var(--quiz-border);
+    border-radius: 3px;
+    background: white;
+    color: black;
+    cursor: pointer;
+}
+
+.quiz-options button:hover {
+    border-color: var(--quiz-accent);
+}
+
+.quiz-options button[aria-pressed="true"] {
+    background: var(--quiz-accent);
+    border-color: var(--quiz-accent);
+    color: white;
+}
+
+/* schmale Darstellung: nach der Breite des Quiz statt des Fensters. Die Grenze hängt von der längsten Codezeile ab,
+   780px reicht für Zeilen mit ca. 50 Zeichen. */
+@container (max-width: 780px) {
+    .quiz-output-code { grid-template-columns: minmax(0, 1fr); }
+    .quiz-output-line pre { overflow-x: auto; }
+    .quiz-output-line.has-gap>input { margin-bottom: 8px; }
+}
+
+@container (max-width: 640px) {
+    .quiz-match-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+
+@container (max-width: 500px) {
+    .quiz .quiz-parsons-list>li { margin-left: calc(var(--indent) * 12px); }
+}

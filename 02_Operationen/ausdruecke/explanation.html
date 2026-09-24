@@ -1,0 +1,25 @@
+<h3>Erklärung</h3>
+
+<p>In der Beispiellösung steht hinter jeder Zeile als Kommentar, was sie ausgibt. Mit <i>Ausführen</i> sehen Sie die Ausgabe des ganzen Programms.</p>
+
+<p>Die Ergebnisse hängen von der Rangfolge der Operatoren ab: Zuerst Klammern, dann <code>*</code> <code>/</code>
+    <code>%</code>, dann <code>+</code> <code>-</code>, dann Vergleiche (<code>&lt;</code> <code>&gt;</code>
+    <code>&lt;=</code> <code>&gt;=</code>), dann <code>==</code> <code>!=</code> und zuletzt <code>&amp;&amp;</code>.
+    Operatoren gleichen Rangs werden von links nach rechts ausgewertet.</p>
+<ul>
+    <li><code>12 == 5</code> ergibt <code output>false</code>, <code>12 &gt; 5</code> ergibt <code output>true</code>.
+        Vergleiche liefern immer einen Wahrheitswert (<code>boolean</code>).</li>
+    <li><code>8 % 7 * 2</code> <code>%</code> und <code>*</code> haben denselben Rang, also von links:
+        <code>8 % 7</code> ist <code>1</code> (Rest der Division), <code>1 * 2</code> ergibt <code output>2</code>.
+        Wer zuerst <code>7 * 2</code> rechnet, kommt fälschlich auf <code>8</code>.</li>
+    <li><code>12 / (2 + 3)</code> ist <code>12 / 5</code>. Da beide Operanden ganze Zahlen (<code>int</code>) sind,
+        wird ganzzahlig geteilt und der Rest abgeschnitten: <code output>2</code>, nicht <code>2.4</code>.</li>
+    <li><code>12 &gt;= 5 == false</code> <code>&gt;=</code> bindet stärker als <code>==</code>: Aus
+        <code>12 &gt;= 5</code> wird <code>true</code>, und <code>true == false</code> ergibt
+        <code output>false</code>.</li>
+    <li><code>7 == 5 == false</code> Von links: <code>7 == 5</code> ist <code>false</code>, und
+        <code>false == false</code> ergibt <code output>true</code>.</li>
+    <li><code>(7 - 3) == 4 &amp;&amp; 7 &lt; 5</code> Links: <code>4 == 4</code> ist <code>true</code>. Rechts:
+        <code>7 &lt; 5</code> ist <code>false</code>. <code>true &amp;&amp; false</code> ergibt
+        <code output>false</code>.</li>
+</ul>

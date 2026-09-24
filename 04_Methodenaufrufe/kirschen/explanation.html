@@ -1,0 +1,19 @@
+<h3>Erklärung</h3>
+
+<p>Alle Methoden sind Klassenmethoden (<code>static</code>). Sie werden daher über den Klassennamen aufgerufen,
+    z.B. <code>FloatingWorld.addPlayer()</code>, ohne dass vorher ein Objekt erzeugt werden muss.</p>
+<ul>
+    <li><b>Spieler hinzufügen:</b> Zweimal <code>FloatingWorld.addPlayer();</code>. Die Spieler werden in der
+        Reihenfolge ihres Hinzufügens nummeriert, beginnend bei <code>0</code>: Der pinke Spieler hat den Index
+        <code>0</code>, der rote den Index <code>1</code>.</li>
+    <li><b>Nach rechts bewegen:</b> <code>FloatingWorld.movePlayerRight(0);</code> bewegt den pinken Spieler. Er
+        steht schon am rechten Rand und fällt von der Insel. <code>FloatingWorld.movePlayerRight(1);</code> bewegt den
+        roten Spieler. Der Index wird der Methode als Parameter übergeben. Jeder Aufruf bewegt den Spieler nur ein
+        Stück, daher sind drei Aufrufe nötig, bis er die Kirsche erreicht.</li>
+    <li><b>Pinken Spieler löschen:</b> <code>FloatingWorld.removePlayer(0);</code></li>
+    <li><b>Roten Spieler nach links bewegen:</b> Hier liegt die Falle. Nach dem Löschen gibt es nur noch einen
+        Spieler, und alle nachfolgenden Spieler rücken um eine Position nach vorne. Der rote Spieler hat jetzt den
+        Index <code>0</code>, daher dreimal <code>FloatingWorld.movePlayerLeft(0);</code>. Mit
+        <code>movePlayerLeft(1)</code> erscheint die Meldung <code>Unknown Player Index: 1</code> und nichts
+        bewegt sich.</li>
+</ul>

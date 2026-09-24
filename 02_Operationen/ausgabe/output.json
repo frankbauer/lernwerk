@@ -1,0 +1,79 @@
+{
+    "lines": [
+        {
+            "code": "public class Foo {"
+        },
+        {
+            "code": "    public static void main(String[] args) {"
+        },
+        {
+            "code": "        int wert1 = 12;"
+        },
+        {
+            "code": "        final int wert2 = 8;"
+        },
+        {
+            "code": "        System.out.println(\"GdI\");",
+            "answer": [
+                "GdI"
+            ]
+        },
+        {
+            "code": "        System.out.println(wert1);",
+            "answer": [
+                "12"
+            ]
+        },
+        {
+            "code": "        System.out.println(\"wert2\");",
+            "answer": [
+                "wert2"
+            ]
+        },
+        {
+            "code": "        System.out.println(\"wert2=\" + wert1);",
+            "answer": [
+                "wert2=12"
+            ]
+        },
+        {
+            "code": "        System.out.println(\"Hallo\" + wert1);",
+            "answer": [
+                "Hallo12"
+            ]
+        },
+        {
+            "code": "        System.out.println(\"Welt \" + wert2);",
+            "answer": [
+                "Welt 8",
+                "welt 8"
+            ]
+        },
+        {
+            "code": "        System.out.println(wert1 + wert2);",
+            "answer": [
+                "20"
+            ]
+        },
+        {
+            "code": "        System.out.println(\"Summe: \" + wert1 + wert2);",
+            "answer": [
+                "Summe: 128"
+            ]
+        },
+        {
+            "code": "        System.out.println(\"Summe: \" + (wert1 + wert2));",
+            "answer": [
+                "Summe: 20"
+            ]
+        },
+        {
+            "code": "    }"
+        },
+        {
+            "code": "}"
+        }
+    ],
+    "hint": "Achten Sie auf Leerzeichen und darauf, wann <code>+</code> Zahlen addiert und wann es Texte verkettet.",
+    "successMessage": "<b>Richtig!</b> Alle neun Ausgaben stimmen. In der Beispiellösung können Sie das Programm auch ausführen."
+}

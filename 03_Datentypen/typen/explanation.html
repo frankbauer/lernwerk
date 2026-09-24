@@ -1,0 +1,28 @@
+<h3>Erklärung</h3>
+
+<p>In der Beispiellösung steht hinter jeder Zeile als Kommentar der Datentyp. Mit <i>Ausführen</i> gibt Java die Typen selbst aus, in derselben Reihenfolge.</p>
+
+<p>Für arithmetische Operatoren (<code>+ - * / %</code>) gelten zwei Regeln:</p>
+<ol>
+    <li><code>byte</code>, <code>short</code> und <code>char</code> werden vor dem Rechnen immer mindestens zu
+        <code>int</code>.</li>
+    <li>Danach bestimmt der größere der beiden Typen das Ergebnis, in der Reihenfolge
+        <code>int</code> → <code>long</code> → <code>float</code> → <code>double</code>.</li>
+</ol>
+<ul>
+    <li><code>3 + 4</code> ergibt <code>int</code>. <code>3.0f - 4.0</code> ergibt <code>double</code>, denn
+        <code>4.0</code> ist ein <code>double</code>-Literal. <code>3.0f - 4</code> ergibt <code>float</code>.
+        <code>5.0 / 4</code> ergibt <code>double</code>. <code>400L % 3</code> ergibt <code>long</code>.</li>
+    <li><code>'A'</code> ist ein <code>char</code>, <code>"A"</code> ein <code>String</code>. Einfache
+        Anführungszeichen stehen für genau ein Zeichen, doppelte für eine Zeichenkette.</li>
+    <li><code>(byte)4 / (short)-200.0</code> Die Casts wirken nur auf den direkt folgenden Wert, hier also
+        <code>(byte)4</code> und <code>(short)-200.0</code>. Für die Division werden aber beide zu <code>int</code>:
+        Das Ergebnis ist <code>int</code>, nicht <code>short</code>.</li>
+    <li><code>(byte)12 * 'A'</code> und <code>'A' + 'B'</code> Nach Regel 1 werden <code>byte</code> und
+        <code>char</code> zu <code>int</code>, das Ergebnis ist <code>int</code>. <code>'A' + 'B'</code> ergibt also
+        die Zahl <code>131</code> und nicht den Text <code>"AB"</code>.</li>
+    <li>Vergleiche (<code>&lt; &gt; ==</code> ...) und logische Verknüpfungen (<code>&amp;&amp; ||</code>) ergeben
+        immer <code>boolean</code>, egal welchen Typ die verglichenen Werte haben.</li>
+    <li><code>"Hallo" + 3</code> Ist einer der Operanden von <code>+</code> ein <code>String</code>, wird verkettet.
+        Das Ergebnis ist ein <code>String</code>.</li>
+</ul>

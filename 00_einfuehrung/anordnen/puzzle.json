@@ -1,0 +1,34 @@
+{
+    "lines": [
+        { "code": "public class MyOrder {", "indent": 0 },
+        { "code": "}", "indent": 0 },
+        { "code": "public static void main(String[] args) {", "indent": 1 },
+        { "code": "}", "indent": 1 },
+        { "code": "House h = new House();", "indent": 2 },
+        { "code": "h.setTown(\"Erlangen\");", "indent": 2 },
+        { "code": "final int FIRST_FLOOR;", "indent": 2 },
+        { "code": "FIRST_FLOOR = 0;", "indent": 2 },
+        { "code": "Floor floor = new Floor(FIRST_FLOOR);", "indent": 2 },
+        { "code": "h.addFloor(floor);", "indent": 2 },
+        { "code": "floor = new Floor(FIRST_FLOOR+1);", "indent": 2 },
+        { "code": "h.addFloor(floor);", "indent": 2 }
+    ],
+    "rules": [
+        { "first": 0, "message": "Die Klassendeklaration <code>public class MyOrder {</code> muss ganz oben stehen." },
+        { "position": 2, "index": 1, "message": "Die <code>main</code>-Methode muss direkt nach der Klassendeklaration beginnen." },
+        { "last": 1, "message": "Die schließende Klammer der Klasse muss ganz unten stehen." },
+        { "position": 3, "index": -2, "message": "Die <code>main</code>-Methode muss vor der schließenden Klammer der Klasse enden. Anweisungen außerhalb einer Methode sind nicht erlaubt." },
+        { "before": [4, 5], "message": "<code>h</code> wird verwendet, bevor es deklariert wurde." },
+        { "before": [4, 9], "message": "<code>h</code> wird verwendet, bevor es deklariert wurde." },
+        { "before": [4, 11], "message": "<code>h</code> wird verwendet, bevor es deklariert wurde." },
+        { "before": [6, 7], "message": "<code>FIRST_FLOOR</code> bekommt einen Wert, bevor die Variable deklariert wurde." },
+        { "before": [7, 8], "message": "<code>FIRST_FLOOR</code> wird gelesen, bevor die Variable einen Wert hat." },
+        { "before": [7, 10], "message": "<code>FIRST_FLOOR</code> wird gelesen, bevor die Variable einen Wert hat." },
+        { "before": [8, 9], "message": "<code>floor</code> wird verwendet, bevor es deklariert wurde." },
+        { "before": [8, 11], "message": "<code>floor</code> wird verwendet, bevor es deklariert wurde." },
+        { "before": [8, 10], "message": "<code>floor</code> bekommt einen neuen Wert, bevor es deklariert wurde." },
+        { "group": [9, 11], "after": 10, "min": 1, "warning": true, "message": "Das Stockwerk <code>FIRST_FLOOR+1</code> wird nie zum Haus hinzugefügt." },
+        { "group": [9, 11], "after": 10, "max": 1, "warning": true, "message": "Das Stockwerk <code>FIRST_FLOOR</code> wird nie zum Haus hinzugefügt, weil <code>floor</code> vorher überschrieben wird." }
+    ],
+    "successMessage": "<b>Richtig!</b> Das Programm ist kompilierbar und fügt beide Stockwerke zum Haus hinzu. Vergleichen Sie Ihre Reihenfolge mit der Beispiellösung."
+}

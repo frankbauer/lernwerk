@@ -1,0 +1,120 @@
+{
+    "lines": [
+        {
+            "label": "a)"
+        },
+        {
+            "code": "long k = 17; double n = 48.3;"
+        },
+        {
+            "code": "System.out.print(k >= n);",
+            "answer": [
+                "false"
+            ]
+        },
+        {
+            "label": "b)"
+        },
+        {
+            "code": "int p = 4; int z = 88;"
+        },
+        {
+            "code": "System.out.print(\"Erg : \" +(p+ z));",
+            "answer": [
+                "Erg : 92"
+            ]
+        },
+        {
+            "label": "c)"
+        },
+        {
+            "code": "int s = -8; float p = 36.3f;"
+        },
+        {
+            "code": "System.out.print(s + \"= p\");",
+            "answer": [
+                "-8= p"
+            ]
+        },
+        {
+            "label": "d)"
+        },
+        {
+            "code": "long j = 31;"
+        },
+        {
+            "code": "System.out.print(j);",
+            "answer": [
+                "31"
+            ]
+        },
+        {
+            "label": "e)"
+        },
+        {
+            "code": "double y = 71.9; double k = 25;"
+        },
+        {
+            "code": "System.out.print(\"k\");",
+            "answer": [
+                "k"
+            ]
+        },
+        {
+            "label": "f)"
+        },
+        {
+            "code": "byte z = -18;"
+        },
+        {
+            "code": "if (-20 - z == z - z) {"
+        },
+        {
+            "code": "    System.out.print(\"passed\");"
+        },
+        {
+            "code": "} else {"
+        },
+        {
+            "code": "    System.out.print(\"been\");"
+        },
+        {
+            "code": "}",
+            "answer": [
+                "been"
+            ]
+        },
+        {
+            "label": "g)"
+        },
+        {
+            "code": "int h = 0;"
+        },
+        {
+            "code": "System.out.print(h+\" \");"
+        },
+        {
+            "code": "h = h / 8 * (\"you\".length() - h);"
+        },
+        {
+            "code": "System.out.print(h);",
+            "answer": [
+                "0 0"
+            ]
+        },
+        {
+            "label": "h)"
+        },
+        {
+            "code": "short u = 13;"
+        },
+        {
+            "code": "System.out.print(u / u + \"the\" + u);",
+            "answer": [
+                "1the13"
+            ]
+        }
+    ],
+    "hint": "Achten Sie auf Leerzeichen, darauf, was in Anführungszeichen steht, und wann <code>+</code> Zahlen addiert und wann es Texte verkettet.",
+    "successMessage": "<b>Richtig!</b> Alle acht Ausgaben stimmen. In der Beispiellösung können Sie die Programme auch ausführen."
+}

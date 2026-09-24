@@ -1,0 +1,20 @@
+<h3>Erklärung</h3>
+
+<p>In der Beispiellösung steht hinter jeder Zeile als Kommentar, was sie ausgibt. Mit <i>Ausführen</i> sehen Sie die Ausgabe des ganzen Programms.</p>
+
+<p>Bei arithmetischen Operationen bestimmt der Datentyp der Operanden den Typ des Ergebnisses. Ist mindestens ein
+    Operand ein <code>double</code>, wird der andere zuerst in <code>double</code> umgewandelt und mit Nachkommastellen
+    gerechnet.</p>
+<ul>
+    <li><code>12 / (2 + 3)</code> Beide Operanden sind <code>int</code>, also wird ganzzahlig geteilt:
+        <code>12 / 5</code> ergibt <code output>2</code>. Der Rest wird abgeschnitten, das Ergebnis ist
+        <code>2</code> und nicht <code>2.0</code>.</li>
+    <li><code>12 / 5.0</code>, <code>12.0 / 5</code> und <code>12.0 / 5.0</code> Sobald ein Operand ein
+        <code>double</code> ist, wird mit Nachkommastellen geteilt: jeweils <code output>2.4</code>.</li>
+    <li><code>73 - 'A'</code> Ein <code>char</code> ist intern eine Zahl, sein Unicode-Wert. <code>'A'</code> hat
+        den Wert <code>65</code>. Beim Rechnen wird er in <code>int</code> umgewandelt: <code>73 - 65</code> ergibt
+        <code output>8</code>.</li>
+    <li><code>8 % 3 == 5 || 'A' &lt; 'B'</code> Links: <code>8 % 3</code> ist <code>2</code>, <code>2 == 5</code> ist
+        <code>false</code>. Rechts: <code>65 &lt; 66</code> ist <code>true</code>. <code>false || true</code> ergibt
+        <code output>true</code>.</li>
+</ul>

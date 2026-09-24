@@ -259,7 +259,7 @@
       "icon": "img/types/tool.png"
     }
   ],
-  "exercises": [    
+  "exercises": [
     {
       "id": "00_einfuehrung/nachricht",
       "title": "Einfaches Programm",
@@ -457,6 +457,57 @@
       "image": null
     },
     {
+      "id": "02_Operationen/calculator",
+      "title": "Programm vervollständigen",
+      "description": "Ergänze die fehlenden Variablendeklarationen, damit das Programm übersetzt und die erwartete Ausgabe erzeugt.",
+      "link": "02_Operationen/calculator",
+      "chapter": 2,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "variablen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true
+    },
+    {
+      "id": "02_Operationen/ausgabe",
+      "title": "Was wird angezeigt?",
+      "description": "Sage die Ausgabe von neun println-Anweisungen voraus und lerne, wann + addiert und wann es Texte verkettet.",
+      "link": "02_Operationen/ausgabe",
+      "chapter": 2,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "operationen",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true
+    },
+    {
+      "id": "02_Operationen/ausdruecke",
+      "title": "Ausdrücke auswerten",
+      "description": "Werte arithmetische, vergleichende und logische Ausdrücke aus und beachte dabei die Rangfolge der Operatoren.",
+      "link": "02_Operationen/ausdruecke",
+      "chapter": 2,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "operationen",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true
+    },
+    {
       "id": "03_Datentypen/sandkasten_type",
       "title": "MeineDatentypen",
       "description": "Wähle für jede Variable den passenden Datentyp – so klein wie möglich, so groß wie nötig.",
@@ -568,6 +619,75 @@
       "image": null
     },
     {
+      "id": "03_Datentypen/ausdruecke",
+      "title": "Ausdrücke mit Kommazahlen",
+      "description": "Werte Ausdrücke mit int, double und char aus und erkenne, wann ganzzahlig geteilt wird.",
+      "link": "03_Datentypen/ausdruecke",
+      "chapter": 3,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true
+    },
+    {
+      "id": "03_Datentypen/ausgabe",
+      "title": "Was wird ausgegeben?",
+      "description": "Sage für acht kurze Programmstücke exakt die Ausgabe voraus – von Vergleichen bis zur Textverkettung.",
+      "link": "03_Datentypen/ausgabe",
+      "chapter": 3,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true
+    },
+    {
+      "id": "03_Datentypen/typen",
+      "title": "Datentypen bestimmen",
+      "description": "Bestimme für 14 Ausdrücke, zu welchem Datentyp sie ausgewertet werden, und prüfe es in der Lösung mit Java selbst.",
+      "link": "03_Datentypen/typen",
+      "chapter": 3,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true
+    },
+    {
+      "id": "03_Datentypen/ects",
+      "title": "ECTS-Rechner",
+      "description": "Ergänze ein Programm, das aus ECTS und Semesterwochen die Arbeitslast pro Woche berechnet.",
+      "link": "03_Datentypen/ects",
+      "chapter": 3,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "datentypen",
+        "variablen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true
+    },
+    {
       "id": "04_Methodenaufrufe/sandkasten_flaeche",
       "title": "MeinMethodenaufruf",
       "description": "Berechne den Flächeninhalt eines Dreiecks mithilfe der Methoden der Klasse Math.",
@@ -658,6 +778,22 @@
       "hasExperiments": false,
       "isNew": true,
       "image": null
+    },
+    {
+      "id": "04_Methodenaufrufe/kirschen",
+      "title": "Kirschenessen mit Klassenmethoden",
+      "description": "Steuere zwei Spieler mit statischen Methoden der FloatingWorld so, dass der rote Spieler die Kirsche holt – und achte darauf, wie sich die Indizes nach dem Löschen verschieben.",
+      "link": "04_Methodenaufrufe/kirschen",
+      "chapter": 4,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true
     },
     {
       "id": "05_Objekte/beispiel_floating",

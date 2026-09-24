@@ -1,0 +1,73 @@
+{
+    "options": [
+        "byte",
+        "short",
+        "int",
+        "long",
+        "float",
+        "double",
+        "char",
+        "boolean",
+        "String"
+    ],
+    "items": [
+        {
+            "code": "3 + 4",
+            "answer": "int"
+        },
+        {
+            "code": "3.0f - 4.0",
+            "answer": "double"
+        },
+        {
+            "code": "3.0f - 4",
+            "answer": "float"
+        },
+        {
+            "code": "5.0 / 4",
+            "answer": "double"
+        },
+        {
+            "code": "'A'",
+            "answer": "char"
+        },
+        {
+            "code": "\"A\"",
+            "answer": "String"
+        },
+        {
+            "code": "(byte)4 / (short)-200.0",
+            "answer": "int"
+        },
+        {
+            "code": "400L % 3",
+            "answer": "long"
+        },
+        {
+            "code": "5.0 / 8 < 10",
+            "answer": "boolean"
+        },
+        {
+            "code": "7 % 8 == 1 || false",
+            "answer": "boolean"
+        },
+        {
+            "code": "(byte)12 * 'A'",
+            "answer": "int"
+        },
+        {
+            "code": "34L * 3.0 > 0.2f && (8-3 == 5 || 6.0 % 3 == 4)",
+            "answer": "boolean"
+        },
+        {
+            "code": "\"Hallo\" + 3",
+            "answer": "String"
+        },
+        {
+            "code": "'A' + 'B'",
+            "answer": "int"
+        }
+    ],
+    "hint": "Bei <code>+ - * / %</code> werden <code>byte</code>, <code>short</code> und <code>char</code> immer mindestens zu <code>int</code>. Sonst bestimmt der größere der beiden Typen das Ergebnis.",
+    "successMessage": "<b>Richtig!</b> Alle Datentypen stimmen. In der Beispiellösung gibt Java die Typen selbst aus."
+}

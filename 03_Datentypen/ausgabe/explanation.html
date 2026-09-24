@@ -1,0 +1,26 @@
+<h3>Erklärung</h3>
+
+<p>In der Beispiellösung steht jedes Programmstück in einem eigenen Block <code>{ ... }</code>. So dürfen die
+    Variablennamen in mehreren Beispielen vorkommen. Beim Ausführen steht vor jeder Ausgabe der Buchstabe der Teilaufgabe, und hinter jeder
+    <code>print</code>-Zeile steht als Kommentar, was sie ausgibt.</p>
+<ul>
+    <li><b>a)</b> <code>k &gt;= n</code> vergleicht <code>17</code> mit <code>48.3</code>. Der <code>long</code>-Wert
+        wird dazu in <code>double</code> umgewandelt. Das Ergebnis ist ein <code>boolean</code>:
+        <code output>false</code>.</li>
+    <li><b>b)</b> Die Klammer wird zuerst ausgewertet: <code>4 + 88</code> ergibt <code>92</code>. Danach wird an den
+        Text angehängt: <code output>Erg : 92</code>.</li>
+    <li><b>c)</b> <code>s + "= p"</code> verkettet die Zahl <code>-8</code> mit dem Text <code>"= p"</code>. Das
+        <code>p</code> steht in Anführungszeichen, also wird nicht die Variable ausgegeben:
+        <code output>-8= p</code>.</li>
+    <li><b>d)</b> Ein <code>long</code> wird wie eine ganze Zahl ausgegeben, ohne <code>L</code>:
+        <code output>31</code>.</li>
+    <li><b>e)</b> <code>"k"</code> ist ein Text, nicht die Variable <code>k</code>: <code output>k</code>.</li>
+    <li><b>f)</b> <code>-20 - z</code> ist <code>-20 - (-18) = -2</code>, <code>z - z</code> ist <code>0</code>. Da
+        <code>-2 == 0</code> falsch ist, wird der <code>else</code>-Zweig ausgeführt: <code output>been</code>.</li>
+    <li><b>g)</b> Zuerst wird <code>0</code> mit einem Leerzeichen ausgegeben. Dann gilt
+        <code>h = 0 / 8 * (3 - 0) = 0 * 3 = 0</code>. Da <code>print</code> keinen Zeilenumbruch erzeugt, steht alles
+        in einer Zeile: <code output>0 0</code>.</li>
+    <li><b>h)</b> Von links nach rechts: <code>u / u</code> ist <code>1</code> (Zahl durch Zahl). Danach folgt ein
+        Text, ab hier wird verkettet: <code>1 + "the"</code> ergibt <code>"1the"</code>, und
+        <code>"1the" + 13</code> ergibt <code output>1the13</code>.</li>
+</ul>
