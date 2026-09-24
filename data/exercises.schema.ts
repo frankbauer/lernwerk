@@ -26,7 +26,7 @@ export const ConceptSchema = z.object({
     label: z.string().min(1),
     /** Chapter that introduces this concept. */
     chapter: z.number().int().nonnegative(),
-    /** Optional emoji/icon for the tag pill on the card. */
+    /** Optional icon for the concept pill, e.g. "img/concepts/schleifen.png" (see tools/concept_icons.py). */
     icon: z.string().nullable().optional(),
 });
 
@@ -57,8 +57,13 @@ export const ExerciseSchema = z.object({
     hasExperiments: z.boolean(),
     /** Marked with <new> in uebersicht.html. */
     isNew: z.boolean(),
-    /** Card image, relative to the site root. Not provided yet. */
+    /** Preview image, relative to the site root (see tools/capture_previews.mjs). */
     image: z.string().nullable().optional(),
+    /**
+     * Crop position of the image in the 2:3 preview boxes, as a CSS object-position
+     * (e.g. "left center", "65% center"). Defaults to a centre crop.
+     */
+    imagePosition: z.string().regex(/^[a-z0-9.% -]+$/i).optional(),
 });
 
 export const ExerciseCatalogSchema = z

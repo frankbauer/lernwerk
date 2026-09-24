@@ -1,0 +1,132 @@
+:root {
+    --planet-size: 1286px;
+    --rocket-width: 65px;
+    --rocket-height: 125px;
+}
+
+.playground {
+    position: relative;
+}
+
+div.universe {
+    position: relative;
+    width: 640px;
+    height: 400px;
+    background-image: url('img/background.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 50;
+    overflow: hidden;
+}
+
+div.universe div.planet {
+    position: absolute;
+    width: var(--planet-size);
+    aspect-ratio: 1 / 1;
+    left: calc(var(--planet-size) / -2);
+    top: calc(var(--planet-size) / -2);
+    background-image: url('img/planet.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 100;
+    transition: left 0.2s ease-in-out, top 0.2s ease-in-out;
+}
+
+div.universe.simulate div.planet {
+    animation: spin 1000s linear infinite;
+}
+
+div.universe.simulate div.planet div.clouds {
+    animation: spin 190s linear infinite;
+}
+
+div.universe div.planet div.clouds {
+    position: absolute;
+    width: var(--planet-size);
+    aspect-ratio: 1 / 1;
+    left: 0;
+    top: 0;
+    background-image: url('img/clouds.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 300;
+    opacity: 0.0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+div.universe div.planet div.clouds.added {
+    opacity: 1.0;
+}
+
+div.universe div.planet div.clouds.fallen {
+    opacity: 0.0;
+}
+
+div.rocket {
+    position: absolute;
+    width: var(--rocket-width);
+    height: var(--rocket-height);
+    left: calc(var(--rocket-width) / -2);
+    top: calc(var(--rocket-height) * -1);
+    background-image: url('img/rocket.off.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 200;
+    opacity: 1;
+}
+
+div.rocket.state_0 {
+    background-image: url('img/rocket.0001.png');
+}
+
+div.rocket.state_1 {
+    background-image: url('img/rocket.0002.png');
+}
+
+div.rocket.state_2 {
+    background-image: url('img/rocket.0003.png');
+}
+
+div.rocket {
+    transition: opacity 0.5s ease-in-out;
+}
+
+div.rocket.animated {
+    transition: left 0.2s ease-in-out, top 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div.rocket.fallen {
+    opacity: 0;
+}
+
+div.universe div.planet div.rocket {
+    left: calc(var(--planet-size) / 2 - var(--rocket-width) / 2);
+    top: calc(var(--planet-size) / 2 - var(--rocket-height));
+}
+
+div.countdown {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 9em;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 500;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+div.countdown.over {
+    opacity: 0;
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
