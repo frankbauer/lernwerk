@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Übungsplaner – Lernwerk</title>
+
+    <link rel="stylesheet" href="./css/font.geist.css?v=1.0.3" />
+    <link rel="stylesheet" href="./css/uebungsplaner.css?v=1.2.4" />
+    <script src="./uebungsplaner.js?v=1.2.4" defer></script>
+</head>
+
+<body>
+    <div class="page">
+        <header class="page-head">
+            <div>
+                <p class="eyebrow">Lernwerk · Grundlagen der Informatik</p>
+                <h1>Übungsplaner</h1>
+                <p class="lede">
+                    Sag uns, was du schon kannst – wir zeigen dir die Übungen, die jetzt zu dir passen.
+                </p>
+            </div>
+        </header>
+
+        <!-- What the student already knows: drives every filter below -->
+        <section class="profile" id="profile" aria-labelledby="profile-title">
+            <button type="button" class="profile-head" data-action="toggle-profile" aria-expanded="true"
+                aria-controls="profile-body">
+                <span class="profile-head-text">
+                    <span class="profile-title" id="profile-title">Mein Wissensstand</span>
+                    <span class="profile-summary" id="profile-summary"></span>
+                </span>
+                <span class="profile-head-action" id="profile-toggle-label">Einklappen</span>
+            </button>
+
+            <div class="profile-body" id="profile-body">
+                <div class="profile-steps">
+                    <div class="step">
+                        <span class="step-no">1</span>
+                        <div class="step-text">
+                            <h2>Welche Vorlesung hast du zuletzt gehört?</h2>
+                            <p>Alle Konzepte bis dahin zählen als bekannt. Du kannst auch direkt auf ein Kapitel
+                                unten klicken.</p>
+                        </div>
+                        <div class="stepper">
+                            <button type="button" class="stepper-btn" data-action="step-last" data-dir="-1"
+                                aria-label="Vorheriges Kapitel">‹</button>
+                            <select id="last-heard" aria-label="Zuletzt gehörte Vorlesung"></select>
+                            <button type="button" class="stepper-btn" data-action="step-last" data-dir="1"
+                                aria-label="Nächstes Kapitel">›</button>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-no">2</span>
+                        <div class="step-text">
+                            <h2>Wie sicher fühlst du dich?</h2>
+                            <p>Markiere Konzepte, bei denen du unsicher bist – sie werden bei den Empfehlungen
+                                bevorzugt. Konzepte, die du woanders gelernt hast, kannst du ebenfalls freischalten.
+                            </p>
+                        </div>
+                        <ul class="legend" aria-label="Legende">
+                            <li><span class="rate-glyph state-unknown">✕</span> neu für mich</li>
+                            <li><span class="rate-glyph state-shaky">?</span> unsicher</li>
+                            <li><span class="rate-glyph state-known">✓</span> kann ich</li>
+                            <li><span class="rate-glyph state-confident">★</span> sicher</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <ol class="path" id="path" aria-label="Kapitel und Konzepte"></ol>
+
+                <div class="profile-foot">
+                    <span id="profile-stats"></span>
+                    <button type="button" class="link-btn" data-action="reset-ratings" id="reset-ratings">
+                        Einschätzungen zurücksetzen
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="controls" aria-label="Filter">
+            <div class="scope" role="radiogroup" aria-label="Welche Übungen anzeigen?" id="scope"></div>
+            <p class="scope-hint" id="scope-hint"></p>
+
+            <div class="control-row">
+                <label class="switch">
+                    <input type="checkbox" id="only-heard" />
+                    <span class="switch-track" aria-hidden="true"></span>
+                    <span>Nur aus gehörten Vorlesungen</span>
+                </label>
+                <label class="switch">
+                    <input type="checkbox" id="focus-shaky" />
+                    <span class="switch-track" aria-hidden="true"></span>
+                    <span>Schwerpunkt: meine unsicheren Konzepte</span>
+                </label>
+                <label class="switch">
+                    <input type="checkbox" id="hide-done" />
+                    <span class="switch-track" aria-hidden="true"></span>
+                    <span>Erledigte ausblenden</span>
+                </label>
+            </div>
+
+            <div class="search-row">
+                <input type="search" id="search" class="search" placeholder="Suche nach Titel, Thema oder Konzept …"
+                    aria-label="Übungen durchsuchen" autocomplete="off" />
+                <button type="button" class="more-btn" data-action="toggle-more" aria-expanded="false"
+                    aria-controls="more" id="more-toggle">Weitere Filter</button>
+            </div>
+
+            <div class="more" id="more" hidden>
+                <div class="facet">
+                    <span class="facet-label">Art</span>
+                    <div class="chips" id="facet-type"></div>
+                </div>
+                <div class="facet">
+                    <span class="facet-label">Übungslevel</span>
+                    <div class="chips" id="facet-level"></div>
+                </div>
+                <div class="facet">
+                    <span class="facet-label">Ausstattung</span>
+                    <div class="chips" id="facet-feature"></div>
+                </div>
+                <div class="facet">
+                    <span class="facet-label">Übt Konzept</span>
+                    <select id="facet-concept" class="select" aria-label="Nur Übungen mit diesem Konzept"></select>
+                </div>
+            </div>
+        </section>
+
+        <div class="results-bar">
+            <div class="results-info">
+                <span class="results-count" id="results-count" aria-live="polite"></span>
+                <div class="active-chips" id="active-chips"></div>
+            </div>
+            <div class="results-tools">
+                <label class="sort">
+                    <span>Sortieren</span>
+                    <select id="sort" class="select"></select>
+                </label>
+                <div class="seg" role="group" aria-label="Ansicht">
+                    <button type="button" data-action="view" data-view="cards">Karten</button>
+                    <button type="button" data-action="view" data-view="table">Tabelle</button>
+                </div>
+            </div>
+        </div>
+
+        <main id="results" class="results"></main>
+    </div>
+</body>
+
+</html>
