@@ -1,3 +1,47 @@
 <h3>Aufgabe</h3>
 
 <p style="font-style: italic"> In dieser Aufgabe wollen Sie die Bewässerung Ihrer Pflanzen automatisieren. Durch die Automatisierung stellen Sie sicher, dass die Pflanzen immer die richtige Menge an Wasser und Dünger erhalten, und können unbesorgt ein paar Tage in den Urlaub fahren, ohne dass sich jemand um die Pflanzen kümmern muss. </p>
+<p>Die <code>main</code>-Methode ist bereits vorgegeben. Sie versorgt drei Pflanzen, summiert das dabei verbrauchte Wasser auf und führt zum Schluss einen Probelauf für den Winter durch. Die Messwerte liefert die Klasse <code>Sensor</code> (siehe Reiter <i>Sensor</i>). Damit das Programm funktioniert, fehlen noch die folgenden Klassenmethoden, die Sie in der Klasse <code>Irrigation</code> schreiben sollen:</p>
+<ul>
+    <li>
+        <p><code>private static int waterAmount(int baseAmount, int season)</code></p>
+        <p style="font-style:normal">Berechnet, wie viel Wasser (in <i>ml</i>) eine Pflanze benötigt. <code>baseAmount</code> ist die normale Wassermenge der Pflanze. Im Sommer braucht die Pflanze doppelt so viel, im Winter nur die Hälfte. In Frühling und Herbst bleibt es bei der normalen Menge. Die berechnete Menge wird zurückgegeben.</p>
+    </li>
+    <li>
+        <p><code>private static void water(String plant, int amount)</code></p>
+        <p style="font-style:normal">Gießt die Pflanze, indem sie z.B. <code output>Kaktus wird mit 50 ml Wasser gegossen.</code> auf der Konsole ausgibt.</p>
+    </li>
+    <li>
+        <p><code>private static void fertilize(String plant)</code></p>
+        <p style="font-style:normal">Düngt die Pflanze, indem sie z.B. <code output>Kaktus wird geduengt.</code> auf der Konsole ausgibt.</p>
+    </li>
+    <li>
+        <p><code>public static int plantCare(String plant, int baseAmount, int season)</code></p>
+        <p style="font-style:normal">Versorgt eine Pflanze in der übergebenen Jahreszeit:</p>
+        <ul>
+            <li>Lesen Sie mit <code>Sensor.getMoisture</code> die Bodenfeuchte der Pflanze aus und geben Sie diese aus.</li>
+            <li>Liegt die Bodenfeuchte unter <i>30 %</i>, wird die Pflanze mit der von <code>waterAmount</code> berechneten Menge gegossen. Verwenden Sie dazu Ihre Methode <code>water</code>. Andernfalls wird ausgegeben, dass die Pflanze nicht gegossen werden muss.</li>
+            <li>Im Frühling und im Sommer wird die Pflanze zusätzlich mit <code>fertilize</code> gedüngt.</li>
+            <li>Die Methode gibt die verbrauchte Wassermenge zurück (<i>0</i>, falls nicht gegossen wurde).</li>
+        </ul>
+    </li>
+    <li>
+        <p><code>public static int plantCare(String plant, int baseAmount)</code></p>
+        <p style="font-style:normal">Eine überladene Variante von <code>plantCare</code> ohne Jahreszeit-Parameter. Sie versorgt die Pflanze in der aktuellen Jahreszeit, die Sie mit <code>Sensor.getSeason()</code> bestimmen. Schreiben Sie den Code dafür nicht noch einmal, sondern rufen Sie die erste Variante von <code>plantCare</code> auf und geben Sie deren Ergebnis zurück.</p>
+    </li>
+</ul>
+<p>Hier eine mögliche Beispielausgabe:</p>
+<pre code style="overflow-x: scroll;">Jahreszeit: Sommer
+Kaktus: Bodenfeuchte 12 %
+Kaktus wird mit 100 ml Wasser gegossen.
+Kaktus wird geduengt.
+Tomate: Bodenfeuchte 57 %
+Tomate muss nicht gegossen werden.
+Tomate wird geduengt.
+Basilikum: Bodenfeuchte 23 %
+Basilikum wird mit 400 ml Wasser gegossen.
+Basilikum wird geduengt.
+Wasserverbrauch heute: 500 ml
+--- Probelauf Winter ---
+Tomate: Bodenfeuchte 8 %
+Tomate wird mit 200 ml Wasser gegossen.</pre>
