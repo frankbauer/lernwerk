@@ -145,8 +145,8 @@ async function generateCodeBlocks(item) {
         dataScopeSelector: "div#content"
     }, codeblocks)
     setAttributes(item.attributes, codeblocks)
-    // codeblocks.attr('codeblockseditor', 'true')
-    codeblocks.attr('codeblocks', 'true')
+    codeblocks.attr('codeblockseditor', 'true')
+    //codeblocks.attr('codeblocks', 'true')
     for (let block of item.blocks) {
         await generateCodeBlockElement(block, codeblocks)
     }
