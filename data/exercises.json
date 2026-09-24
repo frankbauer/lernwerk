@@ -1,0 +1,1493 @@
+{
+  "version": 1,
+  "chapters": [
+    {
+      "number": 0,
+      "folder": "00_einfuehrung",
+      "title": "Einführung OOP"
+    },
+    {
+      "number": 1,
+      "folder": "01_Variablen",
+      "title": "Variablen"
+    },
+    {
+      "number": 2,
+      "folder": "02_Operationen",
+      "title": "Ausdrücke"
+    },
+    {
+      "number": 3,
+      "folder": "03_Datentypen",
+      "title": "Datentypen"
+    },
+    {
+      "number": 4,
+      "folder": "04_Methodenaufrufe",
+      "title": "Methodenaufrufe"
+    },
+    {
+      "number": 5,
+      "folder": "05_Objekte",
+      "title": "Objekte"
+    },
+    {
+      "number": 6,
+      "folder": "06_Bedingungen",
+      "title": "Bedingungen"
+    },
+    {
+      "number": 7,
+      "folder": "07_Schleifen",
+      "title": "Schleifen"
+    },
+    {
+      "number": 8,
+      "folder": "08_Klassenmethoden",
+      "title": "Klassenmethoden"
+    },
+    {
+      "number": 9,
+      "folder": "09_Klassenattribute",
+      "title": "Klassenattribute"
+    },
+    {
+      "number": 10,
+      "folder": "10_Arrays",
+      "title": "Eindimensionale Felder"
+    },
+    {
+      "number": 11,
+      "folder": "11_Arrays_nDim",
+      "title": "Felder (mehrdimensional)"
+    },
+    {
+      "number": 12,
+      "folder": "12_Instanzen",
+      "title": "Instanzen"
+    },
+    {
+      "number": 13,
+      "folder": "13_Referenzen",
+      "title": "Referenzen"
+    },
+    {
+      "number": 14,
+      "folder": "14_Schnittstellen",
+      "title": "Schnittstelle"
+    },
+    {
+      "number": 16,
+      "folder": "16_Rekusrion",
+      "title": "Rekursion"
+    },
+    {
+      "number": 17,
+      "folder": "17_Collections",
+      "title": "Collections"
+    },
+    {
+      "number": 18,
+      "folder": "18_Graphen",
+      "title": "Graphen"
+    },
+    {
+      "number": 19,
+      "folder": "19_Zahlen",
+      "title": "Zahlen"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "grundlagen",
+      "label": "Grundlagen",
+      "chapter": 0,
+      "icon": null
+    },
+    {
+      "id": "variablen",
+      "label": "Variablen",
+      "chapter": 1,
+      "icon": null
+    },
+    {
+      "id": "operationen",
+      "label": "Operationen",
+      "chapter": 2,
+      "icon": null
+    },
+    {
+      "id": "datentypen",
+      "label": "Datentypen",
+      "chapter": 3,
+      "icon": null
+    },
+    {
+      "id": "methodenaufrufe",
+      "label": "Methodenaufrufe",
+      "chapter": 4,
+      "icon": null
+    },
+    {
+      "id": "objekte",
+      "label": "Objekte",
+      "chapter": 5,
+      "icon": null
+    },
+    {
+      "id": "bedingungen",
+      "label": "Bedingungen",
+      "chapter": 6,
+      "icon": null
+    },
+    {
+      "id": "schleifen",
+      "label": "Schleifen",
+      "chapter": 7,
+      "icon": null
+    },
+    {
+      "id": "klassenmethoden",
+      "label": "Klassenmethoden",
+      "chapter": 8,
+      "icon": null
+    },
+    {
+      "id": "klassenattribute",
+      "label": "Klassenattribute",
+      "chapter": 9,
+      "icon": null
+    },
+    {
+      "id": "arrays",
+      "label": "Arrays",
+      "chapter": 10,
+      "icon": null
+    },
+    {
+      "id": "arrays-ndim",
+      "label": "Mehrdimensionale Arrays",
+      "chapter": 11,
+      "icon": null
+    },
+    {
+      "id": "instanzen",
+      "label": "Instanzen",
+      "chapter": 12,
+      "icon": null
+    },
+    {
+      "id": "referenzen",
+      "label": "Referenzen",
+      "chapter": 13,
+      "icon": null
+    },
+    {
+      "id": "schnittstellen",
+      "label": "Schnittstellen",
+      "chapter": 14,
+      "icon": null
+    },
+    {
+      "id": "rekursion",
+      "label": "Rekursion",
+      "chapter": 16,
+      "icon": null
+    },
+    {
+      "id": "collections",
+      "label": "Collections",
+      "chapter": 17,
+      "icon": null
+    },
+    {
+      "id": "graphen",
+      "label": "Graphen",
+      "chapter": 18,
+      "icon": null
+    },
+    {
+      "id": "zahlen",
+      "label": "Zahlendarstellung",
+      "chapter": 19,
+      "icon": null
+    }
+  ],
+  "types": [
+    {
+      "id": "lecture",
+      "label": "Vorlesungsbeispiel"
+    },
+    {
+      "id": "sandbox",
+      "label": "Sandkasten"
+    },
+    {
+      "id": "exercise",
+      "label": "Übung"
+    },
+    {
+      "id": "test",
+      "label": "Test"
+    },
+    {
+      "id": "tool",
+      "label": "Tool"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "00_einfuehrung/beispiel_universum",
+      "title": "Universum",
+      "description": "Lerne den Aufbau eines Java-Programms kennen und schicke eine Rakete durch ein simuliertes Universum.",
+      "link": "00_einfuehrung/beispiel_universum.html",
+      "chapter": 0,
+      "type": "lecture",
+      "difficulty": 1,
+      "tags": [
+        "grundlagen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "00_einfuehrung/sandkasten_print",
+      "title": "MeinExperiment",
+      "description": "Schreibe dein erstes Programm, das deinen Namen und deinen Studiengang auf der Konsole ausgibt.",
+      "link": "00_einfuehrung/sandkasten_print.html",
+      "chapter": 0,
+      "type": "sandbox",
+      "difficulty": 1,
+      "tags": [
+        "grundlagen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "00_einfuehrung/table",
+      "title": "Formatierte Ausgabe",
+      "description": "Gib die Eigenschaften einer fiktiven Person als sauber formatierte Tabelle auf der Konsole aus.",
+      "link": "00_einfuehrung/table.html",
+      "chapter": 0,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "grundlagen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "01_Variablen/sandkasten_42",
+      "title": "MeineRechnung",
+      "description": "Lege zwei ganzzahlige Variablen an, deren Summe 42 ergibt, und gib eine davon aus.",
+      "link": "01_Variablen/sandkasten_42",
+      "chapter": 1,
+      "type": "sandbox",
+      "difficulty": 1,
+      "tags": [
+        "variablen",
+        "operationen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "01_Variablen/swap",
+      "title": "Tauschen",
+      "description": "Vertausche die Werte zweier Variablen, ohne Zahlenwerte direkt in den Code zu schreiben.",
+      "link": "01_Variablen/swap",
+      "chapter": 1,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "02_Operationen/beispiel_increment",
+      "title": "Increment/Dekrement",
+      "description": "Finde heraus, wie Post- und Pre-Inkrement in Ausdrücken ausgewertet werden.",
+      "link": "02_Operationen/beispiel_increment",
+      "chapter": 2,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "02_Operationen/sandkasten_mod",
+      "title": "MeineOperatoren",
+      "description": "Rechne mit arithmetischen Operatoren und entscheide ganz ohne if, ob eine Zahl gerade ist.",
+      "link": "02_Operationen/sandkasten_mod",
+      "chapter": 2,
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "02_Operationen/addition",
+      "title": "Zahlen Addieren",
+      "description": "Addiere zwei Ganzzahlen und gib das Ergebnis auf der Konsole aus.",
+      "link": "02_Operationen/addition.html",
+      "chapter": 2,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "02_Operationen/rechteck",
+      "title": "Rechtecksfläche",
+      "description": "Berechne Flächeninhalt und Umfang eines Rechtecks aus seiner Breite und Höhe.",
+      "link": "02_Operationen/rechteck",
+      "chapter": 2,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "03_Datentypen/sandkasten_type",
+      "title": "MeineDatentypen",
+      "description": "Wähle für jede Variable den passenden Datentyp – so klein wie möglich, so groß wie nötig.",
+      "link": "03_Datentypen/sandkasten_type",
+      "chapter": 3,
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "datentypen",
+        "variablen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "03_Datentypen/beispiel_cast",
+      "title": "Typumwandlung",
+      "description": "Beobachte, wie Typumwandlungen und Ganzzahldivision das Ergebnis einer Berechnung verändern.",
+      "link": "03_Datentypen/beispiel_cast",
+      "chapter": 3,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "03_Datentypen/sandkasten_index",
+      "title": "MeinZufallsindex",
+      "description": "Erzeuge mit Math.random() und einem Type-Cast eine ganze Zufallszahl in einem festen Bereich.",
+      "link": "03_Datentypen/sandkasten_index",
+      "chapter": 3,
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "datentypen",
+        "operationen",
+        "methodenaufrufe"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "03_Datentypen/add_sub_mul",
+      "title": "Subtraktion und Multiplikation",
+      "description": "Verknüpfe zwei Ganzzahlen mit verschiedenen Rechenoperationen und gib alle Ergebnisse aus.",
+      "link": "03_Datentypen/add_sub_mul.html",
+      "chapter": 3,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "datentypen",
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "03_Datentypen/average",
+      "title": "Durchschnitt",
+      "description": "Berechne den Durchschnitt zweier Fließkommazahlen und gib ihn aus.",
+      "link": "03_Datentypen/average",
+      "chapter": 3,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "datentypen",
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "03_Datentypen/temperatur",
+      "title": "Umrechnung von Temperatur",
+      "description": "Rechne eine Temperatur von Celsius in Fahrenheit um und achte dabei auf die Ganzzahldivision.",
+      "link": "03_Datentypen/temperatur",
+      "chapter": 3,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "04_Methodenaufrufe/sandkasten_flaeche",
+      "title": "MeinMethodenaufruf",
+      "description": "Berechne den Flächeninhalt eines Dreiecks mithilfe der Methoden der Klasse Math.",
+      "link": "04_Methodenaufrufe/sandkasten_flaeche/",
+      "chapter": 4,
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "methodenaufrufe",
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "04_Methodenaufrufe/beispiel_floating",
+      "title": "Kirschenessen (statisch)",
+      "description": "Programmiere eine Spielsequenz, in der eine Spielfigur per Klassenmethoden eine Kirsche einsammelt.",
+      "link": "04_Methodenaufrufe/beispiel_floating/",
+      "chapter": 4,
+      "type": "lecture",
+      "difficulty": 1,
+      "tags": [
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "04_Methodenaufrufe/beispiel_robots",
+      "title": "Roboter (statisch)",
+      "description": "Platziere Roboter in einem Raum, indem du Klassenmethoden von Room und RobotFactory aufrufst.",
+      "link": "04_Methodenaufrufe/beispiel_robots/",
+      "chapter": 4,
+      "type": "lecture",
+      "difficulty": 1,
+      "tags": [
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "04_Methodenaufrufe/beispiel_floating_int",
+      "title": "Kirschenessen (Spieler, statisch)",
+      "description": "Wähle Spieler über Parameter aus und bewege sie mit Klassenmethoden durch die Spielwelt.",
+      "link": "04_Methodenaufrufe/beispiel_floating_int/",
+      "chapter": 4,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "methodenaufrufe",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "04_Methodenaufrufe/tank_static_aufruf",
+      "title": "Tankstellensuche",
+      "description": "Bestimme per Klassenmethoden Fahrtrichtung und Reichweite deines Autos und navigiere zur nächsten Tankstelle.",
+      "link": "04_Methodenaufrufe/tank_static_aufruf/",
+      "chapter": 4,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "methodenaufrufe",
+        "variablen",
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "image": null
+    },
+    {
+      "id": "05_Objekte/beispiel_floating",
+      "title": "Kirschenessen",
+      "description": "Erzeuge Spieler-Objekte, merke dir ihre Referenzen und steuere sie über Instanzmethoden.",
+      "link": "05_Objekte/beispiel_floating/",
+      "chapter": 5,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "objekte",
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "05_Objekte/sandkasten_instanzen",
+      "title": "MeineInstanzen",
+      "description": "Lege ein Universum, zwei Sonnen und drei Planeten mit Standardkonstruktoren an.",
+      "link": "05_Objekte/sandkasten_instanzen/",
+      "chapter": 5,
+      "type": "sandbox",
+      "difficulty": 1,
+      "tags": [
+        "objekte"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "05_Objekte/beispiel_robots",
+      "title": "Roboter",
+      "description": "Erzeuge einen Raum und Roboter als Objekte und steuere sie über Instanzmethoden.",
+      "link": "05_Objekte/beispiel_robots/",
+      "chapter": 5,
+      "type": "lecture",
+      "difficulty": 1,
+      "tags": [
+        "objekte",
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "05_Objekte/beispiel_robots_constructor",
+      "title": "Roboter (Parameterkonstruktor)",
+      "description": "Initialisiere Roboter schon beim Erzeugen mit Parameterkonstruktoren.",
+      "link": "05_Objekte/beispiel_robots_constructor/",
+      "chapter": 5,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "objekte",
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "05_Objekte/sandkasten_sonnensystem",
+      "title": "MeinePlaneten",
+      "description": "Erweitere ein Sonnensystem um zwei eigene Planeten mit Radius und Geschwindigkeit.",
+      "link": "05_Objekte/sandkasten_sonnensystem/",
+      "chapter": 5,
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "objekte"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "05_Objekte/vec_sum",
+      "title": "Vektorsumme",
+      "description": "Addiere zwei 2D-Vektoren mithilfe der API der Klasse Vec2D.",
+      "link": "05_Objekte/vec_sum/",
+      "chapter": 5,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "objekte",
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "05_Objekte/vector",
+      "title": "2D Vektoren",
+      "description": "Erzeuge 2D-Vektoren, berechne Summen und Längen und setze sie in eine Formel ein.",
+      "link": "05_Objekte/vector/",
+      "chapter": 5,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "objekte",
+        "methodenaufrufe",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "05_Objekte/adapter",
+      "title": "Glühbirnen-Adapter",
+      "description": "Steuere Farbe, Helligkeit und Sättigung smarter Glühbirnen über eine Adapter-Instanz.",
+      "link": "05_Objekte/adapter",
+      "chapter": 5,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "objekte",
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "image": null
+    },
+    {
+      "id": "05_Objekte/labyrinth",
+      "title": "Labyrinth",
+      "description": "Lotse eine Spielfigur mit Befehlen an eine MazeController-Instanz durch ein Labyrinth.",
+      "link": "05_Objekte/labyrinth",
+      "chapter": 5,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "objekte",
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "06_Bedingungen/beispiel_luck",
+      "title": "Glück",
+      "description": "Simuliere einen Würfelwurf mit Halblingsglück und lerne if-Anweisungen kennen.",
+      "link": "06_Bedingungen/beispiel_luck/",
+      "chapter": 6,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "bedingungen",
+        "datentypen",
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "06_Bedingungen/sandkasten_binom",
+      "title": "MeinSolver",
+      "description": "Löse quadratische Gleichungen und unterscheide die Fälle anhand der Diskriminante.",
+      "link": "06_Bedingungen/sandkasten_binom/",
+      "chapter": 6,
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "bedingungen",
+        "operationen",
+        "methodenaufrufe"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "06_Bedingungen/vector_sort",
+      "title": "2D Vektoren Sortieren",
+      "description": "Erzeuge zufällige 2D-Vektoren und gib sie nach ihrem Winkel zur X-Achse sortiert aus.",
+      "link": "06_Bedingungen/vector_sort/",
+      "chapter": 6,
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "bedingungen",
+        "objekte",
+        "methodenaufrufe",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "06_Bedingungen/tank_bedingungen",
+      "title": "Sparflamme",
+      "description": "Prüfe, ob die nächste Tankstelle noch erreichbar ist, und berechne notfalls, wie sparsam du fahren musst.",
+      "link": "06_Bedingungen/tank_bedingungen/",
+      "chapter": 6,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "bedingungen",
+        "methodenaufrufe",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "image": null
+    },
+    {
+      "id": "07_Schleifen/beispiel_pflanzen_for",
+      "title": "Anpflanzen mit for",
+      "description": "Pflanze mit einer for-Schleife mehrere Bäume auf einem Hügel.",
+      "link": "07_Schleifen/beispiel_pflanzen_for/",
+      "chapter": 7,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "07_Schleifen/sandkasten_odds",
+      "title": "MeineZahlen",
+      "description": "Gib mit einer for-Schleife alle ungeraden Zahlen von 99 bis 61 aus.",
+      "link": "07_Schleifen/sandkasten_odds/",
+      "chapter": 7,
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "operationen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "07_Schleifen/beispiel_pflanzen_while",
+      "title": "Anpflanzen mit while",
+      "description": "Lass einen Gärtner mit einer while-Schleife pflanzen, solange er noch Setzlinge hat.",
+      "link": "07_Schleifen/beispiel_pflanzen_while/",
+      "chapter": 7,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "07_Schleifen/beispiel_break",
+      "title": "Break und Continue",
+      "description": "Steuere den Ablauf einer Endlosschleife gezielt mit break und continue.",
+      "link": "07_Schleifen/beispiel_break/",
+      "chapter": 7,
+      "type": "lecture",
+      "difficulty": 3,
+      "tags": [
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "07_Schleifen/druck_extrema",
+      "title": "Minimaler Luftdruck",
+      "description": "Durchlaufe eine Messreihe mit einer while-Schleife und finde den niedrigsten Luftdruck.",
+      "link": "07_Schleifen/druck_extrema/",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "schleifen",
+        "bedingungen",
+        "objekte",
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "07_Schleifen/groeste_zeitdifferenz",
+      "title": "Größte Zeitdifferenz in Messreihe",
+      "description": "Finde in einer Messreihe die beiden Messungen mit dem größten zeitlichen Abstand.",
+      "link": "07_Schleifen/groeste_zeitdifferenz/",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "schleifen",
+        "bedingungen",
+        "objekte",
+        "methodenaufrufe"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "07_Schleifen/druck_durchschnitt",
+      "title": "Durchschnittsdruck",
+      "description": "Berechne den zeitgewichteten Durchschnitt einer unregelmäßigen Luftdruck-Messreihe.",
+      "link": "07_Schleifen/druck_durchschnitt/",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "schleifen",
+        "objekte",
+        "methodenaufrufe",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "08_Klassenmethoden/sandkasten_summe",
+      "title": "MeineSumme",
+      "description": "Schreibe eine eigene Methode, die vier Zahlen addiert, und rufe sie mehrfach auf.",
+      "link": "08_Klassenmethoden/sandkasten_summe/",
+      "chapter": 8,
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "klassenmethoden"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "08_Klassenmethoden/beispiel_overload",
+      "title": "Überladen",
+      "description": "Definiere mehrere Methoden mit gleichem Namen, aber unterschiedlichen Parametertypen.",
+      "link": "08_Klassenmethoden/beispiel_overload/",
+      "chapter": 8,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "klassenmethoden",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "08_Klassenmethoden/irrigation_system",
+      "title": "automatisches Bewässerungssystem",
+      "description": "Automatisiere die Bewässerung deiner Pflanzen mit eigenen Klassenmethoden und Sensordaten.",
+      "link": "08_Klassenmethoden/irrigation_system/",
+      "chapter": 8,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "klassenmethoden",
+        "bedingungen",
+        "methodenaufrufe"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": true,
+      "image": null
+    },
+    {
+      "id": "09_Klassenattribute/beispiel_steuer",
+      "title": "Mehrwertsteuer",
+      "description": "Berechne Bruttopreise über ein Klassenattribut für den Mehrwertsteuersatz.",
+      "link": "09_Klassenattribute/beispiel_steuer/",
+      "chapter": 9,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "klassenattribute",
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "09_Klassenattribute/sandkasten_schwerkraft",
+      "title": "MeineAttribute",
+      "description": "Lege eine Konstante für die Erdbeschleunigung an und berechne damit den freien Fall.",
+      "link": "09_Klassenattribute/sandkasten_schwerkraft/",
+      "chapter": 9,
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "klassenattribute",
+        "klassenmethoden",
+        "operationen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "09_Klassenattribute/aufrufzaehler",
+      "title": "Methodenaufrufe zählen",
+      "description": "Zähle mit einem privaten Klassenattribut, wie oft eine Methode aufgerufen wird.",
+      "link": "09_Klassenattribute/aufrufzaehler/",
+      "chapter": 9,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "klassenattribute",
+        "klassenmethoden",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "10_Arrays/beispiel_roboter",
+      "title": "Roboterfelder",
+      "description": "Verwalte mehrere Roboter-Objekte gemeinsam in einem Array.",
+      "link": "10_Arrays/beispiel_roboter/",
+      "chapter": 10,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "10_Arrays/sandkasten_zahlen",
+      "title": "MeinFeld",
+      "description": "Speichere sechs Fließkommazahlen in einem Array, gib sie aus und berechne ihren Durchschnitt.",
+      "link": "10_Arrays/sandkasten_zahlen/",
+      "chapter": 10,
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "schleifen",
+        "datentypen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "11_Arrays_nDim/sandkasten_matrix",
+      "title": "MeineMatrix",
+      "description": "Multipliziere alle Werte einer Matrix mit verschachtelten Schleifen und gib sie aus.",
+      "link": "11_Arrays_nDim/sandkasten_matrix/",
+      "chapter": 11,
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "arrays-ndim",
+        "arrays",
+        "schleifen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "12_Instanzen/beispiel_wald",
+      "title": "Wald on Stage",
+      "description": "Erzeuge mehrere Bäume und verändere ihr Aussehen über ein Instanzattribut.",
+      "link": "12_Instanzen/beispiel_wald/",
+      "chapter": 12,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "instanzen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "12_Instanzen/beispiel_wald_schwer",
+      "title": "Wald on Stage (schwer)",
+      "description": "Schau hinter die Kulissen: So sind die Klassen Baum und Wald mit Attributen, Konstruktoren und Methoden gebaut.",
+      "link": "12_Instanzen/beispiel_wald_schwer/",
+      "chapter": 12,
+      "type": "lecture",
+      "difficulty": 4,
+      "tags": [
+        "instanzen",
+        "klassenattribute",
+        "bedingungen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "12_Instanzen/sandkasten_bruch",
+      "title": "MeinBruch",
+      "description": "Schreibe eine Klasse für Brüche mit geschützten Attributen, Gettern und einer abgesicherten Setter-Methode.",
+      "link": "12_Instanzen/sandkasten_bruch/",
+      "chapter": 12,
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "instanzen",
+        "bedingungen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "12_Instanzen/vec2d_list",
+      "title": "Verwaltung von 2D-Vektoren",
+      "description": "Implementiere eine eigene Listenklasse, die 2D-Vektoren in einem Array fester Größe verwaltet.",
+      "link": "12_Instanzen/vec2d_list",
+      "chapter": 12,
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "instanzen",
+        "arrays",
+        "schleifen",
+        "bedingungen",
+        "referenzen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "image": null
+    },
+    {
+      "id": "13_Referenzen/sandkasten_deskrun",
+      "title": "MeineReferenzen",
+      "description": "Verfolge im Schreibtischtest, welche Objekte und Referenzen am Programmende existieren.",
+      "link": "13_Referenzen/sandkasten_deskrun/",
+      "chapter": 13,
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "referenzen",
+        "instanzen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "13_Referenzen/beispiel_finalRef",
+      "title": "Konstante Referenzen",
+      "description": "Erfahre, was final bei Objektreferenzen bedeutet – und was nicht.",
+      "link": "13_Referenzen/beispiel_finalRef/",
+      "chapter": 13,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "referenzen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "14_Schnittstellen/sandkasten_interface",
+      "title": "MeinImplementierer",
+      "description": "Lass eine Klasse die vorgegebene Schnittstelle Fahrbar implementieren.",
+      "link": "14_Schnittstellen/sandkasten_interface/",
+      "chapter": 14,
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "schnittstellen",
+        "instanzen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "14_Schnittstellen/beispiel_multi",
+      "title": "Mehrfachschnittstellen",
+      "description": "Lass eine Kreis-Klasse gleich zwei Schnittstellen implementieren.",
+      "link": "14_Schnittstellen/beispiel_multi/",
+      "chapter": 14,
+      "type": "lecture",
+      "difficulty": 3,
+      "tags": [
+        "schnittstellen",
+        "instanzen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "16_Rekusrion/sandkasten_flood",
+      "title": "MeinFarbeimer",
+      "description": "Implementiere einen rekursiven Flood-Fill – wie den Farbeimer in einem Malprogramm.",
+      "link": "16_Rekusrion/sandkasten_flood/",
+      "chapter": 16,
+      "type": "sandbox",
+      "difficulty": 4,
+      "tags": [
+        "rekursion",
+        "bedingungen",
+        "objekte"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "17_Collections/sandkasten_remove",
+      "title": "MeineNamen",
+      "description": "Verwalte Namen in einer ArrayList und entferne gezielt Einträge.",
+      "link": "17_Collections/sandkasten_remove/",
+      "chapter": 17,
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "collections",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "17_Collections/sandkasten_lexi",
+      "title": "MeineFiguren",
+      "description": "Baue mit einer HashMap ein kleines Figurenlexikon auf und gib alle Einträge aus.",
+      "link": "17_Collections/sandkasten_lexi/",
+      "chapter": 17,
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "collections",
+        "bedingungen",
+        "schleifen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "18_Graphen/beispiel_graph",
+      "title": "Spezialdatenstruktur Graphen",
+      "description": "Baue einen Graphen aus Städten als Knoten und Verbindungen als Kanten auf.",
+      "link": "18_Graphen/beispiel_graph/",
+      "chapter": 18,
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "graphen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "18_Graphen/beispiel_ablaufen",
+      "title": "Graphen Ablaufen",
+      "description": "Durchlaufe alle Knoten und Kanten eines Graphen mit Schleifen.",
+      "link": "18_Graphen/beispiel_ablaufen/",
+      "chapter": 18,
+      "type": "lecture",
+      "difficulty": 3,
+      "tags": [
+        "graphen",
+        "schleifen",
+        "collections"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "18_Graphen/beispiel_traversieren",
+      "title": "Graphen Traversieren",
+      "description": "Besuche alle erreichbaren Knoten eines Graphen mit einer rekursiven Tiefensuche.",
+      "link": "18_Graphen/beispiel_traversieren/",
+      "chapter": 18,
+      "type": "lecture",
+      "difficulty": 4,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": false,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "18_Graphen/beispiel_result",
+      "title": "Graphen Traversieren mit Ergebnis",
+      "description": "Berechne beim rekursiven Traversieren ein Ergebnis, zum Beispiel den größten Knotenwert.",
+      "link": "18_Graphen/beispiel_result/",
+      "chapter": 18,
+      "type": "lecture",
+      "difficulty": 4,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": false,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "18_Graphen/beispiel_cycle",
+      "title": "Graphen Traversieren mit Zyklen",
+      "description": "Traversiere auch zyklische Graphen, indem du dir bereits besuchte Knoten merkst.",
+      "link": "18_Graphen/beispiel_cycle/",
+      "chapter": 18,
+      "type": "lecture",
+      "difficulty": 5,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "collections",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": false,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "18_Graphen/sandkasten_needle",
+      "title": "MeineSuche",
+      "description": "Prüfe rekursiv, ob ein Knoten mit einem bestimmten Wert erreichbar ist.",
+      "link": "18_Graphen/sandkasten_needle/",
+      "chapter": 18,
+      "type": "sandbox",
+      "difficulty": 4,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "bedingungen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "18_Graphen/sandkasten_sum",
+      "title": "MeineSumme",
+      "description": "Summiere rekursiv alle Knotenwerte eines Graphen ab einem Startknoten.",
+      "link": "18_Graphen/sandkasten_sum/",
+      "chapter": 18,
+      "type": "sandbox",
+      "difficulty": 4,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    },
+    {
+      "id": "19_Zahlen/todec",
+      "title": "Binär zu Dezimal",
+      "description": "Gib eine Bitsequenz ein und sieh, welchen Wert sie in verschiedenen Zahlendarstellungen hat.",
+      "link": "19_Zahlen/todec/",
+      "chapter": 19,
+      "type": "tool",
+      "difficulty": 1,
+      "tags": [
+        "zahlen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": null
+    }
+  ]
+}
