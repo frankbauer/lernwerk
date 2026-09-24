@@ -189,7 +189,9 @@ h2 {
 
 
 
-tabbar {
+/* tabbar.code needs the class to beat the generic `.code { width: 100% }` rule from the codeblocks loader css */
+tabbar,
+tabbar.code {
     display: block;
     width: calc(100% - 32px);
     border-color: #F5F5F5;

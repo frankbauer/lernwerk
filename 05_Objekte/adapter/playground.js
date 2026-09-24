@@ -1,33 +1,23 @@
-{
-  scope: undefined,
-  runner: undefined,
-  setupDOM: function (canvasElement, outputElement, scope) {    
-      this.canvasElement = canvasElement
-      canvasElement.hide();
-      canvasElement.css("margin-top", "32px")
-      canvasElement.css("border", "none")     
+export default {
+  setupDOM: function () {
+      this.canvasElement.hide();
+      this.canvasElement.css("margin-top", "32px")
+      this.canvasElement.css("border", "none")
 
-      this.scope = scope;      
-      
-      this.setupLights(scope)
+      this.setupLights()
   },
-  update: function (txt, json, canvasElement, outputElement) {
-      this.canvasElement = canvasElement
+  update: function (txt, json) {
       this.showResults(json)
   },
-  init: function (canvasElement, outputElement, scope, runner) {
-      this.runner = runner
-      this.scope = scope
-      this.canvasElement = canvasElement
-  },
+  init: function () {},
   addArgumentsTo(args) {
-      this.clearSwitches(this.scope)
+      this.clearSwitches()
   },
   onMessage(cmd, data) {
       //console.log("DEBUG Message", cmd, data, this.scope!==undefined)
       if (data === undefined || this.scope === undefined) return;
       if (cmd === "sw_on" || cmd === "sw_off") {
-          const sw = $(`[data-sw=${+data.endpoint}]`)
+          const sw = this.scope.find(`[data-sw=${+data.endpoint}]`)
           if (cmd === "sw_on") {
               sw.removeClass("gdiOff")
               sw.addClass("gdiOn")
@@ -41,7 +31,7 @@
           data.IP = data.IP === undefined ? "127.0.0.2" : data.IP.replace(/"/gm, '-')
           data.endpoint = data.endpoint === undefined ? 'none' : data.endpoint.replace(/"/gm, '-')
           //console.log("DEBUG SEARCH", `[data-ip="${data.IP}"][data-port="${+data.port}"][data-end="${data.endpoint}"] div`)
-          const light = $(`[data-ip="${data.IP}"][data-port="${+data.port}"][data-end="${data.endpoint}"] div.gdiInnerLight`)
+          const light = this.scope.find(`[data-ip="${data.IP}"][data-port="${+data.port}"][data-end="${data.endpoint}"] div.gdiInnerLight`)
           if (cmd === 'hue') this.setColor(light, +data.value, undefined, undefined);
           if (cmd === 'saturation') this.setColor(light, undefined, +data.value, undefined);
           if (cmd === 'brightness') this.setColor(light, undefined, undefined, +data.value);
@@ -54,7 +44,7 @@
       //console.log("DEBUG Finished", args, resultData)
       this.showResults(resultData)
   },
-  reset(canvasElement) {
+  reset() {
       //$('.gditest').hide()
   },
   showResults(json) {
@@ -100,8 +90,8 @@
       light.css('background-color', this.hsv(hue, sat, Math.max(0.2, br)))
       light.find('.gdiState').html(on ? 'On' : 'Off')
   },
-  setupLights: function (scope) {
-      const panel = $('#lsPanel #lsLights div.row')
+  setupLights: function () {
+      const panel = this.scope.find('#lsPanel #lsLights div.row')
       console.log("DEBUG PANEL", panel)
       const lights = panel.find('.gdiLight');
       console.log("DEBUG LIGHTS", lights)
@@ -111,12 +101,12 @@
           console.log("DEBUG LIGHT", l, light.attr('data-ip'))
       })
   },
-  clearSwitches: function (scope) {
-      const panel = $('#lsPanel #lsSwitches div.row')
+  clearSwitches: function () {
+      const panel = this.scope.find('#lsPanel #lsSwitches div.row')
       panel.html('')
   },
   addSwitch: function (id) {
-      const panel = $('#lsPanel #lsSwitches div.row')
+      const panel = this.scope.find('#lsPanel #lsSwitches div.row')
       const div = $(document.createElement('DIV'))
       div.attr('data-sw', id)
       div.html(`<div class="gdiSwOnText">On</div><div class="gdiSwToggle">${id}</div><div class="gdiSwOffText">Off</div>`)

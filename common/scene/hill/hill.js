@@ -1,28 +1,25 @@
 export default {
-    scope: undefined,
     factory: undefined,
     commandDelay: 200,
     commandTimer: undefined,
     renderTimer: undefined,
     objects: {},
-    setupDOM: function (canvasElement, outputElement, scope) {
-        canvasElement.html('')
-        this.scope = scope
-        this.resetFloatingWorld(canvasElement)
+    setupDOM: function () {
+        this.canvasElement.html('')
+        this.resetFactory(this.canvasElement)
     },
-    init: function (canvasElement, outputElement, scope, runner) {
-        this.scope = scope
-        this.resetFactory(canvasElement)
+    init: function () {
+        this.resetFactory(this.canvasElement)
 
         // this.runCommand([{ "command": "new", "object": { "type": "Hill", "id": 1 } }, { "command": "new", "object": { "treeStyle": 14, "type": "Tree", "id": 2 } }, { "command": "addTree", "tree": { "type": "Tree", "id": 2 }, "object": { "type": "Hill", "id": 1 } }, { "command": "new", "object": { "treeStyle": 4, "type": "Tree", "id": 3 } }, { "command": "addTree", "tree": { "type": "Tree", "id": 3 }, "object": { "type": "Hill", "id": 1 } }, { "command": "new", "object": { "treeStyle": 4, "type": "Tree", "id": 4 } }, { "command": "addTree", "tree": { "type": "Tree", "id": 4 }, "object": { "type": "Hill", "id": 1 } }, { "command": "new", "object": { "treeStyle": 15, "type": "Tree", "id": 5 } }, { "command": "addTree", "tree": { "type": "Tree", "id": 5 }, "object": { "type": "Hill", "id": 1 } }], 0)
     },
     addArgumentsTo(args) {
     },
-    reset(canvasElement) {
-        this.resetFactory(canvasElement)
+    reset() {
+        this.resetFactory(this.canvasElement)
     },
-    update: function (txt, json, canvasElement, outputElement) {
-        this.resetFactory(canvasElement)
+    update: function (txt, json) {
+        this.resetFactory(this.canvasElement)
         this.runCommand(json, 0)
     },
     render: function (passedTime, delta, width, height, scale) {

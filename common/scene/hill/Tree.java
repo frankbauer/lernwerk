@@ -1,4 +1,4 @@
-class Tree extends RemoteObject{
+class Tree extends de.fau.tf.lgdv.runtime.RemoteObject{
     final int treeStyle;
     public Tree(){
         super("Tree");
@@ -6,7 +6,7 @@ class Tree extends RemoteObject{
         SunnyHill.COMMAND_BUFFER.addNewObject(this);
     }
 
-    protected void addAttributes(JsonObject json){
+    protected void addAttributes(de.fau.tf.lgdv.json.JsonObject json){
         json.put("treeStyle", this.treeStyle);
     }
 

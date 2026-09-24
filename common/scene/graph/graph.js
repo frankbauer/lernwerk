@@ -1,26 +1,21 @@
 export default {
-    scope: undefined,
-    canvasElement: undefined,
     commandDelay: 10,
     commandTimer: undefined,
     objects: {},
     forceStrength: -100,
     forceDistance: 130,
     forceCollide: 10,
-    setupDOM: function (canvasElement, outputElement, scope) {
-        this.scope = scope
-    },
-    init: function (canvasElement, outputElement, scope, runner) {
-        this.scope = scope
-        this.resetGraph(canvasElement)
+    setupDOM: function () {},
+    init: function () {
+        this.resetGraph(this.canvasElement)
     },
     addArgumentsTo(args) {
     },
-    reset(canvasElement) {
+    reset() {
 
     },
-    update: function (txt, json, canvasElement, outputElement) {
-        this.resetGraph(canvasElement)
+    update: function (txt, json) {
+        this.resetGraph(this.canvasElement)
         this.runCommand(json, 0)
     },
     buildGraphVisualization: function (canvasElement, inGraph) {
@@ -254,7 +249,6 @@ export default {
             clearTimeout(this.commandTimer)
             this.commandTimer = undefined
         }
-        this.canvasElement = canvasElement
         canvasElement.hide();
         this.objects = {}
     },
