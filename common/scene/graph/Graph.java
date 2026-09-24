@@ -1,5 +1,5 @@
-class Graph<T>  extends RemoteObject implements java.lang.Iterable<Node<T>>{
-    public static final CommandBuffer COMMAND_BUFFER = new CommandBuffer();
+class Graph<T>  extends de.fau.tf.lgdv.runtime.RemoteObject implements java.lang.Iterable<Node<T>>{
+    public static final de.fau.tf.lgdv.runtime.CommandBuffer COMMAND_BUFFER = new de.fau.tf.lgdv.runtime.CommandBuffer();
     private final java.util.LinkedList<Node<T>> nodes;
 
     public Graph(){
@@ -8,13 +8,13 @@ class Graph<T>  extends RemoteObject implements java.lang.Iterable<Node<T>>{
         Graph.COMMAND_BUFFER.addNewObject(this);
     }
 
-    protected void addAttributes(JsonObject json){}
+    protected void addAttributes(de.fau.tf.lgdv.json.JsonObject json){}
 
 
     public Node<T> add(T payload){
         Node<T> node = new Node<>(payload);
         this.nodes.add(node);
-        Graph.COMMAND_BUFFER.addCommand("addNode", this, new JsonObject().put("node", node.toJsonReference()));
+        Graph.COMMAND_BUFFER.addCommand("addNode", this, new de.fau.tf.lgdv.json.JsonObject().put("node", node.toJsonReference()));
         return node;
     }
 

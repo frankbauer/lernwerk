@@ -1,17 +1,14 @@
 export default {
-    scope: undefined,
     mainCanvas: undefined,
     commandDelay: 200,
     commandTimer: undefined,
     objects: {},
-    setupDOM: function (canvasElement, outputElement, scope) {
-        canvasElement.html('')
-        this.scope = scope
-        this.resetCanvas(canvasElement)
+    setupDOM: function () {
+        this.canvasElement.html('')
+        this.resetCanvas(this.canvasElement)
     },
-    init: function (canvasElement, outputElement, scope, runner) {
-        this.scope = scope
-        this.resetCanvas(canvasElement)
+    init: function () {
+        this.resetCanvas(this.canvasElement)
 
         // this.runCommand([
         //     { "command": "new", "object": { "sx": 0.5, "sy": 0.5, "ax": 0.6000000000000001, "ay": 1.0, "type": "Image", "name": "..\/..\/common\/scene\/tree\/img\/tree.spring.png", "id": 1 } },
@@ -28,22 +25,20 @@ export default {
         // ], 0)
     },
     addArgumentsTo(args) {
-        if (this.scope) {
-            let nr = 0
-            while (true) {
-                const input = $(`input#args_${nr}`)
-                if (input.length === 0) break
-                console.log("INPUT", input, input.val())
-                args[nr] = (`${input.val()}`)
-                nr++
-            }
+        let nr = 0
+        while (true) {
+            const input = this.scope.find(`input#args_${nr}`)
+            if (input.length === 0) break
+            console.log("INPUT", input, input.val())
+            args[nr] = (`${input.val()}`)
+            nr++
         }
     },
-    reset(canvasElement) {
-        this.resetCanvas(canvasElement)
+    reset() {
+        this.resetCanvas(this.canvasElement)
     },
-    update: function (txt, json, canvasElement, outputElement) {
-        this.resetCanvas(canvasElement)
+    update: function (txt, json) {
+        this.resetCanvas(this.canvasElement)
         this.runCommand(json, 0)
     },
     //custom functions

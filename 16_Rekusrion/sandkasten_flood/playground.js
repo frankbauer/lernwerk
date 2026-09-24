@@ -1,5 +1,4 @@
 export default {
-    scope: undefined,
     base: [
         [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0],
         [0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
@@ -13,14 +12,10 @@ export default {
         [0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0],
     ],
     cells: [],
-    setupDOM: function (canvasElement, outputElement, scope) {
-        this.scope = scope
-
-    },
-    init: function (canvasElement, outputElement, scope, runner) {
-        this.scope = scope
-        canvasElement.html('')
-        canvasElement.append(this.createTable(this.base))
+    setupDOM: function () {},
+    init: function () {
+        this.canvasElement.html('')
+        this.canvasElement.append(this.createTable(this.base))
     },
     addArgumentsTo(args) {
         args[0] = `${this.base.length}`
@@ -33,10 +28,10 @@ export default {
             }
         }
     },
-    reset(canvasElement) { },
-    update: function (txt, json, canvasElement, outputElement) {
-        canvasElement.html('')
-        canvasElement.append(this.createTable(this.base))
+    reset() {},
+    update: function (txt, json) {
+        this.canvasElement.html('')
+        this.canvasElement.append(this.createTable(this.base))
         this.delay = 100;
         this.testCells = []
         this.runCommand(json, 0)

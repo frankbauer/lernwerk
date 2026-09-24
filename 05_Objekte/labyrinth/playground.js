@@ -1,30 +1,21 @@
 export default {
-    scope: undefined,
-    runner: undefined,
     maze: [],
-    setupDOM: function (canvasElement, outputElement, scope) {
+    setupDOM: function () {
         this.maze = this.DATA['preset'].maze
-        this.canvasElement = canvasElement
         const maze = document.createElement('div')
         maze.id = 'theMaze'
         this.canvasElement.append(maze)
 
-
-        this.scope = scope;
-        this.setupUI(scope)
+        this.setupUI()
     },
-    init: function (canvasElement, outputElement, scope, runner) {
-        this.runner = runner
-        this.scope = scope
-        this.canvasElement = canvasElement
+    init: function () {
 
         // this.runCommand([{"value":200,"command":"delay"},{"value":1,"command":"right"},{"value":1,"command":"right"},{"value":1,"command":"right"},{"value":1,"command":"right"},{"value":1,"command":"down"},{"value":1,"command":"down"},{"value":1,"command":"left"},{"value":1,"command":"left"},{"value":1,"command":"left"},{"value":1,"command":"down"},{"value":1,"command":"down"},{"value":1,"command":"down"},{"value":1,"command":"down"},{"value":1,"command":"left"},{"value":1,"command":"left"},{"value":1,"command":"left"},{"value":1,"command":"up"},{"value":1,"command":"up"},{"value":1,"command":"right"},{"value":1,"command":"up"},{"value":1,"command":"up"},{"value":1,"command":"left"},{"value":1,"command":"up"},{"value":1,"command":"up"},{"value":1,"command":"up"}], 0)
     },
-    update: function (txt, json, canvasElement, outputElement) {
+    update: function (txt, json) {
         console.log("UPDATE", JSON.stringify(json))
-        this.canvasElement = canvasElement
         this.delay = 100;
-        this.generateMaze(this.scope)
+        this.generateMaze()
         
         //console.log("UPDATE", JSON.stringify(json))
         this.runCommand(json, 0)
@@ -44,19 +35,18 @@ export default {
             }
         }
     },
-    reset(canvasElement) {
+    reset() {
     },
     showResults(json) {
         this.showPath(json.path)
     },
     //custom helpers --------------------------------------------------------------------------------------------------------------------------------    
-    setupUI: function (scope) {
-        this.generateMaze(scope)
+    setupUI: function () {
+        this.generateMaze()
     },
     pos: {x:0, y:0},    
-    generateMaze(scope) {
-        if (scope === undefined) scope = this.scope
-        const div = scope.find('#theMaze')
+    generateMaze() {
+        const div = this.scope.find('#theMaze')
         const w = this.maze[0].length 
         const h = this.maze.length 
         const startX = this.DATA['preset'].col

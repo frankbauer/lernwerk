@@ -1,4 +1,4 @@
-class Gardener extends RemoteObject{
+class Gardener extends de.fau.tf.lgdv.runtime.RemoteObject{
     private SunnyHill hill;
     private int saplingCount;
     public Gardener(){
@@ -7,13 +7,13 @@ class Gardener extends RemoteObject{
         SunnyHill.COMMAND_BUFFER.addNewObject(this);
     }
 
-    protected void addAttributes(JsonObject json){
+    protected void addAttributes(de.fau.tf.lgdv.json.JsonObject json){
         json.put("saplingCount", this.saplingCount);   
     }
 
     public void moveToHill(SunnyHill hill){
         this.hill = hill;
-        SunnyHill.COMMAND_BUFFER.addCommand("moveToHill", this, new JsonObject().put("hill", hill.toJsonReference()));
+        SunnyHill.COMMAND_BUFFER.addCommand("moveToHill", this, new de.fau.tf.lgdv.json.JsonObject().put("hill", hill.toJsonReference()));
     }
 
     public boolean hasSapling(){

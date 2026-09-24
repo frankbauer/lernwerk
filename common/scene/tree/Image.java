@@ -1,4 +1,4 @@
-class Image extends RemoteObject{
+class Image extends de.fau.tf.lgdv.runtime.RemoteObject{
     private final String name;
     private final double scale;
     private final double anchorX;
@@ -20,7 +20,7 @@ class Image extends RemoteObject{
         Graphics2D.COMMAND_BUFFER.addNewObject(this);
     }
 
-    protected void addAttributes(JsonObject json){
+    protected void addAttributes(de.fau.tf.lgdv.json.JsonObject json){
         json.put("name", name);
         json.put("sx", scale);
         json.put("sy", scale);

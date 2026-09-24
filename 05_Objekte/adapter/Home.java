@@ -15,7 +15,7 @@ class Home {
       LAST_ID = id;
       
       if (!CommonAdapter.TEST_MODE){
-          de.fau.tf.lgdv.CodeBlocks.postMessage("reg", id, id);
+          de.fau.tf.lgdv.CodeBlocks.postMessage("reg", id);
       }
   }
 

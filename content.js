@@ -145,8 +145,8 @@ async function generateCodeBlocks(item) {
         dataScopeSelector: "div#content"
     }, codeblocks)
     setAttributes(item.attributes, codeblocks)
-    codeblocks.attr('codeblockseditor', 'true')
-    //codeblocks.attr('codeblocks', 'true')
+    //codeblocks.attr('codeblockseditor', 'true')
+    codeblocks.attr('codeblocks', 'true')
     for (let block of item.blocks) {
         await generateCodeBlockElement(block, codeblocks)
     }
@@ -256,12 +256,12 @@ async function generateCodeBlockElement(blockData, codeblocks) {
         setAttributes({
             dataVersion: 102,
             dataCodeExpanded: 0,
-            align: "center"
+            dataAlign: "center"
         }, blockElement)
         if (blockData.type === 'script') {
             setAttributes({
-                width: 0,
-                height: 0
+                dataWidth: 0,
+                dataHeight: 0
             }, blockElement)
         }
     }
@@ -270,7 +270,16 @@ async function generateCodeBlockElement(blockData, codeblocks) {
     if (blockElement === undefined) {
         console.error("Unknown block type", blockData.type)
     } else {
-        setAttributes(blockData.attributes, blockElement)
+        let attributes = blockData.attributes
+        if (attributes && (blockData.type === 'playground' || blockData.type === 'script')) {
+            // v102 playgrounds read their size/alignment from data-* attributes
+            const { width, height, align, ...rest } = attributes
+            attributes = { ...rest }
+            if (width !== undefined) attributes.dataWidth = width
+            if (height !== undefined) attributes.dataHeight = height
+            if (align !== undefined) attributes.dataAlign = align
+        }
+        setAttributes(attributes, blockElement)
         await addContent(blockData, blockElement, true);
         codeblocks.append(blockElement);
     }
