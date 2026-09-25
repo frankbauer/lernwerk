@@ -1,0 +1,208 @@
+/*
+ * Rundgang durch den Übungsplaner (tour.js): abgedunkelte Seite, handgezeichnete Kreise und Notizen.
+ * Die Farben sind bewusst unabhängig vom Theme, weil alles auf der dunklen Abdeckung liegt.
+ */
+
+.tour {
+    --tour-dim: rgb(14 11 10 / 0.8);
+    --tour-ink: #ffd84d;
+    --tour-text: #fffaf0;
+    --tour-muted: rgb(255 250 240 / 0.7);
+    --tour-hand: "Caveat", "Chalkboard SE", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.tour.is-open {
+    opacity: 1;
+}
+
+.tour-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.tour-dim {
+    fill: var(--tour-dim);
+}
+
+.tour-ring,
+.tour-arrow {
+    fill: none;
+    stroke: var(--tour-ink);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.5));
+}
+
+.tour-ring {
+    stroke-width: 3.2;
+}
+
+.tour-arrow {
+    stroke-width: 2.6;
+}
+
+.tour.is-shown .tour-ring {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.65s cubic-bezier(0.45, 0.05, 0.35, 1);
+}
+
+.tour.is-shown .tour-arrow {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.4s ease-out 0.5s;
+}
+
+/* Notiz: Handschrift direkt auf der Abdeckung */
+.tour-note {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 14px 18px 12px;
+    border: 2px solid transparent;
+    border-radius: 18px 6px 16px 8px / 8px 16px 6px 18px;
+    /* weicher dunkler Hof, damit die Schrift auch über abgedunkelten Karten gut lesbar bleibt */
+    background: rgb(14 11 10 / 0.55);
+    box-shadow: 0 0 28px 14px rgb(14 11 10 / 0.55);
+    color: var(--tour-text);
+    font-family: var(--tour-hand);
+    text-shadow: 0 1px 3px rgb(0 0 0 / 0.6);
+    opacity: 0;
+    transform: translateY(6px) rotate(-0.6deg);
+}
+
+.tour.is-shown .tour-note {
+    opacity: 1;
+    transform: rotate(-0.6deg);
+    transition: opacity 0.3s ease 0.3s, transform 0.3s ease 0.3s;
+}
+
+/* kein Platz neben der Markierung (unten angeheftet) oder über einem aufgehellten Bereich: eigener Hintergrund */
+.tour-note.is-pinned,
+.tour-note.is-boxed {
+    border-color: var(--tour-ink);
+    background: rgb(20 16 14 / 0.94);
+    box-shadow: 0 12px 40px rgb(0 0 0 / 0.5);
+}
+
+.tour-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.tour-count {
+    margin: 0;
+    color: var(--tour-ink);
+    font-size: 17px;
+    line-height: 1;
+}
+
+.tour-title {
+    margin: 2px 0 4px;
+    color: var(--tour-ink);
+    font-family: inherit;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0;
+}
+
+.tour-text {
+    margin: 0;
+    font-size: 21px;
+    line-height: 1.3;
+}
+
+.tour-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+.tour-btn {
+    padding: 5px 14px 6px;
+    border: 2px solid var(--tour-text);
+    /* ungleichmäßige Rundung wirkt wie von Hand gezogen */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    background: transparent;
+    color: var(--tour-text);
+    font: 700 18px/1.1 var(--tour-hand);
+    cursor: pointer;
+}
+
+.tour-btn:hover {
+    background: rgb(255 255 255 / 0.1);
+}
+
+.tour-btn:focus-visible {
+    outline: 2px dashed var(--tour-ink);
+    outline-offset: 3px;
+}
+
+.tour-btn[hidden] {
+    display: none;
+}
+
+.tour-skip {
+    padding: 0 2px;
+    border-color: transparent;
+    color: var(--tour-muted);
+    font-size: 17px;
+    font-weight: 400;
+    text-decoration: underline wavy rgb(255 250 240 / 0.4);
+    text-underline-offset: 4px;
+}
+
+.tour-skip:hover {
+    background: none;
+    color: var(--tour-text);
+}
+
+.tour-next {
+    border-color: var(--tour-ink);
+    background: var(--tour-ink);
+    color: #1a1614;
+    text-shadow: none;
+}
+
+.tour-next:hover {
+    background: #ffe27a;
+}
+
+@media (max-width: 600px) {
+    .tour-title {
+        font-size: 26px;
+    }
+
+    .tour-text {
+        font-size: 19px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tour,
+    .tour.is-shown .tour-ring,
+    .tour.is-shown .tour-arrow,
+    .tour.is-shown .tour-note {
+        transition: none;
+    }
+}
+
+/* ?-Knopf links neben dem Darstellungsmenü */
+.lw-tour-button {
+    margin-right: 8px;
+    font: 700 17px/1 Geist, system-ui, sans-serif;
+}
