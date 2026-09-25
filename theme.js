@@ -1,17 +1,17 @@
-// Darstellungs-Themes für die Übungsseiten.
-// content.js setzt das gespeicherte Theme bereits beim Laden (html[data-lw-theme]) und lädt
-// css/themes.css sowie dieses Skript. Hier werden das Menü oben rechts und die Kapitelzeile
-// über dem Titel erzeugt.
+// Darstellungs-Themes für die Übungsseiten und die Übersicht (uebersicht.html).
+// Übungsseiten: content.js setzt das gespeicherte Theme bereits beim Laden (html[data-lw-theme]) und
+// lädt die Stylesheets sowie dieses Skript. uebersicht.html bindet dieses Skript direkt im <head> ein.
+// Hier werden das Menü oben rechts und (auf Übungsseiten) die Kapitelzeile über dem Titel erzeugt.
 (function () {
     const STORAGE_KEY = 'lernwerk-theme'
-    const DEFAULT_THEME = 'abenteuer' // muss zu content.js passen
+    const DEFAULT_THEME = 'klassisch' // muss zu content.js passen
     const base = new URL('.', document.currentScript.src)
 
     // colors: [Hintergrund, Fläche, Akzent 1, Akzent 2] für die Vorschau im Menü
     const THEMES = [
-        { id: 'klassisch', name: 'Klassisch', hint: 'Das ursprüngliche Aussehen', colors: ['#ffffff', '#ffffff', '#f7eb47', '#9c27b0'] },
+        { id: 'klassisch', name: 'Klassisch', hint: 'Im Stil der Übersichtsseite', colors: ['#f6f2ee', '#ffffff', '#9a3f28', '#1a1614'] },
         { id: 'heft', name: 'Heft', hint: 'Papier, Serifen, Textmarker', colors: ['#f7f3ea', '#fffdf8', '#ffe27a', '#8e5bb8'] },
-        { id: 'karten', name: 'Karten', hint: 'Hell, ruhig, aufgeräumt', colors: ['#f2f4f7', '#ffffff', '#f5b400', '#4f46e5'] },
+        { id: 'karten', name: 'Karten', hint: 'Hell, kühl, aufgeräumt', colors: ['#f2f4f7', '#ffffff', '#f5b400', '#4f46e5'] },
         { id: 'terminal', name: 'Terminal', hint: 'Dunkel wie eine IDE', colors: ['#0d1017', '#121620', '#fbbf24', '#34d399'] },
         { id: 'abenteuer', name: 'Abenteuer', hint: 'Kräftig und verspielt', colors: ['#fff4dc', '#ffffff', '#ffd23f', '#b69cff'] },
         { id: 'raster', name: 'Raster', hint: 'Klares Schweizer Raster', colors: ['#ffffff', '#ffffff', '#111111', '#e30613'] },
@@ -37,16 +37,15 @@
     }
 
     function applyTheme(id) {
-        if (id === 'klassisch') delete document.documentElement.dataset.lwTheme
-        else document.documentElement.dataset.lwTheme = id
+        document.documentElement.dataset.lwTheme = id
     }
 
     // content.js hat evtl. einen unbekannten (veralteten) Wert gesetzt
     applyTheme(loadTheme())
 
-    function createMenu(topbar) {
+    function createMenu(parent, floating = false) {
         const anchor = document.createElement('div')
-        anchor.className = 'lw-menu-anchor'
+        anchor.className = floating ? 'lw-menu-anchor lw-menu-anchor--floating' : 'lw-menu-anchor'
 
         const button = document.createElement('button')
         button.type = 'button'
@@ -128,7 +127,7 @@
         })
 
         anchor.append(button, menu)
-        topbar.append(anchor)
+        parent.append(anchor)
     }
 
     // Kapitelzeile über dem Titel, z.B. "Kapitel 0 · Einführung OOP" (nur in den neuen Themes sichtbar)
@@ -157,9 +156,17 @@
 
     function init() {
         const topbar = document.querySelector('div.topbar')
-        if (!topbar) return
-        createCrumb(topbar)
-        createMenu(topbar)
+        if (topbar) {
+            createCrumb(topbar)
+            createMenu(topbar)
+            return
+        }
+        // Übersicht: der Kopfbereich schneidet Überstehendes ab, daher sitzt das Menü in .page
+        const page = document.querySelector('.page')
+        if (page && document.querySelector('.page-head')) {
+            page.style.position = 'relative'
+            createMenu(page, true)
+        }
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init)

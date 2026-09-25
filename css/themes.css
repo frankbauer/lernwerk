@@ -2,10 +2,10 @@
  * Alternative Darstellungen der Übungsseiten.
  *
  * Aktiv, sobald <html data-lw-theme="..."> gesetzt ist (content.js / theme.js, Auswahl über das Menü
- * oben rechts). Voreinstellung ist "abenteuer"; ohne Attribut ("Klassisch") gilt unverändert editor.css.
+ * oben rechts). Voreinstellung ist "klassisch". Ohne Attribut gilt nur editor.css (Rückfall, im Menü nicht wählbar).
  *
  * Aufbau:
- *   1. Menü (für alle Themes inkl. Klassisch)
+ *   1. (Menü: siehe css/theme-menu.css)
  *   2. Gemeinsame Basis aller neuen Themes, gesteuert über --lw-* Variablen
  *   3. Pro Theme: Variablen + charakteristische Details
  *   4. Gemeinsame Nachträge (dunkle Themes, API-Tabs)
@@ -13,177 +13,6 @@
  * Schriften: Geist liegt lokal in fonts/. Für Serifen, Mono und Handschrift werden System-Schriften
  * verwendet (keine externen Font-CDNs).
  */
-
-/* ============================================================================
-   1. Menü
-   ============================================================================ */
-
-div.topbar>a.backlink {
-    margin-left: auto;
-}
-
-.lw-crumb {
-    display: none;
-}
-
-/* Der Knopf richtet sich an der Grundlinie des Zurück-Links aus (Kopfzeile nutzt align-items: baseline).
-   Das unsichtbare Zeichen in ::before liefert die Grundlinie, vertikal mittig im Knopf. */
-.lw-menu-anchor {
-    position: relative;
-    align-self: baseline;
-    margin-left: 12px;
-}
-
-.lw-menu-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    padding: 0;
-    border: 1px solid var(--lw-menu-border, #e3e3e3);
-    border-radius: 10px;
-    background: var(--lw-menu-button-bg, transparent);
-    color: inherit;
-    font-size: 12pt;
-    line-height: 1;
-    cursor: pointer;
-}
-
-.lw-menu-button::before {
-    content: "\200b";
-}
-
-.lw-menu-button:hover,
-.lw-menu-button[aria-expanded="true"] {
-    background: var(--lw-menu-hover, rgba(0, 0, 0, 0.05));
-}
-
-.lw-menu-button:focus-visible,
-.lw-menu-item:focus-visible {
-    outline: 2px solid var(--lw-accent, rgb(2, 123, 227));
-    outline-offset: 2px;
-}
-
-.lw-menu {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    z-index: 1000;
-    width: 280px;
-    max-width: calc(100vw - 32px);
-    padding: 6px;
-    border: 1px solid var(--lw-menu-border, #e3e3e3);
-    border-radius: 14px;
-    background: var(--lw-menu-bg, #fff);
-    color: var(--lw-menu-fg, #1d2433);
-    box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.25);
-    font: 400 14px/1.35 Geist, Roboto, system-ui, sans-serif;
-    font-style: normal;
-    text-align: left;
-    letter-spacing: normal;
-    text-transform: none;
-}
-
-.lw-menu[hidden] {
-    display: none;
-}
-
-.lw-menu-title {
-    padding: 8px 10px 6px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.6;
-}
-
-.lw-menu-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    padding: 8px 10px;
-    border: none;
-    border-radius: 9px;
-    background: none;
-    color: inherit;
-    font: inherit;
-    text-align: left;
-    cursor: pointer;
-}
-
-.lw-menu-item:hover {
-    background: var(--lw-menu-hover, rgba(0, 0, 0, 0.05));
-}
-
-.lw-swatch {
-    position: relative;
-    flex: none;
-    width: 40px;
-    height: 30px;
-    border-radius: 6px;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-}
-
-.lw-swatch i {
-    position: absolute;
-    left: 6px;
-    right: 6px;
-    top: 6px;
-    bottom: 0;
-    border-radius: 3px 3px 0 0;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
-}
-
-.lw-swatch b {
-    position: absolute;
-    left: 10px;
-    height: 4px;
-    border-radius: 2px;
-}
-
-.lw-swatch b:nth-of-type(1) {
-    top: 11px;
-    width: 12px;
-}
-
-.lw-swatch b:nth-of-type(2) {
-    top: 19px;
-    width: 20px;
-}
-
-.lw-menu-label {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 0;
-}
-
-.lw-menu-label>span {
-    font-weight: 600;
-}
-
-.lw-menu-label small {
-    font-size: 12px;
-    opacity: 0.65;
-}
-
-.lw-check {
-    visibility: hidden;
-    font-weight: 700;
-    color: var(--lw-menu-check, var(--lw-accent, rgb(2, 123, 227)));
-}
-
-.lw-menu-item[aria-checked="true"] .lw-check {
-    visibility: visible;
-}
-
-.lw-menu-item[aria-checked="true"] {
-    background: var(--lw-menu-hover, rgba(0, 0, 0, 0.05));
-}
-
 
 /* ============================================================================
    2. Gemeinsame Basis aller neuen Themes
@@ -608,9 +437,6 @@ html[data-lw-theme="heft"] {
     --lw-exp-out-fg: #2d2a24;
     --lw-experiment: #8e5bb8;
     --lw-tabbar-bg: #fbf8f1;
-    --lw-menu-bg: #fffdf8;
-    --lw-menu-border: #e7dfcd;
-    --lw-menu-hover: #f4eee1;
     /* Codeblocks (shadcn-Variablen) */
     --primary: 43 11% 16%;
     --primary-foreground: 40 100% 99%;
@@ -670,7 +496,213 @@ html[data-lw-theme="heft"] tabbar>div.buttonbar button.active {
 
 
 /* ============================================================================
-   3b. Karten – hell, ruhig, aufgeräumt
+   3b. Klassisch – Formensprache der Übersicht (uebersicht.html / uebungsplaner.css):
+       warme Neutraltöne, Banner im Kopf, Boxen wie die Übungskarten mit Typfarbe, Muster
+       und Pixel-Icon (Aufgabe = Übung, Experimente = Test, Erklärung = Vorlesung).
+   ============================================================================ */
+
+html[data-lw-theme="klassisch"] {
+    --lw-bg: #f6f2ee;
+    --lw-fg: #1a1614;
+    --lw-muted: #776d67;
+    --lw-h1-size: 40px;
+    --lw-h1-weight: 800;
+    --lw-surface: #ffffff;
+    --lw-surface-2: #f2ece7;
+    --lw-border: #e3dbd4;
+    --lw-card-border: 1.5px solid #e3dbd4;
+    --lw-nested-border: 1.5px solid #e3dbd4;
+    --lw-radius: 24px;
+    --lw-radius-sm: 12px;
+    --lw-shadow: 0 1px 2px rgb(60 40 30 / 0.05), 0 4px 16px rgb(60 40 30 / 0.06);
+    --lw-accent: #1a1614;
+    --lw-accent-fg: #ffffff;
+    --lw-link: #1d4ed8;
+    --lw-code-bg: #f2ece7;
+    --lw-code-fg: #453d38;
+    --lw-code-block-bg: #faf7f4;
+    --lw-out-bg: #1a1614;
+    --lw-out-fg: #f6f2ee;
+    --lw-exp-out-bg: #ffffff;
+    --lw-exp-out-fg: #1a1614;
+    --lw-experiment: #1a1614;
+    --lw-editor-border: #c6bbb2;
+    --lw-editor-border-width: 1.5px;
+    --primary: 20 13% 9%;
+    --primary-foreground: 0 0% 100%;
+    --radius: 0.625rem;
+}
+
+/* --- Kopf: Eyebrow + kräftiger Titel wie auf der Übersicht, Knöpfe als weiße Pills --- */
+html[data-lw-theme="klassisch"] .lw-crumb {
+    color: #6b5d55;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="klassisch"] div.topbar>a.backlink {
+    padding: 8px 14px;
+    border: 1px solid #e3dbd4;
+    border-radius: 999px;
+    background: #fff;
+    color: #1a1614;
+    font-weight: 600;
+}
+
+html[data-lw-theme="klassisch"] div.topbar>a.backlink:hover {
+    border-color: #c6bbb2;
+}
+
+html[data-lw-theme="klassisch"] .lw-menu-button {
+    border-radius: 999px;
+    background: #fff;
+}
+
+/* --- Boxen als Karten mit Typfarbe --- */
+html[data-lw-theme="klassisch"] div.boxed,
+html[data-lw-theme="klassisch"] tabbar>div[data-tab]>div.boxed {
+    border: 1.5px solid var(--type-line, #e3dbd4);
+    background-color: var(--type-bg, #ffffff);
+}
+
+html[data-lw-theme="klassisch"] div.aufgabe {
+    --type: #9a3f28;
+    --type-soft: #f8e5de;
+    --type-line: #e7b7a8;
+    --type-bg: #fdf8f6;
+    --type-icon: url("../img/types/exercise.png");
+    background-image: radial-gradient(rgb(154 63 40 / 0.14) 1px, transparent 1.4px);
+    background-size: 12px 12px;
+}
+
+html[data-lw-theme="klassisch"] div.experiment {
+    --type: #0f766e;
+    --type-soft: #dcf0ed;
+    --type-line: #a9d6d0;
+    --type-bg: #f6fbfa;
+    --type-icon: url("../img/types/test.png");
+    background-image: repeating-linear-gradient(0deg, rgb(15 118 110 / 0.06) 0 1px, transparent 1px 13px);
+}
+
+html[data-lw-theme="klassisch"] div.explain {
+    --type: #6b3fa0;
+    --type-soft: #ede5f6;
+    --type-line: #cfbde6;
+    --type-bg: #faf7fc;
+    --type-icon: url("../img/types/lecture.png");
+    background-image: repeating-radial-gradient(circle at 0 0, rgb(107 63 160 / 0.07) 0 1.5px, transparent 1.5px 22px);
+}
+
+html[data-lw-theme="klassisch"] div.boxed>h3+p {
+    color: #453d38;
+}
+
+/* Überschrift als Typ-Badge */
+html[data-lw-theme="klassisch"] div.boxed h3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    margin-bottom: 14px;
+    padding: 0 12px 0 6px;
+    border: 1px solid var(--type-line, #e3dbd4);
+    border-radius: 999px;
+    background: var(--type-soft, #f2ece7);
+    color: var(--type, #453d38);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+html[data-lw-theme="klassisch"] div.boxed h3::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: var(--type-icon, none) center / contain no-repeat;
+    image-rendering: pixelated;
+}
+
+html[data-lw-theme="klassisch"] div.boxed:not(.aufgabe, .experiment, .explain) h3 {
+    padding-left: 12px;
+}
+
+html[data-lw-theme="klassisch"] div.boxed:not(.aufgabe, .experiment, .explain) h3::before {
+    display: none;
+}
+
+/* Experimente: Schritte mit schwarzer Nummer wie auf der Übersicht */
+html[data-lw-theme="klassisch"] div.experiment>div {
+    padding: 14px 18px 14px 56px;
+    border: 1px solid var(--type-line);
+    border-radius: 16px;
+    background: rgb(255 255 255 / 0.85);
+}
+
+html[data-lw-theme="klassisch"] div.experiment>div::before {
+    left: 16px;
+    top: 13px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font: 700 14px/28px var(--lw-font);
+}
+
+html[data-lw-theme="klassisch"] .colored pre[output] {
+    border: 1px solid var(--type-line);
+}
+
+html[data-lw-theme="klassisch"] pre[output],
+html[data-lw-theme="klassisch"] pre[code] {
+    border-radius: 14px;
+}
+
+/* --- Tabs als Segment-Umschalter (.seg) --- */
+html[data-lw-theme="klassisch"] tabbar.code {
+    padding: 16px;
+    border: 1.5px solid #e3dbd4;
+}
+
+html[data-lw-theme="klassisch"] tabbar>div.buttonbar {
+    width: fit-content;
+    max-width: 100%;
+    gap: 0;
+    padding: 3px;
+    border: 1px solid #e3dbd4;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: none;
+}
+
+html[data-lw-theme="klassisch"] tabbar>div.buttonbar button,
+html[data-lw-theme="klassisch"] tabbar>div.buttonbar button.inactive,
+html[data-lw-theme="klassisch"] tabbar>div.buttonbar button.active {
+    margin: 0;
+    padding: 5px 14px;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+html[data-lw-theme="klassisch"] tabbar>div.buttonbar button.active {
+    background: #1a1614;
+    color: #fff !important;
+}
+
+html[data-lw-theme="klassisch"] tabbar>div[data-tab] {
+    padding: 14px 0 0;
+}
+
+html[data-lw-theme="klassisch"] .hint-container button {
+    border-radius: 10px;
+}
+
+
+
+/* ============================================================================
+   3c. Karten – hell, ruhig, aufgeräumt
    ============================================================================ */
 
 html[data-lw-theme="karten"] {
@@ -698,8 +730,6 @@ html[data-lw-theme="karten"] {
     --lw-experiment: #9333ea;
     --lw-exp-item-bg: #faf7ff;
     --lw-exp-item-border: 1px solid #efe6fd;
-    --lw-menu-border: #e5e8ee;
-    --lw-menu-hover: #f2f4f7;
     --primary: 243 75% 59%;
     --primary-foreground: 0 0% 100%;
 }
@@ -709,12 +739,6 @@ html[data-lw-theme="karten"] div.topbar>a.backlink {
     border-radius: 999px;
     background: #fff;
     color: #4f46e5;
-    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
-}
-
-html[data-lw-theme="karten"] .lw-menu-button {
-    border: none;
-    background: #fff;
     box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
 }
 
@@ -791,6 +815,7 @@ html[data-lw-theme="karten"] tabbar>div.buttonbar {
     border: none;
     border-radius: 10px;
     background: #f2f4f7;
+    box-shadow: none;
 }
 
 html[data-lw-theme="karten"] tabbar>div.buttonbar button,
@@ -814,7 +839,7 @@ html[data-lw-theme="karten"] tabbar>div[data-tab] {
 
 
 /* ============================================================================
-   3c. Terminal – dunkel wie eine IDE
+   3d. Terminal – dunkel wie eine IDE
    ============================================================================ */
 
 html[data-lw-theme="terminal"] {
@@ -843,10 +868,6 @@ html[data-lw-theme="terminal"] {
     --lw-tabbar-bg: #0a0d13;
     --lw-topbar-bg: #0a0d13;
     --lw-topbar-border: 1px solid #1c2230;
-    --lw-menu-bg: #121620;
-    --lw-menu-fg: #c9d1dc;
-    --lw-menu-border: #273043;
-    --lw-menu-hover: #1b2130;
     --primary: 158 64% 52%;
     --primary-foreground: 160 65% 5%;
 }
@@ -997,7 +1018,7 @@ html[data-lw-theme="terminal"] [codeblocks] .tw-bg-primary {
 
 
 /* ============================================================================
-   3d. Abenteuer – kräftig und verspielt
+   3e. Abenteuer – kräftig und verspielt
    ============================================================================ */
 
 html[data-lw-theme="abenteuer"] {
@@ -1028,9 +1049,6 @@ html[data-lw-theme="abenteuer"] {
     --lw-experiment-fg: #111;
     --lw-exp-item-bg: #f3eeff;
     --lw-exp-item-border: 2px solid #111;
-    --lw-menu-border: #111;
-    --lw-menu-hover: #f6f2ee;
-    --lw-menu-check: #111;
     --lw-editor-border-width: 2.5px;
     --primary: 147 69% 55%;
     --primary-foreground: 0 0% 7%;
@@ -1065,8 +1083,7 @@ html[data-lw-theme="abenteuer"] .lw-crumb:empty {
     display: none;
 }
 
-html[data-lw-theme="abenteuer"] div.topbar>a.backlink,
-html[data-lw-theme="abenteuer"] .lw-menu-button {
+html[data-lw-theme="abenteuer"] div.topbar>a.backlink {
     border: 2px solid #111;
     border-radius: 8px;
     background: #fff;
@@ -1077,11 +1094,6 @@ html[data-lw-theme="abenteuer"] .lw-menu-button {
 html[data-lw-theme="abenteuer"] div.topbar>a.backlink {
     padding: 6px 12px;
     font-weight: 600;
-}
-
-html[data-lw-theme="abenteuer"] .lw-menu {
-    border-width: 2.5px;
-    box-shadow: 6px 6px 0 #111;
 }
 
 html[data-lw-theme="abenteuer"] div.boxed {
@@ -1204,7 +1216,7 @@ html[data-lw-theme="abenteuer"] .hint-container button {
 
 
 /* ============================================================================
-   3e. Raster – klares Schweizer Raster
+   3f. Raster – klares Schweizer Raster
    ============================================================================ */
 
 html[data-lw-theme="raster"] {
@@ -1231,8 +1243,6 @@ html[data-lw-theme="raster"] {
     --lw-experiment: #e30613;
     --lw-topbar-border: 3px solid #111;
     --lw-editor-border: #111;
-    --lw-menu-border: #111;
-    --lw-menu-hover: #f3f3f3;
     --primary: 0 0% 7%;
     --primary-foreground: 0 0% 100%;
     --radius: 0;
@@ -1257,13 +1267,6 @@ html[data-lw-theme="raster"] div.topbar>a.backlink {
     color: #111;
     text-decoration: underline;
     text-underline-offset: 4px;
-}
-
-html[data-lw-theme="raster"] .lw-menu-button,
-html[data-lw-theme="raster"] .lw-menu,
-html[data-lw-theme="raster"] .lw-menu-item,
-html[data-lw-theme="raster"] .lw-swatch {
-    border-radius: 0;
 }
 
 html[data-lw-theme="raster"] div#content {
@@ -1473,7 +1476,7 @@ html[data-lw-theme="raster"] .hint-container button:hover {
 
 
 /* ============================================================================
-   3f. Tafel – Kreide auf grüner Tafel
+   3g. Tafel – Kreide auf grüner Tafel
    ============================================================================ */
 
 html[data-lw-theme="tafel"] {
@@ -1502,20 +1505,23 @@ html[data-lw-theme="tafel"] {
     --lw-out-fg: #ffffff;
     --lw-exp-out-bg: rgba(0, 0, 0, 0.2);
     --lw-experiment: #f4a6c6;
-    --lw-menu-bg: #1f3128;
-    --lw-menu-fg: #e6ece4;
-    --lw-menu-border: rgba(255, 255, 255, 0.25);
-    --lw-menu-hover: rgba(255, 255, 255, 0.08);
     --primary: 45 89% 71%;
     --primary-foreground: 147 21% 14%;
 }
 
 html[data-lw-theme="tafel"] body {
+    background: #26392f;
+}
+
+html[data-lw-theme="tafel"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     background:
         radial-gradient(ellipse at 25% 15%, rgba(255, 255, 255, 0.07), transparent 55%),
-        radial-gradient(ellipse at 80% 70%, rgba(255, 255, 255, 0.04), transparent 50%),
-        #26392f;
-    background-attachment: fixed;
+        radial-gradient(ellipse at 80% 70%, rgba(255, 255, 255, 0.04), transparent 50%);
+    pointer-events: none;
 }
 
 html[data-lw-theme="tafel"] div.topbar h1 {

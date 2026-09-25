@@ -1,0 +1,297 @@
+/*
+ * Menü "Darstellung" oben rechts (theme.js). Wird auf den Übungsseiten (über content.js) und auf
+ * uebersicht.html geladen; die Farben kommen aus den --lw-* Variablen des jeweiligen Themes.
+ */
+
+div.topbar>a.backlink {
+    margin-left: auto;
+}
+
+.lw-crumb {
+    display: none;
+}
+
+/* Der Knopf richtet sich an der Grundlinie des Zurück-Links aus (Kopfzeile nutzt align-items: baseline).
+   Das unsichtbare Zeichen in ::before liefert die Grundlinie, vertikal mittig im Knopf. */
+.lw-menu-anchor {
+    position: relative;
+    align-self: baseline;
+    margin-left: 12px;
+}
+
+.lw-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--lw-menu-border, #e3e3e3);
+    border-radius: 10px;
+    background: var(--lw-menu-button-bg, transparent);
+    color: inherit;
+    font-size: 12pt;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.lw-menu-button::before {
+    content: "\200b";
+}
+
+.lw-menu-button:hover,
+.lw-menu-button[aria-expanded="true"] {
+    background: var(--lw-menu-hover, rgba(0, 0, 0, 0.05));
+}
+
+.lw-menu-button:focus-visible,
+.lw-menu-item:focus-visible {
+    outline: 2px solid var(--lw-accent, rgb(2, 123, 227));
+    outline-offset: 2px;
+}
+
+.lw-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 1000;
+    width: 280px;
+    max-width: calc(100vw - 32px);
+    padding: 6px;
+    border: 1px solid var(--lw-menu-border, #e3e3e3);
+    border-radius: 14px;
+    background: var(--lw-menu-bg, #fff);
+    color: var(--lw-menu-fg, #1d2433);
+    box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.25);
+    font: 400 14px/1.35 Geist, Roboto, system-ui, sans-serif;
+    font-style: normal;
+    text-align: left;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.lw-menu[hidden] {
+    display: none;
+}
+
+.lw-menu-title {
+    padding: 8px 10px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.lw-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 9px;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.lw-menu-item:hover {
+    background: var(--lw-menu-hover, rgba(0, 0, 0, 0.05));
+}
+
+.lw-swatch {
+    position: relative;
+    flex: none;
+    width: 40px;
+    height: 30px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.lw-swatch i {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    top: 6px;
+    bottom: 0;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.lw-swatch b {
+    position: absolute;
+    left: 10px;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.lw-swatch b:nth-of-type(1) {
+    top: 11px;
+    width: 12px;
+}
+
+.lw-swatch b:nth-of-type(2) {
+    top: 19px;
+    width: 20px;
+}
+
+.lw-menu-label {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.lw-menu-label>span {
+    font-weight: 600;
+}
+
+.lw-menu-label small {
+    font-size: 12px;
+    opacity: 0.65;
+}
+
+.lw-check {
+    visibility: hidden;
+    font-weight: 700;
+    color: var(--lw-menu-check, var(--lw-accent, rgb(2, 123, 227)));
+}
+
+.lw-menu-item[aria-checked="true"] .lw-check {
+    visibility: visible;
+}
+
+.lw-menu-item[aria-checked="true"] {
+    background: var(--lw-menu-hover, rgba(0, 0, 0, 0.05));
+}
+
+
+/* --- Menüfarben und -details pro Theme ---------------------------------- */
+
+html[data-lw-theme="heft"] {
+    --lw-menu-bg: #fffdf8;
+    --lw-menu-border: #e7dfcd;
+    --lw-menu-hover: #f4eee1;
+    --lw-menu-check: #8b4a2b;
+}
+
+html[data-lw-theme="klassisch"] {
+    --lw-menu-bg: #ffffff;
+    --lw-menu-fg: #1a1614;
+    --lw-menu-border: #e3dbd4;
+    --lw-menu-hover: #f2ece7;
+    --lw-menu-check: #1a1614;
+}
+
+html[data-lw-theme="karten"] {
+    --lw-menu-bg: #ffffff;
+    --lw-menu-fg: #1d2433;
+    --lw-menu-border: #e5e8ee;
+    --lw-menu-hover: #f2f4f7;
+    --lw-menu-check: #4f46e5;
+    --lw-menu-button-bg: #ffffff;
+}
+
+html[data-lw-theme="karten"] .lw-menu-button {
+    border: none;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
+}
+
+html[data-lw-theme="terminal"] {
+    --lw-menu-bg: #121620;
+    --lw-menu-fg: #c9d1dc;
+    --lw-menu-border: #273043;
+    --lw-menu-hover: #1b2130;
+    --lw-menu-check: #34d399;
+}
+
+html[data-lw-theme="abenteuer"] {
+    --lw-menu-bg: #ffffff;
+    --lw-menu-fg: #111111;
+    --lw-menu-border: #111;
+    --lw-menu-hover: #f6f2ee;
+    --lw-menu-check: #111;
+    --lw-menu-button-bg: #ffffff;
+}
+
+html[data-lw-theme="abenteuer"] .lw-menu-button {
+    border: 2px solid #111;
+    border-radius: 8px;
+    color: #111;
+    box-shadow: 3px 3px 0 #111;
+}
+
+html[data-lw-theme="abenteuer"] .lw-menu {
+    border-width: 2.5px;
+    box-shadow: 6px 6px 0 #111;
+}
+
+html[data-lw-theme="raster"] {
+    --lw-menu-bg: #ffffff;
+    --lw-menu-fg: #111111;
+    --lw-menu-border: #111;
+    --lw-menu-hover: #f3f3f3;
+    --lw-menu-check: #e30613;
+    --lw-menu-button-bg: #ffffff;
+}
+
+/* Menüknopf als rotes Quadrat */
+html[data-lw-theme="raster"] .lw-menu-button,
+html[data-lw-theme="raster"] .lw-menu-anchor--floating .lw-menu-button {
+    border: none;
+    background: #e30613;
+    color: #fff;
+    backdrop-filter: none;
+}
+
+html[data-lw-theme="raster"] .lw-menu-button:hover,
+html[data-lw-theme="raster"] .lw-menu-button[aria-expanded="true"] {
+    background: #111;
+}
+
+html[data-lw-theme="raster"] .lw-menu-button,
+html[data-lw-theme="raster"] .lw-menu,
+html[data-lw-theme="raster"] .lw-menu-item,
+html[data-lw-theme="raster"] .lw-swatch {
+    border-radius: 0;
+}
+
+html[data-lw-theme="tafel"] {
+    --lw-menu-bg: #1f3128;
+    --lw-menu-fg: #e6ece4;
+    --lw-menu-border: rgba(255, 255, 255, 0.25);
+    --lw-menu-hover: rgba(255, 255, 255, 0.08);
+    --lw-menu-check: #f7d774;
+    --lw-menu-button-bg: rgba(0, 0, 0, 0.25);
+}
+
+html[data-lw-theme="terminal"] .lw-menu-button {
+    --lw-menu-button-bg: rgba(10, 13, 19, 0.6);
+}
+
+/* --- Übersichtsseite: Knopf schwebt oben rechts über dem Banner ---------- */
+
+.lw-menu-anchor--floating {
+    position: absolute;
+    top: 48px;
+    right: 40px;
+    z-index: 20;
+    margin: 0;
+}
+
+.lw-menu-anchor--floating .lw-menu-button {
+    border-color: rgb(255 255 255 / 0.6);
+    background: var(--lw-menu-button-bg, rgb(255 255 255 / 0.7));
+    backdrop-filter: blur(6px);
+}
+
+@media (max-width: 600px) {
+    .lw-menu-anchor--floating {
+        top: 32px;
+        right: 28px;
+    }
+}

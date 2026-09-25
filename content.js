@@ -1,16 +1,16 @@
 
-// Darstellungs-Themes: das gespeicherte Theme (Voreinstellung "abenteuer") sofort setzen, damit das
-// klassische Design nicht aufblitzt, und css/themes.css sowie theme.js (Menü oben rechts) nachladen.
+// Darstellungs-Themes: das gespeicherte Theme (Voreinstellung "klassisch") sofort setzen, damit das
+// ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü) nachladen.
 (function loadThemes() {
-    const version = '1.0.0'
+    const version = '1.1.0'
     const base = new URL('.', document.currentScript.src)
-    let theme = 'abenteuer'
+    let theme = 'klassisch'
     try {
         theme = localStorage.getItem('lernwerk-theme') ?? theme
     } catch (e) { }
-    if (theme !== 'klassisch') document.documentElement.dataset.lwTheme = theme
+    document.documentElement.dataset.lwTheme = theme
 
-    for (const href of ['css/font.geist.css', 'css/themes.css']) {
+    for (const href of ['css/font.geist.css', 'css/theme-menu.css', 'css/themes.css']) {
         const link = document.createElement('link')
         link.rel = 'stylesheet'
         link.href = new URL(`${href}?v=${version}`, base)

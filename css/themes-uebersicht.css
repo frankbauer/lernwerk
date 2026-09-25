@@ -1,0 +1,1438 @@
+/*
+ * Themes für die Übersicht (uebersicht.html). Ergänzt css/uebungsplaner.css.
+ *
+ * uebungsplaner.css ist über Variablen (--bg, --surface, --ink, --line, ...) aufgebaut; jedes Theme
+ * setzt diese Variablen neu und übernimmt dann die Formensprache seiner Übungsseiten für Boxen,
+ * Knöpfe, Kacheln und Karten (css/themes.css). Das GdI-Banner im Kopf bindet jedes Theme auf
+ * eigene Weise ein.
+ *
+ * "Klassisch" ist das Grund-Design dieser Seite und braucht hier keine Regeln.
+ *
+ * Geometrie des Banners (aus uebungsplaner.css, gilt innerhalb von .page-head):
+ *   --crop        Verschiebung nach oben auf breiten Bildschirmen
+ *   --img-bottom  Unterkante des Bildes
+ *   Logo endet bei 31.25cqw - var(--crop); auf Handys (<= 600px) ist das Bild 420px hoch, Logo endet bei 233px
+ */
+
+html[data-lw-theme] {
+    --lw-serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --lw-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
+    --lw-hand: "Caveat", "Chalkboard SE", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+    --lw-banner: url("../img/brand/GdI_banner_tall.jpg");
+}
+
+
+/* ============================================================================
+   Dunkle Themes (Terminal, Tafel): Flächen, die in uebungsplaner.css mit --ink gefüllt sind und weiße
+   Schrift tragen, bekommen die Hintergrundfarbe als Schrift, weil --ink hier hell ist.
+   ============================================================================ */
+
+html[data-lw-theme="terminal"],
+html[data-lw-theme="tafel"] {
+    color-scheme: dark;
+}
+
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .step-no {
+    color: var(--bg);
+}
+
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) :is(.scope-btn[aria-checked="true"],
+    .seg button[aria-pressed="true"],
+    .chip[aria-pressed="true"],
+    .badge,
+    .btn-primary) {
+    color: var(--bg);
+}
+
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .concept::after {
+    color: var(--bg);
+}
+
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) :is(.scope-btn[aria-checked="true"], .chip[aria-pressed="true"]) .count {
+    background: rgb(0 0 0 / 0.15);
+    color: var(--bg);
+}
+
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .chip[aria-pressed="true"] .dot.on {
+    background: var(--bg);
+}
+
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .switch-track::after {
+    background: var(--bg);
+}
+
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .switch input:not(:checked)+.switch-track::after {
+    background: var(--ink-2);
+}
+
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .dot:not(.on) {
+    background: var(--line-strong);
+}
+
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .table tbody tr:hover {
+    background: var(--surface-2);
+}
+
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .search {
+    background-color: var(--surface);
+}
+
+
+/* ============================================================================
+   Heft – Papier, Serifen, Textmarker. Banner als eingeklebtes Foto mit Klebestreifen.
+   ============================================================================ */
+
+html[data-lw-theme="heft"] {
+    --bg: #f7f3ea;
+    --surface: #fffdf8;
+    --surface-2: #f4eee1;
+    --ink: #2d2a24;
+    --ink-2: #4a443a;
+    --muted: #8a7f6a;
+    --line: #e7dfcd;
+    --line-strong: #cfc3aa;
+    --accent: #8b4a2b;
+    --accent-soft: #f3e3d6;
+    --radius-lg: 8px;
+    --radius: 6px;
+    --shadow: 0 1px 0 #e7dfcd, 0 8px 24px -16px rgb(80 60 20 / 0.3);
+    --lw-accent: #8b4a2b;
+}
+
+html[data-lw-theme="heft"] :is(h1, .profile-title, .card-title, .group-head, .step-text h2, .empty-title) {
+    font-family: var(--lw-serif);
+    font-weight: 600;
+    letter-spacing: -0.005em;
+}
+
+/* Foto: weißer Rand, leicht schief, Klebestreifen an den Ecken */
+html[data-lw-theme="heft"] .page-head {
+    position: relative;
+    margin: 12px 8px 40px;
+    border: 12px solid #fff;
+    border-bottom-width: 12px;
+    border-radius: 2px;
+    background:
+        linear-gradient(rgb(255 238 205 / 0.18), rgb(255 238 205 / 0.18)),
+        linear-gradient(transparent calc(var(--img-bottom) - 120px), #d9cbbd var(--img-bottom)),
+        var(--lw-banner) center calc(-1 * var(--crop)) / 100% auto no-repeat,
+        #d9cbbd;
+    box-shadow: 0 1px 2px rgb(60 40 20 / 0.15), 0 18px 36px -18px rgb(60 40 20 / 0.45);
+    transform: rotate(-0.6deg);
+    overflow: visible;
+}
+
+html[data-lw-theme="heft"] .page-head::before,
+html[data-lw-theme="heft"] .page-head::after {
+    content: "";
+    position: absolute;
+    top: -22px;
+    width: 130px;
+    height: 34px;
+    background: rgb(250 236 170 / 0.75);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+    z-index: 2;
+}
+
+html[data-lw-theme="heft"] .page-head::before {
+    left: -34px;
+    transform: rotate(-32deg);
+}
+
+html[data-lw-theme="heft"] .page-head::after {
+    right: -34px;
+    transform: rotate(32deg);
+}
+
+html[data-lw-theme="heft"] .page-head h1 {
+    display: inline;
+    background: linear-gradient(transparent 60%, #ffe27a 60%);
+    font-size: clamp(32px, 4.6vw, 48px);
+}
+
+html[data-lw-theme="heft"] .eyebrow {
+    color: #6f6150;
+    letter-spacing: 0.14em;
+}
+
+html[data-lw-theme="heft"] .card,
+html[data-lw-theme="heft"] .card-title a::after {
+    border-radius: 8px;
+}
+
+html[data-lw-theme="heft"] .card-media {
+    border: 5px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 4px 10px -4px rgb(60 40 20 / 0.4);
+    transform: rotate(1.2deg);
+}
+
+html[data-lw-theme="heft"] .card:nth-child(even) .card-media {
+    transform: rotate(-1.2deg);
+}
+
+html[data-lw-theme="heft"] .tile {
+    border-radius: 6px;
+}
+
+html[data-lw-theme="heft"] .group-head {
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--line-strong);
+}
+
+
+/* Boxen und Bedienelemente wie auf den Heft-Übungsseiten */
+html[data-lw-theme="heft"] .profile-title {
+    align-self: flex-start;
+    background: linear-gradient(transparent 62%, #ffe27a 62%);
+}
+
+html[data-lw-theme="heft"] .card:hover .card-title a {
+    color: var(--ink);
+    background: linear-gradient(transparent 62%, #ffe27a 62%);
+}
+
+html[data-lw-theme="heft"] .step-no {
+    border: 1.5px solid #8e5bb8;
+    background: none;
+    color: #8e5bb8;
+    font-family: var(--lw-serif);
+    font-size: 16px;
+}
+
+html[data-lw-theme="heft"] .profile-steps {
+    border-top-style: dashed;
+}
+
+html[data-lw-theme="heft"] .results-bar {
+    border-bottom-style: dashed;
+}
+
+html[data-lw-theme="heft"] :is(.scope, .seg, .search, .more-btn, .select, .stepper select, .stepper-btn, .btn, .chip, .done-btn) {
+    border-radius: 4px;
+}
+
+html[data-lw-theme="heft"] .scope-btn,
+html[data-lw-theme="heft"] .seg button {
+    border-radius: 3px;
+}
+
+html[data-lw-theme="heft"] .card-flag {
+    color: #8b4a2b;
+}
+
+@media (max-width: 600px) {
+    html[data-lw-theme="heft"] .page-head {
+        border-width: 8px;
+        background:
+            linear-gradient(rgb(255 238 205 / 0.18), rgb(255 238 205 / 0.18)),
+            linear-gradient(transparent 300px, #d9cbbd 420px),
+            var(--lw-banner) 6% top / auto 420px no-repeat,
+            #d9cbbd;
+    }
+
+    html[data-lw-theme="heft"] .page-head::before,
+    html[data-lw-theme="heft"] .page-head::after {
+        width: 90px;
+        height: 26px;
+        top: -16px;
+    }
+}
+
+
+/* ============================================================================
+   Karten – hell, kühl, aufgeräumt. Banner mit Milchglas-Schild für den Titel.
+   ============================================================================ */
+
+html[data-lw-theme="karten"] {
+    --bg: #f2f4f7;
+    --surface: #ffffff;
+    --surface-2: #f7f8fa;
+    --ink: #1d2433;
+    --ink-2: #414a5c;
+    --muted: #6b7385;
+    --line: #e5e8ee;
+    --line-strong: #cfd5df;
+    --accent: #4f46e5;
+    --accent-soft: #eef0ff;
+    --radius-lg: 16px;
+    --radius: 12px;
+    --shadow: 0 1px 2px rgb(16 24 40 / 0.05), 0 4px 16px -4px rgb(16 24 40 / 0.08);
+    --lw-accent: #4f46e5;
+}
+
+html[data-lw-theme="karten"] .page-head {
+    border-radius: 16px;
+    background:
+        linear-gradient(rgb(79 70 229 / 0.06), rgb(79 70 229 / 0.06)),
+        linear-gradient(transparent calc(var(--img-bottom) - 120px), #d4cdd3 var(--img-bottom)),
+        var(--lw-banner) center calc(-1 * var(--crop)) / 100% auto no-repeat,
+        #d4cdd3;
+    box-shadow: var(--shadow);
+}
+
+html[data-lw-theme="karten"] .hero-text {
+    width: fit-content;
+    max-width: calc(59.4cqw - 48px);
+    margin: 0 0 22px 22px;
+    padding: 18px 22px 20px;
+    border: 1px solid rgb(255 255 255 / 0.7);
+    border-radius: 14px;
+    background: rgb(255 255 255 / 0.62);
+    box-shadow: 0 8px 30px -10px rgb(16 24 40 / 0.25);
+    backdrop-filter: blur(14px) saturate(1.3);
+}
+
+html[data-lw-theme="karten"] .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #eef0ff;
+    color: #4f46e5;
+    font-size: 12px;
+}
+
+html[data-lw-theme="karten"] .eyebrow::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* Boxen: weiße Karten ohne Rahmen, mit weichem Schatten */
+html[data-lw-theme="karten"] :is(.profile, .more, .table-wrap) {
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+html[data-lw-theme="karten"] .profile.is-new {
+    box-shadow: 0 0 0 3px #c7c4f7, var(--shadow);
+}
+
+html[data-lw-theme="karten"] .profile-title {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    background: #fff4d6;
+    color: #8a5a00;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="karten"] .profile-title::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f5b400;
+}
+
+html[data-lw-theme="karten"] .step-no {
+    border-radius: 8px;
+    background: #9333ea;
+    font-size: 13px;
+}
+
+html[data-lw-theme="karten"] .tile {
+    border-color: transparent;
+    background: #f7f8fa;
+}
+
+html[data-lw-theme="karten"] .tile.is-heard {
+    border-color: #e5e8ee;
+    background: #fff;
+}
+
+html[data-lw-theme="karten"] .tile.is-last {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px #c7c4f7;
+}
+
+/* Umschalter als Segment-Control wie die Tabs auf den Übungsseiten */
+html[data-lw-theme="karten"] :is(.scope, .seg) {
+    border: none;
+    border-radius: 10px;
+    background: #e9ecf1;
+}
+
+html[data-lw-theme="karten"] :is(.scope-btn, .seg button) {
+    border-radius: 7px;
+}
+
+html[data-lw-theme="karten"] :is(.scope-btn[aria-checked="true"], .seg button[aria-pressed="true"]) {
+    background: #fff;
+    color: #1d2433;
+    box-shadow: 0 1px 3px rgb(16 24 40 / 0.12);
+}
+
+html[data-lw-theme="karten"] .scope-btn[aria-checked="true"] .count {
+    background: #eef0ff;
+    color: #4f46e5;
+}
+
+html[data-lw-theme="karten"] :is(.chip[aria-pressed="true"], .btn-primary, .badge) {
+    border-color: #4f46e5;
+    background: #4f46e5;
+}
+
+html[data-lw-theme="karten"] .switch input:checked+.switch-track {
+    background: #4f46e5;
+}
+
+html[data-lw-theme="karten"] :is(.search, .more-btn, .select, .stepper select, .stepper-btn, .btn) {
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+/* Übungskarten: weiß und ohne Muster, der Typ steht nur im Badge */
+html[data-lw-theme="karten"] .card {
+    border: none;
+    border-radius: 16px;
+    background-color: #fff;
+    background-image: none;
+    box-shadow: var(--shadow);
+}
+
+html[data-lw-theme="karten"] .card:hover {
+    box-shadow: 0 12px 32px -8px rgb(16 24 40 / 0.18);
+}
+
+html[data-lw-theme="karten"] .card-title a::after {
+    border-radius: 16px;
+}
+
+html[data-lw-theme="karten"] .card-media {
+    border-radius: 12px;
+}
+
+html[data-lw-theme="karten"] .type-badge {
+    border: none;
+}
+
+html[data-lw-theme="karten"] .card.type-sandbox {
+    --type-bg: #fff;
+}
+
+html[data-lw-theme="karten"] .card.type-sandbox :is(.card-desc, .feature-none) {
+    color: var(--muted);
+}
+
+html[data-lw-theme="karten"] .card.type-sandbox .card-flag {
+    color: var(--accent);
+}
+
+html[data-lw-theme="karten"] .card.type-sandbox :is(.feature, .reason) {
+    color: var(--ok);
+}
+
+html[data-lw-theme="karten"] .card.type-sandbox .dot:not(.on) {
+    background: #d5dae3;
+}
+
+html[data-lw-theme="karten"] .card.type-sandbox .type-badge {
+    background: var(--type-soft);
+}
+
+html[data-lw-theme="karten"] .card.type-sandbox .done-btn {
+    border-color: var(--line-strong);
+    background: #fff;
+    color: var(--muted);
+}
+
+html[data-lw-theme="karten"] .card.type-sandbox:hover .card-title a {
+    color: var(--type);
+}
+
+html[data-lw-theme="karten"] .dot:not(.on) {
+    background: #d5dae3;
+}
+
+html[data-lw-theme="karten"] .group-state.is-heard {
+    background: #e7f6ec;
+}
+
+@media (max-width: 600px) {
+    html[data-lw-theme="karten"] .page-head {
+        background:
+            linear-gradient(rgb(79 70 229 / 0.06), rgb(79 70 229 / 0.06)),
+            linear-gradient(transparent 300px, #d4cdd3 420px),
+            var(--lw-banner) 6% top / auto 420px no-repeat,
+            #d4cdd3;
+    }
+
+    html[data-lw-theme="karten"] .hero-text {
+        max-width: none;
+        margin: 0 12px 14px;
+        padding: 14px 16px 16px;
+    }
+}
+
+
+/* ============================================================================
+   Terminal – dunkel wie eine IDE. Banner als grünlich-monochromes Röhrenbild mit Scanlines.
+   ============================================================================ */
+
+html[data-lw-theme="terminal"] {
+    --bg: #0d1017;
+    --surface: #121620;
+    --surface-2: #0f131b;
+    --ink: #e6edf3;
+    --ink-2: #c3cad6;
+    --muted: #7d8aa3;
+    --line: #1f2533;
+    --line-strong: #2c3446;
+    --accent: #34d399;
+    --accent-soft: rgb(52 211 153 / 0.14);
+    --ok: #34d399;
+    --ok-soft: rgb(52 211 153 / 0.12);
+    --shaky: #fbbf24;
+    --shaky-soft: rgb(251 191 36 / 0.12);
+    --confident: #c084fc;
+    --confident-soft: rgb(192 132 252 / 0.14);
+    --unknown: #5c6780;
+    --radius-lg: 12px;
+    --radius: 10px;
+    --shadow: none;
+    --lw-accent: #34d399;
+}
+
+html[data-lw-theme="terminal"] :is(h1, .profile-title, .card-title, .group-head, .step-text h2, .empty-title) {
+    font-family: var(--lw-mono);
+    letter-spacing: -0.02em;
+}
+
+html[data-lw-theme="terminal"] .page-head {
+    border: 1px solid #1f2533;
+    background:
+        repeating-linear-gradient(0deg, rgb(0 0 0 / 0.28) 0 1px, transparent 1px 3px),
+        linear-gradient(rgb(13 16 23 / 0.2), rgb(13 16 23 / 0.2) calc(31.25cqw - var(--crop) - 60px),
+            rgb(13 16 23 / 0.94) calc(31.25cqw - var(--crop) + 40px), #0d1017 var(--img-bottom)),
+        var(--lw-banner) center calc(-1 * var(--crop)) / 100% auto no-repeat,
+        #0f3a2a;
+    background-blend-mode: normal, normal, luminosity, normal;
+}
+
+html[data-lw-theme="terminal"] .eyebrow {
+    font-family: var(--lw-mono);
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #34d399;
+}
+
+html[data-lw-theme="terminal"] .eyebrow::before {
+    content: "~/ ";
+    color: #5c6780;
+}
+
+html[data-lw-theme="terminal"] .page-head h1 {
+    color: #f0f3f8;
+}
+
+html[data-lw-theme="terminal"] .page-head h1::after {
+    content: "_";
+    color: #34d399;
+    animation: lw-blink 1.1s steps(1) infinite;
+}
+
+@keyframes lw-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html[data-lw-theme="terminal"] .page-head h1::after {
+        animation: none;
+    }
+}
+
+html[data-lw-theme="terminal"] .lede {
+    color: #aab4c4;
+}
+
+html[data-lw-theme="terminal"] .lede::before {
+    content: "// ";
+    color: #5c6780;
+}
+
+html[data-lw-theme="terminal"] .profile.is-new {
+    box-shadow: 0 0 0 4px rgb(52 211 153 / 0.14);
+}
+
+html[data-lw-theme="terminal"] .tile.is-heard {
+    background: #161b27;
+}
+
+/* Kartentypen dunkel eingefärbt */
+html[data-lw-theme="terminal"] .type-lecture { --type: #c4a5f5; --type-soft: rgb(160 110 230 / 0.16); --type-line: #3b3057; --type-bg: #15131f; }
+html[data-lw-theme="terminal"] .type-exercise { --type: #f0a58f; --type-soft: rgb(240 140 110 / 0.14); --type-line: #4a2e27; --type-bg: #17120f; }
+html[data-lw-theme="terminal"] .type-test { --type: #5eead4; --type-soft: rgb(94 234 212 / 0.12); --type-line: #1d4943; --type-bg: #0f1716; }
+html[data-lw-theme="terminal"] .type-tool { --type: #cbd5e1; --type-soft: rgb(203 213 225 / 0.1); --type-line: #2c3446; --type-bg: #12151b; }
+html[data-lw-theme="terminal"] .type-sandbox { --type: #b5e07c; --type-soft: rgb(116 165 55 / 0.2); --type-line: #3e5a1d; --type-bg: #141d0c; }
+
+html[data-lw-theme="terminal"] .card.type-lecture {
+    background-image: repeating-radial-gradient(circle at 0 0, rgb(196 165 245 / 0.07) 0 1.5px, transparent 1.5px 22px);
+}
+
+html[data-lw-theme="terminal"] .card.type-exercise {
+    background-image: radial-gradient(rgb(240 165 143 / 0.16) 1px, transparent 1.4px);
+}
+
+html[data-lw-theme="terminal"] .card.type-test {
+    background-image: repeating-linear-gradient(0deg, rgb(94 234 212 / 0.07) 0 1px, transparent 1px 13px);
+}
+
+/* Sandkasten: statt vollem Grün ein dunkles Grün mit hellen Details */
+html[data-lw-theme="terminal"] .card.type-sandbox {
+    border-color: #3e5a1d;
+}
+
+html[data-lw-theme="terminal"] .card.type-sandbox :is(.card-desc, .feature-none) {
+    color: #9fb58a;
+}
+
+html[data-lw-theme="terminal"] .card.type-sandbox :is(.card-flag, .feature, .reason) {
+    color: #b5e07c;
+}
+
+html[data-lw-theme="terminal"] .card.type-sandbox .dot:not(.on) {
+    background: #3e5a1d;
+}
+
+html[data-lw-theme="terminal"] .card.type-sandbox .dot.on {
+    background: var(--ink);
+}
+
+html[data-lw-theme="terminal"] .card.type-sandbox .type-badge {
+    border-color: var(--type-line);
+    background: var(--type-soft);
+}
+
+html[data-lw-theme="terminal"] .card.type-sandbox .done-btn {
+    border-color: var(--line-strong);
+    background: var(--surface);
+    color: var(--muted);
+}
+
+html[data-lw-theme="terminal"] .card.type-sandbox:hover .card-title a {
+    color: var(--type);
+}
+
+html[data-lw-theme="terminal"] .card.is-done .card-media::after {
+    background: #0d1017;
+}
+
+
+/* Boxen und Bedienelemente wie auf den Terminal-Übungsseiten: farbige linke Kante, // Kommentare */
+html[data-lw-theme="terminal"] .profile {
+    border-left: 3px solid #fbbf24;
+}
+
+html[data-lw-theme="terminal"] .profile-title {
+    color: #fbbf24;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+html[data-lw-theme="terminal"] .profile-title::before,
+html[data-lw-theme="terminal"] .group-head::before {
+    content: "// ";
+    color: #5c6780;
+    font-family: var(--lw-mono);
+    font-weight: 400;
+}
+
+html[data-lw-theme="terminal"] .card {
+    border-left: 3px solid var(--type);
+}
+
+/* .step davor: schlägt die gemeinsame Regel für dunkle Themes oben */
+html[data-lw-theme="terminal"] .step .step-no {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    background: none;
+    color: #c084fc;
+    font-family: var(--lw-mono);
+    font-weight: 500;
+}
+
+html[data-lw-theme="terminal"] .step-no::before {
+    content: "[";
+}
+
+html[data-lw-theme="terminal"] .step-no::after {
+    content: "]";
+}
+
+html[data-lw-theme="terminal"] :is(.scope-btn, .seg button, .chip, .search, .more-btn, .select, .results-count, .scope-hint, .switch) {
+    font-family: var(--lw-mono);
+    font-size: 13px;
+}
+
+html[data-lw-theme="terminal"] :is(.scope, .seg, .search, .more-btn, .select, .stepper select, .stepper-btn, .btn, .chip) {
+    border-radius: 6px;
+}
+
+html[data-lw-theme="terminal"] :is(.scope-btn, .seg button) {
+    border-radius: 4px;
+}
+
+html[data-lw-theme="terminal"] :is(.scope-btn[aria-checked="true"], .seg button[aria-pressed="true"], .chip[aria-pressed="true"], .btn-primary, .badge) {
+    background: #34d399;
+    border-color: #34d399;
+    color: #04130d;
+}
+
+html[data-lw-theme="terminal"] .switch input:checked+.switch-track {
+    background: #34d399;
+}
+
+html[data-lw-theme="terminal"] .tile.is-last {
+    border-color: #34d399;
+    box-shadow: 0 0 0 2px #34d399;
+}
+
+html[data-lw-theme="terminal"] .card,
+html[data-lw-theme="terminal"] .card-title a::after {
+    border-radius: 10px;
+}
+
+html[data-lw-theme="terminal"] .card-media {
+    border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+    html[data-lw-theme="terminal"] .page-head {
+        background:
+            repeating-linear-gradient(0deg, rgb(0 0 0 / 0.28) 0 1px, transparent 1px 3px),
+            linear-gradient(rgb(13 16 23 / 0.2), rgb(13 16 23 / 0.2) 180px, rgb(13 16 23 / 0.94) 270px, #0d1017 420px),
+            var(--lw-banner) 6% top / auto 420px no-repeat,
+            #0f3a2a;
+        background-blend-mode: normal, normal, luminosity, normal;
+    }
+}
+
+
+/* ============================================================================
+   Abenteuer – kräftig und verspielt. Banner als Comic-Panel, Titel als schräges Bildunterschrift-Kärtchen.
+   ============================================================================ */
+
+html[data-lw-theme="abenteuer"] {
+    --bg: #f6f2ee;
+    --surface: #ffffff;
+    --surface-2: #faf6f1;
+    --ink: #111111;
+    --ink-2: #2e2a27;
+    --muted: #5d544e;
+    --line: #111111;
+    --line-strong: #111111;
+    --accent: #1c63c7;
+    --accent-soft: #dbe8ff;
+    --radius-lg: 18px;
+    --radius: 12px;
+    --shadow: 5px 5px 0 #111;
+    --lw-accent: #111;
+    background: #fff4dc;
+}
+
+html[data-lw-theme="abenteuer"] body {
+    min-height: 100vh;
+    background:
+        radial-gradient(rgb(120 90 50 / 0.16) 1px, transparent 1px) 0 0 / 18px 18px,
+        linear-gradient(var(--bg), #fff4dc);
+}
+
+html[data-lw-theme="abenteuer"] .page-head {
+    border: 3px solid #111;
+    border-radius: 22px;
+    box-shadow: 8px 8px 0 #111;
+}
+
+html[data-lw-theme="abenteuer"] .hero-text {
+    width: fit-content;
+    max-width: calc(59.4cqw - 48px);
+    margin: 0 0 26px 24px;
+    padding: 14px 22px 16px;
+    border: 2.5px solid #111;
+    border-radius: 14px;
+    background: #ffd23f;
+    box-shadow: 5px 5px 0 #111;
+    transform: rotate(-1.2deg);
+}
+
+html[data-lw-theme="abenteuer"] .eyebrow {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: #111;
+    color: #fff4dc;
+    transform: rotate(1.5deg);
+}
+
+html[data-lw-theme="abenteuer"] .lede {
+    color: #111;
+}
+
+html[data-lw-theme="abenteuer"] :is(.profile, .card, .more, .table-wrap, .empty) {
+    border-width: 2.5px;
+    border-color: #111;
+}
+
+html[data-lw-theme="abenteuer"] .profile.is-new {
+    border-color: #111;
+    box-shadow: 6px 6px 0 #1c63c7;
+}
+
+html[data-lw-theme="abenteuer"] .card {
+    box-shadow: 5px 5px 0 #111;
+    transition: transform 0.12s, box-shadow 0.12s;
+}
+
+html[data-lw-theme="abenteuer"] .card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 #111;
+}
+
+html[data-lw-theme="abenteuer"] .card-media {
+    border: 2.5px solid #111;
+}
+
+html[data-lw-theme="abenteuer"] .tile {
+    border: 2px solid #111;
+    box-shadow: 3px 3px 0 #111;
+}
+
+html[data-lw-theme="abenteuer"] .tile.state-unknown {
+    background: #f1ece6;
+}
+
+html[data-lw-theme="abenteuer"] .tile.is-last {
+    background: #ffd23f;
+    box-shadow: 3px 3px 0 #111;
+}
+
+html[data-lw-theme="abenteuer"] :is(.scope, .seg, .search, .more-btn, .select, .stepper select, .stepper-btn, .btn) {
+    border: 2px solid #111;
+    box-shadow: 3px 3px 0 #111;
+}
+
+html[data-lw-theme="abenteuer"] :is(.chip, .pill, .done-btn, .rate-btn) {
+    border-color: #111;
+}
+
+html[data-lw-theme="abenteuer"] .type-badge {
+    border: 1.5px solid #111;
+}
+
+html[data-lw-theme="abenteuer"] .step-no {
+    background: #ffd23f;
+    color: #111;
+    border: 2px solid #111;
+    transform: rotate(-8deg);
+}
+
+html[data-lw-theme="abenteuer"] .profile-head-action {
+    border: 2px solid #111;
+    background: #7fd6ff;
+    color: #111;
+}
+
+html[data-lw-theme="abenteuer"] .group-head {
+    font-weight: 800;
+}
+
+html[data-lw-theme="abenteuer"] .group-state {
+    border: 1.5px solid #111;
+}
+
+
+/* Boxen wie auf den Abenteuer-Übungsseiten: farbige Kopfleiste mit dicker Linie */
+html[data-lw-theme="abenteuer"] .profile-head {
+    background: #ffd23f;
+    border-bottom: 2.5px solid #111;
+}
+
+html[data-lw-theme="abenteuer"] .profile-title {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="abenteuer"] .profile-title::before {
+    content: "⚑ ";
+}
+
+html[data-lw-theme="abenteuer"] .profile-summary {
+    color: #111;
+}
+
+html[data-lw-theme="abenteuer"] .profile-head-action {
+    background: #fff;
+    box-shadow: 2px 2px 0 #111;
+}
+
+html[data-lw-theme="abenteuer"] .profile-steps {
+    border-top: none;
+}
+
+html[data-lw-theme="abenteuer"] .group-head {
+    padding: 10px 16px;
+    border: 2.5px solid #111;
+    border-radius: 12px;
+    background: #7fd6ff;
+    box-shadow: 4px 4px 0 #111;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+html[data-lw-theme="abenteuer"] .group-no,
+html[data-lw-theme="abenteuer"] .group-count {
+    color: #111;
+}
+
+html[data-lw-theme="abenteuer"] .group-state {
+    background: #fff;
+    color: #111;
+}
+
+html[data-lw-theme="abenteuer"] .group-state.is-heard {
+    background: #3ddc84;
+}
+
+html[data-lw-theme="abenteuer"] :is(.scope-btn[aria-checked="true"], .seg button[aria-pressed="true"]) {
+    background: #111;
+}
+
+html[data-lw-theme="abenteuer"] .btn-primary {
+    background: #3ddc84;
+    color: #111;
+    font-weight: 800;
+}
+
+html[data-lw-theme="abenteuer"] .new {
+    border: 1.5px solid #111;
+    transform: rotate(-4deg);
+}
+
+html[data-lw-theme="abenteuer"] .card-chapter {
+    border: 1.5px solid #111;
+    background: #ffd23f;
+    color: #111;
+    backdrop-filter: none;
+}
+
+@media (max-width: 600px) {
+    html[data-lw-theme="abenteuer"] .hero-text {
+        max-width: none;
+        margin: 0 14px 18px;
+        padding: 12px 16px 14px;
+    }
+}
+
+
+/* ============================================================================
+   Raster – klares Schweizer Raster. Banner in Graustufen, rote Kante, Titel groß und eng.
+   ============================================================================ */
+
+html[data-lw-theme="raster"] {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f4f4f4;
+    --ink: #111111;
+    --ink-2: #333333;
+    --muted: #777777;
+    --line: #dddddd;
+    --line-strong: #111111;
+    --accent: #e30613;
+    --accent-soft: #fde4e5;
+    --radius-lg: 0;
+    --radius: 0;
+    --shadow: none;
+    --lw-accent: #e30613;
+}
+
+html[data-lw-theme="raster"] :is(.page-head, .profile, .card, .card-title a, .tile, .tile-main, .scope, .scope-btn, .chip, .pill,
+    .type-badge, .new, .hidden-badge, .draft-badge, .search, .more-btn, .select, .stepper select, .stepper-btn,
+    .seg, .seg button, .btn, .done-btn, .card-media, .card-image, .rate-btn, .rate-glyph, .count, .badge,
+    .group-state, .profile-head-action, .active-chip, .card-chapter, .table-wrap, .more, .empty, .step-no, .c-thumb) {
+    border-radius: 0;
+}
+
+html[data-lw-theme="raster"] .card-title a::after {
+    border-radius: 0;
+}
+
+html[data-lw-theme="raster"] .page-head {
+    position: relative;
+    margin-bottom: 36px;
+    background:
+        linear-gradient(transparent calc(var(--img-bottom) - 140px), #fff var(--img-bottom)),
+        var(--lw-banner) center calc(-1 * var(--crop)) / 100% auto no-repeat,
+        #fff;
+    background-blend-mode: normal, luminosity, normal;
+    border-bottom: 3px solid #111;
+}
+
+/* rote Kante links */
+html[data-lw-theme="raster"] .page-head::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 14px;
+    background: #e30613;
+}
+
+html[data-lw-theme="raster"] .hero-text {
+    padding-left: 44px;
+}
+
+html[data-lw-theme="raster"] .eyebrow {
+    color: #e30613;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+html[data-lw-theme="raster"] h1 {
+    font-size: clamp(36px, 6vw, 72px);
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+}
+
+html[data-lw-theme="raster"] .profile {
+    border-width: 0;
+    border-top: 3px solid #111;
+}
+
+html[data-lw-theme="raster"] .profile.is-new {
+    box-shadow: none;
+    border-top-color: #e30613;
+}
+
+html[data-lw-theme="raster"] .step-no {
+    background: #e30613;
+}
+
+html[data-lw-theme="raster"] .card {
+    border: 1px solid #111;
+    border-left-width: 6px;
+    border-left-color: var(--type);
+}
+
+html[data-lw-theme="raster"] .card:hover {
+    box-shadow: none;
+    background-color: #fafafa;
+}
+
+html[data-lw-theme="raster"] .card.type-sandbox {
+    border-left-color: #3d6a10;
+}
+
+html[data-lw-theme="raster"] .card:is(.type-lecture, .type-exercise, .type-test, .type-tool) {
+    background-color: #fff;
+    background-image: none;
+}
+
+html[data-lw-theme="raster"] .card-title {
+    letter-spacing: -0.03em;
+}
+
+html[data-lw-theme="raster"] .group-head {
+    padding-top: 12px;
+    border-top: 3px solid #111;
+    font-size: 26px;
+    letter-spacing: -0.03em;
+}
+
+html[data-lw-theme="raster"] .group-no {
+    color: #e30613;
+}
+
+html[data-lw-theme="raster"] .tile.is-last {
+    box-shadow: inset 0 -4px 0 #e30613;
+}
+
+
+/* Bedienelemente und Abschnitte wie auf den Raster-Übungsseiten: große rote Nummern, Haarlinien */
+/* feste Nummern: .page ist ein Container (Style-Containment), CSS-Zähler greifen dort nicht durch */
+html[data-lw-theme="raster"] .profile-title::before {
+    content: "01";
+}
+
+html[data-lw-theme="raster"] .scope::before {
+    content: "02";
+}
+
+html[data-lw-theme="raster"] :is(.profile-title, .scope)::before {
+    display: block;
+    margin-bottom: 6px;
+    color: #e30613;
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+html[data-lw-theme="raster"] .controls {
+    padding-top: 22px;
+    border-top: 3px solid #111;
+}
+
+html[data-lw-theme="raster"] .scope {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0;
+    border: none;
+    background: none;
+    gap: 2px;
+}
+
+html[data-lw-theme="raster"] .scope::before {
+    margin: 0 20px 0 0;
+}
+
+html[data-lw-theme="raster"] .scope-btn {
+    border: 1px solid #111;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="raster"] .scope-btn[aria-checked="true"] {
+    background: #111;
+}
+
+html[data-lw-theme="raster"] :is(.seg button[aria-pressed="true"], .chip[aria-pressed="true"], .btn-primary) {
+    background: #111;
+    color: #fff;
+}
+
+html[data-lw-theme="raster"] :is(.search, .more-btn, .select, .stepper select, .stepper-btn, .btn, .seg) {
+    border: 1px solid #111;
+}
+
+html[data-lw-theme="raster"] .search:focus {
+    border-color: #e30613;
+    box-shadow: inset 4px 0 0 #e30613;
+}
+
+html[data-lw-theme="raster"] .switch input:checked+.switch-track {
+    background: #e30613;
+}
+
+html[data-lw-theme="raster"] .switch-track,
+html[data-lw-theme="raster"] .switch-track::after {
+    border-radius: 0;
+}
+
+html[data-lw-theme="raster"] .tile {
+    border-width: 1px;
+}
+
+html[data-lw-theme="raster"] .type-badge {
+    border: none;
+    background: none;
+    padding-left: 0;
+    color: var(--type);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="raster"] .new {
+    background: #e30613;
+    color: #fff;
+}
+
+html[data-lw-theme="raster"] .card-flag {
+    color: #e30613;
+}
+
+@media (max-width: 600px) {
+    html[data-lw-theme="raster"] .page-head {
+        background:
+            linear-gradient(transparent 300px, #fff 420px),
+            var(--lw-banner) 6% top / auto 420px no-repeat,
+            #fff;
+        background-blend-mode: normal, luminosity, normal;
+    }
+
+    html[data-lw-theme="raster"] .hero-text {
+        padding-left: 30px;
+    }
+}
+
+
+/* ============================================================================
+   Tafel – Kreide auf grüner Tafel. Banner als Polaroid, mit Magnet an die Tafel geheftet;
+   der Titel steht als Bildunterschrift in Handschrift auf dem Foto.
+   ============================================================================ */
+
+html[data-lw-theme="tafel"] {
+    --bg: #26392f;
+    --surface: #2c4136;
+    --surface-2: #22342b;
+    --ink: #eef3ec;
+    --ink-2: #d5dfd6;
+    --muted: #9fb8a8;
+    --line: rgb(255 255 255 / 0.2);
+    --line-strong: rgb(255 255 255 / 0.42);
+    --accent: #f7d774;
+    --accent-soft: rgb(247 215 116 / 0.16);
+    --ok: #9fe0b0;
+    --ok-soft: rgb(159 224 176 / 0.14);
+    --shaky: #f7b267;
+    --shaky-soft: rgb(247 178 103 / 0.14);
+    --confident: #f4a6c6;
+    --confident-soft: rgb(244 166 198 / 0.16);
+    --unknown: #7f9688;
+    --radius-lg: 18px;
+    --radius: 12px;
+    --shadow: none;
+    --lw-accent: #f7d774;
+}
+
+html[data-lw-theme="tafel"] body {
+    background: #26392f;
+}
+
+html[data-lw-theme="tafel"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(ellipse at 25% 15%, rgb(255 255 255 / 0.07), transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgb(255 255 255 / 0.04), transparent 50%);
+    pointer-events: none;
+}
+
+html[data-lw-theme="tafel"] :is(.profile-title, .card-title, .group-head, .step-text h2, .empty-title) {
+    font-family: var(--lw-hand);
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+html[data-lw-theme="tafel"] .page-head {
+    position: relative;
+    margin: 18px 10px 44px;
+    border: 14px solid #f4f1ea;
+    border-bottom-width: 14px;
+    border-radius: 3px;
+    background:
+        linear-gradient(transparent calc(var(--img-bottom) - 120px), #efe6de var(--img-bottom)),
+        var(--lw-banner) center calc(-1 * var(--crop)) / 100% auto no-repeat,
+        #efe6de;
+    box-shadow: 0 16px 34px rgb(0 0 0 / 0.45);
+    transform: rotate(0.8deg);
+    overflow: visible;
+}
+
+/* Magnet */
+html[data-lw-theme="tafel"] .page-head::before {
+    content: "";
+    position: absolute;
+    top: -26px;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ff8a80, #d32f2f 60%, #8e1b1b);
+    box-shadow: 0 4px 6px rgb(0 0 0 / 0.45);
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+html[data-lw-theme="tafel"] .hero-text {
+    color: #1f2a24;
+}
+
+html[data-lw-theme="tafel"] .page-head h1 {
+    font-family: var(--lw-hand);
+    font-size: clamp(34px, 5vw, 54px);
+    font-weight: 700;
+    color: #1f2a24;
+}
+
+html[data-lw-theme="tafel"] .eyebrow {
+    color: #6b5d55;
+}
+
+html[data-lw-theme="tafel"] .lede {
+    color: #3b463f;
+}
+
+html[data-lw-theme="tafel"] :is(.profile, .card, .more, .table-wrap, .empty) {
+    border: 2px solid rgb(255 255 255 / 0.45);
+    border-radius: 255px 18px 225px 18px / 18px 225px 18px 255px;
+}
+
+html[data-lw-theme="tafel"] .profile {
+    background: rgb(0 0 0 / 0.12);
+}
+
+html[data-lw-theme="tafel"] .profile.is-new {
+    border-color: #f7d774;
+    box-shadow: none;
+}
+
+html[data-lw-theme="tafel"] .card-title a::after {
+    border-radius: 18px;
+}
+
+html[data-lw-theme="tafel"] .tile {
+    border-style: dashed;
+    background: transparent;
+}
+
+html[data-lw-theme="tafel"] .tile.is-heard {
+    background: rgb(255 255 255 / 0.05);
+}
+
+html[data-lw-theme="tafel"] .tile.is-last {
+    border-color: #f7d774;
+    box-shadow: 0 0 0 2px #f7d774;
+}
+
+html[data-lw-theme="tafel"] .group-head {
+    font-size: 26px;
+    text-decoration: underline wavy #f7d774;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 7px;
+}
+
+/* Kartentypen als farbige Kreide auf der Tafel */
+html[data-lw-theme="tafel"] .type-lecture { --type: #d9c2ff; --type-soft: rgb(217 194 255 / 0.14); --type-line: rgb(217 194 255 / 0.5); --type-bg: rgb(0 0 0 / 0.1); }
+html[data-lw-theme="tafel"] .type-exercise { --type: #ffc2ad; --type-soft: rgb(255 194 173 / 0.14); --type-line: rgb(255 194 173 / 0.5); --type-bg: rgb(0 0 0 / 0.1); }
+html[data-lw-theme="tafel"] .type-test { --type: #a8e6dd; --type-soft: rgb(168 230 221 / 0.14); --type-line: rgb(168 230 221 / 0.5); --type-bg: rgb(0 0 0 / 0.1); }
+html[data-lw-theme="tafel"] .type-tool { --type: #e2e8e4; --type-soft: rgb(226 232 228 / 0.12); --type-line: rgb(226 232 228 / 0.45); --type-bg: rgb(0 0 0 / 0.1); }
+html[data-lw-theme="tafel"] .type-sandbox { --type: #c9f08f; --type-soft: rgb(201 240 143 / 0.14); --type-line: rgb(201 240 143 / 0.55); --type-bg: rgb(116 165 55 / 0.28); }
+
+html[data-lw-theme="tafel"] .card:is(.type-lecture, .type-exercise, .type-test, .type-tool) {
+    background-image: none;
+}
+
+html[data-lw-theme="tafel"] .card.type-sandbox {
+    border-color: rgb(201 240 143 / 0.55);
+}
+
+html[data-lw-theme="tafel"] .card.type-sandbox :is(.card-desc, .feature-none) {
+    color: #cfe0c4;
+}
+
+html[data-lw-theme="tafel"] .card.type-sandbox :is(.card-flag, .feature, .reason) {
+    color: #c9f08f;
+}
+
+html[data-lw-theme="tafel"] .card.type-sandbox .dot:not(.on) {
+    background: rgb(255 255 255 / 0.25);
+}
+
+html[data-lw-theme="tafel"] .card.type-sandbox .dot.on {
+    background: var(--ink);
+}
+
+html[data-lw-theme="tafel"] .card.type-sandbox .type-badge {
+    border-color: var(--type-line);
+    background: var(--type-soft);
+}
+
+html[data-lw-theme="tafel"] .card.type-sandbox .done-btn {
+    border-color: var(--line-strong);
+    background: transparent;
+    color: var(--ink-2);
+}
+
+html[data-lw-theme="tafel"] .card.type-sandbox:hover .card-title a {
+    color: var(--type);
+}
+
+html[data-lw-theme="tafel"] .card-media {
+    border: 5px solid #f4f1ea;
+    border-radius: 3px;
+    transform: rotate(-1.5deg);
+}
+
+html[data-lw-theme="tafel"] .card.is-done .card-media::after {
+    background: #26392f;
+    color: #9fe0b0;
+}
+
+
+/* Bedienelemente wie auf den Tafel-Übungsseiten: Kreidegelb, Handschrift, gewellte Unterstreichung */
+html[data-lw-theme="tafel"] .profile-title {
+    color: #f7d774;
+    font-size: 26px;
+    text-decoration: underline wavy;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 7px;
+}
+
+/* .step davor: schlägt die gemeinsame Regel für dunkle Themes oben */
+html[data-lw-theme="tafel"] .step .step-no {
+    border: 2px solid #f4a6c6;
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+    background: none;
+    color: #f4a6c6;
+    font-family: var(--lw-hand);
+    font-size: 18px;
+}
+
+html[data-lw-theme="tafel"] :is(.scope-btn[aria-checked="true"], .seg button[aria-pressed="true"], .chip[aria-pressed="true"], .btn-primary, .badge) {
+    border-color: #f7d774;
+    background: #f7d774;
+    color: #1c2b23;
+}
+
+html[data-lw-theme="tafel"] .switch input:checked+.switch-track {
+    background: #f7d774;
+}
+
+html[data-lw-theme="tafel"] :is(.scope, .seg, .search, .more-btn, .select, .stepper select, .stepper-btn, .btn, .chip, .done-btn, .rate-btn) {
+    border-color: rgb(255 255 255 / 0.4);
+    background-color: transparent;
+}
+
+html[data-lw-theme="tafel"] .search {
+    background-color: rgb(0 0 0 / 0.15);
+}
+
+html[data-lw-theme="tafel"] :is(.scope-btn, .seg button, .more-btn, .chip) {
+    font-family: var(--lw-hand);
+    font-size: 17px;
+}
+
+html[data-lw-theme="tafel"] .stepper select option {
+    background: #26392f;
+}
+
+html[data-lw-theme="tafel"] .type-badge {
+    font-family: var(--lw-hand);
+    font-size: 15px;
+}
+
+@media (max-width: 600px) {
+    html[data-lw-theme="tafel"] .page-head {
+        border-width: 10px;
+        background:
+            linear-gradient(transparent 300px, #efe6de 420px),
+            var(--lw-banner) 6% top / auto 420px no-repeat,
+            #efe6de;
+    }
+}
