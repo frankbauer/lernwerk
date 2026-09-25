@@ -82341,20 +82341,23 @@ var SEe = { class: "code-editor" }, CEe = ["name", "data-question"], wEe = ["nam
 				case "c++": return I_e();
 				default: return N3();
 			}
-		}), D = new ft(), O = new ft(), k = new ft(), ee = new ft(), A = new ft(), j = new ft(), te = new ft(), ne = new ft(), re = hre(f), M = pre(re, f), N = () => te.of(SY.of((e, t) => ie(e.state.doc.toString(), t))), ie = (e, t) => {
-			let n = At.create({
+		}), D = new ft(), O = new ft(), k = new ft(), ee = new ft(), A = new ft(), j = new ft(), te = new ft(), ne = new ft(), re = hre(f), M = pre(re, f), N = () => te.of(SY.of((e, t) => ae(e.state.doc.toString(), t, ie(e)))), ie = (e) => e.options, ae = (e, t, n = {}) => {
+			let r = At.create({
 				doc: p.value ? p.value.before + e + (p.value.after ? "\n" + p.value.after : "") : e,
 				extensions: [
 					At.tabSize.of(4),
 					CY.of("    "),
 					E.value
 				]
-			}), r = p.value ? Math.min(t + p.value.offset, n.doc.length) : t;
-			mue(n, r, 2e3);
-			let i = EY(n, r);
-			return i === null ? VTe(new DY(n, { simulateBreak: r }), r, () => 0) ?? 0 : i;
+			}), i = (e) => p.value ? Math.min(e + p.value.offset, r.doc.length) : e, a = i(t);
+			mue(r, a, 2e3);
+			let o = EY(new DY(r, {
+				simulateBreak: n.simulateBreak === void 0 ? void 0 : i(n.simulateBreak),
+				simulateDoubleBreak: n.simulateDoubleBreak
+			}), a);
+			return o === null ? VTe(new DY(r, { simulateBreak: a }), a, () => 0) ?? 0 : o;
 		};
-		function ae(e) {
+		function oe(e) {
 			let t = fre(e);
 			return (e) => {
 				if (!m.value && !h.value) return null;
@@ -82368,20 +82371,20 @@ var SEe = { class: "code-editor" }, CEe = ["name", "data-question"], wEe = ["nam
 				return n;
 			};
 		}
-		let oe = J(() => [
+		let se = J(() => [
 			dt.highest(pa.of([{
 				key: "Enter",
 				run: (e) => {
 					let t = e.state.selection.main.from, n = e.state.doc.lineAt(t), r = n.text.match(/^\s*/), i = r ? r[0].length : 0;
 					if (t <= n.from + i) {
-						let r = ie(e.state.doc.toString(), n.from), i = " ".repeat(r);
+						let t = e.state.doc.toString(), r = t.slice(0, n.from) + "\n" + t.slice(n.from + i), a = ae(r, n.from), o = ae(r, n.from + 1);
 						return e.dispatch({
 							changes: {
 								from: n.from,
-								to: t,
-								insert: i + "\n" + i
+								to: n.from + i,
+								insert: " ".repeat(a) + "\n" + " ".repeat(o)
 							},
-							selection: { anchor: n.from + r + 1 + r },
+							selection: { anchor: n.from + a + 1 + o },
 							scrollIntoView: !0
 						}), !0;
 					}
@@ -82418,63 +82421,65 @@ var SEe = { class: "code-editor" }, CEe = ["name", "data-question"], wEe = ["nam
 			CY.of("    "),
 			k.of(b.value.editorTheme),
 			D.of(E.value),
-			j.of(po({ formatNumber: (e, t) => ce(e) })),
-			ne.of(bEe(ie)),
+			j.of(po({ formatNumber: (e, t) => le(e) })),
+			ne.of(bEe(ae)),
 			ee.of(b.value.highlightStyle),
-			O.of(E.value.language.data.of({ autocomplete: ae(f) })),
+			O.of(E.value.language.data.of({ autocomplete: oe(f) })),
 			re,
 			M,
-			pe,
-			xEe(_e),
-			be,
+			me,
+			xEe(ve),
+			Se,
 			N()
-		]), se = () => {
+		]), ce = () => {
 			let e = v.value;
 			if (!e) return;
 			let t = e.scrollDOM, n = t.offsetHeight - t.clientHeight, r = e.contentDOM.offsetHeight + n;
 			Math.abs(t.offsetHeight - r) <= 1 || (t.style.flexShrink = "0", t.offsetHeight, t.style.flexShrink = "", e.requestMeasure());
 		};
-		sQ(_, () => requestAnimationFrame(se)), Du(() => {
+		sQ(_, () => requestAnimationFrame(ce)), Du(() => {
 			if (_.value === null) {
 				console.error("Editor Element is not found.");
 				return;
 			}
-			v.value = new ca({
+			v.value?.destroy(), v.value = new ca({
 				parent: _.value,
 				state: At.create({
 					doc: g.value,
-					extensions: oe.value
+					extensions: se.value
 				}),
 				dispatch: (e) => {
 					v.value !== null && (v.value.update([e]), !(e.changes.empty || !e.docChanged) && (g.value = e.state.doc.toString() ?? "", r("change", e.state)));
 				}
 			}), Xc(() => {
-				v.value === null || _.value === null || (ve(), yo(v.value, f), r("ready", {
+				v.value === null || _.value === null || (ye(), yo(v.value, f), r("ready", {
 					view: v.value,
 					state: v.value.state,
 					container: _.value
-				}), se(), document.fonts?.ready.then(se));
+				}), ce(), document.fonts?.ready.then(ce));
 			});
+		}), Au(() => {
+			v.value?.destroy();
 		});
-		function ce(e) {
+		function le(e) {
 			return `${+e + c.value - 1}`;
 		}
 		Cl([p], () => {
-			v.value && v.value.dispatch({ effects: [te.reconfigure(SY.of((e, t) => p.value ? ie(e.state.doc.toString(), t) : VTe(e, t, () => 0) ?? 0))] });
+			v.value && v.value.dispatch({ effects: [te.reconfigure(SY.of((e, t) => p.value ? ae(e.state.doc.toString(), t, ie(e)) : VTe(e, t, () => 0) ?? 0))] });
 		}), Cl(c, (e) => {
-			v.value !== null && (console.log("firstLine", e), v.value.dispatch({ effects: j.reconfigure(po({ formatNumber: (e, t) => ce(e) })) }));
+			v.value !== null && (console.log("firstLine", e), v.value.dispatch({ effects: j.reconfigure(po({ formatNumber: (e, t) => le(e) })) }));
 		}), Cl(E, (e) => {
-			v.value !== null && (v.value.dispatch({ effects: D.reconfigure(e) }), v.value.dispatch({ effects: O.reconfigure(e.language.data.of({ autocomplete: ae(f) })) }));
+			v.value !== null && (v.value.dispatch({ effects: D.reconfigure(e) }), v.value.dispatch({ effects: O.reconfigure(e.language.data.of({ autocomplete: oe(f) })) }));
 		}), Cl(m, () => {
-			v.value !== null && v.value.dispatch({ effects: O.reconfigure(E.value.language.data.of({ autocomplete: ae(f) })) });
+			v.value !== null && v.value.dispatch({ effects: O.reconfigure(E.value.language.data.of({ autocomplete: oe(f) })) });
 		}), Cl(h, () => {
-			v.value !== null && v.value.dispatch({ effects: O.reconfigure(E.value.language.data.of({ autocomplete: ae(f) })) });
+			v.value !== null && v.value.dispatch({ effects: O.reconfigure(E.value.language.data.of({ autocomplete: oe(f) })) });
 		}), Cl(b, (e) => {
 			v.value !== null && v.value.dispatch({ effects: [k.reconfigure(e.editorTheme), ee.reconfigure(e.highlightStyle)] });
 		}), Cl(() => l.value, (e) => {
 			v.value !== null && v.value.dispatch({ effects: A.reconfigure(At.readOnly.of(l.value)) });
 		}, { immediate: !0 });
-		let le = {
+		let ue = {
 			anchor: 0,
 			head: 0
 		};
@@ -82487,39 +82492,39 @@ var SEe = { class: "code-editor" }, CEe = ["name", "data-question"], wEe = ["nam
 					to: v.value.state.doc.length,
 					insert: e
 				},
-				selection: t ? le : v.value.state.selection,
+				selection: t ? ue : v.value.state.selection,
 				scrollIntoView: !0
 			});
 		}, { immediate: !0 });
-		let ue = () => v.value?.state.doc.lines ?? 0, de = wt.define({ map: ({ from: e, to: t, severity: n, message: r, decoration: i }, a) => ge({
+		let de = () => v.value?.state.doc.lines ?? 0, fe = wt.define({ map: ({ from: e, to: t, severity: n, message: r, decoration: i }, a) => _e({
 			from: a.mapPos(e),
 			to: a.mapPos(t),
 			severity: n,
 			message: r,
 			decoration: i
-		}) }), fe = wt.define(), pe = ct.define({
+		}) }), pe = wt.define(), me = ct.define({
 			create() {
 				return Sn.none;
 			},
 			update(e, t) {
 				e = e.map(t.changes);
-				for (let n of t.effects) if (n.is(fe)) e = Sn.none;
-				else if (n.is(de)) {
-					let t = n.value.decoration || me(n.value.severity, n.value.message);
+				for (let n of t.effects) if (n.is(pe)) e = Sn.none;
+				else if (n.is(fe)) {
+					let t = n.value.decoration || he(n.value.severity, n.value.message);
 					e = e.update({ add: [t.range(n.value.from, n.value.to)] });
 				}
 				return e;
 			},
 			provide: (e) => ca.decorations.from(e)
-		}), me = (e, t) => Sn.mark({
+		}), he = (e, t) => Sn.mark({
 			class: e === l2.Warning ? "yellow-wave" : "red-wave",
 			attributes: {}
 		});
-		function he(e) {
+		function ge(e) {
 			return Math.max(0, Math.min(e, v.value.state.doc.length - 1));
 		}
-		function ge(e) {
-			return e.from = he(e.from), e.to = he(e.to), e.from === e.to && (e.to = he(e.to + 1)), e.from === e.to && (e.from = he(e.from - 1)), e.from > e.to ? {
+		function _e(e) {
+			return e.from = ge(e.from), e.to = ge(e.to), e.from === e.to && (e.to = ge(e.to + 1)), e.from === e.to && (e.from = ge(e.from - 1)), e.from > e.to ? {
 				from: e.to,
 				to: e.from,
 				severity: e.severity,
@@ -82527,8 +82532,8 @@ var SEe = { class: "code-editor" }, CEe = ["name", "data-question"], wEe = ["nam
 				decoration: e.decoration
 			} : e;
 		}
-		let _e = J(() => u.value.map((e) => {
-			if (c.value === 0) return ge({
+		let ve = J(() => u.value.map((e) => {
+			if (c.value === 0) return _e({
 				from: v.value.state.doc.length - 2,
 				to: v.value.state.doc.length - 1,
 				severity: e.severity,
@@ -82537,15 +82542,15 @@ var SEe = { class: "code-editor" }, CEe = ["name", "data-question"], wEe = ["nam
 			let t = e.start.line - c.value + 1, n = v.value.state.doc.line(t);
 			if (n) {
 				let r = n.from + e.start.column, i = e.end.line - c.value + 1;
-				if (i >= t && i <= ue()) {
+				if (i >= t && i <= de()) {
 					let t = v.value.state.doc.line(i);
-					if (t) return ge({
+					if (t) return _e({
 						from: r,
 						to: t.from + e.end.column,
 						severity: e.severity,
 						message: e.message
 					});
-				} else return ge({
+				} else return _e({
 					from: r,
 					to: r + 1,
 					severity: e.severity,
@@ -82553,23 +82558,27 @@ var SEe = { class: "code-editor" }, CEe = ["name", "data-question"], wEe = ["nam
 				});
 			}
 		}).filter((e) => e !== void 0));
-		function ve() {
-			let e = [fe.of(null), ..._e.value.map((e) => de.of(e))];
+		function ye() {
+			let e = [pe.of(null), ...ve.value.map((e) => fe.of(e))];
 			return v.value.dispatch({ effects: e }), !0;
 		}
-		class ye extends eo {
+		let be = /* @__PURE__ */ new WeakMap();
+		class xe extends eo {
 			constructor(e, t) {
 				super(), this.severity = e, this.errors = t;
 			}
 			toDOM() {
-				let e = document.createElement("span");
-				return Cm(r_e, {
+				let e = document.createElement("span"), t = Cm(r_e, {
 					errors: this.errors,
 					severity: this.severity
-				}).mount(e), e;
+				});
+				return t.mount(e), be.set(e, t), e;
+			}
+			destroy(e) {
+				be.get(e)?.unmount(), be.delete(e);
 			}
 		}
-		let be = ire({
+		let Se = ire({
 			class: "error-gutter",
 			markers: (e) => {
 				let t = new Lt(), n = /* @__PURE__ */ new Map();
@@ -82580,13 +82589,13 @@ var SEe = { class: "code-editor" }, CEe = ["name", "data-question"], wEe = ["nam
 				let r = Array.from(n.keys()).sort((e, t) => e - t);
 				for (let i of r) {
 					let r = n.get(i), a = e.state.doc.line(i), o = r.some((e) => e.severity === l2.Error) ? l2.Error : l2.Warning;
-					t.add(a.from, a.from, new ye(o, r));
+					t.add(a.from, a.from, new xe(o, r));
 				}
 				return t.finish();
 			}
 		});
 		return Cl(u, () => {
-			v.value !== null && (console.log("Errors", u.value), ve());
+			v.value !== null && (console.log("Errors", u.value), ye());
 		}, {
 			immediate: !0,
 			deep: !0
@@ -82594,8 +82603,8 @@ var SEe = { class: "code-editor" }, CEe = ["name", "data-question"], wEe = ["nam
 			v.value && yo(v.value, f);
 		}, { deep: !0 }), t({
 			view: v,
-			lineCount: ue,
-			lineNr: ce
+			lineCount: de,
+			lineNr: le
 		}), (e, t) => (H(), U("div", SEe, [pl(G("textarea", {
 			style: { display: "none" },
 			readonly: "",
@@ -97336,7 +97345,7 @@ var bze = { class: "tw-w-full" }, xze = { class: "tw-flex tw-items-stretch tw-h-
 		return Du(() => {
 			r.eventHub ? r.eventHub.on("all-mounted", s) : s(), i("canvas-change", o.value);
 		}), Au(() => {
-			r.eventHub && r.eventHub.off("all-mounted");
+			r.eventHub && r.eventHub.off("all-mounted", s);
 		}), (t, n) => (H(), U("div", {
 			class: "tw-flex tw-w-full ma-0 pa-0 block-playground",
 			"data-question": e.block.parentID,
@@ -97357,7 +97366,7 @@ var bze = { class: "tw-w-full" }, xze = { class: "tw-flex tw-items-stretch tw-h-
 			"data-nr": e.block.id
 		}, null, 12, hBe)], 2)) : Of("", !0)], 8, mBe));
 	}
-}), [["__scopeId", "data-v-f7146641"]]);
+}), [["__scopeId", "data-v-d9ecebe9"]]);
 //#endregion
 //#region src/lib/scriptBlocks/migrationV101ToV102.ts
 function W9(e) {
@@ -97948,7 +97957,7 @@ var CBe = /* @__PURE__ */ B({
 			let e = D.value === "auto" || a.value.static ? "auto" : `${Math.round(20 * Math.max(1, D.value)) + 9}px`;
 			y.value.view.dom.style.height = e;
 		}, oe = (e, t, n, r) => {
-			if (e.files === void 0 || e.files.length < 1) return;
+			if (!e || e.files === void 0 || e.files.length < 1) return;
 			let i = e.files;
 			for (let e = 0; e < i.length; e++) {
 				let a = i[e], o = a.type;
@@ -97960,7 +97969,7 @@ var CBe = /* @__PURE__ */ B({
 						"vsh",
 						"fsh",
 						"ply"
-					].indexOf(e) === 0 && (o = "text/" + e), console.log(e, o);
+					].indexOf(e) >= 0 && (o = "text/" + e), console.log(e, o);
 				}
 				if (!t(o)) {
 					m.value = `Uploads of type '${o}' are not allowed.`, console.error(m.value);
@@ -97985,11 +97994,11 @@ var CBe = /* @__PURE__ */ B({
 		}, le = () => {
 			v.value !== null && v.value.click();
 		}, ue = (e) => {
-			oe(g, (e) => e.startsWith("image/"), (e, t) => t.readAsDataURL(e), (e, t) => he(e, t));
+			oe(g.value, (e) => e.startsWith("image/"), (e, t) => t.readAsDataURL(e), (e, t) => he(e, t));
 		}, de = (e) => {
-			oe(_, (e) => e.startsWith("text/"), (e, t) => t.readAsText(e), (e, t) => me(e, t));
+			oe(_.value, (e) => e.startsWith("text/"), (e, t) => t.readAsText(e), (e, t) => me(e, t));
 		}, fe = (e) => {
-			oe(v, (e) => e.trim() === "application/json" || e.trim() === "text/json", (e, t) => t.readAsText(e), (e, t) => pe(e, t));
+			oe(v.value, (e) => e.trim() === "application/json" || e.trim() === "text/json", (e, t) => t.readAsText(e), (e, t) => pe(e, t));
 		}, pe = (e, t) => {
 			a.value.content = t;
 		}, me = (e, t) => {
@@ -98203,7 +98212,7 @@ var CBe = /* @__PURE__ */ B({
 			}, 8, ["open"])
 		])) : Of("", !0);
 	}
-}), [["__scopeId", "data-v-8b0f196d"]]), QBe = { key: 0 }, $Be = { class: "tw-flex tw-justify-between tw-w-full tw-flex-nowrap tw-flex-row tw-items-center tw-content-center tw-mb-1" }, eVe = { class: "tw-flex tw-items-center tw-flex-1" }, tVe = { class: "tw-ml-0 tw-transition-opacity tw-duration-250 group-hover:tw-opacity-0" }, nVe = { class: "tw-mr-4 inlined-input tw-mb-0 tw-flex" }, rVe = { class: "tw-inline-flex tw-w-fit -tw-space-x-px tw-rounded-md tw-shadow-xs rtl:tw-space-x-reverse" }, iVe = { class: "tw-flex tw-gap-2 tw-items-center" }, aVe = { class: "tw-flex-1" }, oVe = { class: "tw-flex tw-gap-2 tw-items-center" }, sVe = { class: "tw-flex-1" }, cVe = { class: "tw-flex tw-gap-2 tw-items-center" }, lVe = { class: "tw-flex-1" }, uVe = { class: "tw-whitespace-pre-wrap tw-font-mono tw-text-[10px]" }, dVe = /* @__PURE__ */ B5(/* @__PURE__ */ B({
+}), [["__scopeId", "data-v-fc9f534e"]]), QBe = { key: 0 }, $Be = { class: "tw-flex tw-justify-between tw-w-full tw-flex-nowrap tw-flex-row tw-items-center tw-content-center tw-mb-1" }, eVe = { class: "tw-flex tw-items-center tw-flex-1" }, tVe = { class: "tw-ml-0 tw-transition-opacity tw-duration-250 group-hover:tw-opacity-0" }, nVe = { class: "tw-mr-4 inlined-input tw-mb-0 tw-flex" }, rVe = { class: "tw-inline-flex tw-w-fit -tw-space-x-px tw-rounded-md tw-shadow-xs rtl:tw-space-x-reverse" }, iVe = { class: "tw-flex tw-gap-2 tw-items-center" }, aVe = { class: "tw-flex-1" }, oVe = { class: "tw-flex tw-gap-2 tw-items-center" }, sVe = { class: "tw-flex-1" }, cVe = { class: "tw-flex tw-gap-2 tw-items-center" }, lVe = { class: "tw-flex-1" }, uVe = { class: "tw-whitespace-pre-wrap tw-font-mono tw-text-[10px]" }, dVe = /* @__PURE__ */ B5(/* @__PURE__ */ B({
 	__name: "LibraryBlock",
 	props: /* @__PURE__ */ cd({
 		namePrefix: {},
@@ -98462,9 +98471,9 @@ var CBe = /* @__PURE__ */ B({
 	setup(e) {
 		let t = e, n = J(() => t.layout === "vertical" ? "tw-flex tw-flex-row" : t.layout === "horizontal" ? "tw-flex tw-flex-col" : "tw-flex tw-flex-col md:tw-flex-row"), r = J(() => t.layout === "vertical" ? "tw-w-1/2 tw-min-w-0" : t.layout === "horizontal" ? "tw-w-full tw-min-w-0" : "tw-w-full md:tw-w-1/2 tw-min-w-0"), i = J(() => t.layout === "vertical" ? "tw-w-1/2 tw-min-w-0 tw-pl-4" : t.layout === "horizontal" ? "tw-w-full tw-min-w-0 tw-pl-0" : "tw-w-full md:tw-w-1/2 tw-min-w-0 tw-pl-0 md:tw-pl-4");
 		function a(e) {
-			t.editMode && e.scopeUUID == t.scopeUUID && (t.block.value.content = bo.replaceTemplateTagInString(t.block.value.content, e.name, e.newValue));
+			t.editMode && (e.scopeUUID != t.scopeUUID || t.block === null || (t.block.content = bo.replaceTemplateTagInString(t.block.content, e.name, e.newValue)));
 		}
-		let o = J(() => t.block?.value?.content || t.value);
+		let o = J(() => t.block?.content || t.value);
 		return Du(() => {
 			bo.onReplaceTemplateTag(a);
 		}), Au(() => {
@@ -98672,7 +98681,7 @@ function SVe(e, t, n) {
 			n.emit("all-mounted", {});
 		}), console.d("Ready", e, r.value.blocks.length);
 	}, fe = (e) => r.value.randomizer.sets[e], pe = (e) => e.themeForCodeBlock, me = (e) => _.value.find((t) => t.id == e), he = (e) => {
-		e !== void 0 && o.value != e && (o = /* @__PURE__ */ L(e.replaceAllPoly("<", "&lt;").replaceAllPoly(">", "&gt;")), x.value > 0 && o.value.length > x.value ? (a.value = G9(o.value.substr(0, x.value)), a.value += Z.appState.format_info("Info: Output too long. Removed all following Characters. \n<b>...</b>\n\n")) : a.value = G9(o.value), a.value += s.value);
+		e !== void 0 && o.value != e && (o.value = e.replaceAllPoly("<", "&lt;").replaceAllPoly(">", "&gt;"), x.value > 0 && o.value.length > x.value ? (a.value = G9(o.value.substr(0, x.value)), a.value += Z.appState.format_info("Info: Output too long. Removed all following Characters. \n<b>...</b>\n\n")) : a.value = G9(o.value), a.value += s.value);
 	}, ge = () => {
 		o.value = "", s.value = "", c.value = !1, a.value = "";
 	}, _e = (e) => {
