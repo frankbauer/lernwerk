@@ -9,20 +9,14 @@ public class CherryGame {
         FloatingWorld.addPlayer();
         FloatingWorld.addPlayer();
 
-        // 2. Den pinken Spieler nach rechts bewegen (er fällt dabei von der Insel)
+        // 2. + 3. Beide Spieler nach rechts bewegen, der rote nimmt dabei die Kirsche auf
         FloatingWorld.movePlayerRight(0);
-
-        // 3. Den roten Spieler nach rechts bewegen, bis er die Kirsche aufnimmt
-        FloatingWorld.movePlayerRight(1);
-        FloatingWorld.movePlayerRight(1);
         FloatingWorld.movePlayerRight(1);
 
         // 4. Den pinken Spieler löschen. Der rote Spieler rückt dadurch auf Index 0 vor!
         FloatingWorld.removePlayer(0);
 
-        // 5. Den roten Spieler (jetzt Index 0) zurück zur Ausgangsposition bewegen
-        FloatingWorld.movePlayerLeft(0);
-        FloatingWorld.movePlayerLeft(0);
+        // 5. Den roten Spieler (jetzt Index 0) nach links bewegen
         FloatingWorld.movePlayerLeft(0);
 //#START STATIC
     }

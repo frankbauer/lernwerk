@@ -1,22 +1,23 @@
 <h3>Aufgabe</h3>
 <p>In dieser Aufgabe programmieren Sie eine feste Spielsequenz. Verwenden Sie dazu die folgenden Klassenmethoden der
-    Klasse <code>FloatingWorld</code> (eine vollständige Beschreibung finden Sie im Reiter <i>FloatingWorld</i>):</p>
+    Klasse <code>FloatingWorld</code> (eine Beschreibung finden Sie auch im Reiter <i>FloatingWorld</i>):</p>
 <ul>
     <li><code>static void show()</code> Zeigt die Welt an.</li>
-    <li><code>static Player addPlayer()</code> Fügt einen Spieler hinzu.</li>
-    <li><code>static void movePlayerLeft(int idx)</code> Bewegt den Spieler mit dem Index <code>idx</code> nach
-        links.</li>
-    <li><code>static void movePlayerRight(int idx)</code> Bewegt den Spieler mit dem Index <code>idx</code> nach
-        rechts.</li>
-    <li><code>static void removePlayer(int idx)</code> Löscht den Spieler mit dem Index <code>idx</code>.</li>
+    <li><code>static void addPlayer()</code> Fügt einen Spieler hinzu.</li>
+    <li><code>static void movePlayerLeft(int playerID)</code> Bewegt den Spieler mit der ID <code>playerID</code>
+        nach links.</li>
+    <li><code>static void movePlayerRight(int playerID)</code> Bewegt den Spieler mit der ID <code>playerID</code>
+        nach rechts.</li>
+    <li><code>static void removePlayer(int playerID)</code> Löscht den Spieler mit der ID <code>playerID</code>.</li>
 </ul>
 <p>Gehen Sie wie folgt vor:</p>
 <ol>
     <li>Fügen Sie zwei neue Spieler hinzu.</li>
     <li>Bewegen Sie den pinken Spieler nach rechts.</li>
-    <li>Bewegen Sie den roten Spieler so oft nach rechts, bis er die Kirsche aufnimmt.</li>
+    <li>Bewegen Sie den roten Spieler nach rechts (dieser sollte nun die Kirsche aufnehmen).</li>
     <li>Löschen Sie den pinken Spieler.</li>
-    <li>Bewegen Sie den roten Spieler so oft nach links, bis er wieder an seiner Ausgangsposition steht.</li>
+    <li>Bewegen Sie den roten Spieler nach links.</li>
 </ol>
-<p>Am Ende des Durchlaufs sollte der rote Spieler an seiner Ausgangsposition (weiß gestrichelter Umriss) mit der Kirsche über dem Kopf stehen.</p>
-<p><b>Hinweis:</b> Führen Sie Ihr Programm zwischendurch aus, um zu sehen, wie weit sich ein Spieler pro Aufruf bewegt.</p>
+<p>Auf dem Spielfeld sollte am Ende des Durchlaufs der rote Spieler an seiner Ausgangsposition (weiß gestrichelter
+    Umriss) mit der Kirsche über seinem Kopf stehen. In der Ausgabe unter dem Spielfeld sehen Sie, ob Ihre
+    Befehlsfolge richtig ist.</p>

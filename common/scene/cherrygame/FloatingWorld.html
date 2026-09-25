@@ -1,0 +1,17 @@
+<h4>Beschreibung</h4>
+<p>Diese Klasse verwaltet eine kleine Spielwelt mit einer Kirsche, in der Spieler hinzugefügt, bewegt und gelöscht
+    werden können. Alle Methoden sind Klassenmethoden (<code>static</code>) und werden über den Klassennamen aufgerufen,
+    z.B. <code>FloatingWorld.show()</code>.</p>
+
+<h4>Methoden</h4>
+<ul>
+    <li><code>public static void show()</code><br>Zeigt die Welt mit der Kirsche an.</li>
+    <li><code>public static void addPlayer()</code><br>Fügt einen neuen Spieler hinzu. Die Spieler werden in der
+        Reihenfolge ihres Hinzufügens nummeriert, beginnend bei <code>0</code>.</li>
+    <li><code>public static void movePlayerLeft(int playerID)</code><br>Bewegt den Spieler mit dem Index
+        <code>playerID</code> ein Stück nach links.</li>
+    <li><code>public static void movePlayerRight(int playerID)</code><br>Bewegt den Spieler mit dem Index
+        <code>playerID</code> ein Stück nach rechts.</li>
+    <li><code>public static void removePlayer(int playerID)</code><br>Löscht den Spieler mit dem Index
+        <code>playerID</code>. Alle Spieler mit einem größeren Index rücken um eine Position nach vorne.</li>
+</ul>

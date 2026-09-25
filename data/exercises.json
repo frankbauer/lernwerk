@@ -782,7 +782,7 @@
     {
       "id": "04_Methodenaufrufe/kirschen",
       "title": "Kirschenessen mit Klassenmethoden",
-      "description": "Steuere zwei Spieler mit statischen Methoden der FloatingWorld so, dass der rote Spieler die Kirsche holt – und achte darauf, wie sich die Indizes nach dem Löschen verschieben.",
+      "description": "Steuere zwei Spieler mit Klassenmethoden der FloatingWorld so, dass der rote Spieler die Kirsche holt – und achte darauf, wie sich die Indizes nach dem Löschen verschieben.",
       "link": "04_Methodenaufrufe/kirschen",
       "chapter": 4,
       "type": "exercise",

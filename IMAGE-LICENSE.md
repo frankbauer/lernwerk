@@ -61,3 +61,8 @@ List of files (folder names could change):
 ./common/scene/universum/img/rocket.0002.png
 ./common/scene/universum/img/rocket.0001.png
 ./common/scene/universum/img/background.jpg
+./common/scene/cherrygame/img/red.png
+./common/scene/cherrygame/img/pink.png
+./common/scene/cherrygame/img/monster.png
+./common/scene/cherrygame/img/cherry.png
+./common/scene/cherrygame/img/redGhost.png
