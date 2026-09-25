@@ -274,7 +274,8 @@
       "hasSolution": true,
       "hasExplanation": true,
       "hasExperiments": false,
-      "isNew": true
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "00_einfuehrung/beispiel_universum",
@@ -347,7 +348,8 @@
       "hasSolution": true,
       "hasExplanation": true,
       "hasExperiments": false,
-      "isNew": true
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "01_Variablen/sandkasten_42",
@@ -471,7 +473,8 @@
       "hasSolution": true,
       "hasExplanation": true,
       "hasExperiments": false,
-      "isNew": true
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "02_Operationen/ausgabe",
@@ -488,7 +491,8 @@
       "hasSolution": true,
       "hasExplanation": true,
       "hasExperiments": false,
-      "isNew": true
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "02_Operationen/ausdruecke",
@@ -505,7 +509,8 @@
       "hasSolution": true,
       "hasExplanation": true,
       "hasExperiments": false,
-      "isNew": true
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "03_Datentypen/sandkasten_type",
@@ -633,7 +638,8 @@
       "hasSolution": true,
       "hasExplanation": true,
       "hasExperiments": false,
-      "isNew": true
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "03_Datentypen/ausgabe",
@@ -650,7 +656,8 @@
       "hasSolution": true,
       "hasExplanation": true,
       "hasExperiments": false,
-      "isNew": true
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "03_Datentypen/typen",
@@ -667,7 +674,8 @@
       "hasSolution": true,
       "hasExplanation": true,
       "hasExperiments": false,
-      "isNew": true
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "03_Datentypen/ects",
@@ -685,7 +693,8 @@
       "hasSolution": true,
       "hasExplanation": true,
       "hasExperiments": false,
-      "isNew": true
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "04_Methodenaufrufe/sandkasten_flaeche",
@@ -793,7 +802,8 @@
       "hasSolution": true,
       "hasExplanation": true,
       "hasExperiments": false,
-      "isNew": true
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "05_Objekte/beispiel_floating",

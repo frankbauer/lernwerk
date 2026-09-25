@@ -6,6 +6,8 @@
     const DATA_URL = "./data/exercises.json";
     /** Exercises marked `isHidden` only show up with ?showHidden in the URL. */
     const SHOW_HIDDEN = new URLSearchParams(location.search).has("showHidden");
+    /** Exercises marked `isDraft` (not finished yet) only show up with ?showDrafts in the URL. */
+    const SHOW_DRAFTS = new URLSearchParams(location.search).has("showDrafts");
     const STORAGE_KEY = "lernwerk.uebungsplaner.v1";
 
     /** Self-assessment per concept; everything but "unknown" counts as learned. */
@@ -450,6 +452,7 @@
                     <h3 class="card-title"><a href="${esc(ex.link)}">${esc(ex.title)}</a></h3>
                     ${ex.isNew ? `<span class="new">Neu</span>` : ""}
                     ${ex.isHidden ? `<span class="hidden-badge" title="Nur mit ?showHidden sichtbar">Versteckt</span>` : ""}
+                    ${ex.isDraft ? `<span class="draft-badge" title="Nur mit ?showDrafts sichtbar">Entwurf</span>` : ""}
                     ${typeBadge(ex.type)}
                 </div>
                 <p class="card-desc">${esc(ex.description)}</p>
@@ -480,7 +483,7 @@
                 <div class="c-title-inner">
                     ${ex.image ? preview(ex, "c-thumb") : `<span class="c-thumb c-thumb-icon">${icon(ex.tags[0])}</span>`}
                     <div>
-                        <a href="${esc(ex.link)}">${esc(ex.title)}</a>${ex.isNew ? `<span class="new">Neu</span>` : ""}${ex.isHidden ? `<span class="hidden-badge" title="Nur mit ?showHidden sichtbar">Versteckt</span>` : ""}
+                        <a href="${esc(ex.link)}">${esc(ex.title)}</a>${ex.isNew ? `<span class="new">Neu</span>` : ""}${ex.isHidden ? `<span class="hidden-badge" title="Nur mit ?showHidden sichtbar">Versteckt</span>` : ""}${ex.isDraft ? `<span class="draft-badge" title="Nur mit ?showDrafts sichtbar">Entwurf</span>` : ""}
                         <span class="c-desc">${esc(ex.description)}</span>
                     </div>
                 </div>
@@ -704,6 +707,7 @@
         }
 
         if (!SHOW_HIDDEN) catalog.exercises = catalog.exercises.filter((ex) => !ex.isHidden);
+        if (!SHOW_DRAFTS) catalog.exercises = catalog.exercises.filter((ex) => !ex.isDraft);
         chapters = [...catalog.chapters].sort((x, y) => x.number - y.number);
         concepts = [...catalog.concepts].sort((x, y) => x.chapter - y.chapter);
         conceptById = Object.fromEntries(concepts.map((c) => [c.id, c]));

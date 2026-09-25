@@ -1014,9 +1014,10 @@ h1 {
     content: "✎";
 }
 
-/* "Neu" / "Versteckt": same box as the type badge, so they line up */
+/* "Neu" / "Versteckt" / "Entwurf": same box as the type badge, so they line up */
 .new,
-.hidden-badge {
+.hidden-badge,
+.draft-badge {
     display: inline-flex;
     align-items: center;
     height: 24px;
@@ -1041,6 +1042,12 @@ h1 {
 .hidden-badge {
     border: 1px dashed var(--ink-2);
     color: var(--ink-2);
+}
+
+.draft-badge {
+    background: #ffedd5;
+    border-color: #ea580c;
+    color: #9a3412;
 }
 
 .reason {
@@ -1243,7 +1250,8 @@ h1 {
 /* "middle" instead of a baseline offset: the type badge starts with an icon (no text baseline) */
 .card-head .type-badge,
 .card-head .new,
-.card-head .hidden-badge {
+.card-head .hidden-badge,
+.card-head .draft-badge {
     margin: 0 3px 0 0;  /* separated by spaces, which vanish at the start of a wrapped line */
     vertical-align: middle;
 }
