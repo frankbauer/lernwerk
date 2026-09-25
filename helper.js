@@ -90,3 +90,21 @@ function initHelpers() {
     processHints()
     setTimeout(() => processTabs(), 100);
 }
+/** URL flags of the overview (uebersicht.html) that must survive a round trip through an exercise. */
+const OVERVIEW_FLAGS = ["showHidden", "showDrafts"]
+
+/** Appends the overview flags present in the current URL to `href`. */
+function withOverviewFlags(href) {
+    const current = new URLSearchParams(location.search)
+    const flags = OVERVIEW_FLAGS.filter(flag => current.has(flag))
+    if (flags.length === 0) return href
+    const [base, hash] = href.split('#')
+    const sep = base.includes('?') ? '&' : '?'
+    return base + sep + flags.join('&') + (hash !== undefined ? '#' + hash : '')
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a.backlink').forEach(link => {
+        link.setAttribute('href', withOverviewFlags(link.getAttribute('href')))
+    })
+})

@@ -1,0 +1,17 @@
+{
+    "options": ["Instanzmethode", "Klassenmethode"],
+    "codeWidth": "25em",
+    "items": [
+        { "code": "Player p = FloatingWorld.addPlayer();", "mark": "addPlayer", "answer": "Klassenmethode" },
+        { "code": "Math.random();", "mark": "random", "answer": "Klassenmethode" },
+        { "code": "Player p = FloatingWorld.addPlayer();\np.moveLeft();", "mark": "moveLeft", "answer": "Instanzmethode" },
+        { "code": "Player.playerWithID(3).remove();", "mark": "remove", "answer": "Instanzmethode" },
+        { "code": "FloatingWorld.movePlayerRight(2);", "mark": "movePlayerRight", "answer": "Klassenmethode" },
+        { "code": "new Vec2D().toString();", "mark": "toString", "answer": "Instanzmethode" },
+        { "code": "Player.printAllPlayers();", "mark": "printAllPlayers", "answer": "Klassenmethode" },
+        { "code": "Player p = FloatingWorld.addPlayer();\nFloatingWorld.removePlayer(p.getID());", "mark": "removePlayer", "answer": "Klassenmethode" },
+        { "code": "Player p = FloatingWorld.addPlayer();\nFloatingWorld.movePlayerLeft(p.getID());", "mark": "getID", "answer": "Instanzmethode" }
+    ],
+    "hint": "Schauen Sie, was direkt vor dem Punkt steht: ein Klassenname oder ein Objekt (eine Variable, ein Methodenergebnis oder <code>new ...</code>)?",
+    "successMessage": "<b>Richtig!</b> Alle Methodenaufrufe sind korrekt zugeordnet."
+}

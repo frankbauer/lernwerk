@@ -1,0 +1,1747 @@
+/*
+ * Alternative Darstellungen der Übungsseiten.
+ *
+ * Aktiv, sobald <html data-lw-theme="..."> gesetzt ist (content.js / theme.js, Auswahl über das Menü
+ * oben rechts). Voreinstellung ist "abenteuer"; ohne Attribut ("Klassisch") gilt unverändert editor.css.
+ *
+ * Aufbau:
+ *   1. Menü (für alle Themes inkl. Klassisch)
+ *   2. Gemeinsame Basis aller neuen Themes, gesteuert über --lw-* Variablen
+ *   3. Pro Theme: Variablen + charakteristische Details
+ *   4. Gemeinsame Nachträge (dunkle Themes, API-Tabs)
+ *
+ * Schriften: Geist liegt lokal in fonts/. Für Serifen, Mono und Handschrift werden System-Schriften
+ * verwendet (keine externen Font-CDNs).
+ */
+
+/* ============================================================================
+   1. Menü
+   ============================================================================ */
+
+div.topbar>a.backlink {
+    margin-left: auto;
+}
+
+.lw-crumb {
+    display: none;
+}
+
+/* Der Knopf richtet sich an der Grundlinie des Zurück-Links aus (Kopfzeile nutzt align-items: baseline).
+   Das unsichtbare Zeichen in ::before liefert die Grundlinie, vertikal mittig im Knopf. */
+.lw-menu-anchor {
+    position: relative;
+    align-self: baseline;
+    margin-left: 12px;
+}
+
+.lw-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--lw-menu-border, #e3e3e3);
+    border-radius: 10px;
+    background: var(--lw-menu-button-bg, transparent);
+    color: inherit;
+    font-size: 12pt;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.lw-menu-button::before {
+    content: "\200b";
+}
+
+.lw-menu-button:hover,
+.lw-menu-button[aria-expanded="true"] {
+    background: var(--lw-menu-hover, rgba(0, 0, 0, 0.05));
+}
+
+.lw-menu-button:focus-visible,
+.lw-menu-item:focus-visible {
+    outline: 2px solid var(--lw-accent, rgb(2, 123, 227));
+    outline-offset: 2px;
+}
+
+.lw-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 1000;
+    width: 280px;
+    max-width: calc(100vw - 32px);
+    padding: 6px;
+    border: 1px solid var(--lw-menu-border, #e3e3e3);
+    border-radius: 14px;
+    background: var(--lw-menu-bg, #fff);
+    color: var(--lw-menu-fg, #1d2433);
+    box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.25);
+    font: 400 14px/1.35 Geist, Roboto, system-ui, sans-serif;
+    font-style: normal;
+    text-align: left;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.lw-menu[hidden] {
+    display: none;
+}
+
+.lw-menu-title {
+    padding: 8px 10px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.lw-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 9px;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.lw-menu-item:hover {
+    background: var(--lw-menu-hover, rgba(0, 0, 0, 0.05));
+}
+
+.lw-swatch {
+    position: relative;
+    flex: none;
+    width: 40px;
+    height: 30px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.lw-swatch i {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    top: 6px;
+    bottom: 0;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.lw-swatch b {
+    position: absolute;
+    left: 10px;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.lw-swatch b:nth-of-type(1) {
+    top: 11px;
+    width: 12px;
+}
+
+.lw-swatch b:nth-of-type(2) {
+    top: 19px;
+    width: 20px;
+}
+
+.lw-menu-label {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.lw-menu-label>span {
+    font-weight: 600;
+}
+
+.lw-menu-label small {
+    font-size: 12px;
+    opacity: 0.65;
+}
+
+.lw-check {
+    visibility: hidden;
+    font-weight: 700;
+    color: var(--lw-menu-check, var(--lw-accent, rgb(2, 123, 227)));
+}
+
+.lw-menu-item[aria-checked="true"] .lw-check {
+    visibility: visible;
+}
+
+.lw-menu-item[aria-checked="true"] {
+    background: var(--lw-menu-hover, rgba(0, 0, 0, 0.05));
+}
+
+
+/* ============================================================================
+   2. Gemeinsame Basis aller neuen Themes
+   ============================================================================ */
+
+html[data-lw-theme] {
+    --lw-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
+    --lw-font: Geist, Roboto, system-ui, sans-serif;
+    --lw-font-head: var(--lw-font);
+    --lw-radius-sm: 8px;
+    --lw-content-width: 860px;
+}
+
+html[data-lw-theme] body {
+    margin: 0;
+    background: var(--lw-bg);
+    color: var(--lw-fg);
+    font-family: var(--lw-font);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+html[data-lw-theme] a {
+    color: var(--lw-link, var(--lw-accent));
+}
+
+/* --- Kopfzeile --- */
+html[data-lw-theme] div.topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: end;
+    gap: 8px 16px;
+    padding: 32px max(16px, calc((100% - var(--lw-content-width)) / 2 + 16px)) 20px;
+    border-bottom: var(--lw-topbar-border, none);
+    background: var(--lw-topbar-bg, transparent);
+}
+
+html[data-lw-theme] .lw-title {
+    min-width: 0;
+}
+
+html[data-lw-theme] .lw-crumb {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--lw-muted);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+html[data-lw-theme] .lw-crumb:empty {
+    display: none;
+}
+
+html[data-lw-theme] div.topbar h1 {
+    margin: 0 !important;
+    font-family: var(--lw-font-head);
+    font-size: var(--lw-h1-size, 34px) !important;
+    font-weight: var(--lw-h1-weight, 700);
+    line-height: 1.12 !important;
+    letter-spacing: var(--lw-h1-tracking, -0.02em);
+    color: var(--lw-h1-color, var(--lw-fg));
+}
+
+html[data-lw-theme] div.topbar>a.backlink {
+    color: var(--lw-muted);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+html[data-lw-theme] .lw-menu-anchor {
+    align-self: end;
+    margin-left: 0;
+}
+
+/* --- Inhaltsspalte --- */
+html[data-lw-theme] div#content {
+    position: static;
+    max-width: var(--lw-content-width);
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+}
+
+/* --- Boxen (Aufgabe, Erklärung, Experimente, Tabs) --- */
+html[data-lw-theme] div.boxed,
+html[data-lw-theme] tabbar.code {
+    width: auto;
+    margin: 0 0 24px;
+    padding: 24px 28px;
+    border: var(--lw-card-border);
+    border-radius: var(--lw-radius);
+    background: var(--lw-surface);
+    box-shadow: var(--lw-shadow);
+    color: inherit;
+    font-size: inherit;
+}
+
+html[data-lw-theme] div.intro {
+    color: var(--lw-muted);
+}
+
+html[data-lw-theme] div.boxed h3 {
+    margin: 0 0 12px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    font-family: var(--lw-font-head);
+    font-size: 1.25em;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+html[data-lw-theme] div.boxed p,
+html[data-lw-theme] div.boxed div,
+html[data-lw-theme] div.boxed ul,
+html[data-lw-theme] div.boxed ol {
+    font-weight: inherit;
+}
+
+html[data-lw-theme] div.boxed p:nth-child(2),
+html[data-lw-theme] div.boxed div:nth-child(2) {
+    font-style: normal;
+}
+
+/* Listen (die Tailwind-Basis der Codeblocks-Bibliothek entfernt sonst die Aufzählungszeichen) */
+html[data-lw-theme] div.boxed ul,
+html[data-lw-theme] div.boxed ol {
+    margin: 10px 0 14px;
+    padding-left: 1.4em;
+}
+
+html[data-lw-theme] div.boxed ul {
+    list-style: disc;
+}
+
+html[data-lw-theme] div.boxed ol {
+    list-style: decimal;
+}
+
+html[data-lw-theme] div.boxed li {
+    margin-top: 6px;
+}
+
+html[data-lw-theme] div.boxed li::marker {
+    color: var(--lw-muted);
+}
+
+html[data-lw-theme] div.boxed>h3+p {
+    font-size: 1.06em;
+}
+
+html[data-lw-theme] div.boxed> :last-child {
+    margin-bottom: 0;
+}
+
+/* Boxen innerhalb von Tabs (z.B. Erklärung unter der Beispiellösung) */
+html[data-lw-theme] tabbar>div[data-tab]>div.boxed {
+    margin: 20px 0 0;
+    padding: 20px 22px;
+    border: var(--lw-nested-border, var(--lw-card-border));
+    background: var(--lw-surface-2);
+    box-shadow: none;
+}
+
+/* --- Code & Ausgaben --- */
+html[data-lw-theme] code,
+html[data-lw-theme] pre[code] {
+    font-family: var(--lw-mono);
+    font-size: 0.88em;
+    font-weight: 500;
+    color: var(--lw-code-fg, inherit);
+    background: transparent;
+}
+
+html[data-lw-theme] code.inline-code>span[code] {
+    padding: 2px 5px;
+    border-radius: 5px;
+    background: var(--lw-code-bg);
+    color: var(--lw-code-fg, inherit);
+}
+
+html[data-lw-theme] pre[code] {
+    margin: 10px 0;
+    padding: 12px 16px;
+    border-radius: var(--lw-radius-sm);
+    background: var(--lw-code-block-bg, var(--lw-code-bg));
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+html[data-lw-theme] pre[output],
+html[data-lw-theme] code[output].inline-code>span[code] {
+    background: var(--lw-out-bg);
+    color: var(--lw-out-fg);
+}
+
+html[data-lw-theme] pre[output] {
+    margin: 8px 0;
+    padding: 14px 18px;
+    border-radius: var(--lw-radius-sm);
+    font-family: var(--lw-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+/* in editor.css sind Inhalte in .colored (Experimente) weiß auf violett, das wird hier zurückgesetzt */
+html[data-lw-theme] .colored pre[code] {
+    margin-left: 0;
+    background: var(--lw-code-block-bg, var(--lw-code-bg));
+    color: var(--lw-code-fg, inherit);
+}
+
+html[data-lw-theme] .colored pre[output] {
+    background: var(--lw-exp-out-bg, var(--lw-out-bg));
+    color: var(--lw-exp-out-fg, var(--lw-out-fg));
+}
+
+html[data-lw-theme] .colored code.inline-code>span[code] {
+    background: var(--lw-code-bg);
+    color: var(--lw-code-fg, inherit);
+}
+
+html[data-lw-theme] .colored a {
+    color: var(--lw-link, var(--lw-accent));
+}
+
+html[data-lw-theme] quote {
+    border: none;
+    background: var(--lw-code-bg);
+    color: inherit;
+}
+
+/* --- Experimente --- */
+html[data-lw-theme] div.experiment {
+    counter-reset: lw-exp;
+}
+
+html[data-lw-theme] div.experiment>div {
+    position: relative;
+    counter-increment: lw-exp;
+    margin: 12px 0 0 !important;
+    padding: 14px 16px 14px 54px;
+    border: var(--lw-exp-item-border, none);
+    border-radius: var(--lw-radius-sm);
+    background: var(--lw-exp-item-bg, transparent);
+    color: inherit;
+    font-weight: inherit;
+}
+
+html[data-lw-theme] div.experiment>div:nth-child(2) {
+    margin-top: 4px !important;
+}
+
+html[data-lw-theme] div.experiment>div::before {
+    content: counter(lw-exp);
+    position: absolute;
+    left: 14px;
+    top: 13px;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--lw-experiment);
+    color: var(--lw-experiment-fg, #fff);
+    font: 600 13px/26px var(--lw-font);
+    text-align: center;
+}
+
+/* --- Hinweise --- */
+html[data-lw-theme] .hint-container button,
+html[data-lw-theme] .colored .hint-container button {
+    border-radius: var(--lw-radius-sm);
+    background: var(--lw-accent);
+    color: var(--lw-accent-fg);
+    font-family: var(--lw-font);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+html[data-lw-theme] hint.expanded {
+    border-left-color: var(--lw-border);
+}
+
+/* --- Tabs --- */
+html[data-lw-theme] tabbar.code {
+    padding: 0;
+    overflow: hidden;
+}
+
+html[data-lw-theme] tabbar>div.buttonbar {
+    gap: 4px;
+    padding: 0 16px;
+    border-bottom: none;
+    background: var(--lw-tabbar-bg, transparent);
+    box-shadow: inset 0 -1px var(--lw-border);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+}
+
+html[data-lw-theme] tabbar>div.buttonbar button,
+html[data-lw-theme] tabbar>div.buttonbar button.inactive {
+    margin-bottom: 0;
+    padding: 14px 10px 12px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    color: var(--lw-muted);
+    font-family: var(--lw-font);
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+html[data-lw-theme] tabbar>div.buttonbar button:hover {
+    color: var(--lw-fg) !important;
+}
+
+html[data-lw-theme] tabbar>div.buttonbar button.active {
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--lw-accent);
+    color: var(--lw-fg);
+}
+
+html[data-lw-theme] tabbar>div[data-tab] {
+    padding: 16px;
+}
+
+/* --- Codeblocks (Editor, Ausführen-Knopf, Konsole) --- */
+/* Ein gemeinsamer Rahmen um alle Blöcke eines Editors: Die Bibliothek markiert den ersten Block mit
+   .round-top und den letzten mit .round-bottom (ein einzelner Block trägt beide). Seitenkanten gibt
+   es immer, Ober-/Unterkante und Rundung nur an diesen Enden. */
+html[data-lw-theme] [codeblocks] .codeblock .code-editor>div {
+    border: var(--lw-editor-border-width, 1px) solid var(--lw-editor-border, var(--lw-border));
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+html[data-lw-theme] [codeblocks] .codeblock.round-top .code-editor>div {
+    border-top-width: var(--lw-editor-border-width, 1px);
+    border-top-left-radius: var(--lw-radius-sm);
+    border-top-right-radius: var(--lw-radius-sm);
+}
+
+html[data-lw-theme] [codeblocks] .codeblock.round-bottom .code-editor>div {
+    border-bottom-width: var(--lw-editor-border-width, 1px);
+    border-bottom-left-radius: var(--lw-radius-sm);
+    border-bottom-right-radius: var(--lw-radius-sm);
+}
+
+html[data-lw-theme] [codeblocks] .codeblock .cm-editor {
+    border-radius: 0;
+}
+
+html[data-lw-theme] [codeblocks] pre.output {
+    border-color: var(--lw-border) !important;
+    border-radius: var(--lw-radius-sm) !important;
+    background: var(--lw-out-bg) !important;
+    color: var(--lw-out-fg) !important;
+    font-family: var(--lw-mono) !important;
+}
+
+/* --- Quiz (common/quiz) --- */
+html[data-lw-theme] .quiz {
+    --quiz-back: var(--lw-surface-2);
+    --quiz-line: var(--lw-surface-solid, var(--lw-surface));
+    --quiz-border: var(--lw-border);
+    --quiz-accent: var(--lw-accent);
+    --quiz-mono: var(--lw-mono);
+}
+
+html[data-lw-theme] .quiz input.quiz-answer,
+html[data-lw-theme] .quiz-options button {
+    background: var(--lw-surface-solid, var(--lw-surface));
+    color: var(--lw-fg);
+}
+
+html[data-lw-theme] .quiz-actions button {
+    color: var(--lw-accent-fg);
+}
+
+html[data-lw-theme] .quiz-actions button.secondary {
+    color: var(--lw-accent);
+}
+
+html[data-lw-theme] .quiz-grip,
+html[data-lw-theme] .quiz-move button {
+    color: var(--lw-muted);
+}
+
+
+/* ============================================================================
+   3a. Heft – Papier, Serifen, Textmarker
+   ============================================================================ */
+
+html[data-lw-theme="heft"] {
+    --lw-bg: #f7f3ea;
+    --lw-fg: #2d2a24;
+    --lw-muted: #8a7f6a;
+    --lw-font-head: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --lw-h1-size: 42px;
+    --lw-h1-weight: 600;
+    --lw-h1-tracking: -0.01em;
+    --lw-surface: #fffdf8;
+    --lw-surface-2: #f7f3ea;
+    --lw-border: #e7dfcd;
+    --lw-card-border: 1px solid #e7dfcd;
+    --lw-nested-border: none;
+    --lw-radius: 6px;
+    --lw-radius-sm: 4px;
+    --lw-shadow: 0 1px 0 #e7dfcd, 0 8px 24px -16px rgba(80, 60, 20, 0.25);
+    --lw-accent: #2d2a24;
+    --lw-accent-fg: #fffdf8;
+    --lw-link: #8b4a2b;
+    --lw-code-bg: #f1eadb;
+    --lw-out-bg: #2d2a24;
+    --lw-out-fg: #f3ead6;
+    --lw-exp-out-bg: #f1eadb;
+    --lw-exp-out-fg: #2d2a24;
+    --lw-experiment: #8e5bb8;
+    --lw-tabbar-bg: #fbf8f1;
+    --lw-menu-bg: #fffdf8;
+    --lw-menu-border: #e7dfcd;
+    --lw-menu-hover: #f4eee1;
+    /* Codeblocks (shadcn-Variablen) */
+    --primary: 43 11% 16%;
+    --primary-foreground: 40 100% 99%;
+}
+
+html[data-lw-theme="heft"] .lw-crumb {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="heft"] div.topbar>a.backlink {
+    border-bottom: 1px solid #d6ccb6;
+}
+
+html[data-lw-theme="heft"] div.boxed h3 {
+    display: inline-block;
+    font-size: 24px;
+    background: linear-gradient(transparent 62%, #ffe27a 62%);
+}
+
+html[data-lw-theme="heft"] div.experiment h3 {
+    background: linear-gradient(transparent 62%, #e3d1f5 62%);
+}
+
+html[data-lw-theme="heft"] div.explain h3 {
+    background: linear-gradient(transparent 62%, #cfe6fb 62%);
+}
+
+html[data-lw-theme="heft"] div.experiment>div {
+    margin: 0 !important;
+    padding: 14px 0 14px 52px;
+    border-top: 1px dashed #e0d6c1;
+    border-radius: 0;
+}
+
+html[data-lw-theme="heft"] div.experiment>div:nth-child(2) {
+    margin-top: 0 !important;
+    border-top: none;
+}
+
+html[data-lw-theme="heft"] div.experiment>div::before {
+    left: 0;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid #8e5bb8;
+    border-radius: 50%;
+    background: none;
+    color: #8e5bb8;
+    font: 600 16px/29px var(--lw-font-head);
+}
+
+html[data-lw-theme="heft"] tabbar>div.buttonbar button.active {
+    font-weight: 600;
+}
+
+
+/* ============================================================================
+   3b. Karten – hell, ruhig, aufgeräumt
+   ============================================================================ */
+
+html[data-lw-theme="karten"] {
+    --lw-bg: #f2f4f7;
+    --lw-fg: #1d2433;
+    --lw-muted: #6b7385;
+    --lw-h1-size: 34px;
+    --lw-surface: #ffffff;
+    --lw-surface-2: #f7f8fa;
+    --lw-border: #e5e8ee;
+    --lw-card-border: none;
+    --lw-nested-border: 1px solid #e5e8ee;
+    --lw-radius: 16px;
+    --lw-radius-sm: 10px;
+    --lw-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 4px 16px -4px rgba(16, 24, 40, 0.08);
+    --lw-accent: #4f46e5;
+    --lw-accent-fg: #ffffff;
+    --lw-code-bg: #eef0ff;
+    --lw-code-fg: #3730a3;
+    --lw-code-block-bg: #f7f8fa;
+    --lw-out-bg: #111827;
+    --lw-out-fg: #e5e7eb;
+    --lw-exp-out-bg: #ffffff;
+    --lw-exp-out-fg: #1d2433;
+    --lw-experiment: #9333ea;
+    --lw-exp-item-bg: #faf7ff;
+    --lw-exp-item-border: 1px solid #efe6fd;
+    --lw-menu-border: #e5e8ee;
+    --lw-menu-hover: #f2f4f7;
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
+}
+
+html[data-lw-theme="karten"] div.topbar>a.backlink {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #fff;
+    color: #4f46e5;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
+}
+
+html[data-lw-theme="karten"] .lw-menu-button {
+    border: none;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
+}
+
+html[data-lw-theme="karten"] div.boxed h3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    background: #eef0f4;
+    color: #414a5c;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="karten"] div.boxed h3::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+html[data-lw-theme="karten"] div.aufgabe h3 {
+    background: #fff4d6;
+    color: #8a5a00;
+}
+
+html[data-lw-theme="karten"] div.experiment h3 {
+    background: #f1e8ff;
+    color: #6b21a8;
+}
+
+html[data-lw-theme="karten"] div.explain h3 {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+/* Konsole mit Fensterpunkten */
+html[data-lw-theme="karten"] div.boxed:not(.experiment) pre[output] {
+    position: relative;
+    padding-top: 38px;
+    border-radius: 12px;
+}
+
+html[data-lw-theme="karten"] div.boxed:not(.experiment) pre[output]::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff5f57;
+    box-shadow: 16px 0 #febc2e, 32px 0 #28c840;
+}
+
+html[data-lw-theme="karten"] .colored pre[output] {
+    border: 1px solid #efe6fd;
+}
+
+html[data-lw-theme="karten"] tabbar.code {
+    padding: 16px;
+}
+
+html[data-lw-theme="karten"] tabbar>div.buttonbar {
+    width: fit-content;
+    max-width: 100%;
+    gap: 2px;
+    padding: 4px;
+    border: none;
+    border-radius: 10px;
+    background: #f2f4f7;
+}
+
+html[data-lw-theme="karten"] tabbar>div.buttonbar button,
+html[data-lw-theme="karten"] tabbar>div.buttonbar button.inactive,
+html[data-lw-theme="karten"] tabbar>div.buttonbar button.active {
+    margin: 0;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+html[data-lw-theme="karten"] tabbar>div.buttonbar button.active {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.12);
+}
+
+html[data-lw-theme="karten"] tabbar>div[data-tab] {
+    padding: 14px 0 0;
+}
+
+
+/* ============================================================================
+   3c. Terminal – dunkel wie eine IDE
+   ============================================================================ */
+
+html[data-lw-theme="terminal"] {
+    --lw-bg: #0d1017;
+    --lw-fg: #c9d1dc;
+    --lw-muted: #7d8aa3;
+    --lw-font-head: var(--lw-mono);
+    --lw-h1-size: 30px;
+    --lw-h1-color: #f0f3f8;
+    --lw-surface: #121620;
+    --lw-surface-2: #0f131b;
+    --lw-border: #1f2533;
+    --lw-card-border: 1px solid #1f2533;
+    --lw-radius: 10px;
+    --lw-radius-sm: 6px;
+    --lw-shadow: none;
+    --lw-accent: #34d399;
+    --lw-accent-fg: #04130d;
+    --lw-link: #7dd3fc;
+    --lw-code-bg: #1b2130;
+    --lw-code-fg: #7dd3fc;
+    --lw-code-block-bg: #07090d;
+    --lw-out-bg: #07090d;
+    --lw-out-fg: #a7f3d0;
+    --lw-experiment: #c084fc;
+    --lw-tabbar-bg: #0a0d13;
+    --lw-topbar-bg: #0a0d13;
+    --lw-topbar-border: 1px solid #1c2230;
+    --lw-menu-bg: #121620;
+    --lw-menu-fg: #c9d1dc;
+    --lw-menu-border: #273043;
+    --lw-menu-hover: #1b2130;
+    --primary: 158 64% 52%;
+    --primary-foreground: 160 65% 5%;
+}
+
+html[data-lw-theme="terminal"] div.topbar {
+    margin-bottom: 8px;
+}
+
+html[data-lw-theme="terminal"] .lw-crumb,
+html[data-lw-theme="terminal"] div.topbar>a.backlink {
+    font-family: var(--lw-mono);
+    font-weight: 400;
+}
+
+html[data-lw-theme="terminal"] .lw-crumb::before {
+    content: "~/ ";
+    color: #3b4356;
+}
+
+html[data-lw-theme="terminal"] div.topbar h1::after {
+    content: "_";
+    color: #34d399;
+    animation: lw-blink 1.1s steps(1) infinite;
+}
+
+@keyframes lw-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html[data-lw-theme="terminal"] div.topbar h1::after {
+        animation: none;
+    }
+}
+
+html[data-lw-theme="terminal"] div.topbar>a.backlink::before {
+    content: "cd .. ← ";
+}
+
+html[data-lw-theme="terminal"] div.boxed h3 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+html[data-lw-theme="terminal"] div.boxed h3::before {
+    content: "// ";
+    color: #5c6780;
+}
+
+html[data-lw-theme="terminal"] div.aufgabe {
+    border-left: 3px solid #fbbf24;
+}
+
+html[data-lw-theme="terminal"] div.aufgabe h3 {
+    color: #fbbf24;
+}
+
+html[data-lw-theme="terminal"] div.experiment {
+    border-left: 3px solid #c084fc;
+}
+
+html[data-lw-theme="terminal"] div.experiment h3 {
+    color: #c084fc;
+}
+
+html[data-lw-theme="terminal"] div.explain {
+    border-left: 3px solid #7dd3fc;
+}
+
+html[data-lw-theme="terminal"] div.explain h3 {
+    color: #7dd3fc;
+}
+
+html[data-lw-theme="terminal"] div.boxed ul {
+    list-style: none;
+    padding-left: 1.2em;
+}
+
+html[data-lw-theme="terminal"] div.boxed ul>li::before {
+    content: "›";
+    margin-left: -1.2em;
+    width: 1.2em;
+    display: inline-block;
+    color: #34d399;
+}
+
+html[data-lw-theme="terminal"] pre[output] {
+    border: 1px solid #1c2230;
+}
+
+html[data-lw-theme="terminal"] div.boxed:not(.experiment) pre[output]::before {
+    content: "$ java Main\A";
+    color: #5c6780;
+}
+
+html[data-lw-theme="terminal"] div.experiment>div {
+    margin: 0 !important;
+    padding: 12px 0 12px 48px;
+    border-top: 1px solid #1c2230;
+    border-radius: 0;
+}
+
+html[data-lw-theme="terminal"] div.experiment>div:nth-child(2) {
+    border-top: none;
+}
+
+html[data-lw-theme="terminal"] div.experiment>div::before {
+    content: "[" counter(lw-exp) "]";
+    left: 0;
+    top: 12px;
+    width: auto;
+    height: auto;
+    background: none;
+    color: #c084fc;
+    font: 500 14px/1.6 var(--lw-mono);
+}
+
+html[data-lw-theme="terminal"] tabbar>div.buttonbar {
+    gap: 0;
+    padding: 0;
+}
+
+html[data-lw-theme="terminal"] tabbar>div.buttonbar button,
+html[data-lw-theme="terminal"] tabbar>div.buttonbar button.inactive,
+html[data-lw-theme="terminal"] tabbar>div.buttonbar button.active {
+    margin: 0;
+    padding: 11px 18px;
+    border: none;
+    border-right: 1px solid #1f2533;
+    font-family: var(--lw-mono);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+html[data-lw-theme="terminal"] tabbar>div.buttonbar button.active {
+    background: #121620;
+    box-shadow: inset 0 2px #34d399;
+    color: #f0f3f8;
+}
+
+html[data-lw-theme="terminal"] .hint-container button,
+html[data-lw-theme="terminal"] [codeblocks] .tw-bg-primary {
+    font-family: var(--lw-mono);
+}
+
+
+/* ============================================================================
+   3d. Abenteuer – kräftig und verspielt
+   ============================================================================ */
+
+html[data-lw-theme="abenteuer"] {
+    --lw-bg: #f6f2ee; /* wie uebersicht.html (--bg) */
+    --lw-fg: #111111;
+    --lw-muted: #4a4a4a;
+    --lw-h1-size: 42px;
+    --lw-h1-weight: 800;
+    --lw-h1-tracking: -0.03em;
+    --lw-surface: #ffffff;
+    --lw-surface-2: #faf7f4;
+    --lw-border: #111111;
+    --lw-card-border: 2.5px solid #111;
+    --lw-nested-border: 2px solid #111;
+    --lw-radius: 14px;
+    --lw-radius-sm: 10px;
+    --lw-shadow: 6px 6px 0 #111;
+    --lw-accent: #111111;
+    --lw-accent-fg: #ffffff;
+    --lw-link: #1c63c7;
+    --lw-code-bg: #fff0c2;
+    --lw-code-block-bg: #faf6f1;
+    --lw-out-bg: #1b1b1b;
+    --lw-out-fg: #7cffb2;
+    --lw-exp-out-bg: #ffffff;
+    --lw-exp-out-fg: #111111;
+    --lw-experiment: #ffd23f;
+    --lw-experiment-fg: #111;
+    --lw-exp-item-bg: #f3eeff;
+    --lw-exp-item-border: 2px solid #111;
+    --lw-menu-border: #111;
+    --lw-menu-hover: #f6f2ee;
+    --lw-menu-check: #111;
+    --lw-editor-border-width: 2.5px;
+    --primary: 147 69% 55%;
+    --primary-foreground: 0 0% 7%;
+    --radius: 0.625rem;
+}
+
+/* Verlauf über die ganze Seite: oben das Beige der Übersicht, unten ein warmes Gelb.
+   html trägt die Endfarbe, damit auch der Überscroll-Bereich passt. */
+html[data-lw-theme="abenteuer"] {
+    background: #fff4dc;
+}
+
+html[data-lw-theme="abenteuer"] body {
+    min-height: 100vh;
+    background:
+        radial-gradient(rgba(120, 90, 50, 0.16) 1px, transparent 1px) 0 0 / 18px 18px,
+        linear-gradient(var(--lw-bg), #fff4dc);
+    font-size: 17px;
+}
+
+html[data-lw-theme="abenteuer"] .lw-crumb {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: #111;
+    color: #f6f2ee;
+    font-weight: 600;
+    transform: rotate(-1.5deg);
+}
+
+html[data-lw-theme="abenteuer"] .lw-crumb:empty {
+    display: none;
+}
+
+html[data-lw-theme="abenteuer"] div.topbar>a.backlink,
+html[data-lw-theme="abenteuer"] .lw-menu-button {
+    border: 2px solid #111;
+    border-radius: 8px;
+    background: #fff;
+    color: #111;
+    box-shadow: 3px 3px 0 #111;
+}
+
+html[data-lw-theme="abenteuer"] div.topbar>a.backlink {
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+html[data-lw-theme="abenteuer"] .lw-menu {
+    border-width: 2.5px;
+    box-shadow: 6px 6px 0 #111;
+}
+
+html[data-lw-theme="abenteuer"] div.boxed {
+    padding: 0 24px 22px;
+    margin-bottom: 30px;
+}
+
+html[data-lw-theme="abenteuer"] div.boxed:not(:has(>h3:first-child)) {
+    padding-top: 22px;
+}
+
+html[data-lw-theme="abenteuer"] div.boxed>h3:first-child {
+    display: block;
+    margin: 0 -24px 18px;
+    padding: 14px 24px;
+    border-bottom: 2.5px solid #111;
+    border-radius: 11px 11px 0 0;
+    background: #ffd23f;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="abenteuer"] div.aufgabe>h3:first-child::before {
+    content: "⚑ Quest · ";
+}
+
+html[data-lw-theme="abenteuer"] div.experiment>h3:first-child {
+    background: #b69cff;
+}
+
+html[data-lw-theme="abenteuer"] div.experiment>h3:first-child::before {
+    content: "★ Bonus · ";
+}
+
+html[data-lw-theme="abenteuer"] div.explain>h3:first-child {
+    background: #7fd6ff;
+}
+
+html[data-lw-theme="abenteuer"] div.explain>h3:first-child::before {
+    content: "✎ ";
+}
+
+html[data-lw-theme="abenteuer"] tabbar>div[data-tab]>div.boxed {
+    padding: 0 20px 20px;
+    box-shadow: 4px 4px 0 #111;
+}
+
+html[data-lw-theme="abenteuer"] tabbar>div[data-tab]>div.boxed>h3:first-child {
+    margin: 0 -20px 16px;
+    padding: 12px 20px;
+    border-bottom-width: 2px;
+    border-radius: 8px 8px 0 0;
+}
+
+html[data-lw-theme="abenteuer"] pre[output] {
+    border: 2.5px solid #111;
+}
+
+html[data-lw-theme="abenteuer"] .colored pre[output] {
+    border-width: 2px;
+}
+
+html[data-lw-theme="abenteuer"] div.experiment>div {
+    margin-top: 14px !important;
+    padding-left: 60px;
+}
+
+html[data-lw-theme="abenteuer"] div.experiment>div::before {
+    left: 12px;
+    top: 11px;
+    width: 34px;
+    height: 34px;
+    border: 2px solid #111;
+    border-radius: 50%;
+    font: 800 17px/30px var(--lw-font);
+    transform: rotate(-8deg);
+}
+
+html[data-lw-theme="abenteuer"] tabbar>div.buttonbar {
+    gap: 10px;
+    padding: 14px 18px;
+    border-bottom: 2.5px solid #111;
+    background: #7fd6ff;
+}
+
+html[data-lw-theme="abenteuer"] tabbar>div.buttonbar button,
+html[data-lw-theme="abenteuer"] tabbar>div.buttonbar button.inactive,
+html[data-lw-theme="abenteuer"] tabbar>div.buttonbar button.active {
+    margin: 0 4px 4px 0;
+    padding: 6px 14px;
+    border: 2px solid #111;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 2px 2px 0 #111;
+    color: #111;
+    font-weight: 600;
+}
+
+html[data-lw-theme="abenteuer"] tabbar>div.buttonbar button.active {
+    background: #111;
+    color: #fff !important;
+    box-shadow: none;
+    transform: translate(2px, 2px);
+}
+
+html[data-lw-theme="abenteuer"] [codeblocks] .tw-bg-primary,
+html[data-lw-theme="abenteuer"] .hint-container button {
+    border: 2px solid #111;
+    box-shadow: 3px 3px 0 #111;
+    font-weight: 800;
+}
+
+html[data-lw-theme="abenteuer"] .hint-container button {
+    background: #ffd23f;
+    color: #111;
+}
+
+
+/* ============================================================================
+   3e. Raster – klares Schweizer Raster
+   ============================================================================ */
+
+html[data-lw-theme="raster"] {
+    --lw-bg: #ffffff;
+    --lw-fg: #111111;
+    --lw-muted: #777777;
+    --lw-h1-size: 50px;
+    --lw-h1-tracking: -0.045em;
+    --lw-surface: transparent;
+    --lw-surface-solid: #ffffff;
+    --lw-surface-2: #f6f6f6;
+    --lw-border: #dddddd;
+    --lw-card-border: none;
+    --lw-nested-border: none;
+    --lw-radius: 0;
+    --lw-radius-sm: 0;
+    --lw-shadow: none;
+    --lw-accent: #e30613;
+    --lw-accent-fg: #ffffff;
+    --lw-link: #111;
+    --lw-code-bg: #f1f1f1;
+    --lw-out-bg: #f3f3f3;
+    --lw-out-fg: #111111;
+    --lw-experiment: #e30613;
+    --lw-topbar-border: 3px solid #111;
+    --lw-editor-border: #111;
+    --lw-menu-border: #111;
+    --lw-menu-hover: #f3f3f3;
+    --primary: 0 0% 7%;
+    --primary-foreground: 0 0% 100%;
+    --radius: 0;
+}
+
+html[data-lw-theme="raster"] div.topbar {
+    padding-top: 44px;
+    border-bottom: none;
+    background: linear-gradient(#111, #111) bottom / min(calc(100% - 32px), calc(var(--lw-content-width) - 32px)) 3px no-repeat;
+}
+
+html[data-lw-theme="raster"] .lw-crumb {
+    color: #e30613;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+html[data-lw-theme="raster"] div.topbar>a.backlink {
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+html[data-lw-theme="raster"] .lw-menu-button,
+html[data-lw-theme="raster"] .lw-menu,
+html[data-lw-theme="raster"] .lw-menu-item,
+html[data-lw-theme="raster"] .lw-swatch {
+    border-radius: 0;
+}
+
+html[data-lw-theme="raster"] div#content {
+    counter-reset: lw-sec;
+    padding-top: 0;
+}
+
+/* Hauptabschnitte: Nummer + Titel links, Inhalt rechts */
+html[data-lw-theme="raster"] div#content>div.boxed,
+html[data-lw-theme="raster"] div#content>tabbar.code {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    column-gap: 32px;
+    align-items: start;
+    margin: 0;
+    padding: 26px 0 36px;
+    border-top: 1px solid #111;
+    counter-increment: lw-sec;
+    overflow: visible;
+}
+
+html[data-lw-theme="raster"] div#content>div.boxed:first-child,
+html[data-lw-theme="raster"] div#content>tabbar.code:first-child {
+    border-top: none;
+}
+
+html[data-lw-theme="raster"] div#content>div.boxed>* {
+    grid-column: 2;
+    margin-top: 0;
+}
+
+html[data-lw-theme="raster"] div#content>div.boxed>h3 {
+    grid-column: 1;
+    grid-row: 1 / span 60;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="raster"] div#content>div.boxed>h3::before,
+html[data-lw-theme="raster"] div#content>tabbar.code>div.buttonbar::before {
+    content: counter(lw-sec, decimal-leading-zero);
+    display: block;
+    margin-bottom: 8px;
+    color: #e30613;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+html[data-lw-theme="raster"] div#content>div.boxed>h3+p {
+    font-size: 19px;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+}
+
+html[data-lw-theme="raster"] pre[output] {
+    border-left: 4px solid #e30613;
+}
+
+html[data-lw-theme="raster"] div.boxed h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="raster"] tabbar>div[data-tab]>div.boxed {
+    padding: 20px 0 0;
+    border-top: 1px solid #dddddd;
+    background: none;
+}
+
+/* Tabs als senkrechte Liste in der linken Spalte */
+html[data-lw-theme="raster"] div#content>tabbar.code>div.buttonbar {
+    grid-column: 1;
+    grid-row: 1 / span 60;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+}
+
+html[data-lw-theme="raster"] div#content>tabbar.code>div.buttonbar::after {
+    content: "Code";
+    order: -1;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="raster"] div#content>tabbar.code>div.buttonbar::before {
+    order: -2;
+}
+
+html[data-lw-theme="raster"] tabbar>div.buttonbar button,
+html[data-lw-theme="raster"] tabbar>div.buttonbar button.inactive,
+html[data-lw-theme="raster"] tabbar>div.buttonbar button.active {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 14px;
+    text-align: left;
+    white-space: normal;
+}
+
+html[data-lw-theme="raster"] tabbar>div.buttonbar button.active {
+    color: #111;
+    font-weight: 600;
+}
+
+html[data-lw-theme="raster"] tabbar>div.buttonbar button.active::before {
+    content: "→ ";
+    color: #e30613;
+}
+
+html[data-lw-theme="raster"] div#content>tabbar.code>div[data-tab] {
+    grid-column: 2;
+    padding: 0;
+}
+
+html[data-lw-theme="raster"] [codeblocks] .tw-bg-primary {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="raster"] div.experiment>div {
+    margin: 0 !important;
+    padding: 12px 0 12px 48px;
+    border-bottom: 1px solid #dddddd;
+}
+
+html[data-lw-theme="raster"] div.experiment>div:nth-child(2) {
+    padding-top: 0;
+}
+
+html[data-lw-theme="raster"] div.experiment>div::before {
+    content: counter(lw-sec) "." counter(lw-exp);
+    left: 0;
+    top: 12px;
+    width: auto;
+    height: auto;
+    background: none;
+    color: #e30613;
+    font: 700 16px/1.6 var(--lw-font);
+    font-variant-numeric: tabular-nums;
+    text-align: left;
+}
+
+html[data-lw-theme="raster"] div.experiment>div:nth-child(2)::before {
+    top: 0;
+}
+
+html[data-lw-theme="raster"] .hint-container button:hover {
+    background: #111;
+}
+
+@media (max-width: 700px) {
+    html[data-lw-theme="raster"] {
+        --lw-h1-size: 38px;
+    }
+
+    html[data-lw-theme="raster"] div#content>div.boxed,
+    html[data-lw-theme="raster"] div#content>tabbar.code {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    html[data-lw-theme="raster"] div#content>div.boxed>*,
+    html[data-lw-theme="raster"] div#content>div.boxed>h3,
+    html[data-lw-theme="raster"] div#content>tabbar.code>div.buttonbar,
+    html[data-lw-theme="raster"] div#content>tabbar.code>div[data-tab] {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    html[data-lw-theme="raster"] div#content>div.boxed>h3 {
+        margin-bottom: 16px;
+    }
+
+    html[data-lw-theme="raster"] div#content>tabbar.code>div.buttonbar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 6px 16px;
+        margin-bottom: 16px;
+    }
+
+    html[data-lw-theme="raster"] div#content>tabbar.code>div.buttonbar::before,
+    html[data-lw-theme="raster"] div#content>tabbar.code>div.buttonbar::after {
+        width: 100%;
+    }
+
+    html[data-lw-theme="raster"] div#content>tabbar.code>div.buttonbar::after {
+        margin-bottom: 4px;
+    }
+}
+
+
+/* ============================================================================
+   3f. Tafel – Kreide auf grüner Tafel
+   ============================================================================ */
+
+html[data-lw-theme="tafel"] {
+    --lw-bg: #26392f;
+    --lw-fg: #e6ece4;
+    --lw-muted: #9fb8a8;
+    --lw-font-head: "Caveat", "Chalkboard SE", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+    --lw-h1-size: 44px;
+    --lw-h1-color: #fdfdf6;
+    --lw-h1-tracking: 0;
+    --lw-surface: transparent;
+    --lw-surface-solid: #1f3128;
+    --lw-surface-2: rgba(0, 0, 0, 0.12);
+    --lw-border: rgba(255, 255, 255, 0.28);
+    --lw-card-border: 2px solid rgba(255, 255, 255, 0.5);
+    --lw-nested-border: 2px dashed rgba(255, 255, 255, 0.3);
+    --lw-radius: 255px 14px 225px 14px / 14px 225px 14px 255px;
+    --lw-radius-sm: 8px;
+    --lw-shadow: none;
+    --lw-accent: #f7d774;
+    --lw-accent-fg: #1c2b23;
+    --lw-link: #a8d8f0;
+    --lw-code-bg: rgba(0, 0, 0, 0.22);
+    --lw-code-fg: #a8d8f0;
+    --lw-out-bg: rgba(0, 0, 0, 0.25);
+    --lw-out-fg: #ffffff;
+    --lw-exp-out-bg: rgba(0, 0, 0, 0.2);
+    --lw-experiment: #f4a6c6;
+    --lw-menu-bg: #1f3128;
+    --lw-menu-fg: #e6ece4;
+    --lw-menu-border: rgba(255, 255, 255, 0.25);
+    --lw-menu-hover: rgba(255, 255, 255, 0.08);
+    --primary: 45 89% 71%;
+    --primary-foreground: 147 21% 14%;
+}
+
+html[data-lw-theme="tafel"] body {
+    background:
+        radial-gradient(ellipse at 25% 15%, rgba(255, 255, 255, 0.07), transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(255, 255, 255, 0.04), transparent 50%),
+        #26392f;
+    background-attachment: fixed;
+}
+
+html[data-lw-theme="tafel"] div.topbar h1 {
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+html[data-lw-theme="tafel"] .lw-crumb,
+html[data-lw-theme="tafel"] div.topbar>a.backlink {
+    font-family: var(--lw-font-head);
+    font-size: 17px;
+}
+
+html[data-lw-theme="tafel"] .lw-crumb {
+    color: #f7d774;
+}
+
+html[data-lw-theme="tafel"] div.boxed,
+html[data-lw-theme="tafel"] tabbar.code {
+    margin-bottom: 30px;
+}
+
+html[data-lw-theme="tafel"] div.boxed h3 {
+    font-size: 26px;
+    font-weight: 700;
+    text-decoration: underline wavy;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 7px;
+}
+
+html[data-lw-theme="tafel"] div.aufgabe h3 {
+    color: #f7d774;
+}
+
+html[data-lw-theme="tafel"] div.experiment h3 {
+    color: #f4a6c6;
+}
+
+html[data-lw-theme="tafel"] div.explain h3 {
+    color: #a8d8f0;
+}
+
+html[data-lw-theme="tafel"] pre[output] {
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+html[data-lw-theme="tafel"] div.boxed ul {
+    list-style: none;
+    padding-left: 1.4em;
+}
+
+html[data-lw-theme="tafel"] div.boxed ul>li::before {
+    content: "✓";
+    display: inline-block;
+    width: 1.4em;
+    margin-left: -1.4em;
+    color: #9fe0b0;
+}
+
+html[data-lw-theme="tafel"] div.experiment>div {
+    padding: 10px 0 10px 54px;
+}
+
+html[data-lw-theme="tafel"] div.experiment>div::before {
+    left: 4px;
+    top: 8px;
+    width: 34px;
+    height: 34px;
+    border: 2px solid #f4a6c6;
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+    background: none;
+    color: #f4a6c6;
+    font: 700 19px/30px var(--lw-font-head);
+}
+
+html[data-lw-theme="tafel"] tabbar.code {
+    padding: 12px 22px 18px;
+    border-radius: 14px 225px 14px 255px / 255px 14px 225px 14px;
+}
+
+html[data-lw-theme="tafel"] tabbar>div.buttonbar {
+    gap: 14px;
+    padding: 0;
+    border: none;
+}
+
+html[data-lw-theme="tafel"] tabbar>div.buttonbar button,
+html[data-lw-theme="tafel"] tabbar>div.buttonbar button.inactive,
+html[data-lw-theme="tafel"] tabbar>div.buttonbar button.active {
+    margin: 0;
+    padding: 4px;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: var(--lw-font-head);
+    font-size: 19px;
+    font-weight: 700;
+}
+
+html[data-lw-theme="tafel"] tabbar>div.buttonbar button.active {
+    color: #fff;
+    text-decoration: underline wavy #f7d774;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 6px;
+}
+
+html[data-lw-theme="tafel"] tabbar>div[data-tab] {
+    padding: 12px 0 0;
+}
+
+html[data-lw-theme="tafel"] [codeblocks] .tw-bg-primary,
+html[data-lw-theme="tafel"] .hint-container button {
+    font-family: var(--lw-font-head);
+    font-weight: 700;
+}
+
+
+/* ============================================================================
+   4. Gemeinsame Nachträge
+   ============================================================================ */
+
+/* Dunkle Themes: Codeblocks-Oberfläche (shadcn-Variablen) abdunkeln, Editor invertieren */
+html[data-lw-theme="terminal"],
+html[data-lw-theme="tafel"] {
+    color-scheme: dark;
+    --background: 222 25% 9%;
+    --foreground: 210 20% 90%;
+    --muted: 222 20% 16%;
+    --muted-foreground: 218 15% 60%;
+    --popover: 222 25% 11%;
+    --popover-foreground: 210 20% 90%;
+    --card: 222 25% 11%;
+    --card-foreground: 210 20% 90%;
+    --border: 222 20% 20%;
+    --input: 222 20% 24%;
+    --secondary: 222 20% 16%;
+    --secondary-foreground: 210 20% 90%;
+    --accent: 222 20% 16%;
+    --accent-foreground: 210 20% 90%;
+    --ring: 210 20% 80%;
+}
+
+html[data-lw-theme="tafel"] {
+    --background: 150 20% 13%;
+    --muted: 150 18% 18%;
+    --popover: 150 20% 15%;
+    --card: 150 20% 15%;
+    --border: 150 15% 28%;
+    --input: 150 15% 30%;
+    --secondary: 150 18% 18%;
+    --accent: 150 18% 18%;
+}
+
+/* Die Editor-Farbschemata der Codeblocks-Bibliothek sind hell; per Filter werden sie dunkel,
+   die Farbtöne der Syntaxhervorhebung bleiben dabei erhalten. */
+html[data-lw-theme="terminal"] [codeblocks] .cm-editor,
+html[data-lw-theme="tafel"] [codeblocks] .cm-editor {
+    filter: invert(0.9) hue-rotate(180deg);
+}
+
+/* API-Tabs (Klassendokumentation) ohne Box-Dekoration */
+html[data-lw-theme] tabbar>div[data-tab].api>div.boxed {
+    margin: 0;
+    padding: 4px 4px 8px;
+    border: none;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+}
+
+html[data-lw-theme] tabbar>div[data-tab].api h2 {
+    margin-top: 4px !important;
+    font-family: var(--lw-font-head);
+}
+
+html[data-lw-theme] tabbar>div[data-tab].api h4 {
+    color: var(--lw-muted);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Schmale Bildschirme */
+@media (max-width: 600px) {
+    html[data-lw-theme] {
+        --lw-h1-size: 30px !important;
+    }
+
+    html[data-lw-theme] div.topbar {
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding-top: 20px;
+    }
+
+    html[data-lw-theme] .lw-title {
+        grid-row: 1;
+    }
+
+    html[data-lw-theme] .lw-menu-anchor {
+        grid-row: 1;
+        grid-column: 2;
+        align-self: start;
+    }
+
+    html[data-lw-theme] div.topbar>a.backlink {
+        grid-column: 1 / -1;
+        justify-self: start;
+        margin-left: 0;
+    }
+
+    html[data-lw-theme] div.boxed {
+        padding: 18px;
+    }
+
+    html[data-lw-theme="abenteuer"] div.boxed {
+        padding: 0 18px 18px;
+    }
+
+    html[data-lw-theme="abenteuer"] div.boxed>h3:first-child {
+        margin: 0 -18px 16px;
+        padding: 12px 18px;
+    }
+
+    html[data-lw-theme] tabbar>div[data-tab] {
+        padding: 12px;
+    }
+
+    html[data-lw-theme] div#content {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}

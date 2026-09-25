@@ -1,0 +1,28 @@
+<h3>Erklärung</h3>
+
+<p>Entscheidend ist jeweils, wie oft der Schleifenrumpf ausgeführt wird. Gehen Sie dazu die Werte der Zählvariablen
+    durch und prüfen Sie vor jedem Durchlauf die Bedingung.</p>
+<ul>
+    <li><b>a)</b> <code>a</code> läuft von <code>0</code> bis <code>11</code>, denn bei <code>12</code> ist
+        <code>a &lt; 12</code> falsch: <b>12</b>-mal <code>A</code>.</li>
+    <li><b>b)</b> <code>b</code> läuft von <code>12</code> bis einschließlich <code>0</code> (wegen <code>&gt;=</code>):
+        <b>13</b>-mal <code>B</code>.</li>
+    <li><b>c)</b> <code>c</code> nimmt die Werte <code>0.5, 0.7, 0.9, ..., 4.9</code> an. Das sind
+        <code>(4.9 - 0.5) / 0.2 + 1 = 23</code> Werte: <b>23</b>-mal <code>C</code>. Vorsicht: Kommazahlen sind nicht
+        exakt gespeichert. Hier geht es gut, bei Vergleichen wie <code>c != 5</code> könnte die Schleife aber
+        endlos laufen.</li>
+    <li><b>d)</b> Ganzzahlige Division: <code>65, 32, 16, 8, 4, 2, 1</code>, danach ist <code>d = 0</code> und die
+        Bedingung <code>d &gt; 0</code> falsch: <b>7</b>-mal <code>D</code>.</li>
+    <li><b>e)</b> Die Schleife hat keine Bedingung (<code>;;</code>) und endet nur durch <code>break</code>. Die Werte
+        sind <code>1000, 2000, 4000</code>. Da <code>E</code> <i>vor</i> der Prüfung ausgegeben wird, erscheint es auch
+        für <code>4000</code> noch: <b>3</b>-mal <code>E</code>.</li>
+    <li><b>f)</b> Ein <code>byte</code> reicht nur von <code>-128</code> bis <code>127</code>. Nach <code>110</code> und
+        <code>120</code> ergibt <code>120 + 10</code> einen Überlauf auf <code>-126</code>. Da
+        <code>-126 &gt; -117</code> falsch ist, endet die Schleife: <b>2</b>-mal <code>F</code>. (<code>f += 10</code>
+        ist erlaubt, weil <code>+=</code> automatisch zurück nach <code>byte</code> castet.)</li>
+    <li><b>g)</b> Schon im ersten Durchlauf ist <code>g = 0</code> und <code>0 % 11 == 0</code> wahr. Die Schleife wird
+        nach dem ersten <code>G</code> mit <code>break</code> verlassen: <b>1</b>-mal <code>G</code>.</li>
+    <li><b>h)</b> <code>h</code> wird am Anfang jedes Durchlaufs erhöht und nimmt die Werte <code>1</code> bis
+        <code>20</code> an. Für gerade Werte überspringt <code>continue</code> den Rest des Rumpfes, ausgegeben wird nur
+        für die <b>10</b> ungeraden Werte.</li>
+</ul>

@@ -1,0 +1,20 @@
+<h3>Erklärung</h3>
+<ul>
+    <li><code>DateParser parser = new DateParser(args);</code> - Erzeugt mit dem Konstruktor eine neue Instanz der
+        Klasse <code>DateParser</code> und speichert die Referenz darauf in der Variablen <code>parser</code>. Als
+        Parameter wird <code>args</code> übergeben, das Array mit den Programmargumenten der main-Methode. Darin steht
+        das oben eingestellte Datum.</li>
+    <li><code>final int D = parser.getDayOfYear();</code> - Ruft die Instanzmethode <code>getDayOfYear</code> über die
+        Referenz <code>parser</code> auf. Anders als bei einer Klassenmethode (z.B. <code>Math.cos</code>) steht vor dem
+        Punkt also kein Klassenname, sondern eine Variable, die auf ein Objekt verweist.</li>
+    <li><code>System.out.println("Tag im Jahr: " + D);</code> - Gibt den gelesenen Tag aus.</li>
+    <li><code>final double orbitalAngle = Math.toRadians((360.0 * (D + 10)) / 365.0);</code> - Berechnet das Argument
+        des Kosinus. Wichtig ist <code>360.0</code> statt <code>360</code>: Sonst würde mit ganzen Zahlen gerechnet und
+        die Division den Nachkommaanteil abschneiden. Da <code>Math.cos</code> den Winkel im Bogenmaß erwartet, wird das
+        Ergebnis mit <code>Math.toRadians</code> umgerechnet.</li>
+    <li><code>final double declination = EARTH_TILT_RAD * Math.cos(orbitalAngle);</code> - Die Neigung der Erdachse ist
+        in der vorgegebenen Konstanten <code>EARTH_TILT_RAD</code> bereits im Bogenmaß gespeichert. Das Ergebnis ist
+        daher ebenfalls im Bogenmaß.</li>
+    <li><code>System.out.println("Deklination: " + Math.toDegrees(declination));</code> - Rechnet die Deklination in
+        Grad um und gibt sie aus.</li>
+</ul>

@@ -1,0 +1,18 @@
+<h3>Erklärung</h3>
+
+<p>Ob eine Zahl ganzzahlig durch eine andere teilbar ist, prüfen Sie mit dem Modulo-Operator <code>%</code>: Er liefert
+    den Rest der ganzzahligen Division. Ist der Rest <code>0</code>, geht die Division auf, z.B.
+    <code>210 % 3 == 0</code>, aber <code>49 % 3 == 1</code>.</p>
+<ul>
+    <li><b>Drei einzelne <code>if</code>-Anweisungen:</b> Eine Zahl kann durch mehrere der Zahlen teilbar sein
+        (<code>210</code> ist durch alle drei teilbar). Deshalb wird jede Bedingung für sich geprüft. Mit
+        <code>if ... else if ...</code> würde nach der ersten zutreffenden Bedingung abgebrochen, und für
+        <code>210</code> erschiene nur <code>gerade</code>.</li>
+    <li><b>Der Fall <code>Unbekannt</code>:</b> Er tritt nur ein, wenn <i>keine</i> der drei Bedingungen zutrifft,
+        also wenn <code>x</code> durch 2 <b>und</b> durch 3 <b>und</b> durch 5 nicht teilbar ist:
+        <code>x % 2 != 0 &amp;&amp; x % 3 != 0 &amp;&amp; x % 5 != 0</code>. Ein einfaches <code>else</code> am
+        Ende reicht nicht, denn es gehört nur zur letzten <code>if</code>-Anweisung. Für <code>4</code> würde sonst
+        <code>gerade</code> und zusätzlich <code>Unbekannt</code> ausgegeben.</li>
+</ul>
+<p>Da <code>x</code> bei jedem Ausführen zufällig gewählt wird, sollten Sie das Programm mehrmals starten, um
+    verschiedene Fälle zu testen.</p>

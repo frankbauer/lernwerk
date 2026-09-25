@@ -8,6 +8,16 @@
     const SHOW_HIDDEN = new URLSearchParams(location.search).has("showHidden");
     /** Exercises marked `isDraft` (not finished yet) only show up with ?showDrafts in the URL. */
     const SHOW_DRAFTS = new URLSearchParams(location.search).has("showDrafts");
+    /** Query suffix that carries the flags into the exercise pages (and back via their backlink). */
+    const FLAG_QUERY = [SHOW_HIDDEN && "showHidden", SHOW_DRAFTS && "showDrafts"].filter(Boolean).join("&");
+    const exerciseHref = (link) => {
+        if (!FLAG_QUERY) return link;
+        // Point directory links at "dir/" directly: many servers drop the query when redirecting "dir" -> "dir/".
+        const [path, query] = link.split("?");
+        const lastSegment = path.split("/").pop();
+        const dirPath = path.endsWith("/") || lastSegment.includes(".") ? path : `${path}/`;
+        return `${dirPath}?${query ? `${query}&` : ""}${FLAG_QUERY}`;
+    };
     const STORAGE_KEY = "lernwerk.uebungsplaner.v1";
 
     /** Self-assessment per concept; everything but "unknown" counts as learned. */
@@ -449,7 +459,7 @@
             <div class="card-body">
                 ${recommended ? `<span class="card-flag">★ Empfehlung</span>` : ""}
                 <div class="card-head">
-                    <h3 class="card-title"><a href="${esc(ex.link)}">${esc(ex.title)}</a></h3>
+                    <h3 class="card-title"><a href="${esc(exerciseHref(ex.link))}">${esc(ex.title)}</a></h3>
                     ${ex.isNew ? `<span class="new">Neu</span>` : ""}
                     ${ex.isHidden ? `<span class="hidden-badge" title="Nur mit ?showHidden sichtbar">Versteckt</span>` : ""}
                     ${ex.isDraft ? `<span class="draft-badge" title="Nur mit ?showDrafts sichtbar">Entwurf</span>` : ""}
@@ -461,7 +471,7 @@
                 <div class="features">${features(ex)}</div>
                 ${r ? `<p class="reason reason-${r.kind}">${esc(r.text)}</p>` : ""}
             </div>
-            <a class="card-media${ex.image ? " has-image" : ""}" href="${esc(ex.link)}" tabindex="-1" aria-hidden="true"
+            <a class="card-media${ex.image ? " has-image" : ""}" href="${esc(exerciseHref(ex.link))}" tabindex="-1" aria-hidden="true"
                 style="--hue:${195 + ((ex.chapter * 37) % 80)}">
                 ${media}
                 <span class="card-chapter">Kap. ${ex.chapter}</span>
@@ -483,7 +493,7 @@
                 <div class="c-title-inner">
                     ${ex.image ? preview(ex, "c-thumb") : `<span class="c-thumb c-thumb-icon">${icon(ex.tags[0])}</span>`}
                     <div>
-                        <a href="${esc(ex.link)}">${esc(ex.title)}</a>${ex.isNew ? `<span class="new">Neu</span>` : ""}${ex.isHidden ? `<span class="hidden-badge" title="Nur mit ?showHidden sichtbar">Versteckt</span>` : ""}${ex.isDraft ? `<span class="draft-badge" title="Nur mit ?showDrafts sichtbar">Entwurf</span>` : ""}
+                        <a href="${esc(exerciseHref(ex.link))}">${esc(ex.title)}</a>${ex.isNew ? `<span class="new">Neu</span>` : ""}${ex.isHidden ? `<span class="hidden-badge" title="Nur mit ?showHidden sichtbar">Versteckt</span>` : ""}${ex.isDraft ? `<span class="draft-badge" title="Nur mit ?showDrafts sichtbar">Entwurf</span>` : ""}
                         <span class="c-desc">${esc(ex.description)}</span>
                     </div>
                 </div>

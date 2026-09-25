@@ -1,0 +1,35 @@
+<h3>Aufgabe</h3>
+<p>In dieser Aufgabe bestimmen Sie die <b>Deklination</b>
+    <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>δ</mi></math> der Erde für den unten eingestellten Tag. Es gilt:
+</p>
+<p>
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+        <mi>δ</mi>
+        <mo>=</mo>
+        <mo>−</mo>
+        <msup><mn>23.44</mn><mo>°</mo></msup>
+        <mo>⋅</mo>
+        <mi>cos</mi>
+        <mrow>
+            <mo>(</mo>
+            <mfrac>
+                <mrow><msup><mn>360</mn><mo>°</mo></msup><mo>⋅</mo><mo>(</mo><mi>D</mi><mo>+</mo><mn>10</mn><mo>)</mo></mrow>
+                <mn>365</mn>
+            </mfrac>
+            <mo>)</mo>
+        </mrow>
+    </math>
+</p>
+<p>Dabei ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>D</mi></math> der Tag des Jahres (der 1. Januar
+    entspricht <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>D</mi><mo>=</mo><mn>1</mn></math>, der 31. Dezember
+    in einem Schaltjahr <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>D</mi><mo>=</mo><mn>366</mn></math>).</p>
+<p>Mit Hilfe der Klasse <code>DateParser</code> können Sie in Ihrem Programm einlesen, für welchen Tag die Berechnung
+    durchgeführt werden soll. Erzeugen Sie dazu eine <b>Instanz</b> von <code>DateParser</code> und rufen Sie deren
+    <b>Instanzmethode</b> <code>getDayOfYear()</code> auf. Eine Beschreibung finden Sie im Reiter <i>DateParser</i>.</p>
+<p>Datum: <input type="date" id="args_0" value="2024-04-26"></p>
+<p>Ihr Programm soll den gelesenen Tag des Jahres sowie die berechnete Deklination (in Grad) auf der Konsole ausgeben.
+    Für den 26. April 2024 sieht die Ausgabe zum Beispiel so aus:</p>
+<pre output>Tag im Jahr: 117
+Deklination: 13.531715491972486</pre>
+<p><b>Tipp:</b> <code>Math.cos</code> erwartet den Winkel im Bogenmaß. Mit <code>Math.toRadians</code> und
+    <code>Math.toDegrees</code> können Sie zwischen Grad und Bogenmaß umrechnen.</p>

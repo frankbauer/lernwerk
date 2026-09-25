@@ -1,0 +1,150 @@
+{
+    "lines": [
+        {
+            "label": "a)"
+        },
+        {
+            "code": "for (int a = 0; a < 12; a++) {"
+        },
+        {
+            "code": "    System.out.print(\"A\");",
+            "answer": [
+                "AAAAAAAAAAAA"
+            ]
+        },
+        {
+            "code": "}"
+        },
+        {
+            "label": "b)"
+        },
+        {
+            "code": "for (int b = 12; b >= 0; b--) {"
+        },
+        {
+            "code": "    System.out.print(\"B\");",
+            "answer": [
+                "BBBBBBBBBBBBB"
+            ]
+        },
+        {
+            "code": "}"
+        },
+        {
+            "label": "c)"
+        },
+        {
+            "code": "for (double c = 0.5; c < 5; c += 0.2) {"
+        },
+        {
+            "code": "    System.out.print(\"C\");",
+            "answer": [
+                "CCCCCCCCCCCCCCCCCCCCCCC"
+            ]
+        },
+        {
+            "code": "}"
+        },
+        {
+            "label": "d)"
+        },
+        {
+            "code": "for (int d = 65; d > 0; d /= 2) {"
+        },
+        {
+            "code": "    System.out.print(\"D\");",
+            "answer": [
+                "DDDDDDD"
+            ]
+        },
+        {
+            "code": "}"
+        },
+        {
+            "label": "e)"
+        },
+        {
+            "code": "for (int e = 1000;; e *= 2) {"
+        },
+        {
+            "code": "    System.out.print(\"E\");",
+            "answer": [
+                "EEE"
+            ]
+        },
+        {
+            "code": "    if (e > 2000) { break; }"
+        },
+        {
+            "code": "}"
+        },
+        {
+            "label": "f)"
+        },
+        {
+            "code": "for (byte f = 110; f > -117; f += 10) {"
+        },
+        {
+            "code": "    System.out.print(\"F\");",
+            "answer": [
+                "FF"
+            ]
+        },
+        {
+            "code": "}"
+        },
+        {
+            "label": "g)"
+        },
+        {
+            "code": "int g = 0;"
+        },
+        {
+            "code": "while (g < 20) {"
+        },
+        {
+            "code": "    System.out.print(\"G\");",
+            "answer": [
+                "G"
+            ]
+        },
+        {
+            "code": "    if (g % 11 == 0) break;"
+        },
+        {
+            "code": "    g++;"
+        },
+        {
+            "code": "}"
+        },
+        {
+            "label": "h)"
+        },
+        {
+            "code": "int h = 0;"
+        },
+        {
+            "code": "while (h < 20) {"
+        },
+        {
+            "code": "    h += 1;"
+        },
+        {
+            "code": ""
+        },
+        {
+            "code": "    if (h % 2 == 0) continue;"
+        },
+        {
+            "code": "    System.out.print(\"H\");",
+            "answer": [
+                "HHHHHHHHHH"
+            ]
+        },
+        {
+            "code": "}"
+        }
+    ],
+    "hint": "Zählen Sie genau, wie oft der Schleifenrumpf ausgeführt wird. Achten Sie auf die Abbruchbedingung, auf <code>break</code> und <code>continue</code> und auf den Wertebereich des Datentyps.",
+    "successMessage": "<b>Richtig!</b> Alle Ausgaben stimmen. In der Beispiellösung können Sie die Schleifen auch ausführen."
+}

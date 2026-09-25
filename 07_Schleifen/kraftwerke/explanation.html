@@ -1,0 +1,20 @@
+<h3>Erklärung</h3>
+<p>Der verbleibende Überschuss ist am geringsten, wenn die <b>abgeschaltete</b> Leistung möglichst groß ist, ohne die
+    Grenze <code>produced - needed</code> zu überschreiten. Gesucht ist also die Kombination aus drei Kraftwerken mit der
+    größten Summe, die höchstens <code>maxOff = produced - needed</code> beträgt.</p>
+<ul>
+    <li><b>Alle Kombinationen durchgehen:</b> Drei verschachtelte <code>for</code>-Schleifen erzeugen alle
+        Kombinationen von drei IDs. Da die innere Schleife jeweils bei <code>i + 1</code> bzw. <code>j + 1</code>
+        beginnt, sind die drei IDs immer verschieden, und jede Kombination wird nur einmal geprüft (bei 13 Kraftwerken
+        sind das 286 Kombinationen).</li>
+    <li><b>Bestes Ergebnis merken:</b> In <code>disabledPower</code> steht die größte bisher gefundene erlaubte Summe,
+        in <code>plantID0</code> bis <code>plantID2</code> die zugehörigen IDs. Ist eine neue Kombination erlaubt
+        (<code>combinedPower &lt;= maxOff</code>) und besser (<code>combinedPower &gt; disabledPower</code>), werden die
+        Werte ersetzt.</li>
+    <li><b>Ergebnis übergeben:</b> Erst nach den Schleifen steht die beste Kombination fest und wird mit
+        <code>Shutdown.turnOff(plantID0, plantID1, plantID2)</code> übergeben.</li>
+</ul>
+<p>Alternativ können alle drei Schleifen bei <code>0</code> beginnen, wenn gleiche IDs mit
+    <code>if (i == j) continue;</code> übersprungen werden. Dann wird jede Kombination allerdings mehrfach (in allen
+    Reihenfolgen) geprüft. Verwenden Sie außerdem <code>getNumberOfPlants()</code> statt einer festen
+    <code>13</code>: Dann funktioniert das Programm auch mit einer anderen Anzahl von Kraftwerken.</p>

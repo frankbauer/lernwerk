@@ -36,7 +36,7 @@ export default {
     },
     highlight: function (code) {
         const frag = document.createDocumentFragment()
-        const re = /("[^"]*"|'[^']*')|\b(public|private|protected|static|final|void|class|new|byte|short|int|long|float|double|boolean|char|return|if|else|for|while|true|false)\b|\b(\d+(?:\.\d+)?[fFlLdD]?)\b/g
+        const re = /("[^"]*"|'[^']*')|\b(public|private|protected|static|final|void|class|new|byte|short|int|long|float|double|boolean|char|return|if|else|for|while|break|continue|true|false)\b|\b(\d+(?:\.\d+)?[fFlLdD]?)\b/g
         let last = 0
         let m
         while ((m = re.exec(code)) !== null) {

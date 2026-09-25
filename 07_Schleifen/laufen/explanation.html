@@ -1,0 +1,18 @@
+<h3>Erklärung</h3>
+<ul>
+    <li><b>Teil 1: feste Anzahl an Schritten.</b> Wenn vorher bekannt ist, wie oft etwas wiederholt werden soll, ist
+        eine <code>for</code>-Schleife passend:
+        <code>for (int i = 0; i &lt; 10; i++) { Controller.movePlayerRight(); }</code>. Die Zählvariable
+        <code>i</code> nimmt die Werte <code>0</code> bis <code>9</code> an, der Rumpf wird also genau 10-mal
+        ausgeführt. Der Spieler nimmt dabei die Kirsche auf.</li>
+    <li><b>Teil 2: Wiederholen, bis ein Ziel erreicht ist.</b> Hier ist nicht vorher bekannt, wie viele Schritte
+        nötig sind. Eine <code>while</code>-Schleife wiederholt den Rumpf, solange die Bedingung wahr ist:
+        <code>while (!Controller.isPlayerAtTarget())</code>, also <i>solange der Spieler nicht am Ziel ist</i>.</li>
+    <li><b>Richtung wählen:</b> Im Rumpf entscheidet eine <code>if</code>-Anweisung, in welche Richtung der nächste
+        Schritt geht. Steht der Spieler rechts vom Ziel, geht er nach links, sonst nach rechts. Da ein Schritt nach links
+        15 und einer nach rechts 10 Pixel lang ist, überschreitet der Spieler das Ziel zunächst und läuft dann wieder
+        einen Schritt zurück (8-mal links, 1-mal rechts).</li>
+</ul>
+<p>Eine Schleife mit fester Anzahl (z.B. 8-mal nach links, 1-mal nach rechts) würde hier zwar auch funktionieren, sie
+    passt aber nur für genau diese Schrittlängen. Die <code>while</code>-Schleife findet das Ziel dagegen für jede
+    Startposition.</p>

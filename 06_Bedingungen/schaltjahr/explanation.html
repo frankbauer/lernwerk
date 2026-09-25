@@ -1,0 +1,21 @@
+<h3>Erklärung</h3>
+
+<p>Die drei Regeln bauen aufeinander auf: Regel 2 schränkt Regel 1 ein, und Regel 3 schränkt wiederum Regel 2 ein.
+    Das lässt sich direkt mit verschachtelten <code>if</code>-Anweisungen umsetzen:</p>
+<ul>
+    <li><code>if (year % 4 == 0)</code> Ist das Jahr nicht durch 4 teilbar, ist es sicher kein Schaltjahr
+        (<code>else</code>-Zweig ganz unten).</li>
+    <li><code>if (year % 100 == 0)</code> Innerhalb der durch 4 teilbaren Jahre wird geprüft, ob es sich um ein
+        Säkularjahr handelt. Wenn nicht (z.B. <code>2024</code>), ist es ein Schaltjahr.</li>
+    <li><code>if (year % 400 == 0)</code> Ein Säkularjahr ist nur dann ein Schaltjahr, wenn es auch durch 400 teilbar ist
+        (<code>2000</code> ja, <code>1900</code> nein).</li>
+</ul>
+<p><b>Warum darf <code>leapYear</code> in mehreren Zweigen stehen?</b> Die Variable ist <code>final</code> und darf nur
+    einmal einen Wert bekommen. Da bei jedem Durchlauf genau ein Zweig ausgeführt wird, erhält sie aber auch genau
+    einmal einen Wert. Der Compiler prüft das: Fehlt in einem Zweig die Zuweisung, meldet er, dass
+    <code>leapYear</code> eventuell nicht initialisiert ist.</p>
+<p>Die Regeln lassen sich auch in einem einzigen logischen Ausdruck zusammenfassen:</p>
+<pre code>final boolean leapYear = (year % 4 == 0 &amp;&amp; year % 100 != 0) || year % 400 == 0;</pre>
+<p>Da <code>year</code> bei jedem Ausführen zufällig gewählt wird, sollten Sie das Programm mehrmals starten. Zum
+    gezielten Testen können Sie im eigenen Code vorübergehend <code>year = 1900;</code> setzen (<code>year</code> ist
+    nicht <code>final</code>).</p>

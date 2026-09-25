@@ -1,4 +1,26 @@
 
+// Darstellungs-Themes: das gespeicherte Theme (Voreinstellung "abenteuer") sofort setzen, damit das
+// klassische Design nicht aufblitzt, und css/themes.css sowie theme.js (Menü oben rechts) nachladen.
+(function loadThemes() {
+    const version = '1.0.0'
+    const base = new URL('.', document.currentScript.src)
+    let theme = 'abenteuer'
+    try {
+        theme = localStorage.getItem('lernwerk-theme') ?? theme
+    } catch (e) { }
+    if (theme !== 'klassisch') document.documentElement.dataset.lwTheme = theme
+
+    for (const href of ['css/font.geist.css', 'css/themes.css']) {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = new URL(`${href}?v=${version}`, base)
+        document.head.append(link)
+    }
+    const script = document.createElement('script')
+    script.src = new URL(`theme.js?v=${version}`, base)
+    document.head.append(script)
+})()
+
 async function buildContent(elements) {
     console.log($('head title'))
     $('head title').text(`[GdI] ${elements.short}`);

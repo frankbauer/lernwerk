@@ -1,0 +1,20 @@
+<h3>Erklärung</h3>
+
+<p>Im Gegensatz zur Variante mit Klassenmethoden arbeiten Sie hier mit <b>Objekten</b>. Jeder Spieler ist eine Instanz
+    der Klasse <code>Player</code>, und Sie merken sich die Referenz darauf in einer Variablen.</p>
+<ul>
+    <li><b>Spieler erzeugen:</b> <code>Player pink = new Player();</code> und <code>Player red = new Player();</code>.
+        Der zuerst erzeugte Spieler ist pink, der zweite rot. Die Namen der Variablen können Sie frei wählen, sprechende
+        Namen machen den Code aber deutlich lesbarer.</li>
+    <li><b>Nach rechts bewegen:</b> <code>pink.moveRight();</code> und <code>red.moveRight();</code>. Die Instanzmethode
+        wird über die Referenz aufgerufen und wirkt nur auf genau dieses Objekt. Der rote Spieler landet dabei auf der
+        Kirsche und nimmt sie auf.</li>
+    <li><b>Pinken Spieler löschen:</b> <code>FloatingWorld.removePlayer(pink);</code>. Das ist eine Klassenmethode, sie
+        wird daher über den Klassennamen aufgerufen. Als Parameter bekommt sie die Referenz auf das zu löschende
+        Objekt.</li>
+    <li><b>Roten Spieler nach links bewegen:</b> <code>red.moveLeft();</code>. Die Falle aus der Variante mit
+        Klassenmethoden gibt es hier nicht mehr: Zwar ändert sich die ID des roten Spielers nach dem Löschen von
+        <code>1</code> auf <code>0</code> (probieren Sie es mit <code>System.out.println(red.getID());</code> aus), die
+        Referenz <code>red</code> zeigt aber weiterhin auf dasselbe Objekt. Sie müssen sich also nicht um Indizes
+        kümmern.</li>
+</ul>

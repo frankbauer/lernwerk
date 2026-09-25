@@ -1,0 +1,15 @@
+<h3>Erklärung</h3>
+<p>Eine Summe mit vielen Summanden lässt sich nicht in einer einzigen Zeile hinschreiben, wenn die Anzahl
+    <code>N</code> variabel ist. Stattdessen wird sie in einer Schleife Stück für Stück aufgebaut:</p>
+<ul>
+    <li><code>double sum = 0;</code> Der <b>Akkumulator</b> wird <i>vor</i> der Schleife deklariert und mit
+        <code>0</code> initialisiert, dem neutralen Element der Addition. Stünde die Deklaration im Schleifenrumpf,
+        würde die Variable in jedem Durchlauf neu angelegt und wäre nach der Schleife nicht mehr sichtbar.</li>
+    <li><code>for (int k = 1; k &lt;= N; k++)</code> Die Zählvariable <code>k</code> läuft von <code>1</code> bis
+        einschließlich <code>N</code> und ist gleichzeitig der Faktor des jeweiligen Vielfachen.</li>
+    <li><code>sum += k * Math.PI;</code> In jedem Durchlauf wird der nächste Summand zum bisherigen Zwischenergebnis
+        addiert. <code>sum += x</code> ist eine Kurzschreibweise für <code>sum = sum + x</code>.</li>
+</ul>
+<p>Nach den Durchläufen für <code>k = 1, 2, ..., 10</code> enthält <code>sum</code> den Wert
+    <code>π + 2π + ... + 10π = 55π ≈ 172.79</code>. Probieren Sie andere Werte für <code>N</code> aus: Das Ergebnis ist
+    immer <code>N · (N + 1) / 2 · π</code>.</p>

@@ -37,6 +37,7 @@
 .quiz .q-kw { color: #859900; }
 .quiz .q-str { color: #2aa198; }
 .quiz .q-num { color: #d33682; }
+.quiz .q-mark { text-decoration: underline 2px; text-underline-offset: 3px; }
 
 .quiz-actions {
     display: flex;
@@ -219,7 +220,7 @@
 
 .quiz-match-row {
     display: grid;
-    grid-template-columns: minmax(12em, 18em) minmax(0, 1fr);
+    grid-template-columns: minmax(12em, var(--quiz-code-width, 18em)) minmax(0, 1fr);
     align-items: center;
     gap: 12px;
     padding: 6px 8px;

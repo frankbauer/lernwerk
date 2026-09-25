@@ -1,0 +1,27 @@
+<h3>Aufgabe</h3>
+<p>Gegeben sind <b>13 Kraftwerke</b>, die zusammen eine gewisse Gesamtleistung erzeugen (siehe Tabelle unten), sowie
+    die aktuell benötigte Leistung.</p>
+<p>Schalten Sie <b>genau drei</b> Kraftwerke so ab, dass die <i>verbleibende</i> Leistung mindestens so groß ist wie
+    die <i>benötigte</i> Leistung. Wählen Sie die abzuschaltenden Kraftwerke so, dass der Überschuss (verbleibende minus
+    benötigte Leistung) <i>möglichst gering</i> ist. Die <b>benötigte Leistung darf aber nie unterschritten</b> werden!
+</p>
+<p>Die benötigte Leistung können Sie unten zwischen 937 MW und 3894 MW selbst einstellen. Ihre Lösung soll für jeden
+    Wert aus diesem Bereich funktionieren. Übergeben Sie Ihr Ergebnis der Methode <code>turnOff</code>.</p>
+<p><b>Hinweise:</b></p>
+<ul>
+    <li>Sie können davon ausgehen, dass die benötigte Leistung auch dann noch erbracht wird, wenn die drei kleinsten
+        Kraftwerke abgeschaltet sind.</li>
+    <li>Prüfen Sie <b>alle Kombinationen von drei verschiedenen Kraftwerken</b> (verschachtelte Schleifen) und wählen
+        Sie diejenige, bei der der verbleibende Überschuss am geringsten ist.</li>
+    <li>Überprüfen Sie Ihr Ergebnis für verschiedene Werte anhand der Ausgabe und der Grafik. Die Methoden der Klasse
+        <code>Shutdown</code> finden Sie im Reiter <i>Shutdown</i>.</li>
+</ul>
+<p><b>Benötigte Leistung:</b> <input type="number" id="arginput" value="2240" min="937" max="3894" style="width:100px">
+    MW</p>
+<p><b>Verfügbare Kraftwerke:</b></p>
+<div id="plants"></div>
+<style>
+    table.gdi-plants { border-collapse: separate; border-spacing: 2px; margin: 8px 0 16px 0; }
+    table.gdi-plants th { text-align: right; padding: 6px 8px; }
+    table.gdi-plants td { text-align: center; padding: 6px; min-width: 36px; }
+</style>

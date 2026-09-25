@@ -6,6 +6,8 @@ export default {
     //   {
     //     "options": ["true", "false", "2"],                      // Auswahl, in dieser Reihenfolge angezeigt
     //     "items": [{ "code": "12 == 5", "answer": "false" }, ...],   // "answer" darf auch eine Liste sein
+    //                                                             // optional "mark": Teil von "code", der unterstrichen wird
+    //     "codeWidth": "25em",                                    // optional: max. Breite der Code-Spalte (Standard 18em)
     //     "hint": "...",                                          // wird bei Fehlern an die Rückmeldung angehängt
     //     "successMessage": "..."
     //   }
@@ -30,7 +32,7 @@ export default {
     },
     highlight: function (code) {
         const frag = document.createDocumentFragment()
-        const re = /("[^"]*"|'[^']*')|\b(public|private|protected|static|final|void|class|new|byte|short|int|long|float|double|boolean|char|return|if|else|for|while|true|false)\b|\b(\d+(?:\.\d+)?[fFlLdD]?)\b/g
+        const re = /("[^"]*"|'[^']*')|\b(public|private|protected|static|final|void|class|new|byte|short|int|long|float|double|boolean|char|return|if|else|for|while|break|continue|true|false)\b|\b(\d+(?:\.\d+)?[fFlLdD]?)\b/g
         let last = 0
         let m
         while ((m = re.exec(code)) !== null) {
@@ -44,11 +46,20 @@ export default {
 
     build: function () {
         const root = this.el('div', 'quiz quiz-match')
+        if (this.config.codeWidth) root.style.setProperty('--quiz-code-width', this.config.codeWidth)
         const list = this.el('div', 'quiz-match-list')
         this.rows = this.config.items.map((item, nr) => {
             const row = this.el('div', 'quiz-match-row')
             const pre = this.el('pre')
-            pre.appendChild(this.highlight(item.code))
+            const at = item.mark ? item.code.indexOf(item.mark) : -1
+            if (at >= 0) {
+                const mark = this.el('span', 'q-mark')
+                mark.appendChild(this.highlight(item.mark))
+                pre.append(this.highlight(item.code.slice(0, at)), mark,
+                    this.highlight(item.code.slice(at + item.mark.length)))
+            } else {
+                pre.appendChild(this.highlight(item.code))
+            }
             const options = this.el('div', 'quiz-options')
             options.setAttribute('role', 'group')
             options.setAttribute('aria-label', 'Ergebnis von ' + item.code)

@@ -969,6 +969,64 @@
       "image": "img/previews/05_Objekte-labyrinth.webp"
     },
     {
+      "id": "05_Objekte/kirschen",
+      "title": "Kirschenessen mit Objekten",
+      "description": "Erzeuge zwei Player-Objekte und steuere sie über Instanzmethoden so, dass der rote Spieler die Kirsche holt – ganz ohne Indizes.",
+      "link": "05_Objekte/kirschen",
+      "chapter": 5,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "05_Objekte/deklination",
+      "title": "Astronomische Deklination",
+      "description": "Lies mit einer DateParser-Instanz den Tag des Jahres ein und berechne daraus die Deklination der Erde.",
+      "link": "05_Objekte/deklination",
+      "chapter": 5,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz",
+        "methodenaufrufe-statisch",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "05_Objekte/methodenart",
+      "title": "Instanz- oder Klassenmethode?",
+      "description": "Entscheide für neun Methodenaufrufe, ob eine Instanz- oder eine Klassenmethode verwendet wird.",
+      "link": "05_Objekte/methodenart",
+      "chapter": 5,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
       "id": "06_Bedingungen/beispiel_luck",
       "title": "Glück",
       "description": "Simuliere einen Würfelwurf mit Halblingsglück und lerne if-Anweisungen kennen.",
@@ -1045,6 +1103,43 @@
       "hasExperiments": false,
       "isNew": true,
       "image": null
+    },
+    {
+      "id": "06_Bedingungen/teilbar",
+      "title": "Teilbarkeit",
+      "description": "Prüfe mit if-Anweisungen und dem Modulo-Operator, ob eine Zufallszahl durch 2, 3 oder 5 teilbar ist.",
+      "link": "06_Bedingungen/teilbar",
+      "chapter": 6,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "bedingungen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "06_Bedingungen/schaltjahr",
+      "title": "Schaltjahr",
+      "description": "Setze die drei Regeln des gregorianischen Kalenders mit verschachtelten if-Anweisungen um und bestimme, ob ein Jahr ein Schaltjahr ist.",
+      "link": "06_Bedingungen/schaltjahr",
+      "chapter": 6,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "bedingungen",
+        "operationen",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "07_Schleifen/beispiel_pflanzen_for",
@@ -1178,6 +1273,99 @@
       "hasExperiments": true,
       "isNew": false,
       "image": null
+    },
+    {
+      "id": "07_Schleifen/buchstabensuppe",
+      "title": "Buchstabensuppe",
+      "description": "Sage für acht for- und while-Schleifen voraus, wie oft sie einen Buchstaben ausgeben – mit break, continue und Überlauf.",
+      "link": "07_Schleifen/buchstabensuppe",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "datentypen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "07_Schleifen/vielfache_pi",
+      "title": "Vielfache von Pi",
+      "description": "Summiere die ersten N Vielfachen von Pi mit einer for-Schleife und einer Akkumulator-Variablen.",
+      "link": "07_Schleifen/vielfache_pi",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "schleifen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "07_Schleifen/summe_grenze",
+      "title": "Letzte Summe unter einer Grenze",
+      "description": "Addiere 1 + 2 + 3 + ... in einer Endlosschleife und brich mit break ab, bevor die Summe eine Grenze erreicht.",
+      "link": "07_Schleifen/summe_grenze",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "07_Schleifen/laufen",
+      "title": "Laufen mit Schleifen",
+      "description": "Lass die Spielfigur mit einer for-Schleife zur Kirsche und mit einer while-Schleife exakt zurück zum Start laufen.",
+      "link": "07_Schleifen/laufen",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "bedingungen",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "07_Schleifen/kraftwerke",
+      "title": "Kraftwerke abschalten",
+      "description": "Prüfe mit drei verschachtelten Schleifen alle Kombinationen und schalte drei Kraftwerke so ab, dass möglichst wenig Leistung übrig bleibt.",
+      "link": "07_Schleifen/kraftwerke",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "schleifen",
+        "bedingungen",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "08_Klassenmethoden/sandkasten_summe",

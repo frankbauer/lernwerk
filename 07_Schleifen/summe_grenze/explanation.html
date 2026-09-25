@@ -1,0 +1,19 @@
+<h3>Erklärung</h3>
+<ul>
+    <li><code>int sum = 0; int n = 0;</code> <code>sum</code> ist der Akkumulator für die Summe, <code>n</code> der
+        aktuelle Summand. Beide werden vor der Schleife deklariert, damit sie nach der Schleife noch verfügbar
+        sind.</li>
+    <li><code>while (true)</code> Die Bedingung ist immer wahr, die Schleife würde also endlos laufen. Das ist hier
+        gewollt: Das Ende wird im Rumpf entschieden.</li>
+    <li><code>n++;</code> bestimmt den nächsten Summanden.</li>
+    <li><code>if (sum + n &gt;= limit) break;</code> Bevor addiert wird, wird geprüft, ob die neue Summe die Grenze
+        erreichen würde. Wenn ja, verlässt <code>break</code> sofort die Schleife, und <code>sum</code> enthält noch die
+        letzte Summe unterhalb der Grenze. Würde man zuerst addieren und danach prüfen, stünde in <code>sum</code> schon
+        der erste Wert, der die Grenze überschreitet.</li>
+    <li><code>sum += n;</code> Nur wenn die Grenze noch nicht erreicht ist, wird der Summand aufaddiert.</li>
+</ul>
+<p>Für <code>limit = 1000</code> wird bis <code>n = 44</code> addiert (<code>sum = 990</code>). Bei <code>n = 45</code>
+    wäre <code>990 + 45 = 1035 &gt;= 1000</code>, die Schleife bricht ab.</p>
+<p>Dasselbe geht auch ohne Endlosschleife, mit der Bedingung direkt im Schleifenkopf:
+    <code>while (sum + n + 1 &lt; limit) { n++; sum += n; }</code>. Die Variante mit <code>break</code> ist oft
+    leichter zu lesen, wenn die Abbruchbedingung erst im Rumpf berechnet werden kann.</p>

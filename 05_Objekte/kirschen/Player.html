@@ -1,0 +1,18 @@
+<h4>Beschreibung</h4>
+<p>Ein Objekt dieser Klasse ist ein Spieler in der <code>FloatingWorld</code>. Neue Spieler werden mit
+    <code>new Player()</code> erzeugt und erscheinen dabei sofort in der Welt. Der zuerst erzeugte Spieler ist pink, der
+    zweite rot. Die Methoden sind Instanzmethoden und werden über eine Referenz auf ein Spieler-Objekt aufgerufen, z.B.
+    <code>p.moveLeft()</code>.</p>
+
+<h4>Konstruktor</h4>
+<ul>
+    <li><code>public Player()</code><br>Erzeugt einen neuen Spieler und fügt ihn der Welt hinzu.</li>
+</ul>
+
+<h4>Methoden</h4>
+<ul>
+    <li><code>public void moveLeft()</code><br>Der Spieler bewegt sich ein Stück nach links.</li>
+    <li><code>public void moveRight()</code><br>Der Spieler bewegt sich ein Stück nach rechts.</li>
+    <li><code>public int getID()</code><br>Gibt die aktuelle ID des Spielers zurück (<code>0</code> für den ersten
+        Spieler in der Welt, <code>1</code> für den zweiten, ...).</li>
+</ul>

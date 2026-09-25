@@ -1,0 +1,6 @@
+{
+    "correctSequence": "ACA2M0-10M0-10M0-10M0-10M0-10M0-10M0-10M0-10M0-10M0-10M0--15M0--15M0--15M0--15M0--15M0--15M0--15M0--15M0-10",
+    "timePerStep": 300,
+    "positions": { "pink": 90, "red": 250 },
+    "ghost": { "sprite": "pinkGhost", "left": 79, "bottom": -1, "height": 102 }
+}

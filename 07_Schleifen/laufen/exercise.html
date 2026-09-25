@@ -1,0 +1,23 @@
+<h3>Aufgabe</h3>
+<p>In dieser Aufgabe soll die Spielfigur wieder die Kirsche aufsammeln und anschließend zur Startposition (weiß
+    gestrichelter Umriss) zurücklaufen. Verwenden Sie zur Lösung geeignete <b>Schleifen</b>. Ihnen stehen dazu die
+    folgenden Klassenmethoden der Klasse <code>Controller</code> zur Verfügung (siehe auch Reiter
+    <i>Controller</i>):</p>
+<ul>
+    <li><code>static void movePlayerLeft()</code> Bewegt den Spieler nach links.</li>
+    <li><code>static void movePlayerRight()</code> Bewegt den Spieler nach rechts.</li>
+</ul>
+<ol>
+    <li>Bewegen Sie zunächst den Spieler <b>10-mal</b> nach rechts.</li>
+    <li>Anschließend soll der Spieler <i>exakt</i> zum Startpunkt zurücklaufen. Allerdings unterscheidet sich die
+        Schrittlänge nach links und nach rechts, sodass Sie die Schrittanzahl nicht einfach abzählen sollen. Verwenden
+        Sie die folgenden zusätzlichen Methoden, um den Spieler automatisch zum Ziel zu bringen:
+        <ul>
+            <li><code>static boolean isPlayerAtTarget()</code> Prüft, ob der Spieler am Ziel angekommen ist.</li>
+            <li><code>static boolean isPlayerLeftOfTarget()</code> Prüft, ob der Spieler links vom Ziel steht.</li>
+            <li><code>static boolean isPlayerRightOfTarget()</code> Prüft, ob der Spieler rechts vom Ziel steht.</li>
+        </ul>
+        Programmieren Sie die Laufbewegung in Abhängigkeit dieser drei Methoden (und nicht fest)!
+    </li>
+</ol>
+<p>In der Ausgabe unter dem Spielfeld sehen Sie, ob Ihre Befehlsfolge richtig ist.</p>

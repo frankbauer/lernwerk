@@ -7,6 +7,13 @@ export default {
     //   ["R", idx]       Spieler mit Index idx löschen (nachfolgende Spieler rücken nach vorne)
     // Die Meldungen (Kirsche gegessen, Fehler, richtige/falsche Befehlsfolge) werden vorab berechnet und als
     // Ausgabe zurückgegeben, danach wird die Sequenz animiert.
+    // Optional kann ein DATA-Block namens "config" die Szene anpassen (alle Felder optional):
+    //   {
+    //     "correctSequence": "ACA2M0-10...",           // erwartete Befehlsfolge
+    //     "timePerStep": 300,                          // Dauer eines Schritts in ms
+    //     "positions": { "pink": 90, "red": 250 },     // Startpositionen (left in px)
+    //     "ghost": { "sprite": "pinkGhost", "left": 79, "bottom": -1, "height": 102 }   // Umriss am Ziel
+    //   }
     // Achtung: Die Datei muss mit "export default" beginnen (sonst wird es nicht entfernt).
     // Der Code wird als HTML in die Seite eingebettet, daher hier keine HTML-Entities verwenden.
 
@@ -19,12 +26,18 @@ export default {
     getResources: function () {
         const meta = document.head.querySelector('meta[name="codeblocks-baseurl"]')
         const base = (meta ? meta.getAttribute('content') : '../../') + 'common/scene/cherrygame/img/'
-        return ['cherry', 'red', 'pink', 'monster', 'redGhost'].map(name => ({ uri: base + name + '.png', type: 'image', name: name + 'Img' }))
+        return ['cherry', 'red', 'pink', 'monster', 'redGhost', 'pinkGhost'].map(name => ({ uri: base + name + '.png', type: 'image', name: name + 'Img' }))
     },
 
     setupDOM: function () { },
 
     init: function () {
+        const cfg = (this.DATA && this.DATA.config) || {}
+        if (cfg.correctSequence !== undefined) this.correctSequence = cfg.correctSequence
+        if (cfg.timePerStep !== undefined) this.timePerStep = cfg.timePerStep
+        const pos = Object.assign({ red: 90, pink: 250 }, cfg.positions)
+        const ghost = Object.assign({ sprite: 'redGhost', left: 89, bottom: -0.5, height: 101 }, cfg.ghost)
+
         const canvasElement = this.canvasElement
         canvasElement.css({
             'border-radius': '8px 8px 0 0',
@@ -48,11 +61,11 @@ export default {
         canvasElement.append(container)
 
         this.cherry = this.putImg(container, this.cherryImg, 190, 20, 33, 10)
-        this.red = this.putImg(container, this.redImg, 90, 0, 100, 20)
-        this.pink = this.putImg(container, this.pinkImg, 250, 0, 100, 30)
+        this.red = this.putImg(container, this.redImg, pos.red, 0, 100, 20)
+        this.pink = this.putImg(container, this.pinkImg, pos.pink, 0, 100, 30)
         this.monster = this.putImg(container, this.monsterImg, Math.random() * 320, 0, 100, 15)
-        this.redGhost = this.putImg(container, this.redGhostImg, 89, -0.5, 101, 5)
-        this.redGhost.removeClass('cherryHideNow').addClass('cherryShow')
+        this.ghost = this.putImg(container, this[ghost.sprite + 'Img'], ghost.left, ghost.bottom, ghost.height, 5)
+        this.ghost.removeClass('cherryHideNow').addClass('cherryShow')
 
         const bt = $(document.createElement('button'))
         bt.attr('type', 'button')
@@ -177,7 +190,7 @@ export default {
     moveItemBy: function (item, deltaLeft) {
         const cleft = Number(item.attr('XCurL'))
         const frameDuration = 1000 / 25
-        const frames = (this.timePerStep / 2) / frameDuration
+        const frames = Math.max(1, Math.round((this.timePerStep / 2) / frameDuration))
         const run = this.run
 
         const animator = f => {
