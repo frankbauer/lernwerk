@@ -34,7 +34,7 @@ public class Ausgaben {
         {
             byte z = -18;
             if (-20 - z == z - z) {
-                System.out.print("passed");        // wird nicht ausgeführt, die Bedingung ist false
+                System.out.print("passed");        // nicht ausgeführt
             } else {
                 System.out.print("been");          // Ausgabe: been
             }
@@ -43,9 +43,9 @@ public class Ausgaben {
         System.out.print("g) ");
         {
             int h = 0;
-            System.out.print(h+" ");               // Ausgabe: "0 " (mit Leerzeichen, ohne Zeilenumbruch)
+            System.out.print(h+" ");               // Ausgabe: "0 " (mit Leerzeichen)
             h = h / 8 * ("you".length() - h);
-            System.out.print(h);                   // Ausgabe: 0 (direkt dahinter, zusammen also: 0 0)
+            System.out.print(h);                   // Ausgabe: 0, zusammen: 0 0
         }
         System.out.println();
         System.out.print("h) ");
