@@ -1,0 +1,21 @@
+<h3>Erklärung</h3>
+
+<p>Prim lässt einen einzigen Baum vom Startknoten aus wachsen:</p>
+<ol>
+    <li>Zu Beginn besteht der Baum nur aus dem Startknoten.</li>
+    <li>Betrachte alle Kanten, die einen Knoten <i>im</i> Baum mit einem Knoten <i>außerhalb</i> verbinden, und füge
+        die <b>leichteste</b> davon ein. Ihr zweiter Knoten gehört jetzt zum Baum.</li>
+    <li>Wiederhole Schritt 2, bis alle Knoten im Baum sind. Ein Spannbaum mit <i>n</i> Knoten hat immer genau
+        <i>n</i> - 1 Kanten.</li>
+</ol>
+
+<p>Typische Fehler:</p>
+<ul>
+    <li><b>Kante ohne Verbindung zum Baum gewählt:</b> Prim nimmt nicht die global leichteste Kante (das wäre Kruskal),
+        sondern nur Kanten, die am bisherigen Baum hängen. Deshalb ist die Reihenfolge meist nicht nach Gewicht
+        sortiert.</li>
+    <li><b>Kreis geschlossen:</b> Liegen beide Enden einer Kante schon im Baum, wird sie verworfen, auch wenn sie die
+        leichteste ist.</li>
+    <li><b>Kante zu früh vergessen:</b> Eine schwere Kante am Startknoten kann später noch die leichteste
+        Verbindung zu einem neuen Knoten sein.</li>
+</ul>

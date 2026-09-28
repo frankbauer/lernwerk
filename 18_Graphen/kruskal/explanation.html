@@ -1,0 +1,21 @@
+<h3>Erklärung</h3>
+
+<p>Kruskal betrachtet die Kanten unabhängig von einem Startknoten:</p>
+<ol>
+    <li>Sortiere alle Kanten nach aufsteigendem Gewicht.</li>
+    <li>Gehe die Kanten der Reihe nach durch. Eine Kante wird eingefügt, wenn sie zwei Knoten verbindet, die noch
+        <b>nicht</b> über bereits gewählte Kanten miteinander verbunden sind. Andernfalls würde sie einen Kreis
+        schließen und wird verworfen.</li>
+    <li>Sobald <i>n</i> - 1 Kanten gewählt sind (bei <i>n</i> Knoten), ist der Spannbaum fertig.</li>
+</ol>
+
+<p>Anders als bei Prim wächst dabei nicht ein einzelner Baum: Zwischendurch entstehen oft mehrere getrennte Teilbäume,
+    die erst später zusammenwachsen.</p>
+
+<p>Typische Fehler:</p>
+<ul>
+    <li><b>Kreis übersehen:</b> Auch eine leichte Kante wird verworfen, wenn ihre beiden Knoten schon über andere,
+        gewählte Kanten verbunden sind, selbst über einen Umweg.</li>
+    <li><b>Zu früh aufgehört:</b> Die schwersten gewählten Kanten sind oft die letzten Verbindungen zwischen zwei
+        Teilbäumen.</li>
+</ul>

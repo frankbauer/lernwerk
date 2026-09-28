@@ -225,6 +225,12 @@
       "icon": "img/concepts/graphen.png"
     },
     {
+      "id": "graphen-theorie",
+      "label": "Graphen (Theorie)",
+      "chapter": 18,
+      "icon": "img/concepts/graphen-theorie.png"
+    },
+    {
       "id": "zahlen",
       "label": "Zahlendarstellung",
       "chapter": 19,
@@ -2330,6 +2336,91 @@
       "hasExperiments": false,
       "isNew": false,
       "image": null
+    },
+    {
+      "id": "18_Graphen/dijkstra",
+      "title": "Dijkstra-Tabelle",
+      "description": "Fülle die Tabelle des Dijkstra-Algorithmus Schritt für Schritt für einen zufälligen Graphen aus.",
+      "link": "18_Graphen/dijkstra",
+      "chapter": 18,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "graphen-theorie"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "18_Graphen/pfad",
+      "title": "Kürzester Pfad aus der Dijkstra-Tabelle",
+      "description": "Lies aus einer fertigen Dijkstra-Tabelle ab, über welche Knoten der kürzeste Pfad führt.",
+      "link": "18_Graphen/pfad",
+      "chapter": 18,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "graphen-theorie"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "18_Graphen/prim",
+      "title": "Spannbaum mit Prim",
+      "description": "Bestimme mit Prim den minimalen Spannbaum eines zufälligen Graphen, Kante für Kante in der richtigen Reihenfolge.",
+      "link": "18_Graphen/prim",
+      "chapter": 18,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "graphen-theorie"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "18_Graphen/kruskal",
+      "title": "Spannbaum mit Kruskal",
+      "description": "Bestimme mit Kruskal den minimalen Spannbaum eines zufälligen Graphen und erkenne Kanten, die einen Kreis schließen.",
+      "link": "18_Graphen/kruskal",
+      "chapter": 18,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "graphen-theorie"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "18_Graphen/zentralitaet",
+      "title": "Zwischenzentralität",
+      "description": "Markiere in der Tabelle der kürzesten Wege alle Wege, die für die Zwischenzentralität eines Knotens zählen.",
+      "link": "18_Graphen/zentralitaet",
+      "chapter": 18,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "graphen-theorie"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "19_Zahlen/todec",

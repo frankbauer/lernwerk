@@ -1,0 +1,28 @@
+<h3>Erklärung</h3>
+
+<p>Die Tabelle hat eine Spalte pro Knoten. Jede Zeile beschreibt den Stand <i>nach</i> einem Schritt des Algorithmus.
+    Die Einträge sind die bisher kürzesten bekannten Entfernungen vom Startknoten.</p>
+
+<p><b>Zeile 0</b> (vorgegeben): Der Startknoten hat die Entfernung <code>0</code>, alle anderen <code>∞</code>.</p>
+
+<p><b>Jede weitere Zeile</b> entsteht aus der vorherigen:</p>
+<ol>
+    <li>Wähle unter den noch nicht abgearbeiteten Knoten den mit dem <b>kleinsten</b> Eintrag. In der Beispiellösung ist
+        diese Zelle schraffiert. Sein Wert ist jetzt endgültig.</li>
+    <li>Betrachte alle Kanten dieses Knotens zu noch nicht abgearbeiteten Nachbarn. Ist <i>Wert des Knotens +
+        Kantengewicht</i> kleiner als der bisherige Eintrag des Nachbarn, wird der Eintrag ersetzt, sonst bleibt er.</li>
+    <li>Übernimm alle übrigen Einträge unverändert. Die Spalte des gerade abgearbeiteten Knotens bleibt ab jetzt leer.</li>
+</ol>
+
+<p>Typische Fehler:</p>
+<ul>
+    <li><b>Falscher Knoten gewählt:</b> Es zählt der kleinste Wert der <i>gesamten</i> Zeile, nicht nur der Nachbarn des
+        zuletzt abgearbeiteten Knotens.</li>
+    <li><b>Größeren Wert übernommen:</b> Ein Eintrag wird nur überschrieben, wenn der neue Weg <i>kürzer</i> ist.</li>
+    <li><b>Kante zu einem abgearbeiteten Knoten ausgewertet:</b> Dessen Entfernung steht bereits fest.</li>
+    <li><b>Eintrag vergessen:</b> Werte, die sich nicht ändern, müssen trotzdem in die nächste Zeile übernommen
+        werden.</li>
+</ul>
+
+<p>Die hervorgehobenen Kanten im Graphen der Beispiellösung bilden den Baum der kürzesten Wege: Über sie wurde der
+    endgültige Wert jedes Knotens zuletzt verbessert.</p>

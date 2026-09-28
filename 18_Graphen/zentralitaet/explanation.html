@@ -1,0 +1,17 @@
+<h3>Erklärung</h3>
+
+<p>Die Zwischenzentralität <i>Z</i>(<i>T</i>) misst, wie oft der Knoten <i>T</i> auf kürzesten Wegen zwischen
+    <i>anderen</i> Knoten liegt. In die Tabelle <i>δ<sub>T</sub></i> werden deshalb genau die kürzesten Wege übernommen,
+    die <i>T</i> als <b>Zwischenknoten</b> enthalten.</p>
+
+<p>Beim Markieren gilt:</p>
+<ul>
+    <li>Markiert wird ein Weg, wenn <i>T</i> darin <b>weder am Anfang noch am Ende</b> steht, sondern dazwischen.</li>
+    <li>Wege, die bei <i>T</i> beginnen oder enden (Zeile bzw. Spalte von <i>T</i>), werden nicht übernommen.</li>
+    <li>Enthält eine Zelle mehrere gleich kurze Wege, wird jeder einzeln betrachtet. Oft führt nur ein Teil davon über
+        <i>T</i>. Dieser Anteil geht später in <i>δ<sub>T</sub></i>(<i>v<sub>i</sub></i>, <i>v<sub>j</sub></i>)
+        ein.</li>
+</ul>
+
+<p>In der Beispiellösung ist zusätzlich der gerichtete Graph abgebildet, aus dem die Tabelle stammt. <i>T</i> ist
+    dort orange markiert.</p>

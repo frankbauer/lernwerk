@@ -1,0 +1,17 @@
+<h3>Erklärung</h3>
+
+<p>Die Dijkstra-Tabelle enthält den Graphen nicht, aber sie verrät für jeden Knoten seinen <b>Vorgänger</b> auf dem
+    kürzesten Weg: den Knoten, über den sein endgültiger Wert zuletzt verbessert wurde.</p>
+
+<p>So wird der Pfad rückwärts abgelesen:</p>
+<ol>
+    <li>Beginne beim Zielknoten in der Zeile, in der er abgearbeitet wurde (dort steht sein endgültiger Wert).</li>
+    <li>Gehe in seiner Spalte nach oben bis zur ersten Zeile, in der ein anderer Wert (oder <code>∞</code>) steht. Der
+        Knoten mit dem kleinsten Wert in <i>dieser</i> Zeile wurde als nächstes abgearbeitet und hat dabei den
+        endgültigen Wert erzeugt.</li>
+    <li>Dieser Knoten ist der Vorgänger. Wiederhole das Verfahren mit ihm, bis du beim Startknoten (Wert
+        <code>0</code>) angekommen bist.</li>
+</ol>
+
+<p>In der Beispiellösung sind die Zellen schraffiert, in denen die Knoten des Pfades jeweils abgearbeitet wurden.
+    Darunter ist zur Kontrolle der Graph abgebildet, aus dem die Tabelle stammt.</p>
