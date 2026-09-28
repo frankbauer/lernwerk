@@ -1,0 +1,33 @@
+<h3>Erklärung</h3>
+
+<p><b>Klasse <code>Service</code> (1 bis 4)</b></p>
+<ul>
+    <li>Alle Eigenschaften sind konstant und werden daher <code>private final</code>. Jedes <code>final</code>-Attribut
+        muss in <b>jedem</b> Konstruktor genau einmal einen Wert bekommen, auch im LTE/E-Konstruktor in beiden Zweigen
+        des <code>if</code>.</li>
+    <li>Die Frequenzen gehören zur Klasse, nicht zu einem einzelnen Service: <code>public static final</code>. Man
+        greift mit <code>Service.FREQUENCY_WIFI</code> darauf zu.</li>
+    <li>Die beiden Konstruktoren unterscheiden sich in ihrer Parameterliste (<code>String, int, int</code> bzw.
+        <code>int, int, boolean</code>). Deshalb dürfen beide gleichzeitig existieren (Überladen).</li>
+    <li>Die Getter müssen <code>public</code> sein, sonst könnte die Klasse <code>Connection</code> die Werte nicht
+        lesen.</li>
+</ul>
+
+<p><b>Klasse <code>Connection</code> (5 bis 9)</b></p>
+<ul>
+    <li>Da keine Instanzen nötig sein sollen, sind das Feld und alle Methoden <code>static</code>.</li>
+    <li><code>add</code> sucht den ersten Eintrag, der <code>null</code> ist. Ist das Feld voll, wird
+        <code>false</code> zurückgegeben.</li>
+    <li><code>computeIntensity</code> setzt die Formel direkt um. <code>Math.pow(a, 2)</code> berechnet
+        <math><msup><mi>a</mi><mn>2</mn></msup></math>, <code>Math.sqrt</code> die Wurzel und <code>Math.PI</code> ist
+        <math><mi>&#x03C0;</mi></math>.</li>
+    <li><code>printAvailableNetworks</code> und <code>getStrongestNetwork</code> durchlaufen das Feld. Weil
+        <code>add</code> immer von vorne auffüllt, kann die Schleife beim ersten leeren Eintrag abbrechen.</li>
+    <li><code>getStrongestNetwork</code> startet mit <code>max = 1</code>. So wird nur ein Netz gefunden, dessen
+        Empfangsleistung größer als 1 ist. Sonst bleibt <code>strongest</code> bei <code>null</code>.</li>
+</ul>
+
+<p><b>Testklasse (10)</b></p>
+<p>Die Testklasse ist <code>public</code> und enthält die <code>main</code>-Methode. Sie legt vier Services an, fügt
+    sie mit <code>Connection.add</code> hinzu und prüft die Werte aus der Tabelle. An der Position (100, 200) sind nur
+    die beiden Mobilfunknetze verfügbar, die WLAN-Router sind zu weit entfernt.</p>

@@ -1,0 +1,19 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Interface implementieren:</b> Mit <code>implements Greeting</code> verpflichtet sich eine Klasse, alle
+        Methoden des Interfaces bereitzustellen. <code>greet</code> muss dabei <code>public</code> sein, weil alle
+        Methoden eines Interfaces öffentlich sind.</li>
+    <li><b>Nicht öffentlich:</b> <code>Deutsch</code> und <code>English</code> stehen ohne <code>public</code> in
+        derselben Datei wie die öffentliche Klasse <code>Test</code>. Pro Datei darf es nur eine öffentliche Klasse
+        geben.</li>
+    <li><b>Referenz vom Typ des Interfaces:</b> <code>Greeting greeting = new Deutsch();</code> Von einem Interface
+        selbst kann man kein Objekt erzeugen, eine Variable dieses Typs kann aber auf jedes Objekt einer Klasse
+        verweisen, die das Interface implementiert. Nach <code>greeting = new English();</code> ruft derselbe Aufruf
+        <code>greeting.greet()</code> die englische Methode auf. Welche Methode ausgeführt wird, hängt vom Objekt ab,
+        nicht vom Typ der Variable.</li>
+    <li><b><code>createGreeting</code>:</b> Der Rückgabetyp <code>Greeting</code> erlaubt es, je nach Sprache ein
+        <code>Deutsch</code>- oder <code>English</code>-Objekt zurückzugeben. Zeichenketten vergleicht man mit
+        <code>equals</code>, nicht mit <code>==</code>. <code>"de".equals(lang)</code> funktioniert auch dann, wenn
+        <code>lang</code> <code>null</code> ist.</li>
+</ul>

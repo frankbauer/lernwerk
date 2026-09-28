@@ -1,0 +1,19 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b><code>length</code>:</b> <code>Math.sqrt</code> berechnet die Wurzel. Für
+        <math><msup><mi>x</mi><mn>2</mn></msup></math> genügt <code>x * x</code>. Als Instanzmethode arbeitet sie mit
+        den Attributen des Objekts, auf dem sie aufgerufen wird (<code>this.x</code>, <code>this.y</code>).</li>
+    <li><b><code>add</code>:</b> Der Parameter <code>other</code> ist eine Referenz auf einen zweiten Vektor. Geändert
+        wird nur <code>this</code>, <code>other</code> bleibt unverändert. Weil <code>add</code> in der Klasse
+        <code>Vec2D</code> steht, darf sie auch auf die privaten Attribute <code>other.x</code> und
+        <code>other.y</code> zugreifen.</li>
+    <li><b><code>normalizeAll</code>:</b> Das Feld enthält keine Vektoren, sondern <b>Referenzen</b> auf Vektoren.
+        <code>Vec2D vec = vectors[i];</code> kopiert nur die Referenz, <code>vec</code> und <code>vectors[i]</code>
+        zeigen danach auf dasselbe Objekt. Deshalb sind die Änderungen nach dem Aufruf auch an <code>v1</code> und
+        <code>v2</code> in <code>main</code> sichtbar, obwohl die Methode nichts zurückgibt.</li>
+    <li><b>Reihenfolge beim Normalisieren:</b> Die Länge wird vor dem Teilen in <code>len</code> gespeichert. Würde man
+        <code>vec.y / vec.length()</code> erst nach dem Ändern von <code>vec.x</code> berechnen, wäre die Länge schon
+        eine andere.</li>
+</ul>
+<p>Nach dem Normalisieren haben beide Vektoren die Länge 1, zeigen aber weiterhin in ihre ursprüngliche Richtung.</p>

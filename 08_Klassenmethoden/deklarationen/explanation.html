@@ -1,0 +1,30 @@
+<h3>Erklärung</h3>
+
+<p>Eine Methodendeklaration besteht aus <b>Modifikatoren</b>, <b>Rückgabetyp</b>, <b>Methodenname</b>,
+    <b>Parameterliste</b> und <b>Methodenrumpf</b>. Jeder dieser Teile muss den Regeln von Java entsprechen.</p>
+
+<p><b>Gültig</b> sind:</p>
+<ul>
+    <li><code>createTree(String name)</code>: Alle Bestandteile sind vorhanden. <code>void</code> bedeutet, dass
+        nichts zurückgegeben wird.</li>
+    <li><code>sum(int a, double y)</code>: Die Parameter dürfen verschiedene Typen haben. <code>a + y</code>
+        ergibt einen <code>double</code>-Wert und passt damit zum Rückgabetyp. Auch <code>private</code> ist ein
+        erlaubter Modifikator.</li>
+    <li><code>findMin(Robot[] robots)</code>: Ein Parameter darf auch ein Array oder eine eigene Klasse als Typ
+        haben.</li>
+</ul>
+
+<p><b>Ungültig</b> sind:</p>
+<ul>
+    <li><code>dif</code>: Nach <code>final int a = 13</code> fehlt das Semikolon. Außerdem gibt es bereits einen
+        Parameter <code>a</code>. Eine lokale Variable darf nicht denselben Namen wie ein Parameter haben.</li>
+    <li><code>double()</code>: <code>double</code> ist ein Schlüsselwort und darf nicht als Methodenname verwendet
+        werden.</li>
+    <li><code>findOld(Tree[])</code> und <code>div(double, double)</code>: Jeder Parameter braucht einen Typ
+        <b>und</b> einen Namen. Nur über den Namen kann im Rumpf auf den Wert zugegriffen werden.</li>
+    <li><code>hasID(Player p, void id)</code>: <code>void</code> steht für „kein Wert“ und ist nur als
+        Rückgabetyp erlaubt, nicht als Typ eines Parameters.</li>
+    <li><code>mul</code>: Der Rückgabetyp ist <code>int</code>, der Rumpf enthält aber keine
+        <code>return</code>-Anweisung. <code>System.out.println</code> gibt den Wert nur aus, zurückgegeben wird er
+        dadurch nicht.</li>
+</ul>

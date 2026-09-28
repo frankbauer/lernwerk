@@ -1,0 +1,47 @@
+{
+    "options": [
+        "gültig",
+        "ungültig"
+    ],
+    "items": [
+        {
+            "code": "public static void createTree(String name) {/*...*/}",
+            "answer": "gültig"
+        },
+        {
+            "code": "private static double sum(int a, double y) {\n    return a + y;\n}",
+            "answer": "gültig"
+        },
+        {
+            "code": "public static double dif(int a, int b) {\n    final int a = 13\n    return a + b + a;\n}",
+            "answer": "ungültig"
+        },
+        {
+            "code": "public static void double() {/*...*/}",
+            "answer": "ungültig"
+        },
+        {
+            "code": "public static void findMin(Robot[] robots) {/*...*/}",
+            "answer": "gültig"
+        },
+        {
+            "code": "public static Tree findOld(Tree[]) {/*...*/}",
+            "answer": "ungültig"
+        },
+        {
+            "code": "public static double div(double, double) {/*...*/}",
+            "answer": "ungültig"
+        },
+        {
+            "code": "public static boolean hasID(Player p, void id) {/*...*/}",
+            "answer": "ungültig"
+        },
+        {
+            "code": "public static int mul(int a, int b) {\n    System.out.println(a * b);\n}",
+            "answer": "ungültig"
+        }
+    ],
+    "codeWidth": "30em",
+    "hint": "Prüfen Sie jeden Teil der Deklaration: Ist der Methodenname ein erlaubter Bezeichner? Hat jeder Parameter einen Typ <b>und</b> einen Namen? Ist der Parametertyp erlaubt? Gibt eine Methode mit Rückgabetyp auch wirklich einen Wert zurück?",
+    "successMessage": "<b>Richtig!</b> Alle Deklarationen sind korrekt eingeordnet. In der Beispiellösung sehen Sie die gültigen Methoden in einem lauffähigen Programm."
+}

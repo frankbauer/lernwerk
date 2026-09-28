@@ -1,0 +1,21 @@
+<h3>Erklärung</h3>
+
+<pre code>private static double f(double x, double k, double t) {
+    Plotter.callCount++;
+    return Plotter.A * Math.sqrt(Math.abs(x - t * k * k)) + t * Math.abs(k + Plotter.B);
+}</pre>
+<ul>
+    <li><b>Deklaration:</b> <code>private</code> macht die Methode nur innerhalb der Klasse <code>Plotter</code>
+        sichtbar, <code>static</code> macht sie zur Klassenmethode. Deshalb kann <code>main</code> sie ohne Objekt
+        aufrufen.</li>
+    <li><b>Formel:</b> Die Wurzel berechnet <code>Math.sqrt</code>, den Betrag <code>Math.abs</code>. Für
+        <math><msup><mi>k</mi><mn>2</mn></msup></math> reicht <code>k * k</code>. Anders als in der
+        mathematischen Schreibweise muss jede Multiplikation mit <code>*</code> ausgeschrieben werden.</li>
+    <li><b>Klassenattribute:</b> <code>A</code>, <code>B</code> und <code>callCount</code> gehören zur Klasse, nicht
+        zu einem Objekt. Man greift mit <code>Plotter.A</code> auf sie zu. Innerhalb der Klasse genügt auch
+        <code>A</code>.</li>
+    <li><b>Aufrufzähler:</b> Weil <code>callCount</code> ein Klassenattribut ist, behält es seinen Wert zwischen den
+        Aufrufen. Jeder Aufruf von <code>f</code> erhöht es um 1. Die Schleife in <code>main</code> läuft von
+        <code>-1</code> bis <code>1.75</code> in Schritten von <code>0.25</code>. Am Ende steht daher
+        <code>Call Counter: 12</code> in der Ausgabe.</li>
+</ul>

@@ -1,0 +1,14 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Startindex:</b> Die Schleife beginnt mit <code>int i = 4</code> statt bei 0. Die Bedingung
+        <code>i &lt; data.length</code> sorgt dafür, dass sie für Felder beliebiger Länge funktioniert.</li>
+    <li><b>Teilbarkeit:</b> Eine Zahl ist durch 7 teilbar, wenn beim Teilen kein Rest bleibt, also
+        <code>data[i] % 7 == 0</code> gilt.</li>
+    <li><b>Höchstens 2 Zeilen:</b> Der Zähler <code>ct</code> zählt die bisherigen Ausgaben. Sobald zwei Werte
+        ausgegeben wurden, beendet <code>break</code> die Schleife.</li>
+</ul>
+<p>Im Beispiel sind <code>35</code>, <code>49</code>, <code>56</code> und <code>28</code> durch 7 teilbar. Ausgegeben
+    werden nur die ersten beiden.</p>
+<p>Statt <code>break</code> kann man die Bedingung auch in den Schleifenkopf schreiben:
+    <code>for (int i = 4; i &lt; data.length &amp;&amp; ct &lt; 2; i++)</code>.</p>

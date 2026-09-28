@@ -1,0 +1,22 @@
+<h3>Erklärung</h3>
+
+<p>Der Unterschied liegt darin, <b>wann</b> gerechnet wird:</p>
+<ul>
+    <li><b>Kopfrekursion:</b> <code>binStringToDec</code> ruft sich zuerst selbst auf und rechnet danach mit dem
+        Ergebnis (<code>value + 2 * zwErg</code>). Jeder Aufruf muss warten, bis alle tieferen Aufrufe fertig
+        sind.</li>
+    <li><b>Endrekursion:</b> Hier wird zuerst gerechnet und das Zwischenergebnis dann als Parameter
+        weitergegeben. Der rekursive Aufruf ist die <b>letzte</b> Aktion, sein Ergebnis wird unverändert
+        zurückgegeben. Im Abbruchfall ist das Endergebnis schon fertig berechnet.</li>
+</ul>
+<p>Weil sich die Signatur <code>binStringToDecTail(String)</code> nicht ändern soll, braucht man eine
+    <b>Hilfsmethode</b> mit dem zusätzlichen Parameter <code>zwErg</code>. Die öffentliche Methode startet die
+    Rekursion mit dem Zwischenergebnis <code>0</code>. Die Hilfsmethode ist <code>private</code> und hat denselben
+    Namen, aber eine andere Parameterliste (Überladen).</p>
+<p>Die Endrekursion liest die Ziffern <b>von links</b> und verdoppelt bei jeder neuen Ziffer das bisherige Ergebnis
+    (Horner-Schema). Für <code>"1010"</code>:</p>
+<pre>zwErg = 0
+'1' -> 1 + 2 * 0 = 1
+'0' -> 0 + 2 * 1 = 2
+'1' -> 1 + 2 * 2 = 5
+'0' -> 0 + 2 * 5 = 10</pre>

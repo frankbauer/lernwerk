@@ -1,0 +1,19 @@
+<h3>Erklärung</h3>
+
+<p>Die naheliegende Lösung funktioniert <b>nicht</b>:</p>
+<pre code>int[] copy = numbers;</pre>
+<p>Eine Feldvariable speichert nur eine <b>Referenz</b> auf das Feld. Diese Zuweisung kopiert also nur die Referenz:
+    <code>numbers</code> und <code>copy</code> zeigen danach auf <b>dasselbe</b> Feld. Verdoppelt man die Werte über
+    <code>copy</code>, ändert sich auch <code>numbers</code>, und beide Ausgaben zeigen <code>2 4 6 8 10</code>.</p>
+
+<p>Für eine echte Kopie braucht man ein <b>neues</b> Feld:</p>
+<ul>
+    <li><code>new int[numbers.length]</code> legt ein zweites Feld mit gleicher Länge an. Alle Elemente sind zunächst
+        <code>0</code>.</li>
+    <li>Die Schleife kopiert jeden Wert einzeln. <code>int</code>-Werte werden dabei selbst kopiert, danach sind beide
+        Felder unabhängig voneinander.</li>
+    <li>Die zweite Schleife verdoppelt nur die Werte in <code>copy</code>. <code>numbers</code> bleibt
+        unverändert.</li>
+</ul>
+<p>Java bietet dafür auch fertige Methoden an, z.B. <code>numbers.clone()</code> oder
+    <code>java.util.Arrays.copyOf(numbers, numbers.length)</code>.</p>

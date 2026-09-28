@@ -1423,6 +1423,59 @@
       "isHidden": true
     },
     {
+      "id": "08_Klassenmethoden/signatur",
+      "title": "Methodensignatur anordnen",
+      "description": "Setze die Bestandteile einer Klassenmethode in die richtige Reihenfolge: Modifikatoren, Rückgabetyp, Name, Parameter und Rumpf.",
+      "link": "08_Klassenmethoden/signatur",
+      "chapter": 8,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "08_Klassenmethoden/deklarationen",
+      "title": "Gültige Methodendeklarationen",
+      "description": "Entscheide für neun Methodendeklarationen, ob sie gültig sind, und finde die Fehler in den ungültigen.",
+      "link": "08_Klassenmethoden/deklarationen",
+      "chapter": 8,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "klassenmethoden",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "08_Klassenmethoden/schaltjahr",
+      "title": "Schaltjahr",
+      "description": "Ergänze die fehlende Deklaration einer Klassenmethode, deren Rumpf schon vorgegeben ist.",
+      "link": "08_Klassenmethoden/schaltjahr",
+      "chapter": 8,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "klassenmethoden",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
       "id": "09_Klassenattribute/beispiel_steuer",
       "title": "Mehrwertsteuer",
       "description": "Berechne Bruttopreise über ein Klassenattribut für den Mehrwertsteuersatz.",
@@ -1479,6 +1532,25 @@
       "image": null
     },
     {
+      "id": "09_Klassenattribute/plotter",
+      "title": "Funktionsplotter",
+      "description": "Setze eine mathematische Formel als private Klassenmethode um, zähle ihre Aufrufe und sieh das Ergebnis als Graph.",
+      "link": "09_Klassenattribute/plotter",
+      "chapter": 9,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "klassenattribute",
+        "klassenmethoden",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
       "id": "10_Arrays/beispiel_roboter",
       "title": "Roboterfelder",
       "description": "Verwalte mehrere Roboter-Objekte gemeinsam in einem Array.",
@@ -1515,6 +1587,151 @@
       "hasExperiments": false,
       "isNew": false,
       "image": null
+    },
+    {
+      "id": "10_Arrays/auswerten",
+      "title": "Felder auswerten",
+      "description": "Sage die Ausgabe von sechs kurzen Programmstücken mit Feldzugriffen voraus.",
+      "link": "10_Arrays/auswerten",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "10_Arrays/feldzugriff",
+      "title": "Feldzugriffe in Schleifen",
+      "description": "Entscheide für 13 Schleifen, ob sie alle Elemente besuchen, eine Exception werfen oder nie enden.",
+      "link": "10_Arrays/feldzugriff",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "10_Arrays/lesen",
+      "title": "Felder lesen",
+      "description": "Lies den 4. Eintrag eines Feldes aus und gib ihn aus.",
+      "link": "10_Arrays/lesen",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "10_Arrays/beschreiben",
+      "title": "Felder beschreiben",
+      "description": "Ersetze den 8. Eintrag eines Feldes durch einen neuen Wert.",
+      "link": "10_Arrays/beschreiben",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "10_Arrays/teilbar",
+      "title": "Teilbare Elemente ausgeben",
+      "description": "Gib ab Index 4 höchstens zwei durch 7 teilbare Elemente eines Feldes aus.",
+      "link": "10_Arrays/teilbar",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "10_Arrays/ungerade",
+      "title": "Ungerade Zahlen verdoppeln",
+      "description": "Verdopple alle ungeraden Zahlen in einem Feld.",
+      "link": "10_Arrays/ungerade",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "10_Arrays/lotto",
+      "title": "Lottozahlen",
+      "description": "Erzeuge mehrere Lottozahl-Objekte, speichere sie in einem Feld und gib ihre Werte aus.",
+      "link": "10_Arrays/lotto",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "objekte",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "10_Arrays/durchschnitt",
+      "title": "Rollender Durchschnitt",
+      "description": "Berechne für jedes Element eines Feldes den Durchschnitt mit seinen drei Vorgängern.",
+      "link": "10_Arrays/durchschnitt",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "arrays",
+        "schleifen",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "11_Arrays_nDim/sandkasten_matrix",
@@ -1621,6 +1838,66 @@
       "image": null
     },
     {
+      "id": "12_Instanzen/tierwesen",
+      "title": "Tierwesen: Attribute und Konstruktor",
+      "description": "Modelliere die Attribute eines Tierwesens mit passenden Sichtbarkeiten und schreibe einen Parameterkonstruktor.",
+      "link": "12_Instanzen/tierwesen",
+      "chapter": 12,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "12_Instanzen/spielbrett",
+      "title": "Spielbrett: Attribute und Konstruktor",
+      "description": "Modelliere ein Spielbrett mit konstanten Attributen und einem quadratischen 2D-Feld von Figuren.",
+      "link": "12_Instanzen/spielbrett",
+      "chapter": 12,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "12_Instanzen/internetverbindung",
+      "title": "Internetverbindung",
+      "description": "Simuliere WLAN- und Mobilfunkquellen mit Konstruktoren, Gettern und statischer Verwaltung und finde das stärkste Netz.",
+      "link": "12_Instanzen/internetverbindung",
+      "chapter": 12,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden",
+        "klassenmethoden",
+        "klassenattribute",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
       "id": "13_Referenzen/sandkasten_deskrun",
       "title": "MeineReferenzen",
       "description": "Verfolge im Schreibtischtest, welche Objekte und Referenzen am Programmende existieren.",
@@ -1657,6 +1934,45 @@
       "isNew": false,
       "image": "img/previews/13_Referenzen-beispiel_finalRef.webp",
       "imagePosition": "45% center"
+    },
+    {
+      "id": "13_Referenzen/vektor",
+      "title": "2D-Vektor",
+      "description": "Ergänze einen 2D-Vektor um Länge, Addition und das Normalisieren eines ganzen Feldes von Vektoren.",
+      "link": "13_Referenzen/vektor",
+      "chapter": 13,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "referenzen",
+        "instanzmethoden",
+        "klassenmethoden",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "13_Referenzen/array_kopieren",
+      "title": "Feld kopieren",
+      "description": "Kopiere ein Feld so, dass Änderungen an der Kopie das Original nicht verändern.",
+      "link": "13_Referenzen/array_kopieren",
+      "chapter": 13,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "referenzen",
+        "arrays",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "14_Schnittstellen/sandkasten_interface",
@@ -1698,6 +2014,25 @@
       "image": null
     },
     {
+      "id": "14_Schnittstellen/sprachen",
+      "title": "Sprachen",
+      "description": "Implementiere ein Begrüßungs-Interface in zwei Sprachen und wähle die passende Implementierung zur Laufzeit aus.",
+      "link": "14_Schnittstellen/sprachen",
+      "chapter": 14,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schnittstellen",
+        "klassenmethoden",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
       "id": "16_Rekusrion/sandkasten_flood",
       "title": "MeinFarbeimer",
       "description": "Implementiere einen rekursiven Flood-Fill – wie den Farbeimer in einem Malprogramm.",
@@ -1715,6 +2050,78 @@
       "hasExperiments": false,
       "isNew": false,
       "image": "img/previews/16_Rekusrion-sandkasten_flood.webp"
+    },
+    {
+      "id": "16_Rekusrion/umdrehen",
+      "title": "Text umdrehen",
+      "description": "Ordne die Zeilen einer rekursiven Methode, die einen Text umdreht: erst der Abbruchfall, dann der rekursive Fall.",
+      "link": "16_Rekusrion/umdrehen",
+      "chapter": 16,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "rekursion",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "16_Rekusrion/palindrom",
+      "title": "Palindrom",
+      "description": "Prüfe rekursiv, ob ein Wort vorwärts und rückwärts gleich gelesen wird.",
+      "link": "16_Rekusrion/palindrom",
+      "chapter": 16,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "rekursion",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "16_Rekusrion/endrekursion",
+      "title": "Endrekursion",
+      "description": "Schreibe eine Kopfrekursion zur Umrechnung von Binärzahlen in eine endrekursive Variante um.",
+      "link": "16_Rekusrion/endrekursion",
+      "chapter": 16,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "rekursion",
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "16_Rekusrion/iteration",
+      "title": "Iteration",
+      "description": "Wandle eine Endrekursion zur Umrechnung von Binärzahlen in eine Schleife um.",
+      "link": "16_Rekusrion/iteration",
+      "chapter": 16,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "17_Collections/sandkasten_remove",
@@ -1753,6 +2160,43 @@
       "hasExperiments": false,
       "isNew": false,
       "image": null
+    },
+    {
+      "id": "17_Collections/todo",
+      "title": "ToDo-Liste",
+      "description": "Verwalte eine ToDo-Liste in einer HashMap: Einträge hinzufügen, abhaken und ausgeben.",
+      "link": "17_Collections/todo",
+      "chapter": 17,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "collections",
+        "instanzmethoden",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "17_Collections/iterieren",
+      "title": "Listen durchlaufen",
+      "description": "Durchlaufe eine LinkedList auf drei Arten: mit Index, mit for-each und mit der forEach-Methode.",
+      "link": "17_Collections/iterieren",
+      "chapter": 17,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "collections",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "18_Graphen/beispiel_graph",

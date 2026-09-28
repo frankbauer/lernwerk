@@ -1,0 +1,20 @@
+<h3>Aufgabe</h3>
+<p>Schreiben Sie eine <b>private Klassenmethode</b> <code>f</code>, die drei <code>double</code>-Parameter
+    <code>x</code>, <code>k</code> und <code>t</code> (in dieser Reihenfolge) annimmt und einen <code>double</code>-Wert
+    zurückgibt. Berechnen Sie den Rückgabewert anhand folgender mathematischer Formel:</p>
+<math display="block">
+    <mi>f</mi><mo>(</mo><mi>x</mi><mo>,</mo><mi>k</mi><mo>,</mo><mi>t</mi><mo>)</mo>
+    <mo>=</mo>
+    <mi>A</mi><mo>&#x22C5;</mo>
+    <msqrt><mo>|</mo><mi>x</mi><mo>&#x2212;</mo><mi>t</mi><msup><mi>k</mi><mn>2</mn></msup><mo>|</mo></msqrt>
+    <mo>+</mo>
+    <mi>t</mi><mo>&#x22C5;</mo><mo>|</mo><mi>k</mi><mo>+</mo><mi>B</mi><mo>|</mo>
+</math>
+<p>Die Konstanten <code>A</code> und <code>B</code> sind in der Klasse <code>Plotter</code> definiert.</p>
+<p>Das Programm erzeugt mit Hilfe Ihrer Methode einen Satz von Messwerten, die nach der ersten erfolgreichen
+    Ausführung unten als Graph angezeigt werden. Der orangene Graph zeigt Ihre Ergebnisse. Weichen Ihre Werte von den
+    Sollwerten ab, wird zusätzlich ein grauer Graph mit den Sollwerten angezeigt.</p>
+<p>Ergänzen Sie Ihre Methode noch so, dass das Klassenattribut <code>callCount</code> bei jedem Aufruf um 1 erhöht
+    wird.</p>
+<p><b>Hinweis:</b> Für Wurzel und Betrag gibt es die Klassenmethoden <code>Math.sqrt</code> und
+    <code>Math.abs</code>.</p>

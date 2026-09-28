@@ -1,0 +1,12 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Feld anlegen:</b> <code>new LotteryNumber[count]</code> erzeugt ein Feld mit <code>count</code> Plätzen für
+        Referenzen. Die Objekte selbst gibt es danach noch nicht, alle Elemente sind <code>null</code>.</li>
+    <li><b>Objekte erzeugen:</b> Die erste Schleife erzeugt für jeden Platz mit <code>new LotteryNumber()</code> ein
+        eigenes Objekt und speichert die Referenz in <code>numbers[i]</code>.</li>
+    <li><b>Ausgabe:</b> Die zweite Schleife ruft für jedes Objekt <code>getValue()</code> auf. Ohne die erste Schleife
+        würde <code>numbers[i].getValue()</code> eine <code>NullPointerException</code> auslösen.</li>
+</ul>
+<p>Da beide Schleifen <code>count</code> statt einer festen Zahl verwenden, funktioniert das Programm für jede Anzahl.
+    Genauso gut könnte man <code>numbers.length</code> verwenden.</p>

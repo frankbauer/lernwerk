@@ -6,7 +6,7 @@ export default {
     addArgumentsTo(args) {        
         let nr = 0
         while (true) {
-            const input = this.scope.find(`input#args_${nr}`)
+            const input = this.scope.find(`#args_${nr}`)
             if (input.length === 0) break
             console.log("INPUT", input, input.val())
             args[nr] = (`${input.val()}`)

@@ -1,0 +1,19 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>a)</b> <code>new String[20]</code> erzeugt ein Feld mit 20 Elementen. Elemente eines Referenztyps sind mit
+        <code>null</code> vorbelegt. Ausgabe: <code>null</code>.</li>
+    <li><b>b)</b> Elemente eines Zahlentyps sind mit <code>0</code> vorbelegt. Index 98 existiert, denn gültig sind
+        die Indizes 0 bis 999. Ausgabe: <code>0</code>.</li>
+    <li><b>c)</b> Der erste Index ist <code>0</code>. <code>c[2]</code> ist also das <i>dritte</i> Element:
+        <code>9</code>.</li>
+    <li><b>d)</b> Die ganzen Zahlen werden beim Anlegen zu <code>double</code>-Werten. Nach <code>d[2] = 8;</code>
+        enthält das Feld <code>{1.0, 2.0, 8.0}</code>. <code>d[1] + d[2]</code> ergibt <code>10.0</code>.</li>
+    <li><b>e)</b> Zuerst werden die inneren Indizes ausgewertet: <code>e[2]/2</code> ist <code>2/2 = 1</code> und
+        <code>e[0]/9</code> ist <code>8/9 = 0</code> (ganzzahlige Division). Die Zeile lautet also
+        <code>e[1] = (byte)(e[0] * 2);</code>, damit wird <code>e[1]</code> zu <code>16</code>. Ausgegeben wird
+        <code>8 16 2</code>.</li>
+    <li><b>f)</b> Die Schleife füllt das Feld mit <code>2, 4, 6, 8, ..., 20</code>, jedes Element ist also
+        <code>f[i] = 2 + 2 * i</code>. <code>f[3]</code> ist <code>8</code>, und <code>f[8]</code> ist
+        <code>18</code>.</li>
+</ul>

@@ -1,0 +1,46 @@
+<div class="q-mt-xl q-mb-xl">
+    <p><b>5.</b> Schreiben Sie eine neue Klasse <code>Connection</code>, die Verbindungen zu Netzwerken ermöglicht.
+        Es soll nicht nötig sein, Instanzen der Klasse anzulegen, um ihre Funktionalität zu nutzen. Die
+        <code>Connection</code>-Klasse soll bis zu 100 Internetquellen in einem privaten Array verwalten können.</p>
+    <p><b>6.</b> Implementieren Sie in der Klasse <code>Connection</code> die öffentliche Methode <code>add</code>,
+        welche ein <code>Service</code>-Objekt übergeben bekommt und dieses im ersten freien Eintrag des Arrays
+        speichert. Geben Sie zurück, ob das Speichern erfolgreich war.</p>
+    <p><b>7.</b> Ergänzen Sie eine öffentliche Methode <code>computeIntensity</code>, die eine Position (<math><msub><mi>x</mi><mi>p</mi></msub></math> und <math><msub><mi>y</mi><mi>p</mi></msub></math>)
+        und eine Internetquelle übergeben bekommt. Berechnen Sie die Empfangsleistung <math><msub><mi>S</mi><mrow><mi>R</mi><mi>X</mi></mrow></msub></math> des Signals der
+        Internetquelle und geben Sie diese zurück. Verwenden Sie zur Berechnung die nachfolgende Formel. Dabei
+        beschreiben <math><msub><mi>x</mi><mi>s</mi></msub></math> und <math><msub><mi>y</mi><mi>s</mi></msub></math> die Position, <math><msub><mi>S</mi><mrow><mi>T</mi><mi>X</mi></mrow></msub></math> die Sendeleistung und <math><mi>f</mi></math> die Frequenz der
+        Internetquelle.</p>
+    <math display="block">
+        <msub><mi>S</mi><mrow><mi>R</mi><mi>X</mi></mrow></msub>
+        <mo>=</mo>
+        <msub><mi>S</mi><mrow><mi>T</mi><mi>X</mi></mrow></msub>
+        <mo>&#x22C5;</mo>
+        <msup>
+            <mrow><mo>(</mo><mfrac><mn>3000</mn><mrow><mn>4</mn><mo>&#x22C5;</mo><mi>&#x03C0;</mi><mo>&#x22C5;</mo><mi>d</mi><mo>&#x22C5;</mo><mi>f</mi></mrow></mfrac><mo>)</mo></mrow>
+            <mn>2</mn>
+        </msup>
+        <mspace width="1em"></mspace><mtext>wobei</mtext><mspace width="1em"></mspace>
+        <mi>d</mi>
+        <mo>=</mo>
+        <msqrt>
+            <msup><mrow><mo>(</mo><msub><mi>x</mi><mi>s</mi></msub><mo>&#x2212;</mo><msub><mi>x</mi><mi>p</mi></msub><mo>)</mo></mrow><mn>2</mn></msup>
+            <mo>+</mo>
+            <msup><mrow><mo>(</mo><msub><mi>y</mi><mi>s</mi></msub><mo>&#x2212;</mo><msub><mi>y</mi><mi>p</mi></msub><mo>)</mo></mrow><mn>2</mn></msup>
+        </msqrt>
+    </math>
+    <p><b>Hinweis:</b> Sie dürfen davon ausgehen, dass <math><mi>d</mi></math> und <math><mi>f</mi></math> nicht den
+        Wert 0 annehmen.</p>
+    <p><b>8.</b> Schreiben Sie in der Klasse <code>Connection</code> eine öffentliche Methode
+        <code>printAvailableNetworks</code>, welche die Namen aller an einer übergebenen Position verfügbaren
+        Internetquellen ausgibt. Eine Internetquelle ist genau dann verfügbar, wenn die Empfangsleistung größer als 1
+        ist. Nutzen Sie hierfür die Methode <code>computeIntensity</code> aus der vorigen Teilaufgabe.</p>
+    <p><b>9.</b> Implementieren Sie in der Klasse <code>Connection</code> eine öffentliche Methode
+        <code>getStrongestNetwork</code>, welche eine Position und eine Frequenz übergeben bekommt. Zurückgegeben
+        werden soll genau die verwaltete <code>Service</code>-Instanz, welche auf der übergebenen Frequenz sendet und
+        an den gegebenen Koordinaten über die stärkste Empfangsleistung verfügt. Ist die stärkste Empfangsleistung
+        <math><mo>&#x2264;</mo><mn>1</mn></math> oder gibt es keine Internetquellen bei dieser Frequenz, soll
+        <code>null</code> zurückgegeben werden.</p>
+    <p><b>Hinweis:</b> Zwei Fließkommazahlen sollten nicht per <code>==</code> auf Gleichheit überprüft werden. Den
+        Grund dafür lernen Sie noch in der Vorlesung. Verwenden Sie stattdessen:
+        <code>Math.abs(zahl1 - zahl2) &lt; 0.000001</code></p>
+</div>

@@ -1,0 +1,16 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Öffentlich und unveränderlich:</b> <code>phantastisch</code> und <code>name</code> sind
+        <code>public final</code>. <code>final</code> bedeutet, dass das Attribut genau einmal einen Wert bekommt,
+        spätestens im Konstruktor. Danach darf man es zwar von außen lesen (<code>t.name</code>), aber nicht mehr
+        ändern.</li>
+    <li><b>So restriktiv wie möglich:</b> Für Fellfarbe und Fundorte ist nichts weiter gefordert. Sie werden daher
+        <code>private</code> und sind nur innerhalb der Klasse sichtbar.</li>
+    <li><b>Feld als Attribut:</b> <code>private Ort[] vorkommen;</code> deklariert nur die Referenz auf ein Feld. Das
+        Feld selbst entsteht erst im Konstruktor mit <code>new Ort[platz]</code>. Seine Elemente sind zunächst
+        <code>null</code>.</li>
+    <li><b>Konstruktor:</b> Er hat keinen Rückgabetyp und heißt genau wie die Klasse. Die Parameter stehen in der
+        geforderten Reihenfolge: Wahrheitswert, Name, Fellfarbe, Anzahl der Orte. Mit <code>this.</code> greift man
+        auf die Attribute des neuen Objekts zu.</li>
+</ul>

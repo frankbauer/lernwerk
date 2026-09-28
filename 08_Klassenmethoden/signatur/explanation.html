@@ -1,0 +1,19 @@
+<h3>Erklärung</h3>
+
+<p>Eine Methodendeklaration besteht in Java immer aus denselben Teilen, in fester Reihenfolge:</p>
+<ol>
+    <li><b>Modifikatoren</b>: <code>public static</code>. <code>public</code> macht die Methode öffentlich,
+        <code>static</code> macht sie zur Klassenmethode.</li>
+    <li><b>Rückgabetyp</b>: <code>boolean</code>, weil die Methode einen Wahrheitswert zurückgibt.</li>
+    <li><b>Methodenname</b>: <code>millFilledRectangle</code>.</li>
+    <li><b>Parameterliste</b> in runden Klammern: <code>(ServoController c, int x1, int y1, int x2, int y2)</code>.
+        Jeder Parameter besteht aus Typ und Name, mehrere Parameter werden durch Kommas getrennt.</li>
+    <li><b>Methodenrumpf</b> in geschweiften Klammern: <code>{/*...*/}</code>.</li>
+</ol>
+<p>Da alle Parameter außer <code>ServoController c</code> mit einem Komma beginnen, muss
+    <code>ServoController c</code> direkt nach der öffnenden Klammer stehen. Die Reihenfolge der
+    <code>int</code>-Parameter ist für den Compiler egal. Sinnvoll ist aber, die Koordinaten paarweise zu übergeben:
+    zuerst <math><mo>(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>y</mi><mn>1</mn></msub><mo>)</mo></math> für die linke obere Ecke, dann <math><mo>(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>y</mi><mn>2</mn></msub><mo>)</mo></math> für die rechte untere Ecke.</p>
+<p>Dass die Methode über mehrere Zeilen verteilt ist, stört den Compiler nicht. Zeilenumbrüche und Leerzeichen
+    zwischen den Bestandteilen dürfen beliebig gesetzt werden. Üblich ist aber, die Signatur in eine Zeile zu
+    schreiben, wie in der Beispiellösung.</p>

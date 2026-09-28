@@ -1,0 +1,20 @@
+<h3>Aufgabe</h3>
+<p>Gegeben ist der Datentyp <code>Vec2D</code>, der einen 2D-Vektor repräsentiert und zwei <code>double</code>-Werte
+    <code>x</code> und <code>y</code> speichert. Ergänzen Sie die Klasse um einige Rechenmöglichkeiten.</p>
+<ol>
+    <li>Schreiben Sie eine öffentliche Instanzmethode <code>length</code>, die die Länge des Vektors zurückgibt. Nutzen
+        Sie dazu eine geeignete Methode aus der <code>Math</code>-Klasse der
+        <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Math.html" target="_blank">Java-API</a>.
+        Die Länge berechnet sich wie folgt:
+        <math display="block">
+            <mtext>length</mtext><mo>=</mo>
+            <msqrt><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup></msqrt>
+        </math>
+    </li>
+    <li>Schreiben Sie eine öffentliche Methode <code>add</code>, die einen <code>Vec2D</code> übergeben bekommt und ihn
+        komponentenweise auf die Instanz addiert, auf der die Methode aufgerufen wird.</li>
+    <li>Schreiben Sie eine private Klassenmethode <code>normalizeAll</code>, die ein Feld von <code>Vec2D</code>
+        übergeben bekommt und jeden darin enthaltenen Vektor normalisiert, d.h. komponentenweise durch die Länge des
+        Vektors teilt.</li>
+    <li>Testen Sie Ihren Code mit Hilfe einer <code>main</code>-Methode.</li>
+</ol>

@@ -1,0 +1,18 @@
+<div class="q-mb-xl">
+    <p><b>1.</b> Erstellen Sie eine Klasse <code>Service</code>, die eine Internetquelle darstellt (z.B. einen
+        WLAN-Router oder Mobilfunkmast). Modellieren Sie dafür folgende <b>konstante</b> Eigenschaften: Ein Service
+        besitzt einen Namen (<code>String</code>), eine Position (x- und y-Koordinate jeweils als <code>int</code>)
+        und sendet mit einer bestimmten Sendeleistung (<code>double</code>) sowie Frequenz (<code>double</code>).
+        Die möglichen Sendefrequenzen sollen als öffentliche Klassenkonstanten <code>FREQUENCY_WIFI</code>,
+        <code>FREQUENCY_LTE</code> und <code>FREQUENCY_E</code> mit den Werten <code>2.4</code>, <code>2.6</code> und
+        <code>0.9</code> definiert werden.</p>
+    <p><b>2.</b> Schreiben Sie einen öffentlichen Parameterkonstruktor für WLAN-Netzwerke. Der Konstruktor soll Name
+        und Position mit den übergebenen Werten initialisieren. Die Sendeleistung soll <code>0.3</code> betragen und
+        die Frequenz der WLAN-Sendefrequenz <code>FREQUENCY_WIFI</code> entsprechen.</p>
+    <p><b>3.</b> Implementieren Sie einen weiteren öffentlichen Parameterkonstruktor, der eine Position und einen
+        Wahrheitswert übergeben bekommt. Der Wahrheitswert beschreibt, ob der LTE-Mobilfunkstandard verwendet wird.
+        Wird LTE verwendet, sollen der Name der Internetquelle mit <code>"LTE"</code>, die Sendeleistung mit
+        <code>8000</code> und die Frequenz mit der LTE-Sendefrequenz initialisiert werden, andernfalls mit
+        <code>"E"</code>, <code>18000</code> und der E-Sendefrequenz.</p>
+    <p><b>4.</b> Ergänzen Sie in der Klasse <code>Service</code> Getter für alle privaten <b>Attribute</b>.</p>
+</div>

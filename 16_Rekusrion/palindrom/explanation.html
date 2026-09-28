@@ -1,0 +1,18 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Abbruchfall:</b> Ein Wort mit höchstens einem Buchstaben ist immer ein Palindrom. Da jeder rekursive
+        Aufruf das Wort um zwei Buchstaben kürzt, landet man sowohl bei gerader als auch bei ungerader Länge
+        irgendwann hier.</li>
+    <li><b>Vergleich:</b> <code>wort.substring(0, 1)</code> ist der erste, <code>wort.substring(wort.length() - 1,
+        wort.length())</code> der letzte Buchstabe. Strings vergleicht man mit <code>equals</code>. Sind die beiden
+        verschieden, steht das Ergebnis sofort fest: <code>false</code>.</li>
+    <li><b>Rekursiver Fall:</b> Stimmen die äußeren Buchstaben überein, hängt das Ergebnis nur noch vom Inneren ab.
+        <code>wort.substring(1, wort.length() - 1)</code> schneidet vorne und hinten je einen Buchstaben ab.</li>
+</ul>
+<p>Ablauf für <code>"rentner"</code>: <code>"rentner"</code> → <code>"entne"</code> → <code>"ntn"</code> →
+    <code>"t"</code> → <code>true</code>. Bei <code>"kaninchen"</code> sind schon <code>k</code> und <code>n</code>
+    verschieden, das Ergebnis ist direkt <code>false</code>.</p>
+<p>Statt mit <code>substring(0, 1)</code> kann man einzelne Zeichen auch mit <code>charAt</code> vergleichen:
+    <code>wort.charAt(0) == wort.charAt(wort.length() - 1)</code>. Für <code>char</code>-Werte ist <code>==</code>
+    richtig.</p>

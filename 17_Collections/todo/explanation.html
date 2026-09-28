@@ -1,0 +1,19 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Konstruktor:</b> Das Attribut <code>todo</code> ist zunächst <code>null</code>. Erst
+        <code>new HashMap&lt;String, Boolean&gt;()</code> erzeugt eine leere Map, in die man Einträge legen kann.</li>
+    <li><b><code>add</code>:</b> <code>containsKey</code> prüft, ob es den Schlüssel schon gibt. Nur dann wird mit
+        <code>put(description, false)</code> ein neuer, unerledigter Eintrag angelegt. Ohne die Prüfung würde ein
+        erneutes <code>add</code> einen erledigten Eintrag wieder auf unerledigt setzen, denn <code>put</code>
+        überschreibt den Wert eines vorhandenen Schlüssels.</li>
+    <li><b><code>done</code>:</b> Genau dieses Überschreiben nutzt <code>done</code>: <code>put(description,
+        true)</code> ändert den Wert des vorhandenen Eintrags. Unbekannte Einträge werden nicht angelegt, stattdessen
+        wird <code>false</code> zurückgegeben.</li>
+    <li><b><code>print</code>:</b> <code>keySet()</code> liefert alle Schlüssel, die for-each-Schleife durchläuft
+        sie. Mit <code>get(key)</code> erhält man den zugehörigen Wert. Weil der Wert ein <code>Boolean</code> ist,
+        kann er direkt als Bedingung verwendet werden.</li>
+</ul>
+<p>Eine <code>HashMap</code> merkt sich <b>keine Reihenfolge</b>. In welcher Reihenfolge <code>keySet()</code> die
+    Einträge liefert, hängt von den Hashwerten der Schlüssel ab. Deshalb ist die Reihenfolge der Ausgabe hier egal.
+    Soll die Einfügereihenfolge erhalten bleiben, verwendet man eine <code>LinkedHashMap</code>.</p>

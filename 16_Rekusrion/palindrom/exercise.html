@@ -1,0 +1,20 @@
+<h3>Aufgabe</h3>
+<p>Ergänzen Sie die gegebene Methode <code>istPalindrom</code> um folgende Funktionalität:</p>
+<p>Die Methode soll <b>rekursiv</b> überprüfen, ob das übergebene (kleingeschriebene) Wort ein Palindrom ist. Ein
+    Wort ist genau dann ein Palindrom, wenn es rückwärts gelesen das gleiche Wort ergibt wie vorwärts (z.B.
+    <code>reittier</code>). Das Programm soll folgende Ausgabe erzeugen:</p>
+<pre output>regallager ist ein Palindrom: true
+rentner ist ein Palindrom: true
+kaninchen ist ein Palindrom: false</pre>
+<p>Nutzen Sie dazu die Methode <code>substring</code> aus der <code>String</code>-API:</p>
+<blockquote>
+    <pre><code>public String substring(int beginIndex, int endIndex)</code></pre>
+    <p>Gibt einen neuen String zurück, der ein Teil dieses Strings ist. Er beginnt beim Index
+        <code>beginIndex</code> und reicht bis zum Zeichen mit dem Index <code>endIndex - 1</code>. Die Länge des
+        Teil-Strings ist also <code>endIndex - beginIndex</code>.</p>
+    <p><b>Beispiele:</b></p>
+    <pre><code>"hamburger".substring(4, 8)   // ergibt "urge"
+"smiles".substring(1, 5)      // ergibt "mile"</code></pre>
+    <p><b>Parameter:</b> <code>beginIndex</code> – Startindex (inklusive), <code>endIndex</code> – Endindex
+        (exklusive)</p>
+</blockquote>

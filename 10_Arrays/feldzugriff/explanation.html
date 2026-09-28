@@ -1,0 +1,42 @@
+<h3>Erklärung</h3>
+
+<p>Ein Feld der Länge <code>n</code> hat die Indizes <code>0</code> bis <code>n - 1</code>. Wird ein anderer Index
+    verwendet, wirft Java eine <code>ArrayIndexOutOfBoundsException</code>. In der Beispiellösung gibt jede Schleife
+    statt der Werte die verwendeten Indizes aus.</p>
+
+<p><b>Alle Elemente</b> besuchen:</p>
+<ul>
+    <li><b>a)</b> <code>i</code> läuft von 0 bis 99, genau die Indizes des Feldes.</li>
+    <li><b>b)</b> <code>i % b.length</code> liegt immer zwischen 0 und 3. Die Indizes werden mehrfach besucht, aber
+        nie überschritten.</li>
+    <li><b>e)</b> und <b>f)</b> Die Bedingung vor dem Zugriff verhindert zu große Indizes. <code>break</code> beendet
+        die Schleife, <code>continue</code> überspringt die restlichen Durchläufe. Beides erreicht hier dasselbe.</li>
+    <li><b>g)</b> Nach dem Zugriff auf den letzten Index <code>4</code> beendet <code>break</code> die Schleife.</li>
+    <li><b>i)</b> Die Indizes 0 und 1 werden über <code>i[t-1]</code> und <code>i[t-2]</code> gelesen, 2 bis 5 über
+        <code>i[t]</code>.</li>
+    <li><b>m)</b> Die Schleife läuft rückwärts. Bis <code>u</code> bei 4 angekommen ist, wird der Zugriff mit
+        <code>continue</code> übersprungen, danach werden 4 bis 0 besucht.</li>
+</ul>
+
+<p><b>IndexOutOfBoundsException</b>:</p>
+<ul>
+    <li><b>c)</b> <code>x</code> beginnt bei <code>c.length</code>, also bei 4. Das ist schon der erste ungültige
+        Index.</li>
+    <li><b>d)</b> Im letzten Durchlauf ist <code>t = 4</code>, geschrieben wird dann auf <code>d[6]</code>.</li>
+    <li><b>h)</b> Anders als in g) steht hier <code>continue</code>. Das beendet die Schleife nicht, und
+        <code>h[5]</code> wird gelesen.</li>
+    <li><b>k)</b> <code>l</code> beginnt beim letzten Index 29, wird aber mit <code>l++</code> <i>erhöht</i>. Der
+        nächste Zugriff ist <code>k[30]</code>.</li>
+</ul>
+
+<p><b>Endlosschleife</b>:</p>
+<ul>
+    <li><b>j)</b> Im Rumpf wird <code>l</code> mit <code>l % j.length</code> immer wieder auf einen Wert zwischen 0 und
+        3 gesetzt. <code>l &lt; 100</code> ist daher immer erfüllt.</li>
+</ul>
+
+<p><b>Keine oder einige Elemente</b>:</p>
+<ul>
+    <li><b>l)</b> Schon im ersten Durchlauf ist <code>v = 50 &gt;= l.length</code>, und <code>break</code> beendet die
+        Schleife, bevor ein Element besucht wird.</li>
+</ul>

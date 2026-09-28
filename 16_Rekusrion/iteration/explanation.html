@@ -1,0 +1,16 @@
+<h3>Erklärung</h3>
+
+<p>Eine Endrekursion lässt sich nach einem festen Schema in eine Schleife umwandeln:</p>
+<ol>
+    <li>Jeder Parameter, der sich zwischen den Aufrufen ändert, wird zu einer <b>Variable</b>. Der zusätzliche
+        Parameter <code>zwErg</code> bekommt den Startwert aus dem ersten Aufruf, also <code>0</code>.</li>
+    <li>Der <b>Abbruchfall</b> wird zur Schleifenbedingung, allerdings verneint: Die Schleife läuft,
+        <i>solange</i> die Rekursion noch nicht abbrechen würde (<code>!(binaryNumber.length() == 0)</code>).</li>
+    <li>Der <b>rekursive Aufruf</b> wird ersetzt, indem die Variablen auf die Werte gesetzt werden, die sonst als
+        Argumente übergeben würden.</li>
+    <li>Was im Abbruchfall zurückgegeben würde, wird <b>nach der Schleife</b> zurückgegeben.</li>
+</ol>
+<p>Das funktioniert, weil bei einer Endrekursion nach dem rekursiven Aufruf nichts mehr gerechnet wird. Bei einer
+    Kopfrekursion wie in der Aufgabe <i>Endrekursion</i> ist diese direkte Umwandlung nicht möglich.</p>
+<p>Einfacher lässt sich die Schleife auch ohne <code>substring</code> schreiben:
+    <code>for (int i = 0; i &lt; binaryNumber.length(); i++)</code> mit <code>binaryNumber.charAt(i)</code>.</p>

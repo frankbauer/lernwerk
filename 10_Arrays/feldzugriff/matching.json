@@ -1,0 +1,65 @@
+{
+    "options": [
+        "IndexOutOfBoundsException",
+        "Endlosschleife",
+        "Besucht keine oder einige Elemente",
+        "Besucht alle Elemente"
+    ],
+    "items": [
+        {
+            "code": "int[] a = new int[100];\nfor (int i=0; i<100; i++) {\n    System.out.print(a[i]);\n}",
+            "answer": "Besucht alle Elemente"
+        },
+        {
+            "code": "char[] b = {'A', 'B', 'C', 'D'};\nfor (int i=0; i<100; i++) {\n    System.out.print(b[i%b.length]);\n}",
+            "answer": "Besucht alle Elemente"
+        },
+        {
+            "code": "int[] c = {10, -20, 30, -40};\nfor (int x=c.length; x>0; x++) {\n    System.out.print(c[x]);\n}",
+            "answer": "IndexOutOfBoundsException"
+        },
+        {
+            "code": "int[] d = {1, 1, 0, 0, 0, 0};\nfor (int t=0; t<d.length-1; t++) {\n    d[t+2] = d[t] + d[t+1];\n}",
+            "answer": "IndexOutOfBoundsException"
+        },
+        {
+            "code": "int[] e = new int[5];\nfor (int v=0; v<50; v++) {\n    if (v>=e.length) break;\n    System.out.print(e[v]);\n}",
+            "answer": "Besucht alle Elemente"
+        },
+        {
+            "code": "Player[] f = new Player[5];\nfor (int i=0; i<50; i++) {\n    if (i>=f.length) continue;\n    System.out.print(f[i]);\n}",
+            "answer": "Besucht alle Elemente"
+        },
+        {
+            "code": "int[] g = new int[5];\nfor (int k=0; k<50; k++) {\n    System.out.print(g[k]);\n    if (k>=g.length - 1) break;\n}",
+            "answer": "Besucht alle Elemente"
+        },
+        {
+            "code": "Tree[] h = new Tree[5];\nfor (int k=0; k<50; k++) {\n    System.out.print(h[k]);\n    if (k>=h.length - 1) continue;\n}",
+            "answer": "IndexOutOfBoundsException"
+        },
+        {
+            "code": "int[] i = {1, 1, 0, 0, 0, 0};\nfor (int t=0; t<i.length; t++) {\n    if (t<2) continue;\n    i[t] = i[t-1] + i[t-2];\n    System.out.print(i[t]);\n}",
+            "answer": "Besucht alle Elemente"
+        },
+        {
+            "code": "char[] j = {'A', 'B', 'C', 'D'};\nfor (int l=0; l<100; l++) {\n    l = l%j.length;\n    System.out.print(j[l]);\n}",
+            "answer": "Endlosschleife"
+        },
+        {
+            "code": "String[] k = new String[30];\nfor (int l=k.length-1; l>=0; l++) {\n    System.out.print(k[l]);\n}",
+            "answer": "IndexOutOfBoundsException"
+        },
+        {
+            "code": "Robot[] l = new Robot[5];\nfor (int v=50; v>=5; v--) {\n    if (v>=l.length) break;\n    System.out.print(l[v]);\n}",
+            "answer": "Besucht keine oder einige Elemente"
+        },
+        {
+            "code": "int[] m = new int[5];\nfor (int u=50; u>=0; u--) {\n    if (u>=m.length) continue;\n    System.out.print(m[u]);\n}",
+            "answer": "Besucht alle Elemente"
+        }
+    ],
+    "codeWidth": "26em",
+    "hint": "Spielen Sie die Schleife im Kopf durch: Welchen Wert hat die Zählvariable beim ersten und beim letzten Durchlauf? Erlaubt sind nur Indizes von <code>0</code> bis <code>length - 1</code>. <code>break</code> beendet die Schleife sofort, <code>continue</code> überspringt nur den Rest des aktuellen Durchlaufs.",
+    "successMessage": "<b>Richtig!</b> Alle Schleifen sind korrekt eingeordnet. In der Beispiellösung können Sie die Schleifen ausführen und die besuchten Indizes selbst sehen."
+}

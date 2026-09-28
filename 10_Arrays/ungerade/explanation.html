@@ -1,0 +1,13 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li>Die Schleife besucht mit <code>i</code> von <code>0</code> bis <code>data.length - 1</code> jedes Element
+        genau einmal.</li>
+    <li>Eine Zahl ist ungerade, wenn beim Teilen durch 2 ein Rest bleibt. Die Bedingung lautet
+        <code>data[i] % 2 != 0</code>.</li>
+    <li><code>data[i] *= 2;</code> ist die Kurzform von <code>data[i] = data[i] * 2;</code> und schreibt den
+        verdoppelten Wert zurück in das Feld.</li>
+</ul>
+<p><b>Achtung bei negativen Zahlen:</b> In Java ist <code>-3 % 2</code> gleich <code>-1</code>, nicht
+    <code>1</code>. Die Bedingung <code>data[i] % 2 == 1</code> würde negative ungerade Zahlen daher übersehen.
+    <code>data[i] % 2 != 0</code> funktioniert für alle Werte.</p>

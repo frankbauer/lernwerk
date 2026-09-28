@@ -1,0 +1,20 @@
+<h3>Erklärung</h3>
+
+<p>Eine rekursive Methode besteht aus einem <b>Abbruchfall</b> und einem <b>rekursiven Fall</b>:</p>
+<ul>
+    <li><b>Abbruchfall:</b> Ein leerer oder einbuchstabiger Text sieht umgedreht genauso aus. Er wird mit
+        <code>return text;</code> direkt zurückgegeben. Diese Prüfung muss zuerst kommen, sonst würde
+        <code>text.charAt(0)</code> bei einem leeren Text eine Exception auslösen, und die Rekursion würde nie
+        enden.</li>
+    <li><b>Rekursiver Fall:</b> Der Text wird zerlegt in den ersten Buchstaben und den Rest. Der Rest ist um einen
+        Buchstaben kürzer und wird mit demselben Verfahren umgedreht. Danach wird der erste Buchstabe hinten
+        angehängt: <code>dreheUm("Beispiel")</code> = <code>dreheUm("eispiel") + 'B'</code>.</li>
+</ul>
+<p>Die Reihenfolge der drei Zeilen im rekursiven Fall ist teilweise frei. <code>rest</code> muss nur vor dem
+    rekursiven Aufruf deklariert sein, und alle drei Zeilen müssen hinter dem <code>if</code>-Block und vor dem
+    letzten <code>return</code> stehen.</p>
+<p>Ablauf für <code>"abc"</code>:</p>
+<pre>dreheUm("abc") = dreheUm("bc") + 'a'
+               = (dreheUm("c") + 'b') + 'a'
+               = ("c" + 'b') + 'a'
+               = "cba"</pre>

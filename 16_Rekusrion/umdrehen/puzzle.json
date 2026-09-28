@@ -1,0 +1,30 @@
+{
+    "lines": [
+        { "code": "public class Umdreher {", "indent": 0 },
+        { "code": "if (text == null || text.length() <= 1) {", "indent": 2 },
+        { "code": "return restUmgedreht + ersterBuchstabe;", "indent": 2 },
+        { "code": "String restUmgedreht = Umdreher.dreheUm(rest);", "indent": 2 },
+        { "code": "return text;", "indent": 3 },
+        { "code": "String rest = text.substring(1, text.length());", "indent": 2 },
+        { "code": "char ersterBuchstabe = text.charAt(0);", "indent": 2 },
+        { "code": "public static String dreheUm(String text) {", "indent": 1 },
+        { "code": "}", "indent": 1 },
+        { "code": "} // if", "indent": 2 },
+        { "code": "} // class", "indent": 0 }
+    ],
+    "rules": [
+        { "first": 0, "message": "Die Klassendeklaration <code>public class Umdreher {</code> muss ganz oben stehen." },
+        { "last": 10, "message": "Die schließende Klammer der Klasse <code>} // class</code> muss ganz unten stehen." },
+        { "position": 7, "index": 1, "message": "Die Methode <code>dreheUm</code> muss direkt nach der Klassendeklaration beginnen. Anweisungen außerhalb einer Methode sind nicht erlaubt." },
+        { "position": 8, "index": -2, "message": "Die Methode muss direkt vor der schließenden Klammer der Klasse mit <code>}</code> enden." },
+        { "before": [1, 4], "message": "<code>return text;</code> gehört in den <code>if</code>-Block: Nur bei kurzen Texten wird der Text unverändert zurückgegeben." },
+        { "before": [4, 9], "message": "<code>return text;</code> gehört in den <code>if</code>-Block. Steht es danach, wird der Code dahinter nie erreicht." },
+        { "before": [1, 9], "message": "Der <code>if</code>-Block muss geöffnet werden, bevor er mit <code>} // if</code> geschlossen wird." },
+        { "position": 2, "index": -3, "message": "<code>return restUmgedreht + ersterBuchstabe;</code> muss die letzte Anweisung der Methode sein. Nach einem <code>return</code> wird kein Code mehr ausgeführt." },
+        { "before": [9, 5], "message": "<code>String rest = ...</code> gehört hinter den <code>if</code>-Block. Variablen, die im <code>if</code>-Block deklariert werden, sind danach nicht mehr sichtbar." },
+        { "before": [9, 3], "message": "Der rekursive Aufruf gehört hinter den <code>if</code>-Block. Variablen, die im <code>if</code>-Block deklariert werden, sind danach nicht mehr sichtbar." },
+        { "before": [9, 6], "message": "<code>char ersterBuchstabe = ...</code> gehört hinter den <code>if</code>-Block. Variablen, die im <code>if</code>-Block deklariert werden, sind danach nicht mehr sichtbar." },
+        { "before": [5, 3], "message": "<code>rest</code> wird im rekursiven Aufruf verwendet, bevor die Variable deklariert wurde." }
+    ],
+    "successMessage": "<b>Richtig!</b> Zuerst wird der Abbruchfall geprüft, dann wird der Rest rekursiv umgedreht und der erste Buchstabe hinten angehängt. Vergleichen Sie Ihre Reihenfolge mit der Beispiellösung."
+}

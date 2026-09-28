@@ -1,0 +1,15 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Neues Feld:</b> <code>new double[data.length]</code> legt ein Ergebnisfeld mit gleich vielen Einträgen
+        an.</li>
+    <li><b>Äußere Schleife:</b> Für jede Position <code>i</code> wird ein Durchschnitt berechnet.</li>
+    <li><b>Innere Schleife:</b> Sie summiert <code>data[i-3]</code> bis <code>data[i]</code>. Am Anfang des Feldes
+        gibt es weniger als drei Vorgänger. <code>Math.max(0, i - 3)</code> verhindert, dass ein negativer Index
+        verwendet wird.</li>
+    <li><b>Durchschnitt:</b> <code>counter</code> zählt, wie viele Werte tatsächlich summiert wurden (1 bis 4). Weil
+        <code>sum</code> ein <code>double</code> ist, ist auch <code>sum / counter</code> eine Division mit
+        Nachkommastellen. Mit einer <code>int</code>-Summe wäre z.B. <code>5 / 2</code> nur <code>2</code>.</li>
+</ul>
+<p>Beispiel für <code>i = 5</code>: Die innere Schleife läuft von <code>j = 2</code> bis <code>5</code> und
+    summiert <code>4 + 9 + 7 + (-4) = 16</code>. Der Durchschnitt ist <code>16 / 4 = 4.0</code>.</p>

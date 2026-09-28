@@ -1,0 +1,15 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Datentypen:</b> Eine 8-Bit-Ganzzahl ist ein <code>byte</code>. Ein Feld von Spielregeln ist
+        <code>Spielregel[]</code>, ein 2D-Feld von Figuren <code>Figur[][]</code>.</li>
+    <li><b>Öffentlich und unveränderlich:</b> Regeln, Schwierigkeitsgrad und Anleitung sind
+        <code>public final</code>. Das Spielbrett selbst ist nicht gefordert und wird daher <code>private</code>.</li>
+    <li><b>Achtung bei <code>final</code>-Feldern:</b> <code>final</code> verhindert nur, dass <code>regeln</code>
+        später auf ein anderes Feld zeigt. Die Elemente des Feldes könnten trotzdem geändert werden, z.B. mit
+        <code>s.regeln[0] = null;</code>.</li>
+    <li><b>Quadratisches Feld:</b> <code>new Figur[sz][sz]</code> erzeugt <code>sz</code> Zeilen mit je
+        <code>sz</code> Spalten. Alle Elemente sind zunächst <code>null</code>.</li>
+    <li><b>Parameter:</b> Der Schwierigkeitsgrad wird als <code>byte</code> übergeben. Beim Aufruf mit einer
+        Konstanten braucht man daher einen Cast, z.B. <code>(byte) 3</code>.</li>
+</ul>

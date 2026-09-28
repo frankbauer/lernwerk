@@ -1,0 +1,17 @@
+<h3>Erklärung</h3>
+
+<p>Die fehlende Deklaration lautet:</p>
+<pre code>public static boolean isLeapYear(int year)</pre>
+<ul>
+    <li><b>Modifikatoren:</b> <code>public</code>, weil die Methode öffentlich sein soll, und <code>static</code>,
+        weil es eine Klassenmethode ist. Nur deshalb kann <code>main</code> sie ohne Objekt direkt mit
+        <code>isLeapYear(2018)</code> aufrufen.</li>
+    <li><b>Rückgabetyp:</b> Der Rumpf gibt mit <code>return true;</code> und <code>return false;</code>
+        Wahrheitswerte zurück. Der Rückgabetyp ist also <code>boolean</code>.</li>
+    <li><b>Parameter:</b> Im Rumpf wird die Variable <code>year</code> verwendet, aber nirgends deklariert. Sie muss
+        daher ein Parameter sein. Die Aufrufe übergeben ganze Zahlen wie <code>2018</code>, der Typ ist also
+        <code>int</code>.</li>
+</ul>
+<p>Der Rumpf setzt die Regeln des gregorianischen Kalenders um: Ein Jahr ist ein Schaltjahr, wenn es durch 4 teilbar
+    ist, außer es ist durch 100 teilbar. Durch 400 teilbare Jahre sind aber wieder Schaltjahre. Daher ist 2000 ein
+    Schaltjahr, 1900 dagegen nicht.</p>

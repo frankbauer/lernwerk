@@ -1,0 +1,15 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>for-Schleife mit Index:</b> Wie bei einem Feld läuft <code>i</code> von <code>0</code> bis
+        <code>list.size() - 1</code>. Statt <code>list[i]</code> schreibt man bei Listen <code>list.get(i)</code>.
+        <br>Bei einer <code>LinkedList</code> ist das allerdings langsam: <code>get(i)</code> muss sich jedes Mal vom
+        Anfang der Liste bis zum <code>i</code>-ten Element durchhangeln.</li>
+    <li><b>for-each-Schleife:</b> <code>for (String s : list)</code> liefert nacheinander jedes Element, ohne dass man
+        einen Index braucht. Intern verwendet sie einen Iterator, der sich die aktuelle Position merkt. Bei einer
+        <code>LinkedList</code> ist das die übliche Variante.</li>
+    <li><b><code>forEach</code>-Methode:</b> Hier übergibt man keine Schleife, sondern eine Funktion, die für jedes
+        Element aufgerufen wird. <code>s -&gt; System.out.print(s + " ")</code> ist ein Lambda-Ausdruck: links vom
+        Pfeil steht der Parameter (das aktuelle Element), rechts, was damit passieren soll.</li>
+</ul>
+<p>Statt <code>list.stream().forEach(...)</code> kann man auch direkt <code>list.forEach(...)</code> schreiben.</p>

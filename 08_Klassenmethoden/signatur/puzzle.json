@@ -1,0 +1,42 @@
+{
+    "lines": [
+        { "code": "public class Mill {", "indent": 0 },
+        { "code": "}", "indent": 0 },
+        { "code": "public static", "indent": 1 },
+        { "code": "boolean", "indent": 1 },
+        { "code": "millFilledRectangle", "indent": 1 },
+        { "code": "(", "indent": 1 },
+        { "code": "ServoController c", "indent": 2 },
+        { "code": ", int x1", "indent": 2 },
+        { "code": ", int y1", "indent": 2 },
+        { "code": ", int x2", "indent": 2 },
+        { "code": ", int y2", "indent": 2 },
+        { "code": ")", "indent": 1 },
+        { "code": "{/*...*/}", "indent": 1 }
+    ],
+    "rules": [
+        { "first": 0, "message": "Die Klassendeklaration <code>public class Mill {</code> muss ganz oben stehen." },
+        { "last": 1, "message": "Die schließende Klammer der Klasse muss ganz unten stehen. Methoden stehen immer innerhalb einer Klasse." },
+        { "position": 2, "index": 1, "message": "Die Deklaration beginnt mit den Modifikatoren <code>public static</code>." },
+        { "before": [2, 3], "message": "Der Rückgabetyp <code>boolean</code> steht nach den Modifikatoren <code>public static</code>." },
+        { "before": [3, 4], "message": "Der Methodenname steht nach dem Rückgabetyp." },
+        { "before": [4, 5], "message": "Die Parameterliste <code>(</code> folgt direkt auf den Methodennamen." },
+        { "before": [5, 6], "message": "Die Parameter stehen innerhalb der runden Klammern." },
+        { "before": [5, 7], "message": "Die Parameter stehen innerhalb der runden Klammern." },
+        { "before": [5, 8], "message": "Die Parameter stehen innerhalb der runden Klammern." },
+        { "before": [5, 9], "message": "Die Parameter stehen innerhalb der runden Klammern." },
+        { "before": [5, 10], "message": "Die Parameter stehen innerhalb der runden Klammern." },
+        { "position": 6, "index": 5, "message": "Der erste Parameter darf nicht mit einem Komma beginnen. Welcher Parameter hat kein Komma?" },
+        { "before": [6, 11], "message": "Die Parameter stehen innerhalb der runden Klammern." },
+        { "before": [7, 11], "message": "Die Parameter stehen innerhalb der runden Klammern." },
+        { "before": [8, 11], "message": "Die Parameter stehen innerhalb der runden Klammern." },
+        { "before": [9, 11], "message": "Die Parameter stehen innerhalb der runden Klammern." },
+        { "before": [10, 11], "message": "Die Parameter stehen innerhalb der runden Klammern." },
+        { "before": [11, 12], "message": "Der Methodenrumpf <code>{/*...*/}</code> folgt nach der Parameterliste." },
+        { "before": [7, 8], "warning": true, "message": "Die Koordinaten sollten paarweise übergeben werden: zuerst <code>x1</code>, dann <code>y1</code>." },
+        { "before": [9, 10], "warning": true, "message": "Die Koordinaten sollten paarweise übergeben werden: zuerst <code>x2</code>, dann <code>y2</code>." },
+        { "before": [8, 9], "warning": true, "message": "Zuerst sollte die linke obere Ecke <code>(x1, y1)</code> übergeben werden, dann die rechte untere Ecke <code>(x2, y2)</code>." },
+        { "before": [7, 9], "warning": true, "message": "Zuerst sollte die linke obere Ecke <code>(x1, y1)</code> übergeben werden, dann die rechte untere Ecke <code>(x2, y2)</code>." }
+    ],
+    "successMessage": "<b>Richtig!</b> Modifikatoren, Rückgabetyp, Name, Parameterliste und Rumpf stehen in der richtigen Reihenfolge. In der Beispiellösung steht die Signatur in einer Zeile."
+}
