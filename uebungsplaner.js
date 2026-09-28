@@ -80,7 +80,8 @@
         types: [],
         levels: [],
         features: [],
-        concept: "",
+        conceptFilter: [], // concept ids, any of them (empty = any concept)
+        chapterFilter: [], // chapter numbers, any of them (empty = any chapter)
         query: "",
         profileOpen: true,
         moreOpen: false,
@@ -109,6 +110,31 @@
         } catch (e) {
             // ignore
         }
+    }
+
+    // --- URL parameters ----------------------------------------------------
+
+    /**
+     * Filters that can be preset via the URL, e.g. uebersicht.html?chapter=5,6&concept=schleifen.
+     * Several values (comma separated or repeated) are ORed; chapter and concept filter are ANDed.
+     */
+    function readUrlFilters() {
+        const params = new URLSearchParams(location.search);
+        const values = (key) => [...new Set(params.getAll(key).flatMap((v) => v.split(",")).map((v) => v.trim()).filter(Boolean))];
+        if (params.has("concept")) state.conceptFilter = values("concept");
+        if (params.has("chapter")) state.chapterFilter = values("chapter").map(Number).filter((n) => !isNaN(n));
+    }
+
+    /** Mirrors the concept/chapter filter into the URL (keeping all other parameters untouched). */
+    function writeUrlFilters() {
+        const parts = location.search
+            .slice(1)
+            .split("&")
+            .filter((part) => part && !/^(concept|chapter)(=|$)/.test(part));
+        if (state.chapterFilter.length) parts.push(`chapter=${state.chapterFilter.join(",")}`);
+        if (state.conceptFilter.length) parts.push(`concept=${state.conceptFilter.map(encodeURIComponent).join(",")}`);
+        const search = parts.length ? `?${parts.join("&")}` : "";
+        if (search !== location.search) history.replaceState(history.state, "", `${location.pathname}${search}${location.hash}`);
     }
 
     // --- Knowledge model ----------------------------------------------------
@@ -192,7 +218,8 @@
         if (skip !== "type" && state.types.length && !state.types.includes(ex.type)) return false;
         if (skip !== "level" && state.levels.length && !state.levels.includes(ex.difficulty)) return false;
         if (skip !== "feature" && !state.features.every((f) => FEATURES[f].test(ex))) return false;
-        if (skip !== "concept" && state.concept && !ex.tags.includes(state.concept)) return false;
+        if (skip !== "concept" && state.conceptFilter.length && !state.conceptFilter.some((c) => ex.tags.includes(c))) return false;
+        if (skip !== "chapter" && state.chapterFilter.length && !state.chapterFilter.includes(ex.chapter)) return false;
         if (state.query) {
             const words = normalize(state.query).split(/\s+/).filter(Boolean);
             const text = ex._search;
@@ -256,9 +283,10 @@
     function pill(conceptId, iconOnly = false) {
         const st = hasProfile() ? conceptState(conceptId) : "none";
         const c = conceptById[conceptId];
-        const active = state.concept === conceptId ? " is-active" : "";
+        const on = state.conceptFilter.includes(conceptId);
+        const active = on ? " is-active" : "";
         const tip = hasProfile() ? `${c.label} · ${STATE_INFO[st].label}` : c.label;
-        const attrs = `data-action="focus-concept" data-concept="${c.id}" aria-pressed="${state.concept === c.id}"`;
+        const attrs = `data-action="focus-concept" data-concept="${c.id}" aria-pressed="${on}"`;
         if (iconOnly) {
             return `<button type="button" class="concept concept-${st}${active}" ${attrs}
                 data-tip="${esc(tip)}" aria-label="${esc(tip)} – nach diesem Konzept filtern">${icon(c.id)}</button>`;
@@ -283,6 +311,13 @@
             return `<span class="feature feature-none">${compact ? "Ohne Lösung" : "Offene Aufgabe ohne Lösung"}</span>`;
         }
         return items.map(([label]) => `<span class="feature">${label}</span>`).join("");
+    }
+
+    function chapterTip(number) {
+        const ch = chapterByNumber[number];
+        return isOnly(state.chapterFilter, number)
+            ? `Kapitel ${number} · ${ch.title} – klicken, um den Kapitelfilter aufzuheben`
+            : `Kapitel ${number} · ${ch.title} – klicken, um nur dieses Kapitel anzuzeigen`;
     }
 
     // --- Rendering: profile -------------------------------------------------
@@ -411,12 +446,21 @@
                     count("feature", (ex) => f.test(ex) && state.features.every((g) => FEATURES[g].test(ex))))
             )
             .join("");
-        $("facet-concept").innerHTML =
-            `<option value="">Beliebig</option>` +
-            concepts.map((c) => `<option value="${c.id}">${esc(c.label)}</option>`).join("");
-        $("facet-concept").value = state.concept;
+        // several values can only come from the URL; the selects then show "Mehrere"
+        const facetSelect = (id, selected, options) => {
+            $(id).innerHTML =
+                `<option value="">Beliebig</option>` +
+                (selected.length > 1 ? `<option value="*" disabled>Mehrere (${selected.length})</option>` : "") +
+                options.join("");
+            $(id).value = selected.length > 1 ? "*" : String(selected[0] ?? "");
+        };
+        facetSelect("facet-concept", state.conceptFilter,
+            concepts.map((c) => `<option value="${c.id}">${esc(c.label)}</option>`));
+        facetSelect("facet-chapter", state.chapterFilter,
+            chapters.map((ch) => `<option value="${ch.number}">${ch.number} · ${esc(ch.title)}</option>`));
 
-        const extra = state.types.length + state.levels.length + state.features.length + (state.concept ? 1 : 0);
+        const extra = state.types.length + state.levels.length + state.features.length +
+            state.conceptFilter.length + state.chapterFilter.length;
         $("more").hidden = !state.moreOpen;
         $("more-toggle").setAttribute("aria-expanded", String(state.moreOpen));
         $("more-toggle").innerHTML = `Weitere Filter${extra ? `<span class="badge">${extra}</span>` : ""}`;
@@ -433,7 +477,10 @@
     function activeChips() {
         const chips = [];
         if (state.query) chips.push(["query", `„${esc(state.query)}“`]);
-        if (state.concept) chips.push(["concept", `${icon(state.concept, "chip-icon")}${esc(conceptById[state.concept].label)}`]);
+        state.chapterFilter.forEach((n) =>
+            chips.push([`chapter:${n}`, `Kapitel ${n} · ${esc(chapterByNumber[n].title)}`]));
+        state.conceptFilter.forEach((c) =>
+            chips.push([`concept:${c}`, `${icon(c, "chip-icon")}${esc(conceptById[c].label)}`]));
         state.types.forEach((t) => chips.push([`type:${t}`, esc(typeLabel[t])]));
         state.levels.forEach((l) => chips.push([`level:${l}`, `Level ${l}`]));
         state.features.forEach((f) => chips.push([`feature:${f}`, FEATURES[f].label]));
@@ -474,7 +521,8 @@
             <a class="card-media${ex.image ? " has-image" : ""}" href="${esc(exerciseHref(ex.link))}" tabindex="-1" aria-hidden="true"
                 style="--hue:${195 + ((ex.chapter * 37) % 80)}">
                 ${media}
-                <span class="card-chapter">Kap. ${ex.chapter}</span>
+                <span class="card-chapter${state.chapterFilter.includes(ex.chapter) ? " is-active" : ""}" data-action="focus-chapter"
+                    data-chapter="${ex.chapter}" title="${esc(chapterTip(ex.chapter))}">Kap. ${ex.chapter}</span>
             </a>
             <button type="button" class="done-btn" data-action="toggle-done" data-id="${esc(ex.id)}"
                 aria-pressed="${a.done}" aria-label="Als erledigt markieren"
@@ -499,7 +547,9 @@
                 </div>
             </td>
             <td>${typeBadge(ex.type)}</td>
-            <td class="c-chapter" title="${esc(chapterByNumber[ex.chapter].title)}">${ex.chapter}</td>
+            <td class="c-chapter"><button type="button" class="chapter-btn${state.chapterFilter.includes(ex.chapter) ? " is-active" : ""}"
+                data-action="focus-chapter" data-chapter="${ex.chapter}" aria-pressed="${state.chapterFilter.includes(ex.chapter)}"
+                title="${esc(chapterTip(ex.chapter))}">${ex.chapter}</button></td>
             <td>${levelDots(ex.difficulty)}</td>
             <td><div class="pills">${ex.tags.map((t) => pill(t)).join("")}</div></td>
             <td><div class="features features-compact">${features(ex, true)}</div></td>
@@ -551,7 +601,9 @@
                 const heard = hasProfile() && chapter <= state.lastHeard;
                 return `<section class="group">
                     <h2 class="group-head">${c ? icon(c.id, "group-icon") : ""}
-                        <span class="group-no">${chapter}</span>${esc(ch.title)}
+                        <button type="button" class="group-title"
+                            data-action="focus-chapter" data-chapter="${chapter}" aria-pressed="${state.chapterFilter.includes(chapter)}"
+                            title="${esc(chapterTip(chapter))}"><span class="group-no">${chapter}</span>${esc(ch.title)}</button>
                         ${hasProfile() ? `<span class="group-state${heard ? " is-heard" : ""}">${heard ? "gehört" : "noch nicht gehört"}</span>` : ""}
                         <span class="group-count">${items.length} ${items.length === 1 ? "Übung" : "Übungen"}</span>
                     </h2>
@@ -588,12 +640,15 @@
         renderProfile();
         renderControls(all);
         renderResults(all);
+        writeUrlFilters();
         save();
     }
 
     // --- Events -------------------------------------------------------------
 
     const toggleIn = (arr, v) => (arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v]);
+    /** The UI selects a single concept/chapter; clicking the one that is already the only filter clears it. */
+    const isOnly = (arr, v) => arr.length === 1 && arr[0] === v;
 
     const actions = {
         "toggle-profile": () => {
@@ -637,7 +692,11 @@
             state.features = toggleIn(state.features, d.feature);
         },
         "focus-concept": (d) => {
-            state.concept = state.concept === d.concept ? "" : d.concept;
+            state.conceptFilter = isOnly(state.conceptFilter, d.concept) ? [] : [d.concept];
+        },
+        "focus-chapter": (d) => {
+            const n = Number(d.chapter);
+            state.chapterFilter = isOnly(state.chapterFilter, n) ? [] : [n];
         },
         "toggle-done": (d) => {
             state.done = toggleIn(state.done, d.id);
@@ -653,7 +712,8 @@
             if (kind === "query") {
                 state.query = "";
                 $("search").value = "";
-            } else if (kind === "concept") state.concept = "";
+            } else if (kind === "concept") state.conceptFilter = state.conceptFilter.filter((c) => c !== value);
+            else if (kind === "chapter") state.chapterFilter = state.chapterFilter.filter((n) => n !== Number(value));
             else if (kind === "type") state.types = state.types.filter((t) => t !== value);
             else if (kind === "level") state.levels = state.levels.filter((l) => l !== Number(value));
             else if (kind === "feature") state.features = state.features.filter((f) => f !== value);
@@ -662,7 +722,7 @@
             const d = defaults();
             Object.assign(state, {
                 scope: d.scope, onlyHeard: d.onlyHeard, focusShaky: d.focusShaky, hideDone: d.hideDone,
-                types: [], levels: [], features: [], concept: "", query: "",
+                types: [], levels: [], features: [], conceptFilter: [], chapterFilter: [], query: "",
             });
             $("search").value = "";
         },
@@ -672,6 +732,8 @@
         document.addEventListener("click", (ev) => {
             const el = ev.target.closest("[data-action]");
             if (!el || el.disabled || !actions[el.dataset.action]) return;
+            // the chapter badge on a card sits inside the card's link
+            if (el.closest("a")) ev.preventDefault();
             actions[el.dataset.action](el.dataset);
             render();
         });
@@ -688,7 +750,11 @@
             });
         }
         $("facet-concept").addEventListener("change", (ev) => {
-            state.concept = ev.target.value;
+            state.conceptFilter = ev.target.value ? [ev.target.value] : [];
+            render();
+        });
+        $("facet-chapter").addEventListener("change", (ev) => {
+            state.chapterFilter = ev.target.value === "" ? [] : [Number(ev.target.value)];
             render();
         });
         $("sort").addEventListener("change", (ev) => {
@@ -726,11 +792,25 @@
         typeById = Object.fromEntries(catalog.types.map((t) => [t.id, t]));
         catalog.exercises.forEach((ex) => (ex._search = searchText(ex)));
 
+        // older versions stored a single `concept` (and `chapter`)
+        if ("concept" in state) {
+            if (state.concept && !state.conceptFilter.length) state.conceptFilter = [state.concept];
+            delete state.concept;
+        }
+        if ("chapter" in state) {
+            if (state.chapter !== null && !state.chapterFilter.length) state.chapterFilter = [state.chapter];
+            delete state.chapter;
+        }
+        readUrlFilters();
+
         // drop stale settings (e.g. a concept that no longer exists)
         state.overrides = Object.fromEntries(
             Object.entries(state.overrides).filter(([id, s]) => conceptById[id] && STATES.includes(s))
         );
-        if (state.concept && !conceptById[state.concept]) state.concept = "";
+        if (!Array.isArray(state.conceptFilter)) state.conceptFilter = [];
+        if (!Array.isArray(state.chapterFilter)) state.chapterFilter = [];
+        state.conceptFilter = state.conceptFilter.filter((c) => conceptById[c]);
+        state.chapterFilter = state.chapterFilter.filter((n) => chapterByNumber[n]);
         if (hasProfile() && state.lastHeard !== -1 && !chapterByNumber[state.lastHeard]) state.lastHeard = null;
         if (!SCOPES[state.scope]) state.scope = "fits";
         if (!SORTS[state.sort]) state.sort = "recommended";

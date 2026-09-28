@@ -673,6 +673,11 @@ h1 {
     color: var(--muted);
 }
 
+/* a second label + control inside the same facet cell */
+.facet-label-stacked {
+    margin-top: 14px;
+}
+
 .chips {
     display: flex;
     flex-wrap: wrap;
@@ -1366,6 +1371,16 @@ h1 {
     font-size: 12px;
     font-weight: 600;
     backdrop-filter: blur(4px);
+    cursor: pointer;
+}
+
+.card-chapter:hover {
+    background: rgb(15 20 35 / 0.8);
+}
+
+.card-chapter.is-active {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
 }
 
 /* sits directly under the preview image */
@@ -1450,6 +1465,24 @@ h1 {
     width: 32px;
     height: 32px;
     image-rendering: pixelated;
+}
+
+.group-title {
+    display: inline-flex;
+    gap: 10px;
+    padding: 0 6px;
+    margin: 0 -6px;
+    border: 0;
+    border-radius: 8px;
+    background: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.group-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 .group-no {
@@ -1597,6 +1630,26 @@ h1 {
 .c-chapter {
     font-variant-numeric: tabular-nums;
     font-weight: 600;
+}
+
+.chapter-btn {
+    min-width: 28px;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.chapter-btn:hover {
+    border-color: var(--line-strong);
+}
+
+.chapter-btn.is-active {
+    border-color: var(--accent);
+    outline: 1px solid var(--accent);
 }
 
 

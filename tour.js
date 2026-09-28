@@ -1,7 +1,7 @@
 // Rundgang durch den Übungsplaner (uebersicht.html): dunkelt die Seite ab, kreist den jeweils erklärten
 // Bereich handgezeichnet ein und beschriftet ihn. Startet beim ersten Besuch automatisch, danach über den
 // ?-Knopf neben dem Darstellungsmenü oder mit ?tour in der URL.
-// Die Seite wird nur über ihre eigenen Knöpfe bedient (Filter aufklappen, Kartenansicht, …); am Ende
+// Die Seite wird nur über ihre eigenen Knöpfe bedient (Filter aufklappen, Kartenansicht, Sortierung …); am Ende
 // stellt der Rundgang den vorherigen Zustand wieder her.
 (() => {
     "use strict";
@@ -84,7 +84,7 @@
             area: () => q(".search-row"),
             page: { more: true },
             title: "Weitere Filter",
-            text: "„Weitere Filter“ klappt diesen Bereich auf: Art der Übung, Übungslevel, Ausstattung (z. B. mit Beispiellösung) oder ein bestimmtes Konzept. Oder du tippst einfach ins Suchfeld.",
+            text: "„Weitere Filter“ klappt diesen Bereich auf: Art der Übung, Übungslevel, Ausstattung (z. B. mit Beispiellösung) ein bestimmtes Konzept oder Kapitel. Oder du tippst einfach ins Suchfeld.",
         },
         {
             target: () => q(".results-info"),
@@ -96,6 +96,14 @@
             area: () => q(".results-tools"),
             title: "Karten oder Tabelle",
             text: "Karten zeigen Bild und alle Details, die Tabelle ist kompakt und lässt sich über die Spaltenköpfe sortieren. Links daneben wählst du die Sortierung.",
+        },
+        {
+            target: () => q(".results .group-title"),
+            area: () => q(".results .group-head"),
+            when: hasResults,
+            page: { view: "cards", sort: "chapter" },
+            title: "Nach Kapiteln",
+            text: "Sortierst du nach „Kapitel“, stehen die Übungen unter ihrem Vorlesungskapitel. Ein Klick auf die Kapitelüberschrift zeigt nur noch die Übungen aus diesem Kapitel, ein zweiter Klick hebt den Filter wieder auf.",
         },
         {
             target: exampleCard,
@@ -145,7 +153,7 @@
             when: hasResults,
             page: { view: "cards" },
             title: "Kapitel",
-            text: "Aus diesem Kapitel der Vorlesung stammt die Übung.",
+            text: "Aus diesem Kapitel der Vorlesung stammt die Übung. Ein Klick darauf zeigt nur die Übungen aus diesem Kapitel.",
         },
         {
             target: inCard(".done-btn"),
@@ -169,6 +177,7 @@
             profile: !q("#profile-body").hidden,
             more: !q("#more").hidden,
             view: q('.seg [aria-pressed="true"]')?.dataset.view || "cards",
+            sort: q("#sort").value,
         };
     }
 
@@ -177,6 +186,11 @@
         if (!q("#more").hidden !== want.more) q("#more-toggle").click();
         const view = q(`.seg [data-view="${want.view}"]`);
         if (view && view.getAttribute("aria-pressed") !== "true") view.click();
+        const sort = q("#sort");
+        if (want.sort && sort.value !== want.sort) {
+            sort.value = want.sort;
+            sort.dispatchEvent(new Event("change"));
+        }
     }
 
     // --- Handgezeichnete Formen -------------------------------------------------------------------
