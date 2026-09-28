@@ -295,3 +295,21 @@ html[data-lw-theme="terminal"] .lw-menu-button {
         right: 28px;
     }
 }
+
+/* --- Zusätzliche Befehle (z.B. "Ihr Code" aus autosave.js) ---------------- */
+
+.lw-menu-title--section {
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 1px solid var(--lw-menu-border, #e3e3e3);
+}
+
+.lw-menu-icon {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 30px;
+    opacity: 0.8;
+}

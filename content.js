@@ -1,9 +1,11 @@
+// Wurzelverzeichnis des Lernwerks (Ordner dieser Datei)
+const LW_BASE = new URL('.', document.currentScript.src);
 
 // Darstellungs-Themes: das gespeicherte Theme (Voreinstellung "klassisch") sofort setzen, damit das
 // ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü) nachladen.
 (function loadThemes() {
-    const version = '1.1.0'
-    const base = new URL('.', document.currentScript.src)
+    const version = '1.2.0'
+    const base = LW_BASE
     let theme = 'klassisch'
     try {
         theme = localStorage.getItem('lernwerk-theme') ?? theme
@@ -29,6 +31,14 @@ async function buildContent(elements) {
 
     for (let child of elements.content) {
         await generateContent(child, root)
+    }
+
+    // Gespeicherten Code einsetzen, bevor codeblocks.umd.js die Editoren erzeugt
+    try {
+        const autosave = await import(new URL('autosave.js?v=1.1.0', LW_BASE))
+        await autosave.init(root[0], elements)
+    } catch (e) {
+        console.error('Automatisches Speichern nicht verfügbar', e)
     }
 }
 

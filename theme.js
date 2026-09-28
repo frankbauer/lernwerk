@@ -89,6 +89,41 @@
             return item
         })
 
+        // Zusätzliche Befehle anderer Skripte (z.B. autosave.js) über window.lwMenuActions:
+        // { section, label, icon (SVG-Pfad, 24x24), hint: () => string, onSelect }
+        const actionArea = document.createElement('div')
+        menu.append(actionArea)
+
+        function renderActions() {
+            actionArea.replaceChildren()
+            let section = null
+            for (const action of window.lwMenuActions ?? []) {
+                if (action.section !== section) {
+                    section = action.section
+                    const sectionTitle = document.createElement('div')
+                    sectionTitle.className = 'lw-menu-title lw-menu-title--section'
+                    sectionTitle.textContent = section ?? ''
+                    actionArea.append(sectionTitle)
+                }
+                const item = document.createElement('button')
+                item.type = 'button'
+                item.className = 'lw-menu-item'
+                item.setAttribute('role', 'menuitem')
+                item.innerHTML = '<span class="lw-menu-icon" aria-hidden="true">'
+                    + `<svg viewBox="0 0 24 24" width="20" height="20">${action.icon ?? ''}</svg></span>`
+                    + '<span class="lw-menu-label"><span></span><small></small></span>'
+                item.querySelector('.lw-menu-label>span').textContent = action.label
+                item.querySelector('.lw-menu-label small').textContent = action.hint?.() ?? ''
+                item.addEventListener('click', async () => {
+                    close()
+                    await action.onSelect?.()
+                })
+                actionArea.append(item)
+            }
+        }
+        renderActions()
+        window.addEventListener('lw-menu-actions', renderActions)
+
         function updateChecked() {
             const current = loadTheme()
             items.forEach(item => item.setAttribute('aria-checked', String(item.dataset.theme === current)))
@@ -96,6 +131,7 @@
 
         function open() {
             updateChecked()
+            renderActions()
             menu.hidden = false
             button.setAttribute('aria-expanded', 'true')
             const checked = items.find(i => i.getAttribute('aria-checked') === 'true') ?? items[0]
@@ -114,13 +150,14 @@
             if (!anchor.contains(e.target)) close(false)
         })
         menu.addEventListener('keydown', e => {
-            const idx = items.indexOf(document.activeElement)
+            const all = [...menu.querySelectorAll('.lw-menu-item')]
+            const idx = all.indexOf(document.activeElement)
             if (e.key === 'Escape') {
                 close()
             } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
                 e.preventDefault()
                 const step = e.key === 'ArrowDown' ? 1 : -1
-                items[(idx + step + items.length) % items.length].focus()
+                all[(idx + step + all.length) % all.length].focus()
             } else if (e.key === 'Tab') {
                 close(false)
             }
