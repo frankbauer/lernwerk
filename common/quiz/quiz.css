@@ -26,6 +26,9 @@
     --quiz-bad-bg: rgba(194, 65, 12, 0.08);
     --quiz-ok-ring: 0 0 0 1px var(--quiz-ok);
     --quiz-bad-ring: 0 0 0 1px var(--quiz-bad);
+    /* Zweites Merkmal neben der Farbe für falsche Antworten: Randstil und/oder Muster (je Theme wählbar) */
+    --quiz-bad-border-style: dashed;
+    --quiz-bad-pattern: none;
     --quiz-fg: var(--lw-fg, #222222);
     --quiz-muted: var(--lw-muted, rgba(0, 0, 0, 0.6));
     /* Eingabefelder aller Quiz-Typen, je Theme in css/themes.css angepasst */
@@ -144,9 +147,9 @@
 
 .quiz .quiz-parsons-list>li.bad {
     border-color: var(--quiz-bad);
-    border-style: dashed;
+    border-style: var(--quiz-bad-border-style);
     box-shadow: var(--quiz-bad-ring);
-    background-image: linear-gradient(var(--quiz-bad-bg), var(--quiz-bad-bg));
+    background-image: var(--quiz-bad-pattern), linear-gradient(var(--quiz-bad-bg), var(--quiz-bad-bg));
 }
 
 .quiz-grip {
@@ -275,8 +278,8 @@
 .quiz .quiz-graph-table input.bad,
 .quiz .quiz-num-table input.bad {
     border-color: var(--quiz-bad);
-    border-style: dashed;
-    background: linear-gradient(var(--quiz-bad-bg), var(--quiz-bad-bg)), var(--quiz-input-bg);
+    border-style: var(--quiz-bad-border-style);
+    background: var(--quiz-bad-pattern), linear-gradient(var(--quiz-bad-bg), var(--quiz-bad-bg)), var(--quiz-input-bg);
     box-shadow: var(--quiz-bad-ring);
 }
 
@@ -300,7 +303,7 @@
 }
 
 .quiz-match-row.ok { border-left-color: var(--quiz-ok); }
-.quiz-match-row.bad { border-left-color: var(--quiz-bad); border-left-style: dashed; }
+.quiz-match-row.bad { border-left-color: var(--quiz-bad); border-left-style: var(--quiz-bad-border-style); background-image: var(--quiz-bad-pattern); }
 
 .quiz-match-row pre {
     white-space: pre-wrap;
@@ -514,7 +517,7 @@
 .quiz .quiz-graph-set.marked { background-color: var(--graph-set); color: var(--graph-set-fg); }
 /* nach dem Prüfen ersetzt die Ergebnis-Tönung die Auswahlfarbe */
 .quiz .quiz-graph-set.ok { border-color: var(--quiz-ok); background-color: var(--quiz-ok-bg); color: var(--graph-fg); box-shadow: var(--quiz-ok-ring); }
-.quiz .quiz-graph-set.bad { border-color: var(--quiz-bad); border-style: dashed; background-color: var(--quiz-bad-bg); color: var(--graph-fg); box-shadow: var(--quiz-bad-ring); }
+.quiz .quiz-graph-set.bad { border-color: var(--quiz-bad); border-style: var(--quiz-bad-border-style); background-color: var(--quiz-bad-bg); background-image: var(--quiz-bad-pattern); color: var(--graph-fg); box-shadow: var(--quiz-bad-ring); }
 
 .quiz-graph-chipwrap {
     display: flex;
@@ -560,7 +563,7 @@
 .quiz-graph-chip.dragging { cursor: grabbing; opacity: 0.85; z-index: 2; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); }
 .quiz-graph-chip.drop-target { box-shadow: -4px 0 0 0 var(--quiz-accent); }
 .quiz-graph-chip.ok { border-color: var(--quiz-ok); background-image: linear-gradient(var(--quiz-ok-bg), var(--quiz-ok-bg)); box-shadow: var(--quiz-ok-ring); }
-.quiz-graph-chip.bad { border-color: var(--quiz-bad); border-style: dashed; background-image: linear-gradient(var(--quiz-bad-bg), var(--quiz-bad-bg)); box-shadow: var(--quiz-bad-ring); }
+.quiz-graph-chip.bad { border-color: var(--quiz-bad); border-style: var(--quiz-bad-border-style); background-image: var(--quiz-bad-pattern), linear-gradient(var(--quiz-bad-bg), var(--quiz-bad-bg)); box-shadow: var(--quiz-bad-ring); }
 
 .quiz-graph-chipdel {
     border: none;

@@ -514,6 +514,9 @@ html[data-lw-theme="abenteuer"] .quiz {
     --quiz-warn-bg: #fff1c2;
     --quiz-ok-ring: 2px 2px 0 #1c63c7;
     --quiz-bad-ring: 2px 2px 0 #d9480f;
+    /* statt gestricheltem Rand (wirkt bei den dicken Rändern und schmalen Feldern zerbrochen): schraffiert */
+    --quiz-bad-border-style: solid;
+    --quiz-bad-pattern: repeating-linear-gradient(-45deg, rgba(217, 72, 15, 0.28) 0 3px, transparent 3px 7px);
 }
 
 html[data-lw-theme="abenteuer"] .quiz-graph-table input {
