@@ -12,7 +12,7 @@ const LW_BASE = new URL('.', document.currentScript.src);
     } catch (e) { }
     document.documentElement.dataset.lwTheme = theme
 
-    for (const href of ['css/font.geist.css', 'css/theme-menu.css', 'css/themes.css']) {
+    for (const href of ['js/codeblocks-js/fonts/geist.css', 'css/theme-menu.css', 'css/themes.css']) {
         const link = document.createElement('link')
         link.rel = 'stylesheet'
         link.href = new URL(`${href}?v=${version}`, base)

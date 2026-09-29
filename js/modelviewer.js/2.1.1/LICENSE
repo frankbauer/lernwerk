@@ -1,25 +1,6 @@
-In-browser Java compiler and runtime (worker/classes.js, worker/runtime.js, classlib.txt)
-
-This component is built from teavm-javac, https://github.com/konsoletyper/teavm-javac,
-and TeaVM, https://github.com/konsoletyper/teavm.
-
-1. TeaVM, TeaVM class library and teavm-javac
-   Copyright Alexey Andreev (TeaVM, per its source file headers)
-   Licensed under the Apache License, Version 2.0 (full text below, taken
-   from https://github.com/konsoletyper/teavm/blob/master/LICENSE).
-   See NOTICE for the attribution notices required by section 4(d).
-
-2. javac (com.sun.tools.javac, compiled into the worker)
-   Taken unmodified from OpenJDK (https://github.com/openjdk/jdk).
-   Copyright (c) Oracle and/or its affiliates.
-   Licensed under the GNU General Public License version 2 with the
-   "Classpath" exception, see LICENSE-OpenJDK. The corresponding source code
-   is available at the URL above.
-
-3. worker.js, workerrun.js
-   are part of CodeBlocks (MIT, see ../../codeblocks-js/LICENSE).
-
--------------------------------------------------------------------------------
+<model-viewer> 2.1.1 - https://github.com/google/model-viewer
+The bundle also contains three.js (MIT, Copyright 2010-2022 Three.js Authors);
+license headers of bundled code are preserved in model-viewer-umd.min.js.
 
 
                                  Apache License
