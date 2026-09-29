@@ -1,0 +1,6 @@
+{
+    "task": "binsum",
+    "overflow": true,
+    "view": "solution",
+    "storageKey": "19_Zahlen/binaer_ueberlauf"
+}

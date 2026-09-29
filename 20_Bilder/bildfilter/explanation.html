@@ -1,0 +1,22 @@
+<h3>Erklärung</h3>
+
+<p>Das Ergebnis wird in ein <b>neues</b> Feld <code>output</code> geschrieben. Würde man die neuen Grauwerte direkt
+    in <code>img.data</code> ablegen, flössen bereits gefilterte Werte in die Berechnung der folgenden Pixel ein.
+</p>
+<p>Für jedes Pixel <code>(x, y)</code>, das nicht am Rand liegt, wird der Kernel mit seinem Mittelpunkt auf das
+    Pixel gelegt: Die Versätze <code>a</code> (Spalte) und <code>b</code> (Zeile) laufen von <code>-1</code> bis
+    <code>1</code>, jeder Nachbar <code>img.data[x + a][y + b]</code> wird mit dem Kernelwert
+    <code>KERNEL[b + 1][a + 1]</code> multipliziert und aufsummiert. Beachten Sie die unterschiedliche
+    Reihenfolge der Indizes: Bei <code>Image</code> steht die Spalte zuerst, beim Kernel die Zeile.</p>
+<p>Die Randpixel haben keine vollständige Nachbarschaft, daher beginnen beide Schleifen bei <code>1</code> und
+    enden vor <code>height - 1</code> bzw. <code>width - 1</code>. Sie bleiben im Ergebnis <code>0</code>
+    (schwarz).</p>
+<p>Die Kernel wirken sehr unterschiedlich:</p>
+<ul>
+    <li><b>Weichzeichnen</b> (Box-Filter): Alle neun Werte sind <code>1/9</code>, das Ergebnis ist der Mittelwert der
+        Nachbarschaft.</li>
+    <li><b>Kanten X/Y</b> (Sobel-Filter): Die Summe der Kernelwerte ist <code>0</code>. In gleichmäßigen Flächen
+        ist das Ergebnis daher nahe <code>0</code>, nur an Helligkeitsübergängen in x- bzw. y-Richtung entstehen
+        große Werte. Negative Werte werden von <code>save()</code> auf <code>0</code> begrenzt, daher sind nur
+        Kanten in einer Richtung (von hell nach dunkel) sichtbar.</li>
+</ul>

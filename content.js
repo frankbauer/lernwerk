@@ -4,7 +4,7 @@ const LW_BASE = new URL('.', document.currentScript.src);
 // Darstellungs-Themes: das gespeicherte Theme (Voreinstellung "klassisch") sofort setzen, damit das
 // ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü) nachladen.
 (function loadThemes() {
-    const version = '1.2.0'
+    const version = '1.3.0'
     const base = LW_BASE
     let theme = 'klassisch'
     try {

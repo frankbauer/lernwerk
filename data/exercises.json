@@ -95,6 +95,11 @@
       "number": 19,
       "folder": "19_Zahlen",
       "title": "Zahlen"
+    },
+    {
+      "number": 20,
+      "folder": "20_Bilder",
+      "title": "Bilder"
     }
   ],
   "concepts": [
@@ -235,6 +240,30 @@
       "label": "Zahlendarstellung",
       "chapter": 19,
       "icon": "img/concepts/zahlen.png"
+    },
+    {
+      "id": "zahlen-addition",
+      "label": "Zahlen Addition",
+      "chapter": 19,
+      "icon": "img/concepts/zahlen-addition.png"
+    },
+    {
+      "id": "zahlen-umrechnung",
+      "label": "Zahlen Umrechnung",
+      "chapter": 19,
+      "icon": "img/concepts/zahlen-umrechnung.png"
+    },
+    {
+      "id": "zahlen-binaeroperationen",
+      "label": "Zahlen Binäroperationen",
+      "chapter": 19,
+      "icon": "img/concepts/zahlen-binaeroperationen.png"
+    },
+    {
+      "id": "bilder",
+      "label": "Bildverarbeitung",
+      "chapter": 20,
+      "icon": "img/concepts/bilder.png"
     }
   ],
   "types": [
@@ -2438,6 +2467,197 @@
       "hasExperiments": false,
       "isNew": false,
       "image": null
+    },
+    {
+      "id": "19_Zahlen/addition",
+      "title": "Addition zur Basis n",
+      "description": "Addiere zufällige 8-Bit-Zahlen schriftlich im Hexadezimal-, Oktal- und anderen Zahlensystemen.",
+      "link": "19_Zahlen/addition",
+      "chapter": 19,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen-addition"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "19_Zahlen/binaer_addition",
+      "title": "Binäre Addition",
+      "description": "Addiere zufällige 8-Bit-Binärzahlen vorzeichenlos, im B1- und im B2-Komplement.",
+      "link": "19_Zahlen/binaer_addition",
+      "chapter": 19,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen-addition"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "19_Zahlen/binaer_ueberlauf",
+      "title": "Binäre Addition mit Überlauf",
+      "description": "Addiere 8-Bit-Binärzahlen, deren Summe nicht mehr in 8 Bit passt, und bestimme den Wert des gespeicherten Ergebnisses.",
+      "link": "19_Zahlen/binaer_ueberlauf",
+      "chapter": 19,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "zahlen-addition"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "19_Zahlen/binaer_operationen",
+      "title": "Bitweises UND und ODER",
+      "description": "Verknüpfe zufällige 8-Bit-Binärzahlen mit & und |.",
+      "link": "19_Zahlen/binaer_operationen",
+      "chapter": 19,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "zahlen-binaeroperationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "19_Zahlen/umrechnung",
+      "title": "Zahlen umrechnen",
+      "description": "Rechne zufällige Zahlen zwischen dem Dezimalsystem und einer frei wählbaren oder zufälligen Basis um.",
+      "link": "19_Zahlen/umrechnung",
+      "chapter": 19,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen-umrechnung"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "19_Zahlen/vorzeichenlos",
+      "title": "Vorzeichenlose Binärzahlen",
+      "description": "Rechne zufällige vorzeichenlose 8-Bit-Binärzahlen ins Dezimalsystem um und umgekehrt.",
+      "link": "19_Zahlen/vorzeichenlos",
+      "chapter": 19,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "zahlen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "19_Zahlen/vorzeichenbit",
+      "title": "Binärzahlen mit Vorzeichenbit",
+      "description": "Rechne zufällige 8-Bit-Binärzahlen mit Vorzeichenbit ins Dezimalsystem um und umgekehrt.",
+      "link": "19_Zahlen/vorzeichenbit",
+      "chapter": 19,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "19_Zahlen/b1_komplement",
+      "title": "B1-Komplement",
+      "description": "Rechne zufällige 8-Bit-Binärzahlen im B1-Komplement ins Dezimalsystem um und umgekehrt.",
+      "link": "19_Zahlen/b1_komplement",
+      "chapter": 19,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "19_Zahlen/b2_komplement",
+      "title": "B2-Komplement",
+      "description": "Rechne zufällige 8-Bit-Binärzahlen im B2-Komplement ins Dezimalsystem um und umgekehrt.",
+      "link": "19_Zahlen/b2_komplement",
+      "chapter": 19,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "20_Bilder/faltung",
+      "title": "Diskrete Faltung",
+      "description": "Gib ein Graustufenbild als 2D-Feld aus und wende einen Sobel-Filterkernel per diskreter Faltung an.",
+      "link": "20_Bilder/faltung",
+      "chapter": 20,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "bilder",
+        "arrays-ndim",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "20_Bilder/bildfilter",
+      "title": "Bildfilter",
+      "description": "Implementiere eine diskrete Faltung und wende Weichzeichner und Kantenfilter auf ein echtes Foto an.",
+      "link": "20_Bilder/bildfilter",
+      "chapter": 20,
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "bilder",
+        "arrays-ndim",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
     }
   ]
 }

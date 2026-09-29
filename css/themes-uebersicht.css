@@ -1436,3 +1436,141 @@ html[data-lw-theme="tafel"] .type-badge {
             #efe6de;
     }
 }
+
+
+/* ============================================================================
+   Prisma – weißes Licht, in alle Spektralfarben zerlegt. Banner mit Spektrum-Streifen unten,
+   Titel im Farbverlauf.
+   ============================================================================ */
+
+html[data-lw-theme="prisma"] {
+    --lw-spectrum: linear-gradient(90deg, #ef4444, #f97316, #facc15, #22c55e, #3b82f6, #8b5cf6);
+    --lw-spectrum-ink: linear-gradient(90deg, #dc2626, #ea580c, #ca8a04, #16a34a, #2563eb, #7c3aed);
+    --bg: #fbfaff;
+    --surface: #ffffff;
+    --surface-2: #f6f4fd;
+    --ink: #1e1b2e;
+    --ink-2: #413c58;
+    --muted: #6e6a85;
+    --line: #e6e2f3;
+    --line-strong: #d0c9e8;
+    --accent: #6d28d9;
+    --accent-soft: #efe8fd;
+    --radius-lg: 20px;
+    --radius: 12px;
+    --shadow: 0 1px 2px rgb(30 27 46 / 0.04), 0 10px 30px -12px rgb(91 63 214 / 0.18);
+    --lw-accent: #6d28d9;
+}
+
+html[data-lw-theme="prisma"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 10;
+    height: 6px;
+    background: var(--lw-spectrum);
+    pointer-events: none;
+}
+
+html[data-lw-theme="prisma"] .page-head {
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+html[data-lw-theme="prisma"] .page-head::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 8px;
+    background: var(--lw-spectrum);
+}
+
+html[data-lw-theme="prisma"] .hero-text {
+    width: fit-content;
+    max-width: calc(59.4cqw - 48px);
+    margin: 0 0 30px 22px;
+    padding: 18px 22px 20px;
+    border-radius: 16px;
+    background: rgb(255 255 255 / 0.82);
+    box-shadow: 0 8px 30px -10px rgb(30 27 46 / 0.25);
+    backdrop-filter: blur(12px);
+}
+
+html[data-lw-theme="prisma"] .page-head h1,
+html[data-lw-theme="prisma"] .profile-title {
+    width: fit-content;
+    background: var(--lw-spectrum-ink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+html[data-lw-theme="prisma"] .eyebrow {
+    color: var(--accent);
+}
+
+html[data-lw-theme="prisma"] .group-head::after {
+    content: "";
+    flex-basis: 100%;
+    height: 4px;
+    max-width: 56px;
+    border-radius: 2px;
+    background: var(--lw-spectrum);
+}
+
+/* Boxen mit Spektrum-Kante oben wie auf den Übungsseiten */
+html[data-lw-theme="prisma"] :is(.profile, .more, .table-wrap) {
+    border-top: 4px solid transparent;
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        var(--lw-spectrum) top / 100% 4px no-repeat border-box,
+        var(--line) border-box;
+}
+
+/* Schrittnummern wandern durch das Spektrum */
+html[data-lw-theme="prisma"] .step:nth-child(6n+1) .step-no { background: #ef4444; }
+html[data-lw-theme="prisma"] .step:nth-child(6n+2) .step-no { background: #f97316; }
+html[data-lw-theme="prisma"] .step:nth-child(6n+3) .step-no { background: #facc15; color: #1e1b2e; }
+html[data-lw-theme="prisma"] .step:nth-child(6n+4) .step-no { background: #22c55e; }
+html[data-lw-theme="prisma"] .step:nth-child(6n+5) .step-no { background: #3b82f6; }
+html[data-lw-theme="prisma"] .step:nth-child(6n) .step-no { background: #8b5cf6; }
+
+html[data-lw-theme="prisma"] .tile.is-last {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px #ddd6fe;
+}
+
+html[data-lw-theme="prisma"] :is(.scope-btn[aria-checked="true"], .seg button[aria-pressed="true"], .chip[aria-pressed="true"], .btn-primary, .badge) {
+    border-color: #6d28d9;
+    background: #6d28d9;
+    color: #fff;
+}
+
+html[data-lw-theme="prisma"] .btn-primary:hover {
+    background: linear-gradient(90deg, #dc2626, #ea580c, #16a34a, #2563eb, #7c3aed);
+}
+
+html[data-lw-theme="prisma"] .switch input:checked+.switch-track {
+    background: var(--lw-spectrum);
+}
+
+html[data-lw-theme="prisma"] :is(.search, .more-btn, .select, .stepper select, .stepper-btn, .btn, .chip) {
+    border-radius: 999px;
+}
+
+html[data-lw-theme="prisma"] .card,
+html[data-lw-theme="prisma"] .card-title a::after {
+    border-radius: 20px;
+}
+
+html[data-lw-theme="prisma"] .card-media {
+    border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+    html[data-lw-theme="prisma"] .hero-text {
+        max-width: none;
+        margin: 0 12px 20px;
+        padding: 14px 16px 16px;
+    }
+}

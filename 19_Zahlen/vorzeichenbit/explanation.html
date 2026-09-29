@@ -1,0 +1,15 @@
+<h3>Erklärung</h3>
+
+<p>Bei der Darstellung mit <b>Vorzeichenbit</b> (Vorzeichen und Betrag) gibt das höchste Bit das Vorzeichen an
+    (0 = positiv, 1 = negativ). Die übrigen 7 Bit enthalten den Betrag als vorzeichenlose Zahl. Mit 8 Bit lassen sich
+    so −127 bis 127 darstellen.</p>
+
+<p><b>Bitmuster → dezimal:</b> Betrag aus den unteren 7 Bit bestimmen, bei führender 1 ein Minus davor.
+    <code>1001 0110</code>: Betrag <code>001 0110</code> = 22, Vorzeichenbit 1, also −22.</p>
+
+<p><b>Dezimal → Bitmuster:</b> Betrag in 7 Bit umrechnen, bei negativen Zahlen das höchste Bit auf 1 setzen.
+    −22: 22 = <code>0001 0110</code>, mit Vorzeichenbit <code>1001 0110</code>.</p>
+
+<p>Nachteile dieser Darstellung: Es gibt zwei Nullen (<code>0000 0000</code> und <code>1000 0000</code>) und die
+    normale binäre Addition liefert für negative Zahlen falsche Ergebnisse. Deshalb verwenden Rechner das
+    B2-Komplement.</p>

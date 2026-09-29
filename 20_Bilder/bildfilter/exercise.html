@@ -1,0 +1,20 @@
+<h3>Aufgabe</h3>
+<p>Gegeben ist für diese Aufgabe ein Grauwertbild, das mit Hilfe der Klasse <code>Image</code> geladen werden kann.
+    Außerdem kann unten ein Faltungskernel ausgewählt werden, den Sie im Programm als <code>KERNEL</code>
+    (ein 3x3-Feld von <code>double</code>-Werten) erhalten.</p>
+<p>Implementieren Sie eine <b>diskrete Faltung</b>, die aus dem gegebenen Bild und dem Kernel ein neues Bild
+    erzeugt. Nach dem Ablauf des Programms wird das durch <code>img</code> referenzierte Bild als Ergebnis neben
+    dem Quellbild angezeigt. Die Methoden der Klasse <code>Image</code> finden Sie im Reiter <i>Image</i>.</p>
+<p><b>Hinweise:</b></p>
+<ul>
+    <li>Sie benötigen zunächst ein neues 2D-Feld für das Ergebnisbild. Beachten Sie, dass bei
+        <code>Image</code> der erste Index die <b>Spalte</b> und der zweite die <b>Zeile</b> angibt.</li>
+    <li>Die Randpixel werden bei der Filterung ignoriert.</li>
+    <li>Nachdem die neu berechneten Grauwerte in diesem Feld abgelegt wurden, muss eine neue
+        <code>Image</code>-Instanz angelegt und an <code>img</code> zugewiesen werden.</li>
+</ul>
+<p><b>Filter:</b> <select id="filter">
+        <option value="0">Weichzeichnen</option>
+        <option value="1">Kanten X</option>
+        <option value="2">Kanten Y</option>
+    </select></p>

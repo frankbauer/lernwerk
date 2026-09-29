@@ -1,0 +1,22 @@
+<h3>Erklärung</h3>
+
+<p>Bei der <b>diskreten Faltung</b> wird der Filterkernel mit seinem Mittelpunkt auf das Pixel <code>(x, y)</code>
+    gelegt. Jeder Grauwert der 3x3-Nachbarschaft wird mit dem darüberliegenden Kernelwert multipliziert, die
+    Summe aller Produkte ist der neue Grauwert.</p>
+<p>Die Schleifenvariablen <code>r</code> (Zeile) und <code>c</code> (Spalte) laufen dafür von <code>-1</code> bis
+    <code>1</code>. So beschreiben sie direkt den Versatz zum Mittelpunkt: <code>image[y + r][x + c]</code> ist der
+    Nachbar im Bild, <code>kernel[r + 1][c + 1]</code> der passende Kernelwert (die Indizes des Kernels beginnen
+    bei <code>0</code>).</p>
+<p>Für das Pixel in Zeile <code>1</code>, Spalte <code>2</code> (Grauwert <code>20</code>) ergibt sich mit dem
+    Sobel-Kernel:</p>
+<pre>  30 * 1 + 20 * 0 + 10 * (-1)
++ 30 * 2 + 20 * 0 + 25 * (-2)
++ 30 * 1 + 50 * 0 + 20 * (-1)
+= 20 + 10 + 10 = 40</pre>
+<p>Weil die Randpixel keine vollständige Nachbarschaft haben, lässt die Methode
+    <code>fold(short[][], double[][])</code> sie aus: Ihre Schleifen beginnen bei <code>1</code> und enden vor
+    <code>length - 1</code>. Da ein neues <code>short</code>-Feld mit <code>0</code> initialisiert wird, ist der
+    Rand im Ergebnis schwarz.</p>
+<p>Die Methode <code>print</code> durchläuft das Feld mit zwei verschachtelten Schleifen: die äußere über die
+    Zeilen (<code>image.length</code>), die innere über die Spalten der aktuellen Zeile
+    (<code>image[y].length</code>). Nach jeder Zeile folgt ein Zeilenumbruch.</p>

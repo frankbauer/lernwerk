@@ -1,0 +1,15 @@
+<h3>Erklärung</h3>
+
+<p>Im <b>B2-Komplement</b> (Zweierkomplement) werden positive Zahlen wie vorzeichenlose dargestellt, das höchste Bit ist
+    dabei 0. Eine negative Zahl entsteht, indem man alle Bits der positiven Zahl <b>invertiert</b> und dann
+    <b>1 addiert</b>. Mit 8 Bit lassen sich −128 bis 127 darstellen, die Null gibt es nur einmal.</p>
+
+<p><b>Dezimal → Bitmuster:</b> −22: 22 = <code>0001 0110</code>, invertiert <code>1110 1001</code>, plus 1 ergibt
+    <code>1110 1010</code>.</p>
+
+<p><b>Bitmuster → dezimal:</b> Ist das höchste Bit 0, wie vorzeichenlos umrechnen. Ist es 1, ist die Zahl negativ:
+    alle Bits invertieren, 1 addieren, umrechnen, Minus davor. <code>1110 1010</code> → <code>0001 0101</code> + 1 =
+    <code>0001 0110</code> = 22, also −22.</p>
+
+<p>Alternativ: Das höchste Bit zählt −128, alle anderen wie gewohnt. <code>1110 1010</code> = −128 + 64 + 32 + 8 + 2 =
+    −22.</p>

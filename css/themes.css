@@ -385,12 +385,180 @@ html[data-lw-theme] .quiz {
     --quiz-border: var(--lw-border);
     --quiz-accent: var(--lw-accent);
     --quiz-mono: var(--lw-mono);
+    --quiz-fg: var(--lw-fg);
+    --quiz-muted: var(--lw-muted);
+    --quiz-input-bg: var(--lw-surface-solid, var(--lw-surface));
 }
 
-html[data-lw-theme] .quiz input.quiz-answer,
+/* Eingabefelder aller Quiz-Typen (Ausgabe-Lücken, Graph- und Zahlentabellen) je Theme */
+html[data-lw-theme="heft"] .quiz {
+    --quiz-input-bg: #fffdf8;
+    --quiz-input-border: #cfc4ac;
+    --quiz-input-radius: 2px;
+    --quiz-input-focus: #2d2a24;
+    --quiz-input-focus-bg: #fff3a8; /* Textmarker */
+}
+
+html[data-lw-theme="klassisch"] .quiz {
+    --quiz-input-border: #c6bbb2;
+    --quiz-input-border-width: 1.5px;
+    --quiz-input-radius: 6px;
+    --quiz-input-focus: #1a1614;
+    --quiz-input-focus-shadow: 0 0 0 3px rgb(26 22 20 / 0.12);
+}
+
+html[data-lw-theme="karten"] .quiz {
+    --quiz-input-border: #d5d9e2;
+    --quiz-input-radius: 6px;
+    --quiz-input-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+    --quiz-input-focus: #4f46e5;
+    --quiz-input-focus-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+html[data-lw-theme="terminal"] .quiz {
+    --quiz-input-bg: #1e2636;
+    --quiz-input-fg: #e2f7ec;
+    --quiz-input-border: #56637d;
+    --quiz-input-radius: 4px;
+    --quiz-input-focus: #34d399;
+    --quiz-input-focus-bg: #10201a;
+    --quiz-input-focus-shadow: 0 0 0 1px #34d399, 0 0 10px rgba(52, 211, 153, 0.35);
+}
+
+/* kräftig: dicker Rand, harter Schatten, beim Fokus gelb hinterlegt und leicht angehoben */
+html[data-lw-theme="abenteuer"] .quiz {
+    --quiz-input-bg: #ffffff;
+    --quiz-input-border: #111111;
+    --quiz-input-border-width: 2px;
+    --quiz-input-radius: 6px;
+    --quiz-input-shadow: 2px 2px 0 #111111;
+    --quiz-input-weight: 700;
+    --quiz-input-hover: #111111;
+    --quiz-input-focus: #111111;
+    --quiz-input-focus-bg: #fff4b8;
+    --quiz-input-focus-shadow: 3px 3px 0 #111111;
+    --quiz-input-focus-transform: translate(-1px, -1px);
+}
+
+/* in der dichten Dijkstra-Tabelle rahmen schon die Zellen: Schatten erst beim Fokus */
+html[data-lw-theme="abenteuer"] .quiz-graph-table {
+    --quiz-input-shadow: none;
+    --quiz-input-border-width: 1.5px;
+}
+
+/* Schweizer Raster: eckig, schwarzer Rand, Fokus als roter Balken unten */
+html[data-lw-theme="raster"] .quiz {
+    --quiz-input-bg: #ffffff;
+    --quiz-input-border: #111111;
+    --quiz-input-radius: 0;
+    --quiz-input-hover: #e30613;
+    --quiz-input-focus: #e30613;
+    --quiz-input-focus-shadow: inset 0 -3px 0 #e30613;
+}
+
+/* Kreide: halbtransparent, leicht unregelmäßige Ecken */
+html[data-lw-theme="tafel"] .quiz {
+    --quiz-input-bg: rgba(255, 255, 255, 0.1);
+    --quiz-input-fg: #ffffff;
+    --quiz-input-border: rgba(255, 255, 255, 0.55);
+    --quiz-input-border-width: 1.5px;
+    --quiz-input-radius: 6px 3px 7px 2px / 3px 6px 2px 7px;
+    --quiz-input-focus: #f7d774;
+    --quiz-input-focus-bg: rgba(247, 215, 116, 0.12);
+}
+
+/* Richtig/falsch-Markierung (Eingabefelder, Kanten-/Knotenlisten, Mengen, Parsons-Zeilen, Rückmeldung) je Theme.
+   Blau/Orangerot statt Grün/Rot, damit die Farben auch bei Rot-Grün-Sehschwäche unterscheidbar bleiben. */
+html[data-lw-theme="heft"] .quiz {
+    --quiz-ok: #1f5f9e;
+    --quiz-bad: #b3470f;
+    --quiz-warn: #c98a00;
+    --quiz-ok-bg: rgba(120, 170, 230, 0.28); /* blauer bzw. orangefarbener Textmarker */
+    --quiz-bad-bg: rgba(245, 150, 80, 0.3);
+    --quiz-warn-bg: rgba(250, 210, 90, 0.3);
+    --quiz-ok-ring: none;
+    --quiz-bad-ring: none;
+}
+
+html[data-lw-theme="klassisch"] .quiz {
+    --quiz-ok-ring: 0 0 0 3px rgb(29 78 216 / 0.15);
+    --quiz-bad-ring: 0 0 0 3px rgb(194 65 12 / 0.15);
+}
+
+html[data-lw-theme="karten"] .quiz {
+    --quiz-ok: #2563eb;
+    --quiz-ok-bg: rgba(37, 99, 235, 0.07);
+    --quiz-bad-bg: rgba(194, 65, 12, 0.07);
+    --quiz-ok-ring: 0 0 0 3px rgba(37, 99, 235, 0.18);
+    --quiz-bad-ring: 0 0 0 3px rgba(194, 65, 12, 0.18);
+}
+
+html[data-lw-theme="terminal"] .quiz {
+    --quiz-ok: #60a5fa;
+    --quiz-bad: #fb923c;
+    --quiz-warn: #facc15;
+    --quiz-ok-bg: rgba(96, 165, 250, 0.14);
+    --quiz-bad-bg: rgba(251, 146, 60, 0.14);
+    --quiz-warn-bg: rgba(250, 204, 21, 0.1);
+    --quiz-ok-ring: 0 0 0 1px #60a5fa, 0 0 8px rgba(96, 165, 250, 0.35);
+    --quiz-bad-ring: 0 0 0 1px #fb923c, 0 0 8px rgba(251, 146, 60, 0.35);
+}
+
+/* kräftige, deckende Farben und harter Schatten in der Ergebnisfarbe statt eines dünnen Rings */
+html[data-lw-theme="abenteuer"] .quiz {
+    --quiz-ok: #1c63c7;
+    --quiz-bad: #d9480f;
+    --quiz-warn: #f2a900;
+    --quiz-ok-bg: #dbe8ff;
+    --quiz-bad-bg: #ffe2cf;
+    --quiz-warn-bg: #fff1c2;
+    --quiz-ok-ring: 2px 2px 0 #1c63c7;
+    --quiz-bad-ring: 2px 2px 0 #d9480f;
+}
+
+html[data-lw-theme="abenteuer"] .quiz-graph-table input {
+    --quiz-ok-ring: none;
+    --quiz-bad-ring: none;
+}
+
+html[data-lw-theme="raster"] .quiz {
+    --quiz-ok: #0057b8;
+    --quiz-bad: #e30613;
+    --quiz-warn: #f0a000;
+    --quiz-ok-bg: rgba(0, 87, 184, 0.07);
+    --quiz-bad-bg: rgba(227, 6, 19, 0.07);
+    --quiz-ok-ring: inset 0 -3px 0 #0057b8;
+    --quiz-bad-ring: inset 0 -3px 0 #e30613;
+}
+
+html[data-lw-theme="tafel"] .quiz {
+    --quiz-ok: #8ec5ff;
+    --quiz-bad: #ffa55c;
+    --quiz-warn: #f7d774;
+    --quiz-ok-bg: rgba(142, 197, 255, 0.16);
+    --quiz-bad-bg: rgba(255, 165, 92, 0.16);
+    --quiz-warn-bg: rgba(247, 215, 116, 0.12);
+    --quiz-ok-ring: none;
+    --quiz-bad-ring: none;
+}
+
+/* Antwortknöpfe (Zuordnen) wie die Eingabefelder; der gewählte Knopf in Akzentfarbe */
 html[data-lw-theme] .quiz-options button {
-    background: var(--lw-surface-solid, var(--lw-surface));
-    color: var(--lw-fg);
+    background: var(--quiz-input-bg);
+    color: var(--quiz-input-fg);
+    border: var(--quiz-input-border-width) solid var(--quiz-input-border);
+    border-radius: var(--quiz-input-radius);
+    box-shadow: var(--quiz-input-shadow);
+}
+
+html[data-lw-theme] .quiz-options button:hover {
+    border-color: var(--quiz-input-hover);
+}
+
+html[data-lw-theme] .quiz-options button[aria-pressed="true"] {
+    background: var(--lw-accent);
+    border-color: var(--lw-accent);
+    color: var(--lw-accent-fg);
 }
 
 html[data-lw-theme] .quiz-actions button {
@@ -404,6 +572,107 @@ html[data-lw-theme] .quiz-actions button.secondary {
 html[data-lw-theme] .quiz-grip,
 html[data-lw-theme] .quiz-move button {
     color: var(--lw-muted);
+}
+
+/* Graphen (common/quiz/graph.js): Farben je Theme */
+html[data-lw-theme="heft"] .quiz-graphs,
+html[data-lw-theme="klassisch"] .quiz-graphs {
+    --graph-node: #437094;
+    --graph-start: #e67e22;
+    --graph-edge: var(--lw-muted);
+    --graph-sel: #bc8958;
+    --graph-noted: #8fb4d6;
+    --graph-mark: rgba(67, 112, 148, 0.18);
+    --graph-set: #ffc107;
+    --graph-set-fg: #222222;
+}
+
+html[data-lw-theme="karten"] .quiz-graphs {
+    --graph-node: #4f46e5;
+    --graph-start: #f97316;
+    --graph-edge: #a3aabb;
+    --graph-sel: #0ea5e9;
+    --graph-noted: #c7d2fe;
+    --graph-noted-fg: #1d2433;
+    --graph-mark: rgba(79, 70, 229, 0.15);
+    --graph-set: #c7d2fe;
+    --graph-set-fg: #1d2433;
+}
+
+html[data-lw-theme="abenteuer"] .quiz-graphs {
+    --graph-node: #1c63c7;
+    --graph-start: #e4572e;
+    --graph-edge: #111111;
+    --graph-sel: #ffd23f;
+    --graph-sel-fg: #111111;
+    --graph-noted: #bfdbfe;
+    --graph-noted-fg: #111111;
+    --graph-grid: #111111;
+    --graph-label-border: #111111;
+    --graph-mark: rgba(17, 17, 17, 0.14);
+    --graph-set: #ffd23f;
+    --graph-set-fg: #111111;
+}
+
+html[data-lw-theme="raster"] .quiz-graphs {
+    --graph-node: #111111;
+    --graph-start: #e30613;
+    --graph-edge: #999999;
+    --graph-sel: #e30613;
+    --graph-noted: #dddddd;
+    --graph-noted-fg: #111111;
+    --graph-mark: rgba(0, 0, 0, 0.12);
+    --graph-set: #e30613;
+    --graph-set-fg: #ffffff;
+}
+
+/* dunkle Themes: Knoten und Auswahl hell */
+html[data-lw-theme="terminal"] .quiz-graphs {
+    --graph-node: #34d399;
+    --graph-node-fg: #04130d;
+    --graph-start: #fbbf24;
+    --graph-start-fg: #1a1406;
+    --graph-edge: #56637d;
+    --graph-sel: #7dd3fc;
+    --graph-sel-fg: #04130d;
+    --graph-noted: #6b7a99;
+    --graph-noted-fg: #ffffff;
+    --graph-grid: #3a4459;
+    --graph-mark: rgba(125, 211, 252, 0.2);
+    --graph-set: #34d399;
+    --graph-set-fg: #04130d;
+}
+
+html[data-lw-theme="terminal"] .quiz-graph-table th {
+    background-color: #1b2130;
+    color: #34d399;
+}
+
+html[data-lw-theme="tafel"] .quiz-graphs {
+    --graph-node: #e6ece4;
+    --graph-node-fg: #1c2b23;
+    --graph-start: #f7d774;
+    --graph-start-fg: #1c2b23;
+    --graph-edge: rgba(230, 236, 228, 0.55);
+    --graph-sel: #f4a6c6;
+    --graph-sel-fg: #1c2b23;
+    --graph-noted: #86b9d1;
+    --graph-noted-fg: #1c2b23;
+    --graph-grid: rgba(255, 255, 255, 0.35);
+    --graph-mark: rgba(247, 215, 116, 0.25);
+    --graph-set: #f7d774;
+    --graph-set-fg: #1c2b23;
+}
+
+html[data-lw-theme="tafel"] .quiz-graph-table th {
+    background-color: rgba(0, 0, 0, 0.25);
+    color: #f7d774;
+}
+
+html[data-lw-theme="terminal"] .quiz-graph-chip,
+html[data-lw-theme="tafel"] .quiz-graph-chip {
+    background-color: var(--quiz-input-bg);
+    border-color: var(--quiz-input-border);
 }
 
 
@@ -1634,6 +1903,177 @@ html[data-lw-theme="tafel"] [codeblocks] .tw-bg-primary,
 html[data-lw-theme="tafel"] .hint-container button {
     font-family: var(--lw-font-head);
     font-weight: 700;
+}
+
+
+/* ============================================================================
+   3h. Prisma – weißes Licht, in alle Spektralfarben zerlegt
+   ============================================================================ */
+
+html[data-lw-theme="prisma"] {
+    /* Spektrum: für Flächen und Linien ... */
+    --lw-spec-1: #ef4444;
+    --lw-spec-2: #f97316;
+    --lw-spec-3: #facc15;
+    --lw-spec-4: #22c55e;
+    --lw-spec-5: #3b82f6;
+    --lw-spec-6: #8b5cf6;
+    --lw-spectrum: linear-gradient(90deg, #ef4444, #f97316, #facc15, #22c55e, #3b82f6, #8b5cf6);
+    /* ... und dunkler für Schrift auf Weiß */
+    --lw-spectrum-ink: linear-gradient(90deg, #dc2626, #ea580c, #ca8a04, #16a34a, #2563eb, #7c3aed);
+    --lw-bg: #fbfaff;
+    --lw-fg: #1e1b2e;
+    --lw-muted: #6e6a85;
+    --lw-h1-size: 42px;
+    --lw-h1-weight: 800;
+    --lw-surface: #ffffff;
+    --lw-surface-2: #f6f4fd;
+    --lw-border: #e6e2f3;
+    --lw-card-border: 1px solid #e6e2f3;
+    --lw-nested-border: 1px solid #e6e2f3;
+    --lw-radius: 20px;
+    --lw-radius-sm: 10px;
+    --lw-shadow: 0 1px 2px rgb(30 27 46 / 0.04), 0 10px 30px -12px rgb(91 63 214 / 0.18);
+    --lw-accent: #6d28d9;
+    --lw-accent-fg: #ffffff;
+    --lw-link: #2563eb;
+    --lw-code-bg: #f1eefb;
+    --lw-code-fg: #4c1d95;
+    --lw-code-block-bg: #f8f7fd;
+    --lw-out-bg: #1e1b2e;
+    --lw-out-fg: #f3f0ff;
+    --lw-exp-out-bg: #1e1b2e;
+    --lw-exp-out-fg: #f3f0ff;
+    --lw-experiment: #8b5cf6;
+    --lw-editor-border: #d9d3ee;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --radius: 0.625rem;
+}
+
+/* Lichtstreifen am oberen Rand */
+html[data-lw-theme="prisma"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 10;
+    height: 6px;
+    background: var(--lw-spectrum);
+    pointer-events: none;
+}
+
+html[data-lw-theme="prisma"] div.topbar {
+    padding-top: 40px;
+}
+
+html[data-lw-theme="prisma"] div.topbar h1 {
+    width: fit-content;
+    background: var(--lw-spectrum-ink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+html[data-lw-theme="prisma"] .lw-crumb {
+    color: var(--lw-accent);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+/* Boxen: weiße Karten mit Spektrum-Kante oben */
+html[data-lw-theme="prisma"] div.boxed,
+html[data-lw-theme="prisma"] tabbar.code {
+    border-top: 4px solid transparent;
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        var(--lw-spectrum) top / 100% 4px no-repeat border-box,
+        #e6e2f3 border-box;
+}
+
+html[data-lw-theme="prisma"] tabbar>div[data-tab]>div.boxed {
+    border-top: var(--lw-nested-border);
+    background: var(--lw-surface-2);
+}
+
+html[data-lw-theme="prisma"] div.boxed h3 {
+    font-size: 1.35em;
+    font-weight: 700;
+}
+
+html[data-lw-theme="prisma"] div.boxed h3::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin-top: 8px;
+    border-radius: 2px;
+    background: var(--lw-spectrum);
+}
+
+/* Aufzählungszeichen und Experiment-Nummern wandern durch das Spektrum */
+html[data-lw-theme="prisma"] div.boxed li:nth-child(6n+1)::marker { color: var(--lw-spec-1); }
+html[data-lw-theme="prisma"] div.boxed li:nth-child(6n+2)::marker { color: var(--lw-spec-2); }
+html[data-lw-theme="prisma"] div.boxed li:nth-child(6n+3)::marker { color: #eab308; }
+html[data-lw-theme="prisma"] div.boxed li:nth-child(6n+4)::marker { color: var(--lw-spec-4); }
+html[data-lw-theme="prisma"] div.boxed li:nth-child(6n+5)::marker { color: var(--lw-spec-5); }
+html[data-lw-theme="prisma"] div.boxed li:nth-child(6n)::marker { color: var(--lw-spec-6); }
+
+html[data-lw-theme="prisma"] div.experiment>div::before {
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+html[data-lw-theme="prisma"] div.experiment>div:nth-child(6n+2) { --lw-experiment: var(--lw-spec-1); }
+html[data-lw-theme="prisma"] div.experiment>div:nth-child(6n+3) { --lw-experiment: var(--lw-spec-2); }
+html[data-lw-theme="prisma"] div.experiment>div:nth-child(6n+4) { --lw-experiment: var(--lw-spec-3); --lw-experiment-fg: #1e1b2e; }
+html[data-lw-theme="prisma"] div.experiment>div:nth-child(6n+5) { --lw-experiment: var(--lw-spec-4); }
+html[data-lw-theme="prisma"] div.experiment>div:nth-child(6n) { --lw-experiment: var(--lw-spec-5); }
+html[data-lw-theme="prisma"] div.experiment>div:nth-child(6n+1) { --lw-experiment: var(--lw-spec-6); }
+
+/* Ausgaben: dunkel mit Spektrum-Kante links */
+html[data-lw-theme="prisma"] pre[output] {
+    padding-left: 22px;
+    background:
+        linear-gradient(180deg, #ef4444, #f97316, #facc15, #22c55e, #3b82f6, #8b5cf6) left / 4px 100% no-repeat,
+        var(--lw-out-bg);
+}
+
+html[data-lw-theme="prisma"] .colored pre[output] {
+    background:
+        linear-gradient(180deg, #ef4444, #f97316, #facc15, #22c55e, #3b82f6, #8b5cf6) left / 4px 100% no-repeat,
+        var(--lw-exp-out-bg);
+}
+
+/* Tabs: aktiver Tab mit Spektrum-Unterstrich */
+html[data-lw-theme="prisma"] tabbar>div.buttonbar button.active {
+    border-bottom-color: transparent;
+    background: var(--lw-spectrum) bottom / 100% 3px no-repeat;
+    font-weight: 600;
+}
+
+html[data-lw-theme="prisma"] .hint-container button:hover {
+    background: linear-gradient(90deg, #dc2626, #ea580c, #16a34a, #2563eb, #7c3aed);
+}
+
+/* Quiz */
+html[data-lw-theme="prisma"] .quiz {
+    --quiz-input-border: #d9d3ee;
+    --quiz-input-border-width: 1.5px;
+    --quiz-input-radius: 8px;
+    --quiz-input-focus: #7c3aed;
+    --quiz-input-focus-shadow: 0 0 0 3px rgb(139 92 246 / 0.22);
+}
+
+html[data-lw-theme="prisma"] .quiz-graphs {
+    --graph-node: #3b82f6;
+    --graph-start: #f97316;
+    --graph-edge: #a9a3c2;
+    --graph-sel: #ec4899;
+    --graph-noted: #c4b5fd;
+    --graph-noted-fg: #1e1b2e;
+    --graph-mark: rgba(139, 92, 246, 0.16);
+    --graph-set: #facc15;
+    --graph-set-fg: #1e1b2e;
 }
 
 

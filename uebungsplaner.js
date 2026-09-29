@@ -546,34 +546,37 @@
                     </div>
                 </div>
             </td>
-            <td>${typeBadge(ex.type)}</td>
-            <td class="c-chapter"><button type="button" class="chapter-btn${state.chapterFilter.includes(ex.chapter) ? " is-active" : ""}"
-                data-action="focus-chapter" data-chapter="${ex.chapter}" aria-pressed="${state.chapterFilter.includes(ex.chapter)}"
-                title="${esc(chapterTip(ex.chapter))}">${ex.chapter}</button></td>
-            <td>${levelDots(ex.difficulty)}</td>
-            <td><div class="pills">${ex.tags.map((t) => pill(t)).join("")}</div></td>
-            <td><div class="features features-compact">${features(ex, true)}</div></td>
-            <td>${r ? `<span class="reason reason-${r.kind}">${esc(r.text)}</span>` : ""}</td>
+            <td class="c-meta">
+                ${typeBadge(ex.type)}
+                <span class="c-meta-line"><button type="button" class="chapter-btn${state.chapterFilter.includes(ex.chapter) ? " is-active" : ""}"
+                    data-action="focus-chapter" data-chapter="${ex.chapter}" aria-pressed="${state.chapterFilter.includes(ex.chapter)}"
+                    title="${esc(chapterTip(ex.chapter))}">Kap. ${ex.chapter}</button>${levelDots(ex.difficulty)}</span>
+            </td>
+            <td class="c-concepts"><div class="pills">${ex.tags.map((t) => pill(t)).join("")}</div></td>
+            <td class="c-features"><div class="features features-compact">${features(ex, true)}</div></td>
+            ${hasProfile() ? `<td class="c-reason">${r ? `<span class="reason reason-${r.kind}">${esc(r.text)}</span>` : ""}</td>` : ""}
         </tr>`;
     }
 
     function table(list) {
-        const th = (label, sort, cls = "") => {
-            const active = state.sort === sort || (sort === "level-asc" && state.sort === "level-desc");
-            const arrow = active ? (state.sort === "level-desc" ? " ↓" : " ↑") : "";
-            return `<th class="${cls}" aria-sort="${active ? (state.sort === "level-desc" ? "descending" : "ascending") : "none"}">
-                <button type="button" data-action="sort-by" data-sort="${sort}">${label}${arrow}</button></th>`;
+        const isSorted = (sort) => state.sort === sort || (sort === "level-asc" && state.sort === "level-desc");
+        const ariaSort = (...sorts) => {
+            const active = sorts.find(isSorted);
+            return active ? (state.sort === "level-desc" ? "descending" : "ascending") : "none";
         };
+        const sortBtn = (label, sort) => {
+            const arrow = isSorted(sort) ? (state.sort === "level-desc" ? " ↓" : " ↑") : "";
+            return `<button type="button" class="${isSorted(sort) ? "is-sorted" : ""}" data-action="sort-by" data-sort="${sort}">${label}${arrow}</button>`;
+        };
+        const th = (label, sort, cls = "") => `<th class="${cls}" aria-sort="${ariaSort(sort)}">${sortBtn(label, sort)}</th>`;
         return `<div class="table-wrap"><table class="table">
             <thead><tr>
                 <th class="c-done"><span class="sr">Erledigt</span></th>
                 ${th("Übung", "title")}
-                <th>Art</th>
-                ${th("Kap.", "chapter")}
-                ${th("Level", "level-asc")}
-                <th>Konzepte</th>
-                <th>Ausstattung</th>
-                <th>${hasProfile() ? "Für dich" : ""}</th>
+                <th class="c-meta" aria-sort="${ariaSort("chapter", "level-asc")}">Art · ${sortBtn("Kap.", "chapter")} · ${sortBtn("Level", "level-asc")}</th>
+                <th class="c-concepts">Konzepte</th>
+                <th class="c-features">Ausstattung</th>
+                ${hasProfile() ? `<th class="c-reason">Für dich</th>` : ""}
             </tr></thead>
             <tbody>${list.map(tableRow).join("")}</tbody>
         </table></div>`;

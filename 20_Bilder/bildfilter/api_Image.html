@@ -1,0 +1,24 @@
+<h2><b>class Image</b></h2>
+<p>Ein Graustufenbild. Jeder Grauwert liegt zwischen <code>0</code> (schwarz) und <code>255</code> (weiß).</p>
+<h4>Konstruktor:</h4>
+<ul>
+    <li><pre><code>public Image(int[][] data)</code>
+Erstellt ein neues Bild aus den übergebenen Daten.</pre></li>
+</ul>
+<h4>Attribute:</h4>
+<ul>
+    <li><pre><code>public final int width</code>
+Breite des Bildes in Pixeln.</pre></li>
+    <li><pre><code>public final int height</code>
+Höhe des Bildes in Pixeln.</pre></li>
+    <li><pre><code>public final int[][] data</code>
+Eigentlicher Bildinhalt. Der erste Index gibt die Spalte, der zweite die Zeile an.</pre></li>
+</ul>
+<h4>Methoden:</h4>
+<ul>
+    <li><pre><code>public static Image load(String[] args)</code>
+Lädt das dem Programm übergebene Bild.</pre></li>
+    <li><pre><code>public void save()</code>
+Speichert das Bild und zeigt es nach Beendigung des Programms an. Werte außerhalb von 0 bis 255
+werden dabei auf 0 bzw. 255 begrenzt.</pre></li>
+</ul>

@@ -1,0 +1,11 @@
+<h3>Erklärung</h3>
+
+<p>Bei vorzeichenlosen Zahlen ist jedes Bit ein Stellenwert, von rechts nach links 1, 2, 4, 8, 16, 32, 64 und 128.
+    Mit 8 Bit lassen sich so die Werte 0 bis 255 darstellen.</p>
+
+<p><b>Bitmuster → dezimal:</b> Die Stellenwerte aller Bits, die 1 sind, werden addiert.
+    <code>0100 1011</code> = 64 + 8 + 2 + 1 = 75.</p>
+
+<p><b>Dezimal → Bitmuster:</b> Von links beginnend wird geprüft, ob der Stellenwert noch in den Rest passt. Wenn ja,
+    ist das Bit 1 und der Stellenwert wird abgezogen. 75: 64 passt (Rest 11), 32 und 16 nicht, 8 passt (Rest 3), 4 nicht,
+    2 passt (Rest 1), 1 passt, also <code>0100 1011</code>. Alternativ geht auch das fortgesetzte Teilen durch 2.</p>

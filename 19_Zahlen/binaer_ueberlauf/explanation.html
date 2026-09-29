@@ -1,0 +1,17 @@
+<h3>Erklärung</h3>
+
+<p>Mit 8 Bit lassen sich nur 256 verschiedene Werte speichern: vorzeichenlos 0 bis 255, im B1-Komplement −127 bis 127,
+    im B2-Komplement −128 bis 127. Liegt die richtige Summe außerhalb dieses Bereichs, kommt es zu einem
+    <b>Überlauf</b>. Gerechnet wird trotzdem genau wie sonst, gespeichert werden aber nur 8 Bit.</p>
+
+<ul>
+    <li><b>Vorzeichenlos:</b> Das 9. Bit (der Übertrag aus dem höchsten Bit) geht verloren. Aus 200 + 100 = 300
+        wird 300 − 256 = 44.</li>
+    <li><b>B2-Komplement:</b> Zwei positive Zahlen ergeben ein Muster mit führender 1, also eine negative Zahl. Aus
+        100 + 50 = 150 wird 150 − 256 = −106. Bei zwei negativen Zahlen entsteht umgekehrt eine positive.</li>
+    <li><b>B1-Komplement:</b> ebenso, nur dass ein Übertrag aus dem höchsten Bit wie immer wieder addiert wird.</li>
+</ul>
+
+<p>Man erkennt einen Überlauf bei vorzeichenbehafteten Zahlen daran, dass zwei Summanden mit <i>gleichem</i> Vorzeichen
+    ein Ergebnis mit <i>anderem</i> Vorzeichen liefern. Programmiersprachen wie Java melden das nicht: Ein
+    <code>byte</code> mit dem Wert 100 + 50 enthält danach tatsächlich −106.</p>

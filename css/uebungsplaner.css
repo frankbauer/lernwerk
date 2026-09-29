@@ -1096,7 +1096,7 @@ h1 {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 540px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
     gap: 20px;
 }
 
@@ -1513,6 +1513,7 @@ h1 {
 /* --- Table -------------------------------------------------------------- */
 
 .table-wrap {
+    container: results-table / inline-size;
     overflow-x: auto;
     background: var(--surface);
     border: 1px solid var(--line);
@@ -1521,7 +1522,6 @@ h1 {
 
 .table {
     width: 100%;
-    min-width: 980px;
     border-collapse: collapse;
     font-size: 14px;
 }
@@ -1548,8 +1548,13 @@ h1 {
 }
 
 .table th[aria-sort="ascending"],
-.table th[aria-sort="descending"] {
+.table th[aria-sort="descending"],
+.table th button.is-sorted {
     color: var(--ink);
+}
+
+.table th.c-meta[aria-sort] {
+    color: var(--muted);
 }
 
 .table td {
@@ -1579,8 +1584,7 @@ h1 {
 }
 
 .c-title {
-    min-width: 300px;
-    max-width: 400px;
+    min-width: 220px;
 }
 
 .c-title-inner {
@@ -1627,9 +1631,22 @@ h1 {
     line-height: 1.35;
 }
 
-.c-chapter {
+.c-meta {
+    white-space: nowrap;
+}
+
+.c-meta-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.c-meta .chapter-btn {
+    margin-left: -8px;  /* align the label with the badge; the padding is only for the hover ring */
     font-variant-numeric: tabular-nums;
     font-weight: 600;
+    font-size: 13px;
 }
 
 .chapter-btn {
@@ -1662,12 +1679,8 @@ h1 {
     gap: 3px;
 }
 
-.table .pills {
-    min-width: 240px;
-}
-
-.table td:last-child {
-    min-width: 170px;
+.table .c-reason {
+    min-width: 140px;
 }
 
 .features-compact {
@@ -1691,6 +1704,89 @@ tr.is-locked td:not(:last-child) {
 
 tr.is-done .c-title a {
     color: var(--muted);
+}
+
+/*
+ * Narrow tables: no horizontal scrolling. First the concept pills lose their labels (the tooltip
+ * keeps the name), then each row turns into a two-line block: title on top, the rest below.
+ */
+@container results-table (max-width: 900px) {
+    .table .pill {
+        justify-content: center;
+        width: 26px;
+        padding: 0;
+    }
+
+    .table .pill > span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+    }
+}
+
+@container results-table (max-width: 640px) {
+    .table thead {
+        display: none;  /* the sort select above the table does the same */
+    }
+
+    .table tbody tr {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 16px;
+        row-gap: 8px;
+        padding: 12px 12px 12px 52px;  /* everything below the title lines up with it */
+        border-bottom: 1px solid var(--line);
+    }
+
+    .table tbody tr:last-child {
+        border-bottom: 0;
+    }
+
+    .table td {
+        display: block;
+        padding: 0;
+        border: 0;
+    }
+
+    .table .c-done {
+        width: 24px;
+        margin-left: -40px;  /* in the padding; with the gap it takes no room in the line */
+        align-self: flex-start;
+    }
+
+    .table .c-title {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .table .c-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .table .c-meta-line {
+        margin-top: 0;
+    }
+
+    .table .c-meta .chapter-btn {
+        margin-left: 0;
+    }
+
+    .table .features-compact {
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 10px;
+    }
+
+    .table .c-reason {
+        flex-basis: 100%;
+        min-width: 0;
+    }
 }
 
 /* --- Empty state -------------------------------------------------------- */

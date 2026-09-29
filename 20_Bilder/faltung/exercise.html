@@ -1,0 +1,26 @@
+<h3>Aufgabe</h3>
+<p>Gegeben ist ein Graustufenbild als 2D-Feld von <code>short</code>-Werten (erster Index: Zeile, zweiter Index:
+    Spalte) sowie ein Filterkernel als 3x3-Feld von <code>double</code>-Werten. Vervollständigen Sie die gegebenen
+    Methoden der Klasse <code>Fold</code>:</p>
+<ul>
+    <li>Die Methode <code>print</code> soll den Inhalt eines 2D-Feldes zeilenweise auf der Konsole ausgeben.</li>
+    <li>Die Methode <code>fold(int x, int y, short[][] image, double[][] kernel)</code> soll eine <b>diskrete
+            Faltung</b> für das Pixel an der Stelle <code>(x, y)</code> durchführen und den neuen Grauwert
+        zurückgeben.</li>
+</ul>
+<p>Das Programm soll folgende Ausgabe erzeugen:</p>
+<pre output>50 30 20 10 40 
+10 30 20 25 10 
+40 30 50 20 40 
+35 40 0 30 15 
+
+--------------------------------------
+
+0 0 0 0 0 
+0 0 40 10 0 
+0 5 35 15 0 
+0 0 0 0 0 
+
+--------------------------------------
+</pre>
+<p><b>Hinweis:</b> Die Randpixel werden bei der Filterung ignoriert und bleiben im Ergebnis <code>0</code>.</p>

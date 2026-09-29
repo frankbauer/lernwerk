@@ -1,0 +1,16 @@
+<h3>Erklärung</h3>
+
+<p>Die Bits werden von rechts nach links addiert: <code>0+0 = 0</code>, <code>0+1 = 1</code>, <code>1+1 = 10</code>
+    (0 notieren, 1 übertragen) und <code>1+1+1 = 11</code> (1 notieren, 1 übertragen). In der Beispiellösung stehen die
+    Überträge klein über der Ergebniszeile.</p>
+
+<p>Was mit einem Übertrag aus dem höchsten Bit passiert, hängt von der Zahlendarstellung ab:</p>
+<ul>
+    <li><b>Vorzeichenlos:</b> Ein solcher Übertrag wäre ein Überlauf. In dieser Übung kommt er nicht vor.</li>
+    <li><b>B1-Komplement:</b> Der Übertrag wird wieder zum Ergebnis <b>addiert</b> (Einerrücklauf).</li>
+    <li><b>B2-Komplement:</b> Der Übertrag wird <b>verworfen</b>. In der Beispiellösung ist er rot durchgestrichen.</li>
+</ul>
+
+<p>Im B1- und B2-Komplement funktioniert die Addition auch mit negativen Zahlen, ohne dass man auf das Vorzeichen achten
+    muss. Genau deshalb werden diese Darstellungen verwendet. Zur Kontrolle rechnet die Beispiellösung die Summanden ins
+    Dezimalsystem um.</p>

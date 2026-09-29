@@ -663,7 +663,7 @@ export default {
                     input.setAttribute('aria-label', 'Zeile ' + r + ', Knoten ' + this.name(c))
                     input.addEventListener('input', () => {
                         a.cells[r][c] = input.value
-                        td.classList.remove('ok', 'bad')
+                        input.classList.remove('ok', 'bad')
                         this.save()
                     })
                     input.addEventListener('change', () => {
@@ -738,7 +738,7 @@ export default {
                 const good = val === expected
                 if (val === undefined) invalid++
                 if (!good && expected === null && val !== null) filledVisited++
-                td.classList.add(good ? 'ok' : 'bad')
+                td.querySelector('input').classList.add(good ? 'ok' : 'bad')
                 ok = ok && good
             })
             if (ok) rowsOk++

@@ -269,6 +269,15 @@ html[data-lw-theme="tafel"] {
     --lw-menu-button-bg: rgba(0, 0, 0, 0.25);
 }
 
+html[data-lw-theme="prisma"] {
+    --lw-menu-bg: #ffffff;
+    --lw-menu-fg: #1e1b2e;
+    --lw-menu-border: #e6e2f3;
+    --lw-menu-hover: #f6f4fd;
+    --lw-menu-check: #7c3aed;
+    --lw-menu-button-bg: #ffffff;
+}
+
 html[data-lw-theme="terminal"] .lw-menu-button {
     --lw-menu-button-bg: rgba(10, 13, 19, 0.6);
 }

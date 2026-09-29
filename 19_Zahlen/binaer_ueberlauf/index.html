@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../../">
+    <title>[GdI]</title>
+    <link rel="stylesheet" href="../../css/editor.css?v=1.0.4">
+    <script src="../../js/jquery/jquery.min.js?v=3.6.2"></script>
+    <script src="../../helper.js?v=1.0.3"></script>
+    <script src="../../content.js?v=1.0.5"></script>
+    <link rel="stylesheet" href="../../js/codeblocks-js/codeblocks.css?v=1.0.2">
+    <link rel="stylesheet" href="../../common/quiz/quiz.css?v=1.0.8">
+</head>
+
+<body>
+    <div class="topbar">
+        <h1></h1>
+        <a href="../../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+    </div>
+    <script>
+        const elements = {
+            uuid: "25697dc8-c6e5-4250-a1fc-e150d0035269",
+            title: "Binäre Addition mit Überlauf",
+            short: "Überlauf",
+            content: [
+                {
+                    type: "aufgabe",
+                    content: "./exercise.html"
+                },
+                {
+                    type: "tabs",
+                    class: "code",
+                    tabs: [
+                        {
+                            name: "Ihre Lösung",
+                            content: [{
+                                type: "codeblocks",
+                                attributes: {
+                                    dataRunCode: false
+                                },
+                                blocks: [
+                                    {
+                                        type: "data",
+                                        name: "config",
+                                        content: "./config.json"
+                                    },
+                                    {
+                                        type: "playground",
+                                        attributes: {
+                                            height: "auto"
+                                        },
+                                        content: "../../common/quiz/numbers.js"
+                                    }
+                                ]
+                            }]
+                        },
+                        {
+                            name: "Beispiellösung",
+                            content: [{
+                                type: "codeblocks",
+                                attributes: {
+                                    dataRunCode: false
+                                },
+                                blocks: [
+                                    {
+                                        type: "data",
+                                        name: "config",
+                                        content: "./solution.json"
+                                    },
+                                    {
+                                        type: "playground",
+                                        attributes: {
+                                            height: "auto"
+                                        },
+                                        content: "../../common/quiz/numbers.js"
+                                    }
+                                ]
+                            }, {
+                                type: "explain",
+                                class: "q-mt-xl",
+                                content: "./explanation.html"
+                            }]
+                        }
+                    ]
+                }
+            ]
+        }
+
+
+        document.body.onload = async () => {
+            await buildContent(elements)
+            import("../../js/codeblocks-js/codeblocks.umd.js?s=00017")
+            initHelpers()
+        }
+    </script>
+</body>
+
+</html>

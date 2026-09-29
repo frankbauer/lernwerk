@@ -13,11 +13,34 @@
     --quiz-back: #fdf6e3;
     --quiz-line: #ffffff;
     --quiz-border: rgba(0, 0, 0, 0.25);
-    --quiz-bad: rgb(211, 47, 47);
-    --quiz-ok: rgb(46, 125, 50);
-    --quiz-warn: rgb(230, 126, 0);
+    /* Richtig = Blau, Falsch = Orangerot, Warnung = Bernstein: auch bei Rot-Grün-Sehschwäche unterscheidbar
+       (geprüft mit simulierter Protanopie/Deuteranopie/Tritanopie). Zusätzlich sind falsche Antworten gestrichelt. */
+    --quiz-bad: #c2410c;
+    --quiz-ok: #1d4ed8;
+    --quiz-warn: #d99a00;
+    --quiz-warn-bg: rgba(217, 154, 0, 0.1);
     --quiz-accent: var(--color-explain-dark, rgb(2, 123, 227));
     --quiz-mono: "Source Code Pro", "Courier New", Courier, monospace;
+    /* Richtig/falsch-Markierung: Farbe, Hintergrund-Tönung und Ring bzw. Schatten, je Theme angepasst */
+    --quiz-ok-bg: rgba(29, 78, 216, 0.08);
+    --quiz-bad-bg: rgba(194, 65, 12, 0.08);
+    --quiz-ok-ring: 0 0 0 1px var(--quiz-ok);
+    --quiz-bad-ring: 0 0 0 1px var(--quiz-bad);
+    --quiz-fg: var(--lw-fg, #222222);
+    --quiz-muted: var(--lw-muted, rgba(0, 0, 0, 0.6));
+    /* Eingabefelder aller Quiz-Typen, je Theme in css/themes.css angepasst */
+    --quiz-input-bg: #ffffff;
+    --quiz-input-fg: var(--quiz-fg);
+    --quiz-input-border: rgba(0, 0, 0, 0.3);
+    --quiz-input-border-width: 1px;
+    --quiz-input-radius: 3px;
+    --quiz-input-shadow: none;
+    --quiz-input-weight: normal;
+    --quiz-input-hover: var(--quiz-input-focus);
+    --quiz-input-focus: var(--quiz-accent);
+    --quiz-input-focus-bg: var(--quiz-input-bg);
+    --quiz-input-focus-shadow: 0 0 0 1px var(--quiz-input-focus);
+    --quiz-input-focus-transform: none;
     width: 100%;
     text-align: left;
     font-size: 13pt;
@@ -71,9 +94,9 @@
     border-radius: 4px;
 }
 
-.quiz-feedback.error { border-color: var(--quiz-bad); background: rgba(211, 47, 47, 0.08); }
-.quiz-feedback.warning { border-color: var(--quiz-warn); background: rgba(230, 126, 0, 0.08); }
-.quiz-feedback.success { border-color: var(--quiz-ok); background: rgba(46, 125, 50, 0.08); }
+.quiz-feedback.error { border-color: var(--quiz-bad); background: var(--quiz-bad-bg); }
+.quiz-feedback.warning { border-color: var(--quiz-warn); background: var(--quiz-warn-bg); }
+.quiz-feedback.success { border-color: var(--quiz-ok); background: var(--quiz-ok-bg); }
 
 .quiz-feedback code {
     font-weight: 500;
@@ -121,7 +144,9 @@
 
 .quiz .quiz-parsons-list>li.bad {
     border-color: var(--quiz-bad);
-    box-shadow: 0 0 0 2px var(--quiz-bad);
+    border-style: dashed;
+    box-shadow: var(--quiz-bad-ring);
+    background-image: linear-gradient(var(--quiz-bad-bg), var(--quiz-bad-bg));
 }
 
 .quiz-grip {
@@ -197,18 +222,63 @@
     margin: 2px 0;
 }
 
+/* gemeinsames Aussehen aller Eingabefelder (Ausgabe-Lücken, Graph-Tabellen, Zahlentabellen) */
+.quiz input.quiz-answer,
+.quiz .quiz-graph-table input,
+.quiz .quiz-num-table input,
+.quiz .quiz-num-choice select {
+    border: var(--quiz-input-border-width) solid var(--quiz-input-border);
+    border-radius: var(--quiz-input-radius);
+    background: var(--quiz-input-bg);
+    color: var(--quiz-input-fg);
+    box-shadow: var(--quiz-input-shadow);
+    font-weight: var(--quiz-input-weight);
+    caret-color: var(--quiz-input-focus);
+    transition: border-color 0.12s, box-shadow 0.12s, background-color 0.12s, transform 0.12s;
+}
+
+.quiz input.quiz-answer:hover,
+.quiz .quiz-graph-table input:hover,
+.quiz .quiz-num-table input:hover,
+.quiz .quiz-num-choice select:hover {
+    border-color: var(--quiz-input-hover);
+}
+
+.quiz input.quiz-answer:focus,
+.quiz .quiz-graph-table input:focus,
+.quiz .quiz-num-table input:focus,
+.quiz .quiz-num-choice select:focus {
+    outline: none;
+    border-color: var(--quiz-input-focus);
+    background: var(--quiz-input-focus-bg);
+    box-shadow: var(--quiz-input-focus-shadow);
+    transform: var(--quiz-input-focus-transform);
+}
+
 .quiz input.quiz-answer {
     font-family: var(--quiz-mono);
     font-size: 12pt;
     padding: 3px 6px;
-    border: 1px solid var(--quiz-border);
-    border-radius: 3px;
-    background: white;
     width: 100%;
 }
 
-.quiz input.quiz-answer.ok { border-color: var(--quiz-ok); box-shadow: 0 0 0 1px var(--quiz-ok); background: rgba(46, 125, 50, 0.06); }
-.quiz input.quiz-answer.bad { border-color: var(--quiz-bad); box-shadow: 0 0 0 1px var(--quiz-bad); background: rgba(211, 47, 47, 0.06); }
+/* Ergebnis der Prüfung: Rand in Ergebnisfarbe, leicht getönt (die Tönung liegt über dem Feldhintergrund) */
+.quiz input.quiz-answer.ok,
+.quiz .quiz-graph-table input.ok,
+.quiz .quiz-num-table input.ok {
+    border-color: var(--quiz-ok);
+    background: linear-gradient(var(--quiz-ok-bg), var(--quiz-ok-bg)), var(--quiz-input-bg);
+    box-shadow: var(--quiz-ok-ring);
+}
+
+.quiz input.quiz-answer.bad,
+.quiz .quiz-graph-table input.bad,
+.quiz .quiz-num-table input.bad {
+    border-color: var(--quiz-bad);
+    border-style: dashed;
+    background: linear-gradient(var(--quiz-bad-bg), var(--quiz-bad-bg)), var(--quiz-input-bg);
+    box-shadow: var(--quiz-bad-ring);
+}
 
 /* ---------- Zuordnen ---------- */
 
@@ -230,7 +300,7 @@
 }
 
 .quiz-match-row.ok { border-left-color: var(--quiz-ok); }
-.quiz-match-row.bad { border-left-color: var(--quiz-bad); }
+.quiz-match-row.bad { border-left-color: var(--quiz-bad); border-left-style: dashed; }
 
 .quiz-match-row pre {
     white-space: pre-wrap;
@@ -267,16 +337,24 @@
 
 /* ---------- Graphen (graph.js) ---------- */
 
+/* Farben als Tokens: neutral als Standard, je Theme in css/themes.css angepasst */
 .quiz-graphs {
-    --graph-node: #437094;
+    --graph-node: #475569;
     --graph-node-fg: #ffffff;
-    --graph-start: #e67e22;
-    --graph-edge: var(--lw-muted, #9a8f80);
-    --graph-sel: #bc8958;
-    --graph-noted: #8fb4d6;
-    --graph-fg: var(--lw-fg, #222222);
+    --graph-start: #ea580c;
+    --graph-start-fg: #ffffff;
+    --graph-edge: #94a3b8;
+    --graph-sel: #d97706;
+    --graph-sel-fg: #ffffff;
+    --graph-noted: #bfdbfe;
+    --graph-noted-fg: #1e293b;
+    --graph-fg: var(--quiz-fg);
     --graph-surface: var(--quiz-line);
-    --graph-mark: rgba(67, 112, 148, 0.18);
+    --graph-grid: var(--graph-node);
+    --graph-label-border: var(--graph-sel);
+    --graph-mark: rgba(71, 85, 105, 0.18);
+    --graph-set: #fde68a;
+    --graph-set-fg: #1e293b;
 }
 
 .quiz-graph-info {
@@ -330,7 +408,7 @@
 
 .quiz-graph-weight rect {
     fill: var(--graph-surface);
-    stroke: var(--graph-sel);
+    stroke: var(--graph-label-border);
     stroke-width: 1px;
 }
 
@@ -346,9 +424,9 @@
 .quiz-graph-weight.clickable:focus rect { stroke-width: 2.5px; }
 .quiz-graph-weight:focus { outline: none; }
 .quiz-graph-weight.noted rect { fill: var(--graph-noted); stroke: var(--graph-noted); }
-.quiz-graph-weight.noted text { fill: #1e2230; }
+.quiz-graph-weight.noted text { fill: var(--graph-noted-fg); }
 .quiz-graph-weight.selected rect { fill: var(--graph-sel); }
-.quiz-graph-weight.selected text { fill: #ffffff; }
+.quiz-graph-weight.selected text { fill: var(--graph-sel-fg); }
 
 .quiz-graph-node circle {
     fill: var(--graph-node);
@@ -357,7 +435,9 @@
 }
 
 .quiz-graph-node.start circle { fill: var(--graph-start); }
+.quiz-graph-node.start text { fill: var(--graph-start-fg); }
 .quiz-graph-node.onpath circle { fill: var(--graph-sel); }
+.quiz-graph-node.onpath text { fill: var(--graph-sel-fg); }
 
 .quiz-graph-node text {
     fill: var(--graph-node-fg);
@@ -380,7 +460,7 @@
 
 .quiz-graph-table th,
 .quiz-graph-table td {
-    border: 1px solid var(--graph-node);
+    border: 1px solid var(--graph-grid);
     min-width: 2.6em;
     height: 2.1em;
     padding: 3px;
@@ -394,7 +474,7 @@
 
 .quiz-graph-table th.clickable { cursor: pointer; }
 .quiz-graph-table th.clickable:hover,
-.quiz-graph-table th.clickable:focus { background-color: var(--graph-sel); outline: none; }
+.quiz-graph-table th.clickable:focus { background-color: var(--graph-sel); color: var(--graph-sel-fg); outline: none; }
 
 .quiz-graph-table td { background-color: var(--graph-surface); color: var(--graph-fg); }
 .quiz-graph-table td.clickable { cursor: pointer; }
@@ -404,8 +484,6 @@
     background-image: repeating-linear-gradient(45deg, transparent 0 5px, var(--graph-mark) 5px 10px);
 }
 
-.quiz-graph-table td.ok { box-shadow: inset 0 0 0 2px var(--quiz-ok); }
-.quiz-graph-table td.bad { box-shadow: inset 0 0 0 2px var(--quiz-bad); }
 
 .quiz .quiz-graph-table input {
     width: 3.2em;
@@ -413,10 +491,6 @@
     font-size: 12pt;
     text-align: center;
     padding: 2px;
-    border: 1px solid var(--quiz-border);
-    border-radius: 2px;
-    background: var(--graph-surface);
-    color: var(--graph-fg);
 }
 
 .quiz-graph-paths td { padding: 3px 6px; }
@@ -437,9 +511,10 @@
 
 .quiz button.quiz-graph-set { cursor: pointer; }
 .quiz button.quiz-graph-set:hover { border-color: var(--graph-sel); }
-.quiz .quiz-graph-set.marked { background-color: #ffc107; color: #222222; }
-.quiz .quiz-graph-set.ok { box-shadow: 0 0 0 2px var(--quiz-ok); }
-.quiz .quiz-graph-set.bad { box-shadow: 0 0 0 2px var(--quiz-bad); }
+.quiz .quiz-graph-set.marked { background-color: var(--graph-set); color: var(--graph-set-fg); }
+/* nach dem Prüfen ersetzt die Ergebnis-Tönung die Auswahlfarbe */
+.quiz .quiz-graph-set.ok { border-color: var(--quiz-ok); background-color: var(--quiz-ok-bg); color: var(--graph-fg); box-shadow: var(--quiz-ok-ring); }
+.quiz .quiz-graph-set.bad { border-color: var(--quiz-bad); border-style: dashed; background-color: var(--quiz-bad-bg); color: var(--graph-fg); box-shadow: var(--quiz-bad-ring); }
 
 .quiz-graph-chipwrap {
     display: flex;
@@ -484,8 +559,8 @@
 .quiz-graph-chip sub { font-weight: 400; margin-left: 1px; }
 .quiz-graph-chip.dragging { cursor: grabbing; opacity: 0.85; z-index: 2; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); }
 .quiz-graph-chip.drop-target { box-shadow: -4px 0 0 0 var(--quiz-accent); }
-.quiz-graph-chip.ok { border-color: var(--quiz-ok); box-shadow: 0 0 0 1px var(--quiz-ok); }
-.quiz-graph-chip.bad { border-color: var(--quiz-bad); box-shadow: 0 0 0 1px var(--quiz-bad); }
+.quiz-graph-chip.ok { border-color: var(--quiz-ok); background-image: linear-gradient(var(--quiz-ok-bg), var(--quiz-ok-bg)); box-shadow: var(--quiz-ok-ring); }
+.quiz-graph-chip.bad { border-color: var(--quiz-bad); border-style: dashed; background-image: linear-gradient(var(--quiz-bad-bg), var(--quiz-bad-bg)); box-shadow: var(--quiz-bad-ring); }
 
 .quiz-graph-chipdel {
     border: none;
@@ -499,6 +574,113 @@
 }
 
 .quiz-graph-chipdel:hover { background: rgba(0, 0, 0, 0.08); }
+
+/* ---------- Zahlendarstellung (numbers.js) ---------- */
+
+.quiz-numbers {
+    --num-fg: var(--quiz-fg);
+    --num-muted: var(--quiz-muted);
+    --num-surface: var(--quiz-line);
+    --num-rule: var(--num-fg);
+    --num-carry: var(--quiz-accent);
+}
+
+.quiz-num-item + .quiz-num-item { margin-top: 22px; }
+
+.quiz-num-intro { margin: 0 0 6px 0; }
+
+.quiz-num-note,
+.quiz-num-way {
+    margin: 8px 0 0 0;
+    font-size: 11pt;
+    color: var(--num-muted);
+}
+
+.quiz-num-way { line-height: 1.5; }
+
+.quiz-num-tablebox {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.quiz-num-table {
+    border-collapse: collapse;
+    font-family: var(--quiz-mono);
+    font-size: 13pt;
+    color: var(--num-fg);
+}
+
+.quiz-num-table td {
+    padding: 2px 1px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.quiz-num-table td.digit { min-width: 1.5em; }
+.quiz-num-table td.nibble { min-width: 10px; padding: 0; }
+.quiz-num-table td.op { min-width: 1.6em; text-align: right; padding-right: 6px; font-weight: 700; }
+.quiz-num-table td.eq { padding: 0 8px; }
+.quiz-num-table td.dec { min-width: 3.5em; padding: 2px 4px; }
+.quiz-num-table tr.result td { border-top: 2px solid var(--num-rule); padding-top: 6px; }
+.quiz-num-table tr.result td.op { border-top: none; }
+.quiz-num-table tr.carry td { font-size: 9pt; line-height: 1; color: var(--num-carry); font-weight: 700; }
+
+.quiz-num-table td.op.overflow { color: var(--quiz-bad); text-decoration: line-through; font-weight: 400; }
+
+.quiz-num-choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px 0;
+    font-weight: 600;
+}
+
+.quiz .quiz-num-choice select {
+    font: inherit;
+    font-weight: 400;
+    padding: 3px 6px;
+}
+
+
+.quiz .quiz-num-table input {
+    font-family: var(--quiz-mono);
+    font-size: 13pt;
+    text-align: center;
+    padding: 2px;
+}
+
+.quiz .quiz-num-table input.quiz-num-digit { width: 1.5em; text-transform: uppercase; }
+.quiz .quiz-num-table input.quiz-num-dec { width: 4.2em; }
+
+.quiz-num-ref {
+    margin-top: 24px;
+    padding-top: 12px;
+    border-top: 1px solid var(--quiz-border);
+}
+
+.quiz-num-reftitle { margin: 0; font-weight: 700; }
+
+.quiz-num-ref .quiz-num-tablebox { padding-top: 12px; }
+
+.quiz-num-reftable {
+    border-collapse: collapse;
+    font-family: var(--quiz-mono);
+    font-size: 11pt;
+    color: var(--num-fg);
+}
+
+.quiz-num-reftable th,
+.quiz-num-reftable td {
+    border: 1px solid var(--quiz-border);
+    padding: 3px 8px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.quiz-num-reftable th { background-color: var(--quiz-back); }
+.quiz-num-reftable td { background-color: var(--num-surface); }
+.quiz-num-reftable th.pow { text-align: left; }
 
 /* schmale Darstellung: nach der Breite des Quiz statt des Fensters. Die Grenze hängt von der längsten Codezeile ab,
    780px reicht für Zeilen mit ca. 50 Zeichen. */
