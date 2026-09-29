@@ -1,0 +1,14 @@
+<h2><b>class Helper</b></h2>
+<p>Hilfsmethoden für die Walzen. Alle Methoden sind Klassenmethoden (<code>static</code>).</p>
+<h4>Methoden:</h4>
+<ul>
+    <li><pre><code>static int[] getMapping()</code>
+Gibt ein Mapping-Array für die 26 Buchstaben a...z zurück.
+Mehrfache Aufrufe geben unterschiedliche Mappings zurück.</pre></li>
+    <li><pre><code>static int getIndexFromChar(char c)</code>
+Gibt den Index zum übergebenen Buchstaben zurück: a...z -> 0...25
+(funktioniert auch mit Großbuchstaben). Für andere Zeichen wird -1 zurückgegeben.</pre></li>
+    <li><pre><code>static char getCharFromIndex(int index)</code>
+Gibt den Buchstaben zum übergebenen Index zurück: 0...25 -> a...z
+(nur Kleinbuchstaben). Für andere Werte wird '?' zurückgegeben.</pre></li>
+</ul>

@@ -100,6 +100,11 @@
       "number": 20,
       "folder": "20_Bilder",
       "title": "Bilder"
+    },
+    {
+      "number": 21,
+      "folder": "21_Verschluesselung",
+      "title": "Verschlüsselung"
     }
   ],
   "concepts": [
@@ -264,6 +269,12 @@
       "label": "Bildverarbeitung",
       "chapter": 20,
       "icon": "img/concepts/bilder.png"
+    },
+    {
+      "id": "verschluesselung",
+      "label": "Verschlüsselung",
+      "chapter": 21,
+      "icon": "img/concepts/verschluesselung.png"
     }
   ],
   "types": [
@@ -2652,6 +2663,44 @@
         "bilder",
         "arrays-ndim",
         "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "21_Verschluesselung/polybios",
+      "title": "Polybios-Chiffre",
+      "description": "Gib eine Polybios-Tabelle aus, dekodiere eine geheime Nachricht und kodiere ein Wort.",
+      "link": "21_Verschluesselung/polybios",
+      "chapter": 21,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "verschluesselung",
+        "arrays-ndim",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "21_Verschluesselung/enigma",
+      "title": "Simple Enigma",
+      "description": "Implementiere die Walzen einer vereinfachten Enigma, die Buchstaben ver- und entschlüsseln.",
+      "link": "21_Verschluesselung/enigma",
+      "chapter": 21,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "verschluesselung",
+        "klassen",
+        "arrays"
       ],
       "hasSolution": true,
       "hasExplanation": true,

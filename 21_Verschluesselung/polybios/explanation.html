@@ -1,0 +1,18 @@
+<h3>Erklärung</h3>
+
+<p><b>Tabelle ausgeben:</b> Zuerst wird die Kopfzeile mit den Spaltennummern <code>0</code> bis
+    <code>table[0].length - 1</code> ausgegeben. Die drei Leerzeichen davor sorgen dafür, dass die Nummern über
+    den Spalten stehen. Danach folgt für jede Zeile die Zeilennummer mit Doppelpunkt und anschließend in einer
+    inneren Schleife jedes Zeichen der Zeile.</p>
+<p><b>Dekodieren:</b> Da jedes Zeichen aus zwei Werten besteht, springt die Schleife in Zweierschritten
+    (<code>i += 2</code>) durch <code>secret</code>. <code>secret[i]</code> ist die Zeile,
+    <code>secret[i + 1]</code> die Spalte, das Zeichen steht also in <code>table[secret[i]][secret[i + 1]]</code>.
+    Es wird an <code>decoded</code> angehängt. Die Nachricht lautet <b>THE POLYBIUS GAME</b>.</p>
+<p><b>Kodieren:</b> Das Ergebnisfeld braucht für jedes Zeichen zwei Einträge, also die Länge
+    <code>message.length() * 2</code>. Für jedes Zeichen <code>message.charAt(i)</code> wird die ganze Tabelle
+    durchsucht. Bei einem Treffer werden Zeile und Spalte an den Stellen <code>2 * i</code> und
+    <code>2 * i + 1</code> gespeichert:</p>
+<pre>H -> Zeile 5, Spalte 0
+A -> Zeile 6, Spalte 1
+U -> Zeile 2, Spalte 3
+S -> Zeile 2, Spalte 1</pre>

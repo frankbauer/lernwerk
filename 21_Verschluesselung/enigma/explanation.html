@@ -1,0 +1,21 @@
+<h3>Erklärung</h3>
+
+<p>Die Walze speichert das übergebene Mapping-Array in einem privaten Attribut.</p>
+<p><b>Verschlüsseln:</b> Der Buchstabe wird mit <code>Helper.getIndexFromChar</code> in seinen Index
+    umgewandelt. Liegt dieser nicht zwischen <code>0</code> und <code>25</code>, ist es kein Buchstabe und die
+    Methode gibt <code>'?'</code> zurück. Sonst steht der Index des Ergebnisbuchstabens direkt in
+    <code>mapping[index]</code> und wird mit <code>Helper.getCharFromIndex</code> zurück in einen Buchstaben
+    umgewandelt.</p>
+<p><b>Entschlüsseln:</b> Hier ist der Weg umgekehrt: Gesucht ist die Stelle <code>i</code>, für die
+    <code>mapping[i]</code> gleich dem Index des verschlüsselten Buchstabens ist. Da jeder Buchstabe auf genau
+    einen anderen abgebildet wird, gibt es genau eine solche Stelle. Sie wird mit einer Schleife über das Feld
+    gesucht.</p>
+<p>Mit dem ersten Mapping wird z.B. <b>a</b> (<code>0</code>) auf <code>mapping[0] = 15</code>, also <b>p</b>
+    abgebildet. Beim Entschlüsseln von <b>p</b> findet die Schleife den Wert <code>15</code> an der Stelle
+    <code>0</code> und liefert wieder <b>a</b>.</p>
+<p>Weil die Enigma beim Entschlüsseln die Walzen in umgekehrter Reihenfolge durchläuft, erhält man den
+    ursprünglichen Satz zurück. Großbuchstaben werden dabei zu Kleinbuchstaben und Satzzeichen wie <b>!</b> zu
+    <b>?</b>:</p>
+<pre>    Input: Hallo Welt!
+Encrypted: yuxxm fnxg?
+Decrypted: hallo welt?</pre>

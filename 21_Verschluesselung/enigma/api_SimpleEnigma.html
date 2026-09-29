@@ -1,0 +1,19 @@
+<h2><b>class SimpleEnigma</b></h2>
+<p>Eine vereinfachte Enigma, in die bis zu drei Walzen eingesetzt werden können.</p>
+<h4>Konstruktor:</h4>
+<ul>
+    <li><pre><code>SimpleEnigma()</code>
+Erstellt eine Enigma ohne Walzen.</pre></li>
+</ul>
+<h4>Methoden:</h4>
+<ul>
+    <li><pre><code>void addComponent(Walze w)</code>
+Setzt eine Walze in die Enigma ein. Es können maximal 3 Walzen eingesetzt werden,
+weitere Aufrufe haben keine Wirkung.</pre></li>
+    <li><pre><code>String encryptSentence(String s)</code>
+Verschlüsselt einen Satz Zeichen für Zeichen mit allen eingesetzten Walzen
+(in der Reihenfolge des Einsetzens). Leerzeichen bleiben erhalten.</pre></li>
+    <li><pre><code>String decryptSentence(String s)</code>
+Entschlüsselt einen Satz wieder (Walzen in umgekehrter Reihenfolge), solange zwischen
+Ver- und Entschlüsseln keine neue Walze eingesetzt wurde.</pre></li>
+</ul>
