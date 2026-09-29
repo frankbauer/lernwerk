@@ -1,0 +1,13 @@
+<h3>Erklärung</h3>
+
+<p>Für jede bekannte Farbe gibt es einen eigenen Fall. Die Fälle schließen sich gegenseitig aus, daher werden sie mit
+    einer <code>if ... else if ... else</code>-Kette verbunden. Sobald eine Bedingung zutrifft, werden die übrigen
+    nicht mehr geprüft.</p>
+<ul>
+    <li><b><code>equals</code> statt <code>==</code>:</b> <code>colorName</code> ist eine Zeichenkette, also ein
+        Objekt. <code>==</code> prüft nur, ob zwei Referenzen auf dasselbe Objekt zeigen. Der aus der Auswahlliste
+        übergebene Text ist aber ein anderes Objekt als das Literal <code>"RED"</code>, auch wenn beide den gleichen
+        Inhalt haben. Den Inhalt vergleicht <code>colorName.equals("RED")</code>.</li>
+    <li><b>Unbekannte Farben:</b> Das abschließende <code>else</code> fängt alle Werte ab, für die keine der
+        Bedingungen zutrifft, etwa <code>ORANGE</code>. Dann wird <code>UNBEKANNT</code> ausgegeben.</li>
+</ul>

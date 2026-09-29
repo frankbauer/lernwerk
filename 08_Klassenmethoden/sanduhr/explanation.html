@@ -1,0 +1,15 @@
+<h3>Erklärung</h3>
+
+<p><b>Startzahl:</b> Die obere Hälfte (inklusive der schmalsten Zeile) besteht aus Zeilen mit
+    <code>n</code>, <code>n - 1</code>, ..., <code>1</code> Zahlen, enthält also <code>1 + 2 + ... + n</code> Zahlen.
+    Die untere Hälfte ist genauso groß, teilt sich aber die schmalste Zeile mit der oberen. Insgesamt sind es also
+    <code>2 * (1 + 2 + ... + n) - 1</code> Zahlen. Da die letzte Zahl <code>1</code> ist, ist das auch die
+    Startzahl. Für <code>n = 3</code> ergibt sich <code>2 * 6 - 1 = 11</code>.</p>
+<p><b>Obere Hälfte:</b> Die Zeile mit Index <code>row</code> (ab <code>0</code>) wird um <code>row</code>
+    Leerzeichen eingerückt und enthält <code>n - row</code> Zahlen. Nach jeder ausgegebenen Zahl wird
+    <code>zahl</code> um eins verringert, sodass die Zählung über die Zeilen hinweg weiterläuft.</p>
+<p><b>Untere Hälfte:</b> Hier beginnt <code>row</code> bei <code>1</code>, da die schmalste Zeile schon ausgegeben
+    wurde. Die Einrückung nimmt jetzt ab (<code>n - row - 1</code> Leerzeichen) und die Zeilen werden breiter
+    (<code>row + 1</code> Zahlen).</p>
+<p>Alternativ lässt sich die Startzahl ohne Schleife mit der Gaußschen Summenformel berechnen:
+    <code>n * (n + 1) - 1</code>.</p>

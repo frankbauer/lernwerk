@@ -1,0 +1,17 @@
+<h3>Erklärung</h3>
+
+<p>Zum Zählen wird eine Zählvariable <code>summe</code> mit <code>0</code> initialisiert. Eine Schleife läuft über alle
+    Indizes des Feldes, von <code>0</code> bis <code>woerter.length - 1</code>. Stimmt das Element an der Stelle
+    <code>i</code> mit dem gesuchten Wort überein, wird <code>summe</code> um eins erhöht. Nach der Schleife wird
+    <code>summe</code> zurückgegeben.</p>
+<ul>
+    <li><b><code>equals</code> statt <code>==</code>:</b> Zeichenketten sind Objekte. <code>==</code> vergleicht nur,
+        ob zwei Referenzen auf <i>dasselbe</i> Objekt zeigen. Ob zwei Zeichenketten den gleichen Inhalt haben, prüft
+        man mit <code>wort.equals(woerter[i])</code>.</li>
+    <li><b>Rückgabewert:</b> Die Methode ist mit dem Rückgabetyp <code>int</code> deklariert. Das Ergebnis wird also
+        nicht ausgegeben, sondern mit <code>return</code> an <code>main</code> zurückgegeben, wo es an
+        <code>fuegeHinzu</code> weitergereicht wird.</li>
+</ul>
+<p>Da <code>zaehleWort</code> für <i>jedes</i> Wort des Textes aufgerufen wird und jedes Mal das ganze Feld
+    durchläuft, werden bei rund 1600 Wörtern etwa 2,5 Millionen Vergleiche durchgeführt. Mit einer
+    <code>HashMap</code> (siehe Kapitel Collections) ginge das deutlich schneller.</p>

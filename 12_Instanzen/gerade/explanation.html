@@ -1,0 +1,16 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Öffentliche Attribute:</b> Aufpunkt und Richtung sollen öffentlich sein und werden daher mit
+        <code>public</code> deklariert. Nur deshalb kann <code>main</code> in der Klasse <code>Testend</code>
+        über <code>g.aufpunkt</code> darauf zugreifen.</li>
+    <li><b>Klassenkonstante:</b> Eine Klassenkonstante gehört zur Klasse und nicht zu einer einzelnen Instanz
+        (<code>static</code>) und ist unveränderlich (<code>final</code>). Eine 32-Bit Ganzzahl ist ein
+        <code>int</code>. Konstanten schreibt man üblicherweise in Großbuchstaben: <code>FARBE</code>.</li>
+    <li><b>Feld als Attribut:</b> <code>private String[] eigenschaften;</code> deklariert nur die Referenz auf ein
+        Feld von Zeichenketten. Solange kein Feld erzeugt wurde, ist ihr Wert <code>null</code>.</li>
+    <li><b>So restriktiv wie möglich:</b> Für Farbe und Eigenschaften ist keine Sichtbarkeit gefordert. Sie werden
+        daher <code>private</code>.</li>
+</ul>
+<p>Attribute, die nicht explizit initialisiert werden, erhalten einen Standardwert. Für Referenzen ist das
+    <code>null</code>, daher gibt das Programm zweimal <code>null</code> aus.</p>

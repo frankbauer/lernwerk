@@ -1188,6 +1188,24 @@
       "isDraft": true
     },
     {
+      "id": "06_Bedingungen/farbcode",
+      "title": "Farbumrechner",
+      "description": "Wandle einen Farbnamen mit einer if-else-Kette in einen hexadezimalen Farbcode um.",
+      "link": "06_Bedingungen/farbcode",
+      "chapter": 6,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "bedingungen",
+        "methodenaufrufe-instanz"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
       "id": "07_Schleifen/beispiel_pflanzen_for",
       "title": "Anpflanzen mit for",
       "description": "Pflanze mit einer for-Schleife mehrere Bäume auf einem Hügel.",
@@ -1522,6 +1540,44 @@
       "isDraft": true
     },
     {
+      "id": "08_Klassenmethoden/kontrollstrukturen",
+      "title": "Kontrollstrukturen",
+      "description": "Setze eine Rechenvorschrift aus mehreren abhängigen Bedingungen in einer Methode um.",
+      "link": "08_Klassenmethoden/kontrollstrukturen",
+      "chapter": 8,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "klassenmethoden",
+        "bedingungen",
+        "schleifen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "08_Klassenmethoden/sanduhr",
+      "title": "Zahlen-Sanduhr",
+      "description": "Gib mit verschachtelten Schleifen eine Sanduhr aus absteigenden Zahlen aus.",
+      "link": "08_Klassenmethoden/sanduhr",
+      "chapter": 8,
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "klassenmethoden",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
       "id": "09_Klassenattribute/beispiel_steuer",
       "title": "Mehrwertsteuer",
       "description": "Berechne Bruttopreise über ein Klassenattribut für den Mehrwertsteuersatz.",
@@ -1780,6 +1836,46 @@
       "isDraft": true
     },
     {
+      "id": "10_Arrays/wortwolke",
+      "title": "Wortwolke",
+      "description": "Zähle, wie oft ein Wort in Goethes Faust vorkommt, und erzeuge daraus eine Wortwolke.",
+      "link": "10_Arrays/wortwolke",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "schleifen",
+        "bedingungen",
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "10_Arrays/fehlerteufel",
+      "title": "Fehlerteufel",
+      "description": "Finde und korrigiere die sieben Fehler in einer Methode, die gerade Zahlen quadriert aufsummiert.",
+      "link": "10_Arrays/fehlerteufel",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "schleifen",
+        "bedingungen",
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
       "id": "11_Arrays_nDim/sandkasten_matrix",
       "title": "MeineMatrix",
       "description": "Multipliziere alle Werte einer Matrix mit verschachtelten Schleifen und gib sie aus.",
@@ -1934,6 +2030,26 @@
         "instanzattribute",
         "instanzmethoden",
         "klassenmethoden",
+        "klassenattribute",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "12_Instanzen/gerade",
+      "title": "Gerade: Attribute",
+      "description": "Modelliere die Attribute einer Klasse Gerade mit passenden Sichtbarkeiten und einer Klassenkonstante.",
+      "link": "12_Instanzen/gerade",
+      "chapter": 12,
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "klassen",
+        "instanzattribute",
         "klassenattribute",
         "arrays"
       ],

@@ -1,0 +1,22 @@
+<h3>Aufgabe</h3>
+<p>Schreiben Sie ein Programm, das eine menschenlesbare Farbbeschreibung in einen <b>hexadezimalen Farbcode</b>
+    (wie er z.B. im Web verwendet wird) umwandelt. Die gesuchte Farbe (z.B. <code>RED</code>) steht in der Variable
+    <code>colorName</code> und wird bereits ausgegeben. Ergänzen Sie das Programm so, dass dahinter der passende
+    Hex-Code ausgegeben wird. Ist die Farbe nicht bekannt, soll das Wort <code>UNBEKANNT</code> ausgegeben
+    werden.</p>
+<table style="border-collapse: collapse; float: right; margin: 0 0 8px 16px">
+    <tr><th style="padding: 2px 12px; text-align: left">Bezeichnung</th><th style="padding: 2px 12px; text-align: left">Hex-Farbe</th></tr>
+    <tr><td style="padding: 2px 12px"><code>RED</code></td><td style="padding: 2px 12px"><code>#FF0000</code></td></tr>
+    <tr><td style="padding: 2px 12px"><code>YELLOW</code></td><td style="padding: 2px 12px"><code>#FFFF00</code></td></tr>
+    <tr><td style="padding: 2px 12px"><code>GREEN</code></td><td style="padding: 2px 12px"><code>#00FF00</code></td></tr>
+    <tr><td style="padding: 2px 12px"><code>CYAN</code></td><td style="padding: 2px 12px"><code>#00FFFF</code></td></tr>
+    <tr><td style="padding: 2px 12px"><code>BLUE</code></td><td style="padding: 2px 12px"><code>#0000FF</code></td></tr>
+    <tr><td style="padding: 2px 12px"><code>MAGENTA</code></td><td style="padding: 2px 12px"><code>#FF00FF</code></td></tr>
+</table>
+<p>Hex-Codes sind RGB-Farbwerte in hexadezimaler Schreibweise mit je zwei Stellen für den Rot-, Grün- und Blaukanal.
+    Das RGB-Tripel (64, 255, 0) wird also als <code>#40FF00</code> dargestellt. Die auszugebenden Farbwerte können
+    Sie in der Tabelle nachschlagen.</p>
+<p>Zeichenketten vergleichen Sie mit der Methode <code>equals</code>, z.B. <code>colorName.equals("RED")</code>.</p>
+<p>Mit der Auswahlliste über dem Eingabefeld wählen Sie die Farbe, die Ihrem Programm übergeben wird. Für
+    <code>MAGENTA</code> sollte die Ausgabe so aussehen:</p>
+<pre output style="clear: right">MAGENTA: #FF00FF</pre>

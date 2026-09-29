@@ -11,7 +11,7 @@ Installation:
 1. `lernwerk-licensed-assets.zip` vom geschützten Download-Ort herunterladen (bei den Maintainern erfragen) und im Wurzelverzeichnis des Repositorys ablegen.
 2. Bilder entpacken:
    ```
-   python3 tools/licensed_assets.py extract
+   node tools/licensed-assets.mjs extract
    ```
 
-Maintainer erstellen das Archiv aus ihrer Arbeitskopie mit `python3 tools/licensed_assets.py build`.
+Maintainer erstellen das Archiv aus ihrer Arbeitskopie mit `node tools/licensed-assets.mjs build`.

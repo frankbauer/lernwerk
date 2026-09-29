@@ -1,0 +1,17 @@
+<h3>Erklärung</h3>
+
+<p>Da <code>v</code> in Schritt 5 noch im Originalzustand gebraucht wird, rechnet die Lösung mit einer Kopie
+    <code>w</code>.</p>
+<ul>
+    <li><b>Schritt 1</b> ist unabhängig von den anderen und wird mit einem einzelnen <code>if</code> geprüft.</li>
+    <li><b>Schritte 2 bis 4</b> schließen sich gegenseitig aus: Schritt 3 gilt nur, wenn Schritt 2 nicht zutrifft,
+        und Schritt 4 nur, wenn keiner der beiden zutrifft. Das ist genau eine
+        <code>if ... else if ... else</code>-Kette.</li>
+    <li><b>Nächstgrößere durch 6 teilbare Zahl:</b> Man beginnt bei <code>w + 1</code> (die Zahl soll echt größer
+        sein) und erhöht so lange, bis <code>y % 6 == 0</code> gilt. Ohne Schleife geht es auch mit
+        <code>(w / 6 + 1) * 6</code>, solange <code>w</code> nicht negativ ist.</li>
+    <li><b>Schritt 5</b> ist wieder ein einzelnes <code>if</code> und zieht den <i>ursprünglichen</i> Wert
+        <code>v</code> ab.</li>
+</ul>
+<p>Beispiel <code>v = 35</code>: durch 5 teilbar, also <code>200 - 35 = 165</code>. <code>165</code> ist durch 3
+    teilbar, also <code>165 * 3 = 495</code>. Das ist größer als 55, das Ergebnis ist <code>495</code>.</p>

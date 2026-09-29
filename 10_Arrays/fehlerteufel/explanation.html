@@ -1,0 +1,19 @@
+<h3>Erklärung</h3>
+
+<ol>
+    <li><code>int summe = 1;</code> &rarr; <code>int summe = 0;</code>: Eine Summe beginnt bei 0, sonst ist das
+        Ergebnis immer um eins zu groß.</li>
+    <li><code>i = a.length</code> &rarr; <code>i &lt; a.length</code>: Die Schleifenbedingung muss ein
+        Wahrheitswert sein. <code>=</code> ist eine Zuweisung (Syntaxfehler), außerdem darf <code>i</code> höchstens
+        <code>a.length - 1</code> werden.</li>
+    <li><code>i++) ; {</code> &rarr; <code>i++) {</code>: Das Semikolon beendet die Schleife sofort mit einer leeren
+        Anweisung. Der Block danach würde nur einmal ausgeführt, und <code>i</code> wäre dort nicht bekannt.</li>
+    <li><code>a[i] % 2 == 2</code> &rarr; <code>a[i] % 2 == 0</code>: Der Rest einer Division durch 2 ist nie 2.
+        Gerade Zahlen haben den Rest 0.</li>
+    <li><code>summe = a[i] * a[i];</code> &rarr; <code>summe += a[i] * a[i];</code>: Das Quadrat muss zur Summe
+        addiert werden, statt sie zu überschreiben.</li>
+    <li><code>return summe * summe;</code> &rarr; <code>return summe;</code>: Quadriert werden die einzelnen Zahlen,
+        nicht die Summe.</li>
+    <li><code>int a = { ... };</code> &rarr; <code>int[] a = { ... };</code>: Ein Feldliteral kann nur einer
+        Feldvariable zugewiesen werden.</li>
+</ol>
