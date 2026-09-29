@@ -6,6 +6,7 @@ studon/
 tools/
 # images licensed from Freepik (see IMAGE-LICENSE.md): usable in this project,
 # but not to be published in this repository
+lernwerk-licensed-assets.zip
 /common/scene/floatingworld/img/World.png
 /common/scene/floatingworld/img/GhostWorld.png
 /common/scene/floatingworld/img/Cloud3.png
@@ -69,3 +70,4 @@ tools/
 /common/scene/cherrygame/img/monster.png
 /common/scene/cherrygame/img/cherry.png
 /common/scene/cherrygame/img/redGhost.png
+/common/scene/cherrygame/img/pinkGhost.png

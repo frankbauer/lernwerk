@@ -2,6 +2,11 @@ The following images were created with licensed assets from freepik.com.
 
 You are allowed to use those assets in the scope of this project. You are NOT ALLOWED to otherwise share or reuse them in any other work without also licensing them through freepik.com.
 
+The images are not part of this repository. They are distributed separately as
+`lernwerk-licensed-assets.zip`, see the section *Licensed assets* in `README.md`.
+Derived images (e.g. `pinkGhost.png`, an outline version of a Freepik ghost) are
+covered by the same license.
+
 List of files (folder names could change):
 ./common/scene/floatingworld/img/World.png
 ./common/scene/floatingworld/img/GhostWorld.png
@@ -66,3 +71,4 @@ List of files (folder names could change):
 ./common/scene/cherrygame/img/monster.png
 ./common/scene/cherrygame/img/cherry.png
 ./common/scene/cherrygame/img/redGhost.png
+./common/scene/cherrygame/img/pinkGhost.png
