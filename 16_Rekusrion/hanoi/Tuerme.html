@@ -1,0 +1,27 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Tuerme</code> verwaltet die drei Stäbe <code>0</code>, <code>1</code> und <code>2</code>
+    der Türme von Hanoi. Zu Beginn liegen alle Scheiben auf Stab <code>0</code>. Die Scheiben sind nach ihrer Größe
+    von <code>1</code> (die kleinste) bis <code>scheiben</code> (die größte) nummeriert.</p>
+<h4>Konstruktoren</h4>
+<ul>
+    <li><code>public Tuerme(int scheiben)</code><br>Erstellt einen Turm aus <code>scheiben</code> Scheiben (1 bis 10)
+        auf Stab <code>0</code>.</li>
+</ul>
+<h4>Methoden</h4>
+<ul>
+    <li><code>public void bewege(int von, int nach)</code><br>Legt die oberste Scheibe von Stab <code>von</code>
+        auf Stab <code>nach</code> und gibt den Zug aus. Ungültige Züge (leerer Stab, größere auf kleinere Scheibe)
+        werden nicht ausgeführt, sondern erzeugen eine Fehlermeldung.</li>
+    <li><code>public int anzahlZuege()</code><br>Gibt die Anzahl der gültigen Züge zurück.</li>
+    <li><code>public boolean istFertig()</code><br>Gibt <code>true</code> zurück, wenn alle Scheiben auf Stab
+        <code>2</code> liegen.</li>
+    <li><code>public int anzahlScheiben(int stab)</code><br>Gibt zurück, wie viele Scheiben auf dem Stab liegen.</li>
+    <li><code>public int obersteScheibe(int stab)</code><br>Gibt die Nummer der obersten Scheibe des Stabs zurück
+        (<code>0</code>, wenn er leer ist).</li>
+    <li><code>public void setDelay(int delayInMs)</code><br>Setzt die Dauer eines Zugs in der Darstellung in
+        Millisekunden (Standard: 500). Jeder Zug wird sofort gezeichnet, das Programm wartet so lange.</li>
+</ul>
+<h4>Attribute</h4>
+<ul>
+    <li><code>public final int scheiben</code><br>Die Anzahl der Scheiben.</li>
+</ul>

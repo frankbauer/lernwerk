@@ -1,0 +1,26 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Wiese</code> beschreibt eine rechteckige Wiese aus Zeilen und Spalten. Auf jedem Feld steht
+    entweder ein Schneemann, ein Baum oder ein Felsen, oder das Feld ist frei. Zeile <code>0</code> und Spalte
+    <code>0</code> liegen in der hinteren Ecke der Darstellung.</p>
+<h4>Konstruktoren</h4>
+<ul>
+    <li><code>public Wiese(String[] args)</code><br>Erstellt die Wiese aus den übergebenen Programmargumenten.</li>
+</ul>
+<h4>Methoden</h4>
+<ul>
+    <li><code>public boolean istSchneemann(int zeile, int spalte)</code><br>Gibt <code>true</code> zurück, wenn an
+        der Position ein Schneemann steht, der noch nicht geschmolzen ist. Bei ungültigen Positionen wird eine
+        Fehlermeldung ausgegeben und <code>false</code> zurückgegeben.</li>
+    <li><code>public void schmelzen(int zeile, int spalte)</code><br>Lässt den Schneemann an der Position schmelzen.
+        Steht dort kein Schneemann, wird eine Fehlermeldung ausgegeben.</li>
+    <li><code>public void sonnenstrahl(int zeile, int spalte)</code><br>Zeigt in der Darstellung einen Sonnenstrahl
+        auf der Position an. An der Wiese ändert sich dadurch nichts.</li>
+    <li><code>public int anzahlSchneemaenner()</code><br>Gibt zurück, wie viele Schneemänner noch stehen.</li>
+    <li><code>public void setDelay(int delayInMs)</code><br>Setzt die Verzögerung zwischen zwei Animationsschritten
+        in Millisekunden (Standard: 60).</li>
+</ul>
+<h4>Attribute</h4>
+<ul>
+    <li><code>public final int zeilen</code><br>Die Anzahl der Zeilen der Wiese.</li>
+    <li><code>public final int spalten</code><br>Die Anzahl der Spalten der Wiese.</li>
+</ul>

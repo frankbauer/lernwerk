@@ -2323,6 +2323,83 @@
       "isDraft": true
     },
     {
+      "id": "16_Rekusrion/tauwetter",
+      "title": "Tauwetter",
+      "description": "Lass rekursiv alle zusammenhängenden Schneemänner schmelzen und zähle sie – ein Flood-Fill mit Rückgabewert.",
+      "link": "16_Rekusrion/tauwetter",
+      "chapter": 16,
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "rekursion",
+        "bedingungen",
+        "instanzmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-tauwetter.webp"
+    },
+    {
+      "id": "16_Rekusrion/teppich",
+      "title": "Sierpinski-Teppich",
+      "description": "Zeichne mit einer Kaskadenrekursion den Sierpinski-Teppich: acht rekursive Aufrufe pro Quadrat.",
+      "link": "16_Rekusrion/teppich",
+      "chapter": 16,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-teppich.webp"
+    },
+    {
+      "id": "16_Rekusrion/wechselgeld",
+      "title": "Wechselgeld",
+      "description": "Zähle mit einer Kaskadenrekursion, auf wie viele Arten sich ein Betrag mit Münzen bezahlen lässt.",
+      "link": "16_Rekusrion/wechselgeld",
+      "chapter": 16,
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "rekursion",
+        "arrays",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "16_Rekusrion/hanoi",
+      "title": "Türme von Hanoi",
+      "description": "Setze einen Turm aus Scheiben rekursiv auf einen anderen Stab um, ohne je eine größere auf eine kleinere Scheibe zu legen.",
+      "link": "16_Rekusrion/hanoi",
+      "chapter": 16,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "rekursion",
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-hanoi.webp"
+    },
+    {
       "id": "17_Collections/sandkasten_remove",
       "title": "MeineNamen",
       "description": "Verwalte Namen in einer ArrayList und entferne gezielt Einträge.",

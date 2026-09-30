@@ -282,6 +282,13 @@ async function generateCodeBlockElement(blockData, codeblocks) {
         blockElement = $(document.createElement('data'))
         blockElement.attr('as', 'data')
         setAttributes({ dataName: blockData.name }, blockElement)
+    } else if (blockData.type === 'library') {
+        // eingebaute Bibliothek (z.B. objectManager, canvasManager), muss vor dem Playground stehen
+        blockElement = $(document.createElement('library'))
+        blockElement.attr('as', 'library')
+        setAttributes({ dataEmbeddedLibrary: blockData.content }, blockElement)
+        codeblocks.append(blockElement)
+        return
     } else if (blockData.type === 'playground' || blockData.type === 'script') {
         blockData.loadPlaygroundContent = true
         blockElement = $(document.createElement('playground'))

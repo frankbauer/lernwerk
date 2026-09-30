@@ -1,0 +1,20 @@
+<h3>Aufgabe</h3>
+<p>Der <b>Sierpinski-Teppich</b> ist ein Fraktal, das nach einer einfachen Regel entsteht: Man zerlegt ein Quadrat in
+    3 × 3 gleich große Teilquadrate und lässt das mittlere leer. Mit jedem der acht übrigen Teilquadrate verfährt man
+    genauso, und so weiter, bis die Teilquadrate nur noch ein einzelnes Feld groß sind.</p>
+<p>Implementieren Sie die Methode <code>teppich(Leinwand leinwand, int zeile, int spalte, int groesse)</code>
+    <b>rekursiv</b>. Sie soll das Quadrat mit der linken oberen Ecke <code>zeile / spalte</code> und der Seitenlänge
+    <code>groesse</code> zu einem Sierpinski-Teppich machen. Die Seitenlänge ist immer eine Potenz von 3
+    (<code>1, 3, 9, 27, …</code>).</p>
+<ul>
+    <li>Ist das Quadrat nur ein Feld groß, wird es mit <code>leinwand.fuellen(zeile, spalte)</code> gefüllt.</li>
+    <li>Andernfalls ruft sich die Methode für die <b>acht</b> äußeren Teilquadrate mit einem Drittel der
+        Seitenlänge selbst auf. Mehrere rekursive Aufrufe in einem Methodenaufruf nennt man eine
+        <b>Kaskadenrekursion</b>.</li>
+</ul>
+<p>Die Farben zeigen, in welcher Reihenfolge die Felder gefüllt werden. Bei richtiger Lösung gibt das Programm
+    Folgendes aus:</p>
+<pre output>Gefuellte Felder: 512</pre>
+<p><b>Hinweis:</b> Die linke obere Ecke des Teilquadrats in Zeile <code>i</code> und Spalte <code>j</code> (jeweils
+    <code>0</code> bis <code>2</code>) liegt bei <code>zeile + i * teil</code> / <code>spalte + j * teil</code>, wobei
+    <code>teil = groesse / 3</code> ist.</p>

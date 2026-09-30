@@ -1,0 +1,32 @@
+<h3>Aufgabe</h3>
+<p>Bei den <b>Türmen von Hanoi</b> liegen Scheiben unterschiedlicher Größe als Turm auf Stab <code>0</code>, die
+    größte unten. Der ganze Turm soll auf Stab <code>2</code> umgesetzt werden. Dabei gelten zwei Regeln:</p>
+<ul>
+    <li>Es darf immer nur die <b>oberste</b> Scheibe eines Stabs bewegt werden.</li>
+    <li>Eine Scheibe darf nie auf einer <b>kleineren</b> Scheibe liegen.</li>
+</ul>
+<p>Implementieren Sie die Methode <code>hanoi(Tuerme tuerme, int n, int von, int nach, int hilf)</code>
+    <b>rekursiv</b>. Sie soll die obersten <code>n</code> Scheiben vom Stab <code>von</code> auf den Stab
+    <code>nach</code> bringen und darf den Stab <code>hilf</code> als Zwischenablage verwenden. Die Stäbe sind von
+    <code>0</code> bis <code>2</code> nummeriert. Eine Scheibe bewegen
+    Sie mit <code>tuerme.bewege(von, nach)</code>.</p>
+<p>Bei richtiger Lösung gibt das Programm Folgendes aus:</p>
+<pre output>Scheibe 1: 0 -> 1
+Scheibe 2: 0 -> 2
+Scheibe 1: 1 -> 2
+Scheibe 3: 0 -> 1
+Scheibe 1: 2 -> 0
+Scheibe 2: 2 -> 1
+Scheibe 1: 0 -> 1
+Scheibe 4: 0 -> 2
+Scheibe 1: 1 -> 2
+Scheibe 2: 1 -> 0
+Scheibe 1: 2 -> 0
+Scheibe 3: 1 -> 2
+Scheibe 1: 0 -> 1
+Scheibe 2: 0 -> 2
+Scheibe 1: 1 -> 2
+Zuege: 15
+Alle Scheiben auf Stab 2: true</pre>
+<p><b>Hinweis:</b> Stellen Sie sich vor, Sie könnten die oberen <code>n - 1</code> Scheiben schon (rekursiv) als
+    Ganzes umsetzen. Wohin müssen sie, damit die größte Scheibe frei wird? Und was passiert danach?</p>

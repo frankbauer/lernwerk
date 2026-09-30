@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../../">
+    <title>[GdI]</title>
+    <link rel="stylesheet" href="../../css/editor.css?v=1.0.4">
+    <script src="../../js/jquery/jquery.min.js?v=3.6.2"></script>
+    <script src="../../helper.js?v=1.0.3"></script>
+    <script src="../../content.js?v=1.0.5"></script>
+    <link rel="stylesheet" href="../../js/codeblocks-js/codeblocks.css?v=1.0.2">
+</head>
+
+<body>
+    <div class="topbar">
+        <h1></h1>
+        <a href="../../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+    </div>
+    <script>
+        const elements = {
+            uuid: "080eafa1-965c-4ee5-86fb-8c52086d7a4d",
+            title: "Sierpinski-Teppich",
+            short: "Teppich",
+            content: [
+                {
+                    type: "aufgabe",
+                    content: "./exercise.html"
+                },
+                {
+                    type: "tabs",
+                    class: "code",
+                    tabs: [
+                        {
+                            name: "Ihre Lösung",
+                            codeblocks: {
+                                attributes: {
+                                    dataMessagePassing: true,
+                                    dataKeepAlive: true
+                                },
+                                blocks: [
+                                    {
+                                        type: "api",
+                                        content: "./Imports.java"
+                                    }, {
+                                        type: "code",
+                                        content: "./Teppich.java"
+                                    }, {
+                                        type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
+                                        content: "./MainOverride.java"
+                                    }, {
+                                        type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
+                                        content: "./Leinwand.java"
+                                    },
+                                    {
+                                        type: "library",
+                                        content: "objectManager"
+                                    }, {
+                                        type: "library",
+                                        content: "canvasManager"
+                                    }, {
+                                        type: "playground",
+                                        attributes: {
+                                            width: "100%",
+                                            height: "440px"
+                                        },
+                                        content: "playground.js"
+                                    }
+                                ]
+                            },
+                            content: [],
+                            solution: [
+                                {
+                                    type: "explain",
+                                    class: "q-mt-xl",
+                                    content: "./explanation.html"
+                                }
+                            ]
+                        },
+                        {
+                            name: "Leinwand",
+                            class: "api",
+                            content: [{
+                                type: "aufgabe",
+                                content: "Leinwand.html"
+                            }]
+                        }
+                    ]
+                }
+            ]
+        }
+
+        document.body.onload = async () => {
+            await buildContent(elements)
+            import("../../js/codeblocks-js/codeblocks.umd.js?s=00017")
+            initHelpers()
+        }
+    </script>
+</body>
+
+</html>

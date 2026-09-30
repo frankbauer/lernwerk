@@ -1,0 +1,16 @@
+<h3>Erklärung</h3>
+<p>Der <b>Abbruchfall</b> ist ein Quadrat der Seitenlänge <code>1</code>: Es wird gefüllt und die Methode kehrt
+    zurück. Im <b>rekursiven Fall</b> wird das Quadrat in 3 × 3 Teilquadrate der Seitenlänge
+    <code>teil = groesse / 3</code> zerlegt. Die beiden Schleifen laufen über alle neun Teilquadrate, die Bedingung
+    <code>i != 1 || j != 1</code> überspringt das mittlere.</p>
+<p>Jeder Aufruf erzeugt also <b>acht</b> weitere Aufrufe, bis die Seitenlänge <code>1</code> erreicht ist. Die Aufrufe
+    bilden einen Baum:</p>
+<pre>teppich(…, 27)                     1 Aufruf
+├── teppich(…, 9)  × 8               8 Aufrufe
+│   ├── teppich(…, 3)  × 8          64 Aufrufe
+│   │   └── teppich(…, 1)  × 8     512 Aufrufe (füllen je ein Feld)</pre>
+<p>Insgesamt gibt es <code>1 + 8 + 64 + 512 = 585</code> Aufrufe, und <code>8³ = 512</code> Felder werden gefüllt. Bei
+    einer Seitenlänge von <code>81</code> wären es schon <code>8⁴ = 4096</code> Felder. Die Anzahl der Aufrufe wächst
+    bei einer Kaskadenrekursion also sehr schnell.</p>
+<p>Die Farben zeigen die Reihenfolge: Der Teppich wird nicht zeilenweise gefüllt, sondern Teilquadrat für
+    Teilquadrat. Ein Aufruf ist erst fertig, wenn alle seine acht Teilaufrufe fertig sind (<b>Tiefensuche</b>).</p>

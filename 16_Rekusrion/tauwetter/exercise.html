@@ -1,0 +1,22 @@
+<h3>Aufgabe</h3>
+<p>Der Frühling kommt! Auf der Wiese stehen noch viele Schneemänner. Trifft ein Sonnenstrahl einen Schneemann, dann
+    schmilzt er, und sein Schmelzwasser bringt auch alle Schneemänner zum Schmelzen, die direkt <b>neben</b> ihm
+    stehen, also oben, unten, links oder rechts (nicht diagonal). Diese bringen wiederum ihre Nachbarn zum
+    Schmelzen, und so weiter. Bäume, Felsen und freie Wiese halten das Tauwetter auf.</p>
+<p>Implementieren Sie die Methode <code>tauen(Wiese wiese, int zeile, int spalte)</code> <b>rekursiv</b>. Sie
+    bekommt die Position, auf die der Sonnenstrahl trifft, soll alle dadurch schmelzenden Schneemänner schmelzen
+    lassen und <b>zurückgeben, wie viele</b> es waren.</p>
+<ul>
+    <li>Mit <code>wiese.istSchneemann(zeile, spalte)</code> prüfen Sie, ob an einer Position (noch) ein Schneemann
+        steht, mit <code>wiese.schmelzen(zeile, spalte)</code> lassen Sie ihn schmelzen.</li>
+    <li>Die Größe der Wiese steht in <code>wiese.zeilen</code> und <code>wiese.spalten</code>. Achten Sie selbst
+        darauf, die Wiese nicht zu verlassen. Ungültige Positionen erzeugen eine Fehlermeldung.</li>
+</ul>
+<p>Bei richtiger Lösung gibt das Programm Folgendes aus:</p>
+<pre output>Sonnenstrahl auf 1 / 2: 10 geschmolzen
+Sonnenstrahl auf 3 / 3: 0 geschmolzen
+Sonnenstrahl auf 5 / 9: 7 geschmolzen
+Es stehen noch 9 Schneemaenner.</pre>
+<p><b>Hinweis:</b> Überlegen Sie zuerst, in welchen Fällen die Methode sofort <code>0</code> zurückgeben kann. Ein
+    geschmolzener Schneemann zählt selbst als <code>1</code>, dazu kommen alle, die über seine vier Nachbarn
+    schmelzen.</p>

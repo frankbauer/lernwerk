@@ -1,0 +1,27 @@
+<h3>Erklärung</h3>
+<p>Die größte der <code>n</code> Scheiben kann erst bewegt werden, wenn alle kleineren Scheiben weder über ihr noch
+    auf dem Zielstab liegen. Sie müssen also alle auf dem Hilfsstab liegen. Daraus ergeben sich drei Schritte:</p>
+<ol>
+    <li>die oberen <code>n - 1</code> Scheiben von <code>von</code> nach <code>hilf</code> bringen (rekursiv, jetzt
+        mit <code>nach</code> als Hilfsstab),</li>
+    <li>die größte Scheibe von <code>von</code> nach <code>nach</code> bewegen,</li>
+    <li>die <code>n - 1</code> Scheiben von <code>hilf</code> nach <code>nach</code> bringen (rekursiv, jetzt mit
+        <code>von</code> als Hilfsstab).</li>
+</ol>
+<p>Der <b>Abbruchfall</b> ist <code>n == 0</code>: Ein Turm ohne Scheiben muss nicht bewegt werden. Da jeder Aufruf
+    die Methode <b>zweimal</b> aufruft, handelt es sich um eine <b>Kaskadenrekursion</b>. Für die Anzahl der Züge gilt
+    <code>z(n) = 2 · z(n - 1) + 1</code> mit <code>z(0) = 0</code>, also <code>z(n) = 2ⁿ - 1</code>: 15 Züge für vier
+    Scheiben, 1023 für zehn. Weniger Züge sind nicht möglich.</p>
+<pre>hanoi(3, 0, 2, 1)
+├── hanoi(2, 0, 1, 2)
+│   ├── hanoi(1, 0, 2, 1)   → Scheibe 1: 0 -> 2
+│   ├── Scheibe 2: 0 -> 1
+│   └── hanoi(1, 2, 1, 0)   → Scheibe 1: 2 -> 1
+├── Scheibe 3: 0 -> 2
+└── hanoi(2, 1, 2, 0)
+    ├── hanoi(1, 1, 0, 2)   → Scheibe 1: 1 -> 0
+    ├── Scheibe 2: 1 -> 2
+    └── hanoi(1, 0, 2, 1)   → Scheibe 1: 0 -> 2</pre>
+<p>Weil die Stäbe mit <code>0</code>, <code>1</code> und <code>2</code> nummeriert sind, ergibt sich der Hilfsstab
+    übrigens immer aus den beiden anderen: <code>hilf = 3 - von - nach</code>. Man könnte den Parameter
+    <code>hilf</code> also auch weglassen.</p>

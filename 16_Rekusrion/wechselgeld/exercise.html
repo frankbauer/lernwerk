@@ -1,0 +1,28 @@
+<h3>Aufgabe</h3>
+<p>Auf wie viele verschiedene Arten kann man einen Betrag mit Münzen bezahlen? Für 5 Cent gibt es mit
+    1-, 2- und 5-Cent-Münzen genau <b>vier</b> Möglichkeiten (die Reihenfolge der Münzen spielt keine Rolle):</p>
+<div class="muenzbeispiel">
+    <span class="muenzen"><img src="img/muenze_5.png" alt="5 Cent"></span>
+    <span class="muenzen"><img src="img/muenze_2.png" alt="2 Cent"><img src="img/muenze_2.png" alt="2 Cent"><img src="img/muenze_1.png" alt="1 Cent"></span>
+    <span class="muenzen"><img src="img/muenze_2.png" alt="2 Cent"><img src="img/muenze_1.png" alt="1 Cent"><img src="img/muenze_1.png" alt="1 Cent"><img src="img/muenze_1.png" alt="1 Cent"></span>
+    <span class="muenzen"><img src="img/muenze_1.png" alt="1 Cent"><img src="img/muenze_1.png" alt="1 Cent"><img src="img/muenze_1.png" alt="1 Cent"><img src="img/muenze_1.png" alt="1 Cent"><img src="img/muenze_1.png" alt="1 Cent"></span>
+</div>
+<p>Implementieren Sie die Methode <code>arten(int betrag, int[] muenzen, int index)</code> <b>rekursiv</b>. Sie soll
+    zurückgeben, auf wie viele Arten sich <code>betrag</code> (in Cent) bezahlen lässt, wenn nur die Münzen
+    <code>muenzen[index]</code>, <code>muenzen[index + 1]</code>, … verwendet werden dürfen. Jede Münze darf beliebig
+    oft vorkommen.</p>
+<p>Bei richtiger Lösung gibt das Programm Folgendes aus:</p>
+<pre output> 5 Cent: 4 Arten
+10 Cent: 11 Arten
+20 Cent: 41 Arten
+50 Cent: 451 Arten</pre>
+<p><b>Hinweis:</b> Betrachten Sie die Münze <code>muenzen[index]</code>. Jede Art zu bezahlen verwendet sie
+    entweder <b>mindestens einmal</b> (dann bleibt ein kleinerer Betrag übrig, und die Münze darf wieder verwendet
+    werden) oder <b>gar nicht</b> (dann darf man nur noch die übrigen Münzen verwenden). Die Anzahl ist die Summe
+    beider Fälle. Überlegen Sie außerdem, wann Sie ohne weiteren Aufruf <code>1</code> bzw. <code>0</code>
+    zurückgeben können.</p>
+<style>
+    .muenzbeispiel { display: flex; flex-direction: column; gap: 6px; margin: 8px 0 16px 16px; }
+    .muenzbeispiel .muenzen { display: flex; gap: 4px; }
+    .muenzbeispiel img { width: 36px; height: 36px; image-rendering: pixelated; }
+</style>

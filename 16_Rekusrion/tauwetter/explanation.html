@@ -1,0 +1,23 @@
+<h3>Erklärung</h3>
+<p>Wie beim Farbeimer handelt es sich um einen <b>Flood-Fill</b>: Von der Startposition aus breitet sich die
+    Rekursion auf die vier Nachbarn aus, solange dort noch ein Schneemann steht. Neu ist, dass die Methode dabei
+    <b>zählt</b>.</p>
+<p>Es gibt zwei <b>Abbruchfälle</b>, in denen <code>0</code> zurückgegeben wird:</p>
+<ul>
+    <li>Die Position liegt außerhalb der Wiese. Diese Prüfung muss <b>vor</b> dem Aufruf von
+        <code>istSchneemann</code> stehen, sonst wird auf ein ungültiges Feld zugegriffen.</li>
+    <li>An der Position steht kein Schneemann. Dazu zählen Bäume, Felsen, freie Wiese und Schneemänner, die schon
+        geschmolzen sind.</li>
+</ul>
+<p>Im <b>rekursiven Fall</b> schmilzt der Schneemann <b>zuerst</b> und erst danach werden die Nachbarn aufgerufen.
+    Würde man ihn erst am Ende schmelzen, riefen sich zwei benachbarte Schneemänner immer wieder gegenseitig auf
+    (<code>StackOverflowError</code>). Das Ergebnis ist <code>1</code> für den eigenen Schneemann plus die Summe
+    der Ergebnisse der vier rekursiven Aufrufe:</p>
+<pre><code>return 1
+        + tauen(wiese, zeile - 1, spalte)
+        + tauen(wiese, zeile + 1, spalte)
+        + tauen(wiese, zeile, spalte - 1)
+        + tauen(wiese, zeile, spalte + 1);</code></pre>
+<p>Der zweite Sonnenstrahl trifft einen Schneemann, der schon beim ersten Strahl geschmolzen ist. Deshalb greift
+    sofort der Abbruchfall und es wird <code>0</code> ausgegeben. Der Schneemann auf <code>5 / 5</code> berührt die
+    erste Gruppe nur diagonal und bleibt deshalb stehen.</p>

@@ -1,0 +1,32 @@
+<h3>Erklärung</h3>
+<p>Die Methode teilt alle Arten, den Betrag zu bezahlen, in zwei Gruppen auf, die sich nicht überschneiden:</p>
+<ul>
+    <li><b>mit</b> der Münze <code>muenzen[index]</code>: Nach dieser Münze ist noch
+        <code>betrag - muenzen[index]</code> übrig, und dieselbe Münze darf wieder verwendet werden, also
+        <code>arten(betrag - muenzen[index], muenzen, index)</code>.</li>
+    <li><b>ohne</b> die Münze: Sie wird nie mehr verwendet, also
+        <code>arten(betrag, muenzen, index + 1)</code>.</li>
+</ul>
+<p>Weil jeder Aufruf zwei weitere Aufrufe auslöst, handelt es sich um eine <b>Kaskadenrekursion</b>. Es gibt drei
+    Abbruchfälle:</p>
+<ul>
+    <li><code>betrag == 0</code>: Der Betrag ist genau bezahlt, das zählt als <b>eine</b> Art (<code>1</code>).</li>
+    <li><code>betrag &lt; 0</code>: Die letzte Münze war zu groß, das ist keine gültige Art (<code>0</code>).</li>
+    <li><code>index &gt;= muenzen.length</code>: Es ist noch etwas zu bezahlen, aber es gibt keine Münzen mehr
+        (<code>0</code>).</li>
+</ul>
+<p>Für 4 Cent mit den Münzen <code>{ 2, 1 }</code> entsteht folgender Aufrufbaum (<code>arten(betrag, index)</code>).
+    Jedes Blatt mit Ergebnis <code>1</code> ist eine Art zu bezahlen: 2 + 2, 2 + 1 + 1 und 1 + 1 + 1 + 1.</p>
+<pre>arten(4, 0) = 3
+├── mit 2:  arten(2, 0) = 2
+│   ├── mit 2:  arten(0, 0) = 1          → 2 + 2
+│   └── ohne 2: arten(2, 1) = 1
+│       ├── mit 1:  arten(1, 1) = 1
+│       │   ├── mit 1:  arten(0, 1) = 1  → 2 + 1 + 1
+│       │   └── ohne 1: arten(1, 2) = 0
+│       └── ohne 1: arten(2, 2) = 0
+└── ohne 2: arten(4, 1) = 1              → 1 + 1 + 1 + 1
+    └── …</pre>
+<p>Die Reihenfolge der Münzen spielt keine Rolle, weil jede Art genau einmal gezählt wird: Nach dem Zweig „ohne“
+    kommt die Münze nie wieder vor. Für 50 Cent sind es schon über 12.000 Aufrufe. Bei einer Kaskadenrekursion wächst
+    die Anzahl der Aufrufe schnell, weil viele Teilprobleme mehrfach berechnet werden.</p>

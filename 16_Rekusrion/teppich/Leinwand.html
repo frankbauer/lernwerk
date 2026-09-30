@@ -1,0 +1,22 @@
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>Leinwand</code> beschreibt eine quadratische Leinwand aus Feldern, die gefüllt werden können.
+    Zeile <code>0</code> ist oben, Spalte <code>0</code> ist links.</p>
+<h4>Konstruktoren</h4>
+<ul>
+    <li><code>public Leinwand(int groesse)</code><br>Erstellt eine leere Leinwand mit <code>groesse</code> Zeilen und
+        Spalten.</li>
+</ul>
+<h4>Methoden</h4>
+<ul>
+    <li><code>public void fuellen(int zeile, int spalte)</code><br>Füllt das Feld an der Position. Ist die Position
+        ungültig oder das Feld schon gefüllt, wird eine Fehlermeldung ausgegeben.</li>
+    <li><code>public boolean istGefuellt(int zeile, int spalte)</code><br>Gibt zurück, ob das Feld gefüllt ist.</li>
+    <li><code>public int anzahlGefuellt()</code><br>Gibt zurück, wie viele Felder gefüllt sind.</li>
+    <li><code>public void setDelay(int delayInMs)</code><br>Setzt die Zeit zwischen zwei gefüllten Feldern in der
+        Darstellung in Millisekunden (Standard: 8). Jedes Feld wird sofort gezeichnet, das Programm wartet so lange.</li>
+</ul>
+<h4>Attribute</h4>
+<ul>
+    <li><code>public final int zeilen</code><br>Die Anzahl der Zeilen.</li>
+    <li><code>public final int spalten</code><br>Die Anzahl der Spalten.</li>
+</ul>
