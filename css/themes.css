@@ -1481,7 +1481,8 @@ html[data-lw-theme="abenteuer"] .hint-container button {
     font-weight: 800;
 }
 
-html[data-lw-theme="abenteuer"] .hint-container button {
+html[data-lw-theme="abenteuer"] .hint-container button,
+html[data-lw-theme="abenteuer"] .colored .hint-container button {
     background: #ffd23f;
     color: #111;
 }

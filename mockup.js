@@ -143,7 +143,7 @@ const chaptersData = [
                 difficulty: 2
             },
             {
-                title: "Subtraktion und Multiplikation",
+                title: "Addition, Subtraktion und Division",
                 link: "03_Datentypen/add_sub_mul",
                 type: "exercice",
                 description: "Subtrahiere und multipliziere Zahlen in einfachen Beispielen.",
