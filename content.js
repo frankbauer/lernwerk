@@ -2,9 +2,10 @@
 const LW_BASE = new URL('.', document.currentScript.src);
 
 // Darstellungs-Themes: das gespeicherte Theme (Voreinstellung "abenteuer") sofort setzen, damit das
-// ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü, Fußzeile) nachladen.
+// ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü, Fußzeile) und
+// tour.js (Rundgang durch die Übungsseite) nachladen.
 (function loadThemes() {
-    const version = '1.4.0'
+    const version = '1.4.2'
     const base = LW_BASE
     let theme = 'abenteuer'
     try {
@@ -18,9 +19,16 @@ const LW_BASE = new URL('.', document.currentScript.src);
         link.href = new URL(`${href}?v=${version}`, base)
         document.head.append(link)
     }
-    const script = document.createElement('script')
-    script.src = new URL(`theme.js?v=${version}`, base)
-    document.head.append(script)
+    const tourLink = document.createElement('link')
+    tourLink.rel = 'stylesheet'
+    tourLink.href = new URL('css/tour.css?v=1.0.0', base)
+    document.head.append(tourLink)
+    for (const src of [`theme.js?v=${version}`, 'tour.js?v=1.2.0']) {
+        const script = document.createElement('script')
+        script.src = new URL(src, base)
+        script.async = false // in dieser Reihenfolge ausführen: tour.js setzt seinen Knopf in das Menü von theme.js
+        document.head.append(script)
+    }
 })()
 
 async function buildContent(elements) {
@@ -35,7 +43,7 @@ async function buildContent(elements) {
 
     // Gespeicherten Code einsetzen, bevor codeblocks.umd.js die Editoren erzeugt
     try {
-        const autosave = await import(new URL('autosave.js?v=1.1.1', LW_BASE))
+        const autosave = await import(new URL('autosave.js?v=1.1.3', LW_BASE))
         await autosave.init(root[0], elements)
     } catch (e) {
         console.error('Automatisches Speichern nicht verfügbar', e)

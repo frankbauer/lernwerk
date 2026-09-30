@@ -65,8 +65,15 @@
         menu.setAttribute('role', 'menu')
         menu.hidden = true
 
+        // Zusätzliche Befehle anderer Skripte (z.B. autosave.js) über window.lwMenuActions:
+        // { section, label, icon (SVG-Pfad, 24x24), hint: () => string, onSelect }
+        // Sie stehen oben, die Themes danach.
+        const actionArea = document.createElement('div')
+        actionArea.className = 'lw-menu-actions'
+        menu.append(actionArea)
+
         const title = document.createElement('div')
-        title.className = 'lw-menu-title'
+        title.className = 'lw-menu-title lw-menu-title--themes'
         title.textContent = 'Darstellung'
         menu.append(title)
 
@@ -91,10 +98,6 @@
             return item
         })
 
-        // Zusätzliche Befehle anderer Skripte (z.B. autosave.js) über window.lwMenuActions:
-        // { section, label, icon (SVG-Pfad, 24x24), hint: () => string, onSelect }
-        const actionArea = document.createElement('div')
-        menu.append(actionArea)
 
         function renderActions() {
             actionArea.replaceChildren()
@@ -136,8 +139,7 @@
             renderActions()
             menu.hidden = false
             button.setAttribute('aria-expanded', 'true')
-            const checked = items.find(i => i.getAttribute('aria-checked') === 'true') ?? items[0]
-            checked.focus()
+            menu.querySelector('.lw-menu-item')?.focus()
         }
 
         function close(returnFocus = true) {

@@ -1,12 +1,18 @@
-// Rundgang durch den Übungsplaner (uebersicht.html): dunkelt die Seite ab, kreist den jeweils erklärten
-// Bereich handgezeichnet ein und beschriftet ihn. Startet beim ersten Besuch automatisch, danach über den
-// ?-Knopf neben dem Darstellungsmenü oder mit ?tour in der URL.
-// Die Seite wird nur über ihre eigenen Knöpfe bedient (Filter aufklappen, Kartenansicht, Sortierung …); am Ende
+// Rundgänge durch den Übungsplaner (uebersicht.html) und durch eine Übungsseite: dunkeln die Seite ab, kreisen
+// den jeweils erklärten Bereich handgezeichnet ein und beschriften ihn. Jeder Rundgang startet beim ersten Besuch
+// automatisch, danach über den ?-Knopf neben dem Darstellungsmenü oder mit ?tour in der URL.
+// uebersicht.html bindet dieses Skript direkt ein, die Übungsseiten laden es über content.js.
+// Die Seite wird nur über ihre eigenen Knöpfe bedient (Filter aufklappen, Kartenansicht, Menü öffnen …); am Ende
 // stellt der Rundgang den vorherigen Zustand wieder her.
+// Seitenwechsel: Der letzte Schritt im Übungsplaner führt mit ?tour=uebersicht auf eine Beispielaufgabe, deren
+// Rundgang von dort zurück (?tour=ende setzt den Übungsplaner-Rundgang beim letzten Schritt fort) oder am Ende zur
+// Übersicht führt. Vor dem Wechsel wird der Rundgang ganz normal beendet, damit der Zustand wiederhergestellt ist.
 (() => {
     "use strict";
 
-    const SEEN_KEY = "lernwerk.tour.v1";
+    const BASE = new URL(".", document.currentScript.src); // Wurzelverzeichnis des Lernwerks
+    const OVERVIEW_URL = "uebersicht.html";
+    const EXAMPLE_URL = "03_Datentypen/average/index.html"; // Beispielaufgabe für den Übergang
     const MARGIN = 16; // Abstand zum Fensterrand
     const GAP = 56; // Abstand Markierung ↔ Notiz (Platz für den Pfeil)
     const RING_PAD = 10;
@@ -14,7 +20,18 @@
     const SVG_NS = "http://www.w3.org/2000/svg";
 
     const q = (sel, root = document) => root.querySelector(sel);
+    /** Erstes sichtbare Element (z. B. im aktiven Tab), wenn es mehrere gibt. */
+    const visible = (sel, root = document) => [...root.querySelectorAll(sel)].find((el) => el.getClientRects().length) || null;
     const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // ?tour startet den Rundgang; ?tour=uebersicht / ?tour=ende kommen vom Seitenwechsel (siehe oben) und werden nach
+    // dem Lesen aus der Adresse entfernt, damit Neuladen oder ein Lesezeichen den Rundgang nicht erneut starten
+    const PARAM = new URLSearchParams(location.search).get("tour");
+    const tourParam = () => PARAM;
+
+    // =============================================================================================
+    // Übungsplaner (uebersicht.html)
+    // =============================================================================================
+
     const hasProfile = () => !q("#profile")?.classList.contains("is-new");
     const hasResults = () => Number(q("#results-count b")?.textContent) > 0;
 
@@ -44,8 +61,9 @@
     // --- Schritte ------------------------------------------------------------------------------
     // target: wird eingekreist und vom Pfeil angezeigt; area: wird zusätzlich aufgehellt.
     // page: Zustand der Seite, den der Schritt braucht (sonst gilt der Zustand vor dem Rundgang).
+    // link: zusätzlicher Knopf, der den Rundgang beendet und eine andere Seite öffnet.
 
-    const STEPS = [
+    const OVERVIEW_STEPS = [
         {
             title: "Willkommen im Übungsplaner!",
             text: "In einer Minute zeigen wir dir, was du hier siehst und einstellen kannst. Weiter geht es mit dem Knopf unten oder mit der Pfeiltaste →.",
@@ -165,32 +183,167 @@
         {
             target: () => q(".lw-tour-button"),
             title: "Das war's!",
-            text: "Diesen Rundgang kannst du hier jederzeit noch einmal starten. Viel Spaß beim Üben!",
+            text: "Diesen Rundgang kannst du hier jederzeit noch einmal starten. Magst du noch sehen, wie eine Übungsseite funktioniert? Viel Spaß beim Üben!",
             next: "Los geht's",
+            link: { label: "Übungsseite ansehen ›", href: `${EXAMPLE_URL}?tour=uebersicht` },
         },
     ];
 
-    // --- Zustand der Seite (über ihre eigenen Knöpfe) ------------------------------------------------
+    const OVERVIEW = {
+        seenKey: "lernwerk.tour.v1",
+        label: "Rundgang: So funktioniert der Übungsplaner",
+        steps: OVERVIEW_STEPS,
+        inert: () => [q(".page")],
+        startAt: () => (tourParam() === "ende" ? "last" : 0),
+        read() {
+            return {
+                profile: !q("#profile-body").hidden,
+                more: !q("#more").hidden,
+                view: q('.seg [aria-pressed="true"]')?.dataset.view || "cards",
+                sort: q("#sort").value,
+            };
+        },
+        apply(want) {
+            if (!q("#profile-body").hidden !== want.profile) q(".profile-head").click();
+            if (!q("#more").hidden !== want.more) q("#more-toggle").click();
+            const view = q(`.seg [data-view="${want.view}"]`);
+            if (view && view.getAttribute("aria-pressed") !== "true") view.click();
+            const sort = q("#sort");
+            if (want.sort && sort.value !== want.sort) {
+                sort.value = want.sort;
+                sort.dispatchEvent(new Event("change"));
+            }
+        },
+        /** Wartet, bis der Übungsplaner seine Übungen gezeichnet hat (oder aufgibt). */
+        ready: () => waitFor(() => q("#results")?.childElementCount, 5000),
+        onStart() {
+            cardId = null;
+        },
+    };
 
-    function readPage() {
-        return {
-            profile: !q("#profile-body").hidden,
-            more: !q("#more").hidden,
-            view: q('.seg [aria-pressed="true"]')?.dataset.view || "cards",
-            sort: q("#sort").value,
-        };
-    }
+    // =============================================================================================
+    // Übungsseite (…/index.html mit content.js)
+    // =============================================================================================
 
-    function applyPage(want) {
-        if (!q("#profile-body").hidden !== want.profile) q(".profile-head").click();
-        if (!q("#more").hidden !== want.more) q("#more-toggle").click();
-        const view = q(`.seg [data-view="${want.view}"]`);
-        if (view && view.getAttribute("aria-pressed") !== "true") view.click();
-        const sort = q("#sort");
-        if (want.sort && sort.value !== want.sort) {
-            sort.value = want.sort;
-            sort.dispatchEvent(new Event("change"));
-        }
+    const content = () => q("#content");
+    /** Bearbeitbarer Codeblock (vorgegebene Blöcke heißen block-block-static). */
+    const editor = () => visible(".codeblock.block-block", content());
+    const buttonsOf = (tabbar) => [...(tabbar?.querySelectorAll(":scope > .buttonbar > button") || [])];
+    const isSolutionTab = (btn) => btn.textContent.trim() === "Beispiellösung";
+    /** Erste Tab-Leiste mit „Ihre Lösung“ und „Beispiellösung“ (content.js erzeugt sie für Codeblöcke mit Lösung). */
+    const codeTabs = () => [...(content()?.querySelectorAll("tabbar") || [])].find((t) => buttonsOf(t).some(isSolutionTab)) || null;
+    const tabButtons = () => buttonsOf(codeTabs());
+    const menuButton = () => q('.topbar [aria-controls="lw-theme-menu"]');
+    const menu = () => q("#lw-theme-menu");
+    const codeActions = () => (window.lwMenuActions || []).filter((a) => a.section === "Ihr Code");
+    const hasAction = (label) => codeActions().some((a) => a.label === label);
+
+    const EXERCISE_STEPS = [
+        {
+            title: "So funktioniert eine Übungsseite",
+            text: "Wir zeigen dir kurz, wie du hier arbeitest: Code schreiben, ausführen, speichern, mit der Beispiellösung vergleichen und weiter experimentieren.",
+        },
+        {
+            target: () => q(".aufgabe", content()),
+            title: "Die Aufgabe",
+            text: "Hier steht, was dein Programm tun soll. Lies sie genau – oft stecken wichtige Details im Text.",
+        },
+        {
+            target: editor,
+            area: () => editor()?.closest(".codeblocks"),
+            page: { tab: 0 },
+            title: "Dein Code",
+            text: "Hier schreibst du deine Lösung. Den farbig hinterlegten Bereich kannst du bearbeiten, der Code darum herum ist vorgegeben.",
+        },
+        {
+            target: () => visible("#allow_run_button", content()),
+            area: () => visible("#runContainer", content()),
+            page: { tab: 0 },
+            title: "Ausführen",
+            text: "Ein Klick übersetzt dein Programm und startet es. Darunter erscheint die Ausgabe – oder die Fehlermeldungen des Compilers. Probier ruhig oft aus!",
+        },
+        {
+            target: menuButton,
+            when: () => codeActions().length > 0,
+            page: { tab: 0 },
+            title: "Automatisch gespeichert",
+            text: "Dein Code wird automatisch in diesem Browser gespeichert, spätestens wenn du die Seite verlässt. Kommst du zurück, ist dein Stand wieder da – auf einem anderen Rechner oder in einem anderen Browser allerdings nicht.",
+        },
+        {
+            target: () => q(".lw-menu-actions:not(:empty)", menu()),
+            area: menu,
+            when: () => codeActions().length > 0,
+            page: { tab: 0, menu: true },
+            title: "Selbst speichern",
+            text: () =>
+                "Im Menü unter „Ihr Code“ speicherst du sofort" +
+                (hasAction("Herunterladen")
+                    ? ", lädst deine Lösung als Datei herunter (z. B. für einen anderen Rechner) und später wieder hoch"
+                    : "") +
+                ". „Zurücksetzen“ holt die ursprüngliche Vorlage zurück.",
+        },
+        {
+            target: () => tabButtons().find(isSolutionTab),
+            page: { tab: 0 },
+            title: "Beispiellösung",
+            text: "Hier findest du eine mögliche Lösung – nur eine von vielen! Sieht dein Programm anders aus und tut trotzdem, was es soll, ist es genauso richtig. Versuch es erst selbst und vergleiche danach. Oft steht dort auch eine Erklärung.",
+        },
+        {
+            target: () => q(".experiment > :not(h3)", content()), // das erste Experiment
+            area: () => q(".experiment", content()),
+            title: "Experimente",
+            text: "Deine Lösung läuft? Dann geht's hier weiter: Ändere dein Programm und beobachte, was passiert. So verstehst du, warum es funktioniert. Kommst du nicht weiter, helfen die Hinweise zum Aufklappen.",
+        },
+        {
+            target: () => q(".lw-tour-button"),
+            title: "Jetzt bist du dran!",
+            text: "Diesen Rundgang kannst du hier jederzeit noch einmal starten. Viel Spaß beim Programmieren!",
+            next: "Los geht's",
+            link: () => (tourParam() === "uebersicht" ? { label: "Zur Übersicht", href: OVERVIEW_URL } : null),
+        },
+    ];
+
+    const EXERCISE = {
+        seenKey: "lernwerk.tour.aufgabe.v1",
+        label: "Rundgang: So funktioniert eine Übungsseite",
+        steps: EXERCISE_STEPS,
+        inert: () => [...document.body.children].filter((el) => !el.matches(".tour, script")),
+        // „Zurück“ im ersten Schritt: kam der Rundgang aus dem Übungsplaner, geht es dort weiter
+        back: () => (tourParam() === "uebersicht" ? `${OVERVIEW_URL}?tour=ende` : null),
+        // von selbst nur auf Programmieraufgaben, sonst fehlt das meiste, was der Rundgang zeigt
+        autoStart: () => !!editor(),
+        read() {
+            return {
+                tab: Math.max(0, tabButtons().findIndex((b) => b.getAttribute("aria-selected") === "true")),
+                menu: menu() ? !menu().hidden : false,
+            };
+        },
+        apply(want) {
+            const tab = tabButtons()[want.tab];
+            if (tab && tab.getAttribute("aria-selected") !== "true") tab.click();
+            if (menu() && !menu().hidden !== !!want.menu) menuButton()?.click();
+        },
+        /** Wartet, bis content.js die Inhalte geladen und codeblocks die Editoren erzeugt hat (oder aufgibt). */
+        ready: () =>
+            waitFor(() => {
+                const root = content();
+                if (!root?.childElementCount) return false;
+                return !q("[codeblocks]", root) || q("#runContainer", root);
+            }, 8000),
+    };
+
+    const PAGE = q(".page-head") ? OVERVIEW : q("div.topbar") && content() ? EXERCISE : null;
+
+    /** Wartet, bis check() zutrifft (höchstens timeout ms). */
+    function waitFor(check, timeout) {
+        return new Promise((resolve) => {
+            const t0 = performance.now();
+            const tick = () => {
+                if (check() || performance.now() - t0 > timeout) resolve();
+                else setTimeout(tick, 100);
+            };
+            tick();
+        });
     }
 
     // --- Handgezeichnete Formen -------------------------------------------------------------------
@@ -270,7 +423,8 @@
 
     // --- Overlay ---------------------------------------------------------------------------------
 
-    let root, svg, holes, rings, arrow, note, els, current, index, list, before, frame, lastFocus;
+    let root, svg, holes, rings, arrow, note, els, current, index, list, before, frame, lastFocus, link;
+    let inerted = [];
 
     function svgEl(name, attrs = {}) {
         const el = document.createElementNS(SVG_NS, name);
@@ -310,13 +464,17 @@
             <p class="tour-text" id="tour-text"></p>
             <div class="tour-actions">
                 <button type="button" class="tour-btn" data-tour="back">‹ Zurück</button>
+                <button type="button" class="tour-btn" data-tour="link" hidden></button>
                 <button type="button" class="tour-btn tour-next" data-tour="next">Weiter ›</button>
             </div>`;
 
         root.append(svg, note);
         root.addEventListener("click", (ev) => {
+            // sonst schließt das Darstellungsmenü (Klick außerhalb), das ein Schritt gerade geöffnet hat
+            ev.stopPropagation();
             const act = ev.target.closest("[data-tour]")?.dataset.tour;
             if (act === "close") close();
+            else if (act === "link") leave(link.href);
             else if (act === "back") go(index - 1, -1);
             else if (act === "next") go(index + 1, 1);
         });
@@ -464,15 +622,21 @@
         return el && el.getClientRects().length ? [el] : [];
     };
 
+    const value = (v) => (typeof v === "function" ? v() : v);
+
     let token = 0;
 
     async function go(i, dir) {
         if (!root) return;
         if (i >= list.length) return close();
-        if (i < 0) return;
+        if (i < 0) {
+            const back = PAGE.back?.();
+            if (back) leave(back);
+            return;
+        }
 
         const step = list[i];
-        applyPage({ ...before, ...step.page });
+        PAGE.apply({ ...before, ...step.page });
         const target = resolve(step.target);
         if (step.target && !target.length) return go(i + dir, dir); // Element fehlt gerade: überspringen
 
@@ -480,14 +644,18 @@
         index = i;
         els = { target, area: resolve(step.area) };
         current = { seeds: target.map(newSeed), bend: Math.random() < 0.5 ? -1 : 1 };
+        link = value(step.link) || null;
 
         root.classList.remove("is-shown");
         note.querySelector("#tour-count").textContent = `${i + 1} / ${list.length}`;
         note.querySelector("#tour-title").textContent = step.title;
-        note.querySelector("#tour-text").textContent = step.text;
-        note.querySelector('[data-tour="back"]').hidden = i === 0;
+        note.querySelector("#tour-text").textContent = value(step.text);
+        note.querySelector('[data-tour="back"]').hidden = i === 0 && !PAGE.back?.();
         note.querySelector('[data-tour="close"]').hidden = i === list.length - 1;
         note.querySelector('[data-tour="next"]').textContent = step.next || (i === 0 ? "Los geht's ›" : "Weiter ›");
+        const linkBtn = note.querySelector('[data-tour="link"]');
+        linkBtn.hidden = !link;
+        linkBtn.textContent = link?.label || "";
 
         rings.innerHTML = "";
         target.forEach(() => rings.append(svgEl("path", { class: "tour-ring", pathLength: "1" })));
@@ -501,24 +669,28 @@
         note.querySelector('[data-tour="next"]').focus({ preventScroll: true });
     }
 
-    function start() {
+    function start(at = 0) {
         if (root) return;
         try {
-            localStorage.setItem(SEEN_KEY, "1");
+            localStorage.setItem(PAGE.seenKey, "1");
         } catch (e) { }
-        q(".lw-menu-anchor--floating .lw-menu[id]")?.setAttribute("hidden", "");
+        // offenes Darstellungsmenü schließen (der ?-Knopf liegt mit im Menü-Anker, schließt es also nicht)
+        const menuBtn = q('[aria-controls="lw-theme-menu"]');
+        if (menuBtn?.getAttribute("aria-expanded") === "true") menuBtn.click();
         lastFocus = document.activeElement;
-        before = readPage();
-        cardId = null;
-        list = STEPS.filter((s) => !s.when || s.when());
+        before = PAGE.read();
+        PAGE.onStart?.();
+        list = PAGE.steps.filter((s) => !s.when || s.when());
         build();
         document.body.append(root);
-        q(".page")?.setAttribute("inert", "");
+        inerted = PAGE.inert().filter((el) => el && !el.inert);
+        inerted.forEach((el) => (el.inert = true));
         document.addEventListener("keydown", onKey, true);
         window.addEventListener("scroll", scheduleLayout, { passive: true });
         window.addEventListener("resize", scheduleLayout);
         requestAnimationFrame(() => root.classList.add("is-open"));
-        go(0, 1);
+        if (at === "last") go(list.length - 1, -1);
+        else go(at, 1);
     }
 
     function close() {
@@ -529,8 +701,8 @@
         window.removeEventListener("resize", scheduleLayout);
         cancelAnimationFrame(frame);
         frame = 0;
-        q(".page")?.removeAttribute("inert");
-        applyPage(before);
+        inerted.forEach((el) => (el.inert = false));
+        PAGE.apply(before);
         const old = root;
         root = current = null;
         old.classList.remove("is-open");
@@ -538,53 +710,48 @@
         (lastFocus?.isConnected ? lastFocus : q(".lw-tour-button"))?.focus({ preventScroll: true });
     }
 
+    /** Beendet den Rundgang (stellt also den Zustand der Seite wieder her) und öffnet eine andere Seite. */
+    function leave(href) {
+        close();
+        location.href = new URL(href, BASE).href;
+    }
+
     // --- Start ---------------------------------------------------------------------------------
 
     function addButton() {
-        const anchor = q(".lw-menu-anchor--floating");
-        if (!anchor) return;
+        const anchor = q(".lw-menu-anchor");
+        if (!anchor || q(".lw-tour-button")) return;
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "lw-menu-button lw-tour-button";
-        btn.setAttribute("aria-label", "Rundgang: So funktioniert der Übungsplaner");
+        btn.setAttribute("aria-label", PAGE.label);
         btn.title = "Rundgang starten";
         btn.textContent = "?";
-        btn.addEventListener("click", start);
+        btn.addEventListener("click", () => start());
         anchor.prepend(btn);
     }
 
-    /** Wartet, bis der Übungsplaner seine Übungen gezeichnet hat (oder aufgibt). */
-    function whenRendered() {
-        return new Promise((resolve) => {
-            const results = q("#results");
-            if (!results || results.childElementCount) return resolve();
-            const obs = new MutationObserver(() => {
-                if (results.childElementCount) done();
-            });
-            const timer = setTimeout(done, 5000);
-            function done() {
-                obs.disconnect();
-                clearTimeout(timer);
-                resolve();
-            }
-            obs.observe(results, { childList: true });
-        });
-    }
-
     async function init() {
+        // theme.js erzeugt das Menü, in das der ?-Knopf kommt; auf den Übungsseiten laden beide Skripte nachträglich
+        await waitFor(() => q(".lw-menu-anchor"), 5000);
         addButton();
         let seen = false;
         try {
-            seen = localStorage.getItem(SEEN_KEY) === "1";
+            seen = localStorage.getItem(PAGE.seenKey) === "1";
         } catch (e) { }
-        const forced = new URLSearchParams(location.search).has("tour");
-        if (seen && !forced) return;
-        await whenRendered();
-        setTimeout(start, 500);
+        const param = tourParam();
+        if (param === "uebersicht" || param === "ende") {
+            const url = new URL(location.href);
+            url.searchParams.delete("tour");
+            history.replaceState(history.state, "", url);
+        }
+        if (param === null && seen) return;
+        await PAGE.ready();
+        if (param === null && PAGE.autoStart && !PAGE.autoStart()) return;
+        setTimeout(() => start(PAGE.startAt?.() ?? 0), 500);
     }
 
-    // nach theme.js, das das Menü oben rechts erst bei DOMContentLoaded erzeugt
-    // (verzögerte Skripte laufen schon vorher, im Zustand "interactive")
-    if (document.readyState === "complete") init();
-    else document.addEventListener("DOMContentLoaded", init);
+    if (!PAGE) return;
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+    else init();
 })();
