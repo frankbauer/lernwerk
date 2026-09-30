@@ -321,7 +321,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/00_einfuehrung-nachricht.webp"
     },
     {
       "id": "00_einfuehrung/beispiel_universum",
@@ -395,7 +396,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/00_einfuehrung-anordnen.webp"
     },
     {
       "id": "01_Variablen/sandkasten_42",
@@ -520,7 +522,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/02_Operationen-calculator.webp"
     },
     {
       "id": "02_Operationen/ausgabe",
@@ -538,7 +541,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/02_Operationen-ausgabe.webp"
     },
     {
       "id": "02_Operationen/ausdruecke",
@@ -556,7 +560,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/02_Operationen-ausdruecke.webp"
     },
     {
       "id": "03_Datentypen/sandkasten_type",
@@ -685,7 +690,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/03_Datentypen-ausdruecke.webp"
     },
     {
       "id": "03_Datentypen/ausgabe",
@@ -703,7 +709,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/03_Datentypen-ausgabe.webp"
     },
     {
       "id": "03_Datentypen/typen",
@@ -721,7 +728,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/03_Datentypen-typen.webp"
     },
     {
       "id": "03_Datentypen/ects",
@@ -740,7 +748,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/03_Datentypen-ects.webp"
     },
     {
       "id": "04_Methodenaufrufe/sandkasten_flaeche",
@@ -849,7 +858,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/04_Methodenaufrufe-kirschen.webp"
     },
     {
       "id": "05_Objekte/beispiel_floating",
@@ -1031,7 +1041,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/05_Objekte-kirschen.webp"
     },
     {
       "id": "05_Objekte/deklination",
@@ -1051,7 +1062,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/05_Objekte-deklination.webp"
     },
     {
       "id": "05_Objekte/methodenart",
@@ -1070,7 +1082,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/05_Objekte-methodenart.webp"
     },
     {
       "id": "06_Bedingungen/beispiel_luck",
@@ -1166,7 +1179,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/06_Bedingungen-teilbar.webp"
     },
     {
       "id": "06_Bedingungen/schaltjahr",
@@ -1185,7 +1199,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/06_Bedingungen-schaltjahr.webp"
     },
     {
       "id": "06_Bedingungen/farbcode",
@@ -1203,7 +1218,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/06_Bedingungen-farbcode.webp"
     },
     {
       "id": "07_Schleifen/beispiel_pflanzen_for",
@@ -1355,7 +1371,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-buchstabensuppe.webp"
     },
     {
       "id": "07_Schleifen/vielfache_pi",
@@ -1373,7 +1390,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-vielfache_pi.webp"
     },
     {
       "id": "07_Schleifen/summe_grenze",
@@ -1391,7 +1409,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-summe_grenze.webp"
     },
     {
       "id": "07_Schleifen/laufen",
@@ -1410,7 +1429,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-laufen.webp"
     },
     {
       "id": "07_Schleifen/kraftwerke",
@@ -1429,7 +1449,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-kraftwerke.webp"
     },
     {
       "id": "08_Klassenmethoden/sandkasten_summe",
@@ -1501,7 +1522,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/08_Klassenmethoden-signatur.webp"
     },
     {
       "id": "08_Klassenmethoden/deklarationen",
@@ -1519,7 +1541,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/08_Klassenmethoden-deklarationen.webp"
     },
     {
       "id": "08_Klassenmethoden/schaltjahr",
@@ -1537,7 +1560,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/08_Klassenmethoden-schaltjahr.webp"
     },
     {
       "id": "08_Klassenmethoden/kontrollstrukturen",
@@ -1557,7 +1581,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/08_Klassenmethoden-kontrollstrukturen.webp"
     },
     {
       "id": "08_Klassenmethoden/sanduhr",
@@ -1575,7 +1600,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/08_Klassenmethoden-sanduhr.webp"
     },
     {
       "id": "09_Klassenattribute/beispiel_steuer",
@@ -1650,7 +1676,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/09_Klassenattribute-plotter.webp"
     },
     {
       "id": "10_Arrays/beispiel_roboter",
@@ -1705,7 +1732,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-auswerten.webp"
     },
     {
       "id": "10_Arrays/feldzugriff",
@@ -1723,7 +1751,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-feldzugriff.webp"
     },
     {
       "id": "10_Arrays/lesen",
@@ -1740,7 +1769,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-lesen.webp"
     },
     {
       "id": "10_Arrays/beschreiben",
@@ -1757,7 +1787,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-beschreiben.webp"
     },
     {
       "id": "10_Arrays/teilbar",
@@ -1776,7 +1807,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-teilbar.webp"
     },
     {
       "id": "10_Arrays/ungerade",
@@ -1795,7 +1827,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-ungerade.webp"
     },
     {
       "id": "10_Arrays/lotto",
@@ -1814,7 +1847,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-lotto.webp"
     },
     {
       "id": "10_Arrays/durchschnitt",
@@ -1833,7 +1867,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-durchschnitt.webp"
     },
     {
       "id": "10_Arrays/wortwolke",
@@ -1853,7 +1888,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-wortwolke.webp"
     },
     {
       "id": "10_Arrays/fehlerteufel",
@@ -1873,7 +1909,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-fehlerteufel.webp"
     },
     {
       "id": "11_Arrays_nDim/sandkasten_matrix",
