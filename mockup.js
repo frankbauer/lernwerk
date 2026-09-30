@@ -88,7 +88,7 @@ const chaptersData = [
             },
             {
                 title: "Zahlen Addieren",
-                link: "02_Operationen/addition.html",
+                link: "02_Operationen/addition",
                 type: "exercice",
                 description: "Einfache Addition von Zahlen. Ein grundlegendes Beispiel für mathematische Operationen in der Programmierung.",
                 concepts: ["Operationen", "Variablen"],
@@ -144,7 +144,7 @@ const chaptersData = [
             },
             {
                 title: "Subtraktion und Multiplikation",
-                link: "03_Datentypen/add_sub_mul.html",
+                link: "03_Datentypen/add_sub_mul",
                 type: "exercice",
                 description: "Subtrahiere und multipliziere Zahlen in einfachen Beispielen.",
                 concepts: ["Datentypen", "Operationen"],
