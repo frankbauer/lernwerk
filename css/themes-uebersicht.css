@@ -835,6 +835,14 @@ html[data-lw-theme="abenteuer"] :is(.scope, .seg, .search, .more-btn, .select, .
     box-shadow: 3px 3px 0 #111;
 }
 
+/* Der versetzte Schatten ragt nur nach rechts unten und kollidiert dort mit dem Fokusring;
+   beim Fokus weicht er einem gleichmäßigen Band, damit der Ring zentriert sitzt */
+html[data-lw-theme="abenteuer"] body :is(.search, .more-btn, .select, .stepper select, .stepper-btn, .btn):focus-visible {
+    box-shadow: 0 0 0 2px #ffd23f;
+    outline: 2px solid #111;
+    outline-offset: 2px;
+}
+
 html[data-lw-theme="abenteuer"] :is(.chip, .pill, .done-btn, .rate-btn) {
     border-color: #111;
 }
