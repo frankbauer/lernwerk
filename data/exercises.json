@@ -1479,7 +1479,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-reiskoerner.webp"
     },
     {
       "id": "07_Schleifen/quersumme",
@@ -1498,7 +1499,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-quersumme.webp"
     },
     {
       "id": "07_Schleifen/primzahlsumme",
@@ -1518,7 +1520,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-primzahlsumme.webp"
     },
     {
       "id": "08_Klassenmethoden/sandkasten_summe",
@@ -2001,7 +2004,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-kontoverlauf.webp"
     },
     {
       "id": "11_Arrays_nDim/sandkasten_matrix",
@@ -2041,7 +2045,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/11_Arrays_nDim-kinosaal.webp"
     },
     {
       "id": "12_Instanzen/beispiel_wald",
