@@ -2145,7 +2145,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/12_Instanzen-tierwesen.webp"
     },
     {
       "id": "12_Instanzen/spielbrett",
@@ -2164,7 +2165,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/12_Instanzen-spielbrett.webp"
     },
     {
       "id": "12_Instanzen/internetverbindung",
@@ -2186,7 +2188,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/12_Instanzen-internetverbindung.webp"
     },
     {
       "id": "12_Instanzen/gerade",
@@ -2206,7 +2209,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/12_Instanzen-gerade.webp"
     },
     {
       "id": "13_Referenzen/sandkasten_deskrun",
@@ -2264,7 +2268,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/13_Referenzen-vektor.webp"
     },
     {
       "id": "13_Referenzen/array_kopieren",
@@ -2283,7 +2288,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/13_Referenzen-array_kopieren.webp"
     },
     {
       "id": "14_Schnittstellen/sandkasten_interface",
@@ -2341,7 +2347,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/14_Schnittstellen-sprachen.webp"
     },
     {
       "id": "16_Rekusrion/sandkasten_flood",
@@ -2378,7 +2385,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-umdrehen.webp"
     },
     {
       "id": "16_Rekusrion/palindrom",
@@ -2396,7 +2404,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-palindrom.webp"
     },
     {
       "id": "16_Rekusrion/endrekursion",
@@ -2414,7 +2423,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-endrekursion.webp"
     },
     {
       "id": "16_Rekusrion/iteration",
@@ -2432,7 +2442,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-iteration.webp"
     },
     {
       "id": "16_Rekusrion/tauwetter",
@@ -2490,7 +2501,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-wechselgeld.webp"
     },
     {
       "id": "16_Rekusrion/hanoi",
@@ -2566,7 +2578,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/17_Collections-todo.webp"
     },
     {
       "id": "17_Collections/iterieren",
@@ -2584,7 +2597,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/17_Collections-iterieren.webp"
     },
     {
       "id": "18_Graphen/beispiel_graph",
@@ -2815,7 +2829,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-dijkstra.webp"
     },
     {
       "id": "18_Graphen/pfad",
@@ -2832,7 +2847,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-pfad.webp"
     },
     {
       "id": "18_Graphen/prim",
@@ -2849,7 +2865,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-prim.webp"
     },
     {
       "id": "18_Graphen/kruskal",
@@ -2866,7 +2883,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-kruskal.webp"
     },
     {
       "id": "18_Graphen/zentralitaet",
@@ -2883,7 +2901,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-zentralitaet.webp"
     },
     {
       "id": "19_Zahlen/todec",
@@ -2917,7 +2936,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-addition.webp"
     },
     {
       "id": "19_Zahlen/binaer_addition",
@@ -2934,7 +2954,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-binaer_addition.webp"
     },
     {
       "id": "19_Zahlen/binaer_ueberlauf",
@@ -2951,7 +2972,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-binaer_ueberlauf.webp"
     },
     {
       "id": "19_Zahlen/binaer_operationen",
@@ -2968,7 +2990,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-binaer_operationen.webp"
     },
     {
       "id": "19_Zahlen/umrechnung",
@@ -2985,7 +3008,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-umrechnung.webp"
     },
     {
       "id": "19_Zahlen/vorzeichenlos",
@@ -3002,7 +3026,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-vorzeichenlos.webp"
     },
     {
       "id": "19_Zahlen/vorzeichenbit",
@@ -3019,7 +3044,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-vorzeichenbit.webp"
     },
     {
       "id": "19_Zahlen/b1_komplement",
@@ -3036,7 +3062,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-b1_komplement.webp"
     },
     {
       "id": "19_Zahlen/b2_komplement",
@@ -3053,7 +3080,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-b2_komplement.webp"
     },
     {
       "id": "20_Bilder/faltung",
@@ -3072,7 +3100,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/20_Bilder-faltung.webp"
     },
     {
       "id": "20_Bilder/bildfilter",
@@ -3091,7 +3120,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/20_Bilder-bildfilter.webp"
     },
     {
       "id": "21_Verschluesselung/polybios",
@@ -3110,7 +3140,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/21_Verschluesselung-polybios.webp"
     },
     {
       "id": "21_Verschluesselung/enigma",
@@ -3129,7 +3160,8 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/21_Verschluesselung-enigma.webp"
     }
   ]
 }
