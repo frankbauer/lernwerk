@@ -88,7 +88,7 @@ html[data-lw-theme="heft"] {
     --surface-2: #f4eee1;
     --ink: #2d2a24;
     --ink-2: #4a443a;
-    --muted: #8a7f6a;
+    --muted: #6b624f; /* WCAG AA: >= 4.5:1 */
     --line: #e7dfcd;
     --line-strong: #cfc3aa;
     --accent: #8b4a2b;
@@ -250,7 +250,7 @@ html[data-lw-theme="karten"] {
     --surface-2: #f7f8fa;
     --ink: #1d2433;
     --ink-2: #414a5c;
-    --muted: #6b7385;
+    --muted: #5d6577; /* WCAG AA: >= 4.5:1 */
     --line: #e5e8ee;
     --line-strong: #cfd5df;
     --accent: #4f46e5;
@@ -961,7 +961,7 @@ html[data-lw-theme="raster"] {
     --surface-2: #f4f4f4;
     --ink: #111111;
     --ink-2: #333333;
-    --muted: #777777;
+    --muted: #666666; /* WCAG AA: >= 4.5:1 */
     --line: #dddddd;
     --line-strong: #111111;
     --accent: #e30613;

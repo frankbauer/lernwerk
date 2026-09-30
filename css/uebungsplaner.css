@@ -5,7 +5,7 @@
     --surface-2: #f2ece7;
     --ink: #1a1614;
     --ink-2: #453d38;
-    --muted: #776d67;
+    --muted: #6b625c; /* WCAG AA: >= 4.5:1 */
     --line: #e3dbd4;
     --line-strong: #c6bbb2;
     --brand: #e0d3cb; /* banner background */

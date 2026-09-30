@@ -1,7 +1,8 @@
 // Darstellungs-Themes für die Übungsseiten und die Übersicht (uebersicht.html).
 // Übungsseiten: content.js setzt das gespeicherte Theme bereits beim Laden (html[data-lw-theme]) und
 // lädt die Stylesheets sowie dieses Skript. uebersicht.html bindet dieses Skript direkt im <head> ein.
-// Hier werden das Menü oben rechts und (auf Übungsseiten) die Kapitelzeile über dem Titel erzeugt.
+// Hier werden das Menü oben rechts, (auf Übungsseiten) die Kapitelzeile über dem Titel und der Sprunglink
+// sowie auf allen Seiten die Fußzeile mit Impressum, Datenschutz und Barrierefreiheit erzeugt.
 (function () {
     const STORAGE_KEY = 'lernwerk-theme'
     const DEFAULT_THEME = 'abenteuer' // muss zu content.js passen
@@ -181,8 +182,10 @@
 
         const path = decodeURIComponent(location.pathname)
         const relative = path.startsWith(base.pathname) ? path.slice(base.pathname.length) : path
-        const folder = relative.split('/').filter(Boolean)[0]
-        if (!folder) return
+        const parts = relative.split('/').filter(Boolean)
+        // Seiten im Wurzelverzeichnis (z.B. impressum.html) gehören zu keinem Kapitel
+        if (parts.length < 2) return
+        const folder = parts[0]
         crumb.textContent = folder.replace(/_/g, ' ')
         try {
             const response = await fetch(new URL('data/exercises.json', base))
@@ -192,11 +195,66 @@
         } catch (e) { }
     }
 
+    // Fußzeile mit Impressum, Datenschutz, Barrierefreiheit und Copyright (auf allen Seiten, css/site.css)
+    const LEGAL_LINKS = [
+        { href: 'impressum.html', label: 'Impressum' },
+        { href: 'datenschutz.html', label: 'Datenschutz' },
+        { href: 'barrierefreiheit.html', label: 'Barrierefreiheit' },
+    ]
+    const COPYRIGHT_START = 2024
+
+    function createFooter(parent) {
+        if (document.querySelector('footer.lw-footer')) return
+        const footer = document.createElement('footer')
+        footer.className = 'lw-footer'
+        const inner = document.createElement('div')
+        inner.className = 'lw-footer-inner'
+
+        const nav = document.createElement('nav')
+        nav.setAttribute('aria-label', 'Rechtliches')
+        const list = document.createElement('ul')
+        for (const { href, label } of LEGAL_LINKS) {
+            const url = new URL(href, base)
+            const link = document.createElement('a')
+            link.href = url
+            link.textContent = label
+            if (url.pathname === location.pathname) link.setAttribute('aria-current', 'page')
+            const item = document.createElement('li')
+            item.append(link)
+            list.append(item)
+        }
+        nav.append(list)
+
+        const year = Math.max(new Date().getFullYear(), COPYRIGHT_START)
+        const copyright = document.createElement('small')
+        copyright.textContent = `© ${COPYRIGHT_START}–${year} Lehrstuhl für Graphische Datenverarbeitung, `
+            + 'Friedrich-Alexander-Universität Erlangen-Nürnberg'
+
+        inner.append(nav, copyright)
+        footer.append(inner)
+        parent.append(footer)
+    }
+
+    // Übungsseiten: Inhaltsbereich als Hauptbereich auszeichnen und per Sprunglink erreichbar machen
+    function createSkipLink(target) {
+        if (!target.matches('main')) target.setAttribute('role', 'main')
+        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1')
+        const skip = document.createElement('a')
+        skip.className = 'lw-skip'
+        skip.href = '#' + target.id
+        skip.textContent = 'Zum Inhalt springen'
+        document.body.prepend(skip)
+    }
+
     function init() {
         const topbar = document.querySelector('div.topbar')
         if (topbar) {
+            topbar.setAttribute('role', 'banner')
+            const content = document.getElementById('content')
+            if (content) createSkipLink(content)
             createCrumb(topbar)
             createMenu(topbar)
+            createFooter(document.body)
             return
         }
         // Übersicht: der Kopfbereich schneidet Überstehendes ab, daher sitzt das Menü in .page
@@ -204,7 +262,11 @@
         if (page && document.querySelector('.page-head')) {
             page.style.position = 'relative'
             createMenu(page, true)
+            createFooter(page)
+            return
         }
+        // Editor (index.html): #content ist dort absolut positioniert, die Fußzeile gehört hinein
+        createFooter(document.getElementById('content') ?? document.body)
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init)

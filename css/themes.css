@@ -686,7 +686,7 @@ html[data-lw-theme="tafel"] .quiz-graph-chip {
 html[data-lw-theme="heft"] {
     --lw-bg: #f7f3ea;
     --lw-fg: #2d2a24;
-    --lw-muted: #8a7f6a;
+    --lw-muted: #6b624f; /* WCAG AA: >= 4.5:1 */
     --lw-font-head: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
     --lw-h1-size: 42px;
     --lw-h1-weight: 600;
@@ -776,7 +776,7 @@ html[data-lw-theme="heft"] tabbar>div.buttonbar button.active {
 html[data-lw-theme="klassisch"] {
     --lw-bg: #f6f2ee;
     --lw-fg: #1a1614;
-    --lw-muted: #776d67;
+    --lw-muted: #6b625c; /* WCAG AA: >= 4.5:1 */
     --lw-h1-size: 40px;
     --lw-h1-weight: 800;
     --lw-surface: #ffffff;
@@ -980,7 +980,7 @@ html[data-lw-theme="klassisch"] .hint-container button {
 html[data-lw-theme="karten"] {
     --lw-bg: #f2f4f7;
     --lw-fg: #1d2433;
-    --lw-muted: #6b7385;
+    --lw-muted: #5d6577; /* WCAG AA: >= 4.5:1 */
     --lw-h1-size: 34px;
     --lw-surface: #ffffff;
     --lw-surface-2: #f7f8fa;
@@ -1494,7 +1494,7 @@ html[data-lw-theme="abenteuer"] .hint-container button {
 html[data-lw-theme="raster"] {
     --lw-bg: #ffffff;
     --lw-fg: #111111;
-    --lw-muted: #777777;
+    --lw-muted: #666666; /* WCAG AA: >= 4.5:1 */
     --lw-h1-size: 50px;
     --lw-h1-tracking: -0.045em;
     --lw-surface: transparent;

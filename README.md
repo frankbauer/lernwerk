@@ -1,6 +1,10 @@
 # GDI Lernwerk
 
-Eine Sammlung von Übungsaufgaben als Begleitmaterial vür die Veranstaltung [**Grundlagen der Informatik**](https://gdi.cs.fau.de/livecompile/uebersicht.html) an der [Friedrich-Alexander-Universität Erlangen-Nürnberg](https://fau.de).
+Eine Sammlung von Übungsaufgaben als Begleitmaterial für die Veranstaltung [**Grundlagen der Informatik**](https://gdi.cs.fau.de/livecompile/uebersicht.html) an der [Friedrich-Alexander-Universität Erlangen-Nürnberg](https://fau.de).
+
+## Rechtstexte
+
+Impressum (`impressum.html`), Datenschutzerklärung (`datenschutz.html`) und Erklärung zur Barrierefreiheit (`barrierefreiheit.html`) gelten für [gdi.cs.fau.de/livecompile](https://gdi.cs.fau.de/livecompile/uebersicht.html) und müssen bei eigenem Hosting angepasst werden.
 
 ## Licensed assets
 

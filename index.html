@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
   <meta charset="utf-8">
-  <title>codeblocks - simple</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Java-Editor – Lernwerk</title>
 
   <link rel="stylesheet" href="./css/editor.css">
   <script src="./js/jquery/jquery.min.js?v=3.5.1"></script>
   <link rel="stylesheet" href="./js/codeblocks-js/codeblocks.css">
-  <style>
-    input:focus-visible {
-      outline: none;
-    }
-  </style>
+  <link rel="stylesheet" href="./css/site.css?v=1.0.0">
+  <!-- erzeugt die Fußzeile mit Impressum, Datenschutz und Barrierefreiheit -->
+  <script src="./theme.js?v=1.4.0"></script>
 </head>
 
 <body>
 
-  <div id="content">
-    <div style="margin: 10px 16px 10px 16px;color:gray;">
+  <div id="content" role="main">
+    <div style="margin: 10px 16px 10px 16px;color:#595959;">
       <p>Auf dieser Seite haben Sie direkten Zugriff auf den Web-Compiler aus der Veranstaltung Grundlagen der
         Informatik. Sie können diese Seite verwenden um schnell Java-Code zu testen. <!--Eine Übersicht weiterer Beispiele
         finden Sie <a href="uebersicht.html" target="_blank">hier</a>.--></p>
-      <p><b>Wichtig:</b> Der Seiteninhalt wir nicht gespeichert und wird beim erneuten laden der Seite zurückgesetzt.
+      <p><b>Wichtig:</b> Der Seiteninhalt wird nicht gespeichert und beim erneuten Laden der Seite zurückgesetzt.
       </p>
     </div>
 
@@ -34,7 +33,7 @@
       </loading>
 
       <text>&lt;input id="args" style="width:100%"
-        placeholder="Eingabeparemeter" /></text>
+        placeholder="Eingabeparameter" aria-label="Eingabeparameter" /></text>
       <block data-visible-lines="auto"></block>
 
       <block data-hidden>
@@ -89,7 +88,6 @@
           }
         </script>
     </div>
-  </div>
   </div>
   <script>
     document.body.onload = () => {

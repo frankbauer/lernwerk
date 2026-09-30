@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Erklärung zur Barrierefreiheit – Lernwerk</title>
+    <link rel="icon" href="./img/brand/GdI_logo.jpg">
+    <link rel="stylesheet" href="./css/editor.css?v=1.0.4">
+    <link rel="stylesheet" href="./js/codeblocks-js/fonts/geist.css?v=1.4.0">
+    <link rel="stylesheet" href="./css/theme-menu.css?v=1.4.0">
+    <link rel="stylesheet" href="./css/themes.css?v=1.4.0">
+    <link rel="stylesheet" href="./css/site.css?v=1.4.0">
+    <!-- setzt das gespeicherte Theme sofort (html[data-lw-theme]) und erzeugt Menü, Sprunglink und Fußzeile -->
+    <script src="./theme.js?v=1.4.0"></script>
+</head>
+
+<body>
+    <div class="topbar">
+        <h1>Erklärung zur Barrierefreiheit</h1>
+        <a href="./uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+        <div class="boxed lw-legal">
+            <p>
+                Der Lehrstuhl für Graphische Datenverarbeitung der Friedrich-Alexander-Universität Erlangen-Nürnberg
+                ist bemüht, das Lernwerk im Einklang mit dem
+                <a href="https://www.gesetze-bayern.de/Content/Document/BayDiG">Bayerischen Digitalgesetz (BayDiG)</a>
+                und der Bayerischen Barrierefreie Informationstechnik-Verordnung (BayBITV) barrierefrei zugänglich zu
+                machen. Maßstab sind die Web Content Accessibility Guidelines (WCAG) 2.1 auf Stufe AA bzw. die
+                harmonisierte Norm EN 301 549.
+            </p>
+            <p>
+                Diese Erklärung gilt für das Lernwerk, also den Übungsplaner, alle Übungsseiten und den Java-Editor
+                unter <a href="https://gdi.cs.fau.de/livecompile/uebersicht.html">gdi.cs.fau.de/livecompile</a>.
+            </p>
+        </div>
+
+        <div class="boxed lw-legal">
+            <h2 id="status">Stand der Vereinbarkeit mit den Anforderungen</h2>
+            <p>
+                <strong>Teilweise konform:</strong> Das Lernwerk ist mit den Anforderungen teilweise vereinbar. Die
+                unten aufgeführten Inhalte sind noch nicht vollständig barrierefrei.
+            </p>
+            <dl>
+                <dt>Methodik der Prüfung</dt>
+                <dd>Selbstbewertung</dd>
+                <dt>Erstellungsdatum</dt>
+                <dd>30. September 2026</dd>
+                <dt>Letzte Überprüfung</dt>
+                <dd>30. September 2026</dd>
+            </dl>
+        </div>
+
+        <div class="boxed lw-legal">
+            <h2 id="umgesetzt">Was wir für die Barrierefreiheit tun</h2>
+            <ul>
+                <li>Alle Seiten lassen sich mit der Tastatur bedienen; der Fokus ist sichtbar hervorgehoben.</li>
+                <li>Auf den Übungsseiten führt ein Sprunglink direkt zum Inhalt.</li>
+                <li>
+                    Seiten sind mit Überschriften, Landmarken (Kopfbereich, Hauptbereich, Fußzeile) und der Sprache
+                    Deutsch ausgezeichnet. Tabs, Hinweise und das Menü „Darstellung“ geben ihren Zustand an
+                    Screenreader weiter.
+                </li>
+                <li>
+                    Alle Darstellungen (Themes) wurden auf ausreichenden Kontrast der Texte geprüft
+                    (mindestens 4,5 : 1). Mit „Terminal“ und „Tafel“ stehen im Menü „Darstellung“ auch dunkle
+                    Varianten zur Verfügung.
+                </li>
+                <li>Die Seiten passen sich an kleine Bildschirme an und lassen sich bis 200&nbsp;% vergrößern.</li>
+                <li>Ist im Betriebssystem „Bewegung reduzieren“ eingestellt, werden Animationen abgeschaltet.</li>
+                <li>
+                    Programmausgaben werden als Text angezeigt, damit Screenreader sie vorlesen können.
+                </li>
+            </ul>
+        </div>
+
+        <div class="boxed lw-legal">
+            <h2 id="probleme">Nicht barrierefreie Inhalte</h2>
+            <ul>
+                <li>
+                    <strong>Grafische Ausgaben:</strong> Viele Übungen zeichnen ihr Ergebnis in eine Grafik
+                    (Canvas), z.&nbsp;B. 2D- und 3D-Szenen, Animationen, Spiele, Diagramme oder Bilder. Für diese
+                    Grafiken gibt es keine gleichwertige Textalternative.
+                </li>
+                <li>
+                    <strong>Code-Editor:</strong> Der Editor ist mit der Tastatur und mit Screenreadern bedienbar,
+                    Fehlermarkierungen und Autovervollständigung werden aber nicht in allen Screenreadern
+                    zuverlässig angesagt. Innerhalb des Editors rückt die Tabulatortaste ein; um den Editor mit der
+                    Tastatur zu verlassen, drücken Sie zuerst <kbd>Esc</kbd> und dann <kbd>Tab</kbd>.
+                </li>
+                <li>
+                    <strong>Interaktive Aufgabenformate:</strong> Aufgaben, bei denen Code-Bausteine angeordnet oder
+                    zugeordnet werden, sowie einige grafische Quizformate (z.&nbsp;B. Graphen) sind
+                    vorwiegend für die Bedienung mit Maus oder Touch ausgelegt.
+                </li>
+                <li>
+                    <strong>Sprachauszeichnung:</strong> Englischsprachige Begriffe im Programmcode und in
+                    Fehlermeldungen des Compilers sind nicht als englisch ausgezeichnet.
+                </li>
+                <li>
+                    <strong>Formeln:</strong> Mathematische Formeln sind als MathML eingebunden; ihre Ausgabe
+                    hängt von der Unterstützung durch Browser und Screenreader ab.
+                </li>
+                <li>
+                    <strong>Verschwommene Hinweise:</strong> Hinweise und Beispiellösungen sind bis zum Aufdecken
+                    absichtlich unscharf. Sie werden erst nach Betätigen von „Hinweis zeigen“ bzw. „Beispiel zeigen“
+                    auch für Screenreader freigegeben.
+                </li>
+            </ul>
+            <h3>Begründung</h3>
+            <p>
+                Das Lernwerk vermittelt Programmieren oft anhand grafischer Ergebnisse, die zur Laufzeit aus dem
+                Programm der Studierenden entstehen. Eine automatisch erzeugte, gleichwertige Beschreibung dieser
+                Grafiken ist derzeit technisch nicht möglich. Die übrigen Punkte werden schrittweise verbessert.
+            </p>
+            <h3>Alternative Zugangswege</h3>
+            <p>
+                Wenn Sie eine grafische Übung nicht bearbeiten können, wenden Sie sich bitte an die unten genannte Kontaktperson; wir stellen Ihnen
+                gerne eine gleichwertige Aufgabe oder eine Beschreibung zur Verfügung. Unterstützung erhalten Sie
+                außerdem beim
+                <a href="https://www.fau.de/studium/studienorganisation/studieren-mit-besonderen-voraussetzungen/nachteilsausgleich-bei-prufungen/#beauftragter">Beauftragten
+                    für Studierende mit Behinderung und chronischer Erkrankung</a> der FAU.
+            </p>
+        </div>
+
+        <div class="boxed lw-legal">
+            <h2 id="kontakt">Feedback und Kontakt</h2>
+            <p>
+                Sie können uns Mängel bei der Barrierefreiheit mitteilen oder Informationen, die nicht barrierefrei
+                dargestellt werden, in barrierefreier Form anfordern:
+            </p>
+            <address>
+                Dr.-Ing. Frank Bauer<br>
+                Lehrstuhl für Graphische Datenverarbeitung<br>
+                Cauerstraße 11<br>
+                91058 Erlangen
+            </address>
+            <dl>
+                <dt>Telefon</dt>
+                <dd><a href="tel:+4991318529919">+49 9131 85-29919</a></dd>
+                <dt>E-Mail</dt>
+                <dd><a href="mailto:cs9@fau.de?subject=Barrierefreiheit%20Lernwerk">cs9@fau.de</a></dd>
+            </dl>
+            <p>Bitte beschreiben Sie das Problem und nennen Sie die Adresse (URL) der betroffenen Seite.</p>
+        </div>
+
+        <div class="boxed lw-legal">
+            <h2 id="durchsetzung">Durchsetzungsverfahren</h2>
+            <p>
+                Bleibt eine Anfrage über die oben genannte Kontaktmöglichkeit innerhalb von sechs Wochen ganz oder
+                teilweise unbeantwortet, prüft die zuständige Aufsichtsbehörde auf Antrag, ob im Rahmen der
+                Überwachung gegenüber dem Verpflichteten Maßnahmen erforderlich sind. Zuständig ist:
+            </p>
+            <address>
+                Landesamt für Digitalisierung, Breitband und Vermessung<br>
+                IT-Dienstleistungszentrum des Freistaats Bayern<br>
+                Durchsetzungs- und Überwachungsstelle für barrierefreie Informationstechnik<br>
+                St.-Martin-Straße 47<br>
+                81541 München
+            </address>
+            <dl>
+                <dt>E-Mail</dt>
+                <dd><a href="mailto:bitv@bayern.de">bitv@bayern.de</a></dd>
+                <dt>Webseite</dt>
+                <dd><a href="https://www.ldbv.bayern.de/digitalisierung/bitv/">www.ldbv.bayern.de/digitalisierung/bitv</a></dd>
+            </dl>
+        </div>
+    </div>
+</body>
+
+</html>

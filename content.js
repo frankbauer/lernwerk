@@ -2,9 +2,9 @@
 const LW_BASE = new URL('.', document.currentScript.src);
 
 // Darstellungs-Themes: das gespeicherte Theme (Voreinstellung "abenteuer") sofort setzen, damit das
-// ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü) nachladen.
+// ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü, Fußzeile) nachladen.
 (function loadThemes() {
-    const version = '1.3.0'
+    const version = '1.4.0'
     const base = LW_BASE
     let theme = 'abenteuer'
     try {
@@ -12,7 +12,7 @@ const LW_BASE = new URL('.', document.currentScript.src);
     } catch (e) { }
     document.documentElement.dataset.lwTheme = theme
 
-    for (const href of ['js/codeblocks-js/fonts/geist.css', 'css/theme-menu.css', 'css/themes.css']) {
+    for (const href of ['js/codeblocks-js/fonts/geist.css', 'css/theme-menu.css', 'css/themes.css', 'css/site.css']) {
         const link = document.createElement('link')
         link.rel = 'stylesheet'
         link.href = new URL(`${href}?v=${version}`, base)

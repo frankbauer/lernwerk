@@ -1,3 +1,9 @@
+let helperIdCounter = 0
+function nextHelperId(prefix) {
+    helperIdCounter += 1
+    return `${prefix}-${helperIdCounter}`
+}
+
 function processTabs() {
     const tabs = $('tabbar')
     tabs.each((_index, tabContainer) => {
@@ -5,32 +11,53 @@ function processTabs() {
         const tabs = tabContainer.find('>div[data-tab]')
         const buttonBar = $(document.createElement('DIV'))
         buttonBar.addClass('buttonbar')
+        // Tabs nach dem WAI-ARIA-Muster: Pfeiltasten wechseln den Tab, nur der aktive Tab liegt in der Tab-Reihenfolge
+        buttonBar.attr('role', 'tablist')
+        const buttons = []
+
+        function activate(nr, moveFocus) {
+            tabs.removeClass('active').addClass('inactive')
+            buttonBar.find('button').removeClass('active').addClass('inactive')
+                .attr({ 'aria-selected': 'false', tabindex: '-1' })
+
+            $(tabs[nr]).removeClass('inactive').addClass('active')
+            buttons[nr].removeClass('inactive').addClass('active')
+                .attr({ 'aria-selected': 'true', tabindex: '0' })
+            if (moveFocus) buttons[nr].trigger('focus')
+        }
+
         for (let nr = 0; nr < tabs.length; nr++) {
             const tab = $(tabs[nr])
             const tabId = tab.attr('data-tab')
             const tabName = tab.attr('data-name')
             const button = $(document.createElement('BUTTON'))
+            const buttonId = nextHelperId('lw-tab')
+            const panelId = tab.attr('id') || nextHelperId('lw-tabpanel')
 
             //set the label of the bbutton to tabName
             button.text(tabName)
+            button.attr({ type: 'button', role: 'tab', id: buttonId, 'aria-controls': panelId })
+            tab.attr({ id: panelId, role: 'tabpanel', 'aria-labelledby': buttonId })
             //if the tab is the first tab, add the active class to the button
             if (nr === 0) {
-                button.addClass('active')
+                button.addClass('active').attr({ 'aria-selected': 'true', tabindex: '0' })
                 tab.addClass('active')
             } else {
-                button.addClass('inactive')
+                button.addClass('inactive').attr({ 'aria-selected': 'false', tabindex: '-1' })
                 tab.addClass('inactive')
             }
             buttonBar.append(button)
+            buttons.push(button)
             console.log(tabId, tabName)
 
             //add click event to the button. When clicked, remove the active class from all other tabs and buttons and add the active class to the clicked button and tab
-            button.on('click', () => {
-                tabs.removeClass('active').addClass('inactive')
-                buttonBar.find('button').removeClass('active').addClass('inactive')
-
-                tab.removeClass('inactive').addClass('active')
-                button.removeClass('inactive').addClass('active')
+            button.on('click', () => activate(nr, false))
+            button.on('keydown', (e) => {
+                const last = tabs.length - 1
+                const target = { ArrowRight: nr === last ? 0 : nr + 1, ArrowLeft: nr === 0 ? last : nr - 1, Home: 0, End: last }[e.key]
+                if (target === undefined) return
+                e.preventDefault()
+                activate(target, true)
             })
         }
 
@@ -47,14 +74,19 @@ function processHints() {
 
         const hintContainer = $('<div class="hint-container"></div>')
         const button = $(document.createElement('BUTTON'))
+        const hintId = hint.attr('id') || nextHelperId('lw-hint')
         if (rect.height < 35) button.addClass('slim')
         button.addClass('expanded')
+        button.attr({ type: 'button', 'aria-expanded': 'false', 'aria-controls': hintId })
         //set the label of the button to tabName
         if (isSolution){
-            button.text("Beispiel Zeigen")
+            button.text("Beispiel zeigen")
         } else {
-            button.text("Hinweis Zeigen")
+            button.text("Hinweis zeigen")
         }
+        // Der verschwommene Hinweis ist für Screenreader und Tastatur unerreichbar, bis er aufgedeckt wird
+        hint.attr({ id: hintId, tabindex: '-1' })
+        hint.prop('inert', true)
         //replace hint with hintContainer
         hint.replaceWith(hintContainer)
         hintContainer.append(button)
@@ -63,16 +95,29 @@ function processHints() {
         button.on('click', () => {
             if (hint.hasClass('expanded')) {
                 hint.removeClass('expanded')
+                hint.prop('inert', true)
                 button.addClass('expanded')
+                button.attr({ 'aria-expanded': 'false', 'aria-hidden': null, tabindex: null })
                 //button.text("Hinweis Zeigen")
             } else {
                 hint.addClass('expanded')
+                hint.prop('inert', false)
                 button.removeClass('expanded')
+                // der Knopf wird unsichtbar: aus der Tab-Reihenfolge nehmen und den Fokus auf den Hinweis setzen
+                button.attr({ 'aria-expanded': 'true', 'aria-hidden': 'true', tabindex: '-1' })
+                hint.trigger('focus')
                 //button.text("Verbergen")
             }
         })
     })
 
+}
+
+// Die Kästen (Aufgabe, Erklärung, ...) nutzen <h3> direkt unter der <h1> der Seite. Für Screenreader
+// wird die Hierarchie ohne Sprung angegeben (WCAG 1.3.1), die Darstellung bleibt unverändert.
+function fixHeadingLevels() {
+    $('div#content h3').attr('aria-level', '2')
+    $('div#content h4').attr('aria-level', '3')
 }
 
 function betterInlineCode() {
@@ -87,6 +132,7 @@ function betterInlineCode() {
 
 function initHelpers() {
     betterInlineCode()
+    fixHeadingLevels()
     processHints()
     setTimeout(() => processTabs(), 100);
 }

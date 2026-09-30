@@ -1,0 +1,223 @@
+/*
+ * Gemeinsame Elemente aller Seiten: Fußzeile mit Impressum/Datenschutz/Barrierefreiheit (theme.js),
+ * Sprunglink "Zum Inhalt", Fokusrahmen, reduzierte Bewegung und die Rechtstexte (impressum.html, ...).
+ *
+ * Wird auf den Übungsseiten (über content.js), auf uebersicht.html, index.html und den Rechtstexten
+ * geladen. Farben kommen auf den Übungsseiten aus den --lw-* Variablen des Themes (css/themes.css), auf
+ * der Übersicht aus --muted/--ink/--line (css/uebungsplaner.css); ohne Theme gelten die Rückfallwerte.
+ * Achtung: --muted, --border usw. ohne Präfix sind auf den Übungsseiten HSL-Tripel von CodeBlocks.
+ */
+
+/* --- Nur für Screenreader --- */
+.lw-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* --- Sprunglink "Zum Inhalt springen" (erstes fokussierbares Element, nur bei Fokus sichtbar) --- */
+.lw-skip {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2000;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: var(--lw-fg, #111);
+    color: var(--lw-bg, #fff) !important;
+    font-weight: 600;
+    text-decoration: none;
+    transform: translateY(calc(-100% - 16px));
+}
+
+.lw-skip:focus {
+    transform: none;
+    outline: 2px solid var(--lw-link, #1c63c7);
+    outline-offset: 2px;
+}
+
+/* Sprungziel: kein Fokusrahmen um den ganzen Inhaltsbereich */
+[tabindex="-1"]:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Pfeil vor "Zurück zur Übersicht" ist Dekoration und wird nicht vorgelesen (Alternativtext "") */
+div.topbar>a.backlink::before {
+    content: "← " / "";
+}
+
+/* --- Sichtbarer Fokus auf den Übungsseiten und Rechtstexten (WCAG 2.4.7) --- */
+html[data-lw-theme] body :is(a, button, input, select, textarea, summary, [tabindex="0"]):focus-visible {
+    outline: 2px solid var(--lw-link, var(--lw-accent, #1c63c7));
+    outline-offset: 2px;
+}
+
+/* --- Fußzeile --- */
+.lw-footer {
+    max-width: var(--lw-content-width, 860px);
+    margin: 0 auto;
+    padding: 0 16px 40px;
+    color: var(--lw-muted, #595959);
+    font-family: var(--lw-font, inherit);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.lw-footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--lw-footer-line, var(--lw-border, #d4d4d4));
+}
+
+.lw-footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lw-footer li {
+    margin: 0;
+}
+
+.lw-footer a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.lw-footer a:hover {
+    color: var(--lw-fg, #111);
+}
+
+.lw-footer a[aria-current="page"] {
+    color: var(--lw-fg, #111);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.lw-footer small {
+    font-size: inherit;
+}
+
+/* Übersicht: Fußzeile sitzt in .page und nutzt deren Variablen */
+.page>.lw-footer {
+    max-width: none;
+    margin-top: 48px;
+    padding: 0 0 8px;
+    color: var(--muted);
+    font-family: inherit;
+    --lw-footer-line: var(--line-strong);
+    --lw-fg: var(--ink);
+}
+
+/* Themes mit fast unsichtbarer Linie */
+html[data-lw-theme="abenteuer"] .lw-footer-inner {
+    border-top-width: 2px;
+}
+
+/* --- Rechtstexte (impressum.html, datenschutz.html, barrierefreiheit.html) --- */
+/* editor.css setzt h2 mit !important (Abstände, Größe, Zeilenhöhe) */
+.lw-legal h2 {
+    margin: 0 0 12px !important;
+    font-family: var(--lw-font-head, inherit);
+    font-size: 1.3em !important;
+    font-weight: 700;
+    line-height: 1.25 !important;
+    color: var(--lw-h1-color, var(--lw-fg, inherit));
+}
+
+.lw-legal h3 {
+    margin: 20px 0 8px;
+    font-family: var(--lw-font-head, inherit);
+    font-size: 1.05em;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.lw-legal h2+h3 {
+    margin-top: 0;
+}
+
+.lw-legal p,
+.lw-legal ul,
+.lw-legal ol,
+.lw-legal address {
+    margin: 0 0 12px;
+    font-style: normal;
+    font-weight: inherit;
+}
+
+.lw-legal> :last-child {
+    margin-bottom: 0;
+}
+
+.lw-legal dl {
+    display: grid;
+    /* lange Begriffe umbrechen, statt die zweite Spalte zu verdrängen */
+    grid-template-columns: fit-content(14em) minmax(0, 1fr);
+    gap: 4px 20px;
+    margin: 0 0 12px;
+}
+
+.lw-legal dt {
+    font-weight: 600;
+}
+
+.lw-legal dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+    .lw-legal dl {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .lw-legal dd {
+        margin-bottom: 8px;
+    }
+}
+
+.lw-legal-toc ul {
+    columns: 2 220px;
+    padding-left: 1.2em;
+}
+
+.lw-legal .lw-note {
+    color: var(--lw-muted, #595959);
+    font-size: 0.9em;
+}
+
+.lw-legal .lw-stand {
+    color: var(--lw-muted, #595959);
+    font-size: 0.9em;
+}
+
+/* Die Übungs-Themes setzen für div.boxed p:nth-child(2) usw. teils kursive/dünne Schrift */
+html[data-lw-theme] div.boxed.lw-legal p,
+html[data-lw-theme] div.boxed.lw-legal div {
+    font-style: normal;
+}
+
+/* --- Reduzierte Bewegung (WCAG 2.3.3): Übergänge und Animationen praktisch abschalten --- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
