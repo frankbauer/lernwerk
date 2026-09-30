@@ -1,0 +1,17 @@
+<h3>Erklärung</h3>
+<p>Das Programm benutzt einen <b>Akkumulator</b>. Das ist eine Variable, die <b>vor</b> der Schleife angelegt und
+    <b>in</b> der Schleife Schritt für Schritt verändert wird. Nach der Schleife enthält sie das Ergebnis.</p>
+<ul>
+    <li><code>long total = 0;</code> ist der Akkumulator für die Summe. Er startet mit <code>0</code>, weil vor dem
+        ersten Feld noch kein Korn gezählt wurde.</li>
+    <li><code>long grains = 1;</code> merkt sich, wie viele Körner auf dem aktuellen Feld liegen. Auf dem ersten
+        Feld ist das genau ein Korn.</li>
+    <li>In jedem Durchlauf werden die Körner des aktuellen Feldes zur Summe addiert
+        (<code>total += grains;</code>). Danach wird für das nächste Feld verdoppelt
+        (<code>grains *= 2;</code>).</li>
+    <li>Beide Variablen müssen <b>vor</b> der Schleife deklariert werden. Würde man sie im Schleifenrumpf anlegen,
+        würden sie in jedem Durchlauf neu auf ihren Startwert gesetzt. Außerdem wäre <code>total</code> nach der
+        Schleife nicht mehr sichtbar.</li>
+</ul>
+<p>Für 32 Felder ergibt sich <code>1 + 2 + 4 + … + 2<sup>31</sup> = 2<sup>32</sup> − 1 = 4294967295</code>. Das ist
+    mehr als der größte <code>int</code>-Wert (<code>2147483647</code>), deshalb wird <code>long</code> benötigt.</p>

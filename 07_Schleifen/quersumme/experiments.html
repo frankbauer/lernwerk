@@ -1,0 +1,37 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Zählen Sie mit einem zweiten Akkumulator <code>digits</code> zusätzlich, wie viele Ziffern die Zahl hat.
+    <hint solution>
+        <pre code>int digits = 0;
+while (rest > 0) {
+    sum += rest % 10;
+    rest /= 10;
+    digits++;
+}</pre>
+    </hint>
+</div>
+<div class="colored">
+    Geben Sie <code>-4711</code> und <code>0</code> ein. Was passiert, und warum? Wie können Sie das Programm so
+    ändern, dass auch negative Zahlen die Quersumme <code>13</code> liefern?
+    <hint>Für negative Zahlen ist <code>rest &gt; 0</code> von Anfang an falsch.</hint>
+    <hint solution>Die Schleife wird gar nicht ausgeführt, <code>sum</code> behält ihren Startwert <code>0</code>.
+        Abhilfe: <pre code>int rest = Math.abs(number);</pre></hint>
+</div>
+<div class="colored">
+    Berechnen Sie die Quersumme so lange immer wieder, bis nur noch eine Ziffer übrig bleibt
+    (<code>4711 → 13 → 4</code>).
+    <hint>Setzen Sie die bisherige Schleife in eine äußere Schleife. Wo muss <code>sum</code> jetzt auf
+        <code>0</code> gesetzt werden?</hint>
+    <hint solution>
+        <pre code>int rest = number;
+while (rest >= 10) {
+    int sum = 0;
+    while (rest > 0) {
+        sum += rest % 10;
+        rest /= 10;
+    }
+    rest = sum;
+}
+System.out.println("Einstellige Quersumme: " + rest);</pre>
+    </hint>
+</div>

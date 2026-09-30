@@ -1,0 +1,25 @@
+<h3>Erklärung</h3>
+<p>Das Programm verwendet zwei <b>Akkumulatoren</b>, die beide vor der Schleife angelegt und in der Schleife
+    aktualisiert werden. Der zweite hängt dabei vom ersten ab.</p>
+<ul>
+    <li><code>int balance = start;</code> Der Kontostand beginnt nicht bei <code>0</code>, sondern beim
+        Startbetrag. In jedem Durchlauf wird eine Buchung addiert: <code>balance += bookings[i];</code></li>
+    <li><code>int min = start;</code> Vor der ersten Buchung ist der Startbetrag der einzige und damit auch der
+        tiefste bekannte Stand. Mit <code>0</code> als Startwert wäre das Ergebnis falsch, wenn das Konto nie unter
+        <code>0</code> fällt.</li>
+    <li><code>if (balance &lt; min) min = balance;</code> Nach jeder Buchung wird der <b>neue Kontostand</b> (nicht
+        die Buchung) mit dem bisherigen Minimum verglichen.</li>
+</ul>
+<table>
+    <tr><th><code>i</code></th><th><code>bookings[i]</code></th><th><code>balance</code></th><th><code>min</code></th></tr>
+    <tr><td>vorher</td><td></td><td>100</td><td>100</td></tr>
+    <tr><td>0</td><td>250</td><td>350</td><td>100</td></tr>
+    <tr><td>1</td><td>-400</td><td>-50</td><td>-50</td></tr>
+    <tr><td>2</td><td>80</td><td>30</td><td>-50</td></tr>
+    <tr><td>3</td><td>-120</td><td>-90</td><td>-90</td></tr>
+    <tr><td>4</td><td>300</td><td>210</td><td>-90</td></tr>
+    <tr><td>5</td><td>-90</td><td>120</td><td>-90</td></tr>
+    <tr><td>6</td><td>-200</td><td>-80</td><td>-90</td></tr>
+    <tr><td>7</td><td>50</td><td>-30</td><td>-90</td></tr>
+    <tr><td>8</td><td>160</td><td>130</td><td>-90</td></tr>
+</table>

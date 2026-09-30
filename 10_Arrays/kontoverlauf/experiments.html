@@ -1,0 +1,49 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Setzen Sie den Startwert von <code>min</code> auf <code>0</code> und ändern Sie die Buchungen zu
+    <code>{50, -20, 30}</code>. Welcher tiefste Stand wird ausgegeben? Welcher wäre richtig?
+    <hint solution>Ausgegeben wird <code>0</code>, obwohl das Konto nie unter <code>100</code> gefallen ist (Stände
+        150, 130, 160). Der Startwert eines Minimums muss ein Wert sein, der tatsächlich vorkommt.</hint>
+</div>
+<div class="colored">
+    Zählen Sie zusätzlich, nach wie vielen Buchungen das Konto im Minus war.
+    <hint solution>
+        <pre code>int negative = 0;
+for (int i = 0; i < bookings.length; i++) {
+    /*...*/
+    if (balance < 0) {
+        negative++;
+    }
+}
+System.out.println("Buchungen im Minus: " + negative);</pre>
+        Für die gegebenen Buchungen sind es <code>4</code>.
+    </hint>
+</div>
+<div class="colored">
+    Geben Sie zusätzlich den Index der Buchung aus, nach der der tiefste Stand erreicht wurde. Welcher Index wird
+    ausgegeben, wenn der tiefste Stand zweimal vorkommt (ändern Sie dazu die letzte Buchung zu <code>-60</code>)?
+    Probieren Sie es mit <code>&lt;</code> und mit <code>&lt;=</code> aus.
+    <hint solution>
+        <pre code>int minIndex = -1;
+for (int i = 0; i < bookings.length; i++) {
+    balance += bookings[i];
+    if (balance < min) {
+        min = balance;
+        minIndex = i;
+    }
+}</pre>
+        Mit <code>&lt;</code> wird das erste Vorkommen gemerkt (Index <code>3</code>), mit <code>&lt;=</code> das
+        letzte (Index <code>8</code>). Der Startwert
+        <code>-1</code> bedeutet: Der Startbetrag war der tiefste Stand.
+    </hint>
+</div>
+<div class="colored">
+    Speichern Sie alle Zwischenstände in einem neuen Feld <code>history</code> und geben Sie es aus.
+    <hint solution>
+        <pre code>int[] history = new int[bookings.length];
+for (int i = 0; i < bookings.length; i++) {
+    balance += bookings[i];
+    history[i] = balance;
+}</pre>
+    </hint>
+</div>

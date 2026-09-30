@@ -1,0 +1,38 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Ändern Sie den Datentyp von <code>total</code> und <code>grains</code> in <code>int</code>. Welches Ergebnis
+    erhalten Sie für 32 Felder? Ab wie vielen Feldern ist das Ergebnis falsch?
+    <hint>Der größte <code>int</code>-Wert ist <code>2147483647</code>, also <code>2<sup>31</sup> − 1</code>.</hint>
+    <hint solution>Für 32 Felder wird <code>-1</code> ausgegeben. Bis 31 Felder ist das Ergebnis richtig
+        (<code>2<sup>31</sup> − 1</code> passt gerade noch). Danach läuft <code>int</code> über.</hint>
+</div>
+<div class="colored">
+    Wählen Sie <code>63</code> und danach <code>64</code> Felder (mit <code>long</code>). Was fällt Ihnen auf?
+    <hint solution>Bei 63 Feldern ergibt sich genau <code>Long.MAX_VALUE = 9223372036854775807</code>. Bei 64 Feldern
+        läuft auch <code>long</code> über, und es wird <code>-1</code> ausgegeben. Mit <code>double</code> als Datentyp
+        für <code>total</code> und <code>grains</code> erhalten Sie eine (gerundete) Zahl.</hint>
+</div>
+<div class="colored">
+    Geben Sie nach der Schleife zusätzlich aus, wie viele Körner auf dem <b>letzten</b> Feld liegen. Prüfen Sie
+    genau, welchen Wert <code>grains</code> nach der Schleife hat.
+    <hint>Nach dem letzten Durchlauf wurde <code>grains</code> noch einmal verdoppelt.</hint>
+    <hint solution>
+        <pre code>System.out.println("Auf dem letzten Feld liegen " + (grains / 2) + " Körner.");</pre>
+    </hint>
+</div>
+<div class="colored">
+    Wie viele Felder braucht man, bis insgesamt mindestens eine Million Körner auf dem Brett liegen? Verwenden Sie
+    dafür eine <code>while</code>-Schleife.
+    <hint solution>
+        <pre code>long total = 0;
+long grains = 1;
+int count = 0;
+while (total < 1000000) {
+    total += grains;
+    grains *= 2;
+    count++;
+}
+System.out.println(count + " Felder");</pre>
+        Es sind 20 Felder (<code>2<sup>20</sup> − 1 = 1048575</code>).
+    </hint>
+</div>

@@ -1,0 +1,52 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Überlegen Sie zuerst, was für die Grenzen <code>101</code>, <code>3</code> und <code>2</code> ausgegeben wird.
+    Probieren Sie es danach aus.
+    <hint solution><code>101</code>: Summe 100 (9 Primzahlen, die letzte ist 23).<br>
+        <code>3</code>: Summe 2 (1 Primzahl, die letzte ist 2).<br>
+        <code>2</code>: Summe 0 (0 Primzahlen, die letzte ist 0). Die Schleife läuft gar nicht, alle Akkumulatoren
+        behalten ihren Startwert.</hint>
+</div>
+<div class="colored">
+    Ersetzen Sie die Bedingung durch <code>sum &lt; limit</code>. Was ändert sich für die Grenze <code>100</code>?
+    <hint solution>Die Ausgabe ist <code>Summe: 100 (9 Primzahlen, die letzte ist 23)</code>. Die Bedingung wird
+        geprüft, bevor <code>23</code> addiert wird. Zu diesem Zeitpunkt ist <code>77 &lt; 100</code> noch wahr. Die
+        Summe liegt danach aber nicht mehr unter der Grenze.</hint>
+</div>
+<div class="colored">
+    Legen Sie eine Variable <code>int maxCount = 5;</code> an. Es sollen jetzt <b>höchstens</b>
+    <code>maxCount</code> Primzahlen addiert werden, und die Summe soll weiterhin unter <code>limit</code> bleiben.
+    Welche der beiden Bedingungen beendet die Schleife für <code>limit = 100</code> und welche für
+    <code>limit = 20</code>?
+    <hint>Beide Bedingungen müssen gelten, damit weitergemacht wird. Sie werden mit <code>&amp;&amp;</code>
+        verknüpft.</hint>
+    <hint solution>
+        <pre code>int maxCount = 5;
+while (sum + candidate < limit && count < maxCount) {
+    /*...*/
+}</pre>
+        Für <code>limit = 100</code> endet die Schleife wegen <code>maxCount</code>: Summe 28 (5 Primzahlen, die letzte
+        ist 11). Für <code>limit = 20</code> endet sie wegen der Grenze: Summe 17 (4 Primzahlen, die letzte ist 7).
+    </hint>
+</div>
+<div class="colored">
+    Ändern Sie das Programm so, dass nur jede <b>zweite</b> Primzahl addiert wird (<code>2 + 5 + 11 + 17 + …</code>).
+    <hint>Sie brauchen einen weiteren Zähler für alle gefundenen Primzahlen, auch die nicht addierten. Überlegen Sie,
+        ob <code>sum + candidate &lt; limit</code> noch die richtige Abbruchbedingung ist.</hint>
+    <hint solution>
+        <pre code>int found = 0;
+while (sum + candidate < limit) {
+    if (Prim.isPrim(candidate)) {
+        if (found % 2 == 0) {
+            sum += candidate;
+            count++;
+            last = candidate;
+        }
+        found++;
+    }
+    candidate++;
+}</pre>
+        Die Bedingung stimmt weiterhin: Die nächste addierte Primzahl ist mindestens so groß wie
+        <code>candidate</code>. Für <code>limit = 100</code> ergibt sich Summe 89 (6 Primzahlen, die letzte ist 31).
+    </hint>
+</div>

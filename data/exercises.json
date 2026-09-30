@@ -163,6 +163,12 @@
       "icon": "img/concepts/schleifen.png"
     },
     {
+      "id": "akkumulator",
+      "label": "Akkumulator",
+      "chapter": 7,
+      "icon": "img/concepts/akkumulator.png"
+    },
+    {
       "id": "klassenmethoden",
       "label": "Klassenmethoden",
       "chapter": 8,
@@ -1304,6 +1310,7 @@
       "difficulty": 3,
       "tags": [
         "schleifen",
+        "akkumulator",
         "bedingungen",
         "objekte",
         "methodenaufrufe-statisch"
@@ -1344,6 +1351,7 @@
       "difficulty": 4,
       "tags": [
         "schleifen",
+        "akkumulator",
         "objekte",
         "methodenaufrufe-statisch",
         "operationen"
@@ -1384,6 +1392,7 @@
       "difficulty": 1,
       "tags": [
         "schleifen",
+        "akkumulator",
         "operationen"
       ],
       "hasSolution": true,
@@ -1403,6 +1412,7 @@
       "difficulty": 2,
       "tags": [
         "schleifen",
+        "akkumulator",
         "bedingungen"
       ],
       "hasSolution": true,
@@ -1451,6 +1461,64 @@
       "isNew": true,
       "isDraft": true,
       "image": "img/previews/07_Schleifen-kraftwerke.webp"
+    },
+    {
+      "id": "07_Schleifen/reiskoerner",
+      "title": "Reiskörner auf dem Schachbrett",
+      "description": "Verdopple die Reiskörner von Feld zu Feld und sammle die Gesamtzahl in einem Akkumulator.",
+      "link": "07_Schleifen/reiskoerner",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "akkumulator",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "07_Schleifen/quersumme",
+      "title": "Quersumme",
+      "description": "Zerlege eine Zahl mit einer while-Schleife in ihre Ziffern und addiere sie auf.",
+      "link": "07_Schleifen/quersumme",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "akkumulator",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "07_Schleifen/primzahlsumme",
+      "title": "Primzahlen sammeln",
+      "description": "Addiere Primzahlen, solange ihre Summe unter einer Grenze bleibt, mit der Abbruchbedingung im Schleifenkopf.",
+      "link": "07_Schleifen/primzahlsumme",
+      "chapter": 7,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "schleifen",
+        "akkumulator",
+        "bedingungen",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "08_Klassenmethoden/sandkasten_summe",
@@ -1708,6 +1776,7 @@
       "difficulty": 2,
       "tags": [
         "arrays",
+        "akkumulator",
         "schleifen",
         "datentypen"
       ],
@@ -1880,6 +1949,7 @@
       "difficulty": 2,
       "tags": [
         "arrays",
+        "akkumulator",
         "schleifen",
         "bedingungen",
         "klassenmethoden"
@@ -1901,6 +1971,7 @@
       "difficulty": 2,
       "tags": [
         "arrays",
+        "akkumulator",
         "schleifen",
         "bedingungen",
         "klassenmethoden"
@@ -1911,6 +1982,26 @@
       "isNew": true,
       "isDraft": true,
       "image": "img/previews/10_Arrays-fehlerteufel.webp"
+    },
+    {
+      "id": "10_Arrays/kontoverlauf",
+      "title": "Kontoverlauf",
+      "description": "Verbuche alle Ein- und Auszahlungen eines Feldes und finde den tiefsten Kontostand.",
+      "link": "10_Arrays/kontoverlauf",
+      "chapter": 10,
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "akkumulator",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "11_Arrays_nDim/sandkasten_matrix",
@@ -1930,6 +2021,27 @@
       "hasExperiments": false,
       "isNew": false,
       "image": "img/previews/11_Arrays_nDim-sandkasten_matrix.webp"
+    },
+    {
+      "id": "11_Arrays_nDim/kinosaal",
+      "title": "Freie Plätze im Kino",
+      "description": "Zähle die freien Plätze eines Kinosaals und finde die Reihe mit den meisten freien Plätzen.",
+      "link": "11_Arrays_nDim/kinosaal",
+      "chapter": 11,
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "arrays-ndim",
+        "akkumulator",
+        "arrays",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true
     },
     {
       "id": "12_Instanzen/beispiel_wald",

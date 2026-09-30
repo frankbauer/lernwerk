@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="codeblocks-baseurl" content="../../">
+    <title>[GdI]</title>
+    <link rel="stylesheet" href="../../css/editor.css?v=1.0.4">
+    <script src="../../js/jquery/jquery.min.js?v=3.6.2"></script>
+    <script src="../../helper.js?v=1.0.3"></script>
+    <script src="../../content.js?v=1.0.5"></script>
+    <link rel="stylesheet" href="../../js/codeblocks-js/codeblocks.css?v=1.0.2">
+</head>
+
+<body>
+    <div class="topbar">
+        <h1></h1>
+        <a href="../../uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+    </div>
+    <script>
+        const elements = {
+            uuid: "85a94055-6124-481a-9ee5-d8ce1bc5f76b",
+            title: "Freie Plätze im Kino",
+            short: "Kino",
+            content: [
+                {
+                    type: "aufgabe",
+                    content: "./exercise.html"
+                },
+                {
+                    type: "tabs",
+                    class: "code",
+                    tabs: [
+                        {
+                            codeblocks: {
+                                attributes: {},
+                                blocks: [
+                                    {
+                                        type: "code",
+                                        content: "./Cinema.java"
+                                    }
+                                ]
+                            },
+                            content: [],
+                            solution: [
+                                {
+                                    type: "explain",
+                                    class: "q-mt-xl",
+                                    content: "./explanation.html"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    type: "experiment",
+                    content: "./experiments.html"
+                }
+            ]
+        }
+
+        document.body.onload = async () => {
+            await buildContent(elements)
+            import("../../js/codeblocks-js/codeblocks.umd.js?s=00017")
+            initHelpers()
+        }
+    </script>
+</body>
+
+</html>

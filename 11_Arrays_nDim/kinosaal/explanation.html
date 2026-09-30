@@ -1,0 +1,21 @@
+<h3>Erklärung</h3>
+<p>Bei verschachtelten Schleifen entscheidet die Stelle der Deklaration, <b>wofür</b> ein <b>Akkumulator</b>
+    sammelt.</p>
+<ul>
+    <li><code>total</code>, <code>bestRow</code> und <code>bestFree</code> stehen <b>vor der äußeren Schleife</b>.
+        Sie sammeln über den ganzen Saal und dürfen zwischen den Reihen nicht zurückgesetzt werden.</li>
+    <li><code>int free = 0;</code> steht <b>vor der inneren Schleife</b>. Damit beginnt jede Reihe wieder bei
+        <code>0</code>, und <code>free</code> zählt nur die freien Plätze der aktuellen Reihe.</li>
+    <li>Nach der inneren Schleife ist eine Reihe fertig gezählt. Erst jetzt wird <code>free</code> zu
+        <code>total</code> addiert und mit dem bisher besten Wert verglichen:
+        <pre code>total += free;
+if (free > bestFree) {
+    bestFree = free;
+    bestRow = row;
+}</pre>
+    </li>
+    <li><code>bestFree</code> darf hier mit <code>0</code> starten, weil eine Reihe nie weniger als <code>0</code>
+        freie Plätze haben kann.</li>
+</ul>
+<p>Die freien Plätze pro Reihe sind <code>0, 2, 7, 4, 4, 4, 4</code>, zusammen <code>25</code>. Die meisten hat
+    Reihe 3 (Index <code>2</code>).</p>

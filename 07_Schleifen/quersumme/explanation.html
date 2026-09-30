@@ -1,0 +1,19 @@
+<h3>Erklärung</h3>
+<ul>
+    <li><code>int sum = 0;</code> ist der <b>Akkumulator</b>. Er wird vor der Schleife mit <code>0</code> angelegt und
+        sammelt in jedem Durchlauf eine Ziffer auf.</li>
+    <li><code>int rest = number;</code> ist eine Kopie der Zahl. <code>number</code> selbst ist <code>final</code>
+        und wird für die Ausgabe noch gebraucht.</li>
+    <li><code>while (rest &gt; 0)</code> Wie oft die Schleife läuft, hängt von der Anzahl der Ziffern ab. Die ist
+        vorher nicht bekannt, deshalb eignet sich eine <code>while</code>-Schleife.</li>
+    <li><code>sum += rest % 10;</code> addiert die letzte Ziffer, <code>rest /= 10;</code> entfernt sie (ganzzahlige
+        Division).</li>
+</ul>
+<table>
+    <tr><th>Durchlauf</th><th><code>rest % 10</code></th><th><code>sum</code></th><th><code>rest</code></th></tr>
+    <tr><td>vorher</td><td></td><td>0</td><td>4711</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>471</td></tr>
+    <tr><td>2</td><td>1</td><td>2</td><td>47</td></tr>
+    <tr><td>3</td><td>7</td><td>9</td><td>4</td></tr>
+    <tr><td>4</td><td>4</td><td>13</td><td>0</td></tr>
+</table>

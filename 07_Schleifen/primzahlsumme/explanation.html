@@ -1,0 +1,26 @@
+<h3>Erklärung</h3>
+<ul>
+    <li><code>int sum = 0; int count = 0; int last = 0;</code> sind die <b>Akkumulatoren</b>. Sie werden vor der
+        Schleife angelegt, weil sie nach der Schleife ausgegeben werden und weil <code>sum</code> schon in der
+        Schleifenbedingung gebraucht wird.</li>
+    <li><code>int candidate = 2;</code> ist die nächste Zahl, die geprüft wird. Sie wird in jedem Durchlauf um eins
+        erhöht, egal ob sie eine Primzahl ist oder nicht.</li>
+    <li><code>while (sum + candidate &lt; limit)</code> Die Bedingung prüft <b>vor</b> dem Addieren, ob die Summe mit
+        dem Kandidaten noch unter der Grenze bliebe. Würde man nur <code>sum &lt; limit</code> prüfen, würde die
+        letzte Primzahl noch addiert, obwohl sie die Grenze überschreitet.</li>
+    <li>Die Bedingung wird auch für Kandidaten geprüft, die keine Primzahl sind. Das ist in Ordnung: Wenn schon
+        <code>sum + candidate</code> die Grenze erreicht, gilt das für die nächste (noch größere) Primzahl
+        erst recht.</li>
+    <li>Nur wenn <code>Prim.isPrim(candidate)</code> wahr ist, werden alle drei Akkumulatoren aktualisiert.</li>
+</ul>
+<table>
+    <tr><th><code>candidate</code></th><th>Primzahl?</th><th><code>sum</code></th><th><code>count</code></th></tr>
+    <tr><td>2</td><td>ja</td><td>2</td><td>1</td></tr>
+    <tr><td>3</td><td>ja</td><td>5</td><td>2</td></tr>
+    <tr><td>4</td><td>nein</td><td>5</td><td>2</td></tr>
+    <tr><td>5</td><td>ja</td><td>10</td><td>3</td></tr>
+    <tr><td>…</td><td></td><td></td><td></td></tr>
+    <tr><td>19</td><td>ja</td><td>77</td><td>8</td></tr>
+    <tr><td>20</td><td colspan="3"><code>77 + 20 = 97 &lt; 100</code>, weiter</td></tr>
+    <tr><td>23</td><td colspan="3"><code>77 + 23 = 100</code>, nicht <code>&lt; 100</code>: Ende</td></tr>
+</table>

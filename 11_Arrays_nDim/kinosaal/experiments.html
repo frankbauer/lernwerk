@@ -1,0 +1,57 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Verschieben Sie <code>int free = 0;</code> vor die äußere Schleife. Sagen Sie zuerst voraus, was ausgegeben
+    wird, und probieren Sie es dann aus.
+    <hint solution><code>free</code> wird nicht mehr pro Reihe zurückgesetzt und zählt immer weiter
+        (<code>0, 2, 9, 13, 17, 21, 25</code>). Dadurch ist <code>total</code> viel zu groß (<code>87</code>), und die
+        „beste“ Reihe ist immer die letzte.</hint>
+</div>
+<div class="colored">
+    Die Reihen 4 bis 7 haben gleich viele freie Plätze. Ändern Sie Reihe 3 so, dass sie auch nur 4 freie Plätze hat.
+    Welche Reihe wird jetzt ausgegeben? Wie erreichen Sie, dass bei Gleichstand die <b>hinterste</b> Reihe gewählt
+    wird?
+    <hint solution>Jetzt haben die Reihen 3 bis 7 je 4 freie Plätze. Mit <code>free &gt; bestFree</code> gewinnt die
+        erste davon (Reihe 3), mit <code>free &gt;= bestFree</code> die letzte (Reihe 7).</hint>
+</div>
+<div class="colored">
+    Zählen Sie zusätzlich die freien Plätze pro <b>Spalte</b> (Platznummer) und geben Sie sie aus. Welche Schleife
+    muss jetzt außen stehen?
+    <hint solution>
+        <pre code>for (int seat = 0; seat < seats[0].length; seat++) {
+    int free = 0;
+    for (int row = 0; row < seats.length; row++) {
+        if (seats[row][seat] == 0) {
+            free++;
+        }
+    }
+    System.out.println("Platz " + (seat + 1) + ": " + free + " frei");
+}</pre>
+    </hint>
+</div>
+<div class="colored">
+    Eine Gruppe von 4 Personen möchte nebeneinander sitzen. Finden Sie für jede Reihe die längste Folge
+    <b>zusammenhängender</b> freier Plätze und geben Sie alle Reihen aus, in die die Gruppe passt.
+    <hint>Sie brauchen pro Reihe zwei Akkumulatoren: die Länge der aktuellen Folge (wird bei einem belegten Platz auf
+        <code>0</code> zurückgesetzt) und die bisher längste Folge.</hint>
+    <hint solution>
+        <pre code>for (int row = 0; row < seats.length; row++) {
+    int run = 0;
+    int longest = 0;
+    for (int seat = 0; seat < seats[row].length; seat++) {
+        if (seats[row][seat] == 0) {
+            run++;
+            if (run > longest) {
+                longest = run;
+            }
+        } else {
+            run = 0;
+        }
+    }
+    if (longest >= 4) {
+        System.out.println("Die Gruppe passt in Reihe " + (row + 1));
+    }
+}</pre>
+        Die längste freie Folge hat 3 Plätze (Reihe 3), die Gruppe passt also in keine Reihe. Ändern Sie die Belegung,
+        damit es klappt.
+    </hint>
+</div>
