@@ -307,10 +307,22 @@ html[data-lw-theme="terminal"] .lw-menu-button {
 
 /* --- Zusätzliche Befehle (z.B. "Ihr Code" aus autosave.js) ---------------- */
 
-.lw-menu-title--section {
+.lw-menu-title--section:not(:first-child),
+.lw-menu-actions:not(:empty) + .lw-menu-title--themes {
     margin-top: 4px;
     padding-top: 12px;
     border-top: 1px solid var(--lw-menu-border, #e3e3e3);
+}
+
+.lw-menu-kbd {
+    flex: none;
+    padding: 2px 6px;
+    border: 1px solid var(--lw-menu-border, #e3e3e3);
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    font: 500 11px/1.3 Geist, Roboto, system-ui, sans-serif;
+    white-space: nowrap;
+    opacity: 0.75;
 }
 
 .lw-menu-icon {
@@ -321,4 +333,90 @@ html[data-lw-theme="terminal"] .lw-menu-button {
     width: 40px;
     height: 30px;
     opacity: 0.8;
+}
+
+/* --- Hinweis nach dem Speichern (autosave.js) ------------------------------ */
+
+.lw-save-toast {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid var(--lw-menu-border, #e3e3e3);
+    border-radius: 999px;
+    background: var(--lw-menu-bg, #fff);
+    color: var(--lw-menu-fg, #1d2433);
+    font: 12px/1.4 var(--lw-font, system-ui, sans-serif);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.4s, transform 0.4s;
+    pointer-events: none;
+}
+
+.lw-save-toast.lw-visible {
+    opacity: var(--lw-toast-opacity, 0.8);
+    transform: none;
+}
+
+.lw-save-toast-check {
+    font-weight: 700;
+    color: var(--lw-menu-check, var(--lw-accent, rgb(2, 123, 227)));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lw-save-toast {
+        transform: none;
+    }
+}
+
+/* Details pro Theme, passend zu Menü und Karten */
+
+html[data-lw-theme="heft"] .lw-save-toast {
+    border-radius: 4px;
+    font-family: var(--lw-font-head);
+    font-style: italic;
+    box-shadow: 0 1px 0 #e7dfcd;
+}
+
+html[data-lw-theme="karten"] .lw-save-toast {
+    border: none;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08), 0 4px 12px -4px rgba(16, 24, 40, 0.12);
+}
+
+html[data-lw-theme="terminal"] .lw-save-toast {
+    border-radius: 6px;
+    font-family: var(--lw-mono);
+}
+
+html[data-lw-theme="abenteuer"] .lw-save-toast {
+    --lw-toast-opacity: 1;
+    border-width: 2px;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 3px 3px 0 #111;
+}
+
+html[data-lw-theme="raster"] .lw-save-toast {
+    border: none;
+    border-left: 3px solid #e30613;
+    border-radius: 0;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+}
+
+html[data-lw-theme="tafel"] .lw-save-toast {
+    border-radius: 255px 14px 225px 14px / 14px 225px 14px 255px;
+    font-family: var(--lw-font-head);
+    font-size: 17px;
+    line-height: 1.1;
+}
+
+html[data-lw-theme="prisma"] .lw-save-toast {
+    box-shadow: 0 6px 20px -8px rgb(91 63 214 / 0.3);
 }

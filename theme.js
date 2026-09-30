@@ -66,7 +66,7 @@
         menu.hidden = true
 
         // Zusätzliche Befehle anderer Skripte (z.B. autosave.js) über window.lwMenuActions:
-        // { section, label, icon (SVG-Pfad, 24x24), hint: () => string, onSelect }
+        // { section, label, icon (SVG-Pfad, 24x24), hint: () => string, shortcut (z.B. '⌘S'), onSelect }
         // Sie stehen oben, die Themes danach.
         const actionArea = document.createElement('div')
         actionArea.className = 'lw-menu-actions'
@@ -119,6 +119,13 @@
                     + '<span class="lw-menu-label"><span></span><small></small></span>'
                 item.querySelector('.lw-menu-label>span').textContent = action.label
                 item.querySelector('.lw-menu-label small').textContent = action.hint?.() ?? ''
+                if (action.shortcut) {
+                    const kbd = document.createElement('kbd')
+                    kbd.className = 'lw-menu-kbd'
+                    kbd.textContent = action.shortcut
+                    item.setAttribute('aria-keyshortcuts', action.shortcut.replace('⌘', 'Meta+').replace('Strg', 'Control'))
+                    item.append(kbd)
+                }
                 item.addEventListener('click', async () => {
                     close()
                     await action.onSelect?.()

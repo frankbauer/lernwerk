@@ -269,6 +269,27 @@ export async function init(scope = document, elements = {}) {
         save().catch(e => console.error('Automatisches Speichern fehlgeschlagen', e))
     }
 
+    // Dezenter Hinweis unten rechts, dass gespeichert wurde (Stil: css/theme-menu.css)
+    let toast, toastTimer
+    function showSaved() {
+        if (!toast) {
+            toast = document.createElement('div')
+            toast.className = 'lw-save-toast'
+            toast.setAttribute('role', 'status')
+            document.body.append(toast)
+        }
+        toast.innerHTML = '<span class="lw-save-toast-check" aria-hidden="true">✓</span>'
+        toast.append(`Gespeichert ${lastSavedAt ? formatTime(lastSavedAt) : ''}`.trim())
+        requestAnimationFrame(() => toast.classList.add('lw-visible'))
+        clearTimeout(toastTimer)
+        toastTimer = setTimeout(() => toast.classList.remove('lw-visible'), 2000)
+    }
+
+    function autosave() {
+        save().then(changed => { if (changed) showSaved() })
+            .catch(e => console.error('Automatisches Speichern fehlgeschlagen', e))
+    }
+
     /** Speichert `blocks` als neuen Stand und lädt die Seite neu, damit die Editoren ihn anzeigen. */
     async function replaceAndReload(blocks, failMessage) {
         suspended = true
@@ -338,7 +359,7 @@ export async function init(scope = document, elements = {}) {
         await replaceAndReload(blocks, 'Die Lösung konnte nicht gespeichert werden.')
     }
 
-    if (config.interval > 0) setInterval(saveQuietly, config.interval * 1000)
+    if (config.interval > 0) setInterval(autosave, config.interval * 1000)
     // Beim Verlassen oder Wechseln des Tabs zusätzlich speichern
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveQuietly() })
     window.addEventListener('pagehide', saveQuietly)
@@ -351,6 +372,25 @@ export async function init(scope = document, elements = {}) {
         event.returnValue = '' // ältere Browser
     })
 
+    async function saveNow() {
+        try {
+            await save()
+            showSaved() // auch ohne Änderung, als Bestätigung
+        } catch (e) {
+            alert('Speichern fehlgeschlagen: ' + (e?.message ?? e))
+        }
+    }
+
+    // Cmd+S (macOS) bzw. Strg+S speichert sofort, statt den Browser-Dialog "Seite speichern" zu öffnen
+    const isMac = /Mac|iPhone|iPad/.test(navigator.platform ?? navigator.userAgent)
+    const shortcut = isMac ? '⌘S' : 'Strg+S'
+    window.addEventListener('keydown', event => {
+        if (event.key.toLowerCase() !== 's' || event.altKey || event.shiftKey) return
+        if (!(isMac ? event.metaKey && !event.ctrlKey : event.ctrlKey && !event.metaKey)) return
+        event.preventDefault()
+        if (!event.repeat) saveNow()
+    }, true)
+
     const svg = d => `<path d="${d}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`
     const section = 'Ihr Code'
     const actions = [
@@ -359,13 +399,8 @@ export async function init(scope = document, elements = {}) {
             label: 'Jetzt speichern',
             icon: svg('M5 4h11l3 3v13H5z M8 4v5h7V4 M8 20v-6h8v6'),
             hint: () => lastSavedAt ? `Zuletzt gespeichert um ${formatTime(lastSavedAt)}` : 'Stand im Browser sichern',
-            async onSelect() {
-                try {
-                    await save()
-                } catch (e) {
-                    alert('Speichern fehlgeschlagen: ' + (e?.message ?? e))
-                }
-            },
+            shortcut,
+            onSelect: saveNow,
         },
     ]
     if (uuid) {
