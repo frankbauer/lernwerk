@@ -4,7 +4,7 @@
 // Hier werden das Menü oben rechts und (auf Übungsseiten) die Kapitelzeile über dem Titel erzeugt.
 (function () {
     const STORAGE_KEY = 'lernwerk-theme'
-    const DEFAULT_THEME = 'klassisch' // muss zu content.js passen
+    const DEFAULT_THEME = 'abenteuer' // muss zu content.js passen
     const base = new URL('.', document.currentScript.src)
 
     // colors: [Hintergrund, Fläche, Akzent 1, Akzent 2] für die Vorschau im Menü
