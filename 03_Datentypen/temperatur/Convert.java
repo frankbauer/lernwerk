@@ -1,8 +1,10 @@
-//#START CODE
+//#START STATIC
 public class Convert {
     public static void main(String[] args) {
         // Hier wird die Temperatur in Grad Celsius aus der Eingabezeile oben gelesen
         final double celsius = Input.getTemperature(args);
+//#START STUDENT
+        
 //#START SOLUTION
         // Umrechnung von Celsius in Fahrenheit mit der oben gegebenen Formel.
         double fahrenheit = celsius * 9 / 5 + 32;  
@@ -10,7 +12,7 @@ public class Convert {
         // Ausgabe des urspruenglichen und des umgerechneten Wertes.
         System.out.print(celsius + " Grad Celsius entsprechen ");
         System.out.println(fahrenheit + " Grad Fahrenheit.");       
-//#START CODE
+//#START STATIC
     }
 }
 //#START API

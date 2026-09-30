@@ -1,6 +1,9 @@
+//#START STATIC
 public class DurchschnittBerechner {
-//#START SOLUTION
     public static void main(String[] args) {
+//#START STUDENT
+        
+//#START SOLUTION        
         // Deklariert die erste Fließkommazahl und initialisiert sie mit 5.5
         double zahl1 = 5.5;
 
@@ -14,6 +17,6 @@ public class DurchschnittBerechner {
         System.out.print  ("Der Durchschnitt von " + zahl1);
         System.out.print  (" und " + zahl2);
         System.out.println(" ist: " + durchschnitt);
+//#START STATIC
     }
-   
 }
