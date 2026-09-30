@@ -2720,69 +2720,72 @@
       "image": "img/previews/18_Graphen-sandkasten_sum.webp"
     },
     {
-      "id": "18_Graphen/sandkasten_sackgasse",
-      "title": "MeineSackgassen",
+      "id": "18_Graphen/sackgassen",
+      "title": "Sackgassen zählen",
       "description": "Zähle alle Knoten eines Graphen, die keine ausgehenden Kanten haben.",
-      "link": "18_Graphen/sandkasten_sackgasse/",
+      "link": "18_Graphen/sackgassen",
       "chapter": 18,
-      "type": "sandbox",
+      "type": "exercise",
       "difficulty": 2,
       "tags": [
         "graphen",
         "schleifen",
         "bedingungen"
       ],
-      "hasSolution": false,
-      "hasExplanation": false,
+      "hasSolution": true,
+      "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-sackgassen.webp"
     },
     {
-      "id": "18_Graphen/sandkasten_wege",
-      "title": "MeineWege",
+      "id": "18_Graphen/wege",
+      "title": "Wege zählen",
       "description": "Zähle rekursiv, wie viele verschiedene Wege in einem zyklenfreien Graphen zu einem Zielknoten führen.",
-      "link": "18_Graphen/sandkasten_wege/",
+      "link": "18_Graphen/wege",
       "chapter": 18,
-      "type": "sandbox",
+      "type": "exercise",
       "difficulty": 5,
       "tags": [
         "graphen",
         "rekursion",
         "schleifen"
       ],
-      "hasSolution": false,
-      "hasExplanation": false,
+      "hasSolution": true,
+      "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-wege.webp"
     },
     {
-      "id": "18_Graphen/sandkasten_ende",
-      "title": "MeinEnde",
+      "id": "18_Graphen/kette",
+      "title": "Ende einer Kette",
       "description": "Folge einer Kette von Knoten rekursiv bis zu ihrem letzten Knoten.",
-      "link": "18_Graphen/sandkasten_ende/",
+      "link": "18_Graphen/kette",
       "chapter": 18,
-      "type": "sandbox",
+      "type": "exercise",
       "difficulty": 3,
       "tags": [
         "graphen",
         "rekursion",
         "bedingungen"
       ],
-      "hasSolution": false,
-      "hasExplanation": false,
+      "hasSolution": true,
+      "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-kette.webp"
     },
     {
-      "id": "18_Graphen/sandkasten_erreichbar",
-      "title": "MeineErreichbaren",
+      "id": "18_Graphen/erreichbar",
+      "title": "Erreichbare Knoten",
       "description": "Zähle rekursiv alle erreichbaren Knoten eines Graphen mit Zyklen.",
-      "link": "18_Graphen/sandkasten_erreichbar/",
+      "link": "18_Graphen/erreichbar",
       "chapter": 18,
-      "type": "sandbox",
+      "type": "exercise",
       "difficulty": 5,
       "tags": [
         "graphen",
@@ -2790,11 +2793,12 @@
         "collections",
         "bedingungen"
       ],
-      "hasSolution": false,
-      "hasExplanation": false,
+      "hasSolution": true,
+      "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-erreichbar.webp"
     },
     {
       "id": "18_Graphen/dijkstra",

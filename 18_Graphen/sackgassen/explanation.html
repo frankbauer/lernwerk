@@ -1,0 +1,11 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Alle Knoten durchlaufen:</b> <code>Graph</code> ist <code>Iterable</code>, daher besucht die
+        for-each-Schleife <code>for (Node&lt;Integer&gt; n : g)</code> jeden Knoten genau einmal. Rekursion ist
+        nicht nötig, weil nicht nur die erreichbaren, sondern alle Knoten gezählt werden.</li>
+    <li><b>Sackgasse erkennen:</b> <code>childNodes()</code> liefert die Liste der Nachfolger. Ist sie leer
+        (<code>isEmpty()</code>), führt keine Kante aus dem Knoten heraus.</li>
+</ul>
+<p>Im Beispiel sind <code>3</code>, <code>5</code> und <code>6</code> Enden von Wegen. Der Knoten <code>7</code> hat
+    gar keine Kanten und ist damit ebenfalls eine Sackgasse, zusammen also <code>4</code>.</p>

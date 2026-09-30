@@ -1,0 +1,16 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Problem Zyklus:</b> Eine Rekursion wie beim Summieren läuft hier endlos
+        <code>1 → 2 → 3 → 1 → …</code>. Man muss sich daher merken, welche Knoten schon besucht wurden.</li>
+    <li><b>Hilfsmethode:</b> <code>anzahl</code> legt eine leere Liste <code>visited</code> an und übergibt sie an
+        die rekursive Hilfsmethode <code>anzahlRec</code>. Alle Aufrufe teilen sich so dieselbe Liste.</li>
+    <li><b>Abbruchfall:</b> Ist <code>cur</code> schon in <code>visited</code>, wurde er bereits gezählt und der
+        Aufruf liefert <code>0</code>.</li>
+    <li><b>Rekursiver Fall:</b> Sonst wird <code>cur</code> vermerkt, zählt selbst <code>1</code> und die Anzahlen
+        aller Nachfolger werden dazuaddiert.</li>
+</ul>
+<p>Von <code>1</code> aus sind <code>1, 2, 3, 4, 5</code> erreichbar. <code>6</code> hat zwar eine Kante nach
+    <code>1</code>, aber keine Kante führt zu <code>6</code>. Von <code>6</code> aus kommen deshalb dieselben fünf
+    Knoten plus <code>6</code> selbst zusammen, also <code>6</code>. Der Knoten <code>7</code> ist von nirgends
+    erreichbar.</p>

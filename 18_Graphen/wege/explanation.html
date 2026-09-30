@@ -1,0 +1,14 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Abbruchfall:</b> Ist <code>cur</code> selbst das Ziel, gibt es genau einen Weg (den leeren). Die Werte sind
+        <code>Integer</code>-Objekte und werden daher mit <code>equals</code> verglichen.</li>
+    <li><b>Rekursiver Fall:</b> Jeder Weg von <code>cur</code> zum Ziel beginnt mit genau einer ausgehenden Kante.
+        Die Anzahl der Wege ist also die <b>Summe</b> der Wege aller Nachfolger.</li>
+    <li><b>Sackgassen:</b> Ein Knoten ohne Nachfolger, der nicht das Ziel ist, durchläuft die Schleife kein einziges
+        Mal und liefert <code>0</code>. Das braucht keinen eigenen Fall.</li>
+</ul>
+<p>Rückwärts vom Ziel <code>6</code> aus gerechnet: <code>5</code> → 1, <code>4</code> → 1 + 1 = 2,
+    <code>2</code> → 2 + 1 = 3, <code>3</code> → 2 + 1 + 0 = 3 und damit <code>1</code> → 3 + 3 = <code>6</code>.</p>
+<p>Weil der Graph zyklenfrei ist, endet die Rekursion immer. Knoten wie <code>4</code> werden dabei mehrfach
+    besucht, weil verschiedene Wege durch sie hindurchführen. Genau das soll hier mitgezählt werden.</p>

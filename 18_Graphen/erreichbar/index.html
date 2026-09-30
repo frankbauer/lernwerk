@@ -22,9 +22,9 @@
     </div>
     <script>
         const elements = {
-            uuid: "cf9affd6-1aa4-4bd8-823d-879cf4a33ba3",
-            title: "<b>Sandkasten:</b> MeinEnde",
-            short: "MeinEnde",
+            uuid: "02484d5e-dc6b-41d9-9aab-143ed32474f5",
+            title: "Erreichbare Knoten",
+            short: "Erreichbar",
             content: [
                 {
                     type: "aufgabe",
@@ -35,25 +35,14 @@
                     class: "code",
                     tabs: [
                         {
-                            name: "Ihre Lösung",
-
-                            content: [{
-                                type: "codeblocks",
+                            codeblocks: {
                                 attributes: {
                                     dataDomLibs: '["d3-5.16.0"]'
                                 },
                                 blocks: [
                                     {
                                         type: "code",
-                                        content: "./App.java"
-                                    },
-                                    {
-                                        type: "text",
-                                        content: "break.html",
-                                    },
-                                    {
-                                        type: "code",
-                                        content: "./MeinEnde.java"
+                                        content: "./Erreichbar.java"
                                     },
                                     {
                                         type: "api",
@@ -92,7 +81,15 @@
                                         content: "../../common/scene/graph/graph.js"
                                     }
                                 ]
-                            }]
+                            },
+                            content: [],
+                            solution: [
+                                {
+                                    type: "explain",
+                                    class: "q-mt-xl",
+                                    content: "./explanation.html"
+                                }
+                            ]
                         },
                         {
                             name: "Graph<T>",

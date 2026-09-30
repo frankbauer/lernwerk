@@ -22,9 +22,9 @@
     </div>
     <script>
         const elements = {
-            uuid: "02484d5e-dc6b-41d9-9aab-143ed32474f5",
-            title: "<b>Sandkasten:</b> MeineErreichbaren",
-            short: "MeineErreichbaren",
+            uuid: "3945feb1-3585-4d65-a18b-c45803d9ff85",
+            title: "Wege zählen",
+            short: "Wege",
             content: [
                 {
                     type: "aufgabe",
@@ -35,25 +35,14 @@
                     class: "code",
                     tabs: [
                         {
-                            name: "Ihre Lösung",
-
-                            content: [{
-                                type: "codeblocks",
+                            codeblocks: {
                                 attributes: {
                                     dataDomLibs: '["d3-5.16.0"]'
                                 },
                                 blocks: [
                                     {
                                         type: "code",
-                                        content: "./App.java"
-                                    },
-                                    {
-                                        type: "text",
-                                        content: "break.html",
-                                    },
-                                    {
-                                        type: "code",
-                                        content: "./MeineErreichbaren.java"
+                                        content: "./Wege.java"
                                     },
                                     {
                                         type: "api",
@@ -92,7 +81,15 @@
                                         content: "../../common/scene/graph/graph.js"
                                     }
                                 ]
-                            }]
+                            },
+                            content: [],
+                            solution: [
+                                {
+                                    type: "explain",
+                                    class: "q-mt-xl",
+                                    content: "./explanation.html"
+                                }
+                            ]
                         },
                         {
                             name: "Graph<T>",

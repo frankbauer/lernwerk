@@ -1,0 +1,12 @@
+<h3>Erklärung</h3>
+
+<ul>
+    <li><b>Abbruchfall:</b> Hat <code>cur</code> keinen Nachfolger (<code>childNodes().isEmpty()</code>), ist er das
+        letzte Glied der Kette und sein Wert wird zurückgegeben.</li>
+    <li><b>Rekursiver Fall:</b> Sonst hat <code>cur</code> genau einen Nachfolger,
+        <code>childNodes().get(0)</code>. Das Ende der Kette ab <code>cur</code> ist dasselbe wie das Ende ab diesem
+        Nachfolger. Eine Schleife über alle Kinder ist nicht nötig.</li>
+</ul>
+<p>Ablauf für <code>3</code>: <code>ende(3)</code> → <code>ende(8)</code> → <code>ende(1)</code> →
+    <code>ende(6)</code> → <code>6</code>. Der Knoten <code>5</code> hat keine Kante, dort greift sofort der
+    Abbruchfall.</p>
