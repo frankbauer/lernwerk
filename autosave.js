@@ -39,6 +39,7 @@ async function loadConfig() {
 // --- IndexedDB ------------------------------------------------------------
 
 let dbPromise
+let openedDB = null // erlaubt es, Transaktionen synchron zu starten (wichtig beim Verlassen der Seite)
 function openDB() {
     dbPromise ??= new Promise((resolve, reject) => {
         const request = indexedDB.open(DB_NAME, DB_VERSION)
@@ -47,14 +48,14 @@ function openDB() {
             if (db.objectStoreNames.contains('exercise-state')) db.deleteObjectStore('exercise-state') // Entwurf
             if (!db.objectStoreNames.contains(STORE)) db.createObjectStore(STORE, { keyPath: 'key' })
         }
-        request.onsuccess = () => resolve(request.result)
+        request.onsuccess = () => resolve(openedDB = request.result)
         request.onerror = () => reject(request.error)
     })
     return dbPromise
 }
 
 async function withStore(mode, fn) {
-    const db = await openDB()
+    const db = openedDB ?? await openDB()
     return new Promise((resolve, reject) => {
         const tx = db.transaction(STORE, mode)
         const request = fn(tx.objectStore(STORE))
@@ -199,7 +200,7 @@ export async function init(scope = document, elements = {}) {
         }
     }
 
-    let lastSaved = null
+    let lastSaved = '{}' // JSON des zuletzt gespeicherten Stands; '{}' = nichts Eigenes gespeichert
     let lastSavedAt = null
     const restored = {}
     if (saved?.blocks) {
@@ -341,6 +342,14 @@ export async function init(scope = document, elements = {}) {
     // Beim Verlassen oder Wechseln des Tabs zusätzlich speichern
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveQuietly() })
     window.addEventListener('pagehide', saveQuietly)
+    // Gibt es ungespeicherte Änderungen, zeigt der Browser beim Verlassen eine Rückfrage an (der Text lässt
+    // sich nicht anpassen). Das Speichern wird vorher angestoßen und kann während der Rückfrage abschließen.
+    window.addEventListener('beforeunload', event => {
+        if (suspended || !ready || JSON.stringify(collect()) === lastSaved) return
+        saveQuietly()
+        event.preventDefault()
+        event.returnValue = '' // ältere Browser
+    })
 
     const svg = d => `<path d="${d}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`
     const section = 'Ihr Code'

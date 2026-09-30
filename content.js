@@ -35,7 +35,7 @@ async function buildContent(elements) {
 
     // Gespeicherten Code einsetzen, bevor codeblocks.umd.js die Editoren erzeugt
     try {
-        const autosave = await import(new URL('autosave.js?v=1.1.0', LW_BASE))
+        const autosave = await import(new URL('autosave.js?v=1.1.1', LW_BASE))
         await autosave.init(root[0], elements)
     } catch (e) {
         console.error('Automatisches Speichern nicht verfügbar', e)
