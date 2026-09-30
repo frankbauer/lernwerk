@@ -466,7 +466,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/02_Operationen-sandkasten_mod.webp"
     },
     {
       "id": "02_Operationen/addition",
@@ -484,7 +484,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/02_Operationen-addition.webp"
     },
     {
       "id": "02_Operationen/rechteck",
@@ -502,7 +502,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/02_Operationen-rechteck.webp"
     },
     {
       "id": "02_Operationen/calculator",
@@ -574,7 +574,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/03_Datentypen-sandkasten_type.webp"
     },
     {
       "id": "03_Datentypen/beispiel_cast",
@@ -592,7 +592,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/03_Datentypen-beispiel_cast.webp"
     },
     {
       "id": "03_Datentypen/sandkasten_index",
@@ -611,7 +611,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/03_Datentypen-sandkasten_index.webp"
     },
     {
       "id": "03_Datentypen/add_sub_mul",
@@ -630,7 +630,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/03_Datentypen-add_sub_mul.webp"
     },
     {
       "id": "03_Datentypen/average",
@@ -649,7 +649,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/03_Datentypen-average.webp"
     },
     {
       "id": "03_Datentypen/temperatur",
@@ -667,7 +667,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/03_Datentypen-temperatur.webp"
     },
     {
       "id": "03_Datentypen/ausdruecke",
@@ -759,7 +759,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/04_Methodenaufrufe-sandkasten_flaeche.webp"
     },
     {
       "id": "04_Methodenaufrufe/beispiel_floating",
@@ -832,7 +832,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "image": null
+      "image": "img/previews/04_Methodenaufrufe-tank_static_aufruf.webp"
     },
     {
       "id": "04_Methodenaufrufe/kirschen",
@@ -884,7 +884,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/05_Objekte-sandkasten_instanzen.webp"
     },
     {
       "id": "05_Objekte/beispiel_robots",
@@ -939,7 +939,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/05_Objekte-sandkasten_sonnensystem.webp"
     },
     {
       "id": "05_Objekte/vec_sum",
@@ -957,7 +957,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/05_Objekte-vec_sum.webp"
     },
     {
       "id": "05_Objekte/vector",
@@ -976,7 +976,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/05_Objekte-vector.webp"
     },
     {
       "id": "05_Objekte/adapter",
@@ -994,7 +994,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": true,
-      "image": null
+      "image": "img/previews/05_Objekte-adapter.webp"
     },
     {
       "id": "05_Objekte/labyrinth",
@@ -1089,7 +1089,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/06_Bedingungen-beispiel_luck.webp"
     },
     {
       "id": "06_Bedingungen/sandkasten_binom",
@@ -1108,7 +1108,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/06_Bedingungen-sandkasten_binom.webp"
     },
     {
       "id": "06_Bedingungen/vector_sort",
@@ -1129,7 +1129,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/06_Bedingungen-vector_sort.webp"
     },
     {
       "id": "06_Bedingungen/tank_bedingungen",
@@ -1148,7 +1148,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "image": null
+      "image": "img/previews/06_Bedingungen-tank_bedingungen.webp"
     },
     {
       "id": "06_Bedingungen/teilbar",
@@ -1240,7 +1240,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/07_Schleifen-sandkasten_odds.webp"
     },
     {
       "id": "07_Schleifen/beispiel_pflanzen_while",
@@ -1276,7 +1276,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/07_Schleifen-beispiel_break.webp"
     },
     {
       "id": "07_Schleifen/druck_extrema",
@@ -1296,7 +1296,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/07_Schleifen-druck_extrema.webp"
     },
     {
       "id": "07_Schleifen/groeste_zeitdifferenz",
@@ -1316,7 +1316,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/07_Schleifen-groeste_zeitdifferenz.webp"
     },
     {
       "id": "07_Schleifen/druck_durchschnitt",
@@ -1336,7 +1336,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/07_Schleifen-druck_durchschnitt.webp"
     },
     {
       "id": "07_Schleifen/buchstabensuppe",
@@ -1446,7 +1446,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/08_Klassenmethoden-sandkasten_summe.webp"
     },
     {
       "id": "08_Klassenmethoden/beispiel_overload",
@@ -1464,7 +1464,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/08_Klassenmethoden-beispiel_overload.webp"
     },
     {
       "id": "08_Klassenmethoden/irrigation_system",
@@ -1483,7 +1483,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "image": null,
+      "image": "img/previews/08_Klassenmethoden-irrigation_system.webp",
       "isHidden": true
     },
     {
@@ -1593,7 +1593,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/09_Klassenattribute-beispiel_steuer.webp"
     },
     {
       "id": "09_Klassenattribute/sandkasten_schwerkraft",
@@ -1612,7 +1612,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/09_Klassenattribute-sandkasten_schwerkraft.webp"
     },
     {
       "id": "09_Klassenattribute/aufrufzaehler",
@@ -1631,7 +1631,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/09_Klassenattribute-aufrufzaehler.webp"
     },
     {
       "id": "09_Klassenattribute/plotter",
@@ -1688,7 +1688,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/10_Arrays-sandkasten_zahlen.webp"
     },
     {
       "id": "10_Arrays/auswerten",
@@ -1892,7 +1892,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/11_Arrays_nDim-sandkasten_matrix.webp"
     },
     {
       "id": "12_Instanzen/beispiel_wald",
@@ -1954,7 +1954,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/12_Instanzen-sandkasten_bruch.webp"
     },
     {
       "id": "12_Instanzen/vec2d_list",
@@ -1977,7 +1977,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": true,
-      "image": null
+      "image": "img/previews/12_Instanzen-vec2d_list.webp"
     },
     {
       "id": "12_Instanzen/tierwesen",
@@ -2076,7 +2076,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/13_Referenzen-sandkasten_deskrun.webp"
     },
     {
       "id": "13_Referenzen/beispiel_finalRef",
@@ -2153,7 +2153,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/14_Schnittstellen-sandkasten_interface.webp"
     },
     {
       "id": "14_Schnittstellen/beispiel_multi",
@@ -2173,7 +2173,7 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": null
+      "image": "img/previews/14_Schnittstellen-beispiel_multi.webp"
     },
     {
       "id": "14_Schnittstellen/sprachen",
@@ -2302,7 +2302,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/17_Collections-sandkasten_remove.webp"
     },
     {
       "id": "17_Collections/sandkasten_lexi",
@@ -2321,7 +2321,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/17_Collections-sandkasten_lexi.webp"
     },
     {
       "id": "17_Collections/todo",
@@ -2491,7 +2491,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/18_Graphen-sandkasten_sum.webp"
     },
     {
       "id": "18_Graphen/dijkstra",
@@ -2593,7 +2593,7 @@
       "hasExplanation": false,
       "hasExperiments": false,
       "isNew": false,
-      "image": null
+      "image": "img/previews/19_Zahlen-todec.webp"
     },
     {
       "id": "19_Zahlen/addition",
