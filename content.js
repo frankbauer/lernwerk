@@ -19,10 +19,12 @@ const LW_BASE = new URL('.', document.currentScript.src);
         link.href = new URL(`${href}?v=${version}`, base)
         document.head.append(link)
     }
-    const tourLink = document.createElement('link')
-    tourLink.rel = 'stylesheet'
-    tourLink.href = new URL('css/tour.css?v=1.0.0', base)
-    document.head.append(tourLink)
+    for (const href of ['fonts/caveat/caveat.css?v=1.0.0', 'css/tour.css?v=1.1.0']) {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = new URL(href, base)
+        document.head.append(link)
+    }
     for (const src of [`theme.js?v=${version}`, 'tour.js?v=1.2.0']) {
         const script = document.createElement('script')
         script.src = new URL(src, base)
