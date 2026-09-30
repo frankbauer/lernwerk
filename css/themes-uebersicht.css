@@ -806,6 +806,12 @@ html[data-lw-theme="abenteuer"] .card:hover {
     box-shadow: 8px 8px 0 #111;
 }
 
+/* die Grundregel färbt den Rand gesperrter Sandkästen grün wie die Karte, hier bleibt er schwarz und gestrichelt */
+html[data-lw-theme="abenteuer"] .card.type-sandbox.is-locked {
+    border-style: dashed;
+    border-color: #111;
+}
+
 html[data-lw-theme="abenteuer"] .card-media {
     border: 2.5px solid #111;
 }
