@@ -2720,6 +2720,83 @@
       "image": "img/previews/18_Graphen-sandkasten_sum.webp"
     },
     {
+      "id": "18_Graphen/sandkasten_sackgasse",
+      "title": "MeineSackgassen",
+      "description": "Zähle alle Knoten eines Graphen, die keine ausgehenden Kanten haben.",
+      "link": "18_Graphen/sandkasten_sackgasse/",
+      "chapter": 18,
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "graphen",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "18_Graphen/sandkasten_wege",
+      "title": "MeineWege",
+      "description": "Zähle rekursiv, wie viele verschiedene Wege in einem zyklenfreien Graphen zu einem Zielknoten führen.",
+      "link": "18_Graphen/sandkasten_wege/",
+      "chapter": 18,
+      "type": "sandbox",
+      "difficulty": 5,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "18_Graphen/sandkasten_ende",
+      "title": "MeinEnde",
+      "description": "Folge einer Kette von Knoten rekursiv bis zu ihrem letzten Knoten.",
+      "link": "18_Graphen/sandkasten_ende/",
+      "chapter": 18,
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "bedingungen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
+      "id": "18_Graphen/sandkasten_erreichbar",
+      "title": "MeineErreichbaren",
+      "description": "Zähle rekursiv alle erreichbaren Knoten eines Graphen mit Zyklen.",
+      "link": "18_Graphen/sandkasten_erreichbar/",
+      "chapter": 18,
+      "type": "sandbox",
+      "difficulty": 5,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "collections",
+        "bedingungen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true
+    },
+    {
       "id": "18_Graphen/dijkstra",
       "title": "Dijkstra-Tabelle",
       "description": "Fülle die Tabelle des Dijkstra-Algorithmus Schritt für Schritt für einen zufälligen Graphen aus.",
