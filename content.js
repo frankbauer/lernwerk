@@ -5,7 +5,7 @@ const LW_BASE = new URL('.', document.currentScript.src);
 // ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü, Fußzeile) und
 // tour.js (Rundgang durch die Übungsseite) nachladen.
 (function loadThemes() {
-    const version = '1.4.2'
+    const version = '1.4.3'
     const base = LW_BASE
     let theme = 'abenteuer'
     try {
@@ -153,6 +153,7 @@ async function generateTabs(item) {
                 content: [{
                     ...tab.codeblocks,
                     type: "codeblocks",
+                    overlay: undefined // gehört zur Beispiellösung
                 }]
             }, {
                 name: "Beispiellösung",
@@ -192,7 +193,37 @@ async function generateCodeBlocks(item) {
     for (let block of item.blocks) {
         await generateCodeBlockElement(block, codeblocks)
     }
+    if (item.overlay !== undefined) {
+        await registerOverlay(item.overlay, codeblocks[0])
+    }
     return codeblocks
+}
+
+// Overlays (Kommentare, Markierungen) werden erst gesetzt, wenn codeblocks.umd.js die Apps erzeugt hat
+const pendingOverlays = []
+let overlayListenerAdded = false
+
+async function registerOverlay(overlay, host) {
+    if (typeof overlay === 'string') {
+        try {
+            const response = await fetch(overlay)
+            overlay = await response.json()
+        } catch (e) {
+            console.error('Overlay konnte nicht geladen werden', overlay, e)
+            return
+        }
+    }
+    if (window.codeblocks?.setOverlay && host.querySelector('.codeblocks[uuid]')) {
+        window.codeblocks.setOverlay(host, overlay)
+        return
+    }
+    pendingOverlays.push({ host, overlay })
+    if (!overlayListenerAdded) {
+        overlayListenerAdded = true
+        window.addEventListener('codeblocks:mounted', () => {
+            pendingOverlays.splice(0).forEach(({ host, overlay }) => window.codeblocks.setOverlay(host, overlay))
+        })
+    }
 }
 
 function javaFinalizer(code) {

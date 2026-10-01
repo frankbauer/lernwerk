@@ -1,0 +1,45 @@
+{
+    "blocks": {
+        "0": {
+            "pillAlign": "right",
+            "highlights": [
+                {
+                    "range": "3:28-3:39",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>2</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "4:28-4:35",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>2.4</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "5:28-5:35",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>2.4</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "6:28-6:37",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>2.4</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "7:28-7:35",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>8</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "8:28-8:50",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>true</code>",
+                    "display": "inline"
+                }
+            ]
+        }
+    }
+}

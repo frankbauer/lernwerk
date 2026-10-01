@@ -1,0 +1,63 @@
+{
+    "blocks": {
+        "0": {
+            "pillAlign": "right",
+            "highlights": [
+                {
+                    "range": "5:28-5:32",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>GdI</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "6:28-6:32",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>12</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "7:28-7:34",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>wert2</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "8:28-8:43",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>wert2=12</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "9:28-9:42",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>Hallo12</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "10:28-10:42",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>Welt 8</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "11:28-11:40",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>20</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "12:28-12:52",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>Summe: 128</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "13:28-13:54",
+                    "color": "blue",
+                    "comment": "Ausgabe: <code>Summe: 20</code>",
+                    "display": "inline"
+                }
+            ]
+        }
+    }
+}

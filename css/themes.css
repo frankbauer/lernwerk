@@ -2152,6 +2152,116 @@ html[data-lw-theme] tabbar>div[data-tab].api h4 {
     text-transform: uppercase;
 }
 
+/* --- Overlays der Codeblocks (Markierungen, Pills, Kommentarkarten, Sprechblasen) ---
+   Die Bibliothek liest ihre Farben aus --cb-ov-* Variablen. Pro Theme werden Oberfläche, Schrift
+   und das Blau (für Ergebnisse in den Beispiellösungen) an die Theme-Farben angepasst. */
+html[data-lw-theme] {
+    --cb-ov-surface: var(--lw-surface-solid, var(--lw-surface));
+    --cb-ov-fg: var(--lw-fg);
+    --cb-ov-muted: var(--lw-muted);
+    --cb-ov-hairline: var(--lw-border);
+    --cb-ov-font: var(--lw-font);
+}
+
+html[data-lw-theme="klassisch"] {
+    --cb-ov-blue: #2848c7;
+}
+
+html[data-lw-theme="heft"] {
+    --cb-ov-blue: #2a52be; /* Königsblaue Tinte */
+}
+
+html[data-lw-theme="karten"] {
+    --cb-ov-blue: var(--lw-accent);
+}
+
+html[data-lw-theme="abenteuer"] {
+    --cb-ov-blue: #1c63c7;
+}
+
+html[data-lw-theme="raster"] {
+    --cb-ov-blue: #0047bb;
+}
+
+html[data-lw-theme="prisma"] {
+    --cb-ov-blue: #5246e8;
+}
+
+/* Code in Kommentaren in Textfarbe statt --lw-code-fg (in dunklen Themes sonst invertiert kaum lesbar) */
+html[data-lw-theme] .cb-ov-pill code,
+html[data-lw-theme] .cb-ov-comment code {
+    color: inherit;
+    font-weight: 600;
+}
+
+/* Abenteuer: kräftige Konturen und harte Schatten wie die Kästen */
+html[data-lw-theme="abenteuer"] .cb-ov-pill {
+    height: 15px;
+    border: 1px solid #111;
+    box-shadow: 1.5px 1.5px 0 #111;
+    font-weight: 600;
+}
+
+html[data-lw-theme="abenteuer"] .cb-ov-card {
+    border-left-width: 4px;
+    border-radius: 0 6px 6px 0;
+}
+
+html[data-lw-theme="abenteuer"] .cb-ov-bubble {
+    border: 2px solid #111;
+    border-top: 4px solid var(--cb-ov-color, #111);
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 #111;
+}
+
+/* Raster: eckig und flach */
+html[data-lw-theme="raster"] .cb-ov-pill,
+html[data-lw-theme="raster"] .cb-ov-card,
+html[data-lw-theme="raster"] .cb-ov-bubble {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Dunkle Themes: der Editor wird per Filter invertiert (siehe oben), also auch Pills, Karten und
+   Hover-Sprechblasen darin. Dort gelten deshalb helle Werte. Sprechblasen außerhalb des Editors
+   (Gutter, Playground-Elemente) hängen am <body> und bekommen dunkle Werte. */
+html[data-lw-theme="terminal"],
+html[data-lw-theme="tafel"] {
+    --cb-ov-surface: #ffffff;
+    --cb-ov-fg: #1f2430;
+    --cb-ov-muted: #5d6576;
+    --cb-ov-hairline: rgba(15, 23, 42, 0.12);
+}
+
+html[data-lw-theme="terminal"] {
+    --cb-ov-blue: #0369a1; /* invertiert: helles Himmelblau wie --lw-link */
+}
+
+html[data-lw-theme="tafel"] {
+    --cb-ov-blue: #1f6f99; /* invertiert: Kreideblau */
+}
+
+html[data-lw-theme="terminal"] .cb-ov-bubble--floating,
+html[data-lw-theme="terminal"] .cb-ov-layer,
+html[data-lw-theme="tafel"] .cb-ov-bubble--floating,
+html[data-lw-theme="tafel"] .cb-ov-layer {
+    --cb-ov-surface: var(--lw-surface-solid, var(--lw-surface));
+    --cb-ov-fg: var(--lw-fg);
+    --cb-ov-muted: var(--lw-muted);
+    --cb-ov-hairline: var(--lw-border);
+    --cb-ov-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+html[data-lw-theme="terminal"] .cb-ov-bubble--floating,
+html[data-lw-theme="terminal"] .cb-ov-layer {
+    --cb-ov-blue: var(--lw-link);
+}
+
+html[data-lw-theme="tafel"] .cb-ov-bubble--floating,
+html[data-lw-theme="tafel"] .cb-ov-layer {
+    --cb-ov-blue: var(--lw-link);
+}
+
 /* Schmale Bildschirme */
 @media (max-width: 600px) {
     html[data-lw-theme] {

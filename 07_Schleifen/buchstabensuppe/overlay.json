@@ -1,0 +1,57 @@
+{
+    "blocks": {
+        "0": {
+            "pillAlign": "right",
+            "highlights": [
+                {
+                    "range": "3:9-3:36",
+                    "color": "blue",
+                    "comment": "a) Ausgabe: <code>AAAAAAAAAAAA</code> (12-mal)",
+                    "display": "inline"
+                },
+                {
+                    "range": "8:9-8:37",
+                    "color": "blue",
+                    "comment": "b) Ausgabe: <code>BBBBBBBBBBBBB</code> (13-mal)",
+                    "display": "inline"
+                },
+                {
+                    "range": "13:9-13:45",
+                    "color": "blue",
+                    "comment": "c) Ausgabe: <code>CCCCCCCCCCCCCCCCCCCCCCC</code> (23-mal)",
+                    "display": "inline"
+                },
+                {
+                    "range": "18:9-18:39",
+                    "color": "blue",
+                    "comment": "d) Ausgabe: <code>DDDDDDD</code> (7-mal)",
+                    "display": "inline"
+                },
+                {
+                    "range": "23:9-23:35",
+                    "color": "blue",
+                    "comment": "e) Ausgabe: <code>EEE</code> (3-mal)",
+                    "display": "inline"
+                },
+                {
+                    "range": "29:9-29:45",
+                    "color": "blue",
+                    "comment": "f) Ausgabe: <code>FF</code> (2-mal)",
+                    "display": "inline"
+                },
+                {
+                    "range": "35:9-35:22",
+                    "color": "blue",
+                    "comment": "g) Ausgabe: <code>G</code> (1-mal)",
+                    "display": "inline"
+                },
+                {
+                    "range": "43:9-43:22",
+                    "color": "blue",
+                    "comment": "h) Ausgabe: <code>HHHHHHHHHH</code> (10-mal)",
+                    "display": "inline"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,63 @@
+{
+    "blocks": {
+        "0": {
+            "pillAlign": "right",
+            "highlights": [
+                {
+                    "range": "1:26-1:34",
+                    "color": "blue",
+                    "comment": "<b>Klassenmethode</b>: vor dem Punkt steht die Klasse <code>FloatingWorld</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "2:6-2:11",
+                    "color": "blue",
+                    "comment": "<b>Klassenmethode</b>: vor dem Punkt steht die Klasse <code>Math</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "3:3-3:10",
+                    "color": "violet",
+                    "comment": "<b>Instanzmethode</b>: <code>p</code> verweist auf ein Player-Objekt",
+                    "display": "inline"
+                },
+                {
+                    "range": "4:24-4:29",
+                    "color": "violet",
+                    "comment": "<b>Instanzmethode</b>: <code>playerWithID(3)</code> liefert ein Player-Objekt, auf diesem Objekt wird <code>remove()</code> aufgerufen",
+                    "display": "inline"
+                },
+                {
+                    "range": "5:15-5:29",
+                    "color": "blue",
+                    "comment": "<b>Klassenmethode</b>: vor dem Punkt steht die Klasse <code>FloatingWorld</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "6:13-6:20",
+                    "color": "violet",
+                    "comment": "<b>Instanzmethode</b>: <code>new Vec2D()</code> erzeugt ein Objekt",
+                    "display": "inline"
+                },
+                {
+                    "range": "7:8-7:22",
+                    "color": "blue",
+                    "comment": "<b>Klassenmethode</b>: vor dem Punkt steht die Klasse <code>Player</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "8:15-8:26",
+                    "color": "blue",
+                    "comment": "<b>Klassenmethode</b>: <code>removePlayer</code> wird über <code>FloatingWorld</code> aufgerufen, <code>p.getID()</code> ist nur der Parameter",
+                    "display": "inline"
+                },
+                {
+                    "range": "9:32-9:36",
+                    "color": "violet",
+                    "comment": "<b>Instanzmethode</b>: <code>getID()</code> wird über die Variable <code>p</code> aufgerufen",
+                    "display": "inline"
+                }
+            ]
+        }
+    }
+}

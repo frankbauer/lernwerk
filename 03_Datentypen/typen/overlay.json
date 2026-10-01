@@ -1,0 +1,93 @@
+{
+    "blocks": {
+        "0": {
+            "pillAlign": "right",
+            "highlights": [
+                {
+                    "range": "13:32-13:36",
+                    "color": "blue",
+                    "comment": "Typ: <code>int</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "14:32-14:41",
+                    "color": "blue",
+                    "comment": "Typ: <code>double</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "15:32-15:39",
+                    "color": "blue",
+                    "comment": "Typ: <code>float</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "16:32-16:38",
+                    "color": "blue",
+                    "comment": "Typ: <code>double</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "17:32-17:34",
+                    "color": "blue",
+                    "comment": "Typ: <code>char</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "18:32-18:34",
+                    "color": "blue",
+                    "comment": "Typ: <code>String</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "19:32-19:54",
+                    "color": "blue",
+                    "comment": "Typ: <code>int</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "20:32-20:39",
+                    "color": "blue",
+                    "comment": "Typ: <code>long</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "21:32-21:43",
+                    "color": "blue",
+                    "comment": "Typ: <code>boolean</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "22:32-22:50",
+                    "color": "blue",
+                    "comment": "Typ: <code>boolean</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "23:32-23:45",
+                    "color": "blue",
+                    "comment": "Typ: <code>int</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "24:32-24:77",
+                    "color": "blue",
+                    "comment": "Typ: <code>boolean</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "25:32-25:42",
+                    "color": "blue",
+                    "comment": "Typ: <code>String</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "26:32-26:40",
+                    "color": "blue",
+                    "comment": "Typ: <code>int</code>",
+                    "display": "inline"
+                }
+            ]
+        }
+    }
+}
