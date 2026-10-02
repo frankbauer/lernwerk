@@ -24,6 +24,30 @@ html[data-lw-theme] {
     --lw-font-head: var(--lw-font);
     --lw-radius-sm: 8px;
     --lw-content-width: 860px;
+    /* Eingabefelder (Werte wie die Voreinstellung der Quiz-Felder, je Theme angepasst) */
+    --lw-input-bg: var(--lw-surface-solid, var(--lw-surface));
+    --lw-input-fg: var(--lw-fg);
+    --lw-input-border: rgba(0, 0, 0, 0.3);
+    --lw-input-border-width: 1px;
+    --lw-input-radius: 3px;
+    --lw-input-shadow: none;
+    --lw-input-weight: normal;
+    --lw-input-focus: var(--lw-accent);
+    --lw-input-hover: var(--lw-input-focus);
+    --lw-input-focus-bg: var(--lw-input-bg);
+    --lw-input-focus-shadow: 0 0 0 1px var(--lw-input-focus);
+    --lw-input-focus-transform: none;
+    /* Knöpfe (wie die Hinweis-Knöpfe, je Theme angepasst) */
+    --lw-btn-bg: var(--lw-accent);
+    --lw-btn-fg: var(--lw-accent-fg);
+    --lw-btn-hover-bg: var(--lw-btn-bg);
+    --lw-btn-border: none;
+    --lw-btn-radius: var(--lw-radius-sm);
+    --lw-btn-shadow: none;
+    --lw-btn-font: var(--lw-font);
+    --lw-btn-weight: 600;
+    /* Checkboxen, Radioknöpfe, Schieberegler */
+    accent-color: var(--lw-accent);
 }
 
 html[data-lw-theme] body {
@@ -297,10 +321,86 @@ html[data-lw-theme] hint.expanded {
     border-left-color: var(--lw-border);
 }
 
+/* --- Formularelemente aus Playgrounds, Bibliotheken und Textblöcken ---
+   Ohne eigene Gestaltung folgen Knöpfe und Eingabefelder im Inhaltsbereich dem gewählten Theme statt den
+   Browser-Voreinstellungen. Spezifität (0,0,2): stärker als die Tailwind-Basis der Codeblocks (button, input, …),
+   schwächer als jede Klasse, mit der eine Bibliothek oder ein Playground selbst gestaltet. Ausgenommen sind die
+   Oberfläche der Codeblocks (tw-Klassen, CodeMirror) und die eigens gestalteten Tabs, Hinweise und Quizze. */
+:where(html[data-lw-theme]) div:where(#content) input:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *, [type=checkbox], [type=radio], [type=range], [type=color], [type=file], [type=image], [type=hidden], [type=button], [type=submit], [type=reset])),
+:where(html[data-lw-theme]) div:where(#content) select:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)),
+:where(html[data-lw-theme]) div:where(#content) textarea:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)) {
+    padding: 3px 8px;
+    border: var(--lw-input-border-width) solid var(--lw-input-border);
+    border-radius: var(--lw-input-radius);
+    background-color: var(--lw-input-bg);
+    color: var(--lw-input-fg);
+    box-shadow: var(--lw-input-shadow);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: var(--lw-input-weight);
+    caret-color: var(--lw-input-focus);
+    transition: border-color 0.12s, box-shadow 0.12s, background-color 0.12s, transform 0.12s;
+}
+
+:where(html[data-lw-theme]) div:where(#content) input:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *, [type=checkbox], [type=radio], [type=range], [type=color], [type=file], [type=image], [type=hidden], [type=button], [type=submit], [type=reset])):hover,
+:where(html[data-lw-theme]) div:where(#content) select:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)):hover,
+:where(html[data-lw-theme]) div:where(#content) textarea:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)):hover {
+    border-color: var(--lw-input-hover);
+}
+
+:where(html[data-lw-theme]) div:where(#content) input:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *, [type=checkbox], [type=radio], [type=range], [type=color], [type=file], [type=image], [type=hidden], [type=button], [type=submit], [type=reset])):focus,
+:where(html[data-lw-theme]) div:where(#content) select:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)):focus,
+:where(html[data-lw-theme]) div:where(#content) textarea:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)):focus {
+    outline: none;
+    border-color: var(--lw-input-focus);
+    background-color: var(--lw-input-focus-bg);
+    box-shadow: var(--lw-input-focus-shadow);
+    transform: var(--lw-input-focus-transform);
+}
+
+/* Eigener Pfeil statt des nativen, der in Chrome direkt am Rand klebt; currentColor folgt dem Theme
+   (wie in css/uebungsplaner.css) */
+:where(html[data-lw-theme]) div:where(#content) select:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)) {
+    appearance: none;
+    padding-right: 30px;
+    background-image:
+        linear-gradient(45deg, transparent calc(50% - 1px), currentColor calc(50% - 1px), currentColor calc(50% + 1px), transparent calc(50% + 1px)),
+        linear-gradient(135deg, transparent calc(50% - 1px), currentColor calc(50% - 1px), currentColor calc(50% + 1px), transparent calc(50% + 1px));
+    background-position: right 16px center, right 10px center;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+}
+
+:where(html[data-lw-theme]) div:where(#content) button:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)),
+:where(html[data-lw-theme]) div:where(#content) input:where([type=button], [type=submit], [type=reset]):where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)) {
+    padding: 4px 14px;
+    border: var(--lw-btn-border);
+    border-radius: var(--lw-btn-radius);
+    background: var(--lw-btn-bg);
+    color: var(--lw-btn-fg);
+    box-shadow: var(--lw-btn-shadow);
+    font-family: var(--lw-btn-font);
+    font-size: 14px;
+    font-weight: var(--lw-btn-weight);
+    cursor: pointer;
+}
+
+:where(html[data-lw-theme]) div:where(#content) button:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)):hover:enabled,
+:where(html[data-lw-theme]) div:where(#content) input:where([type=button], [type=submit], [type=reset]):where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)):hover:enabled {
+    background: var(--lw-btn-hover-bg);
+}
+
+:where(html[data-lw-theme]) div:where(#content) button:where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)):disabled,
+:where(html[data-lw-theme]) div:where(#content) input:where([type=button], [type=submit], [type=reset]):where(:not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *)):disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* --- Tabs --- */
 html[data-lw-theme] tabbar.code {
     padding: 0;
-    overflow: hidden;
+    /* clip (not hidden): hidden makes the tabbar a scroll container, which breaks the sticky (pinned) runner */
+    overflow: clip;
 }
 
 html[data-lw-theme] tabbar>div.buttonbar {
@@ -387,57 +487,69 @@ html[data-lw-theme] .quiz {
     --quiz-mono: var(--lw-mono);
     --quiz-fg: var(--lw-fg);
     --quiz-muted: var(--lw-muted);
-    --quiz-input-bg: var(--lw-surface-solid, var(--lw-surface));
+    --quiz-input-bg: var(--lw-input-bg);
+    --quiz-input-fg: var(--lw-input-fg);
+    --quiz-input-border: var(--lw-input-border);
+    --quiz-input-border-width: var(--lw-input-border-width);
+    --quiz-input-radius: var(--lw-input-radius);
+    --quiz-input-shadow: var(--lw-input-shadow);
+    --quiz-input-weight: var(--lw-input-weight);
+    --quiz-input-hover: var(--lw-input-hover);
+    --quiz-input-focus: var(--lw-input-focus);
+    --quiz-input-focus-bg: var(--lw-input-focus-bg);
+    --quiz-input-focus-shadow: var(--lw-input-focus-shadow);
+    --quiz-input-focus-transform: var(--lw-input-focus-transform);
 }
 
-/* Eingabefelder aller Quiz-Typen (Ausgabe-Lücken, Graph- und Zahlentabellen) je Theme */
-html[data-lw-theme="heft"] .quiz {
-    --quiz-input-bg: #fffdf8;
-    --quiz-input-border: #cfc4ac;
-    --quiz-input-radius: 2px;
-    --quiz-input-focus: #2d2a24;
-    --quiz-input-focus-bg: #fff3a8; /* Textmarker */
+/* Eingabefelder je Theme: gelten für die Quiz-Typen (Ausgabe-Lücken, Graph- und Zahlentabellen) und für alle
+   Eingabefelder aus Playgrounds, Bibliotheken und Textblöcken (siehe "Formularelemente") */
+html[data-lw-theme="heft"] {
+    --lw-input-bg: #fffdf8;
+    --lw-input-border: #cfc4ac;
+    --lw-input-radius: 2px;
+    --lw-input-focus: #2d2a24;
+    --lw-input-focus-bg: #fff3a8; /* Textmarker */
 }
 
-html[data-lw-theme="klassisch"] .quiz {
-    --quiz-input-border: #c6bbb2;
-    --quiz-input-border-width: 1.5px;
-    --quiz-input-radius: 6px;
-    --quiz-input-focus: #1a1614;
-    --quiz-input-focus-shadow: 0 0 0 3px rgb(26 22 20 / 0.12);
+html[data-lw-theme="klassisch"] {
+    --lw-input-border: #c6bbb2;
+    --lw-input-border-width: 1.5px;
+    --lw-input-radius: 6px;
+    --lw-input-focus: #1a1614;
+    --lw-input-focus-shadow: 0 0 0 3px rgb(26 22 20 / 0.12);
 }
 
-html[data-lw-theme="karten"] .quiz {
-    --quiz-input-border: #d5d9e2;
-    --quiz-input-radius: 6px;
-    --quiz-input-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
-    --quiz-input-focus: #4f46e5;
-    --quiz-input-focus-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+html[data-lw-theme="karten"] {
+    --lw-input-border: #d5d9e2;
+    --lw-input-radius: 6px;
+    --lw-input-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+    --lw-input-focus: #4f46e5;
+    --lw-input-focus-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
 }
 
-html[data-lw-theme="terminal"] .quiz {
-    --quiz-input-bg: #1e2636;
-    --quiz-input-fg: #e2f7ec;
-    --quiz-input-border: #56637d;
-    --quiz-input-radius: 4px;
-    --quiz-input-focus: #34d399;
-    --quiz-input-focus-bg: #10201a;
-    --quiz-input-focus-shadow: 0 0 0 1px #34d399, 0 0 10px rgba(52, 211, 153, 0.35);
+html[data-lw-theme="terminal"] {
+    --lw-input-bg: #1e2636;
+    --lw-input-fg: #e2f7ec;
+    --lw-input-border: #56637d;
+    --lw-input-radius: 4px;
+    --lw-input-focus: #34d399;
+    --lw-input-focus-bg: #10201a;
+    --lw-input-focus-shadow: 0 0 0 1px #34d399, 0 0 10px rgba(52, 211, 153, 0.35);
 }
 
 /* kräftig: dicker Rand, harter Schatten, beim Fokus gelb hinterlegt und leicht angehoben */
-html[data-lw-theme="abenteuer"] .quiz {
-    --quiz-input-bg: #ffffff;
-    --quiz-input-border: #111111;
-    --quiz-input-border-width: 2px;
-    --quiz-input-radius: 6px;
-    --quiz-input-shadow: 2px 2px 0 #111111;
-    --quiz-input-weight: 700;
-    --quiz-input-hover: #111111;
-    --quiz-input-focus: #111111;
-    --quiz-input-focus-bg: #fff4b8;
-    --quiz-input-focus-shadow: 3px 3px 0 #111111;
-    --quiz-input-focus-transform: translate(-1px, -1px);
+html[data-lw-theme="abenteuer"] {
+    --lw-input-bg: #ffffff;
+    --lw-input-border: #111111;
+    --lw-input-border-width: 2px;
+    --lw-input-radius: 6px;
+    --lw-input-shadow: 2px 2px 0 #111111;
+    --lw-input-weight: 700;
+    --lw-input-hover: #111111;
+    --lw-input-focus: #111111;
+    --lw-input-focus-bg: #fff4b8;
+    --lw-input-focus-shadow: 3px 3px 0 #111111;
+    --lw-input-focus-transform: translate(-1px, -1px);
 }
 
 /* in der dichten Dijkstra-Tabelle rahmen schon die Zellen: Schatten erst beim Fokus */
@@ -447,24 +559,24 @@ html[data-lw-theme="abenteuer"] .quiz-graph-table {
 }
 
 /* Schweizer Raster: eckig, schwarzer Rand, Fokus als roter Balken unten */
-html[data-lw-theme="raster"] .quiz {
-    --quiz-input-bg: #ffffff;
-    --quiz-input-border: #111111;
-    --quiz-input-radius: 0;
-    --quiz-input-hover: #e30613;
-    --quiz-input-focus: #e30613;
-    --quiz-input-focus-shadow: inset 0 -3px 0 #e30613;
+html[data-lw-theme="raster"] {
+    --lw-input-bg: #ffffff;
+    --lw-input-border: #111111;
+    --lw-input-radius: 0;
+    --lw-input-hover: #e30613;
+    --lw-input-focus: #e30613;
+    --lw-input-focus-shadow: inset 0 -3px 0 #e30613;
 }
 
 /* Kreide: halbtransparent, leicht unregelmäßige Ecken */
-html[data-lw-theme="tafel"] .quiz {
-    --quiz-input-bg: rgba(255, 255, 255, 0.1);
-    --quiz-input-fg: #ffffff;
-    --quiz-input-border: rgba(255, 255, 255, 0.55);
-    --quiz-input-border-width: 1.5px;
-    --quiz-input-radius: 6px 3px 7px 2px / 3px 6px 2px 7px;
-    --quiz-input-focus: #f7d774;
-    --quiz-input-focus-bg: rgba(247, 215, 116, 0.12);
+html[data-lw-theme="tafel"] {
+    --lw-input-bg: rgba(255, 255, 255, 0.1);
+    --lw-input-fg: #ffffff;
+    --lw-input-border: rgba(255, 255, 255, 0.55);
+    --lw-input-border-width: 1.5px;
+    --lw-input-radius: 6px 3px 7px 2px / 3px 6px 2px 7px;
+    --lw-input-focus: #f7d774;
+    --lw-input-focus-bg: rgba(247, 215, 116, 0.12);
 }
 
 /* Richtig/falsch-Markierung (Eingabefelder, Kanten-/Knotenlisten, Mengen, Parsons-Zeilen, Rückmeldung) je Theme.
@@ -712,6 +824,8 @@ html[data-lw-theme="heft"] {
     /* Codeblocks (shadcn-Variablen) */
     --primary: 43 11% 16%;
     --primary-foreground: 40 100% 99%;
+    --destructive: 6 59% 44%;
+    --destructive-foreground: 40 100% 99%;
 }
 
 html[data-lw-theme="heft"] .lw-crumb {
@@ -802,6 +916,10 @@ html[data-lw-theme="klassisch"] {
     --lw-editor-border-width: 1.5px;
     --primary: 20 13% 9%;
     --primary-foreground: 0 0% 100%;
+    --destructive: 12 59% 38%;
+    --destructive-foreground: 0 0% 100%;
+    /* Knöpfe aus Playgrounds und Textblöcken (wie die Hinweis-Knöpfe) */
+    --lw-btn-radius: 10px;
     --radius: 0.625rem;
 }
 
@@ -1004,6 +1122,8 @@ html[data-lw-theme="karten"] {
     --lw-exp-item-border: 1px solid #efe6fd;
     --primary: 243 75% 59%;
     --primary-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 }
 
 html[data-lw-theme="karten"] div.topbar>a.backlink {
@@ -1142,6 +1262,10 @@ html[data-lw-theme="terminal"] {
     --lw-topbar-border: 1px solid #1c2230;
     --primary: 158 64% 52%;
     --primary-foreground: 160 65% 5%;
+    --destructive: 0 91% 71%;
+    --destructive-foreground: 0 0% 7%;
+    /* Knöpfe aus Playgrounds und Textblöcken (wie die Hinweis-Knöpfe) */
+    --lw-btn-font: var(--lw-mono);
 }
 
 html[data-lw-theme="terminal"] div.topbar {
@@ -1284,7 +1408,8 @@ html[data-lw-theme="terminal"] tabbar>div.buttonbar button.active {
 }
 
 html[data-lw-theme="terminal"] .hint-container button,
-html[data-lw-theme="terminal"] [codeblocks] .tw-bg-primary {
+html[data-lw-theme="terminal"] [codeblocks] .tw-bg-primary,
+html[data-lw-theme="terminal"] [codeblocks] .tw-bg-destructive {
     font-family: var(--lw-mono);
 }
 
@@ -1324,6 +1449,14 @@ html[data-lw-theme="abenteuer"] {
     --lw-editor-border-width: 2.5px;
     --primary: 147 69% 55%;
     --primary-foreground: 0 0% 7%;
+    --destructive: 0 100% 71%;
+    --destructive-foreground: 0 0% 7%;
+    /* Knöpfe aus Playgrounds und Textblöcken (wie die Hinweis-Knöpfe) */
+    --lw-btn-bg: #ffd23f;
+    --lw-btn-fg: #111;
+    --lw-btn-border: 2px solid #111;
+    --lw-btn-shadow: 3px 3px 0 #111;
+    --lw-btn-weight: 800;
     --radius: 0.625rem;
 }
 
@@ -1481,6 +1614,7 @@ html[data-lw-theme="abenteuer"] tabbar>div.buttonbar button.active {
 }
 
 html[data-lw-theme="abenteuer"] [codeblocks] .tw-bg-primary,
+html[data-lw-theme="abenteuer"] [codeblocks] .tw-bg-destructive,
 html[data-lw-theme="abenteuer"] .hint-container button {
     border: 2px solid #111;
     box-shadow: 3px 3px 0 #111;
@@ -1524,6 +1658,10 @@ html[data-lw-theme="raster"] {
     --lw-editor-border: #111;
     --primary: 0 0% 7%;
     --primary-foreground: 0 0% 100%;
+    --destructive: 356 95% 46%;
+    --destructive-foreground: 0 0% 100%;
+    /* Knöpfe aus Playgrounds und Textblöcken (wie die Hinweis-Knöpfe) */
+    --lw-btn-hover-bg: #111;
     --radius: 0;
 }
 
@@ -1676,7 +1814,8 @@ html[data-lw-theme="raster"] div#content>tabbar.code>div[data-tab] {
     padding: 0;
 }
 
-html[data-lw-theme="raster"] [codeblocks] .tw-bg-primary {
+html[data-lw-theme="raster"] [codeblocks] .tw-bg-primary,
+html[data-lw-theme="raster"] [codeblocks] .tw-bg-destructive {
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1786,6 +1925,11 @@ html[data-lw-theme="tafel"] {
     --lw-experiment: #f4a6c6;
     --primary: 45 89% 71%;
     --primary-foreground: 147 21% 14%;
+    --destructive: 5 81% 73%;
+    --destructive-foreground: 147 21% 14%;
+    /* Knöpfe aus Playgrounds und Textblöcken (wie die Hinweis-Knöpfe) */
+    --lw-btn-font: var(--lw-font-head);
+    --lw-btn-weight: 700;
 }
 
 html[data-lw-theme="tafel"] body {
@@ -1910,6 +2054,7 @@ html[data-lw-theme="tafel"] tabbar>div[data-tab] {
 }
 
 html[data-lw-theme="tafel"] [codeblocks] .tw-bg-primary,
+html[data-lw-theme="tafel"] [codeblocks] .tw-bg-destructive,
 html[data-lw-theme="tafel"] .hint-container button {
     font-family: var(--lw-font-head);
     font-weight: 700;
@@ -1958,6 +2103,10 @@ html[data-lw-theme="prisma"] {
     --lw-editor-border: #d9d3ee;
     --primary: 263 70% 50%;
     --primary-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    /* Knöpfe aus Playgrounds und Textblöcken (wie die Hinweis-Knöpfe) */
+    --lw-btn-hover-bg: linear-gradient(90deg, #dc2626, #ea580c, #16a34a, #2563eb, #7c3aed);
     --radius: 0.625rem;
 }
 
@@ -2066,12 +2215,12 @@ html[data-lw-theme="prisma"] .hint-container button:hover {
 }
 
 /* Quiz */
-html[data-lw-theme="prisma"] .quiz {
-    --quiz-input-border: #d9d3ee;
-    --quiz-input-border-width: 1.5px;
-    --quiz-input-radius: 8px;
-    --quiz-input-focus: #7c3aed;
-    --quiz-input-focus-shadow: 0 0 0 3px rgb(139 92 246 / 0.22);
+html[data-lw-theme="prisma"] {
+    --lw-input-border: #d9d3ee;
+    --lw-input-border-width: 1.5px;
+    --lw-input-radius: 8px;
+    --lw-input-focus: #7c3aed;
+    --lw-input-focus-shadow: 0 0 0 3px rgb(139 92 246 / 0.22);
 }
 
 html[data-lw-theme="prisma"] .quiz-graphs {
