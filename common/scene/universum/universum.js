@@ -38,6 +38,9 @@ export default {
         } else if (cmd.command === 'Rocket') {
             const rocket = $('<div class="rocket fallen animated"></div>')
             rocket.attr('data-id', cmd.id)
+            // Color.RED (0, default), PURPLE, BLUE, PINK, WHITE -> class color_<name> (images in universum.css)
+            const color = ['red', 'purple', 'blue', 'pink', 'white'][cmd.color] || 'red'
+            rocket.addClass(`color_${color}`)
             this.entities[cmd.id] = {
                 element: rocket,
                 planet: -1,

@@ -25,8 +25,17 @@ export default {
 
     getResources: function () {
         const meta = document.head.querySelector('meta[name="codeblocks-baseurl"]')
-        const base = (meta ? meta.getAttribute('content') : '../../') + 'common/scene/cherrygame/img/'
-        return ['cherry', 'red', 'pink', 'monster', 'redGhost', 'pinkGhost'].map(name => ({ uri: base + name + '.png', type: 'image', name: name + 'Img' }))
+        const base = (meta ? meta.getAttribute('content') : '../../') + 'assets/'
+        // the players, ghosts and the cherry are shared with the Floating World scene
+        const files = {
+            cherry: 'floatingworld/Cherry.png',
+            red: 'floatingworld/Player2.png',
+            pink: 'floatingworld/Player1.png',
+            monster: 'cherrygame/monster.png',
+            redGhost: 'floatingworld/Ghost2.png',
+            pinkGhost: 'floatingworld/Ghost1.png',
+        }
+        return Object.entries(files).map(([name, file]) => ({ uri: base + file, type: 'image', name: name + 'Img' }))
     },
 
     setupDOM: function () { },

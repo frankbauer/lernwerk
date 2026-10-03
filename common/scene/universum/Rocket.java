@@ -1,9 +1,19 @@
 class Rocket extends Entity {
     private Planet planet;
     private int launchTime;
+    private final int color;
 
     public Rocket() {
-        Universe.commands.add("{\"command\":\"Rocket\", \"id\": " + id + "}");
+        this(Color.RED);
+    }
+
+    public Rocket(int color) {
+        if (color < Color.RED || color > Color.WHITE) {
+            System.err.println("Invalid rocket color!");
+            color = Color.RED;
+        }
+        this.color = color;
+        Universe.commands.add("{\"command\":\"Rocket\", \"color\": " + color + ", \"id\": " + id + "}");
     }
 
     public void setLocationRelativeTo(Planet planet, double offsetX, double offsetY) {
@@ -25,6 +35,6 @@ class Rocket extends Entity {
             x += planet.x;
             y += planet.y;
         }
-        return "{\"class\":\"Rocket\", \"x\": " + x + ", \"y\": " + y + ", \"launchTime\": " + launchTime + ", \"id\": " + id + "}";
+        return "{\"class\":\"Rocket\", \"x\": " + x + ", \"y\": " + y + ", \"launchTime\": " + launchTime + ", \"color\": " + color + ", \"id\": " + id + "}";
     }
 }

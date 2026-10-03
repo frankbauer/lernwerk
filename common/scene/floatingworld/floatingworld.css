@@ -3,13 +3,16 @@
     --cb-fw-width: 550px;
     --cb-fw-height: 609px;
     --cb-fw-padding: 10px;
-    
+    /* extra space left and right of the island; everything inside is shifted by it */
+    --cb-fw-offset-x: 160px;
+
     position: relative;
-    width: calc(var(--cb-fw-width) + 2 * var(--cb-fw-padding));
+    width: calc(var(--cb-fw-width) + 2 * var(--cb-fw-padding) + 2 * var(--cb-fw-offset-x));
     height: calc(var(--cb-fw-height) + 2 * var(--cb-fw-padding));
 
-    background-image: url("./img/Background.jpg");
-    background-size: cover;
+    background-image: url("../../../assets/floatingworld/Background.jpg");
+    /* Background.jpg has exactly the frame size (890x629): the whole gradient is visible */
+    background-size: 100% 100%;
     border-radius: 8px;
     overflow: hidden;
     transform-origin: top left;
@@ -41,14 +44,14 @@ div#content .playground {
 }
 
 #floatingworld .cloud.a {
-    background-image: url("./img/Cloud2.png");
+    background-image: url("../../../assets/floatingworld/Cloud2.png");
     width: 150px;
     height: 64px;
     animation-name: moveCloudA;
 }
 
 #floatingworld .cloud.b {
-    background-image: url("./img/Cloud3.png");
+    background-image: url("../../../assets/floatingworld/Cloud3.png");
     width: 115px;
     height: 54px;
     animation-name: moveCloudB;
@@ -82,7 +85,7 @@ div#content .playground {
     }
 
     100% {
-        left: var(--cb-fw-width);
+        left: calc(var(--cb-fw-width) + 2 * var(--cb-fw-padding) + 2 * var(--cb-fw-offset-x));
     }
 }
 
@@ -92,13 +95,13 @@ div#content .playground {
     }
 
     100% {
-        left: var(--cb-fw-width);
+        left: calc(var(--cb-fw-width) + 2 * var(--cb-fw-padding) + 2 * var(--cb-fw-offset-x));
     }
 }
 
 #floatingworld .islandcontainer {
     position: absolute;
-    left: var(--cb-fw-padding);
+    left: calc(var(--cb-fw-padding) + var(--cb-fw-offset-x));
     top: var(--cb-fw-padding);
     width: var(--cb-fw-width);
     height: var(--cb-fw-height);
@@ -108,7 +111,7 @@ div#content .playground {
 
 #floatingworld .island {
     position: absolute;
-    background-image: url("./img/World.png");
+    background-image: url("../../../assets/floatingworld/World.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: center;
@@ -122,8 +125,8 @@ div#content .playground {
 }
 
 #floatingworld .island.ghost {
-    background-image: url("./img/GhostWorld.png");
-    left: calc(var(--cb-fw-padding) + (var(--cb-fw-width) - 554px)/2);
+    background-image: url("../../../assets/floatingworld/GhostWorld.png");
+    left: calc(var(--cb-fw-padding) + var(--cb-fw-offset-x) + (var(--cb-fw-width) - 554px)/2);
     top: calc(var(--cb-fw-padding) + (var(--cb-fw-height) - 613px)/2);
     width: 554px;
     height: 613px;
@@ -132,7 +135,7 @@ div#content .playground {
 
 #floatingworld .tree {
     position: absolute;
-    background-image: url("./img/Tree.png");
+    background-image: url("../../../assets/floatingworld/Tree.png");
     background-repeat: no-repeat;
     background-size: contain;
 
@@ -152,7 +155,7 @@ div#content .playground {
 }
 
 #floatingworld .grass.a {
-    background-image: url("./img/Gras1.png");
+    background-image: url("../../../assets/floatingworld/Gras1.png");
     width: 20px;
     height: 9px;
     z-index: 130;
@@ -165,7 +168,7 @@ div#content .playground {
 }
 
 #floatingworld .grass.b {
-    background-image: url("./img/Gras2.png");
+    background-image: url("../../../assets/floatingworld/Gras2.png");
     width: 31px;
     height: 14px;
     z-index: 140;
@@ -179,19 +182,46 @@ div#content .playground {
 
 #floatingworld .stone {
     position: absolute;
-    background-image: url("./img/Stone.png");
+    background-image: url("../../../assets/floatingworld/Stone.png");
     background-repeat: no-repeat;
     background-size: contain;
 
     width: 67px;
     height: 37px;
-    z-index: 150;
+    /* in front of all players (up to 160), behind the cherry (170) */
+    z-index: 165;
 
     left: calc(67px / -2);
     top: -47px;
 
     transform-origin: center bottom;
-    transform: translateX(150px) translateY(398px);
+    /* scene coordinates like players and cherry (= island position 150/398 + padding) */
+    transform: translateX(160px) translateY(408px);
+}
+
+#floatingworld .player.c.ghost {
+    background-image: url("../../../assets/floatingworld/Ghost3.png");
+    width: 117px;
+    height: 208px;
+    left: calc(113px / -2 - 2px);
+    top: -206px;
+    z-index: 149;
+}
+
+#floatingworld .player.d.ghost {
+    background-image: url("../../../assets/floatingworld/Ghost4.png");
+    width: 140px;
+    height: 208px;
+    left: calc(136px / -2 - 2px);
+    top: -206px;
+    z-index: 144;
+}
+
+#floatingworld .player,
+#floatingworld .cherry,
+#floatingworld .stone {
+    /* players, cherry and stone use scene coordinates (translate x/y): shift them with the island */
+    margin-left: var(--cb-fw-offset-x);
 }
 
 #floatingworld .player {
@@ -201,7 +231,7 @@ div#content .playground {
 }
 
 #floatingworld .player.a {
-    background-image: url("./img/Player1.png");
+    background-image: url("../../../assets/floatingworld/Player1.png");
     width: 122px;
     height: 204px;
     left: calc(122px / -2);
@@ -212,7 +242,7 @@ div#content .playground {
 }
 
 #floatingworld .player.b {
-    background-image: url("./img/Player2.png");
+    background-image: url("../../../assets/floatingworld/Player2.png");
     width: 129px;
     height: 204px;
     left: calc(129px / -2);
@@ -222,8 +252,28 @@ div#content .playground {
     z-index: 140;
 }
 
+#floatingworld .player.c {
+    background-image: url("../../../assets/floatingworld/Player3.png");
+    width: 113px;
+    height: 204px;
+    left: calc(113px / -2);
+    top: -204px;
+    transform-origin: center bottom;
+    z-index: 150;
+}
+
+#floatingworld .player.d {
+    background-image: url("../../../assets/floatingworld/Player4.png");
+    width: 136px;
+    height: 204px;
+    left: calc(136px / -2);
+    top: -204px;
+    transform-origin: center bottom;
+    z-index: 145;
+}
+
 #floatingworld .player.a.ghost {
-    background-image: url("./img/Ghost1.png");
+    background-image: url("../../../assets/floatingworld/Ghost1.png");
     width: 125px;
     left: calc(122px / -2 - 3px);
     top: -205px;
@@ -231,7 +281,7 @@ div#content .playground {
 }
 
 #floatingworld .player.b.ghost {
-    background-image: url("./img/Ghost2.png");
+    background-image: url("../../../assets/floatingworld/Ghost2.png");
     width: 132px;
     height: 203px;
     left: calc(122px / -2 - 4.5px);
@@ -245,7 +295,7 @@ div#content .playground {
     background-size: contain;
     width: 64px;
     height: 67px;
-    background-image: url("./img/Cherry.png");
+    background-image: url("../../../assets/floatingworld/Cherry.png");
 
     left: calc(64px / -2);
     top: -77px;

@@ -115,8 +115,12 @@ export default {
         }
 
         if (cmdName === 'show') {
-            const worldElement = $('<div class="islandcontainer animated fast"><div class="island"></div><div class="tree"></div><div class="grass a"></div><div class="grass b"></div><div class="stone"></div></div><div class="cherry animated"></div>')
+            // the stone is not part of the island container: it has to render in front of the players
+            // (the container is its own stacking context), so it is linked to the island like the cherry
+            const worldElement = $('<div class="islandcontainer animated fast"><div class="island"></div><div class="tree"></div><div class="grass a"></div><div class="grass b"></div></div><div class="stone animated fast"></div><div class="cherry animated"></div>')
             this.world.append(worldElement)
+            // drifting clouds (see .cloud in floatingworld.css): l1/l2 pass in front of the island, l3 behind it
+            this.world.append($('<div class="cloud a l1"></div><div class="cloud b l2"></div><div class="cloud b l3"></div>'))
 
             this.objects['cherry'] = {
                 element: this.world.find('.cherry'),
@@ -126,12 +130,19 @@ export default {
                 linkedWith: [],
                 isPicked: false
             }
+            this.objects['stone'] = {
+                element: this.world.find('.stone'),
+                x: 160,
+                y: 408,
+                type: 'Stone',
+                linkedWith: []
+            }
             this.objects['island'] = {
                 element: this.world.find('.islandcontainer'),
                 x: 0,
                 y: 0,
                 type: 'Island',
-                linkedWith: [this.objects['cherry']]
+                linkedWith: [this.objects['cherry'], this.objects['stone']]
             }
         } else if (cmdName === 'new') {
             hasDelay = false
@@ -141,11 +152,18 @@ export default {
                 this.objects[cmd.object.id].linkedWith = []
                 this.objects[cmd.object.id].element = undefined
                 this.objects[cmd.object.id].ghost = undefined
+                // look by creation order: 1st..4th player get Player1..Player4 (classes a..d), then it repeats
+                this.objects[cmd.object.id].look = ['a', 'b', 'c', 'd'][this.playerCount % 4]
                 if (this.playerCount === 0) {
                     this.objects[cmd.object.id].x = 480
                     this.objects[cmd.object.id].y = 390
                 } else if (this.playerCount === 1) {
                     this.objects[cmd.object.id].x = 80
+                    this.objects[cmd.object.id].y = 390
+                } else if (this.playerCount === 2 || this.playerCount === 3) {
+                    // 3rd and 4th player stand between player 2 and 1, left of the cherry
+                    // (x = 340; a player closer than 64 would pick it up right away)
+                    this.objects[cmd.object.id].x = this.playerCount === 2 ? 175 : 265
                     this.objects[cmd.object.id].y = 390
                 } else {
                     this.objects[cmd.object.id].x = Math.random() * 400 + 80
@@ -162,7 +180,7 @@ export default {
                 player.element = playerElement
                 playerElement.addClass('player')
                 playerElement.addClass('transparent')
-                playerElement.addClass(((player.playerType % 2) === 0) ? 'a' : 'b')
+                playerElement.addClass(player.look)
                 playerElement.css('transform', `translate(${player.x}px, ${player.y}px)`)
                 this.world.append(playerElement)
                 playerElement.addClass('animated')
@@ -222,7 +240,7 @@ export default {
                         type: 'Player'
                     }
                     player.ghost.element.addClass('player ghost animated transparent')
-                    player.ghost.element.addClass(((player.playerType % 2) === 0) ? 'a' : 'b')
+                    player.ghost.element.addClass(player.look)
                     player.ghost.element.css('transform', `translate(${player.x}px, ${player.y}px)`)
                     this.world.append(player.ghost.element)
                     setTimeout(() => {

@@ -5,7 +5,7 @@ class Wiese {
     private static final int FELS = 3;
     private static final int GESCHMOLZEN = 4;
 
-    private static final String BILDER = "../../common/scene/schnee/img/";
+    private static final String BILDER = "@assets/snowmeadow/";
     private static final int FRAMES = 30;
     private static final double SCHMELZDAUER = 1.4;
 
@@ -125,7 +125,7 @@ class Wiese {
         testZeit = new double[zeilen][spalten];
         schmelzZeit = new double[zeilen][spalten];
 
-        Image schneemann = new Image(BILDER + "schneemann.webp");
+        Image schneemann = new Image(BILDER + "snowman.webp");
         Image deko = new Image(BILDER + "deko.webp");
         sprites = new Sprite[zeilen][spalten];
         for (int r = 0; r < zeilen; r++) {

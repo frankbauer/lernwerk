@@ -97,9 +97,15 @@ export default {
                 }
                 newObjElement.addClass('animated fast')
 
-                obj.element = newObjElement
+                // foreground layer of the room, rendered in front of the robots (see .room.foreground)
+                const foregroundElement = $(document.createElement('div'))
+                foregroundElement.addClass('room foreground animated fast')
+                if (!obj.visible) foregroundElement.addClass('transparent')
+
+                obj.element = newObjElement.add(foregroundElement)
                 obj.robots = []
                 this.factory.append(newObjElement)
+                this.factory.append(foregroundElement)
                 this.factory.addClass('with-room')
 
                 if (this.renderTimer === undefined) {

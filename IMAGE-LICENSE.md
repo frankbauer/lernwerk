@@ -4,24 +4,10 @@ You are allowed to use those assets in the scope of this project. You are NOT AL
 
 The images are not part of this repository. They are distributed separately as
 `lernwerk-licensed-assets.zip`, see the section *Licensed assets* in `README.md`.
-Derived images (e.g. `pinkGhost.png`, an outline version of a Freepik ghost) are
-covered by the same license.
+Derived images (e.g. an outline version of a Freepik image) are covered by the
+same license.
 
 List of files (folder names could change):
-./common/scene/floatingworld/img/World.png
-./common/scene/floatingworld/img/GhostWorld.png
-./common/scene/floatingworld/img/Cloud3.png
-./common/scene/floatingworld/img/Cloud2.png
-./common/scene/floatingworld/img/Player2.png
-./common/scene/floatingworld/img/Player1.png
-./common/scene/floatingworld/img/Background.jpg
-./common/scene/floatingworld/img/Cherry.png
-./common/scene/floatingworld/img/Gras2.png
-./common/scene/floatingworld/img/Stone.png
-./common/scene/floatingworld/img/Gras1.png
-./common/scene/floatingworld/img/Tree.png
-./common/scene/floatingworld/img/Ghost1.png
-./common/scene/floatingworld/img/Ghost2.png
 ./common/scene/hill/img/tree.stylized.08.png
 ./common/scene/hill/img/tree.stylized.09.png
 ./common/scene/hill/img/sky.jpg
@@ -39,19 +25,6 @@ List of files (folder names could change):
 ./common/scene/hill/img/tree.stylized.15.png
 ./common/scene/hill/img/tree.stylized.14.png
 ./common/scene/hill/img/tree.stylized.00.png
-./common/scene/robots/img/robot.003.png
-./common/scene/robots/img/robot.002.png
-./common/scene/robots/img/robot.001.png
-./common/scene/robots/img/room.jpg
-./common/scene/robots/img/robot.005.png
-./common/scene/robots/img/robot.011.png
-./common/scene/robots/img/robot.010.png
-./common/scene/robots/img/robot.004.png
-./common/scene/robots/img/robot.012.png
-./common/scene/robots/img/robot.006.png
-./common/scene/robots/img/robot.007.png
-./common/scene/robots/img/robot.009.png
-./common/scene/robots/img/robot.008.png
 ./common/scene/tree/img/tree.summer.png
 ./common/scene/tree/img/tree.winter.png
 ./common/scene/tree/img/tree.spring.png
@@ -59,16 +32,3 @@ List of files (folder names could change):
 ./common/scene/tree/img/stage.png
 ./common/scene/tree/img/tree.lateautumn.png
 ./common/scene/tree/img/tree.autumn.png
-./common/scene/universum/img/rocket.off.png
-./common/scene/universum/img/planet.png
-./common/scene/universum/img/rocket.0003.png
-./common/scene/universum/img/clouds.png
-./common/scene/universum/img/rocket.0002.png
-./common/scene/universum/img/rocket.0001.png
-./common/scene/universum/img/background.jpg
-./common/scene/cherrygame/img/red.png
-./common/scene/cherrygame/img/pink.png
-./common/scene/cherrygame/img/monster.png
-./common/scene/cherrygame/img/cherry.png
-./common/scene/cherrygame/img/redGhost.png
-./common/scene/cherrygame/img/pinkGhost.png

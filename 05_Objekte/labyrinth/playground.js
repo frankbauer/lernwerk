@@ -84,7 +84,7 @@ export default {
 
             if (self.maze[r][c]) {
                 const pattern = wallPattern(r - 1, c) + wallPattern(r, c + 1) + wallPattern(r + 1, c) + wallPattern(r, c - 1)
-                 td.css('background-image', `url(../../common/scene/maze/img/wall/${pattern}.png)`)
+                 td.css('background-image', `url(../../assets/maze/wall/${pattern}.png)`)
             } else {
                 td.css('background-image', 'none')
             }

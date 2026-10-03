@@ -1,18 +1,24 @@
 :root {
     --planet-size: 1286px;
-    --rocket-width: 65px;
-    --rocket-height: 125px;
+    --rocket-width: 78px;
+    --rocket-height: 144px;
 }
 
 .playground {
     position: relative;
 }
 
+/* the scene fills the playground: no white edge, the rounded corners clip the scene itself
+   (dark backing so the anti-aliased corners do not blend with white) */
+div.playground:has(> div.universe) {
+    background-color: #0b0f2a;
+}
+
 div.universe {
     position: relative;
     width: 640px;
     height: 400px;
-    background-image: url('img/background.jpg');
+    background-image: url('../../../assets/universum/background.png');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 50;
@@ -25,7 +31,7 @@ div.universe div.planet {
     aspect-ratio: 1 / 1;
     left: calc(var(--planet-size) / -2);
     top: calc(var(--planet-size) / -2);
-    background-image: url('img/planet.png');
+    background-image: url('../../../assets/universum/planet.png');
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 100;
@@ -34,6 +40,22 @@ div.universe div.planet {
 
 div.universe.simulate div.planet {
     animation: spin 1000s linear infinite;
+}
+
+/* day/night shadow: a static overlay above the spinning surface, below clouds and rockets
+   (counter-rotates inside the spinning planet, so it keeps facing the same way) */
+div.universe div.planet::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../../../assets/universum/shadow.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+div.universe.simulate div.planet::after {
+    animation: spin 1000s linear infinite reverse;
 }
 
 div.universe.simulate div.planet div.clouds {
@@ -46,7 +68,7 @@ div.universe div.planet div.clouds {
     aspect-ratio: 1 / 1;
     left: 0;
     top: 0;
-    background-image: url('img/clouds.png');
+    background-image: url('../../../assets/universum/clouds.png');
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 300;
@@ -68,7 +90,7 @@ div.rocket {
     height: var(--rocket-height);
     left: calc(var(--rocket-width) / -2);
     top: calc(var(--rocket-height) * -1);
-    background-image: url('img/rocket.off.png');
+    background-image: url('../../../assets/universum/rocket-red.off.png');
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 200;
@@ -76,16 +98,37 @@ div.rocket {
 }
 
 div.rocket.state_0 {
-    background-image: url('img/rocket.0001.png');
+    background-image: url('../../../assets/universum/rocket-red.0001.png');
 }
 
 div.rocket.state_1 {
-    background-image: url('img/rocket.0002.png');
+    background-image: url('../../../assets/universum/rocket-red.0002.png');
 }
 
 div.rocket.state_2 {
-    background-image: url('img/rocket.0003.png');
+    background-image: url('../../../assets/universum/rocket-red.0003.png');
 }
+
+/* rocket colours (Rocket(Color.X) -> class color_<x>), red is the default above */
+div.rocket.color_purple { background-image: url('../../../assets/universum/rocket-purple.off.png'); }
+div.rocket.color_purple.state_0 { background-image: url('../../../assets/universum/rocket-purple.0001.png'); }
+div.rocket.color_purple.state_1 { background-image: url('../../../assets/universum/rocket-purple.0002.png'); }
+div.rocket.color_purple.state_2 { background-image: url('../../../assets/universum/rocket-purple.0003.png'); }
+
+div.rocket.color_blue { background-image: url('../../../assets/universum/rocket-blue.off.png'); }
+div.rocket.color_blue.state_0 { background-image: url('../../../assets/universum/rocket-blue.0001.png'); }
+div.rocket.color_blue.state_1 { background-image: url('../../../assets/universum/rocket-blue.0002.png'); }
+div.rocket.color_blue.state_2 { background-image: url('../../../assets/universum/rocket-blue.0003.png'); }
+
+div.rocket.color_pink { background-image: url('../../../assets/universum/rocket-pink.off.png'); }
+div.rocket.color_pink.state_0 { background-image: url('../../../assets/universum/rocket-pink.0001.png'); }
+div.rocket.color_pink.state_1 { background-image: url('../../../assets/universum/rocket-pink.0002.png'); }
+div.rocket.color_pink.state_2 { background-image: url('../../../assets/universum/rocket-pink.0003.png'); }
+
+div.rocket.color_white { background-image: url('../../../assets/universum/rocket.off.png'); }
+div.rocket.color_white.state_0 { background-image: url('../../../assets/universum/rocket.0001.png'); }
+div.rocket.color_white.state_1 { background-image: url('../../../assets/universum/rocket.0002.png'); }
+div.rocket.color_white.state_2 { background-image: url('../../../assets/universum/rocket.0003.png'); }
 
 div.rocket {
     transition: opacity 0.5s ease-in-out;

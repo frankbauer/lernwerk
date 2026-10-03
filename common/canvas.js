@@ -104,7 +104,10 @@ export default {
             if (obj.type === 'Image') {
                 callNext = false
                 obj.img = new Image()
-                obj.img.src = obj.name
+                // '@assets/...' points into the bundled asset folder, wherever it is installed
+                obj.img.src = obj.name.startsWith('@assets/')
+                    ? (self.ASSETS_URL ?? 'assets/') + obj.name.substring('@assets/'.length)
+                    : obj.name
 
                 obj.img.onload = function () {
                     next()

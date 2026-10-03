@@ -34,7 +34,14 @@
 }
 
 #factory .room.main {
-    background-image: url(img/room.jpg);
+    background-image: url(../../../assets/robots/room.jpg);
+}
+
+/* foreground objects of the room (bottom edge), drawn in front of the robots */
+#factory .room.foreground {
+    background-image: url(../../../assets/robots/room-foreground.webp);
+    z-index: 10;
+    pointer-events: none;
 }
 
 #factory .animated {
@@ -62,77 +69,77 @@
     transform: translate(0, 0);
 }
 
-#factory .robot.r8 {
-    --robot-width: 171px;
-    --robot-height: 336px;
-    background-image: url(img/robot.001.png);
+#factory .robot.r1 {
+    --robot-width: 203px;
+    --robot-height: 234px;
+    background-image: url(../../../assets/robots/robot.001.png);
 }
 
-#factory .robot.r12 {
-    --robot-width: 206px;
-    --robot-height: 336px;
-    background-image: url(img/robot.002.png);
+#factory .robot.r2 {
+    --robot-width: 209px;
+    --robot-height: 239px;
+    background-image: url(../../../assets/robots/robot.002.png);
 }
 
 #factory .robot.r3 {
-    --robot-width: 227px;
-    --robot-height: 339px;
-    background-image: url(img/robot.003.png);
+    --robot-width: 163px;
+    --robot-height: 236px;
+    background-image: url(../../../assets/robots/robot.003.png);
 }
 
 #factory .robot.r4 {
-    --robot-width: 172px;
-    --robot-height: 303px;
-    background-image: url(img/robot.004.png);
+    --robot-width: 186px;
+    --robot-height: 239px;
+    background-image: url(../../../assets/robots/robot.004.png);
 }
 
 #factory .robot.r5 {
-    --robot-width: 149px;
-    --robot-height: 288px;
-    background-image: url(img/robot.005.png);
+    --robot-width: 156px;
+    --robot-height: 219px;
+    background-image: url(../../../assets/robots/robot.005.png);
 }
 
 #factory .robot.r6 {
-    --robot-width: 169px;
-    --robot-height: 317px;
-    background-image: url(img/robot.006.png);
+    --robot-width: 190px;
+    --robot-height: 227px;
+    background-image: url(../../../assets/robots/robot.006.png);
 }
 
 #factory .robot.r7 {
-    --robot-width: 188px;
-    --robot-height: 293px;
-    background-image: url(img/robot.007.png);
+    --robot-width: 208px;
+    --robot-height: 232px;
+    background-image: url(../../../assets/robots/robot.007.png);
 }
 
-#factory .robot.r1 {
-    --robot-width: 168px;
-    --robot-height: 293px;
-    background-image: url(img/robot.008.png);
+#factory .robot.r8 {
+    --robot-width: 195px;
+    --robot-height: 235px;
+    background-image: url(../../../assets/robots/robot.008.png);
 }
 
 #factory .robot.r9 {
-    --robot-width: 216px;
-    --robot-height: 285px;
-    background-image: url(img/robot.009.png);
+    --robot-width: 203px;
+    --robot-height: 228px;
+    background-image: url(../../../assets/robots/robot.009.png);
     animation: floating 2s infinite;
 }
 
 #factory .robot.r10 {
-    --robot-width: 215px;
-    --robot-height: 298px;
-    background-image: url(img/robot.010.png);
+    --robot-width: 203px;
+    --robot-height: 218px;
+    background-image: url(../../../assets/robots/robot.010.png);
 }
 
 #factory .robot.r11 {
-    --robot-width: 153px;
-    --robot-height: 326px;
-    background-image: url(img/robot.011.png);
+    --robot-width: 197px;
+    --robot-height: 221px;
+    background-image: url(../../../assets/robots/robot.011.png);
 }
 
-#factory .robot.r2 {
-    --robot-width: 205px;
-    --robot-height: 248px;
-    background-image: url(img/robot.012.png);
+#factory .robot.r12 {
+    --robot-width: 203px;
+    --robot-height: 223px;
+    background-image: url(../../../assets/robots/robot.012.png);
     animation: floating 2s infinite;
 }
 
