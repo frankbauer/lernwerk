@@ -823,6 +823,10 @@
         state.levels = state.levels.filter((l) => l >= 1 && l <= 5);
         state.features = state.features.filter((f) => FEATURES[f]);
 
+        // the Abenteuerkarte is only offered with ?showDrafts for now, and keeps the flags as well
+        $("map-link").hidden = !SHOW_DRAFTS;
+        if (FLAG_QUERY) $("map-link").href += `?${FLAG_QUERY}`;
+
         bind();
         render();
     }

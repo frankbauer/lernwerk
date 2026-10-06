@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abenteuerkarte – Lernwerk</title>
+    <meta name="theme-color" content="#61a2ff" />
+    <link rel="icon" href="./img/brand/GdI_logo.jpg" />
+    <link rel="apple-touch-icon" href="./img/brand/GdI_logo.jpg" />
+    <!-- gespeichertes Theme der Übersicht setzen (wie theme.js), damit die Karten dort und hier gleich aussehen -->
+    <script>
+        try {
+            document.documentElement.dataset.lwTheme = localStorage.getItem("lernwerk-theme") || "abenteuer";
+        } catch (e) {
+            document.documentElement.dataset.lwTheme = "abenteuer";
+        }
+    </script>
+
+    <link rel="stylesheet" href="./js/codeblocks-js/fonts/geist.css?v=1.0.3" />
+    <link rel="stylesheet" href="./fonts/caveat/caveat.css?v=1.0.0" />
+    <link rel="stylesheet" href="./css/uebungsplaner.css?v=1.7.6" />
+    <link rel="stylesheet" href="./css/themes-uebersicht.css?v=1.2.3" />
+    <link rel="stylesheet" href="./css/karte.css?v=1.0.15" />
+    <script src="./karte.js?v=1.0.12" defer></script>
+</head>
+
+<body class="map-page">
+    <canvas id="map" tabindex="0" role="application" aria-roledescription="Abenteuerkarte"
+        aria-label="Abenteuerkarte der Übungen. Laufen mit W A S D oder den Pfeiltasten, Gebäude mit Enter betreten."></canvas>
+
+    <header class="hud hud-top">
+        <a class="hud-btn" id="back-link" href="./uebersicht.html"><span aria-hidden="true">←</span> Übersicht</a>
+    </header>
+
+    <!-- Spielleiste: in der Mitte das Medaillon der Insel, links das nächste Ziel, rechts Hafen und Karte -->
+    <div class="hud gamebar" id="gamebar">
+        <div class="wing wing-left" role="toolbar" aria-label="Ziele">
+            <button type="button" class="bar-btn bar-icon" id="island-list" aria-label="Alle Inseln" title="Alle Inseln (L)">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 6h11M9 12h11M9 18h11" /><circle cx="4.5" cy="6" r="1.2" /><circle cx="4.5" cy="12" r="1.2" /><circle cx="4.5" cy="18" r="1.2" />
+                </svg>
+            </button>
+            <button type="button" class="wing-action" id="go-next" title="Zum nächsten offenen Ziel laufen (N)">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3.5" />
+                    <path d="M12 1v4M12 19v4M1 12h4M19 12h4" />
+                </svg>
+                <span class="wing-text">
+                    <small>Nächstes Ziel <kbd>N</kbd></small>
+                    <b id="goal-name"></b>
+                </span>
+            </button>
+        </div>
+
+        <!-- Medaillon: die Flüssigkeit zeigt die erledigten Häuser (voll = Hafen offen),
+             die Segmente am Rand alle Übungen der Insel -->
+        <div class="medallion" id="medallion" aria-live="polite">
+            <span class="medallion-face">
+                <span class="liquid" id="hud-liquid" aria-hidden="true">
+                    <i class="wave"></i><i class="wave wave-back"></i>
+                    <span class="bubbles"><i></i><i></i><i></i><i></i><i></i></span>
+                </span>
+                <span class="medallion-text">
+                    <small id="hud-chapter">Kapitel</small>
+                    <b id="hud-houses"></b>
+                    <small id="hud-houses-label">Häuser</small>
+                </span>
+            </span>
+            <svg class="medallion-ring" id="hud-ring" viewBox="0 0 100 100" aria-hidden="true"></svg>
+            <span class="sr" id="hud-count"></span>
+            <span class="medallion-ribbon" id="hud-title">Abenteuerkarte</span>
+        </div>
+
+        <div class="wing wing-right" role="toolbar" aria-label="Hafen und Karte">
+            <button type="button" class="wing-action" id="go-port" title="Zum Hafen laufen (H)">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="5" r="2.5" /><path d="M12 7.5V21M7 11h10M4 14a8 8 0 0 0 16 0" />
+                </svg>
+                <span class="wing-text">
+                    <small>Hafen <kbd>H</kbd></small>
+                    <b id="hud-gate"></b>
+                </span>
+            </button>
+            <span class="wing-tools">
+                <button type="button" class="bar-btn bar-icon" data-zoom="-1" aria-label="Herauszoomen" title="Herauszoomen (−)">−</button>
+                <button type="button" class="bar-btn bar-icon" data-zoom="1" aria-label="Hineinzoomen" title="Hineinzoomen (+)">+</button>
+                <button type="button" class="bar-btn bar-icon" id="help-toggle" aria-expanded="false" aria-controls="help"
+                    aria-label="Steuerung anzeigen" title="Steuerung (?)">?</button>
+            </span>
+        </div>
+
+        <section class="bar-help" id="help" aria-label="Steuerung" hidden>
+            <h2>So spielst du</h2>
+            <ul>
+                <li><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> oder Pfeiltasten</span>laufen</li>
+                <li><span><b>Klick</b></span>dorthin laufen</li>
+                <li><span><kbd>Enter</kbd></span>Haus, Burg, Dorf oder Vulkan betreten</li>
+                <li><span><kbd>N</kbd> · <kbd>H</kbd></span>zum nächsten Ziel · zum Hafen</li>
+                <li><span><kbd>L</kbd></span>alle Inseln mit deinem Fortschritt</li>
+                <li><span><kbd>+</kbd> <kbd>−</kbd></span>zoomen</li>
+            </ul>
+            <p>Jedes Haus steht für eine Übung. Erst wenn alle Häuser einer Insel erledigt sind, legt am Hafen ein Schiff zur nächsten Insel an.</p>
+            <p>In der Burg findest du die Vorlesungsfolien, Vorlesungsbeispiele und Sandkästen, im Dorf weitere Übungen. Vulkane führen zur Hausaufgabe, das Schild darüber zeigt die Abgabe.</p>
+            <p>Das Medaillon unten füllt sich mit jedem erledigten Haus – ist es voll, ist der Hafen offen. Die Punkte am Rand stehen für alle Übungen der Insel, auch die in der Burg und im Dorf.</p>
+            <button type="button" class="help-reset" id="reset-map">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" /></svg>
+                Karte zurücksetzen
+            </button>
+        </section>
+    </div>
+
+    <nav class="hud hud-legal" aria-label="Rechtliches">
+        <a href="./impressum.html">Impressum</a>
+        <a href="./datenschutz.html">Datenschutz</a>
+        <a href="./barrierefreiheit.html">Barrierefreiheit</a>
+    </nav>
+
+    <button type="button" class="prompt" id="prompt" hidden></button>
+    <div class="toast" id="toast" hidden aria-hidden="true"></div>
+    <div class="sr" id="announce" aria-live="polite"></div>
+    <div class="loading" id="loading" role="status">
+        <span class="loading-ship" aria-hidden="true"></span>
+        <span>Karte wird gezeichnet …</span>
+    </div>
+
+    <!-- Haus (eine Übung) und Vulkan -->
+    <div class="overlay" id="card-overlay" hidden>
+        <div class="sign" role="dialog" aria-modal="true" aria-labelledby="card-eyebrow">
+            <p class="sign-eyebrow" id="card-eyebrow"></p>
+            <div class="sign-card" id="card-slot"></div>
+            <div class="sign-actions" id="card-actions"></div>
+        </div>
+    </div>
+
+    <!-- Dorf (Vorlesungsbeispiele, Sandkästen) und Schwarzes Brett (weitere Übungen) -->
+    <div class="overlay" id="scroll-overlay" hidden>
+        <div class="scroll" role="dialog" aria-modal="true" aria-labelledby="scroll-title">
+            <div class="scroll-rod" aria-hidden="true"></div>
+            <div class="scroll-paper">
+                <button type="button" class="scroll-close" data-close aria-label="Schriftrolle schließen">×</button>
+                <h2 class="scroll-title" id="scroll-title"></h2>
+                <p class="scroll-sub" id="scroll-sub"></p>
+                <div class="scroll-body" id="scroll-body"></div>
+            </div>
+            <div class="scroll-rod" aria-hidden="true"></div>
+        </div>
+    </div>
+
+    <!-- die Übung selbst; ihr "Zurück"-Link wird dort zu "Schließen" (helper.js, ?embedded) -->
+    <div class="overlay" id="frame-overlay" hidden>
+        <iframe id="frame" title="Übung" src="about:blank"></iframe>
+    </div>
+</body>
+
+</html>

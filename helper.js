@@ -149,8 +149,40 @@ function withOverviewFlags(href) {
     return base + sep + flags.join('&') + (hash !== undefined ? '#' + hash : '')
 }
 
+/**
+ * The Abenteuerkarte (karte.html) shows exercises in an iframe with ?embedded. There the back link
+ * becomes a close button that asks the map to close the iframe (as does Escape outside the editor).
+ */
+const EMBEDDED = new URLSearchParams(location.search).has('embedded') && window.parent !== window
+
+function closeEmbedded() {
+    window.parent.postMessage({ type: 'lernwerk:close' }, location.origin)
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a.backlink').forEach(link => {
         link.setAttribute('href', withOverviewFlags(link.getAttribute('href')))
+        if (EMBEDDED) {
+            if (!document.getElementById('lw-close-style')) {
+                const style = document.createElement('style')
+                style.id = 'lw-close-style'
+                style.textContent = 'html div.topbar>a.backlink.lw-close::before { content: "✕ " / "" !important; }'
+                document.head.append(style)
+            }
+            link.textContent = 'Schließen'
+            link.classList.add('lw-close')
+            link.addEventListener('click', event => {
+                event.preventDefault()
+                closeEmbedded()
+            })
+        }
     })
 })
+
+if (EMBEDDED) {
+    document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape' || event.defaultPrevented) return
+        if (event.target.closest?.('.cm-editor, input, textarea, select, [contenteditable], .lw-menu, [role="dialog"]')) return
+        closeEmbedded()
+    })
+}
