@@ -1,0 +1,344 @@
+/* hologram playground (hologram.js) for 05_Objekte/sandkasten_instanzen and sandkasten_sonnensystem:
+   the scene is laid out at 800x450 and shown scaled by --holo-scale */
+.holo-root {
+    --holo-scale: 0.75;
+    --holo-cyan: #5ff4ff;
+    --holo-magenta: #ff5ce1;
+    --holo-violet: #a98bff;
+    --holo-gold: #ffd36b;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #050816;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+div.playground:has(> div.holo-root) {
+    background-color: #050816;
+    border-radius: 8px;
+}
+
+.holo-stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 800px;
+    height: 450px;
+    transform-origin: 0 0;
+    font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+}
+
+.holo-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.holo-layer {
+    position: absolute;
+    inset: 0;
+}
+
+/* faint moving scan lines over everything: the hologram look */
+.holo-scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(140, 240, 255, 0.05) 0 1px, transparent 1px 4px);
+    mix-blend-mode: screen;
+    animation: holo-scan 6s linear infinite;
+}
+
+@keyframes holo-scan {
+    to { background-position: 0 40px; }
+}
+
+/* ---- class columns (layout "instances") ---------------------------------------------------------------------- */
+.holo-column {
+    position: absolute;
+    top: 14px;
+    bottom: 14px;
+    width: 250px;
+    border-radius: 18px;
+    border: 1.5px solid rgba(95, 244, 255, 0.35);
+    background: linear-gradient(to bottom, rgba(95, 244, 255, 0.10), rgba(169, 139, 255, 0.05) 30%, rgba(255, 92, 225, 0.06));
+    box-shadow: 0 0 18px rgba(95, 244, 255, 0.18), inset 0 0 22px rgba(169, 139, 255, 0.12);
+}
+
+.holo-class {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 8px;
+    text-align: center;
+    line-height: 1.05;
+}
+
+.holo-class-kind {
+    display: block;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--holo-violet);
+    text-shadow: 0 0 6px rgba(169, 139, 255, 0.8);
+}
+
+.holo-class-name {
+    display: block;
+    font-size: 27px;
+    font-weight: 700;
+    color: #eaffff;
+    text-shadow: 0 0 6px var(--holo-cyan), 0 0 14px rgba(95, 244, 255, 0.7);
+}
+
+/* ---- objects ---------------------------------------------------------------------------------------------------- */
+.holo-obj {
+    position: absolute;
+    width: 0;
+    height: 0;
+    --holo-size: 80px;
+}
+
+.holo-body {
+    position: absolute;
+    left: calc(var(--holo-size) / -2);
+    top: calc(var(--holo-size) / -2);
+    width: var(--holo-size);
+    height: var(--holo-size);
+    z-index: var(--holo-z, 10);
+    animation: holo-flicker 5s infinite;
+}
+
+.holo-fx {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    filter: brightness(1) saturate(1);
+    /* print pulse and dimming ease in and out (also when the class is removed) */
+    transition: filter 0.35s ease-out;
+}
+
+.holo-sprite {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(95, 244, 255, 0.55)) drop-shadow(0 0 12px rgba(255, 92, 225, 0.35));
+}
+
+.holo-sonne .holo-sprite {
+    filter: drop-shadow(0 0 10px rgba(255, 211, 107, 0.6)) drop-shadow(0 0 22px rgba(255, 92, 225, 0.35));
+}
+
+.holo-obj:nth-of-type(3n) .holo-body { animation-delay: -1.7s; }
+.holo-obj:nth-of-type(3n+1) .holo-body { animation-delay: -3.1s; }
+
+@keyframes holo-flicker {
+    0%, 100% { opacity: 1; }
+    46% { opacity: 1; }
+    47% { opacity: 0.78; }
+    48% { opacity: 1; }
+    49% { opacity: 0.88; }
+    50% { opacity: 1; }
+}
+
+.holo-label {
+    position: absolute;
+    left: 0;
+    top: calc(var(--holo-size) / 2 - 2px);
+    transform: translateX(-50%);
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1.3;
+    pointer-events: none;
+    z-index: 200;
+}
+
+/* the galaxy is flat and the suns' corona fades out: labels closer to what is visible */
+.holo-universum .holo-label { top: calc(var(--holo-size) * 0.4); }
+.holo-sonne .holo-label { top: calc(var(--holo-size) * 0.38); }
+
+.holo-names {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 0 4px var(--holo-magenta), 0 0 10px rgba(255, 92, 225, 0.8), 0 1px 2px #000;
+}
+
+.holo-values {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--holo-gold);
+    text-shadow: 0 0 6px rgba(255, 180, 60, 0.7), 0 1px 2px #000;
+}
+
+.holo-values:empty { display: none; }
+
+.holo-system .holo-names { font-size: 19px; }
+
+/* layout "system": the variable name ABOVE the object, values and hints BELOW it, each with a gap to the body, so
+   descenders (p, q, g) never touch the values line; all labels are stacked above every body (z-index 200), so
+   they stay readable when a planet passes behind the sun. --holo-gap: distance from the centre to the visible
+   edge (the sun's corona and the flat galaxy end inside their sprite). */
+.holo-system .holo-obj { --holo-gap: calc(var(--holo-size) / 2); }
+.holo-system .holo-sonne { --holo-gap: calc(var(--holo-size) * 0.36); }
+.holo-system .holo-universum { --holo-gap: calc(var(--holo-size) * 0.36); }
+.holo-system .holo-label,
+.holo-system .holo-sonne .holo-label,
+.holo-system .holo-universum .holo-label {
+    top: calc(var(--holo-gap) + 3px);
+}
+.holo-system .holo-names {
+    position: absolute;
+    left: 50%;
+    top: calc(-2 * var(--holo-gap) - 9px);
+    transform: translate(-50%, -100%);
+    white-space: nowrap;
+    line-height: 1.15;
+}
+
+.holo-hint {
+    display: block;
+    margin-top: 2px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ff5a64;
+    text-shadow: 0 0 6px rgba(255, 40, 60, 0.8), 0 1px 2px #000;
+}
+
+.holo-hint:empty { display: none; }
+
+/* ---- orphans (hologram.js updateOrphan): a sun without universe, a planet without sun, tinted red -------------
+   A red copy of the sprite (.holo-sprite-red) lies on top of it and fades in by opacity: an SVG colour matrix
+   (filter #holo-red, added to the stage by hologram.js) turns every pixel red at its own brightness, so black stays
+   exactly black (no visible square under the additive blending) and white highlights turn red. Opacity
+   interpolates smoothly; a filter list with url() cannot be interpolated (it would jump in steps). */
+.holo-sprite-red {
+    filter: url(#holo-red) !important;
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+}
+.holo-orphan .holo-sprite-red { opacity: 1; }
+
+/* nothing references the object (after the run) */
+.holo-noref .holo-body { opacity: 0.4; animation: none; }
+.holo-noref .holo-fx { filter: brightness(1) saturate(0.5); }
+.holo-noref .holo-names {
+    font-size: 14px;
+    font-weight: 600;
+    font-style: italic;
+    color: #ffb0c8;
+    text-shadow: 0 1px 2px #000;
+}
+
+/* a new object materialises: grows out of a bright line, flickering, with a cyan flash */
+.holo-pop .holo-body {
+    animation: holo-materialise 0.9s cubic-bezier(.2, .9, .3, 1.25) both;
+}
+
+@keyframes holo-materialise {
+    0% { transform: scale(0.15, 0.02); opacity: 0; }
+    25% { transform: scale(1.1, 0.06); opacity: 1; }
+    55% { transform: scale(0.96, 1.08); opacity: 0.7; }
+    65% { opacity: 1; }
+    72% { opacity: 0.75; }
+    100% { transform: scale(1, 1); opacity: 1; }
+}
+
+/* the flash of the pop-in: on the sprite only (brightness keeps black black), never on the blended box */
+.holo-pop .holo-fx { animation: holo-flash 0.9s ease-out both; }
+@keyframes holo-flash {
+    0%, 25% { filter: brightness(3) saturate(1); }
+    55% { filter: brightness(1.8) saturate(1); }
+    100% { filter: brightness(1) saturate(1); }
+}
+
+.holo-pop .holo-label { animation: holo-fade 0.9s ease-out both; }
+@keyframes holo-fade { 0%, 50% { opacity: 0; } 100% { opacity: 1; } }
+
+/* pulses: a ring of its own (.holo-ring, a sibling of the body, blended with screen itself), so nothing ever
+   draws into the body's square. setRadius / setSpeed: gold; print(): cyan, and the sprite brightens; the orphan
+   state flips: red */
+.holo-ring {
+    position: absolute;
+    left: calc(var(--holo-size) * -0.62);
+    top: calc(var(--holo-size) * -0.62);
+    width: calc(var(--holo-size) * 1.24);
+    height: calc(var(--holo-size) * 1.24);
+    border-radius: 50%;
+    z-index: calc(var(--holo-z, 10) + 1);
+    pointer-events: none;
+    mix-blend-mode: screen;
+    display: none;
+    --holo-ring: var(--holo-gold);
+}
+.holo-system .holo-sonne .holo-ring,
+.holo-sonne .holo-ring { left: calc(var(--holo-size) * -0.42); top: calc(var(--holo-size) * -0.42);
+    width: calc(var(--holo-size) * 0.84); height: calc(var(--holo-size) * 0.84); }
+.holo-changed .holo-ring,
+.holo-print .holo-ring,
+.holo-orphan-change .holo-ring {
+    display: block;
+    border: 3px solid var(--holo-ring);
+    box-shadow: 0 0 14px var(--holo-ring), inset 0 0 10px var(--holo-ring);
+    animation: holo-ring 0.7s ease-out both;
+}
+.holo-print .holo-ring { --holo-ring: var(--holo-cyan); }
+.holo-orphan-change .holo-ring { --holo-ring: #ff3a4a; }
+
+.holo-changed .holo-values { animation: holo-value 0.7s ease-out; }
+/* the changed values light up; no scaling: the text keeps its size and place */
+@keyframes holo-value { 0% { color: #ffffff; text-shadow: 0 0 10px var(--holo-gold), 0 0 4px #fff; } 100% { } }
+
+.holo-print .holo-fx { filter: brightness(1.6) saturate(1); }
+
+@keyframes holo-ring {
+    0% { transform: scale(0.7); opacity: 1; }
+    100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* ---- orbits (layout "system") --------------------------------------------------------------------------------- */
+.holo-orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(95, 244, 255, 0.55);
+    box-shadow: 0 0 8px rgba(95, 244, 255, 0.25), inset 0 0 8px rgba(169, 139, 255, 0.2);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.holo-orbit.holo-pop { animation: holo-fade 0.9s ease-out both; }
+
+/* ---- additive sprites (hologram.js SPRITES = 'screen') ---------------------------------------------------------
+   The sprites are opaque renders on black: the body is blended with `screen` against everything below it in the
+   stage (backdrop, columns, orbits, other bodies), so black vanishes and the light adds up like a projection.
+   The body already is the stacking context that blends (it has a z-index); nothing between it and the stage may
+   isolate it: .holo-layer and .holo-obj have no z-index, opacity, transform, filter or isolation. The stage itself
+   (transform: scale) holds the backdrop, so the blending reaches it. `screen` rather than `plus-lighter`: where a
+   planet passes the sun or the bright nebula, plus-lighter clips to white, screen saturates softly.
+   The glow is in the render, so the CSS drop-shadow (which would outline the whole square) is switched off. */
+.holo-screen .holo-body {
+    mix-blend-mode: screen;
+}
+
+/* no filter, background, box-shadow or overlay on the blended box: only the sprite gets filters, all of them
+   keep black black (colour matrix, brightness, saturate) */
+.holo-screen .holo-sprite,
+.holo-screen .holo-sonne .holo-sprite {
+    filter: none;
+}
+
+.holo-screen .holo-print .holo-fx { filter: brightness(1.5) saturate(1); }
+
+.holo-screen .holo-noref .holo-body { opacity: 0.45; }
+
+@media (prefers-reduced-motion: reduce) {
+    .holo-scanlines, .holo-body, .holo-pop .holo-body, .holo-pop .holo-fx { animation: none; }
+    .holo-fx, .holo-sprite-red { transition: none; }
+}

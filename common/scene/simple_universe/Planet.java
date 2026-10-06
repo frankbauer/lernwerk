@@ -2,12 +2,15 @@ class Planet {
     private final Sonne sonne;
     private double radius;
     private double speed;
+    // id of this planet in the hologram playground (HoloScene)
+    final int holoId;
 
     public Planet(){
         this(null);
     }
     public Planet(Sonne s) {
         this.sonne = s;
+        this.holoId = HoloScene.create("Planet", s != null ? s.holoId : -1);
         if (s != null) {
             s.registerPlanet(this);
         }
@@ -15,10 +18,12 @@ class Planet {
     
     public void setRadius(double d){
         this.radius = d;
+        HoloScene.set(holoId, "radius", d);
     }
 
     public void setSpeed(double d){
         this.speed = d;
+        HoloScene.set(holoId, "speed", d);
     }
 
     public String toString(){
@@ -33,6 +38,7 @@ class Planet {
         if (indent == null) {
             indent = "";
         }
+        HoloScene.print(holoId);
         System.out.println(indent + "Planet [" + this + "]");
     }
 }
