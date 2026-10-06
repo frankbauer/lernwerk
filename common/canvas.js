@@ -3,6 +3,9 @@ export default {
     commandDelay: 200,
     commandTimer: undefined,
     objects: {},
+    // everything drawn so far, redrawn every frame while an image pops in
+    drawn: [],
+    animationFrame: undefined,
     setupDOM: function () {
         this.canvasElement.html('')
         this.resetCanvas(this.canvasElement)
@@ -23,6 +26,31 @@ export default {
         //     { "sx": 0.75, "sy": 0.75, "x": 650, "y": 410, "command": "drawImage", "object": { "type": "Image", "id": 4 } },
         //     { "sx": 0.75, "sy": 0.75, "x": 150, "y": 410, "command": "drawImage", "object": { "type": "Image", "id": 5 } },
         // ], 0)
+    },
+    // Field writes like `mitte.jahreszeit = "fruehling";` cannot be observed from Java, so for the run (the editor
+    // stays unchanged) a render of the scene is appended to every line in the calling code that creates a tree or
+    // assigns a tree's season. The scene then shows each step: new trees pop in, changed trees flip to their new
+    // image (see redraw). Appended on the same line, so line numbers in compiler messages stay right. Code of the
+    // Baum class itself (its constructors and methods) is left alone.
+    alterCodeBeforeRun(code) {
+        const RENDER = ' Graphics2D.instance().render();'
+        const v = String.raw`\w+(?:\[[^\]]*\])?(?:\.\w+(?:\[[^\]]*\])?)*`   // a, a.b, a[i], a[i].b
+        const step = new RegExp(String.raw`^\s*(?:[\w<>\[\]]+\s+)?${v}\s*=\s*new\s+Baum\s*\(.*\)\s*;\s*(\/\/.*)?$` +
+            String.raw`|^\s*(?!this\.)${v}\.jahreszeit\s*=.*;\s*(\/\/.*)?$`)
+        for (const entry of code) {
+            if (/\bclass\s+Baum\b/.test(entry.content) || !/\bBaum\b|\.jahreszeit\b/.test(entry.content)) continue
+            const lines = entry.content.split('\n')
+            let changed = false
+            const out = lines.map((line) => {
+                if (!step.test(line)) return line
+                changed = true
+                const comment = line.indexOf('//')
+                return comment >= 0 && !/"[^"]*\/\//.test(line)
+                    ? line.slice(0, comment).trimEnd() + RENDER + ' ' + line.slice(comment)
+                    : line.trimEnd() + RENDER
+            })
+            if (changed) entry.set(out.join('\n'))
+        }
     },
     addArgumentsTo(args) {
         let nr = 0
@@ -50,6 +78,11 @@ export default {
         }
 
         this.objects = {}
+        this.drawn = []
+        if (this.animationFrame !== undefined) {
+            cancelAnimationFrame(this.animationFrame)
+            this.animationFrame = undefined
+        }
 
         const mainCanvas = $(document.createElement('canvas'))
         mainCanvas.attr('id', 'main_canvas')
@@ -78,9 +111,86 @@ export default {
         const context = mainCanvas[0].getContext('2d');
         context.scale(retinaScalingFactor, retinaScalingFactor);
 
-        context.imageSmoothingEnabled = false;
+        // smooth: the scene images are drawn scaled down, nearest-neighbour sampling makes their edges jagged
+        context.imageSmoothingEnabled = true;
         context.imageSmoothingQuality = 'high';
 
+    },
+    // Pop-in of the scene pieces, tuned in CSS (e.g. tree.css): the piece grows from its anchor (the tree's foot)
+    // with an overshoot and wobbles around it while settling.
+    //   --cb-image-pop-duration  e.g. 700ms     --cb-image-pop-wiggle  e.g. 7deg (0 to switch the wobble off)
+    // An object whose image changes turns like a paper card: the old image folds away, the new one unfolds.
+    //   --cb-image-change-duration  e.g. 800ms
+    popSettings() {
+        const css = (name, fallback) => parseFloat(this.mainCanvas.css(name)) || fallback
+        const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+        return {
+            duration: reduced ? 0 : css('--cb-image-pop-duration', 700),
+            wiggle: css('--cb-image-pop-wiggle', 7) * Math.PI / 180,
+            change: reduced ? 0 : css('--cb-image-change-duration', 800),
+        }
+    },
+    redraw() {
+        const canvas = this.mainCanvas[0]
+        const ctx = canvas.getContext('2d')
+        const pop = this.popSettings()
+        const now = performance.now()
+        ctx.save()
+        ctx.setTransform(1, 0, 0, 1, 0, 0)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.restore()
+        let animating = false
+        for (const item of this.drawn) {
+            animating = this.drawItem(ctx, item, now, pop) || animating
+        }
+        if (this.animationFrame !== undefined) cancelAnimationFrame(this.animationFrame)
+        this.animationFrame = animating ? requestAnimationFrame(() => this.redraw()) : undefined
+    },
+    drawItem(ctx, item, now, pop) {
+        const { cmd, start, kind } = item
+        const duration = kind === 'flip' ? pop.change : pop.duration
+        const t = duration > 0 ? Math.min(1, (now - start) / duration) : 1
+        // flip: the first half folds the old image to its edge, the second half unfolds the new one
+        const obj = kind === 'flip' && t < 0.5 ? item.from : item.obj
+        //draw the image at x, y scaled by the image's and the command's scale, placed by the image's anchor
+        const iw = Math.round(obj.img.width * obj.sx * cmd.sx);
+        const ih = Math.round(obj.img.height * obj.sy * cmd.sy);
+        ctx.save()
+        if (t < 1) {
+            ctx.translate(cmd.x, cmd.y)
+            if (kind === 'flip') {
+                const fold = Math.abs(Math.cos(t * Math.PI))          // 1 -> 0 -> 1
+                const lift = Math.sin(t * Math.PI)                       // up while turning
+                ctx.translate(0, -0.06 * ih * lift)
+                ctx.scale(Math.max(fold, 0.02), 1 + 0.06 * lift)
+            } else {
+                // easeOutBack for the size, a decaying swing for the angle, both around the anchor point
+                const c = 1.9
+                const grow = 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2)
+                ctx.rotate(pop.wiggle * Math.sin(t * Math.PI * 3) * (1 - t))
+                ctx.scale(Math.max(grow, 0.001), Math.max(grow, 0.001))
+            }
+            ctx.translate(-cmd.x, -cmd.y)
+        }
+        // images marked with a shadow get the CSS drop-shadow from --cb-image-shadow (e.g. tree.css): as a canvas
+        // filter, or where canvas filters are missing (Safari before 18) with the canvas shadow properties
+        const shadow = obj.shadow ? this.mainCanvas.css('--cb-image-shadow')?.trim() : ''
+        if (shadow) {
+            const m = shadow.match(/^(-?[\d.]+)px\s+(-?[\d.]+)px\s+([\d.]+)px\s+(.+)$/)
+            if (typeof ctx.filter === 'string') {
+                ctx.filter = `drop-shadow(${shadow})`
+            } else if (m) {
+                // shadow offsets ignore the context transform: scale them to device pixels by hand
+                const dpr = window.devicePixelRatio || 1
+                ctx.shadowOffsetX = parseFloat(m[1]) * dpr
+                ctx.shadowOffsetY = parseFloat(m[2]) * dpr
+                ctx.shadowBlur = parseFloat(m[3]) * dpr
+                ctx.shadowColor = m[4]
+            }
+        }
+        ctx.drawImage(obj.img, Math.round(cmd.x - iw * obj.ax), Math.round(cmd.y - ih * obj.ay), iw, ih)
+        ctx.restore()
+        return t < 1
     },
     runCommand(commands, idx) {
         this.commandTimer = undefined
@@ -117,24 +227,27 @@ export default {
             const obj = this.objects[cmd.object.id]
             if (obj === undefined) console.error('Object not found', cmd.object.id)
 
-            //console.log("DEBUG", cmd, obj)
-
-            const ctx = self.mainCanvas[0].getContext('2d')
-
-            //draw the image flname at x, y on the mainCanvas and scale the image by scale
-            const iw = Math.round(obj.img.width * obj.sx * cmd.sx);
-            const ih = Math.round(obj.img.height * obj.sy * cmd.sy);
-            ctx.drawImage(obj.img, Math.round(cmd.x - iw * obj.ax), Math.round(cmd.y - ih * obj.ay), iw, ih)
-
-            // // show a blue square at the x, y position
-            // ctx.fillStyle = 'blue';
-            // ctx.fillRect(Math.round(cmd.x) - 5, Math.round(cmd.y) - 5, 10, 10);
+            // an image of an object drawn before (same key, see Graphics2D.render) replaces it: unchanged it is
+            // skipped without delay, a new image flips in; other images marked with a shadow pop in (drawItem)
+            const now = performance.now()
+            const prev = cmd.key !== undefined ? this.drawn.find((it) => it.cmd.key === cmd.key) : undefined
+            if (prev && prev.obj === obj && prev.cmd.x === cmd.x && prev.cmd.y === cmd.y) {
+                hasDelay = false
+            } else if (prev) {
+                Object.assign(prev, { from: prev.obj, obj, cmd, start: now, kind: 'flip' })
+                hasDelay = true
+                this.extraDelay = this.popSettings().change
+            } else {
+                this.drawn.push({ obj, cmd, start: obj.shadow ? now : -Infinity, kind: 'pop' })
+            }
+            this.redraw()
         }
 
         if (callNext) {
             this.commandTimer = setTimeout(() => {
                 next()
-            }, hasDelay ? this.commandDelay : 10)
+            }, hasDelay ? this.commandDelay + (this.extraDelay || 0) : 10)
+            this.extraDelay = 0
         }
     }
 }

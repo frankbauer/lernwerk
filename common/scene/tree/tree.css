@@ -2,6 +2,13 @@
     --canvas-width: 800px;
     --canvas-height: 450px;
     --canvas-scale: 0.75;
+    /* shadow of the paper cut-outs (images created with shadow = true): "x y blur colour" as in drop-shadow() */
+    --cb-image-shadow: 5px 8px 6px rgba(40, 28, 16, 0.45);
+    /* pop-in of the trees: grow from the foot with an overshoot and a wobble (canvas.js) */
+    --cb-image-pop-duration: 700ms;
+    --cb-image-pop-wiggle: 7deg;
+    /* a tree whose season changes turns like a paper card to its new image (canvas.js) */
+    --cb-image-change-duration: 800ms;
 
     position: relative;
     border: 1px dotted #d0d0d0;

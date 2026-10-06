@@ -16,7 +16,8 @@
     <li><code>public void registerForRender(Renderable r)</code><br>Registriert ein neues Render-Objekt zur
         Rendering-Liste.</li>
     <li><code>public void render()</code><br>Rendert alle registrierten Objekte, indem die <code>render()</code>-Methode
-        jedes Objekts aufgerufen wird.</li>
+        jedes Objekts aufgerufen wird. Wird <code>render()</code> mehrfach aufgerufen, zeigt die Bühne jedes Mal den
+        aktuellen Zustand; Objekte, deren Bild sich geändert hat, wechseln mit einer Animation.</li>
     <li><code>public void drawImage(Image img, int x, int y)</code><br>Zeichnet ein Bild an die angegebene Position
         <code>(x, y)</code> in der Originalgröße.
     </li>

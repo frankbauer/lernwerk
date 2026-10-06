@@ -3,6 +3,7 @@ class Image extends de.fau.tf.lgdv.runtime.RemoteObject{
     private final double scale;
     private final double anchorX;
     private final double anchorY;
+    private final boolean shadow;
     public Image(String name){
         this(name, 1.0, 0, 0);
     }
@@ -12,11 +13,16 @@ class Image extends de.fau.tf.lgdv.runtime.RemoteObject{
     }
 
     public Image(String name, double scale, double anchorX, double anchorY){
+        this(name, scale, anchorX, anchorY, false);
+    }
+
+    public Image(String name, double scale, double anchorX, double anchorY, boolean shadow){
         super("Image");
         this.name = name;
         this.scale = scale;
         this.anchorX = anchorX;
         this.anchorY = anchorY;
+        this.shadow = shadow;
         Graphics2D.COMMAND_BUFFER.addNewObject(this);
     }
 
@@ -26,5 +32,6 @@ class Image extends de.fau.tf.lgdv.runtime.RemoteObject{
         json.put("sy", scale);
         json.put("ax", anchorX);
         json.put("ay", anchorY);
+        json.put("shadow", shadow);
     }
 }
