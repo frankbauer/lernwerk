@@ -24,11 +24,16 @@
     display: block;
     image-rendering: pixelated;
     cursor: crosshair;
-    touch-action: manipulation;
+    /* the map handles dragging itself, also with a finger */
+    touch-action: none;
 }
 
 #map.is-target {
     cursor: pointer;
+}
+
+#map.is-dragging {
+    cursor: grabbing;
 }
 
 #map:focus-visible {
@@ -565,10 +570,15 @@
     width: max-content;
     max-width: 320px;
     padding: 6px 12px 6px 8px;
-    border: 2px solid var(--hud-ink);
+    border: 0;
     border-radius: 10px;
-    background: var(--hud-ink);
+    /* glass: the map shows through, slightly blurred and with deeper colours */
+    background: rgb(26 22 20 / 0.6);
+    -webkit-backdrop-filter: blur(4px) saturate(1.7);
+    backdrop-filter: blur(4px) saturate(1.7);
+    box-shadow: 0 4px 14px rgb(0 0 0 / 0.2);
     color: #fff;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 0.5);
     font-size: 13px;
     line-height: 1.25;
     text-align: left;
@@ -586,7 +596,7 @@
     left: 50%;
     bottom: -8px;
     border: 6px solid transparent;
-    border-top-color: var(--hud-ink);
+    border-top-color: rgb(26 22 20 / 0.6);
     transform: translateX(-50%);
 }
 

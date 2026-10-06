@@ -22,7 +22,7 @@
     const PLANER_KEY = "lernwerk.uebungsplaner.v1"; // state of uebersicht.html (done exercises)
     const STORAGE_KEY = `lernwerk.karte.v1${FLAG_QUERY ? `:${FLAG_QUERY}` : ""}`;
     /** Bump when the island generator changes: stored fog no longer matches the map then. */
-    const GENERATOR = 7;
+    const GENERATOR = 9;
 
     const T = 16; // tile size in map pixels
     const THEMES = ["valley", "beach", "desert", "snow"];
@@ -72,7 +72,8 @@
     let layer, fogLayer, fogCtx;
     const fogDirty = [];
     let canvas, ctx, dpr = 1, view = { scale: 1, x: 0, y: 0 };
-    const cam = { x: 0, y: 0, ready: false };
+    // free: the player dragged the map; the camera stays there until the hero moves again
+    const cam = { x: 0, y: 0, ready: false, free: false };
 
     // ------------------------------------------------------------------ helpers
 
@@ -307,6 +308,20 @@
                 }
             }
         }
+        // the name plate floats in the water above the island: centred over its land, above its north coast
+        islands.forEach((isl) => {
+            const [x0, y0, x1, y1] = isl.bounds;
+            let minC = x1, maxC = x0, minR = y1;
+            for (let r = y0; r <= y1; r++) {
+                for (let c = x0; c <= x1; c++) {
+                    if (terrain[idx(c, r)] !== 0) continue;
+                    minC = Math.min(minC, c);
+                    maxC = Math.max(maxC, c);
+                    minR = Math.min(minR, r);
+                }
+            }
+            isl.label = [(minC + maxC + 1) / 2, minR];
+        });
         routes = islands.slice(1).map((_, i) => buildRoute(i));
         sig = [GENERATOR, W, H, ...islands.map((isl) => `${isl.chapter.number}:${isl.items.map((ex) => ex.id).join("|")}`)].join(",");
     }
@@ -534,10 +549,11 @@
             }
         }
         for (let r = oy; r < oy + SLOT_H; r++) {
-            for (let c = ox; c < ox + SLOT_W; c++) {
-                land[local(c, r)] = main[local(c, r)];
-                terrain[idx(c, r)] = land[local(c, r)] ? 0 : 1;
-            }
+            for (let c = ox; c < ox + SLOT_W; c++) land[local(c, r)] = main[local(c, r)];
+        }
+        carveWater(rng, land, D, local, inSlot, ox, oy, water);
+        for (let r = oy; r < oy + SLOT_H; r++) {
+            for (let c = ox; c < ox + SLOT_W; c++) terrain[idx(c, r)] = land[local(c, r)] ? 0 : 1;
         }
 
         const island = {
@@ -553,10 +569,10 @@
             arrival: eastward ? west : east,
             departure: eastward ? east : west,
             centre: [xs + Math.floor(L / 2), py],
+            // tilt of the name banner: 2 to 5 degrees, alternating up and down from island to island
+            tilt: (i % 2 ? 1 : -1) * (2 + rng() * 3) * (Math.PI / 180),
             villageName: config.villages?.[ch.number] || "Übungsdorf",
             castleName: config.castles?.[ch.number] || "Vorlesungsburg",
-            // the island's name above everything; with a volcano one row higher, for its homework sign
-            label: [xs + Math.floor(L / 2), vol ? vol.y - 2 : py - 5],
             bounds: [ox, oy, ox + SLOT_W - 1, oy + SLOT_H - 1],
         };
 
@@ -641,6 +657,118 @@
             }
         }
         return island;
+    }
+
+    /**
+     * Sometimes an inland lake, sometimes a river from the lake (or from the hills) down to the sea.
+     * Water only replaces land at least 2 cells away from paths, buildings and the volcano (`D` is the
+     * distance to them), so nothing gets cut off: there is no bridge in the tile sheets.
+     */
+    function carveWater(rng, land, D, local, inSlot, ox, oy, lanes) {
+        const free = (c, r) => inSlot(c, r) && land[local(c, r)] && D[local(c, r)] >= 2;
+        const inner = (c, r) => c > ox + 1 && r > oy + 1 && c < ox + SLOT_W - 2 && r < oy + SLOT_H - 2 && !lanes.has(idx(c, r));
+        const cells = [];
+        for (let r = oy + 1; r < oy + SLOT_H - 1; r++) {
+            for (let c = ox + 1; c < ox + SLOT_W - 1; c++) if (land[local(c, r)]) cells.push([c, r]);
+        }
+        const lake = [];
+        if (rng() < 0.5) {
+            // the island bulges out a little around the lake, so it really is inland
+            const spots = cells.filter(([c, r]) => D[local(c, r)] >= 2.6);
+            for (let attempt = 0; attempt < 6 && spots.length && !lake.length; attempt++) {
+                const [lc, lr] = pick(rng, spots);
+                const rx = 1.4 + rng() * 1.2;
+                const ry = 1.1 + rng() * 0.8;
+                const water = [];
+                const shore = [];
+                let ok = true;
+                for (let r = lr - 5; r <= lr + 5 && ok; r++) {
+                    for (let c = lc - 6; c <= lc + 6 && ok; c++) {
+                        const e = ((c - lc) / rx) ** 2 + ((r - lr) / ry) ** 2;
+                        const ring = ((c - lc) / (rx + 1.6)) ** 2 + ((r - lr) / (ry + 1.6)) ** 2;
+                        if (e <= 1) {
+                            if (!inner(c, r) || D[local(c, r)] < 2) ok = false;
+                            else water.push([c, r]);
+                        } else if (ring <= 1) {
+                            if (!inner(c, r)) ok = false;
+                            else shore.push([c, r]);
+                        }
+                    }
+                }
+                if (!ok || water.length < 4) continue;
+                shore.forEach(([c, r]) => (land[local(c, r)] = 1));
+                water.forEach(([c, r]) => (land[local(c, r)] = 0));
+                lake.push(...water);
+            }
+        }
+        // sometimes a bay: an inlet that opens to the sea (no shore ring around it)
+        if (rng() < 0.45) {
+            const touchesSea = (c, r) => [[0, 1], [1, 0], [0, -1], [-1, 0]].some(
+                ([dx, dy]) => inSlot(c + dx, r + dy) && !land[local(c + dx, r + dy)] && !lake.some(([a, b]) => a === c + dx && b === r + dy)
+            );
+            // close to the coast, but away from paths and buildings
+            const coastal = cells.filter(([c, r]) => free(c, r) && D[local(c, r)] >= 2.5 && touchesSea(c, r));
+            if (coastal.length) {
+                const [bc, br] = pick(rng, coastal);
+                const rx = 1.5 + rng() * 1.5;
+                const ry = 1.2 + rng() * 1.2;
+                const bay = [];
+                for (let r = br - 4; r <= br + 4; r++) {
+                    for (let c = bc - 4; c <= bc + 4; c++) {
+                        if (free(c, r) && inner(c, r) && ((c - bc) / rx) ** 2 + ((r - br) / ry) ** 2 <= 1) bay.push([c, r]);
+                    }
+                }
+                if (bay.length >= 3) bay.forEach(([c, r]) => (land[local(c, r)] = 0));
+            }
+        }
+        if (rng() < (lake.length ? 0.55 : 0.3)) {
+            // distance to the sea over land (4 neighbours), the river flows downhill along it
+            const sea = new Int16Array(SLOT_W * SLOT_H).fill(999);
+            const queue = [];
+            for (let r = oy; r < oy + SLOT_H; r++) {
+                for (let c = ox; c < ox + SLOT_W; c++) {
+                    const inLake = lake.some(([a, b]) => a === c && b === r);
+                    if (!land[local(c, r)] && !inLake) {
+                        sea[local(c, r)] = 0;
+                        queue.push([c, r]);
+                    }
+                }
+            }
+            const N4 = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+            for (let q = 0; q < queue.length; q++) {
+                const [c, r] = queue[q];
+                for (const [dx, dy] of N4) {
+                    const cc = c + dx;
+                    const rr = r + dy;
+                    if (inSlot(cc, rr) && land[local(cc, rr)] && sea[local(cc, rr)] > sea[local(c, r)] + 1) {
+                        sea[local(cc, rr)] = sea[local(c, r)] + 1;
+                        queue.push([cc, rr]);
+                    }
+                }
+            }
+            // the source: next to the lake, or a cell far inland
+            const sources = lake.length
+                ? cells.filter(([c, r]) => free(c, r) && N4.some(([dx, dy]) => lake.some(([a, b]) => a === c + dx && b === r + dy)))
+                : cells.filter(([c, r]) => free(c, r) && sea[local(c, r)] >= 5);
+            if (sources.length) {
+                let [c, r] = pick(rng, sources);
+                const river = [[c, r]];
+                for (let step = 0; step < 40; step++) {
+                    const down = N4.map(([dx, dy]) => [c + dx, r + dy]).filter(
+                        ([cc, rr]) => inSlot(cc, rr) && sea[local(cc, rr)] < sea[local(c, r)]
+                    );
+                    if (down.some(([cc, rr]) => sea[local(cc, rr)] === 0)) break; // reached the sea
+                    const next = down.filter(([cc, rr]) => free(cc, rr));
+                    if (!next.length) {
+                        river.length = 0; // blocked by a path or a building: no river
+                        break;
+                    }
+                    [c, r] = pick(rng, next);
+                    river.push([c, r]);
+                }
+                if (river.length >= 3) river.forEach(([cc, rr]) => (land[local(cc, rr)] = 0));
+            }
+        }
     }
 
     const isletTheme = (slot) => (slot * 7) % THEMES.length;
@@ -836,10 +964,10 @@
             for (let x = c - R; x <= c + R; x++) {
                 if (!inside(x, y)) continue;
                 const d2 = (x - c) ** 2 + (y - r) ** 2;
-                const level = d2 <= rad * rad + rad ? 0 : d2 <= (rad + 1) ** 2 + rad + 1 ? 1 : d2 <= (rad + 2) ** 2 + rad + 2 ? 2 : 3;
+                // revealed or fully covered: the lighter fog levels of the tile sheet are see-through
                 const k = idx(x, y);
-                if (level < fog[k]) {
-                    fog[k] = level;
+                if (fog[k] && d2 <= rad * rad + rad) {
+                    fog[k] = 0;
                     changed = true;
                 }
             }
@@ -885,7 +1013,7 @@
             const v = Number(part[0]);
             const n = parseInt(part.slice(1), 36);
             if (!(v >= 0 && v <= 3) || !(n > 0) || k + n > a.length) return null;
-            a.fill(v, k, k + n);
+            a.fill(v ? 3 : 0, k, k + n); // older saves had lighter fog levels at the edges
             k += n;
         }
         return k === a.length ? a : null;
@@ -977,6 +1105,7 @@
     const busy = () => openStack.length > 0 || !!voyage;
 
     function startStep(c, r, now) {
+        cam.free = false;
         const dx = c - hero.c;
         const dy = r - hero.r;
         hero.dir = dirOf(dx, dy);
@@ -1178,6 +1307,7 @@
         const dest = from === "a" ? route.b : route.a;
         const shipEnd = state.ships[route.index] || "a";
         const now = performance.now();
+        cam.free = false;
         const sail = () => {
             hero.visible = false;
             voyage = { route, reverse: from === "b", start: performance.now(), speed: SHIP_SPEED, carrying: true, then: () => landAt(dest) };
@@ -1790,14 +1920,13 @@
     }
 
     function pathTile(c, r) {
+        // only path pieces connect: next to a pier the path shows its end piece
         const isPath = (x, y) => inside(x, y) && deco[idx(x, y)] === tile.PATH;
-        // the ends of the path lead onto the docks
-        const joins = (x, y) => isPath(x, y) || (inside(x, y) && dockAt.has(idx(x, y)));
         const parts = [];
         if (isPath(c, r - 1)) parts.push("N");
-        if (joins(c + 1, r)) parts.push("E");
+        if (isPath(c + 1, r)) parts.push("E");
         if (isPath(c, r + 1)) parts.push("S");
-        if (joins(c - 1, r)) parts.push("W");
+        if (isPath(c - 1, r)) parts.push("W");
         return tm.autotiles.path.tiles[parts.join(" ")] ?? tile.PATH;
     }
 
@@ -1979,6 +2108,8 @@
             cam.x = focus.x;
             cam.y = focus.y;
             cam.ready = true;
+        } else if (cam.free) {
+            // dragged: cam.x/cam.y are set by the pointer
         } else {
             const k = Math.min(1, dt * 7);
             cam.x += (focus.x - cam.x) * k;
@@ -1992,6 +2123,11 @@
             x: Math.round(fit(W * T, vw, cam.x) * scale) / scale,
             y: Math.round(fit(H * T, vh, cam.y) * scale) / scale,
         };
+        if (cam.free) {
+            // keep the dragged camera inside the map, so dragging back responds at once
+            cam.x = fit(W * T, vw, cam.x) + vw / 2;
+            cam.y = fit(H * T, vh, cam.y) + vh / 2;
+        }
         ctx.imageSmoothingEnabled = false;
         ctx.setTransform(scale, 0, 0, scale, -view.x * scale, -view.y * scale);
         ctx.drawImage(layer, 0, 0);
@@ -2055,93 +2191,168 @@
         drawLabels();
     }
 
+    /**
+     * One banner per island in the water above it: a ribbon with forked tails, slightly tilted (a fixed
+     * angle per island), with the chapter number, the name and the progress. The homework hangs below
+     * it as a small tag on two strings.
+     */
     function drawLabels() {
         ctx.setTransform(1, 0, 0, 1, 0, 0);
+        const k = dpr;
         const s = view.scale;
-        const size = Math.round(12 * dpr);
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
+        const geist = (weight, px) => `${weight} ${Math.round(px * k)}px Geist, system-ui, sans-serif`;
+        const caveat = `700 ${Math.round(21 * k)}px Caveat, cursive`;
+        // vertically centred on the capitals (descenders like the g in "Hausaufgabe" do not count)
+        const centred = (text, x, y, font) => {
+            ctx.font = font;
+            ctx.textBaseline = "alphabetic";
+            ctx.fillText(text, x, y + ctx.measureText("H").actualBoundingBoxAscent / 2);
+        };
+        const width = (text, font) => {
+            ctx.font = font;
+            return ctx.measureText(text).width;
+        };
+
         islands.forEach((isl, i) => {
             const seen = state.visited.includes(isl.chapter.number) || fog[idx(...isl.centre)] === 0;
             if (!seen) return;
-            // with a volcano, the name and the homework sign below it stand together above the volcano
-            const signH = 20 * dpr;
-            let x, y;
-            if (isl.volcano) {
-                const [vx, vy] = isl.volcano.cells[0];
-                x = ((vx + 2.5) * T - view.x) * s;
-                // the volcano's image reaches 4 map pixels above its cells
-                const signY = ((vy * T - 4) - view.y) * s - signH / 2 - 3 * dpr;
-                drawHomeworkSign(isl.volcano, x, signY, signH, size);
-                y = signY - signH / 2 - 11 * dpr - 3 * dpr;
-            } else {
-                const [lc, lr] = isl.label;
-                x = ((lc + 0.5) * T - view.x) * s;
-                y = (lr * T - view.y) * s;
-            }
-            if (x < -200 * dpr || y < -50 * dpr || x > canvas.width + 200 * dpr || y > canvas.height + 50 * dpr) return;
+            const [lc, lr] = isl.label;
+            const x = (lc * T - view.x) * s;
+            const bottom = (lr * T - view.y) * s - 14 * k; // a little above the north coast
+            if (x < -300 * k || bottom < -80 * k || x > canvas.width + 300 * k || bottom > canvas.height + 80 * k) return;
+
             const n = doneCount(isl.items);
-            const title = `${isl.chapter.number} · ${isl.chapter.title}`;
+            const complete = n === isl.items.length;
             const count = `${n}/${isl.items.length}`;
-            ctx.font = `700 ${size}px Geist, system-ui, sans-serif`;
-            const tw = ctx.measureText(title).width;
-            ctx.font = `600 ${size}px Geist, system-ui, sans-serif`;
-            const cw = ctx.measureText(count).width;
-            const pad = 8 * dpr;
-            const gap = 8 * dpr;
-            const w = tw + gap + cw + 2 * pad + 6 * dpr;
-            const h = 22 * dpr;
-            const left = Math.round(x - w / 2);
-            const top = Math.round(y - h / 2);
-            ctx.fillStyle = "rgba(26, 22, 20, 0.85)";
-            ctx.beginPath();
-            ctx.roundRect(left + 2 * dpr, top + 2 * dpr, w, h, 7 * dpr);
-            ctx.fill();
-            ctx.fillStyle = i === currentIsland ? "#fff4cf" : "#fffaf0";
+            const hw = isl.volcano?.homework;
+
+            // banner body
+            const badgeR = 10 * k;
+            const padX = 8 * k;
+            const tw = width(isl.chapter.title, caveat);
+            const cw = width(count, geist(700, 11));
+            const bodyW = padX + 2 * badgeR + 7 * k + tw + 12 * k + 8 * k + cw + padX;
+            const bodyH = 28 * k;
+            const tail = 16 * k; // how far the tails reach out
+            const drop = 6 * k; // the tails sit a little lower than the body
+            const tagH = 31 * k; // two lines: "Hausaufgabe 2", the date
+            const hang = 11 * k; // length of the strings
+            const total = bodyH / 2 + (hw ? hang + tagH : drop);
+            const cy = bottom - total;
+            const angle = isl.tilt;
+
+            ctx.save();
+            ctx.translate(x, cy);
+            ctx.rotate(angle);
+            const L = -bodyW / 2;
+            const R = bodyW / 2;
+            const top = -bodyH / 2;
+            const tailPath = (side) => {
+                const edge = side < 0 ? L : R;
+                const out = edge + side * tail;
+                ctx.beginPath();
+                ctx.moveTo(edge - side * 6 * k, top + drop);
+                ctx.lineTo(out, top + drop);
+                ctx.lineTo(out - side * 7 * k, drop); // the notch of the fork
+                ctx.lineTo(out, top + bodyH + drop);
+                ctx.lineTo(edge - side * 6 * k, top + bodyH + drop);
+                ctx.closePath();
+            };
+            const current = i === currentIsland;
+            ctx.lineWidth = 1.5 * k;
             ctx.strokeStyle = "#1a1614";
-            ctx.lineWidth = 1.5 * dpr;
+            ctx.lineJoin = "round";
+
+            // homework tag first: it hangs behind the banner
+            if (hw) {
+                const colors = { open: ["#c2410c", "#fff7ed"], soon: ["#1d4ed8", "#eff6ff"], over: ["#7a716b", "#f5f0eb"] }[homeworkState(hw)];
+                const line1 = `Hausaufgabe ${hw.nr}`;
+                const line2 = homeworkLine(hw);
+                const tagW = Math.max(width(line1, geist(700, 10.5)), width(line2, geist(500, 10.5))) + 16 * k;
+                ctx.save();
+                ctx.translate(0, top + bodyH);
+                ctx.rotate(-angle * 1.6); // swings a little the other way
+                ctx.beginPath();
+                ctx.moveTo(-tagW / 3, -4 * k);
+                ctx.lineTo(-tagW / 3, hang);
+                ctx.moveTo(tagW / 3, -4 * k);
+                ctx.lineTo(tagW / 3, hang);
+                ctx.strokeStyle = "#4a2a14";
+                ctx.lineWidth = 1.4 * k;
+                ctx.stroke();
+                ctx.fillStyle = "rgba(26, 22, 20, 0.8)";
+                ctx.beginPath();
+                ctx.roundRect(-tagW / 2 + 2 * k, hang + 2 * k, tagW, tagH, 5 * k);
+                ctx.fill();
+                ctx.fillStyle = colors[0];
+                ctx.strokeStyle = "#1a1614";
+                ctx.lineWidth = 1.5 * k;
+                ctx.beginPath();
+                ctx.roundRect(-tagW / 2, hang, tagW, tagH, 5 * k);
+                ctx.fill();
+                ctx.stroke();
+                // the knots of the strings
+                ctx.fillStyle = "#1a1614";
+                for (const sx of [-tagW / 3, tagW / 3]) {
+                    ctx.beginPath();
+                    ctx.arc(sx, hang + 3.5 * k, 1.6 * k, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.fillStyle = colors[1];
+                ctx.textAlign = "center";
+                centred(line1, 0, hang + 11 * k, geist(700, 10.5));
+                centred(line2, 0, hang + 22.5 * k, geist(500, 10.5));
+                ctx.restore();
+            }
+
+            // shadow, tails, body
+            ctx.fillStyle = "rgba(26, 22, 20, 0.8)";
+            ctx.save();
+            ctx.translate(2 * k, 2 * k);
+            tailPath(-1);
+            ctx.fill();
+            tailPath(1);
+            ctx.fill();
             ctx.beginPath();
-            ctx.roundRect(left, top, w, h, 7 * dpr);
+            ctx.roundRect(L, top, bodyW, bodyH, 4 * k);
+            ctx.fill();
+            ctx.restore();
+            ctx.fillStyle = current ? "#e9c35f" : "#dcc08d";
+            for (const side of [-1, 1]) {
+                tailPath(side);
+                ctx.fill();
+                ctx.stroke();
+            }
+            ctx.fillStyle = current ? "#ffe9a8" : "#fff6df";
+            ctx.beginPath();
+            ctx.roundRect(L, top, bodyW, bodyH, 4 * k);
             ctx.fill();
             ctx.stroke();
+
+            // chapter number in a badge, the name, the progress
+            const bx = L + padX + badgeR;
+            ctx.fillStyle = "#9a3f28";
+            ctx.beginPath();
+            ctx.arc(bx, 0, badgeR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = "#fff6df";
+            ctx.textAlign = "center";
+            centred(String(isl.chapter.number), bx, 0, geist(800, isl.chapter.number > 9 ? 10 : 12));
             ctx.textAlign = "left";
             ctx.fillStyle = "#1a1614";
-            ctx.font = `700 ${size}px Geist, system-ui, sans-serif`;
-            ctx.fillText(title, left + pad, top + h / 2 + dpr);
-            ctx.font = `600 ${size}px Geist, system-ui, sans-serif`;
-            ctx.fillStyle = n === isl.items.length ? "#1f5f2a" : "#6b625c";
-            ctx.fillText(count, left + pad + tw + gap + 6 * dpr, top + h / 2 + dpr);
-            ctx.fillStyle = n === isl.items.length ? "#22c55e" : "#d6c9bd";
+            const tx = bx + badgeR + 7 * k;
+            centred(isl.chapter.title, tx, 0, caveat);
+            const dx = tx + tw + 12 * k;
+            ctx.fillStyle = complete ? "#22c55e" : "#cdb994";
             ctx.beginPath();
-            ctx.arc(left + pad + tw + gap, top + h / 2, 3 * dpr, 0, Math.PI * 2);
+            ctx.arc(dx, 0, 3 * k, 0, Math.PI * 2);
             ctx.fill();
-            ctx.textAlign = "center";
+            ctx.fillStyle = complete ? "#1f5f2a" : "#6b4f33";
+            centred(count, dx + 8 * k, 0, geist(700, 11));
+            ctx.restore();
         });
-    }
-
-    /** Sign above a volcano with the due date of its homework (red while it runs, grey when it is over). */
-    function drawHomeworkSign(it, x, y, h, size) {
-        const hw = it.homework;
-        const state = homeworkState(hw);
-        const text = `Hausaufgabe ${hw.nr} · ${homeworkLine(hw)}`;
-        ctx.font = `700 ${Math.round(size * 0.92)}px Geist, system-ui, sans-serif`;
-        const w = ctx.measureText(text).width + 16 * dpr;
-        const left = Math.round(x - w / 2);
-        const top = Math.round(y - h / 2);
-        const colors = { open: ["#c2410c", "#fff7ed"], soon: ["#1d4ed8", "#eff6ff"], over: ["#6b625c", "#f5f0eb"] }[state];
-        ctx.fillStyle = "rgba(26, 22, 20, 0.85)";
-        ctx.beginPath();
-        ctx.roundRect(left + 2 * dpr, top + 2 * dpr, w, h, 5 * dpr);
-        ctx.fill();
-        ctx.fillStyle = colors[0];
-        ctx.strokeStyle = "#1a1614";
-        ctx.lineWidth = 1.5 * dpr;
-        ctx.beginPath();
-        ctx.roundRect(left, top, w, h, 5 * dpr);
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = colors[1];
-        ctx.fillText(text, x, top + h / 2 + dpr);
+        ctx.textAlign = "left";
+        ctx.textBaseline = "middle";
     }
 
     let barHeight = 0;
@@ -2180,7 +2391,45 @@
     };
 
     function bind() {
+        // dragging moves the map; a drag is no click
+        let drag = null;
+        let dragged = false;
+        canvas.addEventListener("pointerdown", (e) => {
+            if (e.button !== 0) return;
+            drag = { id: e.pointerId, x: e.clientX, y: e.clientY, camX: cam.x, camY: cam.y, moved: false };
+        });
+        canvas.addEventListener("pointermove", (e) => {
+            if (!drag || e.pointerId !== drag.id) return;
+            const dx = e.clientX - drag.x;
+            const dy = e.clientY - drag.y;
+            if (!drag.moved && Math.hypot(dx, dy) < 6) return;
+            if (!drag.moved) {
+                drag.moved = true;
+                canvas.setPointerCapture(e.pointerId);
+                canvas.classList.add("is-dragging");
+                // start from where the camera really is (it may have been gliding)
+                drag.camX = view.x + canvas.width / view.scale / 2;
+                drag.camY = view.y + canvas.height / view.scale / 2;
+            }
+            cam.free = true;
+            const k = dpr / view.scale; // map pixels per CSS pixel
+            cam.x = drag.camX - dx * k;
+            cam.y = drag.camY - dy * k;
+        });
+        const endDrag = (e) => {
+            if (!drag || e.pointerId !== drag.id) return;
+            dragged = drag.moved;
+            drag = null;
+            canvas.classList.remove("is-dragging");
+        };
+        canvas.addEventListener("pointerup", endDrag);
+        canvas.addEventListener("pointercancel", endDrag);
+
         canvas.addEventListener("click", (e) => {
+            if (dragged) {
+                dragged = false;
+                return;
+            }
             if (busy()) return;
             const cell = cellAt(e.clientX, e.clientY);
             if (cell) walkTo(cell.c, cell.r);
