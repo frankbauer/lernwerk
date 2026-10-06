@@ -1,5 +1,7 @@
 import de.fau.tf.lgdv.CodeBlocks;
-import de.fau.tf.lgdv.graphics.Canvas;
-import de.fau.tf.lgdv.graphics.Image;
-import de.fau.tf.lgdv.graphics.Sprite;
-import de.fau.tf.lgdv.math.Vec2D;
+import de.fau.tf.lgdv.graphics.Color;
+import de.fau.tf.lgdv.tilemap.MapSprite;
+import de.fau.tf.lgdv.tilemap.Projection;
+import de.fau.tf.lgdv.tilemap.SpriteType;
+import de.fau.tf.lgdv.tilemap.Theme;
+import de.fau.tf.lgdv.tilemap.TileMap;

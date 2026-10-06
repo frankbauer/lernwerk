@@ -29,14 +29,17 @@ public class Tauwetter {
     public static void main(String[] args) {
         Wiese wiese = new Wiese(args);
 
+        System.out.println("Sonnenstrahl auf 1 / 2");
         wiese.sonnenstrahl(1, 2);
-        System.out.println("Sonnenstrahl auf 1 / 2: " + tauen(wiese, 1, 2) + " geschmolzen");
+        System.out.println("  " + tauen(wiese, 1, 2) + " geschmolzen");
 
+        System.out.println("Sonnenstrahl auf 3 / 3");
         wiese.sonnenstrahl(3, 3);
-        System.out.println("Sonnenstrahl auf 3 / 3: " + tauen(wiese, 3, 3) + " geschmolzen");
+        System.out.println("  " + tauen(wiese, 3, 3) + " geschmolzen");
 
+        System.out.println("Sonnenstrahl auf 5 / 9");
         wiese.sonnenstrahl(5, 9);
-        System.out.println("Sonnenstrahl auf 5 / 9: " + tauen(wiese, 5, 9) + " geschmolzen");
+        System.out.println("  " + tauen(wiese, 5, 9) + " geschmolzen");
 
         System.out.println("Es stehen noch " + wiese.anzahlSchneemaenner() + " Schneemaenner.");
     }

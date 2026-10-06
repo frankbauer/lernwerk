@@ -1,6 +1,6 @@
 export default {
-    // Playground zur Aufgabe "Tauwetter". Gezeichnet wird von der Klasse Wiese (Java) über den canvasManager,
-    // der Playground übergibt nur die Karte als Programmargumente.
+    // Playground zur Aufgabe "Tauwetter". Gezeichnet wird von der Klasse Wiese (Java) über die
+    // tileMap-Bibliothek (isometrische Karte), der Playground übergibt nur die Karte als Programmargumente.
     // Achtung: Die Datei muss mit "export default" beginnen und wird als HTML eingebettet (keine HTML-Entities).
 
     // . = Wiese, S = Schneemann, T = Bäume, R = Felsen
@@ -15,13 +15,7 @@ export default {
         '..S..T......'
     ],
 
-    setupDOM: function () {
-        this.canvasElement.css({ 'background-color': '#2b3a4a', padding: '0px', overflow: 'hidden' })
-    },
-
-    init: function () {
-        canvasManager.forbidAllInputEvents()
-    },
+    init: function () {},
 
     addArgumentsTo(args) {
         args[0] = `${this.map.length}`
