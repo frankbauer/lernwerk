@@ -71,7 +71,7 @@ class Wiese {
             return;
         }
         felder[zeile][spalte] = GESCHMOLZEN;
-        sprites[zeile][spalte].play("melt");
+        sprites[zeile][spalte].play(Animation.MELT);
         // Schmelzwasser breitet sich aus
         karte.tintCell(spalte, zeile, SCHMELZWASSER, SCHMELZDAUER);
         warten(delayInMs);
