@@ -2188,7 +2188,7 @@
 
         flushFog();
         ctx.drawImage(fogLayer, 0, 0);
-        drawLabels();
+        drawLabels(dt);
     }
 
     /**
@@ -2196,7 +2196,7 @@
      * angle per island), with the chapter number, the name and the progress. The homework hangs below
      * it as a small tag on two strings.
      */
-    function drawLabels() {
+    function drawLabels(dt = 0) {
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         const k = dpr;
         const s = view.scale;
@@ -2217,9 +2217,15 @@
             const seen = state.visited.includes(isl.chapter.number) || fog[idx(...isl.centre)] === 0;
             if (!seen) return;
             const [lc, lr] = isl.label;
-            const x = (lc * T - view.x) * s;
+            const current = i === currentIsland;
+            const sticky = current && !voyage; // on the island, not sailing away from it
+            let x = (lc * T - view.x) * s;
             const bottom = (lr * T - view.y) * s - 14 * k; // a little above the north coast
-            if (x < -300 * k || bottom < -80 * k || x > canvas.width + 300 * k || bottom > canvas.height + 80 * k) return;
+            const offscreen = x < -300 * k || bottom < -80 * k || x > canvas.width + 300 * k || bottom > canvas.height + 80 * k;
+            // the label glides between its normal place and the sticky one: only the shift is smoothed,
+            // so it still moves with the map without lag
+            const shift = isl.labelShift || (isl.labelShift = { x: 0, y: 0 });
+            if (offscreen && !sticky && !shift.x && !shift.y) return;
 
             const n = doneCount(isl.items);
             const complete = n === isl.items.length;
@@ -2238,7 +2244,26 @@
             const tagH = 31 * k; // two lines: "Hausaufgabe 2", the date
             const hang = 11 * k; // length of the strings
             const total = bodyH / 2 + (hw ? hang + tagH : drop);
-            const cy = bottom - total;
+            let cy = bottom - total;
+            let wantX = 0;
+            let wantY = 0;
+            if (sticky) {
+                // sticky: the label of the island you are on stays in view, below the top edge (and the
+                // "Übersicht" button) and inside the screen sideways
+                const minTop = 66 * k;
+                if (cy - bodyH / 2 < minTop) wantY = minTop + bodyH / 2 - cy;
+                const half = bodyW / 2 + tail + 10 * k;
+                wantX = clamp(x, half, canvas.width - half) - x;
+            }
+            const ease = Math.min(1, dt * 8);
+            shift.x += (wantX - shift.x) * ease;
+            shift.y += (wantY - shift.y) * ease;
+            if (Math.abs(wantX - shift.x) < 0.5 && Math.abs(wantY - shift.y) < 0.5) {
+                shift.x = wantX;
+                shift.y = wantY;
+            }
+            x += shift.x;
+            cy += shift.y;
             const angle = isl.tilt;
 
             ctx.save();
@@ -2258,7 +2283,6 @@
                 ctx.lineTo(edge - side * 6 * k, top + bodyH + drop);
                 ctx.closePath();
             };
-            const current = i === currentIsland;
             ctx.lineWidth = 1.5 * k;
             ctx.strokeStyle = "#1a1614";
             ctx.lineJoin = "round";
