@@ -1900,14 +1900,30 @@
         drawFrame(def, animFrame(def, a.from, a.to, now, true, obj), Math.round(x - def.frameWidth / 2), Math.round(y - def.frameHeight / 2));
     }
 
+    // idle: the eyes are open most of the time (first frame of the idle animation, then half closed and
+    // closed); after a random pause the hero blinks once, now and then twice
+    const BLINK = [70, 90, 70]; // ms: half closed, closed, half closed
+
+    function blinkFrame(idle, now) {
+        if (!hero.blinkAt || hero.blinkAt < hero.idleStart) hero.blinkAt = hero.idleStart + 1500 + Math.random() * 3000;
+        const t = now - hero.blinkAt;
+        if (t < 0) return idle.from;
+        const total = BLINK.reduce((a, b) => a + b, 0);
+        if (t >= total) {
+            hero.blinkAt = now + (Math.random() < 0.2 ? 180 : 2000 + Math.random() * 4000);
+            return idle.from;
+        }
+        const step = t < BLINK[0] ? 1 : t < BLINK[0] + BLINK[1] ? 2 : 1;
+        return Math.min(idle.from + step, idle.to);
+    }
+
     function drawHero(now) {
         const def = tm.characters.HERO;
         if (!def.img) return;
         const walking = hero.step || now - hero.lastWalk <= WALK_GRACE_MS;
         let frame;
         if (!walking && def.idle) {
-            const a = def.animations[def.idle];
-            frame = animFrame(def, a.from, a.to, now - hero.idleStart, true, hero);
+            frame = blinkFrame(def.animations[def.idle], now);
         } else {
             const a = def.animations[def.directions[hero.dir] || def.directions.S];
             frame = animFrame(def, a.from, a.to, now - hero.walkStart, true, hero);
