@@ -1,0 +1,2861 @@
+{
+  "version": 1,
+  "id": "gdi",
+  "title": "Grundlagen der Informatik",
+  "concepts": [
+    {
+      "id": "grundlagen",
+      "label": "Grundlagen",
+      "icon": "img/concepts/grundlagen.png"
+    },
+    {
+      "id": "variablen",
+      "label": "Variablen",
+      "icon": "img/concepts/variablen.png"
+    },
+    {
+      "id": "operationen",
+      "label": "Operationen",
+      "icon": "img/concepts/operationen.png"
+    },
+    {
+      "id": "datentypen",
+      "label": "Datentypen",
+      "icon": "img/concepts/datentypen.png"
+    },
+    {
+      "id": "methodenaufrufe-statisch",
+      "label": "Methodenaufrufe (statisch)",
+      "icon": "img/concepts/methodenaufrufe-statisch.png"
+    },
+    {
+      "id": "objekte",
+      "label": "Objekte",
+      "icon": "img/concepts/objekte.png"
+    },
+    {
+      "id": "methodenaufrufe-instanz",
+      "label": "Methodenaufrufe (Instanzen)",
+      "icon": "img/concepts/methodenaufrufe-instanz.png"
+    },
+    {
+      "id": "bedingungen",
+      "label": "Bedingungen",
+      "icon": "img/concepts/bedingungen.png"
+    },
+    {
+      "id": "schleifen",
+      "label": "Schleifen",
+      "icon": "img/concepts/schleifen.png"
+    },
+    {
+      "id": "akkumulator",
+      "label": "Akkumulator",
+      "icon": "img/concepts/akkumulator.png"
+    },
+    {
+      "id": "klassenmethoden",
+      "label": "Klassenmethoden",
+      "icon": "img/concepts/klassenmethoden.png"
+    },
+    {
+      "id": "klassenattribute",
+      "label": "Klassenattribute",
+      "icon": "img/concepts/klassenattribute.png"
+    },
+    {
+      "id": "arrays",
+      "label": "Arrays",
+      "icon": "img/concepts/arrays.png"
+    },
+    {
+      "id": "arrays-ndim",
+      "label": "Mehrdimensionale Arrays",
+      "icon": "img/concepts/arrays-ndim.png"
+    },
+    {
+      "id": "klassen",
+      "label": "Klassen",
+      "icon": "img/concepts/klassen.png"
+    },
+    {
+      "id": "instanzattribute",
+      "label": "Instanzattribute",
+      "icon": "img/concepts/instanzattribute.png"
+    },
+    {
+      "id": "instanzmethoden",
+      "label": "Instanzmethoden",
+      "icon": "img/concepts/instanzmethoden.png"
+    },
+    {
+      "id": "referenzen",
+      "label": "Referenzen",
+      "icon": "img/concepts/referenzen.png"
+    },
+    {
+      "id": "schnittstellen",
+      "label": "Schnittstellen",
+      "icon": "img/concepts/schnittstellen.png"
+    },
+    {
+      "id": "rekursion",
+      "label": "Rekursion",
+      "icon": "img/concepts/rekursion.png"
+    },
+    {
+      "id": "collections",
+      "label": "Collections",
+      "icon": "img/concepts/collections.png"
+    },
+    {
+      "id": "graphen",
+      "label": "Graphen",
+      "icon": "img/concepts/graphen.png"
+    },
+    {
+      "id": "graphen-theorie",
+      "label": "Graphen (Theorie)",
+      "icon": "img/concepts/graphen-theorie.png"
+    },
+    {
+      "id": "zahlen",
+      "label": "Zahlendarstellung",
+      "icon": "img/concepts/zahlen.png"
+    },
+    {
+      "id": "zahlen-addition",
+      "label": "Zahlen Addition",
+      "icon": "img/concepts/zahlen-addition.png"
+    },
+    {
+      "id": "zahlen-umrechnung",
+      "label": "Zahlen Umrechnung",
+      "icon": "img/concepts/zahlen-umrechnung.png"
+    },
+    {
+      "id": "zahlen-binaeroperationen",
+      "label": "Zahlen Binäroperationen",
+      "icon": "img/concepts/zahlen-binaeroperationen.png"
+    },
+    {
+      "id": "bilder",
+      "label": "Bildverarbeitung",
+      "icon": "img/concepts/bilder.png"
+    },
+    {
+      "id": "verschluesselung",
+      "label": "Verschlüsselung",
+      "icon": "img/concepts/verschluesselung.png"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "00_einfuehrung/nachricht",
+      "title": "Einfaches Programm",
+      "description": "Schreibe in der Datei Nachricht.java ein erstes Programm, das deinen Namen auf der Konsole ausgibt.",
+      "link": "00_einfuehrung/nachricht",
+      "type": "exercise",
+      "difficulty": 0,
+      "tags": [
+        "grundlagen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/00_einfuehrung-nachricht.webp"
+    },
+    {
+      "id": "00_einfuehrung/beispiel_universum",
+      "title": "Universum",
+      "description": "Lerne den Aufbau eines Java-Programms kennen und schicke eine Rakete durch ein simuliertes Universum.",
+      "link": "00_einfuehrung/beispiel_universum",
+      "type": "lecture",
+      "difficulty": 1,
+      "tags": [
+        "grundlagen",
+        "variablen",
+        "objekte",
+        "methodenaufrufe-instanz"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/00_einfuehrung-beispiel_universum.webp",
+      "imagePosition": "30% center"
+    },
+    {
+      "id": "00_einfuehrung/sandkasten_print",
+      "title": "MeinExperiment",
+      "description": "Schreibe dein erstes Programm, das deinen Namen und deinen Studiengang auf der Konsole ausgibt.",
+      "link": "00_einfuehrung/sandkasten_print",
+      "type": "sandbox",
+      "difficulty": 1,
+      "tags": [
+        "grundlagen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/00_einfuehrung-sandkasten_print.webp"
+    },
+    {
+      "id": "00_einfuehrung/table",
+      "title": "Formatierte Ausgabe",
+      "description": "Gib die Eigenschaften einer fiktiven Person als sauber formatierte Tabelle auf der Konsole aus.",
+      "link": "00_einfuehrung/table",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "grundlagen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/00_einfuehrung-table.webp"
+    },
+    {
+      "id": "00_einfuehrung/anordnen",
+      "title": "Anweisungen anordnen",
+      "description": "Bringe vorgegebene Codezeilen in eine Reihenfolge, sodass ein kompilierbares Programm entsteht.",
+      "link": "00_einfuehrung/anordnen",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "grundlagen",
+        "variablen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/00_einfuehrung-anordnen.webp"
+    },
+    {
+      "id": "01_Variablen/sandkasten_42",
+      "title": "MeineRechnung",
+      "description": "Lege zwei ganzzahlige Variablen an, deren Summe 42 ergibt, und gib eine davon aus.",
+      "link": "01_Variablen/sandkasten_42",
+      "type": "sandbox",
+      "difficulty": 1,
+      "tags": [
+        "variablen",
+        "operationen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/01_Variablen-sandkasten_42.webp"
+    },
+    {
+      "id": "01_Variablen/swap",
+      "title": "Tauschen",
+      "description": "Vertausche die Werte zweier Variablen, ohne Zahlenwerte direkt in den Code zu schreiben.",
+      "link": "01_Variablen/swap",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/01_Variablen-swap.webp"
+    },
+    {
+      "id": "02_Operationen/beispiel_increment",
+      "title": "Increment/Dekrement",
+      "description": "Finde heraus, wie Post- und Pre-Inkrement in Ausdrücken ausgewertet werden.",
+      "link": "02_Operationen/beispiel_increment",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/02_Operationen-beispiel_increment.webp"
+    },
+    {
+      "id": "02_Operationen/sandkasten_mod",
+      "title": "MeineOperatoren",
+      "description": "Rechne mit arithmetischen Operatoren und entscheide ganz ohne if, ob eine Zahl gerade ist.",
+      "link": "02_Operationen/sandkasten_mod",
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/02_Operationen-sandkasten_mod.webp"
+    },
+    {
+      "id": "02_Operationen/addition",
+      "title": "Zahlen Addieren",
+      "description": "Addiere zwei Ganzzahlen und gib das Ergebnis auf der Konsole aus.",
+      "link": "02_Operationen/addition",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/02_Operationen-addition.webp"
+    },
+    {
+      "id": "02_Operationen/rechteck",
+      "title": "Rechtecksfläche",
+      "description": "Berechne Flächeninhalt und Umfang eines Rechtecks aus seiner Breite und Höhe.",
+      "link": "02_Operationen/rechteck",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/02_Operationen-rechteck.webp"
+    },
+    {
+      "id": "02_Operationen/calculator",
+      "title": "Programm vervollständigen",
+      "description": "Ergänze die fehlenden Variablendeklarationen, damit das Programm übersetzt und die erwartete Ausgabe erzeugt.",
+      "link": "02_Operationen/calculator",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "variablen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/02_Operationen-calculator.webp"
+    },
+    {
+      "id": "02_Operationen/ausgabe",
+      "title": "Was wird angezeigt?",
+      "description": "Sage die Ausgabe von neun println-Anweisungen voraus und lerne, wann + addiert und wann es Texte verkettet.",
+      "link": "02_Operationen/ausgabe",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "operationen",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/02_Operationen-ausgabe.webp"
+    },
+    {
+      "id": "02_Operationen/ausdruecke",
+      "title": "Ausdrücke auswerten",
+      "description": "Werte arithmetische, vergleichende und logische Ausdrücke aus und beachte dabei die Rangfolge der Operatoren.",
+      "link": "02_Operationen/ausdruecke",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "operationen",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/02_Operationen-ausdruecke.webp"
+    },
+    {
+      "id": "03_Datentypen/sandkasten_type",
+      "title": "MeineDatentypen",
+      "description": "Wähle für jede Variable den passenden Datentyp – so klein wie möglich, so groß wie nötig.",
+      "link": "03_Datentypen/sandkasten_type",
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "datentypen",
+        "variablen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/03_Datentypen-sandkasten_type.webp"
+    },
+    {
+      "id": "03_Datentypen/beispiel_cast",
+      "title": "Typumwandlung",
+      "description": "Beobachte, wie Typumwandlungen und Ganzzahldivision das Ergebnis einer Berechnung verändern.",
+      "link": "03_Datentypen/beispiel_cast",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/03_Datentypen-beispiel_cast.webp"
+    },
+    {
+      "id": "03_Datentypen/sandkasten_index",
+      "title": "MeinZufallsindex",
+      "description": "Erzeuge mit Math.random() und einem Type-Cast eine ganze Zufallszahl in einem festen Bereich.",
+      "link": "03_Datentypen/sandkasten_index",
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "datentypen",
+        "operationen",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/03_Datentypen-sandkasten_index.webp"
+    },
+    {
+      "id": "03_Datentypen/add_sub_mul",
+      "title": "Addition, Subtraktion und Division",
+      "description": "Verknüpfe zwei Ganzzahlen mit verschiedenen Rechenoperationen und gib alle Ergebnisse aus.",
+      "link": "03_Datentypen/add_sub_mul",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "datentypen",
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/03_Datentypen-add_sub_mul.webp"
+    },
+    {
+      "id": "03_Datentypen/average",
+      "title": "Durchschnitt",
+      "description": "Berechne den Durchschnitt zweier Fließkommazahlen und gib ihn aus.",
+      "link": "03_Datentypen/average",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "datentypen",
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/03_Datentypen-average.webp"
+    },
+    {
+      "id": "03_Datentypen/temperatur",
+      "title": "Umrechnung von Temperatur",
+      "description": "Rechne eine Temperatur von Celsius in Fahrenheit um und achte dabei auf die Ganzzahldivision.",
+      "link": "03_Datentypen/temperatur",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/03_Datentypen-temperatur.webp"
+    },
+    {
+      "id": "03_Datentypen/ausdruecke",
+      "title": "Ausdrücke mit Kommazahlen",
+      "description": "Werte Ausdrücke mit int, double und char aus und erkenne, wann ganzzahlig geteilt wird.",
+      "link": "03_Datentypen/ausdruecke",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/03_Datentypen-ausdruecke.webp"
+    },
+    {
+      "id": "03_Datentypen/ausgabe",
+      "title": "Was wird ausgegeben?",
+      "description": "Sage für acht kurze Programmstücke exakt die Ausgabe voraus – von Vergleichen bis zur Textverkettung.",
+      "link": "03_Datentypen/ausgabe",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/03_Datentypen-ausgabe.webp"
+    },
+    {
+      "id": "03_Datentypen/typen",
+      "title": "Datentypen bestimmen",
+      "description": "Bestimme für 14 Ausdrücke, zu welchem Datentyp sie ausgewertet werden, und prüfe es in der Lösung mit Java selbst.",
+      "link": "03_Datentypen/typen",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/03_Datentypen-typen.webp"
+    },
+    {
+      "id": "03_Datentypen/ects",
+      "title": "ECTS-Rechner",
+      "description": "Ergänze ein Programm, das aus ECTS und Semesterwochen die Arbeitslast pro Woche berechnet.",
+      "link": "03_Datentypen/ects",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "datentypen",
+        "variablen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/03_Datentypen-ects.webp"
+    },
+    {
+      "id": "04_Methodenaufrufe/sandkasten_flaeche",
+      "title": "MeinMethodenaufruf",
+      "description": "Berechne den Flächeninhalt eines Dreiecks mithilfe der Methoden der Klasse Math.",
+      "link": "04_Methodenaufrufe/sandkasten_flaeche/",
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "methodenaufrufe-statisch",
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/04_Methodenaufrufe-sandkasten_flaeche.webp"
+    },
+    {
+      "id": "04_Methodenaufrufe/beispiel_floating",
+      "title": "Kirschenessen (statisch)",
+      "description": "Programmiere eine Spielsequenz, in der eine Spielfigur per Klassenmethoden eine Kirsche einsammelt.",
+      "link": "04_Methodenaufrufe/beispiel_floating/",
+      "type": "lecture",
+      "difficulty": 1,
+      "tags": [
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/04_Methodenaufrufe-beispiel_floating.webp"
+    },
+    {
+      "id": "04_Methodenaufrufe/beispiel_robots",
+      "title": "Roboter (statisch)",
+      "description": "Platziere Roboter in einem Raum, indem du Klassenmethoden von Room und RobotFactory aufrufst.",
+      "link": "04_Methodenaufrufe/beispiel_robots/",
+      "type": "lecture",
+      "difficulty": 1,
+      "tags": [
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/04_Methodenaufrufe-beispiel_robots.webp",
+      "imagePosition": "65% center"
+    },
+    {
+      "id": "04_Methodenaufrufe/beispiel_floating_int",
+      "title": "Kirschenessen (Spieler, statisch)",
+      "description": "Wähle Spieler über Parameter aus und bewege sie mit Klassenmethoden durch die Spielwelt.",
+      "link": "04_Methodenaufrufe/beispiel_floating_int/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "methodenaufrufe-statisch",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/04_Methodenaufrufe-beispiel_floating_int.webp"
+    },
+    {
+      "id": "04_Methodenaufrufe/tank_static_aufruf",
+      "title": "Tankstellensuche",
+      "description": "Bestimme per Klassenmethoden Fahrtrichtung und Reichweite deines Autos und navigiere zur nächsten Tankstelle.",
+      "link": "04_Methodenaufrufe/tank_static_aufruf/",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "methodenaufrufe-statisch",
+        "variablen",
+        "datentypen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "image": "img/previews/04_Methodenaufrufe-tank_static_aufruf.webp"
+    },
+    {
+      "id": "04_Methodenaufrufe/kirschen",
+      "title": "Kirschenessen mit Klassenmethoden",
+      "description": "Steuere zwei Spieler mit Klassenmethoden der FloatingWorld so, dass der rote Spieler die Kirsche holt – und achte darauf, wie sich die Indizes nach dem Löschen verschieben.",
+      "link": "04_Methodenaufrufe/kirschen",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/04_Methodenaufrufe-kirschen.webp"
+    },
+    {
+      "id": "05_Objekte/beispiel_floating",
+      "title": "Kirschenessen",
+      "description": "Erzeuge Spieler-Objekte, merke dir ihre Referenzen und steuere sie über Instanzmethoden.",
+      "link": "05_Objekte/beispiel_floating/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/05_Objekte-beispiel_floating.webp"
+    },
+    {
+      "id": "05_Objekte/sandkasten_instanzen",
+      "title": "MeineInstanzen",
+      "description": "Lege ein Universum, zwei Sonnen und drei Planeten mit Standardkonstruktoren an.",
+      "link": "05_Objekte/sandkasten_instanzen/",
+      "type": "sandbox",
+      "difficulty": 1,
+      "tags": [
+        "objekte"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/05_Objekte-sandkasten_instanzen.webp"
+    },
+    {
+      "id": "05_Objekte/beispiel_robots",
+      "title": "Roboter",
+      "description": "Erzeuge einen Raum und Roboter als Objekte und steuere sie über Instanzmethoden.",
+      "link": "05_Objekte/beispiel_robots/",
+      "type": "lecture",
+      "difficulty": 1,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/05_Objekte-beispiel_robots.webp",
+      "imagePosition": "left center"
+    },
+    {
+      "id": "05_Objekte/beispiel_robots_constructor",
+      "title": "Roboter (Parameterkonstruktor)",
+      "description": "Initialisiere Roboter schon beim Erzeugen mit Parameterkonstruktoren.",
+      "link": "05_Objekte/beispiel_robots_constructor/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/05_Objekte-beispiel_robots_constructor.webp",
+      "imagePosition": "85% center"
+    },
+    {
+      "id": "05_Objekte/sandkasten_sonnensystem",
+      "title": "MeinePlaneten",
+      "description": "Erweitere ein Sonnensystem um zwei eigene Planeten mit Radius und Geschwindigkeit.",
+      "link": "05_Objekte/sandkasten_sonnensystem/",
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "objekte"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/05_Objekte-sandkasten_sonnensystem.webp"
+    },
+    {
+      "id": "05_Objekte/vec_sum",
+      "title": "Vektorsumme",
+      "description": "Addiere zwei 2D-Vektoren mithilfe der API der Klasse Vec2D.",
+      "link": "05_Objekte/vec_sum/",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/05_Objekte-vec_sum.webp"
+    },
+    {
+      "id": "05_Objekte/vector",
+      "title": "2D Vektoren",
+      "description": "Erzeuge 2D-Vektoren, berechne Summen und Längen und setze sie in eine Formel ein.",
+      "link": "05_Objekte/vector/",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/05_Objekte-vector.webp"
+    },
+    {
+      "id": "05_Objekte/adapter",
+      "title": "Glühbirnen-Adapter",
+      "description": "Steuere Farbe, Helligkeit und Sättigung smarter Glühbirnen über eine Adapter-Instanz.",
+      "link": "05_Objekte/adapter",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "image": "img/previews/05_Objekte-adapter.webp"
+    },
+    {
+      "id": "05_Objekte/labyrinth",
+      "title": "Labyrinth",
+      "description": "Lotse eine Spielfigur mit Befehlen an eine MazeController-Instanz durch ein Labyrinth.",
+      "link": "05_Objekte/labyrinth",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/05_Objekte-labyrinth.webp"
+    },
+    {
+      "id": "05_Objekte/kirschen",
+      "title": "Kirschenessen mit Objekten",
+      "description": "Erzeuge zwei Player-Objekte und steuere sie über Instanzmethoden so, dass der rote Spieler die Kirsche holt – ganz ohne Indizes.",
+      "link": "05_Objekte/kirschen",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/05_Objekte-kirschen.webp"
+    },
+    {
+      "id": "05_Objekte/deklination",
+      "title": "Astronomische Deklination",
+      "description": "Lies mit einer DateParser-Instanz den Tag des Jahres ein und berechne daraus die Deklination der Erde.",
+      "link": "05_Objekte/deklination",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz",
+        "methodenaufrufe-statisch",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/05_Objekte-deklination.webp"
+    },
+    {
+      "id": "05_Objekte/methodenart",
+      "title": "Instanz- oder Klassenmethode?",
+      "description": "Entscheide für neun Methodenaufrufe, ob eine Instanz- oder eine Klassenmethode verwendet wird.",
+      "link": "05_Objekte/methodenart",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "objekte",
+        "methodenaufrufe-instanz",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/05_Objekte-methodenart.webp"
+    },
+    {
+      "id": "06_Bedingungen/beispiel_luck",
+      "title": "Glück",
+      "description": "Simuliere einen Würfelwurf mit Halblingsglück und lerne if-Anweisungen kennen.",
+      "link": "06_Bedingungen/beispiel_luck/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "bedingungen",
+        "datentypen",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/06_Bedingungen-beispiel_luck.webp"
+    },
+    {
+      "id": "06_Bedingungen/sandkasten_binom",
+      "title": "MeinSolver",
+      "description": "Löse quadratische Gleichungen und unterscheide die Fälle anhand der Diskriminante.",
+      "link": "06_Bedingungen/sandkasten_binom/",
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "bedingungen",
+        "operationen",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/06_Bedingungen-sandkasten_binom.webp"
+    },
+    {
+      "id": "06_Bedingungen/vector_sort",
+      "title": "2D Vektoren Sortieren",
+      "description": "Erzeuge zufällige 2D-Vektoren und gib sie nach ihrem Winkel zur X-Achse sortiert aus.",
+      "link": "06_Bedingungen/vector_sort/",
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "bedingungen",
+        "objekte",
+        "methodenaufrufe-instanz",
+        "methodenaufrufe-statisch",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/06_Bedingungen-vector_sort.webp"
+    },
+    {
+      "id": "06_Bedingungen/tank_bedingungen",
+      "title": "Sparflamme",
+      "description": "Prüfe, ob die nächste Tankstelle noch erreichbar ist, und berechne notfalls, wie sparsam du fahren musst.",
+      "link": "06_Bedingungen/tank_bedingungen/",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "bedingungen",
+        "methodenaufrufe-statisch",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "image": "img/previews/06_Bedingungen-tank_bedingungen.webp"
+    },
+    {
+      "id": "06_Bedingungen/teilbar",
+      "title": "Teilbarkeit",
+      "description": "Prüfe mit if-Anweisungen und dem Modulo-Operator, ob eine Zufallszahl durch 2, 3 oder 5 teilbar ist.",
+      "link": "06_Bedingungen/teilbar",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "bedingungen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/06_Bedingungen-teilbar.webp"
+    },
+    {
+      "id": "06_Bedingungen/schaltjahr",
+      "title": "Schaltjahr",
+      "description": "Setze die drei Regeln des gregorianischen Kalenders mit verschachtelten if-Anweisungen um und bestimme, ob ein Jahr ein Schaltjahr ist.",
+      "link": "06_Bedingungen/schaltjahr",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "bedingungen",
+        "operationen",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/06_Bedingungen-schaltjahr.webp"
+    },
+    {
+      "id": "06_Bedingungen/farbcode",
+      "title": "Farbumrechner",
+      "description": "Wandle einen Farbnamen mit einer if-else-Kette in einen hexadezimalen Farbcode um.",
+      "link": "06_Bedingungen/farbcode",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "bedingungen",
+        "methodenaufrufe-instanz"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/06_Bedingungen-farbcode.webp"
+    },
+    {
+      "id": "07_Schleifen/beispiel_pflanzen_for",
+      "title": "Anpflanzen mit for",
+      "description": "Pflanze mit einer for-Schleife mehrere Bäume auf einem Hügel.",
+      "link": "07_Schleifen/beispiel_pflanzen_for/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/07_Schleifen-beispiel_pflanzen_for.webp",
+      "imagePosition": "25% center"
+    },
+    {
+      "id": "07_Schleifen/sandkasten_odds",
+      "title": "MeineZahlen",
+      "description": "Gib mit einer for-Schleife alle ungeraden Zahlen von 99 bis 61 aus.",
+      "link": "07_Schleifen/sandkasten_odds/",
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "operationen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/07_Schleifen-sandkasten_odds.webp"
+    },
+    {
+      "id": "07_Schleifen/beispiel_pflanzen_while",
+      "title": "Anpflanzen mit while",
+      "description": "Lass einen Gärtner mit einer while-Schleife pflanzen, solange er noch Setzlinge hat.",
+      "link": "07_Schleifen/beispiel_pflanzen_while/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/07_Schleifen-beispiel_pflanzen_while.webp"
+    },
+    {
+      "id": "07_Schleifen/beispiel_break",
+      "title": "Break und Continue",
+      "description": "Steuere den Ablauf einer Endlosschleife gezielt mit break und continue.",
+      "link": "07_Schleifen/beispiel_break/",
+      "type": "lecture",
+      "difficulty": 3,
+      "tags": [
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/07_Schleifen-beispiel_break.webp"
+    },
+    {
+      "id": "07_Schleifen/druck_extrema",
+      "title": "Minimaler Luftdruck",
+      "description": "Durchlaufe eine Messreihe mit einer while-Schleife und finde den niedrigsten Luftdruck.",
+      "link": "07_Schleifen/druck_extrema/",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "schleifen",
+        "akkumulator",
+        "bedingungen",
+        "objekte",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/07_Schleifen-druck_extrema.webp"
+    },
+    {
+      "id": "07_Schleifen/groeste_zeitdifferenz",
+      "title": "Größte Zeitdifferenz in Messreihe",
+      "description": "Finde in einer Messreihe die beiden Messungen mit dem größten zeitlichen Abstand.",
+      "link": "07_Schleifen/groeste_zeitdifferenz/",
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "schleifen",
+        "bedingungen",
+        "objekte",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/07_Schleifen-groeste_zeitdifferenz.webp"
+    },
+    {
+      "id": "07_Schleifen/druck_durchschnitt",
+      "title": "Durchschnittsdruck",
+      "description": "Berechne den zeitgewichteten Durchschnitt einer unregelmäßigen Luftdruck-Messreihe.",
+      "link": "07_Schleifen/druck_durchschnitt/",
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "schleifen",
+        "akkumulator",
+        "objekte",
+        "methodenaufrufe-statisch",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/07_Schleifen-druck_durchschnitt.webp"
+    },
+    {
+      "id": "07_Schleifen/buchstabensuppe",
+      "title": "Buchstabensuppe",
+      "description": "Sage für acht for- und while-Schleifen voraus, wie oft sie einen Buchstaben ausgeben – mit break, continue und Überlauf.",
+      "link": "07_Schleifen/buchstabensuppe",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "datentypen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-buchstabensuppe.webp"
+    },
+    {
+      "id": "07_Schleifen/vielfache_pi",
+      "title": "Vielfache von Pi",
+      "description": "Summiere die ersten N Vielfachen von Pi mit einer for-Schleife und einer Akkumulator-Variablen.",
+      "link": "07_Schleifen/vielfache_pi",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "schleifen",
+        "akkumulator",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-vielfache_pi.webp"
+    },
+    {
+      "id": "07_Schleifen/summe_grenze",
+      "title": "Letzte Summe unter einer Grenze",
+      "description": "Addiere 1 + 2 + 3 + ... in einer Endlosschleife und brich mit break ab, bevor die Summe eine Grenze erreicht.",
+      "link": "07_Schleifen/summe_grenze",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "akkumulator",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-summe_grenze.webp"
+    },
+    {
+      "id": "07_Schleifen/laufen",
+      "title": "Laufen mit Schleifen",
+      "description": "Lass die Spielfigur mit einer for-Schleife zur Kirsche und mit einer while-Schleife exakt zurück zum Start laufen.",
+      "link": "07_Schleifen/laufen",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "bedingungen",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-laufen.webp"
+    },
+    {
+      "id": "07_Schleifen/kraftwerke",
+      "title": "Kraftwerke abschalten",
+      "description": "Prüfe mit drei verschachtelten Schleifen alle Kombinationen und schalte drei Kraftwerke so ab, dass möglichst wenig Leistung übrig bleibt.",
+      "link": "07_Schleifen/kraftwerke",
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "schleifen",
+        "bedingungen",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-kraftwerke.webp"
+    },
+    {
+      "id": "07_Schleifen/reiskoerner",
+      "title": "Reiskörner auf dem Schachbrett",
+      "description": "Verdopple die Reiskörner von Feld zu Feld und sammle die Gesamtzahl in einem Akkumulator.",
+      "link": "07_Schleifen/reiskoerner",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "akkumulator",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-reiskoerner.webp"
+    },
+    {
+      "id": "07_Schleifen/quersumme",
+      "title": "Quersumme",
+      "description": "Zerlege eine Zahl mit einer while-Schleife in ihre Ziffern und addiere sie auf.",
+      "link": "07_Schleifen/quersumme",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schleifen",
+        "akkumulator",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-quersumme.webp"
+    },
+    {
+      "id": "07_Schleifen/primzahlsumme",
+      "title": "Primzahlen sammeln",
+      "description": "Addiere Primzahlen, solange ihre Summe unter einer Grenze bleibt, mit der Abbruchbedingung im Schleifenkopf.",
+      "link": "07_Schleifen/primzahlsumme",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "schleifen",
+        "akkumulator",
+        "bedingungen",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/07_Schleifen-primzahlsumme.webp"
+    },
+    {
+      "id": "08_Klassenmethoden/sandkasten_summe",
+      "title": "MeineSumme",
+      "description": "Schreibe eine eigene Methode, die vier Zahlen addiert, und rufe sie mehrfach auf.",
+      "link": "08_Klassenmethoden/sandkasten_summe/",
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "klassenmethoden"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/08_Klassenmethoden-sandkasten_summe.webp"
+    },
+    {
+      "id": "08_Klassenmethoden/beispiel_overload",
+      "title": "Überladen",
+      "description": "Definiere mehrere Methoden mit gleichem Namen, aber unterschiedlichen Parametertypen.",
+      "link": "08_Klassenmethoden/beispiel_overload/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "klassenmethoden",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/08_Klassenmethoden-beispiel_overload.webp"
+    },
+    {
+      "id": "08_Klassenmethoden/irrigation_system",
+      "title": "automatisches Bewässerungssystem",
+      "description": "Automatisiere die Bewässerung deiner Pflanzen mit eigenen Klassenmethoden und Sensordaten.",
+      "link": "08_Klassenmethoden/irrigation_system/",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "klassenmethoden",
+        "bedingungen",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "image": "img/previews/08_Klassenmethoden-irrigation_system.webp",
+      "isHidden": true
+    },
+    {
+      "id": "08_Klassenmethoden/signatur",
+      "title": "Methodensignatur anordnen",
+      "description": "Setze die Bestandteile einer Klassenmethode in die richtige Reihenfolge: Modifikatoren, Rückgabetyp, Name, Parameter und Rumpf.",
+      "link": "08_Klassenmethoden/signatur",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/08_Klassenmethoden-signatur.webp"
+    },
+    {
+      "id": "08_Klassenmethoden/deklarationen",
+      "title": "Gültige Methodendeklarationen",
+      "description": "Entscheide für neun Methodendeklarationen, ob sie gültig sind, und finde die Fehler in den ungültigen.",
+      "link": "08_Klassenmethoden/deklarationen",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "klassenmethoden",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/08_Klassenmethoden-deklarationen.webp"
+    },
+    {
+      "id": "08_Klassenmethoden/schaltjahr",
+      "title": "Schaltjahr",
+      "description": "Ergänze die fehlende Deklaration einer Klassenmethode, deren Rumpf schon vorgegeben ist.",
+      "link": "08_Klassenmethoden/schaltjahr",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "klassenmethoden",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/08_Klassenmethoden-schaltjahr.webp"
+    },
+    {
+      "id": "08_Klassenmethoden/kontrollstrukturen",
+      "title": "Kontrollstrukturen",
+      "description": "Setze eine Rechenvorschrift aus mehreren abhängigen Bedingungen in einer Methode um.",
+      "link": "08_Klassenmethoden/kontrollstrukturen",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "klassenmethoden",
+        "bedingungen",
+        "schleifen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/08_Klassenmethoden-kontrollstrukturen.webp"
+    },
+    {
+      "id": "08_Klassenmethoden/sanduhr",
+      "title": "Zahlen-Sanduhr",
+      "description": "Gib mit verschachtelten Schleifen eine Sanduhr aus absteigenden Zahlen aus.",
+      "link": "08_Klassenmethoden/sanduhr",
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "klassenmethoden",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/08_Klassenmethoden-sanduhr.webp"
+    },
+    {
+      "id": "09_Klassenattribute/beispiel_steuer",
+      "title": "Mehrwertsteuer",
+      "description": "Berechne Bruttopreise über ein Klassenattribut für den Mehrwertsteuersatz.",
+      "link": "09_Klassenattribute/beispiel_steuer/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "klassenattribute",
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/09_Klassenattribute-beispiel_steuer.webp"
+    },
+    {
+      "id": "09_Klassenattribute/sandkasten_schwerkraft",
+      "title": "MeineAttribute",
+      "description": "Lege eine Konstante für die Erdbeschleunigung an und berechne damit den freien Fall.",
+      "link": "09_Klassenattribute/sandkasten_schwerkraft/",
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "klassenattribute",
+        "klassenmethoden",
+        "operationen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/09_Klassenattribute-sandkasten_schwerkraft.webp"
+    },
+    {
+      "id": "09_Klassenattribute/aufrufzaehler",
+      "title": "Methodenaufrufe zählen",
+      "description": "Zähle mit einem privaten Klassenattribut, wie oft eine Methode aufgerufen wird.",
+      "link": "09_Klassenattribute/aufrufzaehler/",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "klassenattribute",
+        "klassenmethoden",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/09_Klassenattribute-aufrufzaehler.webp"
+    },
+    {
+      "id": "09_Klassenattribute/plotter",
+      "title": "Funktionsplotter",
+      "description": "Setze eine mathematische Formel als private Klassenmethode um, zähle ihre Aufrufe und sieh das Ergebnis als Graph.",
+      "link": "09_Klassenattribute/plotter",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "klassenattribute",
+        "klassenmethoden",
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/09_Klassenattribute-plotter.webp"
+    },
+    {
+      "id": "10_Arrays/beispiel_roboter",
+      "title": "Roboterfelder",
+      "description": "Verwalte mehrere Roboter-Objekte gemeinsam in einem Array.",
+      "link": "10_Arrays/beispiel_roboter/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/10_Arrays-beispiel_roboter.webp",
+      "imagePosition": "60% center"
+    },
+    {
+      "id": "10_Arrays/sandkasten_zahlen",
+      "title": "MeinFeld",
+      "description": "Speichere sechs Fließkommazahlen in einem Array, gib sie aus und berechne ihren Durchschnitt.",
+      "link": "10_Arrays/sandkasten_zahlen/",
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "akkumulator",
+        "schleifen",
+        "datentypen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/10_Arrays-sandkasten_zahlen.webp"
+    },
+    {
+      "id": "10_Arrays/auswerten",
+      "title": "Felder auswerten",
+      "description": "Sage die Ausgabe von sechs kurzen Programmstücken mit Feldzugriffen voraus.",
+      "link": "10_Arrays/auswerten",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-auswerten.webp"
+    },
+    {
+      "id": "10_Arrays/feldzugriff",
+      "title": "Feldzugriffe in Schleifen",
+      "description": "Entscheide für 13 Schleifen, ob sie alle Elemente besuchen, eine Exception werfen oder nie enden.",
+      "link": "10_Arrays/feldzugriff",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-feldzugriff.webp"
+    },
+    {
+      "id": "10_Arrays/lesen",
+      "title": "Felder lesen",
+      "description": "Lies den 4. Eintrag eines Feldes aus und gib ihn aus.",
+      "link": "10_Arrays/lesen",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-lesen.webp"
+    },
+    {
+      "id": "10_Arrays/beschreiben",
+      "title": "Felder beschreiben",
+      "description": "Ersetze den 8. Eintrag eines Feldes durch einen neuen Wert.",
+      "link": "10_Arrays/beschreiben",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-beschreiben.webp"
+    },
+    {
+      "id": "10_Arrays/teilbar",
+      "title": "Teilbare Elemente ausgeben",
+      "description": "Gib ab Index 4 höchstens zwei durch 7 teilbare Elemente eines Feldes aus.",
+      "link": "10_Arrays/teilbar",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-teilbar.webp"
+    },
+    {
+      "id": "10_Arrays/ungerade",
+      "title": "Ungerade Zahlen verdoppeln",
+      "description": "Verdopple alle ungeraden Zahlen in einem Feld.",
+      "link": "10_Arrays/ungerade",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-ungerade.webp"
+    },
+    {
+      "id": "10_Arrays/lotto",
+      "title": "Lottozahlen",
+      "description": "Erzeuge mehrere Lottozahl-Objekte, speichere sie in einem Feld und gib ihre Werte aus.",
+      "link": "10_Arrays/lotto",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "objekte",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-lotto.webp"
+    },
+    {
+      "id": "10_Arrays/durchschnitt",
+      "title": "Rollender Durchschnitt",
+      "description": "Berechne für jedes Element eines Feldes den Durchschnitt mit seinen drei Vorgängern.",
+      "link": "10_Arrays/durchschnitt",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "arrays",
+        "schleifen",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-durchschnitt.webp"
+    },
+    {
+      "id": "10_Arrays/wortwolke",
+      "title": "Wortwolke",
+      "description": "Zähle, wie oft ein Wort in Goethes Faust vorkommt, und erzeuge daraus eine Wortwolke.",
+      "link": "10_Arrays/wortwolke",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "akkumulator",
+        "schleifen",
+        "bedingungen",
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-wortwolke.webp"
+    },
+    {
+      "id": "10_Arrays/fehlerteufel",
+      "title": "Fehlerteufel",
+      "description": "Finde und korrigiere die sieben Fehler in einer Methode, die gerade Zahlen quadriert aufsummiert.",
+      "link": "10_Arrays/fehlerteufel",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "akkumulator",
+        "schleifen",
+        "bedingungen",
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-fehlerteufel.webp"
+    },
+    {
+      "id": "10_Arrays/kontoverlauf",
+      "title": "Kontoverlauf",
+      "description": "Verbuche alle Ein- und Auszahlungen eines Feldes und finde den tiefsten Kontostand.",
+      "link": "10_Arrays/kontoverlauf",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "arrays",
+        "akkumulator",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/10_Arrays-kontoverlauf.webp"
+    },
+    {
+      "id": "11_Arrays_nDim/sandkasten_matrix",
+      "title": "MeineMatrix",
+      "description": "Multipliziere alle Werte einer Matrix mit verschachtelten Schleifen und gib sie aus.",
+      "link": "11_Arrays_nDim/sandkasten_matrix/",
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "arrays-ndim",
+        "arrays",
+        "schleifen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/11_Arrays_nDim-sandkasten_matrix.webp"
+    },
+    {
+      "id": "11_Arrays_nDim/kinosaal",
+      "title": "Freie Plätze im Kino",
+      "description": "Zähle die freien Plätze eines Kinosaals und finde die Reihe mit den meisten freien Plätzen.",
+      "link": "11_Arrays_nDim/kinosaal",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "arrays-ndim",
+        "akkumulator",
+        "arrays",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/11_Arrays_nDim-kinosaal.webp"
+    },
+    {
+      "id": "12_Instanzen/beispiel_wald",
+      "title": "Wald on Stage",
+      "description": "Erzeuge mehrere Bäume und verändere ihr Aussehen über ein Instanzattribut.",
+      "link": "12_Instanzen/beispiel_wald/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "instanzattribute",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/12_Instanzen-beispiel_wald.webp",
+      "imagePosition": "left center"
+    },
+    {
+      "id": "12_Instanzen/beispiel_wald_schwer",
+      "title": "Wald on Stage (schwer)",
+      "description": "Schau hinter die Kulissen: So sind die Klassen Baum und Wald mit Attributen, Konstruktoren und Methoden gebaut.",
+      "link": "12_Instanzen/beispiel_wald_schwer/",
+      "type": "lecture",
+      "difficulty": 4,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden",
+        "klassenattribute",
+        "bedingungen",
+        "operationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/12_Instanzen-beispiel_wald_schwer.webp",
+      "imagePosition": "left center"
+    },
+    {
+      "id": "12_Instanzen/sandkasten_bruch",
+      "title": "MeinBruch",
+      "description": "Schreibe eine Klasse für Brüche mit geschützten Attributen, Gettern und einer abgesicherten Setter-Methode.",
+      "link": "12_Instanzen/sandkasten_bruch/",
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden",
+        "bedingungen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/12_Instanzen-sandkasten_bruch.webp"
+    },
+    {
+      "id": "12_Instanzen/vec2d_list",
+      "title": "Verwaltung von 2D-Vektoren",
+      "description": "Implementiere eine eigene Listenklasse, die 2D-Vektoren in einem Array fester Größe verwaltet.",
+      "link": "12_Instanzen/vec2d_list",
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden",
+        "arrays",
+        "schleifen",
+        "bedingungen",
+        "referenzen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "image": "img/previews/12_Instanzen-vec2d_list.webp"
+    },
+    {
+      "id": "12_Instanzen/tierwesen",
+      "title": "Tierwesen: Attribute und Konstruktor",
+      "description": "Modelliere die Attribute eines Tierwesens mit passenden Sichtbarkeiten und schreibe einen Parameterkonstruktor.",
+      "link": "12_Instanzen/tierwesen",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/12_Instanzen-tierwesen.webp"
+    },
+    {
+      "id": "12_Instanzen/spielbrett",
+      "title": "Spielbrett: Attribute und Konstruktor",
+      "description": "Modelliere ein Spielbrett mit konstanten Attributen und einem quadratischen 2D-Feld von Figuren.",
+      "link": "12_Instanzen/spielbrett",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/12_Instanzen-spielbrett.webp"
+    },
+    {
+      "id": "12_Instanzen/internetverbindung",
+      "title": "Internetverbindung",
+      "description": "Simuliere WLAN- und Mobilfunkquellen mit Konstruktoren, Gettern und statischer Verwaltung und finde das stärkste Netz.",
+      "link": "12_Instanzen/internetverbindung",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden",
+        "klassenmethoden",
+        "klassenattribute",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/12_Instanzen-internetverbindung.webp"
+    },
+    {
+      "id": "12_Instanzen/gerade",
+      "title": "Gerade: Attribute",
+      "description": "Modelliere die Attribute einer Klasse Gerade mit passenden Sichtbarkeiten und einer Klassenkonstante.",
+      "link": "12_Instanzen/gerade",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "klassenattribute",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/12_Instanzen-gerade.webp"
+    },
+    {
+      "id": "13_Referenzen/sandkasten_deskrun",
+      "title": "MeineReferenzen",
+      "description": "Verfolge im Schreibtischtest, welche Objekte und Referenzen am Programmende existieren.",
+      "link": "13_Referenzen/sandkasten_deskrun/",
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "referenzen",
+        "instanzattribute",
+        "instanzmethoden"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/13_Referenzen-sandkasten_deskrun.webp"
+    },
+    {
+      "id": "13_Referenzen/beispiel_finalRef",
+      "title": "Konstante Referenzen",
+      "description": "Erfahre, was final bei Objektreferenzen bedeutet – und was nicht.",
+      "link": "13_Referenzen/beispiel_finalRef/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "referenzen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/13_Referenzen-beispiel_finalRef.webp",
+      "imagePosition": "45% center"
+    },
+    {
+      "id": "13_Referenzen/vektor",
+      "title": "2D-Vektor",
+      "description": "Ergänze einen 2D-Vektor um Länge, Addition und das Normalisieren eines ganzen Feldes von Vektoren.",
+      "link": "13_Referenzen/vektor",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "referenzen",
+        "instanzmethoden",
+        "klassenmethoden",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/13_Referenzen-vektor.webp"
+    },
+    {
+      "id": "13_Referenzen/array_kopieren",
+      "title": "Feld kopieren",
+      "description": "Kopiere ein Feld so, dass Änderungen an der Kopie das Original nicht verändern.",
+      "link": "13_Referenzen/array_kopieren",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "referenzen",
+        "arrays",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/13_Referenzen-array_kopieren.webp"
+    },
+    {
+      "id": "14_Schnittstellen/sandkasten_interface",
+      "title": "MeinImplementierer",
+      "description": "Lass eine Klasse die vorgegebene Schnittstelle Fahrbar implementieren.",
+      "link": "14_Schnittstellen/sandkasten_interface/",
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "schnittstellen",
+        "klassen",
+        "instanzmethoden"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/14_Schnittstellen-sandkasten_interface.webp"
+    },
+    {
+      "id": "14_Schnittstellen/beispiel_multi",
+      "title": "Mehrfachschnittstellen",
+      "description": "Lass eine Kreis-Klasse gleich zwei Schnittstellen implementieren.",
+      "link": "14_Schnittstellen/beispiel_multi/",
+      "type": "lecture",
+      "difficulty": 3,
+      "tags": [
+        "schnittstellen",
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/14_Schnittstellen-beispiel_multi.webp"
+    },
+    {
+      "id": "14_Schnittstellen/sprachen",
+      "title": "Sprachen",
+      "description": "Implementiere ein Begrüßungs-Interface in zwei Sprachen und wähle die passende Implementierung zur Laufzeit aus.",
+      "link": "14_Schnittstellen/sprachen",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "schnittstellen",
+        "klassenmethoden",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/14_Schnittstellen-sprachen.webp"
+    },
+    {
+      "id": "16_Rekusrion/sandkasten_flood",
+      "title": "MeinFarbeimer",
+      "description": "Implementiere einen rekursiven Flood-Fill – wie den Farbeimer in einem Malprogramm.",
+      "link": "16_Rekusrion/sandkasten_flood/",
+      "type": "sandbox",
+      "difficulty": 4,
+      "tags": [
+        "rekursion",
+        "bedingungen",
+        "objekte"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/16_Rekusrion-sandkasten_flood.webp"
+    },
+    {
+      "id": "16_Rekusrion/umdrehen",
+      "title": "Text umdrehen",
+      "description": "Ordne die Zeilen einer rekursiven Methode, die einen Text umdreht: erst der Abbruchfall, dann der rekursive Fall.",
+      "link": "16_Rekusrion/umdrehen",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "rekursion",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-umdrehen.webp"
+    },
+    {
+      "id": "16_Rekusrion/palindrom",
+      "title": "Palindrom",
+      "description": "Prüfe rekursiv, ob ein Wort vorwärts und rückwärts gleich gelesen wird.",
+      "link": "16_Rekusrion/palindrom",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "rekursion",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-palindrom.webp"
+    },
+    {
+      "id": "16_Rekusrion/endrekursion",
+      "title": "Endrekursion",
+      "description": "Schreibe eine Kopfrekursion zur Umrechnung von Binärzahlen in eine endrekursive Variante um.",
+      "link": "16_Rekusrion/endrekursion",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "rekursion",
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-endrekursion.webp"
+    },
+    {
+      "id": "16_Rekusrion/iteration",
+      "title": "Iteration",
+      "description": "Wandle eine Endrekursion zur Umrechnung von Binärzahlen in eine Schleife um.",
+      "link": "16_Rekusrion/iteration",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-iteration.webp"
+    },
+    {
+      "id": "16_Rekusrion/tauwetter",
+      "title": "Tauwetter",
+      "description": "Lass rekursiv alle zusammenhängenden Schneemänner schmelzen und zähle sie – ein Flood-Fill mit Rückgabewert.",
+      "link": "16_Rekusrion/tauwetter",
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "rekursion",
+        "bedingungen",
+        "instanzmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-tauwetter.webp"
+    },
+    {
+      "id": "16_Rekusrion/teppich",
+      "title": "Sierpinski-Teppich",
+      "description": "Zeichne mit einer Kaskadenrekursion den Sierpinski-Teppich: acht rekursive Aufrufe pro Quadrat.",
+      "link": "16_Rekusrion/teppich",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-teppich.webp"
+    },
+    {
+      "id": "16_Rekusrion/wechselgeld",
+      "title": "Wechselgeld",
+      "description": "Zähle mit einer Kaskadenrekursion, auf wie viele Arten sich ein Betrag mit Münzen bezahlen lässt.",
+      "link": "16_Rekusrion/wechselgeld",
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "rekursion",
+        "arrays",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-wechselgeld.webp"
+    },
+    {
+      "id": "16_Rekusrion/hanoi",
+      "title": "Türme von Hanoi",
+      "description": "Setze einen Turm aus Scheiben rekursiv auf einen anderen Stab um, ohne je eine größere auf eine kleinere Scheibe zu legen.",
+      "link": "16_Rekusrion/hanoi",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "rekursion",
+        "klassenmethoden"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/16_Rekusrion-hanoi.webp"
+    },
+    {
+      "id": "17_Collections/sandkasten_remove",
+      "title": "MeineNamen",
+      "description": "Verwalte Namen in einer ArrayList und entferne gezielt Einträge.",
+      "link": "17_Collections/sandkasten_remove/",
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "collections",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/17_Collections-sandkasten_remove.webp"
+    },
+    {
+      "id": "17_Collections/sandkasten_lexi",
+      "title": "MeineFiguren",
+      "description": "Baue mit einer HashMap ein kleines Figurenlexikon auf und gib alle Einträge aus.",
+      "link": "17_Collections/sandkasten_lexi/",
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "collections",
+        "bedingungen",
+        "schleifen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/17_Collections-sandkasten_lexi.webp"
+    },
+    {
+      "id": "17_Collections/todo",
+      "title": "ToDo-Liste",
+      "description": "Verwalte eine ToDo-Liste in einer HashMap: Einträge hinzufügen, abhaken und ausgeben.",
+      "link": "17_Collections/todo",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "collections",
+        "instanzmethoden",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/17_Collections-todo.webp"
+    },
+    {
+      "id": "17_Collections/iterieren",
+      "title": "Listen durchlaufen",
+      "description": "Durchlaufe eine LinkedList auf drei Arten: mit Index, mit for-each und mit der forEach-Methode.",
+      "link": "17_Collections/iterieren",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "collections",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/17_Collections-iterieren.webp"
+    },
+    {
+      "id": "18_Graphen/beispiel_graph",
+      "title": "Spezialdatenstruktur Graphen",
+      "description": "Baue einen Graphen aus Städten als Knoten und Verbindungen als Kanten auf.",
+      "link": "18_Graphen/beispiel_graph/",
+      "type": "lecture",
+      "difficulty": 2,
+      "tags": [
+        "graphen",
+        "objekte"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/18_Graphen-beispiel_graph.webp"
+    },
+    {
+      "id": "18_Graphen/beispiel_ablaufen",
+      "title": "Graphen Ablaufen",
+      "description": "Durchlaufe alle Knoten und Kanten eines Graphen mit Schleifen.",
+      "link": "18_Graphen/beispiel_ablaufen/",
+      "type": "lecture",
+      "difficulty": 3,
+      "tags": [
+        "graphen",
+        "schleifen",
+        "collections"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/18_Graphen-beispiel_ablaufen.webp"
+    },
+    {
+      "id": "18_Graphen/beispiel_traversieren",
+      "title": "Graphen Traversieren",
+      "description": "Besuche alle erreichbaren Knoten eines Graphen mit einer rekursiven Tiefensuche.",
+      "link": "18_Graphen/beispiel_traversieren/",
+      "type": "lecture",
+      "difficulty": 4,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": false,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/18_Graphen-beispiel_traversieren.webp"
+    },
+    {
+      "id": "18_Graphen/beispiel_result",
+      "title": "Graphen Traversieren mit Ergebnis",
+      "description": "Berechne beim rekursiven Traversieren ein Ergebnis, zum Beispiel den größten Knotenwert.",
+      "link": "18_Graphen/beispiel_result/",
+      "type": "lecture",
+      "difficulty": 4,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": false,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/18_Graphen-beispiel_result.webp"
+    },
+    {
+      "id": "18_Graphen/beispiel_cycle",
+      "title": "Graphen Traversieren mit Zyklen",
+      "description": "Traversiere auch zyklische Graphen, indem du dir bereits besuchte Knoten merkst.",
+      "link": "18_Graphen/beispiel_cycle/",
+      "type": "lecture",
+      "difficulty": 5,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "collections",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": false,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/18_Graphen-beispiel_cycle.webp"
+    },
+    {
+      "id": "18_Graphen/sandkasten_needle",
+      "title": "MeineSuche",
+      "description": "Prüfe rekursiv, ob ein Knoten mit einem bestimmten Wert erreichbar ist.",
+      "link": "18_Graphen/sandkasten_needle/",
+      "type": "sandbox",
+      "difficulty": 4,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "bedingungen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/18_Graphen-sandkasten_needle.webp"
+    },
+    {
+      "id": "18_Graphen/sandkasten_sum",
+      "title": "MeineSumme",
+      "description": "Summiere rekursiv alle Knotenwerte eines Graphen ab einem Startknoten.",
+      "link": "18_Graphen/sandkasten_sum/",
+      "type": "sandbox",
+      "difficulty": 4,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/18_Graphen-sandkasten_sum.webp"
+    },
+    {
+      "id": "18_Graphen/sackgassen",
+      "title": "Sackgassen zählen",
+      "description": "Zähle alle Knoten eines Graphen, die keine ausgehenden Kanten haben.",
+      "link": "18_Graphen/sackgassen",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "graphen",
+        "schleifen",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-sackgassen.webp"
+    },
+    {
+      "id": "18_Graphen/wege",
+      "title": "Wege zählen",
+      "description": "Zähle rekursiv, wie viele verschiedene Wege in einem zyklenfreien Graphen zu einem Zielknoten führen.",
+      "link": "18_Graphen/wege",
+      "type": "exercise",
+      "difficulty": 5,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-wege.webp"
+    },
+    {
+      "id": "18_Graphen/kette",
+      "title": "Ende einer Kette",
+      "description": "Folge einer Kette von Knoten rekursiv bis zu ihrem letzten Knoten.",
+      "link": "18_Graphen/kette",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-kette.webp"
+    },
+    {
+      "id": "18_Graphen/erreichbar",
+      "title": "Erreichbare Knoten",
+      "description": "Zähle rekursiv alle erreichbaren Knoten eines Graphen mit Zyklen.",
+      "link": "18_Graphen/erreichbar",
+      "type": "exercise",
+      "difficulty": 5,
+      "tags": [
+        "graphen",
+        "rekursion",
+        "collections",
+        "bedingungen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-erreichbar.webp"
+    },
+    {
+      "id": "18_Graphen/dijkstra",
+      "title": "Dijkstra-Tabelle",
+      "description": "Fülle die Tabelle des Dijkstra-Algorithmus Schritt für Schritt für einen zufälligen Graphen aus.",
+      "link": "18_Graphen/dijkstra",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "graphen-theorie"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-dijkstra.webp"
+    },
+    {
+      "id": "18_Graphen/pfad",
+      "title": "Kürzester Pfad aus der Dijkstra-Tabelle",
+      "description": "Lies aus einer fertigen Dijkstra-Tabelle ab, über welche Knoten der kürzeste Pfad führt.",
+      "link": "18_Graphen/pfad",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "graphen-theorie"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-pfad.webp"
+    },
+    {
+      "id": "18_Graphen/prim",
+      "title": "Spannbaum mit Prim",
+      "description": "Bestimme mit Prim den minimalen Spannbaum eines zufälligen Graphen, Kante für Kante in der richtigen Reihenfolge.",
+      "link": "18_Graphen/prim",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "graphen-theorie"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-prim.webp"
+    },
+    {
+      "id": "18_Graphen/kruskal",
+      "title": "Spannbaum mit Kruskal",
+      "description": "Bestimme mit Kruskal den minimalen Spannbaum eines zufälligen Graphen und erkenne Kanten, die einen Kreis schließen.",
+      "link": "18_Graphen/kruskal",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "graphen-theorie"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-kruskal.webp"
+    },
+    {
+      "id": "18_Graphen/zentralitaet",
+      "title": "Zwischenzentralität",
+      "description": "Markiere in der Tabelle der kürzesten Wege alle Wege, die für die Zwischenzentralität eines Knotens zählen.",
+      "link": "18_Graphen/zentralitaet",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "graphen-theorie"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/18_Graphen-zentralitaet.webp"
+    },
+    {
+      "id": "19_Zahlen/todec",
+      "title": "Binär zu Dezimal",
+      "description": "Gib eine Bitsequenz ein und sieh, welchen Wert sie in verschiedenen Zahlendarstellungen hat.",
+      "link": "19_Zahlen/todec/",
+      "type": "tool",
+      "difficulty": 1,
+      "tags": [
+        "zahlen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": false,
+      "image": "img/previews/19_Zahlen-todec.webp"
+    },
+    {
+      "id": "19_Zahlen/addition",
+      "title": "Addition zur Basis n",
+      "description": "Addiere zufällige 8-Bit-Zahlen schriftlich im Hexadezimal-, Oktal- und anderen Zahlensystemen.",
+      "link": "19_Zahlen/addition",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen-addition"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-addition.webp"
+    },
+    {
+      "id": "19_Zahlen/binaer_addition",
+      "title": "Binäre Addition",
+      "description": "Addiere zufällige 8-Bit-Binärzahlen vorzeichenlos, im B1- und im B2-Komplement.",
+      "link": "19_Zahlen/binaer_addition",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen-addition"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-binaer_addition.webp"
+    },
+    {
+      "id": "19_Zahlen/binaer_ueberlauf",
+      "title": "Binäre Addition mit Überlauf",
+      "description": "Addiere 8-Bit-Binärzahlen, deren Summe nicht mehr in 8 Bit passt, und bestimme den Wert des gespeicherten Ergebnisses.",
+      "link": "19_Zahlen/binaer_ueberlauf",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "zahlen-addition"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-binaer_ueberlauf.webp"
+    },
+    {
+      "id": "19_Zahlen/binaer_operationen",
+      "title": "Bitweises UND und ODER",
+      "description": "Verknüpfe zufällige 8-Bit-Binärzahlen mit & und |.",
+      "link": "19_Zahlen/binaer_operationen",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "zahlen-binaeroperationen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-binaer_operationen.webp"
+    },
+    {
+      "id": "19_Zahlen/umrechnung",
+      "title": "Zahlen umrechnen",
+      "description": "Rechne zufällige Zahlen zwischen dem Dezimalsystem und einer frei wählbaren oder zufälligen Basis um.",
+      "link": "19_Zahlen/umrechnung",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen-umrechnung"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-umrechnung.webp"
+    },
+    {
+      "id": "19_Zahlen/vorzeichenlos",
+      "title": "Vorzeichenlose Binärzahlen",
+      "description": "Rechne zufällige vorzeichenlose 8-Bit-Binärzahlen ins Dezimalsystem um und umgekehrt.",
+      "link": "19_Zahlen/vorzeichenlos",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "zahlen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-vorzeichenlos.webp"
+    },
+    {
+      "id": "19_Zahlen/vorzeichenbit",
+      "title": "Binärzahlen mit Vorzeichenbit",
+      "description": "Rechne zufällige 8-Bit-Binärzahlen mit Vorzeichenbit ins Dezimalsystem um und umgekehrt.",
+      "link": "19_Zahlen/vorzeichenbit",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-vorzeichenbit.webp"
+    },
+    {
+      "id": "19_Zahlen/b1_komplement",
+      "title": "B1-Komplement",
+      "description": "Rechne zufällige 8-Bit-Binärzahlen im B1-Komplement ins Dezimalsystem um und umgekehrt.",
+      "link": "19_Zahlen/b1_komplement",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-b1_komplement.webp"
+    },
+    {
+      "id": "19_Zahlen/b2_komplement",
+      "title": "B2-Komplement",
+      "description": "Rechne zufällige 8-Bit-Binärzahlen im B2-Komplement ins Dezimalsystem um und umgekehrt.",
+      "link": "19_Zahlen/b2_komplement",
+      "type": "exercise",
+      "difficulty": 2,
+      "tags": [
+        "zahlen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/19_Zahlen-b2_komplement.webp"
+    },
+    {
+      "id": "20_Bilder/faltung",
+      "title": "Diskrete Faltung",
+      "description": "Gib ein Graustufenbild als 2D-Feld aus und wende einen Sobel-Filterkernel per diskreter Faltung an.",
+      "link": "20_Bilder/faltung",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "bilder",
+        "arrays-ndim",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/20_Bilder-faltung.webp"
+    },
+    {
+      "id": "20_Bilder/bildfilter",
+      "title": "Bildfilter",
+      "description": "Implementiere eine diskrete Faltung und wende Weichzeichner und Kantenfilter auf ein echtes Foto an.",
+      "link": "20_Bilder/bildfilter",
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "bilder",
+        "arrays-ndim",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/20_Bilder-bildfilter.webp"
+    },
+    {
+      "id": "21_Verschluesselung/polybios",
+      "title": "Polybios-Chiffre",
+      "description": "Gib eine Polybios-Tabelle aus, dekodiere eine geheime Nachricht und kodiere ein Wort.",
+      "link": "21_Verschluesselung/polybios",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "verschluesselung",
+        "arrays-ndim",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/21_Verschluesselung-polybios.webp"
+    },
+    {
+      "id": "21_Verschluesselung/enigma",
+      "title": "Simple Enigma",
+      "description": "Implementiere die Walzen einer vereinfachten Enigma, die Buchstaben ver- und entschlüsseln.",
+      "link": "21_Verschluesselung/enigma",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "verschluesselung",
+        "klassen",
+        "arrays"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/21_Verschluesselung-enigma.webp"
+    }
+  ]
+}

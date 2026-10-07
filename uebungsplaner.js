@@ -1,9 +1,8 @@
-// Übungsplaner: lists all exercises from data/exercises.json and filters them
+// Übungsplaner: lists all exercises of the curriculum (catalog.js) and filters them
 // by what the student already knows (last lecture heard + self-assessment).
 (() => {
     "use strict";
 
-    const DATA_URL = "./data/exercises.json";
     /** Exercises marked `isHidden` only show up with ?showHidden in the URL. */
     const SHOW_HIDDEN = new URLSearchParams(location.search).has("showHidden");
     /** Exercises marked `isDraft` (not finished yet) only show up with ?showDrafts in the URL. */
@@ -833,9 +832,7 @@
 
     async function init() {
         try {
-            const res = await fetch(DATA_URL);
-            if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-            catalog = await res.json();
+            catalog = await LernwerkCatalog.load();
         } catch (err) {
             $("results").innerHTML = `<div class="empty"><p class="empty-title">Übungen konnten nicht geladen werden</p>
                 <p>${esc(err.message)}. Die Seite muss über einen Webserver geöffnet werden.</p></div>`;
@@ -851,6 +848,9 @@
         typeLabel = Object.fromEntries(catalog.types.map((t) => [t.id, t.label]));
         typeById = Object.fromEntries(catalog.types.map((t) => [t.id, t]));
         catalog.exercises.forEach((ex) => (ex._search = searchText(ex)));
+        // ids from before the exercise modules ("05_Objekte/vector" is now "gdi/05_Objekte/vector")
+        state.done = Array.isArray(state.done) ? [...new Set(state.done.map(catalog.resolveId))] : [];
+        save();
 
         // older versions stored a single `concept` (and `chapter`)
         if ("concept" in state) {

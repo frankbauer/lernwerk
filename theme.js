@@ -191,17 +191,29 @@
 
         const path = decodeURIComponent(location.pathname)
         const relative = path.startsWith(base.pathname) ? path.slice(base.pathname.length) : path
+        // Übungen liegen in modules/<Modul>/<Kapitelordner>/<Übung>/, Seiten im Wurzelverzeichnis
+        // (z.B. impressum.html) gehören zu keinem Kapitel
         const parts = relative.split('/').filter(Boolean)
-        // Seiten im Wurzelverzeichnis (z.B. impressum.html) gehören zu keinem Kapitel
-        if (parts.length < 2) return
-        const folder = parts[0]
-        crumb.textContent = folder.replace(/_/g, ' ')
+        if (parts[0] !== 'modules' || parts.length < 4) return
+        crumb.textContent = parts[2].replace(/_/g, ' ')
         try {
-            const response = await fetch(new URL('data/exercises.json', base))
-            const data = await response.json()
-            const chapter = data.chapters?.find(c => c.folder === folder)
+            await loadCatalogScript()
+            const catalog = await LernwerkCatalog.load(base)
+            const chapter = LernwerkCatalog.chapterOfPath(catalog, relative)
             if (chapter) crumb.textContent = `Kapitel ${chapter.number} · ${chapter.title}`
         } catch (e) { }
+    }
+
+    // catalog.js (Kapitel aus data/curriculum.json und den Modulen) ist auf den Übungsseiten nicht eingebunden
+    function loadCatalogScript() {
+        if (window.LernwerkCatalog) return Promise.resolve()
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script')
+            script.src = new URL('catalog.js?v=1.0.0', base).href
+            script.onload = resolve
+            script.onerror = reject
+            document.head.append(script)
+        })
     }
 
     // Fußzeile mit Impressum, Datenschutz, Barrierefreiheit und Copyright (auf allen Seiten, css/site.css)

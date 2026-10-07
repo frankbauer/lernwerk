@@ -1,11 +1,27 @@
 // Wurzelverzeichnis des Lernwerks (Ordner dieser Datei)
 const LW_BASE = new URL('.', document.currentScript.src);
 
+// Ordner des Übungsmoduls dieser Seite (modules/<id>/), sonst das Wurzelverzeichnis
+const LW_MODULE = (() => {
+    const page = new URL('.', location.href).pathname
+    const match = page.startsWith(LW_BASE.pathname) && /^modules\/[^/]+\//.exec(page.slice(LW_BASE.pathname.length))
+    return match ? new URL(match[0], LW_BASE) : LW_BASE
+})();
+
+// Pfade in den content-Feldern einer Übungsseite: "@root/..." zeigt in das Wurzelverzeichnis des Lernwerks
+// (z.B. "@root/common/quiz/graph.js"), "@module/..." in den Ordner des Übungsmoduls (z.B.
+// "@module/common/scene/graph/Graph.java"); alle anderen Pfade sind relativ zur Seite.
+function resolvePath(path) {
+    if (path.startsWith('@root/')) return new URL(path.slice('@root/'.length), LW_BASE).href
+    if (path.startsWith('@module/')) return new URL(path.slice('@module/'.length), LW_MODULE).href
+    return path
+}
+
 // Darstellungs-Themes: das gespeicherte Theme (Voreinstellung "abenteuer") sofort setzen, damit das
 // ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü, Fußzeile) und
 // tour.js (Rundgang durch die Übungsseite) nachladen.
 (function loadThemes() {
-    const version = '1.4.3'
+    const version = '1.4.4'
     const base = LW_BASE
     let theme = 'abenteuer'
     try {
@@ -25,7 +41,7 @@ const LW_BASE = new URL('.', document.currentScript.src);
         link.href = new URL(href, base)
         document.head.append(link)
     }
-    for (const src of [`theme.js?v=${version}`, 'tour.js?v=1.2.0']) {
+    for (const src of [`theme.js?v=${version}`, 'tour.js?v=1.2.2']) {
         const script = document.createElement('script')
         script.src = new URL(src, base)
         script.async = false // in dieser Reihenfolge ausführen: tour.js setzt seinen Knopf in das Menü von theme.js
@@ -97,7 +113,7 @@ async function addContent(item, domElement) {
         }
     } else if (item.content !== undefined) {
         console.log("FETCHING", item.type, item.content)
-        const response = await fetch(item.content)
+        const response = await fetch(resolvePath(item.content))
         let text = await response.text()
         if (item.loadPlaygroundContent === true) {
             if (item.content.endsWith('.js')) {
@@ -206,7 +222,7 @@ let overlayListenerAdded = false
 async function registerOverlay(overlay, host) {
     if (typeof overlay === 'string') {
         try {
-            const response = await fetch(overlay)
+            const response = await fetch(resolvePath(overlay))
             overlay = await response.json()
         } catch (e) {
             console.error('Overlay konnte nicht geladen werden', overlay, e)
@@ -310,7 +326,7 @@ async function generateCodeBlockElement(blockData, codeblocks) {
             dataHidden: blockData.type === 'api'
         }, blockElement)
     } else if (blockData.type === 'code') {
-        const response = await fetch(blockData.content)
+        const response = await fetch(resolvePath(blockData.content))
         const code = await response.text()
         generateBlocksFromJava(code, blockData, codeblocks)
         return

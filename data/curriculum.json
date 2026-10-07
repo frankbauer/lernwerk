@@ -1,0 +1,386 @@
+{
+  "version": 1,
+  "_comment": "Aufbau des Kurses: modules nennt die Übungsmodule (modules/<id>/exercises.json), chapters die Kapitel. Ein Kapitel führt Konzepte ein (concepts, IDs aus den Modulen) und enthält Übungen ({module, id}). Siehe catalog.js und data/curriculum.schema.ts.",
+  "types": [
+    {
+      "id": "lecture",
+      "label": "Vorlesungsbeispiel",
+      "short": "Vorlesung",
+      "icon": "img/types/lecture.png"
+    },
+    {
+      "id": "sandbox",
+      "label": "Sandkasten",
+      "icon": "img/types/sandbox.png"
+    },
+    {
+      "id": "exercise",
+      "label": "Übung",
+      "icon": "img/types/exercise.png"
+    },
+    {
+      "id": "test",
+      "label": "Test",
+      "icon": "img/types/test.png"
+    },
+    {
+      "id": "tool",
+      "label": "Tool",
+      "icon": "img/types/tool.png"
+    }
+  ],
+  "modules": [
+    {
+      "id": "gdi",
+      "path": "modules/gdi/"
+    }
+  ],
+  "chapters": [
+    {
+      "number": 0,
+      "title": "Einführung OOP",
+      "concepts": [
+        "grundlagen"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "00_einfuehrung/nachricht" },
+        { "module": "gdi", "id": "00_einfuehrung/beispiel_universum" },
+        { "module": "gdi", "id": "00_einfuehrung/sandkasten_print" },
+        { "module": "gdi", "id": "00_einfuehrung/table" },
+        { "module": "gdi", "id": "00_einfuehrung/anordnen" }
+      ]
+    },
+    {
+      "number": 1,
+      "title": "Variablen",
+      "concepts": [
+        "variablen"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "01_Variablen/sandkasten_42" },
+        { "module": "gdi", "id": "01_Variablen/swap" }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Ausdrücke",
+      "concepts": [
+        "operationen"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "02_Operationen/beispiel_increment" },
+        { "module": "gdi", "id": "02_Operationen/sandkasten_mod" },
+        { "module": "gdi", "id": "02_Operationen/addition" },
+        { "module": "gdi", "id": "02_Operationen/rechteck" },
+        { "module": "gdi", "id": "02_Operationen/calculator" },
+        { "module": "gdi", "id": "02_Operationen/ausgabe" },
+        { "module": "gdi", "id": "02_Operationen/ausdruecke" }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Datentypen",
+      "concepts": [
+        "datentypen"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "03_Datentypen/sandkasten_type" },
+        { "module": "gdi", "id": "03_Datentypen/beispiel_cast" },
+        { "module": "gdi", "id": "03_Datentypen/sandkasten_index" },
+        { "module": "gdi", "id": "03_Datentypen/add_sub_mul" },
+        { "module": "gdi", "id": "03_Datentypen/average" },
+        { "module": "gdi", "id": "03_Datentypen/temperatur" },
+        { "module": "gdi", "id": "03_Datentypen/ausdruecke" },
+        { "module": "gdi", "id": "03_Datentypen/ausgabe" },
+        { "module": "gdi", "id": "03_Datentypen/typen" },
+        { "module": "gdi", "id": "03_Datentypen/ects" }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Methodenaufrufe",
+      "concepts": [
+        "methodenaufrufe-statisch"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "04_Methodenaufrufe/sandkasten_flaeche" },
+        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_floating" },
+        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_robots" },
+        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_floating_int" },
+        { "module": "gdi", "id": "04_Methodenaufrufe/tank_static_aufruf" },
+        { "module": "gdi", "id": "04_Methodenaufrufe/kirschen" }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Objekte",
+      "concepts": [
+        "objekte",
+        "methodenaufrufe-instanz"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "05_Objekte/beispiel_floating" },
+        { "module": "gdi", "id": "05_Objekte/sandkasten_instanzen" },
+        { "module": "gdi", "id": "05_Objekte/beispiel_robots" },
+        { "module": "gdi", "id": "05_Objekte/beispiel_robots_constructor" },
+        { "module": "gdi", "id": "05_Objekte/sandkasten_sonnensystem" },
+        { "module": "gdi", "id": "05_Objekte/vec_sum" },
+        { "module": "gdi", "id": "05_Objekte/vector" },
+        { "module": "gdi", "id": "05_Objekte/adapter" },
+        { "module": "gdi", "id": "05_Objekte/labyrinth" },
+        { "module": "gdi", "id": "05_Objekte/kirschen" },
+        { "module": "gdi", "id": "05_Objekte/deklination" },
+        { "module": "gdi", "id": "05_Objekte/methodenart" }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Bedingungen",
+      "concepts": [
+        "bedingungen"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "06_Bedingungen/beispiel_luck" },
+        { "module": "gdi", "id": "06_Bedingungen/sandkasten_binom" },
+        { "module": "gdi", "id": "06_Bedingungen/vector_sort" },
+        { "module": "gdi", "id": "06_Bedingungen/tank_bedingungen" },
+        { "module": "gdi", "id": "06_Bedingungen/teilbar" },
+        { "module": "gdi", "id": "06_Bedingungen/schaltjahr" },
+        { "module": "gdi", "id": "06_Bedingungen/farbcode" }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Schleifen",
+      "concepts": [
+        "schleifen",
+        "akkumulator"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "07_Schleifen/beispiel_pflanzen_for" },
+        { "module": "gdi", "id": "07_Schleifen/sandkasten_odds" },
+        { "module": "gdi", "id": "07_Schleifen/beispiel_pflanzen_while" },
+        { "module": "gdi", "id": "07_Schleifen/beispiel_break" },
+        { "module": "gdi", "id": "07_Schleifen/druck_extrema" },
+        { "module": "gdi", "id": "07_Schleifen/groeste_zeitdifferenz" },
+        { "module": "gdi", "id": "07_Schleifen/druck_durchschnitt" },
+        { "module": "gdi", "id": "07_Schleifen/buchstabensuppe" },
+        { "module": "gdi", "id": "07_Schleifen/vielfache_pi" },
+        { "module": "gdi", "id": "07_Schleifen/summe_grenze" },
+        { "module": "gdi", "id": "07_Schleifen/laufen" },
+        { "module": "gdi", "id": "07_Schleifen/kraftwerke" },
+        { "module": "gdi", "id": "07_Schleifen/reiskoerner" },
+        { "module": "gdi", "id": "07_Schleifen/quersumme" },
+        { "module": "gdi", "id": "07_Schleifen/primzahlsumme" }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Klassenmethoden",
+      "concepts": [
+        "klassenmethoden"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "08_Klassenmethoden/sandkasten_summe" },
+        { "module": "gdi", "id": "08_Klassenmethoden/beispiel_overload" },
+        { "module": "gdi", "id": "08_Klassenmethoden/irrigation_system" },
+        { "module": "gdi", "id": "08_Klassenmethoden/signatur" },
+        { "module": "gdi", "id": "08_Klassenmethoden/deklarationen" },
+        { "module": "gdi", "id": "08_Klassenmethoden/schaltjahr" },
+        { "module": "gdi", "id": "08_Klassenmethoden/kontrollstrukturen" },
+        { "module": "gdi", "id": "08_Klassenmethoden/sanduhr" }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Klassenattribute",
+      "concepts": [
+        "klassenattribute"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "09_Klassenattribute/beispiel_steuer" },
+        { "module": "gdi", "id": "09_Klassenattribute/sandkasten_schwerkraft" },
+        { "module": "gdi", "id": "09_Klassenattribute/aufrufzaehler" },
+        { "module": "gdi", "id": "09_Klassenattribute/plotter" }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Eindimensionale Felder",
+      "concepts": [
+        "arrays"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "10_Arrays/beispiel_roboter" },
+        { "module": "gdi", "id": "10_Arrays/sandkasten_zahlen" },
+        { "module": "gdi", "id": "10_Arrays/auswerten" },
+        { "module": "gdi", "id": "10_Arrays/feldzugriff" },
+        { "module": "gdi", "id": "10_Arrays/lesen" },
+        { "module": "gdi", "id": "10_Arrays/beschreiben" },
+        { "module": "gdi", "id": "10_Arrays/teilbar" },
+        { "module": "gdi", "id": "10_Arrays/ungerade" },
+        { "module": "gdi", "id": "10_Arrays/lotto" },
+        { "module": "gdi", "id": "10_Arrays/durchschnitt" },
+        { "module": "gdi", "id": "10_Arrays/wortwolke" },
+        { "module": "gdi", "id": "10_Arrays/fehlerteufel" },
+        { "module": "gdi", "id": "10_Arrays/kontoverlauf" }
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Felder (mehrdimensional)",
+      "concepts": [
+        "arrays-ndim"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "11_Arrays_nDim/sandkasten_matrix" },
+        { "module": "gdi", "id": "11_Arrays_nDim/kinosaal" }
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Instanzen",
+      "concepts": [
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "12_Instanzen/beispiel_wald" },
+        { "module": "gdi", "id": "12_Instanzen/beispiel_wald_schwer" },
+        { "module": "gdi", "id": "12_Instanzen/sandkasten_bruch" },
+        { "module": "gdi", "id": "12_Instanzen/vec2d_list" },
+        { "module": "gdi", "id": "12_Instanzen/tierwesen" },
+        { "module": "gdi", "id": "12_Instanzen/spielbrett" },
+        { "module": "gdi", "id": "12_Instanzen/internetverbindung" },
+        { "module": "gdi", "id": "12_Instanzen/gerade" }
+      ]
+    },
+    {
+      "number": 13,
+      "title": "Referenzen",
+      "concepts": [
+        "referenzen"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "13_Referenzen/sandkasten_deskrun" },
+        { "module": "gdi", "id": "13_Referenzen/beispiel_finalRef" },
+        { "module": "gdi", "id": "13_Referenzen/vektor" },
+        { "module": "gdi", "id": "13_Referenzen/array_kopieren" }
+      ]
+    },
+    {
+      "number": 14,
+      "title": "Schnittstelle",
+      "concepts": [
+        "schnittstellen"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "14_Schnittstellen/sandkasten_interface" },
+        { "module": "gdi", "id": "14_Schnittstellen/beispiel_multi" },
+        { "module": "gdi", "id": "14_Schnittstellen/sprachen" }
+      ]
+    },
+    {
+      "number": 16,
+      "title": "Rekursion",
+      "concepts": [
+        "rekursion"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "16_Rekusrion/sandkasten_flood" },
+        { "module": "gdi", "id": "16_Rekusrion/umdrehen" },
+        { "module": "gdi", "id": "16_Rekusrion/palindrom" },
+        { "module": "gdi", "id": "16_Rekusrion/endrekursion" },
+        { "module": "gdi", "id": "16_Rekusrion/iteration" },
+        { "module": "gdi", "id": "16_Rekusrion/tauwetter" },
+        { "module": "gdi", "id": "16_Rekusrion/teppich" },
+        { "module": "gdi", "id": "16_Rekusrion/wechselgeld" },
+        { "module": "gdi", "id": "16_Rekusrion/hanoi" }
+      ]
+    },
+    {
+      "number": 17,
+      "title": "Collections",
+      "concepts": [
+        "collections"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "17_Collections/sandkasten_remove" },
+        { "module": "gdi", "id": "17_Collections/sandkasten_lexi" },
+        { "module": "gdi", "id": "17_Collections/todo" },
+        { "module": "gdi", "id": "17_Collections/iterieren" }
+      ]
+    },
+    {
+      "number": 18,
+      "title": "Graphen",
+      "concepts": [
+        "graphen",
+        "graphen-theorie"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "18_Graphen/beispiel_graph" },
+        { "module": "gdi", "id": "18_Graphen/beispiel_ablaufen" },
+        { "module": "gdi", "id": "18_Graphen/beispiel_traversieren" },
+        { "module": "gdi", "id": "18_Graphen/beispiel_result" },
+        { "module": "gdi", "id": "18_Graphen/beispiel_cycle" },
+        { "module": "gdi", "id": "18_Graphen/sandkasten_needle" },
+        { "module": "gdi", "id": "18_Graphen/sandkasten_sum" },
+        { "module": "gdi", "id": "18_Graphen/sackgassen" },
+        { "module": "gdi", "id": "18_Graphen/wege" },
+        { "module": "gdi", "id": "18_Graphen/kette" },
+        { "module": "gdi", "id": "18_Graphen/erreichbar" },
+        { "module": "gdi", "id": "18_Graphen/dijkstra" },
+        { "module": "gdi", "id": "18_Graphen/pfad" },
+        { "module": "gdi", "id": "18_Graphen/prim" },
+        { "module": "gdi", "id": "18_Graphen/kruskal" },
+        { "module": "gdi", "id": "18_Graphen/zentralitaet" }
+      ]
+    },
+    {
+      "number": 19,
+      "title": "Zahlen",
+      "concepts": [
+        "zahlen",
+        "zahlen-addition",
+        "zahlen-umrechnung",
+        "zahlen-binaeroperationen"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "19_Zahlen/todec" },
+        { "module": "gdi", "id": "19_Zahlen/addition" },
+        { "module": "gdi", "id": "19_Zahlen/binaer_addition" },
+        { "module": "gdi", "id": "19_Zahlen/binaer_ueberlauf" },
+        { "module": "gdi", "id": "19_Zahlen/binaer_operationen" },
+        { "module": "gdi", "id": "19_Zahlen/umrechnung" },
+        { "module": "gdi", "id": "19_Zahlen/vorzeichenlos" },
+        { "module": "gdi", "id": "19_Zahlen/vorzeichenbit" },
+        { "module": "gdi", "id": "19_Zahlen/b1_komplement" },
+        { "module": "gdi", "id": "19_Zahlen/b2_komplement" }
+      ]
+    },
+    {
+      "number": 20,
+      "title": "Bilder",
+      "concepts": [
+        "bilder"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "20_Bilder/faltung" },
+        { "module": "gdi", "id": "20_Bilder/bildfilter" }
+      ]
+    },
+    {
+      "number": 21,
+      "title": "Verschlüsselung",
+      "concepts": [
+        "verschluesselung"
+      ],
+      "exercises": [
+        { "module": "gdi", "id": "21_Verschluesselung/polybios" },
+        { "module": "gdi", "id": "21_Verschluesselung/enigma" }
+      ]
+    }
+  ]
+}

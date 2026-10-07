@@ -1,4 +1,4 @@
-// Abenteuerkarte (karte.html): every chapter of data/exercises.json is an island. A path leads from
+// Abenteuerkarte (karte.html): every chapter of the curriculum (catalog.js) is an island. A path leads from
 // the arrival to the departure port; along it lie a castle (lecture slides, lecture examples and
 // sandboxes), up to three houses (one exercise each), a village (the remaining exercises) and, where
 // the chapter has homework, a volcano with its due date (see data/karte.json). Ships sail along
@@ -16,7 +16,6 @@
     /** Same flags as uebersicht.html, carried into the exercise pages and back to the overview. */
     const FLAG_QUERY = [SHOW_HIDDEN && "showHidden", SHOW_DRAFTS && "showDrafts"].filter(Boolean).join("&");
 
-    const DATA_URL = "./data/exercises.json";
     const CONFIG_URL = "./data/karte.json";
     const ASSETS = "./assets/tilemap/";
     const PLANER_KEY = "lernwerk.uebungsplaner.v1"; // state of uebersicht.html (done exercises)
@@ -2865,10 +2864,11 @@
         $("back-link").href = back;
         try {
             [catalog, tm, config] = await Promise.all([
-                loadJson(DATA_URL),
+                LernwerkCatalog.load(undefined, { cache: "no-cache" }),
                 loadJson(`${ASSETS}tilemap.json`),
                 loadJson(CONFIG_URL).catch(() => ({})),
             ]);
+            LernwerkCatalog.migrateDone(catalog); // ids from before the exercise modules
             knownIds = new Set(catalog.exercises.map((ex) => ex.id)); // before hiding drafts
             if (!SHOW_HIDDEN) catalog.exercises = catalog.exercises.filter((ex) => !ex.isHidden);
             if (!SHOW_DRAFTS) catalog.exercises = catalog.exercises.filter((ex) => !ex.isDraft);

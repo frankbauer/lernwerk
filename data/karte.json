@@ -1,98 +1,98 @@
 {
-  "_comment": "Einstellungen der Abenteuerkarte (karte.html). houses.<Kapitel>: bis zu drei Übungs-IDs (aus data/exercises.json) für die Häuser am Weg, in dieser Reihenfolge; nicht sichtbare (Entwürfe ohne ?showDrafts) werden übersprungen und mit den ersten übrigen Übungen des Kapitels aufgefüllt. Alle übrigen Übungen und Tools stehen im Dorf. villages.<Kapitel> / castles.<Kapitel>: Namen der Dörfer (übrige Übungen) und Burgen (Vorlesungsbeispiele, Sandkästen und Folien). lectureChapters (Vorlesungsnummer der GdI-Webseite -> Kapitel) und homeworkChapters (Nummer der Hausaufgabe -> Kapitel, deren Insel den Vulkan bekommt) steuern tools/karte-kursdaten.mjs, das lectures und homework aus den Semesterdaten der Webseite erzeugt.",
+  "_comment": "Einstellungen der Abenteuerkarte (karte.html). houses.<Kapitel>: bis zu drei Übungs-IDs (z.B. \"gdi/00_einfuehrung/table\", siehe data/curriculum.json) für die Häuser am Weg, in dieser Reihenfolge; nicht sichtbare (Entwürfe ohne ?showDrafts) werden übersprungen und mit den ersten übrigen Übungen des Kapitels aufgefüllt. Alle übrigen Übungen und Tools stehen im Dorf. villages.<Kapitel> / castles.<Kapitel>: Namen der Dörfer (übrige Übungen) und Burgen (Vorlesungsbeispiele, Sandkästen und Folien). lectureChapters (Vorlesungsnummer der GdI-Webseite -> Kapitel) und homeworkChapters (Nummer der Hausaufgabe -> Kapitel, deren Insel den Vulkan bekommt) steuern tools/karte-kursdaten.mjs, das lectures und homework aus den Semesterdaten der Webseite erzeugt.",
   "houses": {
     "0": [
-      "00_einfuehrung/table",
-      "00_einfuehrung/nachricht",
-      "00_einfuehrung/anordnen"
+      "gdi/00_einfuehrung/table",
+      "gdi/00_einfuehrung/nachricht",
+      "gdi/00_einfuehrung/anordnen"
     ],
     "1": [
-      "01_Variablen/swap"
+      "gdi/01_Variablen/swap"
     ],
     "2": [
-      "02_Operationen/addition",
-      "02_Operationen/rechteck",
-      "02_Operationen/calculator"
+      "gdi/02_Operationen/addition",
+      "gdi/02_Operationen/rechteck",
+      "gdi/02_Operationen/calculator"
     ],
     "3": [
-      "03_Datentypen/add_sub_mul",
-      "03_Datentypen/average",
-      "03_Datentypen/temperatur"
+      "gdi/03_Datentypen/add_sub_mul",
+      "gdi/03_Datentypen/average",
+      "gdi/03_Datentypen/temperatur"
     ],
     "4": [
-      "04_Methodenaufrufe/tank_static_aufruf",
-      "04_Methodenaufrufe/kirschen"
+      "gdi/04_Methodenaufrufe/tank_static_aufruf",
+      "gdi/04_Methodenaufrufe/kirschen"
     ],
     "5": [
-      "05_Objekte/vec_sum",
-      "05_Objekte/vector",
-      "05_Objekte/adapter"
+      "gdi/05_Objekte/vec_sum",
+      "gdi/05_Objekte/vector",
+      "gdi/05_Objekte/adapter"
     ],
     "6": [
-      "06_Bedingungen/vector_sort",
-      "06_Bedingungen/tank_bedingungen",
-      "06_Bedingungen/teilbar"
+      "gdi/06_Bedingungen/vector_sort",
+      "gdi/06_Bedingungen/tank_bedingungen",
+      "gdi/06_Bedingungen/teilbar"
     ],
     "7": [
-      "07_Schleifen/druck_extrema",
-      "07_Schleifen/groeste_zeitdifferenz",
-      "07_Schleifen/druck_durchschnitt"
+      "gdi/07_Schleifen/druck_extrema",
+      "gdi/07_Schleifen/groeste_zeitdifferenz",
+      "gdi/07_Schleifen/druck_durchschnitt"
     ],
     "8": [
-      "08_Klassenmethoden/signatur",
-      "08_Klassenmethoden/deklarationen",
-      "08_Klassenmethoden/schaltjahr"
+      "gdi/08_Klassenmethoden/signatur",
+      "gdi/08_Klassenmethoden/deklarationen",
+      "gdi/08_Klassenmethoden/schaltjahr"
     ],
     "9": [
-      "09_Klassenattribute/aufrufzaehler",
-      "09_Klassenattribute/plotter"
+      "gdi/09_Klassenattribute/aufrufzaehler",
+      "gdi/09_Klassenattribute/plotter"
     ],
     "10": [
-      "10_Arrays/auswerten",
-      "10_Arrays/feldzugriff",
-      "10_Arrays/lesen"
+      "gdi/10_Arrays/auswerten",
+      "gdi/10_Arrays/feldzugriff",
+      "gdi/10_Arrays/lesen"
     ],
     "11": [
-      "11_Arrays_nDim/kinosaal"
+      "gdi/11_Arrays_nDim/kinosaal"
     ],
     "12": [
-      "12_Instanzen/vec2d_list",
-      "12_Instanzen/tierwesen",
-      "12_Instanzen/spielbrett"
+      "gdi/12_Instanzen/vec2d_list",
+      "gdi/12_Instanzen/tierwesen",
+      "gdi/12_Instanzen/spielbrett"
     ],
     "13": [
-      "13_Referenzen/vektor",
-      "13_Referenzen/array_kopieren"
+      "gdi/13_Referenzen/vektor",
+      "gdi/13_Referenzen/array_kopieren"
     ],
     "14": [
-      "14_Schnittstellen/sprachen"
+      "gdi/14_Schnittstellen/sprachen"
     ],
     "16": [
-      "16_Rekusrion/umdrehen",
-      "16_Rekusrion/palindrom",
-      "16_Rekusrion/endrekursion"
+      "gdi/16_Rekusrion/umdrehen",
+      "gdi/16_Rekusrion/palindrom",
+      "gdi/16_Rekusrion/endrekursion"
     ],
     "17": [
-      "17_Collections/todo",
-      "17_Collections/iterieren"
+      "gdi/17_Collections/todo",
+      "gdi/17_Collections/iterieren"
     ],
     "18": [
-      "18_Graphen/sackgassen",
-      "18_Graphen/wege",
-      "18_Graphen/kette"
+      "gdi/18_Graphen/sackgassen",
+      "gdi/18_Graphen/wege",
+      "gdi/18_Graphen/kette"
     ],
     "19": [
-      "19_Zahlen/todec",
-      "19_Zahlen/addition",
-      "19_Zahlen/binaer_addition"
+      "gdi/19_Zahlen/todec",
+      "gdi/19_Zahlen/addition",
+      "gdi/19_Zahlen/binaer_addition"
     ],
     "20": [
-      "20_Bilder/faltung",
-      "20_Bilder/bildfilter"
+      "gdi/20_Bilder/faltung",
+      "gdi/20_Bilder/bildfilter"
     ],
     "21": [
-      "21_Verschluesselung/polybios",
-      "21_Verschluesselung/enigma"
+      "gdi/21_Verschluesselung/polybios",
+      "gdi/21_Verschluesselung/enigma"
     ]
   },
   "villages": {

@@ -1,22 +1,29 @@
 <h2><b>class Vec2D</b></h2>
+<p><code>import de.fau.tf.lgdv.math.Vec2D;</code></p>
 <h4>Beschreibung</h4>
 <p>Eine Instanz der Klasse <code>Vec2D</code> repräsentiert einen unveränderlichen 2-dimensionalen Vektor. Die Klasse stellt grundlegende
-    Operationen für 2D-Vektoren zur Verfügung, wie z. B. Addition, Subtraktion, Skalierung und Berechnung des
-    Skalarprodukts. Sie enthält auch Methoden zur Berechnung der Länge, Normalisierung sowie Umwandlungen
-    zwischen Vektoren und Punkten.<br><i>In den Beschreibungen der Methoden meint die Formulierung "dieser Vektor" die Vec2D-Distanz, für die 
+    Operationen für 2D-Vektoren zur Verfügung, wie z. B. Addition, Subtraktion, Skalierung und
+    Rotation. Sie enthält auch Methoden zur Berechnung der Länge und Normalisierung.<br><i>In den Beschreibungen der Methoden meint die Formulierung "dieser Vektor" die Vec2D-Instanz, für die 
     die jeweilige Methode über den Punktoperator aufgerufen wurde.</i></p>
 
 <h4>Konstruktoren</h4>
 <ul>
+    <li><code>public Vec2D()</code><br>Erstellt den Nullvektor (0,0).</li>
     <li><code>public Vec2D(double x, double y)</code><br>Erstellt einen neuen Vektor mit den angegebenen horizontalen
         (<code>x</code>) und vertikalen (<code>y</code>) Komponenten.</li>
+</ul>
+
+<h4>Attribute</h4>
+<ul>
+    <li><code>public final double x</code><br>Die horizontale Komponente des Vektors.</li>
+    <li><code>public final double y</code><br>Die vertikale Komponente des Vektors.</li>
 </ul>
 
 <h4>Methoden</h4>
 <ul>
     <li><code>public double getX()</code><br>Gibt die horizontale Komponente des Vektors zurück.</li>
     <li><code>public double getY()</code><br>Gibt die vertikale Komponente des Vektors zurück.</li>
-    <li><code>public Vec2D normalize()</code><br>Gibt einen normierten Vektor (Länge 1) in die gleiche Richtung
+    <li><code>public Vec2D toUnitLength()</code><br>Gibt einen normierten Vektor (Länge 1) in die gleiche Richtung
         zurück. Wenn der Vektor die Länge 0 hat, wird der Nullvektor zurückgegeben.</li>
     <li><code>public Vec2D toPerpendicular()</code><br>Erstellt einen Vektor gleicher Länge, der senkrecht zum aktuellen Vektor steht.
     </li>
@@ -32,11 +39,6 @@
     <li><code>public Vec2D mul(double f)</code><br>Multipliziert beide Komponenten dieses Vektors mit dem Skalar
         <code>f</code> und gibt das Ergebnis als neuen Vektor zurück.
     </li>
-    <li><code>public Vec2D div(double f)</code><br>Dividiert beide Komponenten dieses Vektors durch den Skalar
-        <code>f</code> und gibt das Ergebnis als neuen Vektor zurück.
-    </li>
-    <li><code>public double dot(Vec2D v)</code><br>Berechnet das Skalarprodukt (auch bekannt als Punkt- oder inneres
-        Produkt) dieses Vektors mit dem übergebenen Vektor <code>v</code>.</li>
     <li><code>public boolean equals(Object obj)</code><br>Vergleicht diesen Vektor mit einem anderen Vektor auf
         Gleichheit. Zwei Vektoren gelten als gleich, wenn ihre <code>x</code>- und <code>y</code>-Komponenten weniger
         als 0,001% voneinander abweichen.</li>
@@ -53,9 +55,5 @@
 <ul>
     <li><code>public static final Vec2D XAxis</code><br>Ein Vektor der Länge 1, der in die positive X-Richtung zeigt (1,0).</li>
     <li><code>public static final Vec2D YAxis</code><br>Ein Vektor der Länge 1, der in die positive Y-Richtung zeigt (0,1).</li>
-    <li><code>public static final Vec2D NegativeXAxis</code><br>Ein Vektor der Länge 1, der in die negative X-Richtung zeigt (-1,0).
-    </li>
-    <li><code>public static final Vec2D NegativeYAxis</code><br>Ein Vektor der Länge 1, der in die negative Y-Richtung zeigt (0,-1).
-    </li>
-    <li><code>public static final Vec2D ZERO</code><br>Der Nullvektor (0,0).</li>
+    <li><code>public static final Vec2D Zero</code><br>Der Nullvektor (0,0).</li>
 </ul>

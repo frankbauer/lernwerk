@@ -12,7 +12,7 @@
 
     const BASE = new URL(".", document.currentScript.src); // Wurzelverzeichnis des Lernwerks
     const OVERVIEW_URL = "uebersicht.html";
-    const EXAMPLE_URL = "03_Datentypen/average/index.html"; // Beispielaufgabe für den Übergang
+    const EXAMPLE_URL = "modules/gdi/03_Datentypen/average/index.html"; // Beispielaufgabe für den Übergang
     const MARGIN = 16; // Abstand zum Fensterrand
     const GAP = 56; // Abstand Markierung ↔ Notiz (Platz für den Pfeil)
     const RING_PAD = 10;

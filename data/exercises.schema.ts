@@ -1,8 +1,10 @@
-// Schema for data/exercises.json (the metadata behind the Übungsplaner).
+// Schema for modules/<id>/exercises.json: the exercises of one module and the concepts they use.
+// A module knows nothing about chapters; data/curriculum.json (see curriculum.schema.ts) assigns
+// concepts and exercises to the chapters of the course.
 // NOTE: Not wired up yet - requires `zod` and a TypeScript build step.
 import { z } from "zod";
 
-/** Kind of exercise, as labeled in uebersicht.html. */
+/** Kind of exercise, as labeled in uebersicht.html (labels and icons: data/curriculum.json). */
 export const ExerciseTypeSchema = z.enum([
     "lecture", // Vorlesungsbeispiel: code discussed in the lecture
     "sandbox", // Sandkasten: task students solve during the lecture
@@ -11,47 +13,27 @@ export const ExerciseTypeSchema = z.enum([
     "tool", // e.g. Taschenrechner, not an exercise
 ]);
 
-export const ChapterSchema = z.object({
-    /** Derived from the folder prefix, e.g. 8 for "08_Klassenmethoden". */
-    number: z.number().int().nonnegative(),
-    folder: z.string().min(1),
-    /** Section heading from uebersicht.html. */
-    title: z.string().min(1),
-});
-
 /** A Java concept used as a filter tag ("Konzepte die ich bereits kenne"). */
 export const ConceptSchema = z.object({
-    /** Slug, primarily derived from the chapter folder name. */
+    /** Slug; modules share concept ids (the first module listed in the curriculum wins). */
     id: z.string().regex(/^[a-z0-9-]+$/),
     label: z.string().min(1),
-    /** Chapter that introduces this concept. */
-    chapter: z.number().int().nonnegative(),
-    /** Optional icon for the concept pill, e.g. "img/concepts/schleifen.png" (see tools/concept_icons.py). */
-    icon: z.string().nullable().optional(),
-});
-
-export const TypeInfoSchema = z.object({
-    id: ExerciseTypeSchema,
-    label: z.string().min(1),
-    /** Shorter label for the type badge next to the title (falls back to `label`). */
-    short: z.string().min(1).optional(),
-    /** Pixel-art icon shown in the type badge and filter, e.g. "img/types/lecture.png". */
+    /** Optional icon for the concept pill, relative to the module, e.g. "img/concepts/schleifen.png" (see tools/concept_icons.py). */
     icon: z.string().nullable().optional(),
 });
 
 export const ExerciseSchema = z.object({
-    /** Path of the exercise without trailing slash / .html. */
+    /** Path of the exercise folder in the module, without trailing slash, e.g. "05_Objekte/vector". */
     id: z.string().min(1),
     title: z.string().min(1),
     /** One-sentence teaser shown on the card (German). */
     description: z.string().min(1),
-    /** Link relative to the site root, exactly as in uebersicht.html. */
+    /** Link to the exercise page, relative to the module. */
     link: z.string().min(1),
-    chapter: z.number().int().nonnegative(),
     type: ExerciseTypeSchema,
-    /** Übungslevel, 1 (sehr einfach) to 5 (sehr schwer). */
-    difficulty: z.number().int().min(1).max(5),
-    /** Concept ids needed to solve the exercise; the chapter's own concept comes first. */
+    /** Übungslevel, 1 (sehr einfach) to 5 (sehr schwer); 0 = not rated yet. */
+    difficulty: z.number().int().min(0).max(5),
+    /** Concept ids needed to solve the exercise; the main concept comes first. */
     tags: z.array(z.string()).min(1),
     /** Beispiellösung available (lecture examples show complete code). */
     hasSolution: z.boolean(),
@@ -59,11 +41,13 @@ export const ExerciseSchema = z.object({
     hasExplanation: z.boolean(),
     /** Additional thinking tasks (Experimente) available. */
     hasExperiments: z.boolean(),
-    /** Marked with <new> in uebersicht.html. */
+    /** Marked as new in the Übungsplaner. */
     isNew: z.boolean(),
     /** Work in progress: only listed in the Übungsplaner with ?showHidden in the URL. */
     isHidden: z.boolean().optional(),
-    /** Preview image, relative to the site root (see tools/capture_previews.mjs). */
+    /** Not finished yet: only listed in the Übungsplaner with ?showDrafts in the URL. */
+    isDraft: z.boolean().optional(),
+    /** Preview image, relative to the module (see tools/capture_previews.mjs). */
     image: z.string().nullable().optional(),
     /**
      * Crop position of the image in the 2:3 preview boxes, as a CSS object-position
@@ -72,30 +56,19 @@ export const ExerciseSchema = z.object({
     imagePosition: z.string().regex(/^[a-z0-9.% -]+$/i).optional(),
 });
 
-export const ExerciseCatalogSchema = z
+export const ExerciseModuleSchema = z
     .object({
         version: z.literal(1),
-        chapters: z.array(ChapterSchema),
+        /** Module id, also its folder name in modules/ and the prefix of its exercise ids in the merged catalog. */
+        id: z.string().regex(/^[a-z0-9-]+$/),
+        title: z.string().min(1),
         concepts: z.array(ConceptSchema),
-        types: z.array(TypeInfoSchema),
         exercises: z.array(ExerciseSchema),
     })
-    .superRefine((catalog, ctx) => {
-        const chapters = new Set(catalog.chapters.map((c) => c.number));
-        const concepts = new Set(catalog.concepts.map((c) => c.id));
+    .superRefine((module, ctx) => {
+        const concepts = new Set(module.concepts.map((c) => c.id));
         const ids = new Set<string>();
-
-        catalog.concepts.forEach((concept, i) => {
-            if (!chapters.has(concept.chapter)) {
-                ctx.addIssue({
-                    code: z.ZodIssueCode.custom,
-                    path: ["concepts", i, "chapter"],
-                    message: `Unknown chapter ${concept.chapter}`,
-                });
-            }
-        });
-
-        catalog.exercises.forEach((exercise, i) => {
+        module.exercises.forEach((exercise, i) => {
             if (ids.has(exercise.id)) {
                 ctx.addIssue({
                     code: z.ZodIssueCode.custom,
@@ -104,14 +77,6 @@ export const ExerciseCatalogSchema = z
                 });
             }
             ids.add(exercise.id);
-
-            if (!chapters.has(exercise.chapter)) {
-                ctx.addIssue({
-                    code: z.ZodIssueCode.custom,
-                    path: ["exercises", i, "chapter"],
-                    message: `Unknown chapter ${exercise.chapter}`,
-                });
-            }
             exercise.tags.forEach((tag, j) => {
                 if (!concepts.has(tag)) {
                     ctx.addIssue({
@@ -125,13 +90,11 @@ export const ExerciseCatalogSchema = z
     });
 
 export type ExerciseType = z.infer<typeof ExerciseTypeSchema>;
-export type Chapter = z.infer<typeof ChapterSchema>;
 export type Concept = z.infer<typeof ConceptSchema>;
-export type TypeInfo = z.infer<typeof TypeInfoSchema>;
 export type Exercise = z.infer<typeof ExerciseSchema>;
-export type ExerciseCatalog = z.infer<typeof ExerciseCatalogSchema>;
+export type ExerciseModule = z.infer<typeof ExerciseModuleSchema>;
 
 /** Parses and validates the raw JSON (throws a ZodError on invalid data). */
-export function parseExerciseCatalog(json: unknown): ExerciseCatalog {
-    return ExerciseCatalogSchema.parse(json);
+export function parseExerciseModule(json: unknown): ExerciseModule {
+    return ExerciseModuleSchema.parse(json);
 }
