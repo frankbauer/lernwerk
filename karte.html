@@ -10,10 +10,18 @@
     <link rel="apple-touch-icon" href="./img/brand/GdI_logo.jpg" />
     <!-- gespeichertes Theme der Übersicht setzen (wie theme.js), damit die Karten dort und hier gleich aussehen -->
     <script>
-        // Arc on iOS lays its toolbar over the bottom of the page: the game bar moves up (css/karte.css)
-        if (/iPhone|iPad|iPod/.test(navigator.userAgent) && /\bArc(Search|Mobile)?\b/i.test(navigator.userAgent)) {
-            document.documentElement.classList.add("is-arc-ios");
-        }
+        // Browsers like Arc on iOS lay their toolbar over the bottom of the page: then the game bar moves
+        // up (html.is-lifted, css/karte.css). Arc does not name itself, it poses as Safari on a Mac: a
+        // "Mac" with a touch screen is an iPhone or iPad. The switch in the help panel ("Spielleiste höher
+        // setzen") overrides this guess and is kept per device.
+        (function () {
+            let lift = null;
+            try {
+                lift = localStorage.getItem("lernwerk.karte.liftBar");
+            } catch (e) { }
+            const posingAsMac = /Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1;
+            if (lift === "1" || (lift === null && posingAsMac)) document.documentElement.classList.add("is-lifted");
+        })();
         try {
             document.documentElement.dataset.lwTheme = localStorage.getItem("lernwerk-theme") || "abenteuer";
         } catch (e) {
@@ -25,8 +33,8 @@
     <link rel="stylesheet" href="./fonts/caveat/caveat.css?v=1.0.0" />
     <link rel="stylesheet" href="./css/uebungsplaner.css?v=1.7.6" />
     <link rel="stylesheet" href="./css/themes-uebersicht.css?v=1.2.3" />
-    <link rel="stylesheet" href="./css/karte.css?v=1.0.19" />
-    <script src="./karte.js?v=1.0.31" defer></script>
+    <link rel="stylesheet" href="./css/karte.css?v=1.0.24" />
+    <script src="./karte.js?v=1.0.40" defer></script>
 </head>
 
 <body class="map-page">
@@ -107,6 +115,10 @@
             <p>Jedes Haus steht für eine Übung. Erst wenn alle Häuser einer Insel erledigt sind, legt am Hafen ein Schiff zur nächsten Insel an.</p>
             <p>In der Burg findest du die Vorlesungsfolien, Vorlesungsbeispiele und Sandkästen, im Dorf weitere Übungen. Vulkane führen zur Hausaufgabe, das Schild darüber zeigt die Abgabe.</p>
             <p>Das Medaillon unten füllt sich mit jedem erledigten Haus – ist es voll, ist der Hafen offen. Die Punkte am Rand stehen für alle Übungen der Insel, auch die in der Burg und im Dorf.</p>
+            <label class="help-switch">
+                <input type="checkbox" id="lift-bar" />
+                <span>Spielleiste höher setzen<small>wenn die Leiste des Browsers sie unten verdeckt</small></span>
+            </label>
             <button type="button" class="help-reset" id="reset-map">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" /></svg>
                 Karte zurücksetzen
@@ -123,6 +135,7 @@
     <button type="button" class="prompt" id="prompt" hidden></button>
     <div class="toast" id="toast" hidden aria-hidden="true"></div>
     <div class="sr" id="announce" aria-live="polite"></div>
+    <div class="fade" id="fade" aria-hidden="true"></div>
     <div class="loading" id="loading" role="status">
         <span class="loading-ship" aria-hidden="true"></span>
         <span>Karte wird gezeichnet …</span>

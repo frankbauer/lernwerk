@@ -5,7 +5,7 @@
 
 .map-page {
     /* space below the game bar: the iPhone's safe area (home indicator) plus, in Arc on iOS, its
-       toolbar that lies over the page (html.is-arc-ios, set in karte.html) */
+       toolbar that lies over the page (html.is-lifted, set in karte.html or by the help panel) */
     --bottom-inset: max(env(safe-area-inset-bottom, 0px), var(--browser-bar, 0px));
     --hud-ink: #1a1614;
     --hud-paper: #fffaf0;
@@ -137,13 +137,16 @@
 }
 
 /* the wings taper towards the medallion and disappear behind it */
+/* more room at the outer, round ends: the buttons there would otherwise touch the curve */
 .wing-left {
+    padding-left: 15px;
     padding-right: 52px;
     margin-right: -46px;
     border-radius: 30px 8px 8px 30px;
 }
 
 .wing-right {
+    padding-right: 15px;
     padding-left: 52px;
     margin-left: -46px;
     border-radius: 8px 30px 30px 8px;
@@ -1045,7 +1048,7 @@
 
 .isle {
     display: grid;
-    grid-template-columns: 38px minmax(0, 1fr) 96px 96px 190px;
+    grid-template-columns: 38px minmax(0, 1fr) 84px 84px 196px 92px;
     align-items: center;
     gap: 14px;
     padding: 8px 14px 8px 10px;
@@ -1053,6 +1056,23 @@
     border-radius: 12px;
     background: #fffaf0;
     box-shadow: 0 3px 0 rgb(74 42 20 / 0.35);
+}
+
+.isle-go {
+    justify-self: end;
+    padding: 5px 10px;
+    border: 2px solid var(--hud-ink);
+    border-radius: 9px;
+    background: #ffd23f;
+    box-shadow: 0 2px 0 var(--hud-ink);
+    color: var(--hud-ink);
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.isle-go:hover {
+    background: #ffe27a;
 }
 
 .isle.is-current {
@@ -1171,6 +1191,7 @@
     font-size: 12px;
     font-weight: 700;
     text-align: right;
+    white-space: nowrap;
 }
 
 .isle-hw:not(:empty) {
@@ -1199,7 +1220,7 @@
 @media (max-width: 760px) {
     .isle {
         grid-template-columns: 38px minmax(0, 1fr) minmax(0, 1fr);
-        grid-template-areas: "nr name name" "nr houses all" "nr hw hw";
+        grid-template-areas: "nr name name" "nr houses all" "nr hw go";
         gap: 6px 12px;
     }
 
@@ -1214,7 +1235,11 @@
     }
 
     .isle-hw:empty {
-        display: none;
+        visibility: hidden;
+    }
+
+    .isle-go {
+        grid-area: go;
     }
 }
 
@@ -1299,11 +1324,11 @@
     }
 
     .wing-left {
-        padding: 0 46px 0 6px;
+        padding: 0 46px 0 11px;
     }
 
     .wing-right {
-        padding: 0 6px 0 46px;
+        padding: 0 11px 0 46px;
     }
 
     .wing-text {
@@ -1381,6 +1406,41 @@
     }
 }
 
-html.is-arc-ios {
-    --browser-bar: 64px;
+html.is-lifted {
+    --browser-bar: 76px;
+}
+
+/* fast travel: the view fades out and in again */
+.fade {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    background: #61a2ff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+}
+
+.fade.is-on {
+    opacity: 1;
+}
+
+.help-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.help-switch input {
+    width: 18px;
+    height: 18px;
+    accent-color: #ffd23f;
+}
+
+.help-switch small {
+    display: block;
+    opacity: 0.7;
+    font-size: 11px;
 }

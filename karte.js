@@ -22,7 +22,7 @@
     const PLANER_KEY = "lernwerk.uebungsplaner.v1"; // state of uebersicht.html (done exercises)
     const STORAGE_KEY = `lernwerk.karte.v1${FLAG_QUERY ? `:${FLAG_QUERY}` : ""}`;
     /** Bump when the island generator changes: stored fog no longer matches the map then. */
-    const GENERATOR = 11;
+    const GENERATOR = 15;
 
     const T = 16; // tile size in map pixels
     const THEMES = ["valley", "beach", "desert", "snow"];
@@ -59,6 +59,8 @@
     let tile; // tile id by name
     let W, H, GW, GH, placement, slotIsland, terrain, themeOf, deco, block, inter, fog, landNear;
     let dockAt = new Map(); // cell -> { island, route, end }
+    let waterTiles = new Map(); // cell -> water tile with a tiny islet
+    let extraLand = new Set(); // cells of the tiny islands next to the islands (not part of them)
     let islands = [];
     let routes = [];
     let interactables = [];
@@ -277,6 +279,8 @@
         block = new Uint8Array(n);
         inter = new Int16Array(n).fill(-1);
         dockAt = new Map();
+        waterTiles = new Map();
+        extraLand = new Set();
         interactables = [];
         sprites = [];
         islands = chapters.map((ch, i) => buildIsland(ch, i));
@@ -300,7 +304,8 @@
         landNear = new Uint8Array(n);
         for (let r = 0; r < H; r++) {
             for (let c = 0; c < W; c++) {
-                if (terrain[idx(c, r)] !== 0) continue;
+                // islets and rocks count like land: the tracks keep away from them too
+                if (terrain[idx(c, r)] !== 0 && !block[idx(c, r)]) continue;
                 for (let y = r - 2; y <= r + 2; y++) {
                     for (let x = c - 2; x <= c + 2; x++) {
                         if (inside(x, y)) landNear[idx(x, y)] = Math.max(landNear[idx(x, y)], Math.max(Math.abs(x - c), Math.abs(y - r)) <= 1 ? 2 : 1);
@@ -311,16 +316,18 @@
         // the name plate floats in the water above the island: centred over its land, above its north coast
         islands.forEach((isl) => {
             const [x0, y0, x1, y1] = isl.bounds;
-            let minC = x1, maxC = x0, minR = y1;
+            let minC = x1, maxC = x0, minR = y1, maxR = y0;
             for (let r = y0; r <= y1; r++) {
                 for (let c = x0; c <= x1; c++) {
-                    if (terrain[idx(c, r)] !== 0) continue;
+                    if (terrain[idx(c, r)] !== 0 || extraLand.has(idx(c, r))) continue;
                     minC = Math.min(minC, c);
                     maxC = Math.max(maxC, c);
                     minR = Math.min(minR, r);
+                    maxR = Math.max(maxR, r);
                 }
             }
             isl.label = [(minC + maxC + 1) / 2, minR];
+            isl.southCoast = maxR + 1; // first row below the island
         });
         routes = islands.slice(1).map((_, i) => buildRoute(i));
         sig = [GENERATOR, W, H, ...islands.map((isl) => `${isl.chapter.number}:${isl.items.map((ex) => ex.id).join("|")}`)].join(",");
@@ -487,18 +494,31 @@
             }
         }
 
-        // ports at both ends of the path, with an open water lane out to the edge of the slot
-        const end = (x, side) => ({ side, land: [x, pathY[x]], dock: [x + (side === "E" ? 1 : -1), pathY[x]], ship: [x + (side === "E" ? 2 : -2), pathY[x]] });
+        // ports at both ends of the path, with an open water lane out to the edge of the slot. A port is
+        // at the west or east end of the road, or (sometimes) on the south coast: the road turns down
+        // to it at the end and the downward pier of the tile sheets (DOCK_2) is used.
+        const end = (x, side) => {
+            if (rng() < 0.3) {
+                const depth = 3 + Math.floor(rng() * 3);
+                for (let k = 1; k <= depth; k++) path.push([x, pathY[x] + k]);
+                core.push(...path.slice(-depth));
+                const y = pathY[x] + depth;
+                return { side: "S", land: [x, y], dock: [x, y + 1], ship: [x, y + 2] };
+            }
+            const d = side === "E" ? 1 : -1;
+            return { side, land: [x, pathY[x]], dock: [x + d, pathY[x]], ship: [x + 2 * d, pathY[x]] };
+        };
         const west = end(xs, "W");
         const east = end(xe, "E");
         const water = new Set();
         for (const e of [west, east]) {
-            const dir = e.side === "E" ? 1 : -1;
+            const [dx, dy] = DIRS[e.side];
             for (let k = 1; ; k++) {
-                const x = e.land[0] + dir * k;
-                if (x < ox || x >= ox + SLOT_W) break;
+                const x = e.land[0] + dx * k;
+                const y = e.land[1] + dy * k;
+                if (x < ox || x >= ox + SLOT_W || y >= oy + SLOT_H) break;
                 const spread = k <= 3 ? 2 : 1;
-                for (let dy = -spread; dy <= spread; dy++) water.add(idx(x, e.land[1] + dy));
+                for (let o = -spread; o <= spread; o++) water.add(dy ? idx(x + o, y) : idx(x, y + o));
             }
         }
 
@@ -583,7 +603,7 @@
         for (let r = oy; r < oy + SLOT_H; r++) {
             for (let c = ox; c < ox + SLOT_W; c++) land[local(c, r)] = main[local(c, r)];
         }
-        carveWater(rng, land, D, local, inSlot, ox, oy, water);
+        const lake = carveWater(rng, land, D, local, inSlot, ox, oy, water);
         for (let r = oy; r < oy + SLOT_H; r++) {
             for (let c = ox; c < ox + SLOT_W; c++) terrain[idx(c, r)] = land[local(c, r)] ? 0 : 1;
         }
@@ -631,11 +651,13 @@
             island.volcano.sprite.rest = island.volcano.sprite.anim;
         }
         // DOCK brings its own strip of coast on its west edge: as drawn for an east coast, mirrored for a west coast
-        deco[idx(...west.dock)] = tile.DOCK | FLIP;
-        deco[idx(...east.dock)] = tile.DOCK;
+        for (const e of [west, east]) {
+            deco[idx(...e.dock)] = e.side === "S" ? tile.DOCK_2 : e.side === "W" ? tile.DOCK | FLIP : tile.DOCK;
+        }
 
         // nature: trees keep a cell away from paths and buildings, flowers and grass may come closer
-        const trees = ["TREE_1", "TREE_2", "TREE_3", "TREES_1", "TREES_2", "BUSH"].map((n) => tile[n]);
+        // single trees; TREES_1 and TREES_2 are the left and right half of one group (placed together)
+        const trees = ["TREE_1", "TREE_2", "TREE_3", "BUSH"].map((n) => tile[n]);
         const flowers = ["FLOWERS_1", "FLOWERS_2", "FLOWERS_3", "FLOWERS_4"].map((n) => tile[n]);
         const details = ["GROUND_DETAIL_1", "GROUND_DETAIL_2", "GROUND_DETAIL_3", "GROUND_DETAIL_4", "GROUND_DETAIL_5"].map((n) => tile[n]);
         const waterCells = [];
@@ -648,7 +670,14 @@
                 }
                 if (coreSet.has(k) || deco[k]) continue;
                 const v = rng();
-                if (D[local(c, r)] >= 2 && v < 0.17) {
+                const right = idx(c + 1, r);
+                const roomRight = c + 1 < ox + SLOT_W - 1 && land[local(c + 1, r)] && !coreSet.has(right) && !deco[right] && D[local(c + 1, r)] >= 2;
+                if (D[local(c, r)] >= 2 && v < 0.05 && roomRight) {
+                    // a group of trees over two cells
+                    deco[k] = tile.TREES_1;
+                    deco[right] = tile.TREES_2;
+                    block[k] = block[right] = 1;
+                } else if (D[local(c, r)] >= 2 && v < 0.17) {
                     deco[k] = pick(rng, trees);
                     block[k] = 1;
                 } else if (v < 0.25) deco[k] = pick(rng, flowers);
@@ -670,6 +699,12 @@
                 const [c, r] = pick(rng, waterCells);
                 addSprite(rng() < 0.5 ? "WATER_RIPPLES" : "WATER_RIPPLES_2", c, r, theme);
             }
+            // ducks on the lake: one or two
+            const pond = [...lake];
+            for (let n = 0; n < (pond.length >= 8 ? 2 : 1) && pond.length; n++) {
+                const [c, r] = pond.splice(Math.floor(rng() * pond.length), 1)[0];
+                addSprite(pick(rng, ["DUCK_BROWN", "DUCK_GREEN", "DUCK_YELLOW"]), c, r, theme);
+            }
             const coast = waterCells.filter(([c, r]) => landAround(c, r, 1) && !nearLane(c, r));
             if (coast.length && rng() < 0.8) {
                 const [c, r] = pick(rng, coast);
@@ -681,6 +716,54 @@
                 const [c, r] = pick(rng, open);
                 deco[idx(c, r)] = pick(rng, rocks);
                 block[idx(c, r)] = 1;
+            }
+            // tiny islets of the tile sheets around the coast: open water, not right at the shore
+            const islets = ["WATER_ISLAND", "WATER_ISLAND_2", "WATER_ISLETS", "WATER_ISLETS_2", "WATER_ISLETS_3",
+                "WATER_ISLETS_4", "WATER_ISLETS_5", "WATER_ISLETS_6", "WATER_ISLETS_7"].map((n) => tile[n]);
+            const freeWater = (c, r) => !nearLane(c, r) && !deco[idx(c, r)] && !block[idx(c, r)] && terrain[idx(c, r)] === 1;
+            const offshore = waterCells.filter(([c, r]) => !landAround(c, r, 1) && landAround(c, r, 4) && freeWater(c, r));
+            // in clusters: 1 to 3 groups of 3 to 6 islet tiles each
+            const clusters = 1 + Math.floor(rng() * 3);
+            for (let n = 0; n < clusters && offshore.length; n++) {
+                const [cc, cr] = pick(rng, offshore);
+                const around = offshore.filter(([c, r]) => Math.max(Math.abs(c - cc), Math.abs(r - cr)) <= 2);
+                const size = 3 + Math.floor(rng() * 4);
+                for (let m = 0; m < size && around.length; m++) {
+                    const [c, r] = around.splice(Math.floor(rng() * around.length), 1)[0];
+                    waterTiles.set(idx(c, r), pick(rng, islets));
+                    block[idx(c, r)] = 1; // ships sail around them
+                }
+            }
+            // sometimes a tiny regular island nearby: an L, 2 x 2, 2 x 3 or 3 x 2 cells of land
+            if (rng() < 0.5) {
+                const shapes = [
+                    [[0, 0], [0, 1], [1, 1]], [[0, 0], [0, 1], [0, 2], [1, 2]], [[0, 0], [1, 0], [1, 1], [1, 2]],
+                    [[0, 0], [1, 0], [0, 1], [1, 1]], [[0, 0], [1, 0], [0, 1], [1, 1], [0, 2], [1, 2]],
+                    [[0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1]],
+                ];
+                const shape = pick(rng, shapes);
+                // all of it in open water, two cells away from other land, islets and the lanes
+                const clear = (c, r) => {
+                    for (let y = r - 2; y <= r + 2; y++) {
+                        for (let x = c - 2; x <= c + 2; x++) {
+                            if (!inner(x, y) || isLand(x, y) || waterTiles.has(idx(x, y)) || !freeWater(x, y)) return false;
+                        }
+                    }
+                    return true;
+                };
+                const spots = waterCells.filter(([c, r]) => landAround(c, r, 7) && shape.every(([dx, dy]) => clear(c + dx, r + dy)));
+                if (spots.length) {
+                    const [c, r] = pick(rng, spots);
+                    shape.forEach(([dx, dy]) => {
+                        const k = idx(c + dx, r + dy);
+                        terrain[k] = 0;
+                        extraLand.add(k);
+                        if (rng() < 0.45) {
+                            deco[k] = pick(rng, trees);
+                            block[k] = 1;
+                        } else if (rng() < 0.3) deco[k] = pick(rng, flowers);
+                    });
+                }
             }
             const wide = open.filter(([c, r]) => [1, 2, 3].every((dx) => open.some(([a, b]) => a === c + dx && b === r)));
             if (wide.length && rng() < 0.35) {
@@ -801,6 +884,7 @@
                 if (river.length >= 3) river.forEach(([cc, rr]) => (land[local(cc, rr)] = 0));
             }
         }
+        return lake;
     }
 
     const isletTheme = (slot) => (slot * 7) % THEMES.length;
@@ -833,7 +917,8 @@
             return n >= 2;
         });
         keep.forEach(([c, r]) => (terrain[idx(c, r)] = 0));
-        const trees = ["TREE_1", "TREE_2", "TREE_3", "TREES_1", "TREES_2", "BUSH"].map((n) => tile[n]);
+        // single trees; TREES_1 and TREES_2 are the left and right half of one group (placed together)
+        const trees = ["TREE_1", "TREE_2", "TREE_3", "BUSH"].map((n) => tile[n]);
         const flowers = ["FLOWERS_1", "FLOWERS_2", "GROUND_DETAIL_1", "GROUND_DETAIL_2"].map((n) => tile[n]);
         keep.forEach(([c, r]) => {
             const v = rng();
@@ -1398,7 +1483,7 @@
         }
         // a reload during the voyage lands at the destination
         state.ships[route.index] = from === "a" ? "b" : "a";
-        state.hero = { c: dest.land[0], r: dest.land[1], dir: dest.side === "E" ? "W" : "E" };
+        state.hero = { c: dest.land[0], r: dest.land[1], dir: { E: "W", W: "E", S: "N" }[dest.side] };
         state.at = islands[dest.island].chapter.number;
         save();
         hidePrompt();
@@ -1780,12 +1865,40 @@
                     <small>Übungen</small><b>${n} / ${isl.items.length}</b>${meter(n, isl.items.length, "is-all")}
                 </span>
                 <span class="isle-hw${hw ? ` is-${homeworkState(hw)}` : ""}">${hw ? `HA ${hw.nr} · ${esc(homeworkLine(hw))}` : ""}</span>
+                ${i !== currentIsland && reach
+                      ? `<button type="button" class="isle-go" data-travel="${i}" title="${esc(isl.chapter.title)} besuchen: zum Ankunftshafen reisen">Besuchen</button>`
+                      : `<span></span>`}
             </li>`;
         });
         const visited = islands.filter((_, i) => reachable(i)).length;
         $("scroll-sub").textContent =
             `${visited} von ${islands.length} Inseln erreichbar · ${exercisesDone} von ${exercisesTotal} Übungen erledigt`;
         $("scroll-body").innerHTML = `<ol class="isles">${rows.join("")}</ol>`;
+    }
+
+    /** Fast travel to an unlocked island: the view fades out, the hero stands at its arrival port. */
+    function travelTo(i) {
+        const isl = islands[i];
+        if (!isl || !reachable(i) || voyage) return;
+        closeOverlay("scroll-overlay");
+        const fade = $("fade");
+        fade.classList.add("is-on");
+        setTimeout(() => {
+            const [c, r] = isl.arrival.land;
+            hero.c = hero.fc = c;
+            hero.r = hero.fr = r;
+            hero.step = null;
+            hero.queue = [];
+            hero.dir = { E: "W", W: "E", S: "N" }[isl.arrival.side];
+            hero.idleStart = performance.now();
+            pending = null;
+            cam.free = false;
+            cam.ready = false; // jump, no long glide across the sea
+            reveal(c, r, REVEAL);
+            enterIsland(i);
+            save();
+            fade.classList.remove("is-on");
+        }, 260);
     }
 
     function openIslandList() {
@@ -1981,6 +2094,7 @@
 
     function terrainTile(c, r) {
         if (terrain[idx(c, r)] === 0) return tile.LAND;
+        if (waterTiles.has(idx(c, r))) return waterTiles.get(idx(c, r));
         const coast = tm.autotiles.coast;
         const n = isLand(c, r - 1);
         const e = isLand(c + 1, r);
@@ -2103,6 +2217,43 @@
         return a.pause.frame ?? null;
     }
 
+    /**
+     * Animations with `cycle` (tilemap.json) play `cycle.repeat` a random number of times (`times`), then
+     * `cycle.then` once, and start over: the ducks swim left and right a few rounds, then dive.
+     */
+    function cycleFrame(s, def, cycle, now) {
+        const repeat = def.animations[cycle.repeat];
+        const then = def.animations[cycle.then];
+        if (!repeat || !then) return def.frame || 0;
+        const run = (anim) => {
+            let total = 0;
+            for (let f = anim.from; f <= anim.to; f++) total += frameDuration(def, f);
+            return total || 1;
+        };
+        const [minN, maxN] = cycle.times || [2, 4];
+        const count = () => minN + Math.floor(Math.random() * (maxN - minN + 1));
+        if (s.cycleAt === undefined) {
+            // start somewhere in the first rounds, so the ducks do not all dive together
+            s.cycleLeft = count();
+            s.cycleThen = false;
+            s.cycleAt = now - Math.random() * s.cycleLeft * run(repeat);
+        }
+        let t = now - s.cycleAt;
+        for (let guard = 0; guard < 100; guard++) {
+            const length = s.cycleThen ? run(then) : s.cycleLeft * run(repeat);
+            if (t < length) break;
+            s.cycleAt += length;
+            t -= length;
+            s.cycleThen = !s.cycleThen;
+            if (!s.cycleThen) s.cycleLeft = count();
+        }
+        if (s.cycleThen) return animFrame(def, then.from, then.to, t, false, null);
+        // the rounds begin at frame `start` and wrap around: they end where the dive fits on
+        let offset = 0;
+        for (let f = repeat.from; f < (cycle.start ?? repeat.from); f++) offset += frameDuration(def, f);
+        return animFrame(def, repeat.from, repeat.to, (t + offset) % run(repeat), false, null);
+    }
+
     function drawSprite(s, now) {
         const def = s.def;
         if (!def.img) return;
@@ -2111,7 +2262,13 @@
             s.until = 0;
         }
         const a = def.animations?.[s.anim];
-        const frame = !a ? def.frame || 0 : a.pause && a.loop ? pausedFrame(s, def, a, now) : animFrame(def, a.from, a.to, now - s.start, a.loop, s);
+        const frame = !a
+            ? def.frame || 0
+            : a.pause && a.loop
+              ? pausedFrame(s, def, a, now)
+              : a.cycle && a.loop
+                ? cycleFrame(s, def, a.cycle, now)
+                : animFrame(def, a.from, a.to, now - s.start, a.loop, s);
         if (frame === null) return; // pausing without a frame (the shark is just water then)
         const fp = def.footprint || [1, 1];
         const x = s.col * T + Math.round((fp[0] * T - def.frameWidth) / 2);
@@ -2326,7 +2483,10 @@
                 // sticky: the label of the island you are on stays in view, below the top edge (and the
                 // "Übersicht" button) and inside the screen sideways
                 const minTop = 66 * k;
-                if (cy - bodyH / 2 < minTop) wantY = minTop + bodyH / 2 - cy;
+                // down to the south coast at most: dragged further, it leaves the view with the island
+                const southY = (isl.southCoast * T - view.y) * s;
+                const stickyY = Math.min(Math.max(cy, minTop + bodyH / 2), southY - total);
+                wantY = Math.max(0, stickyY - cy);
                 const half = bodyW / 2 + tail + 10 * k;
                 wantX = clamp(x, half, canvas.width - half) - x;
             }
@@ -2600,6 +2760,17 @@
         $("gamebar").addEventListener("click", (e) => {
             if (e.detail > 0 && e.target.closest("button") && !e.target.closest("#help-toggle")) canvas.focus({ preventScroll: true });
         });
+        // "Spielleiste höher setzen": overrides the guess in karte.html, kept per device
+        $("lift-bar").checked = document.documentElement.classList.contains("is-lifted");
+        $("lift-bar").addEventListener("change", (e) => {
+            document.documentElement.classList.toggle("is-lifted", e.target.checked);
+            try {
+                localStorage.setItem("lernwerk.karte.liftBar", e.target.checked ? "1" : "0");
+            } catch (err) {
+                // storage unavailable: only for this visit
+            }
+            resize();
+        });
         $("go-next").addEventListener("click", goNext);
         $("island-list").addEventListener("click", openIslandList);
         $("go-port").addEventListener("click", goPort);
@@ -2628,6 +2799,11 @@
                 if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return; // new tab: normal link
                 e.preventDefault();
                 openExercise(open.dataset.open);
+                return;
+            }
+            const travel = e.target.closest("[data-travel]");
+            if (travel) {
+                travelTo(Number(travel.dataset.travel));
                 return;
             }
             const toggle = e.target.closest("[data-done]");
@@ -2674,7 +2850,12 @@
         if (params.has("ua")) {
             const box = document.createElement("textarea");
             box.readOnly = true;
-            box.value = navigator.userAgent;
+            box.value = [
+                navigator.userAgent,
+                `touch points: ${navigator.maxTouchPoints}, screen: ${screen.width} x ${screen.height}, ` +
+                    `window: ${innerWidth} x ${innerHeight}, pixel ratio: ${devicePixelRatio}`,
+                `lifted: ${document.documentElement.classList.contains("is-lifted")}`,
+            ].join("\n");
             box.style.cssText = "position:fixed;left:10px;right:10px;top:64px;z-index:60;height:90px;font:12px monospace;padding:8px";
             document.body.append(box);
         }

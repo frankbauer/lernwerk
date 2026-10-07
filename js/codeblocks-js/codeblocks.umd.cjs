@@ -5014,7 +5014,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                 break
             case 'stop':
                 if (def) {
-                    sprite.frame = this._spriteFrame(sprite, def, now)
+                    sprite.frame = this._spriteFrame(sprite, def, now) ?? def.frame ?? 0
                 }
                 sprite.anim = null
                 break
@@ -5147,19 +5147,96 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         return { frame: to, done: false }
     },
 
-    // frame of the sprite within its variant
+    // frame of the sprite within its variant, null: nothing to draw (the pause of an animation)
     _spriteFrame(sprite, def, now) {
         if (!sprite.anim) {
             const frames = def.variantFrames || def.frames || 1
             return Math.min(sprite.frame ?? def.frame ?? 0, frames - 1)
         }
         const a = sprite.anim
+        const pause = a.loop && def.animations?.[a.name]?.pause
+        if (pause) {
+            return this._pausedFrame(sprite, def, a, pause, now)
+        }
+        const cycle = a.loop && def.animations?.[a.name]?.cycle
+        if (cycle && def.animations[cycle.repeat] && def.animations[cycle.then]) {
+            return this._cycleFrame(def, a, cycle, now)
+        }
         const { frame, done } = this._animFrame(def, a.from, a.to, now - a.start, a.loop, sprite)
         if (done && !a.ended) {
             a.ended = true
             this._send(sprite, 'MAPSPRITE', 'ended', { animation: a.name })
         }
         return frame
+    },
+
+    // a looping animation with \`pause\` plays once, then waits a random time (\`delay\`, ms) showing
+    // \`pause.frame\` (null: nothing) before it plays again, like the blinking of the HERO
+    _pausedFrame(sprite, def, a, pause, now) {
+        const [minDelay, maxDelay] = pause.delay || [2000, 6000]
+        const wait = () => minDelay + Math.random() * (maxDelay - minDelay)
+        if (a.runAt === undefined) {
+            // the first run after a random part of a pause, so many sprites do not start together
+            a.runAt = a.start + Math.random() * wait()
+        }
+        let total = 0
+        for (let f = a.from; f <= a.to; f++) {
+            total += this._frameDuration(def, f)
+        }
+        const t = now - a.runAt
+        if (t >= 0 && t < total) {
+            return this._animFrame(def, a.from, a.to, t, false, null).frame
+        }
+        if (t >= total) {
+            a.runAt = now + wait()
+        }
+        return pause.frame ?? null
+    },
+
+    // a looping animation with \`cycle\` plays the animation \`repeat\` a random number of times (\`times\`,
+    // inclusive range), then \`then\` once, and starts over: the ducks swim a few rounds, then dive.
+    // Each round of \`repeat\` begins at frame \`start\`, so it can end where \`then\` fits on seamlessly.
+    _cycleFrame(def, a, cycle, now) {
+        const run = (anim) => {
+            let total = 0
+            for (let f = anim.from; f <= anim.to; f++) {
+                total += this._frameDuration(def, f)
+            }
+            return total || 1
+        }
+        const repeat = def.animations[cycle.repeat]
+        const then = def.animations[cycle.then]
+        const [minN, maxN] = cycle.times || [2, 4]
+        const count = () => minN + Math.floor(Math.random() * (maxN - minN + 1))
+        if (a.cycleAt === undefined) {
+            // start somewhere in the first rounds, so several ducks do not dive together
+            a.cycleLeft = count()
+            a.cycleThen = false
+            a.cycleAt = a.start - Math.random() * a.cycleLeft * run(repeat)
+        }
+        let t = now - a.cycleAt
+        for (let guard = 0; guard < 100; guard++) {
+            const length = a.cycleThen ? run(then) : a.cycleLeft * run(repeat)
+            if (t < length) {
+                break
+            }
+            a.cycleAt += length
+            t -= length
+            a.cycleThen = !a.cycleThen
+            if (!a.cycleThen) {
+                a.cycleLeft = count()
+            }
+        }
+        if (a.cycleThen) {
+            return this._animFrame(def, then.from, then.to, t, false, null).frame
+        }
+        // the rounds begin at frame \`start\` and wrap around the range of \`repeat\`
+        let offset = 0
+        for (let f = repeat.from; f < (cycle.start ?? repeat.from); f++) {
+            offset += this._frameDuration(def, f)
+        }
+        const local = (t + offset) % run(repeat)
+        return this._animFrame(def, repeat.from, repeat.to, local, false, null).frame
     },
 
     _spritePos(sprite, now) {
@@ -5717,9 +5794,13 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         if (!img.loaded) {
             return
         }
+        const own = this._spriteFrame(sprite, def, now)
+        if (own === null) {
+            return // pausing without a frame
+        }
         const variants = def.variants || 1
         const variant = Math.min(sprite.variant, variants - 1)
-        const frame = variant * (def.variantFrames || 0) + this._spriteFrame(sprite, def, now)
+        const frame = variant * (def.variantFrames || 0) + own
         let x, y
         if (def.anchor) {
             x = ground.x - def.anchor[0]
