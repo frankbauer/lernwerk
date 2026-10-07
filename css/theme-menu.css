@@ -269,6 +269,19 @@ html[data-lw-theme="tafel"] {
     --lw-menu-button-bg: rgba(0, 0, 0, 0.25);
 }
 
+html[data-lw-theme="shadows"] {
+    --lw-menu-bg: #1a1a22;
+    --lw-menu-fg: #d6d6e0;
+    --lw-menu-border: #2c2c38;
+    --lw-menu-hover: #24242e;
+    --lw-menu-check: #a78bfa;
+    --lw-menu-button-bg: rgba(16, 16, 21, 0.6);
+}
+
+html[data-lw-theme="shadows"] .lw-menu {
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
 html[data-lw-theme="prisma"] {
     --lw-menu-bg: #ffffff;
     --lw-menu-fg: #1e1b2e;
@@ -280,6 +293,32 @@ html[data-lw-theme="prisma"] {
 
 html[data-lw-theme="terminal"] .lw-menu-button {
     --lw-menu-button-bg: rgba(10, 13, 19, 0.6);
+}
+
+html[data-lw-theme="koralle"] {
+    --lw-menu-bg: #ffffff;
+    --lw-menu-fg: #1c1917;
+    --lw-menu-border: #ece7e3;
+    --lw-menu-hover: #fff1ec;
+    --lw-menu-check: #c9401f;
+    --lw-menu-button-bg: rgba(0, 0, 0, 0.18);
+}
+
+/* Menüknopf liegt auf dem Korallen-Verlauf des Kopfes */
+html[data-lw-theme="koralle"] .lw-menu-button {
+    border: none;
+    border-radius: 999px;
+    color: #fff;
+}
+
+html[data-lw-theme="koralle"] .lw-menu-button:hover,
+html[data-lw-theme="koralle"] .lw-menu-button[aria-expanded="true"] {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+html[data-lw-theme="koralle"] .lw-menu {
+    border: none;
+    box-shadow: 0 0 0 1px #ece7e3, 0 18px 40px -12px rgb(154 47 22 / 0.35);
 }
 
 /* --- Übersichtsseite: Knopf schwebt oben rechts über dem Banner ---------- */
@@ -419,4 +458,16 @@ html[data-lw-theme="tafel"] .lw-save-toast {
 
 html[data-lw-theme="prisma"] .lw-save-toast {
     box-shadow: 0 6px 20px -8px rgb(91 63 214 / 0.3);
+}
+
+html[data-lw-theme="koralle"] .lw-save-toast {
+    border: none;
+    border-left: 4px solid #ec5f3d;
+    font-family: var(--lw-mono);
+    box-shadow: 0 1px 2px rgb(28 25 23 / 0.08), 0 8px 20px -8px rgb(154 47 22 / 0.35);
+}
+
+html[data-lw-theme="shadows"] .lw-save-toast {
+    border-radius: 12px;
+    box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.8), 0 0 18px -6px rgba(167, 139, 250, 0.5);
 }

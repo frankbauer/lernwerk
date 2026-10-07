@@ -316,8 +316,7 @@
       "number": 18,
       "title": "Graphen",
       "concepts": [
-        "graphen",
-        "graphen-theorie"
+        "graphen"
       ],
       "exercises": [
         { "module": "gdi", "id": "18_Graphen/beispiel_graph" },
@@ -330,7 +329,16 @@
         { "module": "gdi", "id": "18_Graphen/sackgassen" },
         { "module": "gdi", "id": "18_Graphen/wege" },
         { "module": "gdi", "id": "18_Graphen/kette" },
-        { "module": "gdi", "id": "18_Graphen/erreichbar" },
+        { "module": "gdi", "id": "18_Graphen/erreichbar" }
+      ]
+    },
+    {
+      "number": 19,
+      "title": "Graphalgorithmen",
+      "concepts": [
+        "graphen-theorie"
+      ],
+      "exercises": [
         { "module": "gdi", "id": "18_Graphen/dijkstra" },
         { "module": "gdi", "id": "18_Graphen/pfad" },
         { "module": "gdi", "id": "18_Graphen/prim" },
@@ -339,7 +347,7 @@
       ]
     },
     {
-      "number": 19,
+      "number": 20,
       "title": "Zahlen",
       "concepts": [
         "zahlen",
@@ -361,7 +369,7 @@
       ]
     },
     {
-      "number": 20,
+      "number": 21,
       "title": "Bilder",
       "concepts": [
         "bilder"
@@ -372,7 +380,7 @@
       ]
     },
     {
-      "number": 21,
+      "number": 22,
       "title": "Verschlüsselung",
       "concepts": [
         "verschluesselung"

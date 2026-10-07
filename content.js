@@ -21,7 +21,7 @@ function resolvePath(path) {
 // ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü, Fußzeile) und
 // tour.js (Rundgang durch die Übungsseite) nachladen.
 (function loadThemes() {
-    const version = '1.4.4'
+    const version = '1.4.5'
     const base = LW_BASE
     let theme = 'abenteuer'
     try {
@@ -35,7 +35,7 @@ function resolvePath(path) {
         link.href = new URL(`${href}?v=${version}`, base)
         document.head.append(link)
     }
-    for (const href of ['fonts/caveat/caveat.css?v=1.0.0', 'css/tour.css?v=1.1.0']) {
+    for (const href of ['fonts/caveat/caveat.css?v=1.0.0', 'fonts/grenze-gotisch/grenze-gotisch.css?v=1.0.0', 'css/tour.css?v=1.1.0']) {
         const link = document.createElement('link')
         link.rel = 'stylesheet'
         link.href = new URL(href, base)

@@ -29,6 +29,7 @@ Die Schriften liegen im Repository und werden vom eigenen Server geladen. Sie st
 | --- | --- | --- |
 | Geist | `js/codeblocks-js/fonts/` | [vercel/geist-font](https://github.com/vercel/geist-font) (mit CodeBlocks ausgeliefert) |
 | Caveat | `fonts/caveat/` | [googlefonts/caveat](https://github.com/googlefonts/caveat), Dateien aus [@fontsource-variable/caveat](https://fontsource.org/fonts/caveat) |
+| Grenze Gotisch | `fonts/grenze-gotisch/` | [Omnibus-Type/Grenze-Gotisch](https://github.com/Omnibus-Type/Grenze-Gotisch), Dateien aus [@fontsource-variable/grenze-gotisch](https://fontsource.org/fonts/grenze-gotisch) |
 
 ## Licensed assets
 

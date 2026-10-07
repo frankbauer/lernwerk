@@ -82,15 +82,20 @@
       "gdi/18_Graphen/kette"
     ],
     "19": [
+      "gdi/18_Graphen/dijkstra",
+      "gdi/18_Graphen/prim",
+      "gdi/18_Graphen/kruskal"
+    ],
+    "20": [
       "gdi/19_Zahlen/todec",
       "gdi/19_Zahlen/addition",
       "gdi/19_Zahlen/binaer_addition"
     ],
-    "20": [
+    "21": [
       "gdi/20_Bilder/faltung",
       "gdi/20_Bilder/bildfilter"
     ],
-    "21": [
+    "22": [
       "gdi/21_Verschluesselung/polybios",
       "gdi/21_Verschluesselung/enigma"
     ]
@@ -114,9 +119,10 @@
     "16": "Wunderland",
     "17": "Winkelgasse",
     "18": "Ankh-Morpork",
-    "19": "Mos Eisley",
-    "20": "Pleasantville",
-    "21": "Moria"
+    "19": "Lilliput",
+    "20": "Mos Eisley",
+    "21": "Pleasantville",
+    "22": "Moria"
   },
   "castles": {
     "0": "Camelot",
@@ -137,9 +143,10 @@
     "16": "Schloss Arendelle",
     "17": "Kaer Morhen",
     "18": "Schloss Gripsholm",
-    "19": "Erebor",
-    "20": "Barad-dûr",
-    "21": "Kredik Shaw"
+    "19": "Hogwarts",
+    "20": "Erebor",
+    "21": "Barad-dûr",
+    "22": "Kredik Shaw"
   },
   "lectureChapters": {
     "0": 0,
@@ -162,11 +169,11 @@
     "18": 17,
     "19": 18,
     "20": 18,
-    "21": 18,
-    "23": 19,
-    "24": 19,
-    "25": 20,
-    "26": 20
+    "21": 19,
+    "23": 20,
+    "24": 20,
+    "25": 21,
+    "26": 21
   },
   "homeworkChapters": {
     "1": 0,
@@ -179,7 +186,7 @@
     "8": 14,
     "9": 16,
     "10": 18,
-    "11": 19
+    "11": 20
   },
   "lectures": {
     "0": [
@@ -187,13 +194,13 @@
         "nr": 0,
         "title": "Organisatorisches",
         "slides": "https://gdi.cs.fau.de/slides/Folien/00_Organisatorisches.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888289/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135800/download"
       },
       {
         "nr": 1,
         "title": "Einführung OOP",
         "slides": "https://gdi.cs.fau.de/slides/Folien/01_Einfuehrung.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888298/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135809/download"
       }
     ],
     "1": [
@@ -201,7 +208,7 @@
         "nr": 2,
         "title": "Variablen",
         "slides": "https://gdi.cs.fau.de/slides/Folien/02_Variablen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888288/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135799/download"
       }
     ],
     "2": [
@@ -209,7 +216,7 @@
         "nr": 3,
         "title": "Ausdrücke",
         "slides": "https://gdi.cs.fau.de/slides/Folien/03_Operationen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888290/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135801/download"
       }
     ],
     "3": [
@@ -217,7 +224,7 @@
         "nr": 4,
         "title": "Datentypen",
         "slides": "https://gdi.cs.fau.de/slides/Folien/04_Datentypen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888291/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135802/download"
       }
     ],
     "4": [
@@ -225,7 +232,7 @@
         "nr": 5,
         "title": "Methodenaufrufe",
         "slides": "https://gdi.cs.fau.de/slides/Folien/05_Methodenaufrufe.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888292/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135803/download"
       }
     ],
     "5": [
@@ -233,7 +240,7 @@
         "nr": 6,
         "title": "Objekte",
         "slides": "https://gdi.cs.fau.de/slides/Folien/06_Objekte.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888294/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135805/download"
       }
     ],
     "6": [
@@ -241,7 +248,7 @@
         "nr": 7,
         "title": "Bedingungen",
         "slides": "https://gdi.cs.fau.de/slides/Folien/07_Bedingungen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888293/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135804/download"
       }
     ],
     "7": [
@@ -249,7 +256,7 @@
         "nr": 8,
         "title": "Schleifen",
         "slides": "https://gdi.cs.fau.de/slides/Folien/08_Schleifen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888295/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135806/download"
       }
     ],
     "8": [
@@ -257,7 +264,7 @@
         "nr": 9,
         "title": "Methoden",
         "slides": "https://gdi.cs.fau.de/slides/Folien/09_Methoden.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888297/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135808/download"
       }
     ],
     "9": [
@@ -265,7 +272,7 @@
         "nr": 10,
         "title": "Attribute",
         "slides": "https://gdi.cs.fau.de/slides/Folien/10_Klassen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888299/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135810/download"
       }
     ],
     "10": [
@@ -273,7 +280,7 @@
         "nr": 11,
         "title": "Felder 1D",
         "slides": "https://gdi.cs.fau.de/slides/Folien/11_Felder_1D.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888296/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135807/download"
       }
     ],
     "11": [
@@ -281,7 +288,7 @@
         "nr": 12,
         "title": "Felder n-Dim.",
         "slides": "https://gdi.cs.fau.de/slides/Folien/12_Felder.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888301/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135812/download"
       }
     ],
     "12": [
@@ -289,7 +296,7 @@
         "nr": 13,
         "title": "Instanzen",
         "slides": "https://gdi.cs.fau.de/slides/Folien/13_KlassenUndInstanzen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888300/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135811/download"
       }
     ],
     "13": [
@@ -297,7 +304,7 @@
         "nr": 14,
         "title": "Referenzen",
         "slides": "https://gdi.cs.fau.de/slides/Folien/14_Referenzvariablen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888304/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135815/download"
       }
     ],
     "14": [
@@ -305,7 +312,7 @@
         "nr": 15,
         "title": "Schnittstellen",
         "slides": "https://gdi.cs.fau.de/slides/Folien/15_Schnittstellen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888302/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135813/download"
       }
     ],
     "16": [
@@ -313,7 +320,7 @@
         "nr": 17,
         "title": "Rekursion",
         "slides": "https://gdi.cs.fau.de/slides/Folien/17_Rekursion.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888310/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135821/download"
       }
     ],
     "17": [
@@ -321,7 +328,7 @@
         "nr": 18,
         "title": "Collections",
         "slides": "https://gdi.cs.fau.de/slides/Folien/18_Collections.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888305/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135816/download"
       }
     ],
     "18": [
@@ -329,47 +336,49 @@
         "nr": 19,
         "title": "Graphen",
         "slides": "https://gdi.cs.fau.de/slides/Folien/19_Graphen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888317/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135828/download"
       },
       {
         "nr": 20,
         "title": "Traversieren",
         "slides": "https://gdi.cs.fau.de/slides/Folien/20_GraphenAblaufen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888316/download"
-      },
-      {
-        "nr": 21,
-        "title": "Algorithmen",
-        "slides": "https://gdi.cs.fau.de/slides/Folien/21_Graphalgorithmen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888318/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135827/download"
       }
     ],
     "19": [
       {
+        "nr": 21,
+        "title": "Algorithmen",
+        "slides": "https://gdi.cs.fau.de/slides/Folien/21_Graphalgorithmen.html",
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135829/download"
+      }
+    ],
+    "20": [
+      {
         "nr": 23,
         "title": "Zahlen I",
         "slides": "https://gdi.cs.fau.de/slides/Folien/23_Zahlendarstellung.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888308/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135819/download"
       },
       {
         "nr": 24,
         "title": "Zahlen II",
         "slides": "https://gdi.cs.fau.de/slides/Folien/24_NegativeUndGleitkommazahlen.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888309/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135820/download"
       }
     ],
-    "20": [
+    "21": [
       {
         "nr": 25,
         "title": "Bilder",
         "slides": "https://gdi.cs.fau.de/slides/Folien/25_Bilder.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888315/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135826/download"
       },
       {
         "nr": 26,
         "title": "Bildfilter",
         "slides": "https://gdi.cs.fau.de/slides/Folien/26_Bildfilter.html",
-        "pdf": "https://www.studon.fau.de/studon/go/file/6888320/download"
+        "pdf": "https://www.studon.fau.de/studon/go/file/7135831/download"
       }
     ]
   },
@@ -377,79 +386,79 @@
     "0": {
       "nr": 1,
       "topic": "Ausgabe",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888382",
-      "start": "2026-04-17T05:00",
-      "due": "2026-04-27T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135893",
+      "start": "2026-10-16T05:00",
+      "due": "2026-10-26T05:00"
     },
     "2": {
       "nr": 2,
       "topic": "Variablen & Operatoren",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888384",
-      "start": "2026-04-24T05:00",
-      "due": "2026-05-04T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135896",
+      "start": "2026-10-23T05:00",
+      "due": "2026-11-02T05:00"
     },
     "5": {
       "nr": 3,
       "topic": "Methodenaufrufe & Objekte",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888386",
-      "start": "2026-05-01T05:00",
-      "due": "2026-05-18T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135899",
+      "start": "2026-10-30T05:00",
+      "due": "2026-11-09T05:00"
     },
     "7": {
       "nr": 4,
       "topic": "Kontrollfluss",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888390",
-      "start": "2026-05-08T05:00",
-      "due": "2026-05-25T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135905",
+      "start": "2026-11-06T05:00",
+      "due": "2026-11-16T05:00"
     },
     "9": {
       "nr": 5,
       "topic": "Statische Methoden & Attribute",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888394",
-      "start": "2026-05-22T05:00",
-      "due": "2026-06-08T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135910",
+      "start": "2026-11-13T05:00",
+      "due": "2026-11-23T05:00"
     },
     "11": {
       "nr": 6,
       "topic": "Felder",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888398",
-      "start": "2026-05-29T05:00",
-      "due": "2026-06-15T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135916",
+      "start": "2026-11-20T05:00",
+      "due": "2026-11-30T05:00"
     },
     "12": {
       "nr": 7,
       "topic": "Klassen",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888402",
-      "start": "2026-06-12T05:00",
-      "due": "2026-06-22T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135921",
+      "start": "2026-11-27T05:00",
+      "due": "2026-12-07T05:00"
     },
     "14": {
       "nr": 8,
       "topic": "Schnittstellen",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888406",
-      "start": "2026-06-19T05:00",
-      "due": "2026-06-29T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135926",
+      "start": "2026-12-04T05:00",
+      "due": "2026-12-14T05:00"
     },
     "16": {
       "nr": 9,
       "topic": "Rekursion",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888410",
-      "start": "2026-06-26T05:00",
-      "due": "2026-07-06T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135931",
+      "start": "2026-12-11T05:00",
+      "due": "2027-01-11T05:00"
     },
     "18": {
       "nr": 10,
       "topic": "Schnittstellen & Objekte",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888413",
-      "start": "2026-07-03T05:00",
-      "due": "2026-07-13T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135936",
+      "start": "2026-12-18T05:00",
+      "due": "2027-01-18T05:00"
     },
-    "19": {
+    "20": {
       "nr": 11,
       "topic": "Zahlen",
-      "link": "https://www.studon.fau.de/studon/go/fold/6888416",
-      "start": "2026-07-10T05:00",
-      "due": "2026-07-20T05:00"
+      "link": "https://www.studon.fau.de/studon/go/fold/7135941",
+      "start": "2027-01-15T05:00",
+      "due": "2027-01-25T05:00"
     }
   }
 }

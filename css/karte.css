@@ -12,6 +12,10 @@
     --parchment: #f3e2bd;
     --wood: #7a4a24;
     --wood-dark: #4a2a14;
+    /* the theme's text colors, for the exercise cards on the map's light surfaces (see below) */
+    --theme-ink: var(--ink);
+    --theme-ink-2: var(--ink-2);
+    --theme-muted: var(--muted);
     position: fixed;
     inset: 0;
     overflow: hidden;
@@ -42,6 +46,29 @@
 #map:focus-visible {
     outline: 3px solid #ffd23f;
     outline-offset: -3px;
+}
+
+/* The map's own surfaces (toast, parchment, volcano panel) are always light, so their text uses the
+   light palette also when a dark theme is chosen. The exercise cards keep the theme's colors. */
+.toast,
+.scroll-paper,
+.volcano-info {
+    --ink: #1a1614;
+    --ink-2: #453d38;
+    --muted: #6b625c;
+    color: var(--ink);
+}
+
+.scroll-paper .grid {
+    --ink: var(--theme-ink);
+    --ink-2: var(--theme-ink-2);
+    --muted: var(--theme-muted);
+    color: var(--ink);
+}
+
+/* Tafel: the cards are translucent chalk on the board, on the parchment and the sign they get the board beneath */
+html[data-lw-theme="tafel"] :is(.scroll-paper, .sign-card) .card {
+    background: linear-gradient(var(--type-bg), var(--type-bg)), #26392f;
 }
 
 /* --- HUD ----------------------------------------------------------------- */

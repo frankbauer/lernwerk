@@ -17,7 +17,9 @@
         { id: 'abenteuer', name: 'Abenteuer', hint: 'Kräftig und verspielt', colors: ['#fff4dc', '#ffffff', '#ffd23f', '#b69cff'] },
         { id: 'raster', name: 'Raster', hint: 'Klares Schweizer Raster', colors: ['#ffffff', '#ffffff', '#111111', '#e30613'] },
         { id: 'tafel', name: 'Tafel', hint: 'Kreide auf grüner Tafel', colors: ['#26392f', '#1c2b23', '#f7d774', '#f4a6c6'] },
+        { id: 'shadows', name: 'Shadows', hint: 'Dunkel, mit Tiefe und Leuchten', colors: ['#101015', '#1a1a22', '#a78bfa', '#f472b6'] },
         { id: 'prisma', name: 'Prisma', hint: 'Licht in allen Spektralfarben', colors: ['linear-gradient(90deg, #ef4444, #f97316, #facc15, #22c55e, #3b82f6, #8b5cf6)', '#ffffff', 'linear-gradient(90deg, #ef4444, #facc15, #3b82f6)', '#8b5cf6'] },
+        { id: 'koralle', name: 'Koralle', hint: 'Warm, mit Korallen-Verlauf', colors: ['#faf7f5', '#ffffff', 'linear-gradient(120deg, #ff6b6b, #c9401f)', '#1c1917'] },
     ]
 
     function isKnown(id) {

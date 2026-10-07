@@ -51,6 +51,7 @@ export default {
         this.rows = this.config.items.map((item, nr) => {
             const row = this.el('div', 'quiz-match-row')
             const pre = this.el('pre')
+            pre.lang = 'en'
             const at = item.mark ? item.code.indexOf(item.mark) : -1
             if (at >= 0) {
                 const mark = this.el('span', 'q-mark')

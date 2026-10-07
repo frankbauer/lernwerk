@@ -23,20 +23,21 @@ html[data-lw-theme] {
 
 
 /* ============================================================================
-   Dunkle Themes (Terminal, Tafel): Flächen, die in uebungsplaner.css mit --ink gefüllt sind und weiße
+   Dunkle Themes (Terminal, Tafel, Shadows): Flächen, die in uebungsplaner.css mit --ink gefüllt sind und weiße
    Schrift tragen, bekommen die Hintergrundfarbe als Schrift, weil --ink hier hell ist.
    ============================================================================ */
 
 html[data-lw-theme="terminal"],
-html[data-lw-theme="tafel"] {
+html[data-lw-theme="tafel"],
+html[data-lw-theme="shadows"] {
     color-scheme: dark;
 }
 
-html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .step-no {
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"], [data-lw-theme="shadows"]) .step-no {
     color: var(--bg);
 }
 
-html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) :is(.scope-btn[aria-checked="true"],
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"], [data-lw-theme="shadows"]) :is(.scope-btn[aria-checked="true"],
     .seg button[aria-pressed="true"],
     .chip[aria-pressed="true"],
     .badge,
@@ -44,36 +45,36 @@ html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) :is(.scope-btn[aria
     color: var(--bg);
 }
 
-html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .concept::after {
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"], [data-lw-theme="shadows"]) .concept::after {
     color: var(--bg);
 }
 
-html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) :is(.scope-btn[aria-checked="true"], .chip[aria-pressed="true"]) .count {
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"], [data-lw-theme="shadows"]) :is(.scope-btn[aria-checked="true"], .chip[aria-pressed="true"]) .count {
     background: rgb(0 0 0 / 0.15);
     color: var(--bg);
 }
 
-html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .chip[aria-pressed="true"] .dot.on {
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"], [data-lw-theme="shadows"]) .chip[aria-pressed="true"] .dot.on {
     background: var(--bg);
 }
 
-html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .switch-track::after {
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"], [data-lw-theme="shadows"]) .switch-track::after {
     background: var(--bg);
 }
 
-html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .switch input:not(:checked)+.switch-track::after {
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"], [data-lw-theme="shadows"]) .switch input:not(:checked)+.switch-track::after {
     background: var(--ink-2);
 }
 
-html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .dot:not(.on) {
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"], [data-lw-theme="shadows"]) .dot:not(.on) {
     background: var(--line-strong);
 }
 
-html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .table tbody tr:hover {
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"], [data-lw-theme="shadows"]) .table tbody tr:hover {
     background: var(--surface-2);
 }
 
-html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"]) .search {
+html:is([data-lw-theme="terminal"], [data-lw-theme="tafel"], [data-lw-theme="shadows"]) .search {
     background-color: var(--surface);
 }
 
@@ -1586,5 +1587,487 @@ html[data-lw-theme="prisma"] .card-media {
         max-width: none;
         margin: 0 12px 20px;
         padding: 14px 16px 16px;
+    }
+}
+
+
+/* ============================================================================
+   Shadows – dunkel, Tiefe durch weiche Schatten, Akzente leuchten. Banner violett getönt, mit
+   Vignette, die in den Hintergrund ausläuft.
+   ============================================================================ */
+
+html[data-lw-theme="shadows"] {
+    --bg: #101015;
+    --surface: #1a1a22;
+    --surface-2: #15151c;
+    --ink: #ececf4;
+    --ink-2: #c8c8d4;
+    --muted: #8e8ea0;
+    --line: #272732;
+    --line-strong: #383846;
+    --accent: #a78bfa;
+    --accent-soft: rgb(167 139 250 / 0.14);
+    --ok: #4ade80;
+    --ok-soft: rgb(74 222 128 / 0.12);
+    --shaky: #fbbf24;
+    --shaky-soft: rgb(251 191 36 / 0.12);
+    --confident: #f472b6;
+    --confident-soft: rgb(244 114 182 / 0.14);
+    --unknown: #5f5f73;
+    --radius-lg: 20px;
+    --radius: 14px;
+    --shadow: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 24px 48px -16px rgb(0 0 0 / 0.85), 0 4px 12px rgb(0 0 0 / 0.45);
+    --lw-accent: #a78bfa;
+}
+
+html[data-lw-theme="shadows"] body {
+    background: #101015;
+}
+
+html[data-lw-theme="shadows"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(ellipse 90% 55% at 50% -12%, rgb(167 139 250 / 0.12), transparent 70%),
+        radial-gradient(ellipse at 50% 50%, transparent 55%, rgb(0 0 0 / 0.45));
+    pointer-events: none;
+}
+
+html[data-lw-theme="shadows"] .page-head {
+    border: 1px solid #272732;
+    border-radius: 20px;
+    background:
+        radial-gradient(ellipse 120% 90% at 50% 30%, transparent 40%, rgb(16 16 21 / 0.7)),
+        linear-gradient(rgb(16 16 21 / 0.35), rgb(16 16 21 / 0.35) calc(31.25cqw - var(--crop) - 60px),
+            rgb(16 16 21 / 0.92) calc(31.25cqw - var(--crop) + 40px), #101015 var(--img-bottom)),
+        var(--lw-banner) center calc(-1 * var(--crop)) / 100% auto no-repeat,
+        #2b2145;
+    background-blend-mode: normal, normal, luminosity, normal;
+    box-shadow: var(--shadow);
+}
+
+/* Überschriften in gebrochener Schrift (fonts/grenze-gotisch, lokal ausgeliefert) */
+html[data-lw-theme="shadows"] :is(h1, .profile-title, .card-title, .group-head, .step-text h2, .empty-title) {
+    font-family: "Grenze Gotisch", "Iowan Old Style", Georgia, serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+html[data-lw-theme="shadows"] .profile-title {
+    font-size: 1.3em;
+}
+
+html[data-lw-theme="shadows"] .card-title {
+    font-size: 1.2em;
+}
+
+html[data-lw-theme="shadows"] .page-head h1 {
+    font-size: clamp(40px, 6vw, 64px);
+    color: #f5f3ff;
+    text-shadow: 0 4px 24px rgb(0 0 0 / 0.8), 0 0 28px rgb(167 139 250 / 0.35);
+}
+
+html[data-lw-theme="shadows"] .eyebrow {
+    color: #c4b5fd;
+}
+
+html[data-lw-theme="shadows"] .lede {
+    color: #b4b4c4;
+}
+
+/* Boxen schweben über dem Hintergrund */
+html[data-lw-theme="shadows"] :is(.profile, .more, .table-wrap, .empty) {
+    border: 1px solid rgb(255 255 255 / 0.06);
+    box-shadow: var(--shadow);
+}
+
+html[data-lw-theme="shadows"] .profile.is-new {
+    border-color: rgb(167 139 250 / 0.5);
+    box-shadow: 0 0 24px -6px rgb(167 139 250 / 0.5), var(--shadow);
+}
+
+html[data-lw-theme="shadows"] .profile-title {
+    color: #fbbf24;
+}
+
+html[data-lw-theme="shadows"] .tile.is-heard {
+    background: #20202a;
+}
+
+html[data-lw-theme="shadows"] .tile.is-last {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 2px #a78bfa, 0 0 18px rgb(167 139 250 / 0.35);
+}
+
+/* Kartentypen dunkel eingefärbt, ohne Muster */
+html[data-lw-theme="shadows"] .type-lecture { --type: #c4b5fd; --type-soft: rgb(167 139 250 / 0.16); --type-line: #3b3357; --type-bg: #1b1827; }
+html[data-lw-theme="shadows"] .type-exercise { --type: #fda4af; --type-soft: rgb(253 164 175 / 0.14); --type-line: #4a2c33; --type-bg: #1e171b; }
+html[data-lw-theme="shadows"] .type-test { --type: #67e8f9; --type-soft: rgb(103 232 249 / 0.12); --type-line: #1d4650; --type-bg: #141c21; }
+html[data-lw-theme="shadows"] .type-tool { --type: #d4d4dc; --type-soft: rgb(212 212 220 / 0.1); --type-line: #33333f; --type-bg: #1a1a22; }
+html[data-lw-theme="shadows"] .type-sandbox { --type: #bef264; --type-soft: rgb(132 204 22 / 0.18); --type-line: #3f5a1a; --type-bg: #171e10; }
+
+html[data-lw-theme="shadows"] .card {
+    border-color: rgb(255 255 255 / 0.06);
+    background-image: none;
+    box-shadow: var(--shadow);
+}
+
+html[data-lw-theme="shadows"] .card:hover {
+    border-color: var(--type-line);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05), 0 30px 56px -16px rgb(0 0 0 / 0.95), 0 0 28px -8px var(--type);
+}
+
+html[data-lw-theme="shadows"] .card.type-sandbox :is(.card-desc, .feature-none) {
+    color: #a7b894;
+}
+
+html[data-lw-theme="shadows"] .card.type-sandbox :is(.card-flag, .feature, .reason) {
+    color: #bef264;
+}
+
+html[data-lw-theme="shadows"] .card.type-sandbox .dot:not(.on) {
+    background: #3f5a1a;
+}
+
+html[data-lw-theme="shadows"] .card.type-sandbox .dot.on {
+    background: var(--ink);
+}
+
+html[data-lw-theme="shadows"] .card.type-sandbox .type-badge {
+    border-color: var(--type-line);
+    background: var(--type-soft);
+}
+
+html[data-lw-theme="shadows"] .card.type-sandbox .done-btn {
+    border-color: var(--line-strong);
+    background: var(--surface);
+    color: var(--muted);
+}
+
+html[data-lw-theme="shadows"] .card.type-sandbox:hover .card-title a {
+    color: var(--type);
+}
+
+html[data-lw-theme="shadows"] .card-media {
+    box-shadow: 0 10px 24px -8px rgb(0 0 0 / 0.8);
+}
+
+html[data-lw-theme="shadows"] .card.is-done .card-media::after {
+    background: #101015;
+}
+
+/* .step davor: schlägt die gemeinsame Regel für dunkle Themes oben */
+html[data-lw-theme="shadows"] .step .step-no {
+    background: #a78bfa;
+    box-shadow: 0 0 16px rgb(167 139 250 / 0.5);
+}
+
+html[data-lw-theme="shadows"] :is(.scope-btn[aria-checked="true"], .seg button[aria-pressed="true"], .chip[aria-pressed="true"], .btn-primary, .badge) {
+    border-color: #a78bfa;
+    background: #a78bfa;
+    color: #160e2b;
+    box-shadow: 0 4px 14px -4px rgb(167 139 250 / 0.6);
+}
+
+html[data-lw-theme="shadows"] .switch input:checked+.switch-track {
+    background: #a78bfa;
+}
+
+html[data-lw-theme="shadows"] :is(.search, .stepper select) {
+    box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.45);
+}
+
+@media (max-width: 600px) {
+    html[data-lw-theme="shadows"] .page-head {
+        background:
+            radial-gradient(ellipse 120% 90% at 50% 30%, transparent 40%, rgb(16 16 21 / 0.7)),
+            linear-gradient(rgb(16 16 21 / 0.35), rgb(16 16 21 / 0.35) 180px, rgb(16 16 21 / 0.92) 270px, #101015 420px),
+            var(--lw-banner) 6% top / auto 420px no-repeat,
+            #2b2145;
+        background-blend-mode: normal, normal, luminosity, normal;
+    }
+}
+
+
+/* ============================================================================
+   Koralle – warm, im Stil des GdI-Zeitplans. Das Banner läuft unter dem Logo in einen
+   Korallen-Verlauf mit feinem Raster aus (wie im GdI-Zeitplan), darauf steht der Titel in Weiß.
+   Schrift auf Weiß nutzt das dunklere #c9401f (WCAG AA). Der Verlauf im Kopf ist heller: kleine weiße
+   Schrift darauf erreicht nur etwa 3:1.
+   ============================================================================ */
+
+html[data-lw-theme="koralle"] {
+    --bg: #faf7f5;
+    --surface: #ffffff;
+    --surface-2: #fbf8f6;
+    --ink: #1c1917;
+    --ink-2: #44403c;
+    --muted: #6f6863; /* WCAG AA: >= 4.5:1 */
+    --line: #ece7e3;
+    --line-strong: #dcd2cb;
+    --accent: #c9401f;
+    --accent-soft: #fff1ec;
+    --radius-lg: 18px;
+    --radius: 12px;
+    --shadow: 0 1px 2px rgb(28 25 23 / 0.06), 0 0 0 1px #ece7e3;
+    --lw-accent: #c9401f;
+    /* Verlauf wie im Kopf des GdI-Zeitplans */
+    --lw-koralle-hero:
+        radial-gradient(circle at 92% -20%, rgb(255 255 255 / 0.28), transparent 45%),
+        linear-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(90deg, rgb(255 255 255 / 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(120deg, #ff6b6b, #ec5f3d 55%, #c2410c);
+    --lw-koralle-grid:
+        linear-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(90deg, rgb(255 255 255 / 0.07) 1px, transparent 1px) 0 0 / 22px 22px;
+}
+
+/* Banner nur mit CSS, aus demselben Bild (gleiche Lage über --lw-koralle-pos):
+   Schwarzweiß, mehr Kontrast (das Bild ein zweites Mal per overlay) und etwas aufgehellt (screen).
+   Unter dem Logo eine klare Kante: darunter wird das Foto unscharf und schwarzweiß, darüber liegt der
+   Korallen-Verlauf des GdI-Zeitplans (leicht durchscheinend, mit Lichtfleck oben rechts und Raster). */
+html[data-lw-theme="koralle"] .page-head {
+    --lw-koralle-break: calc(31.25cqw - var(--crop));
+    --lw-koralle-pos: center calc(-1 * var(--crop)) / 100% auto;
+    --lw-koralle-fade: linear-gradient(transparent calc(var(--img-bottom) - 120px), #8c8c8c var(--img-bottom));
+    position: relative;
+    isolation: isolate;
+    background:
+        var(--lw-koralle-fade),
+        linear-gradient(#2e2e2e, #2e2e2e),
+        linear-gradient(#ececec, #ececec),
+        var(--lw-banner) var(--lw-koralle-pos) no-repeat,
+        var(--lw-banner) var(--lw-koralle-pos) no-repeat,
+        #ececec;
+    /* aufhellen, entsättigen, Kontrast, Helligkeit des Fotos. Für luminosity/saturation genügt irgendein
+       Grau; ein helles, damit an den Ecken kein dunkler Saum durchscheint */
+    background-blend-mode: normal, screen, saturation, overlay, luminosity, normal;
+    /* Rundung per clip-path statt border-radius: so wird die Kante erst nach dem Mischen aller Ebenen einmal
+       geglättet. Mit border-radius glätten Safari und Chrome jede Ebene einzeln, dann bleibt ein grauer Saum.
+       (clip-path schneidet auch Schatten ab, darum hat dieses Banner keinen.) */
+    border-radius: 0;
+    clip-path: inset(0 round var(--radius-lg));
+}
+
+html[data-lw-theme="koralle"] .page-head::before,
+html[data-lw-theme="koralle"] .page-head::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--lw-koralle-break);
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* das Foto dahinter unscharf und schwarzweiß */
+html[data-lw-theme="koralle"] .page-head::before {
+    -webkit-backdrop-filter: blur(16px) grayscale(1);
+    backdrop-filter: blur(16px) grayscale(1);
+}
+
+/* darüber der Verlauf des Zeitplans, leicht durchscheinend */
+html[data-lw-theme="koralle"] .page-head::after {
+    border-top: 1px solid rgb(255 255 255 / 0.5);
+    background: var(--lw-koralle-hero);
+    opacity: 0.9;
+}
+
+html[data-lw-theme="koralle"] .hero-text {
+    text-shadow: 0 1px 2px rgb(120 30 10 / 0.25);
+}
+
+/* "Einklappen" als Knopf mit Pfeil (der ganze Kopf ist der eigentliche Knopf) */
+html[data-lw-theme="koralle"] .profile-head-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px 7px 16px;
+    border: 1.5px solid #c9401f;
+    background: #fff;
+    color: #c9401f;
+    box-shadow: 0 2px 6px -2px rgb(201 64 31 / 0.35);
+    transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+html[data-lw-theme="koralle"] .profile-head-action::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    margin-top: 3px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-135deg);
+    transition: transform 0.2s;
+}
+
+html[data-lw-theme="koralle"] .profile-head[aria-expanded="false"] .profile-head-action::after {
+    margin-top: -4px;
+    transform: rotate(45deg);
+}
+
+html[data-lw-theme="koralle"] .profile-head:hover .profile-head-action,
+html[data-lw-theme="koralle"] .profile-head:focus-visible .profile-head-action {
+    background: #c9401f;
+    color: #fff;
+    box-shadow: 0 4px 12px -4px rgb(201 64 31 / 0.6);
+}
+
+html[data-lw-theme="koralle"] .hero-text {
+    z-index: 1;
+}
+
+html[data-lw-theme="koralle"] .eyebrow {
+    color: rgb(255 255 255 / 0.9);
+    font: 600 12px/1.4 var(--lw-mono);
+    letter-spacing: 0.06em;
+}
+
+html[data-lw-theme="koralle"] .eyebrow::before {
+    content: "// ";
+}
+
+html[data-lw-theme="koralle"] .page-head h1 {
+    color: #fff;
+    font-size: clamp(32px, 4.6vw, 48px);
+}
+
+html[data-lw-theme="koralle"] .lede {
+    color: rgb(255 255 255 / 0.92);
+}
+
+html[data-lw-theme="koralle"] .map-link {
+    border-color: transparent;
+    background: #fff;
+    color: #9a2f16;
+    box-shadow: 0 8px 20px -10px rgb(0 0 0 / 0.5);
+}
+
+/* Boxen: weiß, ohne Rahmen, Titel als Code-Kommentar */
+html[data-lw-theme="koralle"] :is(.profile, .more, .table-wrap) {
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+html[data-lw-theme="koralle"] .profile.is-new {
+    box-shadow: 0 0 0 3px #f6c8b8, var(--shadow);
+}
+
+html[data-lw-theme="koralle"] .profile-title::before {
+    content: "// ";
+    color: #ec5f3d;
+    font-family: var(--lw-mono);
+    font-weight: 600;
+}
+
+/* Schritte als große Ziffern mit Kontur wie die Wochennummern im GdI-Zeitplan */
+html[data-lw-theme="koralle"] .step-no {
+    width: auto;
+    min-width: 28px;
+    height: auto;
+    border-radius: 0;
+    background: linear-gradient(180deg, transparent 55%, #fff1ec 55%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #ec5f3d;
+    font: 800 40px/0.9 "Avenir Next", "Segoe UI Variable Display", var(--lw-font, system-ui);
+    letter-spacing: -0.04em;
+}
+
+/* Kapitelnummern in den Gruppenköpfen ebenso */
+html[data-lw-theme="koralle"] .group-title {
+    align-items: baseline;
+}
+
+html[data-lw-theme="koralle"] .group-no {
+    background: linear-gradient(180deg, transparent 55%, #fff1ec 55%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1.3px #ec5f3d;
+    font: 800 40px/0.9 "Avenir Next", "Segoe UI Variable Display", var(--lw-font, system-ui);
+    letter-spacing: -0.04em;
+}
+
+html[data-lw-theme="koralle"] .tile.is-last {
+    border-color: #c9401f;
+    box-shadow: 0 0 0 3px #f6c8b8;
+}
+
+/* Umschalter als Pillen, ausgewählt in Koralle */
+html[data-lw-theme="koralle"] :is(.scope, .seg) {
+    border: none;
+    border-radius: 999px;
+    background: #f3eeea;
+}
+
+html[data-lw-theme="koralle"] :is(.scope-btn, .seg button) {
+    border-radius: 999px;
+}
+
+html[data-lw-theme="koralle"] :is(.scope-btn[aria-checked="true"], .seg button[aria-pressed="true"], .chip[aria-pressed="true"], .btn-primary, .badge) {
+    border-color: #c9401f;
+    background: #c9401f;
+    color: #fff;
+    box-shadow: 0 4px 12px -4px rgb(201 64 31 / 0.55);
+}
+
+html[data-lw-theme="koralle"] .scope-btn[aria-checked="true"] .count {
+    background: rgb(255 255 255 / 0.22);
+    color: #fff;
+}
+
+html[data-lw-theme="koralle"] .switch input:checked+.switch-track {
+    background: #c9401f;
+}
+
+html[data-lw-theme="koralle"] :is(.search, .more-btn, .select, .stepper select, .stepper-btn, .btn, .chip) {
+    border-radius: 999px;
+}
+
+/* Übungskarten: weiß, beim Überfahren angehoben mit Korallen-Kante unten */
+html[data-lw-theme="koralle"] .card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.25s, transform 0.25s;
+}
+
+html[data-lw-theme="koralle"] .card:hover {
+    transform: translateY(-3px);
+    box-shadow: inset 0 -3px 0 #ec5f3d, 0 14px 30px -10px rgb(194 65 12 / 0.35), 0 0 0 1px #f6c8b8;
+}
+
+html[data-lw-theme="koralle"] .card-title a::after {
+    border-radius: 16px;
+}
+
+html[data-lw-theme="koralle"] .card-media {
+    border-radius: 12px;
+}
+
+html[data-lw-theme="koralle"] .type-badge {
+    border: none;
+}
+
+html[data-lw-theme="koralle"] .group-head {
+    font-weight: 750;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html[data-lw-theme="koralle"] .card:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 600px) {
+    html[data-lw-theme="koralle"] .page-head {
+        --lw-koralle-break: 233px;
+        --lw-koralle-pos: 6% top / auto 420px;
+        --lw-koralle-fade: linear-gradient(transparent 300px, #8c8c8c 420px);
     }
 }

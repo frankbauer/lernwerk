@@ -126,14 +126,36 @@ function betterInlineCode() {
         code = $(code)
         code.html('<span code>' + code.html() + '</span>')
         code.addClass('inline-code')
+        // Programmcode ist englisch (WCAG 3.1.2), damit Screenreader ihn nicht mit deutscher Aussprache vorlesen
+        if (!code.attr('lang')) code.attr('lang', 'en')
     })
 
+}
+
+// Die Code-Editoren (CodeMirror) entstehen erst in codeblocks.umd.js und werden bei Bedarf neu aufgebaut.
+// Sie und ihre Tooltips (Fehlermeldungen des Compilers) als englisch auszeichnen; die deutschen Kommentare
+// der Overlays (.cb-ov-*) liegen im Editor und bleiben deutsch.
+function markCodeLanguage() {
+    const content = document.getElementById('content')
+    if (!content) return
+    const mark = node => {
+        if (node.nodeType !== Node.ELEMENT_NODE) return
+        const editors = node.matches('.cm-editor') ? [node] : node.querySelectorAll('.cm-editor')
+        editors.forEach(e => e.setAttribute('lang', 'en'))
+        const overlays = node.matches('.cb-ov-pills, .cb-ov-cards, .cb-ov-bubble') ? [node]
+            : node.querySelectorAll('.cb-ov-pills, .cb-ov-cards, .cb-ov-bubble')
+        overlays.forEach(e => e.setAttribute('lang', 'de'))
+    }
+    mark(content)
+    new MutationObserver(records => records.forEach(r => r.addedNodes.forEach(mark)))
+        .observe(content, { childList: true, subtree: true })
 }
 
 function initHelpers() {
     betterInlineCode()
     fixHeadingLevels()
     processHints()
+    markCodeLanguage()
     setTimeout(() => processTabs(), 100);
 }
 /** URL flags of the overview (uebersicht.html) that must survive a round trip through an exercise. */

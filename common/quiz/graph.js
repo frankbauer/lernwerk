@@ -506,6 +506,7 @@ export default {
                 attrs.tabindex = 0
                 attrs.role = 'button'
                 attrs['aria-label'] = 'Kante ' + this.edgeName(i) + ' mit Gewicht ' + e.w
+                attrs['aria-pressed'] = String(/\b(selected|noted)\b/.test(extra))
             }
             labels.push(this.svgTag('g', attrs,
                 this.svgTag('rect', { x: -w / 2, y: -10, width: w, height: 20, rx: 3 }) +
@@ -527,18 +528,27 @@ export default {
             viewBox: '0 0 ' + g.width + ' ' + g.height,
             width: g.width,
             style: 'max-width:' + g.width + 'px',
-            role: 'img',
-            'aria-label': 'Graph mit den Knoten ' + g.nodes.map(n => n.name).join(', '),
+            // als Bild wären die anklickbaren Kantengewichte für Screenreader unsichtbar (Kinder von role="img")
+            role: opts.onEdge ? 'group' : 'img',
+            'aria-label': 'Graph mit den Knoten ' + g.nodes.map(n => n.name).join(', ') + (opts.onEdge ? ''
+                : '. Kanten: ' + g.edges.map((e, i) => g.directed ? this.name(e.a) + ' nach ' + this.name(e.b)
+                    : this.edgeName(i) + ' mit Gewicht ' + e.w).join(', ')),
         }, defs + this.svgTag('g', {}, lines.join('')) + this.svgTag('g', {}, labels.join('')) +
             this.svgTag('g', {}, nodes.join('')))
         if (opts.onEdge) {
             box.querySelectorAll('[data-edge]').forEach(grp => {
                 const i = Number(grp.getAttribute('data-edge'))
-                grp.addEventListener('click', () => opts.onEdge(i))
+                // onEdge zeichnet den Graphen meist neu: den Fokus auf dieselbe Kante im neuen Graphen setzen
+                const act = () => {
+                    opts.onEdge(i)
+                    const fresh = this.body.querySelector('[data-edge="' + i + '"]')
+                    if (fresh && fresh !== grp) fresh.focus()
+                }
+                grp.addEventListener('click', act)
                 grp.addEventListener('keydown', ev => {
                     if (ev.key === 'Enter' || ev.key === ' ') {
                         ev.preventDefault()
-                        opts.onEdge(i)
+                        act()
                     }
                 })
             })
@@ -555,9 +565,12 @@ export default {
         this.feedback.setAttribute('aria-live', 'polite')
         const info = this.el('p', 'quiz-graph-info')
         const body = this.el('div', 'quiz-graph-body')
-        root.append(info, body)
+        this.status = this.el('div', 'lw-sr-only')
+        this.status.setAttribute('role', 'status')
+        root.append(info, body, this.status)
         this.info = info
         this.body = body
+        this.onChipsChanged = undefined
         const builder = {
             dijkstra: this.buildDijkstra,
             path: this.buildPath,
@@ -592,6 +605,12 @@ export default {
         this.canvasElement.empty().append(root)
     },
 
+    // Kurze Meldung nur für Screenreader (z. B. neue Position nach dem Verschieben)
+    announce: function (text) {
+        if (!this.status) return
+        this.status.textContent = ''
+        setTimeout(() => { this.status.textContent = text }, 50)
+    },
     setFeedback: function (kind, html) {
         this.feedback.className = 'quiz-feedback' + (kind ? ' ' + kind : '')
         this.feedback.innerHTML = html
@@ -773,12 +792,14 @@ export default {
 
         const table = this.el('table', 'quiz-graph-table')
         const head = this.el('tr')
+        const nodeButtons = []
         p.graph.nodes.forEach((nd, c) => {
             const th = this.el('th', solution ? '' : 'clickable', nd.name)
             if (!solution) {
                 th.tabIndex = 0
                 th.setAttribute('role', 'button')
                 th.title = 'Knoten ' + nd.name + ' zum Pfad hinzufügen oder entfernen'
+                nodeButtons[c] = th
                 const act = () => {
                     this.toggle(a.list, c)
                     this.save()
@@ -823,6 +844,9 @@ export default {
         this.chipList = solution ? p.path : a.list
         this.chipText = i => this.name(i)
         this.chipEditable = !solution
+        // Zustand der Knoten-Knöpfe in der Kopfzeile auch für Screenreader (Knoten im Pfad oder nicht)
+        this.onChipsChanged = solution ? undefined : () => nodeButtons.forEach((th, c) =>
+            th.setAttribute('aria-pressed', String(a.list.indexOf(c) >= 0)))
         this.body.append(tableBox, chipWrap)
         if (solution) {
             const pathEdges = []
@@ -944,11 +968,14 @@ export default {
     renderChips: function () {
         const box = this.chipBox
         box.innerHTML = ''
+        if (this.chipList.length) box.setAttribute('role', 'list')
+        else box.removeAttribute('role')
         if (!this.chipList.length) {
             box.appendChild(this.el('span', 'quiz-graph-empty', this.task === 'path' ? 'noch keine Knoten' : 'noch keine Kanten'))
         }
         this.chipList.forEach((item, pos) => {
             const chip = this.el('span', 'quiz-graph-chip')
+            chip.setAttribute('role', 'listitem')
             chip.appendChild(document.createTextNode(this.chipText(item)))
             if (this.chipSub && this.task !== 'path') chip.appendChild(this.el('sub', '', this.chipSub(item)))
             if (this.chipEditable) {
@@ -965,10 +992,17 @@ export default {
                     if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
                         ev.preventDefault()
                         const to = pos + (ev.key === 'ArrowLeft' ? -1 : 1)
-                        if (this.chipMove(pos, to)) box.children[to].focus()
+                        if (this.chipMove(pos, to)) {
+                            box.children[to].focus()
+                            this.announce(this.chipText(item) + ' jetzt an Position ' + (to + 1) + ' von ' + this.chipList.length)
+                        }
                     } else if (ev.key === 'Delete' || ev.key === 'Backspace') {
                         ev.preventDefault()
                         this.chipRemove(pos)
+                        // der Fokus bleibt in der Liste (auf dem Nachbarn), statt auf die Seite zurückzufallen
+                        const next = box.children[Math.min(pos, this.chipList.length - 1)]
+                        if (next && next.tabIndex === 0) next.focus()
+                        this.announce(this.chipText(item) + ' entfernt')
                     }
                 })
                 chip.addEventListener('pointerdown', e => this.chipDrag(e, chip, pos))

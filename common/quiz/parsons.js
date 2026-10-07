@@ -57,6 +57,9 @@ export default {
         const shuffle = this.el('button', 'secondary', this.config.shuffle === false ? 'Zurücksetzen' : 'Neu mischen')
         this.feedback = this.el('div', 'quiz-feedback')
         this.feedback.setAttribute('aria-live', 'polite')
+        // neue Position nach dem Verschieben mit den Pfeil-Knöpfen, nur für Screenreader
+        this.status = this.el('div', 'lw-sr-only')
+        this.status.setAttribute('role', 'status')
         check.type = shuffle.type = 'button'
         check.addEventListener('click', () => this.check())
         shuffle.addEventListener('click', () => {
@@ -65,7 +68,7 @@ export default {
             this.render()
         })
         actions.append(check, shuffle)
-        root.append(this.list, actions, this.feedback)
+        root.append(this.list, actions, this.feedback, this.status)
         this.canvasElement.empty().append(root)
 
         this.order = this.initialOrder()
@@ -110,6 +113,7 @@ export default {
             const grip = this.el('span', 'quiz-grip', '⋮⋮')
             grip.setAttribute('aria-hidden', 'true')
             const pre = this.el('pre')
+            pre.lang = 'en'
             pre.appendChild(this.highlight(line.code))
             const moveBox = this.el('span', 'quiz-move')
             ;[[-1, '▲', 'Zeile nach oben'], [1, '▼', 'Zeile nach unten']].forEach(([dir, sym, label]) => {
@@ -122,6 +126,7 @@ export default {
                     const row = this.list.children[pos + dir]
                     const next = row && (row.querySelector('button:not([disabled])' + (dir < 0 ? ':first-child' : ':last-child')) || row.querySelector('button:not([disabled])'))
                     if (next) next.focus()
+                    this.announce('Zeile ' + line.code + ' jetzt an Position ' + (pos + dir + 1) + ' von ' + this.order.length)
                 })
                 moveBox.appendChild(b)
             })
@@ -129,6 +134,11 @@ export default {
             li.addEventListener('pointerdown', e => this.startDrag(e, li, pos))
             this.list.appendChild(li)
         })
+    },
+
+    announce: function (text) {
+        this.status.textContent = ''
+        setTimeout(() => { this.status.textContent = text }, 50)
     },
 
     // Pointer-Events statt HTML5-Drag&Drop, damit es auch auf Touch-Geräten funktioniert

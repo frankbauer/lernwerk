@@ -59,6 +59,7 @@ export default {
             }
             const row = this.el('div', 'quiz-output-line')
             const pre = this.el('pre')
+            pre.lang = 'en'
             pre.appendChild(this.highlight(line.code))
             row.appendChild(pre)
             if (line.answer !== undefined) {

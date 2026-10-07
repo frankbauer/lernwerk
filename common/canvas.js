@@ -86,6 +86,8 @@ export default {
 
         const mainCanvas = $(document.createElement('canvas'))
         mainCanvas.attr('id', 'main_canvas')
+        // ohne Textalternative, aber für Screenreader zumindest als Grafik benannt
+        mainCanvas.attr({ role: 'img', 'aria-label': 'Grafische Ausgabe des Programms' })
         canvasElement.html('')
         canvasElement.append(mainCanvas)
         canvasElement.css('border', 'none')

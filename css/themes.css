@@ -7,7 +7,7 @@
  * Aufbau:
  *   1. (Menü: siehe css/theme-menu.css)
  *   2. Gemeinsame Basis aller neuen Themes, gesteuert über --lw-* Variablen
- *   3. Pro Theme: Variablen + charakteristische Details
+ *   3. Pro Theme: Variablen + charakteristische Details (3a–3j)
  *   4. Gemeinsame Nachträge (dunkle Themes, API-Tabs)
  *
  * Schriften: Geist kommt mit CodeBlocks (js/codeblocks-js/fonts/). Für Serifen, Mono und Handschrift werden System-Schriften
@@ -579,6 +579,18 @@ html[data-lw-theme="tafel"] {
     --lw-input-focus-bg: rgba(247, 215, 116, 0.12);
 }
 
+/* Schatten: eingelassen (Schatten innen), beim Fokus violett leuchtend */
+html[data-lw-theme="shadows"] {
+    --lw-input-bg: #121218;
+    --lw-input-fg: #ececf4;
+    --lw-input-border: #3a3a48;
+    --lw-input-radius: 8px;
+    --lw-input-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    --lw-input-focus: #a78bfa;
+    --lw-input-focus-bg: #17141f;
+    --lw-input-focus-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 0 3px rgba(167, 139, 250, 0.22), 0 0 16px rgba(167, 139, 250, 0.25);
+}
+
 /* Richtig/falsch-Markierung (Eingabefelder, Kanten-/Knotenlisten, Mengen, Parsons-Zeilen, Rückmeldung) je Theme.
    Blau/Orangerot statt Grün/Rot, damit die Farben auch bei Rot-Grün-Sehschwäche unterscheidbar bleiben. */
 html[data-lw-theme="heft"] .quiz {
@@ -655,6 +667,17 @@ html[data-lw-theme="tafel"] .quiz {
     --quiz-warn-bg: rgba(247, 215, 116, 0.12);
     --quiz-ok-ring: none;
     --quiz-bad-ring: none;
+}
+
+html[data-lw-theme="shadows"] .quiz {
+    --quiz-ok: #60a5fa;
+    --quiz-bad: #fb923c;
+    --quiz-warn: #facc15;
+    --quiz-ok-bg: rgba(96, 165, 250, 0.12);
+    --quiz-bad-bg: rgba(251, 146, 60, 0.12);
+    --quiz-warn-bg: rgba(250, 204, 21, 0.1);
+    --quiz-ok-ring: 0 0 0 1px #60a5fa, 0 0 14px rgba(96, 165, 250, 0.35);
+    --quiz-bad-ring: 0 0 0 1px #fb923c, 0 0 14px rgba(251, 146, 60, 0.35);
 }
 
 /* Antwortknöpfe (Zuordnen) wie die Eingabefelder; der gewählte Knopf in Akzentfarbe */
@@ -784,8 +807,30 @@ html[data-lw-theme="tafel"] .quiz-graph-table th {
     color: #f7d774;
 }
 
+html[data-lw-theme="shadows"] .quiz-graphs {
+    --graph-node: #a78bfa;
+    --graph-node-fg: #160e2b;
+    --graph-start: #fbbf24;
+    --graph-start-fg: #1a1406;
+    --graph-edge: #5a5a6e;
+    --graph-sel: #7dd3fc;
+    --graph-sel-fg: #08131c;
+    --graph-noted: #6b6b85;
+    --graph-noted-fg: #ffffff;
+    --graph-grid: #34343f;
+    --graph-mark: rgba(167, 139, 250, 0.2);
+    --graph-set: #a78bfa;
+    --graph-set-fg: #160e2b;
+}
+
+html[data-lw-theme="shadows"] .quiz-graph-table th {
+    background-color: #15151c;
+    color: #c4b5fd;
+}
+
 html[data-lw-theme="terminal"] .quiz-graph-chip,
-html[data-lw-theme="tafel"] .quiz-graph-chip {
+html[data-lw-theme="tafel"] .quiz-graph-chip,
+html[data-lw-theme="shadows"] .quiz-graph-chip {
     background-color: var(--quiz-input-bg);
     border-color: var(--quiz-input-border);
 }
@@ -2237,12 +2282,416 @@ html[data-lw-theme="prisma"] .quiz-graphs {
 
 
 /* ============================================================================
+   3i. Shadows – dunkel, Tiefe durch weiche Schatten, Akzente leuchten
+   ============================================================================ */
+
+html[data-lw-theme="shadows"] {
+    --lw-bg: #101015;
+    --lw-fg: #d6d6e0;
+    --lw-muted: #8e8ea0;
+    /* Überschriften in gebrochener Schrift (fonts/grenze-gotisch, lokal ausgeliefert) */
+    --lw-font-head: "Grenze Gotisch", "Iowan Old Style", Georgia, serif;
+    --lw-h1-size: 46px;
+    --lw-h1-weight: 600;
+    --lw-h1-tracking: 0.01em;
+    --lw-h1-color: #f5f3ff;
+    --lw-surface: #1a1a22;
+    --lw-surface-2: #15151c;
+    --lw-border: rgba(255, 255, 255, 0.08);
+    --lw-card-border: 1px solid rgba(255, 255, 255, 0.06);
+    --lw-radius: 16px;
+    --lw-radius-sm: 10px;
+    --lw-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 24px 48px -16px rgba(0, 0, 0, 0.85), 0 4px 12px rgba(0, 0, 0, 0.45);
+    --lw-accent: #a78bfa;
+    --lw-accent-fg: #160e2b;
+    --lw-link: #93c5fd;
+    --lw-code-bg: #25252f;
+    --lw-code-fg: #c4b5fd;
+    --lw-code-block-bg: #0c0c10;
+    --lw-out-bg: #0c0c10;
+    --lw-out-fg: #e9e5ff;
+    --lw-exp-item-bg: #15151c;
+    --lw-experiment: #f472b6;
+    --lw-experiment-fg: #2a0a1a;
+    --lw-tabbar-bg: #15151c;
+    --primary: 255 92% 76%;
+    --primary-foreground: 258 51% 11%;
+    --destructive: 0 91% 71%;
+    --destructive-foreground: 0 0% 7%;
+    /* Knöpfe aus Playgrounds und Textblöcken (wie die Hinweis-Knöpfe) */
+    --lw-btn-shadow: 0 4px 14px -4px rgba(167, 139, 250, 0.55);
+}
+
+/* schwaches violettes Licht von oben, zum Rand hin dunkel */
+html[data-lw-theme="shadows"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(ellipse 90% 55% at 50% -12%, rgba(167, 139, 250, 0.12), transparent 70%),
+        radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.45));
+    pointer-events: none;
+}
+
+html[data-lw-theme="shadows"] div.topbar h1 {
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8), 0 0 28px rgba(167, 139, 250, 0.35);
+}
+
+html[data-lw-theme="shadows"] div.boxed,
+html[data-lw-theme="shadows"] tabbar.code {
+    margin-bottom: 32px;
+}
+
+html[data-lw-theme="shadows"] div.boxed h3 {
+    font-size: 1.6em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+/* Überschriften mit leuchtendem Punkt in der Farbe der Box */
+html[data-lw-theme="shadows"] div.boxed h3::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 12px 0 2px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 10px 1px currentColor;
+    vertical-align: 0.22em;
+}
+
+html[data-lw-theme="shadows"] div.aufgabe h3 {
+    color: #fbbf24;
+}
+
+html[data-lw-theme="shadows"] div.experiment h3 {
+    color: #f472b6;
+}
+
+html[data-lw-theme="shadows"] div.explain h3 {
+    color: #7dd3fc;
+}
+
+html[data-lw-theme="shadows"] tabbar>div[data-tab]>div.boxed h3 {
+    color: var(--lw-fg);
+}
+
+html[data-lw-theme="shadows"] pre[output],
+html[data-lw-theme="shadows"] pre[code] {
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+html[data-lw-theme="shadows"] div.experiment>div {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 6px 16px -8px rgba(0, 0, 0, 0.7);
+}
+
+html[data-lw-theme="shadows"] div.experiment>div::before {
+    border-radius: 50%;
+    box-shadow: 0 0 14px rgba(244, 114, 182, 0.55);
+}
+
+html[data-lw-theme="shadows"] div.boxed li::marker {
+    color: #a78bfa;
+}
+
+html[data-lw-theme="shadows"] tabbar>div.buttonbar button.active {
+    color: #f5f3ff;
+    box-shadow: 0 6px 12px -6px rgba(167, 139, 250, 0.8);
+}
+
+html[data-lw-theme="shadows"] .hint-container button,
+html[data-lw-theme="shadows"] .colored .hint-container button {
+    box-shadow: 0 4px 14px -4px rgba(167, 139, 250, 0.55);
+}
+
+
+/* ============================================================================
+   3j. Koralle – warm, im Stil des GdI-Zeitplans: Kopf im Korallen-Verlauf des Zeitplans mit feinem Raster,
+   Überschriften als Code-Kommentare ("// Aufgabe"), Nummern als dunkle Stempel.
+   Schrift auf Weiß nutzt das dunklere #c9401f (WCAG AA), die hellen Töne nur für Flächen.
+   ============================================================================ */
+
+html[data-lw-theme="koralle"] {
+    --lw-coral: #ff6b6b;
+    --lw-coral-2: #ec5f3d;
+    --lw-coral-soft: #fff1ec;
+    --lw-coral-line: #f6c8b8;
+    --lw-bg: #faf7f5;
+    --lw-fg: #1c1917;
+    --lw-muted: #6f6863; /* WCAG AA: >= 4.5:1 */
+    --lw-h1-size: 38px;
+    --lw-h1-weight: 800;
+    --lw-h1-color: #ffffff;
+    --lw-surface: #ffffff;
+    --lw-surface-2: #fbf8f6;
+    --lw-border: #ece7e3;
+    --lw-card-border: none;
+    --lw-nested-border: 1px solid #ece7e3;
+    --lw-radius: 16px;
+    --lw-radius-sm: 10px;
+    --lw-shadow: 0 1px 2px rgb(28 25 23 / 0.06), 0 0 0 1px #ece7e3;
+    --lw-accent: #c9401f;
+    --lw-accent-fg: #ffffff;
+    --lw-code-bg: #fff1ec;
+    --lw-code-fg: #a8361a;
+    --lw-code-block-bg: #fbf8f6;
+    --lw-out-bg: #1c1917;
+    --lw-out-fg: #f5efeb;
+    --lw-exp-out-bg: #1c1917;
+    --lw-exp-out-fg: #f5efeb;
+    --lw-experiment: #1c1917;
+    --lw-exp-item-bg: #fbf8f6;
+    --lw-exp-item-border: 1px solid #ece7e3;
+    /* Verlauf wie im Kopf des GdI-Zeitplans (kleine weiße Schrift darauf erreicht nur etwa 3:1) */
+    --lw-topbar-bg:
+        radial-gradient(circle at 92% -20%, rgb(255 255 255 / 0.28), transparent 45%),
+        linear-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(90deg, rgb(255 255 255 / 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(120deg, #ff6b6b, #ec5f3d 55%, #c2410c);
+    /* Eingabefelder und Knöpfe */
+    --lw-input-border: #dcd2cb;
+    --lw-input-radius: 8px;
+    --lw-input-focus: #c9401f;
+    --lw-input-focus-shadow: 0 0 0 3px rgb(236 95 61 / 0.22);
+    --lw-btn-radius: 999px;
+    --lw-btn-shadow: 0 4px 12px -4px rgb(201 64 31 / 0.55);
+    --lw-btn-hover-bg: #b93a1e;
+    /* Codeblocks-Oberfläche (shadcn) */
+    --primary: 12 73% 45%;
+    --primary-foreground: 0 0% 100%;
+    --ring: 12 73% 45%;
+    --cb-ov-blue: #2f5fc4;
+}
+
+/* --- Kopf: Verlauf mit Raster, Kapitel als Code-Kommentar, Zurück als helle Pille --- */
+html[data-lw-theme="koralle"] div.topbar {
+    padding-top: 40px;
+    padding-bottom: 28px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgb(120 30 10 / 0.25);
+}
+
+html[data-lw-theme="koralle"] .lw-crumb {
+    color: rgb(255 255 255 / 0.9);
+    font: 600 12px/1.4 var(--lw-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+html[data-lw-theme="koralle"] .lw-crumb::before {
+    content: "// ";
+}
+
+html[data-lw-theme="koralle"] div.topbar>a.backlink {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 0.18);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+html[data-lw-theme="koralle"] div.topbar>a.backlink:hover {
+    background: rgb(0 0 0 / 0.3);
+}
+
+html[data-lw-theme="koralle"] div.intro {
+    color: var(--lw-muted);
+    font-size: 1.04em;
+}
+
+/* --- Boxen: weiße Karten, Typfarbe als Kante links, Titel mit "//"-Kommentar --- */
+html[data-lw-theme="koralle"] div.boxed {
+    --lw-box-type: var(--lw-coral-2);
+    border-left: 4px solid var(--lw-box-type);
+}
+
+html[data-lw-theme="koralle"] div.experiment {
+    --lw-box-type: #a43fc0;
+}
+
+html[data-lw-theme="koralle"] div.explain {
+    --lw-box-type: #2f5fc4;
+}
+
+html[data-lw-theme="koralle"] div.boxed h3 {
+    font-weight: 750;
+    letter-spacing: -0.01em;
+}
+
+html[data-lw-theme="koralle"] div.boxed h3::before {
+    content: "// ";
+    color: var(--lw-box-type);
+    font-family: var(--lw-mono);
+    font-weight: 600;
+}
+
+html[data-lw-theme="koralle"] tabbar>div[data-tab]>div.boxed {
+    border-left: 4px solid var(--lw-box-type);
+}
+
+/* Große Ziffern mit Kontur wie die Wochennummern im GdI-Zeitplan: die Boxen werden durchgezählt
+   (oben rechts), Experimente tragen ihre Nummer links. Die untere Hälfte ist zart hinterlegt. */
+html[data-lw-theme="koralle"] {
+    --lw-outline-num:
+        800 1em/0.9 "Avenir Next", "Segoe UI Variable Display", var(--lw-font);
+}
+
+html[data-lw-theme="koralle"] div#content {
+    counter-reset: lw-sec;
+}
+
+html[data-lw-theme="koralle"] div#content>div.boxed,
+html[data-lw-theme="koralle"] div#content>tabbar.code {
+    position: relative;
+    counter-increment: lw-sec;
+}
+
+html[data-lw-theme="koralle"] div#content>div.boxed::after,
+html[data-lw-theme="koralle"] div#content>tabbar.code::after {
+    content: counter(lw-sec, decimal-leading-zero);
+    position: absolute;
+    top: 14px;
+    right: 22px;
+    font: var(--lw-outline-num);
+    font-size: 46px;
+    letter-spacing: -0.04em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--lw-coral);
+    background: linear-gradient(180deg, transparent 55%, var(--lw-coral-soft) 55%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    pointer-events: none;
+}
+
+/* Platz für die Ziffer neben dem Titel bzw. den Tabs */
+html[data-lw-theme="koralle"] div#content>div.boxed>h3 {
+    padding-right: 72px;
+}
+
+html[data-lw-theme="koralle"] div#content>tabbar.code>div.buttonbar {
+    max-width: calc(100% - 72px);
+}
+
+/* Experimente: Nummer als Kontur-Ziffer statt Stempel */
+html[data-lw-theme="koralle"] div.experiment>div::before {
+    content: counter(lw-exp, decimal-leading-zero);
+    left: 12px;
+    top: 10px;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: linear-gradient(180deg, transparent 55%, var(--lw-coral-soft) 55%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1.2px #a43fc0;
+    font: var(--lw-outline-num);
+    font-size: 28px;
+    letter-spacing: -0.03em;
+}
+
+/* Konsole: dunkel und warm, mit Korallen-Kante oben */
+html[data-lw-theme="koralle"] pre[output],
+html[data-lw-theme="koralle"] [codeblocks] pre.output {
+    border-top: 3px solid var(--lw-coral-2) !important;
+}
+
+html[data-lw-theme="koralle"] [codeblocks] .codeblock .code-editor>div {
+    --lw-editor-border: #e4dcd6;
+}
+
+/* --- Tabs als Segment-Umschalter, aktiver Tab in Koralle --- */
+html[data-lw-theme="koralle"] tabbar.code {
+    padding: 16px;
+}
+
+html[data-lw-theme="koralle"] tabbar>div.buttonbar {
+    width: fit-content;
+    max-width: 100%;
+    gap: 2px;
+    padding: 4px;
+    border-radius: 999px;
+    background: #f3eeea;
+    box-shadow: none;
+}
+
+html[data-lw-theme="koralle"] tabbar>div.buttonbar button,
+html[data-lw-theme="koralle"] tabbar>div.buttonbar button.inactive,
+html[data-lw-theme="koralle"] tabbar>div.buttonbar button.active {
+    margin: 0;
+    padding: 6px 16px;
+    border: none;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.15s, color 0.15s;
+}
+
+html[data-lw-theme="koralle"] tabbar>div.buttonbar button.active {
+    background: var(--lw-accent);
+    color: #fff;
+    box-shadow: 0 4px 10px -4px rgb(201 64 31 / 0.6);
+}
+
+html[data-lw-theme="koralle"] tabbar>div.buttonbar button.active:hover {
+    color: #fff !important;
+}
+
+html[data-lw-theme="koralle"] tabbar>div[data-tab] {
+    padding: 16px 0 0;
+}
+
+/* --- Hinweise: Knöpfe mit weichem Korallen-Schatten (keine Pillen, sie werden mit dem Hinweis hoch) --- */
+html[data-lw-theme="koralle"] .hint-container button,
+html[data-lw-theme="koralle"] .colored .hint-container button {
+    box-shadow: 0 4px 12px -4px rgb(201 64 31 / 0.55);
+}
+
+html[data-lw-theme="koralle"] hint.expanded {
+    border-left-color: var(--lw-coral-line);
+}
+
+/* --- Quiz und Graphen --- */
+html[data-lw-theme="koralle"] .quiz {
+    --quiz-ok: #2f5fc4;
+    --quiz-bad: #c9401f;
+    --quiz-ok-bg: rgba(47, 95, 196, 0.07);
+    --quiz-bad-bg: rgba(201, 64, 31, 0.08);
+    --quiz-ok-ring: 0 0 0 3px rgba(47, 95, 196, 0.18);
+    --quiz-bad-ring: 0 0 0 3px rgba(201, 64, 31, 0.2);
+}
+
+html[data-lw-theme="koralle"] .quiz-graphs {
+    --graph-node: #c9401f;
+    --graph-start: #1c1917;
+    --graph-edge: #b5aaa3;
+    --graph-sel: #2f5fc4;
+    --graph-noted: #f6c8b8;
+    --graph-noted-fg: #1c1917;
+    --graph-mark: rgba(236, 95, 61, 0.15);
+    --graph-set: #f6c8b8;
+    --graph-set-fg: #1c1917;
+}
+
+@media (max-width: 600px) {
+    html[data-lw-theme="koralle"] {
+        --lw-h1-size: 30px;
+    }
+}
+
+
+/* ============================================================================
    4. Gemeinsame Nachträge
    ============================================================================ */
 
 /* Dunkle Themes: Codeblocks-Oberfläche (shadcn-Variablen) abdunkeln, Editor invertieren */
 html[data-lw-theme="terminal"],
-html[data-lw-theme="tafel"] {
+html[data-lw-theme="tafel"],
+html[data-lw-theme="shadows"] {
     color-scheme: dark;
     --background: 222 25% 9%;
     --foreground: 210 20% 90%;
@@ -2272,10 +2721,22 @@ html[data-lw-theme="tafel"] {
     --accent: 150 18% 18%;
 }
 
+html[data-lw-theme="shadows"] {
+    --background: 240 14% 8%;
+    --muted: 240 10% 15%;
+    --popover: 240 13% 11%;
+    --card: 240 13% 11%;
+    --border: 240 8% 20%;
+    --input: 240 8% 24%;
+    --secondary: 240 10% 15%;
+    --accent: 240 10% 15%;
+}
+
 /* Die Editor-Farbschemata der Codeblocks-Bibliothek sind hell; per Filter werden sie dunkel,
    die Farbtöne der Syntaxhervorhebung bleiben dabei erhalten. */
 html[data-lw-theme="terminal"] [codeblocks] .cm-editor,
-html[data-lw-theme="tafel"] [codeblocks] .cm-editor {
+html[data-lw-theme="tafel"] [codeblocks] .cm-editor,
+html[data-lw-theme="shadows"] [codeblocks] .cm-editor {
     filter: invert(0.9) hue-rotate(180deg);
 }
 
@@ -2375,7 +2836,8 @@ html[data-lw-theme="raster"] .cb-ov-bubble {
    Hover-Sprechblasen darin. Dort gelten deshalb helle Werte. Sprechblasen außerhalb des Editors
    (Gutter, Playground-Elemente) hängen am <body> und bekommen dunkle Werte. */
 html[data-lw-theme="terminal"],
-html[data-lw-theme="tafel"] {
+html[data-lw-theme="tafel"],
+html[data-lw-theme="shadows"] {
     --cb-ov-surface: #ffffff;
     --cb-ov-fg: #1f2430;
     --cb-ov-muted: #5d6576;
@@ -2390,10 +2852,16 @@ html[data-lw-theme="tafel"] {
     --cb-ov-blue: #1f6f99; /* invertiert: Kreideblau */
 }
 
+html[data-lw-theme="shadows"] {
+    --cb-ov-blue: #1e40af; /* invertiert: helles Blau wie --lw-link */
+}
+
 html[data-lw-theme="terminal"] .cb-ov-bubble--floating,
 html[data-lw-theme="terminal"] .cb-ov-layer,
 html[data-lw-theme="tafel"] .cb-ov-bubble--floating,
-html[data-lw-theme="tafel"] .cb-ov-layer {
+html[data-lw-theme="tafel"] .cb-ov-layer,
+html[data-lw-theme="shadows"] .cb-ov-bubble--floating,
+html[data-lw-theme="shadows"] .cb-ov-layer {
     --cb-ov-surface: var(--lw-surface-solid, var(--lw-surface));
     --cb-ov-fg: var(--lw-fg);
     --cb-ov-muted: var(--lw-muted);
@@ -2407,7 +2875,9 @@ html[data-lw-theme="terminal"] .cb-ov-layer {
 }
 
 html[data-lw-theme="tafel"] .cb-ov-bubble--floating,
-html[data-lw-theme="tafel"] .cb-ov-layer {
+html[data-lw-theme="tafel"] .cb-ov-layer,
+html[data-lw-theme="shadows"] .cb-ov-bubble--floating,
+html[data-lw-theme="shadows"] .cb-ov-layer {
     --cb-ov-blue: var(--lw-link);
 }
 
