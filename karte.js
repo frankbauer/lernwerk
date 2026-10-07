@@ -22,7 +22,7 @@
     const PLANER_KEY = "lernwerk.uebungsplaner.v1"; // state of uebersicht.html (done exercises)
     const STORAGE_KEY = `lernwerk.karte.v1${FLAG_QUERY ? `:${FLAG_QUERY}` : ""}`;
     /** Bump when the island generator changes: stored fog no longer matches the map then. */
-    const GENERATOR = 10;
+    const GENERATOR = 11;
 
     const T = 16; // tile size in map pixels
     const THEMES = ["valley", "beach", "desert", "snow"];
@@ -362,19 +362,15 @@
         // `dx`: column within the group, `spur`: length of a side path between the road and the building
         const groups = [];
         if (castleList.length || slides.length) {
-            groups.push([{ kind: "castle", w: 3, h: 2, list: castleList, slides, up: true, dx: 0, spur: 0 }]);
+            groups.push([{ kind: "castle", w: 3, h: 2, list: castleList, slides, up: true, dx: 0, spur: 0, bend: 0 }]);
         }
-        // houses: facing each other across the road, side by side, or alone (sometimes up a side path)
-        const singles = houses.map((ex) => ({ kind: "house", w: 1, h: 1, ex, variant: Math.floor(rng() * 3), dx: 0, spur: 0 }));
+        // houses: side by side on one side of the road, or alone: at the road, up a short side path,
+        // or off to the side at the end of a side path with a bend (`bend`: -1 left, 1 right). Never
+        // opposite each other: the prompt bubble of the lower one would hide the upper one.
+        const singles = houses.map((ex) => ({ kind: "house", w: 1, h: 1, ex, variant: Math.floor(rng() * 3), dx: 0, spur: 0, bend: 0 }));
         for (let j = 0; j < singles.length; ) {
             const v = rng();
-            if (singles.length - j >= 2 && v < 0.35) {
-                const [a, b] = singles.slice(j, j + 2);
-                a.up = rng() < 0.5;
-                b.up = !a.up;
-                groups.push([a, b]);
-                j += 2;
-            } else if (singles.length - j >= 2 && v < 0.6) {
+            if (singles.length - j >= 2 && v < 0.3) {
                 const [a, b] = singles.slice(j, j + 2);
                 a.up = b.up = rng() < 0.5;
                 b.dx = 2;
@@ -383,13 +379,15 @@
             } else {
                 const a = singles[j];
                 a.up = rng() < 0.5;
-                if (rng() < 0.5) a.spur = 1 + Math.floor(rng() * 2);
+                const w = rng();
+                if (w < 0.4) a.spur = 1 + Math.floor(rng() * 2);
+                else if (w < 0.75) a.bend = rng() < 0.5 ? -1 : 1;
                 groups.push([a]);
                 j += 1;
             }
         }
         if (villageList.length) {
-            groups.push([{ kind: "village", w: 2, h: 2, list: villageList, up: rng() < 0.5, dx: 0, spur: rng() < 0.4 ? 1 : 0 }]);
+            groups.push([{ kind: "village", w: 2, h: 2, list: villageList, up: rng() < 0.5, dx: 0, spur: rng() < 0.4 ? 1 : 0, bend: 0 }]);
         }
         if (!eastward) groups.reverse();
         const feats = groups.flat();
@@ -433,10 +431,20 @@
         const spurs = []; // side paths from the road to buildings
         feats.forEach((f) => {
             const fy = pathY[f.x];
-            f.top = f.up ? fy - f.spur - f.h : fy + 1 + f.spur;
+            const dir = f.up ? -1 : 1;
+            f.hx = f.x; // column of the building
+            if (f.bend) {
+                // two cells away from the road, then one to the side; the house stands beyond. The cell
+                // between the road and the bend stays free, so the path tiles do not join into a loop.
+                spurs.push([f.x, fy + dir], [f.x, fy + 2 * dir], [f.x + f.bend, fy + 2 * dir]);
+                f.hx = f.x + f.bend;
+                f.top = fy + 3 * dir;
+            } else {
+                f.top = f.up ? fy - f.spur - f.h : fy + 1 + f.spur;
+                for (let k = 1; k <= f.spur; k++) spurs.push([f.x, fy + k * dir]);
+            }
             f.cells = [];
-            for (let dy = 0; dy < f.h; dy++) for (let dx = 0; dx < f.w; dx++) f.cells.push([f.x + dx, f.top + dy]);
-            for (let k = 1; k <= f.spur; k++) spurs.push([f.x, f.up ? fy - k : fy + k]);
+            for (let dy = 0; dy < f.h; dy++) for (let dx = 0; dx < f.w; dx++) f.cells.push([f.hx + dx, f.top + dy]);
             core.push(...f.cells);
         });
         core.push(...spurs);
@@ -450,7 +458,7 @@
             // the side path leaves the road where no building stands above it and no bend of the road
             // runs beside it (the path tiles would join into a loop)
             const fits = (x) =>
-                !upper.some((f) => x >= f.x && x < f.x + f.w) &&
+                !upper.some((f) => x === f.x || f.cells.some(([c]) => c === x)) &&
                 ![...path, ...spurs].some(([c, r]) => Math.abs(c - x) === 1 && r < top(x));
             const starts = Array.from({ length: Math.max(1, L - 6) }, (_, k) => xs + 1 + k);
             for (let k = starts.length - 1; k > 0; k--) {
@@ -607,7 +615,7 @@
                 kind: f.kind, island: i, cells: f.cells, top: f.top, ex: f.ex, list: f.list, slides: f.slides,
             });
             if (f.kind === "house") {
-                deco[idx(f.x, f.top)] = houseTiles[f.variant % houseTiles.length];
+                deco[idx(f.hx, f.top)] = houseTiles[f.variant % houseTiles.length];
                 island.houses.push(it);
             } else {
                 const sprite = f.kind === "castle" ? tm.sprites.CASTLE : tm.sprites.VILLAGE;
@@ -1481,9 +1489,12 @@
             }
         }
         if (it) {
+            // above the hero, unless the building is above: then below, so the bubble does not hide it
+            const below = it.cells.some(([, r]) => r < hero.r);
             const s = view.scale / dpr;
+            el.classList.toggle("is-below", below);
             el.style.left = `${((hero.fc + 0.5) * T - view.x) * s}px`;
-            el.style.top = `${(hero.fr * T - view.y) * s - 6}px`;
+            el.style.top = below ? `${((hero.fr + 1) * T - view.y) * s + 8}px` : `${(hero.fr * T - view.y) * s - 6}px`;
         }
     }
 
@@ -2659,6 +2670,14 @@
     }
 
     async function init() {
+        // karte.html?ua shows the browser's user agent (to recognise browsers like Arc on iOS)
+        if (params.has("ua")) {
+            const box = document.createElement("textarea");
+            box.readOnly = true;
+            box.value = navigator.userAgent;
+            box.style.cssText = "position:fixed;left:10px;right:10px;top:64px;z-index:60;height:90px;font:12px monospace;padding:8px";
+            document.body.append(box);
+        }
         canvas = $("map");
         ctx = canvas.getContext("2d");
         const back = `./uebersicht.html${FLAG_QUERY ? `?${FLAG_QUERY}` : ""}`;

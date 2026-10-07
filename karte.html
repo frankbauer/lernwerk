@@ -3,13 +3,17 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Abenteuerkarte – Lernwerk</title>
     <meta name="theme-color" content="#61a2ff" />
     <link rel="icon" href="./img/brand/GdI_logo.jpg" />
     <link rel="apple-touch-icon" href="./img/brand/GdI_logo.jpg" />
     <!-- gespeichertes Theme der Übersicht setzen (wie theme.js), damit die Karten dort und hier gleich aussehen -->
     <script>
+        // Arc on iOS lays its toolbar over the bottom of the page: the game bar moves up (css/karte.css)
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent) && /\bArc(Search|Mobile)?\b/i.test(navigator.userAgent)) {
+            document.documentElement.classList.add("is-arc-ios");
+        }
         try {
             document.documentElement.dataset.lwTheme = localStorage.getItem("lernwerk-theme") || "abenteuer";
         } catch (e) {
@@ -21,8 +25,8 @@
     <link rel="stylesheet" href="./fonts/caveat/caveat.css?v=1.0.0" />
     <link rel="stylesheet" href="./css/uebungsplaner.css?v=1.7.6" />
     <link rel="stylesheet" href="./css/themes-uebersicht.css?v=1.2.3" />
-    <link rel="stylesheet" href="./css/karte.css?v=1.0.18" />
-    <script src="./karte.js?v=1.0.30" defer></script>
+    <link rel="stylesheet" href="./css/karte.css?v=1.0.19" />
+    <script src="./karte.js?v=1.0.31" defer></script>
 </head>
 
 <body class="map-page">

@@ -4,6 +4,9 @@
  */
 
 .map-page {
+    /* space below the game bar: the iPhone's safe area (home indicator) plus, in Arc on iOS, its
+       toolbar that lies over the page (html.is-arc-ios, set in karte.html) */
+    --bottom-inset: max(env(safe-area-inset-bottom, 0px), var(--browser-bar, 0px));
     --hud-ink: #1a1614;
     --hud-paper: #fffaf0;
     --parchment: #f3e2bd;
@@ -89,7 +92,7 @@
 /* legal links: a quiet line under the game bar */
 .hud-legal {
     left: 50%;
-    bottom: 4px;
+    bottom: calc(4px + var(--bottom-inset));
     display: flex;
     gap: 12px;
     padding: 1px 10px;
@@ -108,7 +111,7 @@
 
 .gamebar {
     left: 50%;
-    bottom: 34px;
+    bottom: calc(34px + var(--bottom-inset));
     display: flex;
     align-items: flex-end;
     width: max-content;
@@ -588,6 +591,26 @@
 
 .prompt[hidden] {
     display: none;
+}
+
+/* below the hero (when the building is above), the tip points up */
+.prompt.is-below {
+    transform: translate(-50%, 0);
+    animation-name: prompt-in-below;
+}
+
+.prompt.is-below::after {
+    top: -12px;
+    bottom: auto;
+    border-top-color: transparent;
+    border-bottom-color: rgb(26 22 20 / 0.6);
+}
+
+@keyframes prompt-in-below {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -6px);
+    }
 }
 
 .prompt::after {
@@ -1267,7 +1290,7 @@
 @media (max-width: 700px) {
     /* phones: the wings shrink to icons */
     .gamebar {
-        bottom: 32px;
+        bottom: calc(32px + var(--bottom-inset));
     }
 
     .wing {
@@ -1356,4 +1379,8 @@
     .bubbles i {
         animation: none;
     }
+}
+
+html.is-arc-ios {
+    --browser-bar: 64px;
 }
