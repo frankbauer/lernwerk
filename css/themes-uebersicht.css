@@ -1827,7 +1827,7 @@ html[data-lw-theme="koralle"] {
 /* Banner nur mit CSS, aus demselben Bild (gleiche Lage über --lw-koralle-pos):
    Schwarzweiß, mehr Kontrast (das Bild ein zweites Mal per overlay) und etwas aufgehellt (screen).
    Unter dem Logo eine klare Kante: darunter wird das Foto unscharf und schwarzweiß, darüber liegt der
-   Korallen-Verlauf des GdI-Zeitplans (leicht durchscheinend, mit Lichtfleck oben rechts und Raster). */
+   Korallen-Verlauf des GdI-Zeitplans (multipliziert, mit Lichtfleck oben rechts und Raster). */
 html[data-lw-theme="koralle"] .page-head {
     --lw-koralle-break: calc(31.25cqw - var(--crop));
     --lw-koralle-pos: center calc(-1 * var(--crop)) / 100% auto;
@@ -1869,11 +1869,12 @@ html[data-lw-theme="koralle"] .page-head::before {
     backdrop-filter: blur(16px) grayscale(1);
 }
 
-/* darüber der Verlauf des Zeitplans, leicht durchscheinend */
+/* darüber der Verlauf des Zeitplans, mit dem Foto multipliziert: auf der hellen Wand bleibt er unverändert,
+   dunklere Bildteile scheinen als weiche Schatten durch */
 html[data-lw-theme="koralle"] .page-head::after {
     border-top: 1px solid rgb(255 255 255 / 0.5);
     background: var(--lw-koralle-hero);
-    opacity: 0.9;
+    mix-blend-mode: multiply;
 }
 
 html[data-lw-theme="koralle"] .hero-text {
