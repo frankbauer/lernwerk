@@ -22,7 +22,7 @@
     const PLANER_KEY = "lernwerk.uebungsplaner.v1"; // state of uebersicht.html (done exercises)
     const STORAGE_KEY = `lernwerk.karte.v1${FLAG_QUERY ? `:${FLAG_QUERY}` : ""}`;
     /** Bump when the island generator changes: stored fog no longer matches the map then. */
-    const GENERATOR = 9;
+    const GENERATOR = 10;
 
     const T = 16; // tile size in map pixels
     const THEMES = ["valley", "beach", "desert", "snow"];
@@ -359,24 +359,45 @@
 
         // features along the path, in walking order from the arrival port: the castle, the houses in
         // pairs facing each other across the path, the village
+        // `dx`: column within the group, `spur`: length of a side path between the road and the building
         const groups = [];
         if (castleList.length || slides.length) {
-            groups.push([{ kind: "castle", w: 3, h: 2, list: castleList, slides, up: true }]);
+            groups.push([{ kind: "castle", w: 3, h: 2, list: castleList, slides, up: true, dx: 0, spur: 0 }]);
         }
-        const singles = houses.map((ex, j) => ({ kind: "house", w: 1, h: 1, ex, variant: j }));
-        for (let j = 0; j < singles.length; j += 2) {
-            const pair = singles.slice(j, j + 2);
-            pair.forEach((f, k) => (f.up = k === 0 ? rng() < 0.5 : !pair[0].up));
-            groups.push(pair);
+        // houses: facing each other across the road, side by side, or alone (sometimes up a side path)
+        const singles = houses.map((ex) => ({ kind: "house", w: 1, h: 1, ex, variant: Math.floor(rng() * 3), dx: 0, spur: 0 }));
+        for (let j = 0; j < singles.length; ) {
+            const v = rng();
+            if (singles.length - j >= 2 && v < 0.35) {
+                const [a, b] = singles.slice(j, j + 2);
+                a.up = rng() < 0.5;
+                b.up = !a.up;
+                groups.push([a, b]);
+                j += 2;
+            } else if (singles.length - j >= 2 && v < 0.6) {
+                const [a, b] = singles.slice(j, j + 2);
+                a.up = b.up = rng() < 0.5;
+                b.dx = 2;
+                groups.push([a, b]);
+                j += 2;
+            } else {
+                const a = singles[j];
+                a.up = rng() < 0.5;
+                if (rng() < 0.5) a.spur = 1 + Math.floor(rng() * 2);
+                groups.push([a]);
+                j += 1;
+            }
         }
-        if (villageList.length) groups.push([{ kind: "village", w: 2, h: 2, list: villageList, up: rng() < 0.5 }]);
+        if (villageList.length) {
+            groups.push([{ kind: "village", w: 2, h: 2, list: villageList, up: rng() < 0.5, dx: 0, spur: rng() < 0.4 ? 1 : 0 }]);
+        }
         if (!eastward) groups.reverse();
         const feats = groups.flat();
 
         let cursor = 3;
         groups.forEach((group) => {
-            group.forEach((f) => (f.rx = cursor));
-            cursor += Math.max(...group.map((f) => f.w)) + 4;
+            group.forEach((f) => (f.rx = cursor + f.dx));
+            cursor += Math.max(...group.map((f) => f.dx + f.w)) + 4;
         });
         const L = Math.max(cursor, 16);
         const centre = Math.floor((L - cursor) / 2);
@@ -409,13 +430,16 @@
         }
 
         const core = [...path];
+        const spurs = []; // side paths from the road to buildings
         feats.forEach((f) => {
             const fy = pathY[f.x];
-            f.top = f.up ? fy - f.h : fy + 1;
+            f.top = f.up ? fy - f.spur - f.h : fy + 1 + f.spur;
             f.cells = [];
             for (let dy = 0; dy < f.h; dy++) for (let dx = 0; dx < f.w; dx++) f.cells.push([f.x + dx, f.top + dy]);
+            for (let k = 1; k <= f.spur; k++) spurs.push([f.x, f.up ? fy - k : fy + k]);
             core.push(...f.cells);
         });
+        core.push(...spurs);
 
         let vol = null;
         const branch = []; // side path from the road up to the volcano
@@ -427,7 +451,7 @@
             // runs beside it (the path tiles would join into a loop)
             const fits = (x) =>
                 !upper.some((f) => x >= f.x && x < f.x + f.w) &&
-                !path.some(([c, r]) => Math.abs(c - x) === 1 && r < top(x));
+                ![...path, ...spurs].some(([c, r]) => Math.abs(c - x) === 1 && r < top(x));
             const starts = Array.from({ length: Math.max(1, L - 6) }, (_, k) => xs + 1 + k);
             for (let k = starts.length - 1; k > 0; k--) {
                 const j = Math.floor(rng() * (k + 1));
@@ -576,7 +600,7 @@
             bounds: [ox, oy, ox + SLOT_W - 1, oy + SLOT_H - 1],
         };
 
-        [...path, ...branch, ...(branchEnd ? [branchEnd] : [])].forEach(([c, r]) => (deco[idx(c, r)] = tile.PATH));
+        [...path, ...spurs, ...branch, ...(branchEnd ? [branchEnd] : [])].forEach(([c, r]) => (deco[idx(c, r)] = tile.PATH));
         const houseTiles = [tile.HOUSE, tile.HOUSE_2, tile.HOUSE_3];
         feats.forEach((f) => {
             const it = addInteractable({
@@ -939,6 +963,50 @@
             // timing of the ship's rocking animation
             tempo: 1 + (Math.random() * 2 - 1) * TEMPO_JITTER, phase: Math.random(),
         };
+    }
+
+    // --- ship tracks, drawn pixel by pixel in the style of the route tiles of the tile sheets:
+    // white dashes, a small ring at regular distances and now and then an arrow towards the next island
+
+    // the shapes are copied from the route tiles (ROUTE_W_E, ROUTE_SW_TO_NE)
+    const TRACK_DASH = [4, 2]; // map pixels: dash, gap
+    const TRACK_MARK = 26; // distance between the rings
+    const TRACK_ARROW = 4; // every 4th mark is an arrow
+    const RING = [[-1, -2], [0, -2], [-2, -1], [1, -1], [-2, 0], [1, 0], [-1, 1], [0, 1]];
+    // arrow heads pointing north-east (as in the tiles) and east (the tiles have none, same style);
+    // the other directions are turned by 90 degree steps
+    const ARROW_NE = [[-1, -1], [0, -1], [1, -1], [0, 0], [1, 0], [-1, 1], [1, 1], [-2, 2]];
+    const ARROW_E = [[-1, -2], [-1, -1], [0, -1], [-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [-1, 2]];
+
+    function arrowPixels(dir) {
+        const straight = ["E", "S", "W", "N"].indexOf(dir);
+        const turns = straight >= 0 ? straight : ["NE", "SE", "SW", "NW"].indexOf(dir);
+        let px = straight >= 0 ? ARROW_E : ARROW_NE;
+        for (let t = 0; t < turns; t++) px = px.map(([x, y]) => [-y, x]); // 90 degrees clockwise
+        return px;
+    }
+
+    function drawTrack(g, route) {
+        g.fillStyle = "#ffffff";
+        const plot = (x, y) => g.fillRect(x, y, 1, 1);
+        const first = 12; // the first mark a little away from the ship
+        const markAt = (d) => {
+            const m = (((d - first) % TRACK_MARK) + TRACK_MARK) % TRACK_MARK;
+            return m < 5 || m > TRACK_MARK - 5; // keep the dashes away from the marks
+        };
+        const period = TRACK_DASH[0] + TRACK_DASH[1];
+        for (let d = 0; d <= route.length; d += 0.5) {
+            if (d % period >= TRACK_DASH[0] || (d >= first - 4 && d < route.length - 6 && markAt(d))) continue;
+            const p = along(route, d, false);
+            plot(Math.floor(p.x), Math.floor(p.y));
+        }
+        for (let d = first, k = 0; d < route.length - 6; d += TRACK_MARK, k++) {
+            const p = along(route, d, false);
+            const cx = Math.floor(p.x);
+            const cy = Math.floor(p.y);
+            const px = k % TRACK_ARROW === TRACK_ARROW - 1 ? arrowPixels(p.dir) : RING;
+            px.forEach(([x, y]) => plot(cx + x, cy + y));
+        }
     }
 
     /** Position and heading `d` map pixels along a route (from end b when `reverse`). */
@@ -1945,6 +2013,7 @@
                 else if (d) drawTile(g, sheet, d & 0xffff, c * T, r * T, !!(d & FLIP));
             }
         }
+        routes.forEach((route) => route && drawTrack(g, route));
         fogLayer = document.createElement("canvas");
         fogLayer.width = W * T;
         fogLayer.height = H * T;
@@ -2007,6 +2076,22 @@
             def.frameWidth, def.frameHeight, x, y, def.frameWidth, def.frameHeight);
     }
 
+    /**
+     * Animations with `pause` (tilemap.json) play once, then wait a random time (`delay`, ms) showing
+     * `pause.frame` (null: nothing) before they play again, like the blinking of the hero.
+     */
+    function pausedFrame(s, def, a, now) {
+        const [minDelay, maxDelay] = a.pause.delay || [2000, 6000];
+        const wait = () => minDelay + Math.random() * (maxDelay - minDelay);
+        if (s.runAt === undefined) s.runAt = now + Math.random() * wait(); // not all at once
+        let total = 0;
+        for (let f = a.from; f <= a.to; f++) total += frameDuration(def, f);
+        const t = now - s.runAt;
+        if (t >= 0 && t < total) return animFrame(def, a.from, a.to, t, false, null);
+        if (t >= total) s.runAt = now + wait();
+        return a.pause.frame ?? null;
+    }
+
     function drawSprite(s, now) {
         const def = s.def;
         if (!def.img) return;
@@ -2015,7 +2100,8 @@
             s.until = 0;
         }
         const a = def.animations?.[s.anim];
-        const frame = a ? animFrame(def, a.from, a.to, now - s.start, a.loop, s) : def.frame || 0;
+        const frame = !a ? def.frame || 0 : a.pause && a.loop ? pausedFrame(s, def, a, now) : animFrame(def, a.from, a.to, now - s.start, a.loop, s);
+        if (frame === null) return; // pausing without a frame (the shark is just water then)
         const fp = def.footprint || [1, 1];
         const x = s.col * T + Math.round((fp[0] * T - def.frameWidth) / 2);
         const y = s.row * T + fp[1] * T - def.frameHeight;
@@ -2058,27 +2144,6 @@
             frame = animFrame(def, a.from, a.to, now - hero.walkStart, true, hero);
         }
         drawFrame(def, frame, Math.round(hero.fc * T + (T - def.frameWidth) / 2), Math.round(hero.fr * T + T - def.frameHeight));
-    }
-
-    function drawRoutes(now) {
-        ctx.save();
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-        routes.forEach((route) => {
-            if (!route) return;
-            ctx.beginPath();
-            route.points.forEach(([x, y], k) => (k ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
-            ctx.setLineDash([]);
-            ctx.strokeStyle = "rgba(20, 50, 110, 0.18)";
-            ctx.lineWidth = 3;
-            ctx.stroke();
-            ctx.setLineDash([3, 4]);
-            ctx.lineDashOffset = -now / 140;
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-        });
-        ctx.restore();
     }
 
     /** The next thing to do on the current island: houses first, then castle and village. */
@@ -2131,7 +2196,6 @@
         ctx.imageSmoothingEnabled = false;
         ctx.setTransform(scale, 0, 0, scale, -view.x * scale, -view.y * scale);
         ctx.drawImage(layer, 0, 0);
-        drawRoutes(now);
 
         if (marker) {
             const age = (now - marker.t) / 700;
@@ -2588,7 +2652,8 @@
     // ------------------------------------------------------------------ startup
 
     async function loadJson(url) {
-        const res = await fetch(url);
+        // revalidate: exercises, course data and tile descriptions change between visits
+        const res = await fetch(url, { cache: "no-cache" });
         if (!res.ok) throw new Error(`${url}: ${res.status} ${res.statusText}`);
         return res.json();
     }

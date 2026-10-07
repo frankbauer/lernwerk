@@ -19,6 +19,8 @@
         return `${dirPath}?${query ? `${query}&` : ""}${FLAG_QUERY}`;
     };
     const STORAGE_KEY = "lernwerk.uebungsplaner.v1";
+    /** Scroll position of the list, per tab (sessionStorage), so a round trip through an exercise lands where it left. */
+    const SCROLL_KEY = "lernwerk.uebungsplaner.scroll";
 
     /** Self-assessment per concept; everything but "unknown" counts as learned. */
     const STATES = ["unknown", "shaky", "known", "confident"];
@@ -110,6 +112,39 @@
         } catch (e) {
             // ignore
         }
+    }
+
+    function saveScroll() {
+        try {
+            sessionStorage.setItem(SCROLL_KEY, String(Math.round(window.scrollY)));
+        } catch (e) {
+            // ignore
+        }
+    }
+
+    /**
+     * Restores the scroll position saved when the page was left, unless the student comes in fresh
+     * (no referrer, from another site or from the start page) – then the list starts at the top.
+     */
+    function restoreScroll() {
+        let y = null;
+        try {
+            y = sessionStorage.getItem(SCROLL_KEY);
+        } catch (e) {
+            return;
+        }
+        if (y === null) return;
+        const nav = performance.getEntriesByType?.("navigation")[0];
+        const returning = nav && (nav.type === "back_forward" || nav.type === "reload");
+        let fromSite = false;
+        try {
+            const ref = new URL(document.referrer);
+            const start = new URL("./", location.href).pathname;
+            fromSite = ref.origin === location.origin && ref.pathname !== start && ref.pathname !== `${start}index.html`;
+        } catch (e) {
+            // no or invalid referrer
+        }
+        if (returning || fromSite) window.scrollTo(0, Number(y));
     }
 
     // --- URL parameters ----------------------------------------------------
@@ -647,6 +682,28 @@
         save();
     }
 
+    /**
+     * Re-renders after a click without moving the page: the clicked control is replaced by the
+     * re-render, which some browsers answer by scrolling (e.g. to the top). Keeps the scroll
+     * position and moves focus to the matching new control (without scrolling to it).
+     */
+    function renderInPlace(el) {
+        const { scrollX, scrollY } = window;
+        const hadFocus = el === document.activeElement;
+        const attrs = ["action", "id", "chapter", "concept", "view", "sort", "scope", "type", "level", "feature", "chip", "state", "dir"]
+            .filter((k) => el.dataset[k] !== undefined)
+            .map((k) => `[data-${k}="${CSS.escape(el.dataset[k])}"]`)
+            .join("");
+        render();
+        const twin = hadFocus && document.querySelector(`${el.tagName}${attrs}`);
+        if (twin) twin.focus({ preventScroll: true });
+        window.scrollTo(scrollX, scrollY);
+        // some engines adjust the scroll position only after the next layout
+        requestAnimationFrame(() => {
+            if (window.scrollY !== scrollY) window.scrollTo(scrollX, scrollY);
+        });
+    }
+
     // --- Events -------------------------------------------------------------
 
     const toggleIn = (arr, v) => (arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v]);
@@ -738,7 +795,7 @@
             // the chapter badge on a card sits inside the card's link
             if (el.closest("a")) ev.preventDefault();
             actions[el.dataset.action](el.dataset);
-            render();
+            renderInPlace(el);
         });
 
         $("last-heard").addEventListener("change", (ev) => {
@@ -829,7 +886,12 @@
 
         bind();
         render();
+        restoreScroll();
     }
+
+    // The list only exists once the data has loaded, too late for the browser's own scroll restoration.
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.addEventListener("pagehide", saveScroll);
 
     document.addEventListener("DOMContentLoaded", init);
 })();
