@@ -409,9 +409,8 @@ html[data-lw-theme] tabbar>div.buttonbar {
     border-bottom: none;
     background: var(--lw-tabbar-bg, transparent);
     box-shadow: inset 0 -1px var(--lw-border);
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: thin;
+    /* viele Tabs (z.B. Aufgaben mit mehreren Teilen) brechen in eine zweite Zeile um, statt zu scrollen */
+    flex-wrap: wrap;
 }
 
 html[data-lw-theme] tabbar>div.buttonbar button,

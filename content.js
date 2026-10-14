@@ -164,15 +164,17 @@ async function generateTabs(item) {
                     withSolution: true
                 }
             })
+            // Aufgaben mit mehreren Teilen: der Name des Tabs wird vorangestellt ("Teil 1: Ihre Lösung")
+            const prefix = tab.name && tab.name !== "Ihre Lösung" ? tab.name + ": " : ""
             return [{
-                name: "Ihre Lösung",
+                name: prefix + "Ihre Lösung",
                 content: [{
                     ...tab.codeblocks,
                     type: "codeblocks",
                     overlay: undefined // gehört zur Beispiellösung
                 }]
             }, {
-                name: "Beispiellösung",
+                name: prefix + "Beispiellösung",
                 content: [solblocks, ...tab.solution]
             }]
         }

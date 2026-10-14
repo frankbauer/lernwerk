@@ -10,6 +10,11 @@ hand by T. Miehm. They are licensed under the
 Creative Commons Attribution-NonCommercial 4.0 International License
 (CC BY-NC 4.0).
 
+Exception: the sprites TREASURE_X and TREASURE_CHEST (treasureX.aseprite,
+treasureChest.aseprite, sprites/treasureX.png, sprites/treasureChest.png) were
+added later for the GdI lecture (F. Bauer) in the style of the other sprites.
+They are licensed under the same terms.
+
 tilemap.json (the description of the tiles) is part of CodeBlocks and is
 licensed under the same terms, see ../LICENSE.
 
