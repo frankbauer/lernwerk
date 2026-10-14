@@ -1,0 +1,8 @@
+{
+    "checks": [
+        {
+            "output": "Kim Musterdann",
+            "message": "Fehler: Falls dein Name nicht Kim Musterdann ist, ist diese Ausgabe falsch."
+        }
+    ]
+}
