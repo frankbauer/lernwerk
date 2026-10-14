@@ -1,0 +1,8 @@
+{
+  "name": "lernwerk",
+  "private": true,
+  "scripts": {
+    "deploy": "node scripts/deploy.mjs",
+    "deploy:dry": "node scripts/deploy.mjs --dry-run"
+  }
+}
