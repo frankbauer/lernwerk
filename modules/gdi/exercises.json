@@ -156,7 +156,7 @@
       "description": "Schreibe in der Datei Nachricht.java ein erstes Programm, das deinen Namen auf der Konsole ausgibt.",
       "link": "00_einfuehrung/nachricht",
       "type": "exercise",
-      "difficulty": 0,
+      "difficulty": 1,
       "tags": [
         "grundlagen"
       ],
@@ -173,7 +173,7 @@
       "description": "Lerne den Aufbau eines Java-Programms kennen und schicke eine Rakete durch ein simuliertes Universum.",
       "link": "00_einfuehrung/beispiel_universum",
       "type": "lecture",
-      "difficulty": 1,
+      "difficulty": 2,
       "tags": [
         "grundlagen",
         "variablen",
@@ -209,7 +209,7 @@
       "description": "Gib die Eigenschaften einer fiktiven Person als sauber formatierte Tabelle auf der Konsole aus.",
       "link": "00_einfuehrung/table",
       "type": "exercise",
-      "difficulty": 1,
+      "difficulty": 2,
       "tags": [
         "grundlagen"
       ],
@@ -225,7 +225,7 @@
       "description": "Bringe vorgegebene Codezeilen in eine Reihenfolge, sodass ein kompilierbares Programm entsteht.",
       "link": "00_einfuehrung/anordnen",
       "type": "exercise",
-      "difficulty": 1,
+      "difficulty": 3,
       "tags": [
         "grundlagen",
         "variablen",
@@ -235,7 +235,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/00_einfuehrung-anordnen.webp"
     },
     {
