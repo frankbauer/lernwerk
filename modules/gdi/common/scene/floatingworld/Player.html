@@ -5,9 +5,11 @@
 
 <h4>Konstruktoren</h4>
 <ul>
-    <li><code>public Player()</code><br>Erstellt einen neuen Spieler des Typs 0 und fügt ihn zur Welt hinzu.</li>
-    <li><code>public Player(int type)</code><br>Erstellt einen neuen Spieler mit einem spezifizierten Typ und fügt ihn
-        zur Welt hinzu.</li>
+    <li><code>public Player()</code><br>Erstellt einen neuen Spieler. Er erscheint erst, wenn er mit
+        <code>FloatingWorld.addPlayer(Player)</code> zur Welt hinzugefügt wird. Spieler werden in der Reihenfolge
+        ihrer Erzeugung unterschiedlich dargestellt.</li>
+    <li><code>public Player(int type)</code><br>Erstellt einen neuen Spieler mit einem spezifizierten Typ (wird wie
+        <code>Player()</code> erst mit <code>FloatingWorld.addPlayer(Player)</code> angezeigt).</li>
 </ul>
 
 <h4>Öffentliche Methoden</h4>

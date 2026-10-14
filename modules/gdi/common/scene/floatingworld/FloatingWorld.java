@@ -13,6 +13,17 @@ class FloatingWorld {
         return p;
     }
 
+    public static void addPlayer(Player p){
+        if (p == null) {
+            System.err.println("Der Spieler ist null.");
+            return;
+        }
+        if (!players.contains(p)) {
+            players.add(p);
+        }
+        FloatingWorld.COMMAND_BUFFER.addCommand("addPlayer", p);
+    }
+
     public static void removePlayer(int idx){
         if (idx<players.size() && idx>=0){
             FloatingWorld.COMMAND_BUFFER.addCommand("removePlayer", players.get(idx));

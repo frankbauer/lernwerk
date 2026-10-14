@@ -2,27 +2,26 @@
 <ul>
     <li>
         <strong>Aufruf von <code>FloatingWorld.show()</code>:</strong>
-        <p>Diese Methode wird aufgerufen, um die <code>FloatingWorld</code> anzuzeigen. Sie ist
-            statisch und gehört zur Klasse <code>FloatingWorld</code>.</p>
+        <p>Diese Klassenmethode zeigt die <code>FloatingWorld</code> an. Sie wird wie bisher über den Klassennamen
+            aufgerufen.</p>
     </li>
     <li>
-        <strong>Erzeugung von Spielerinstanzen:</strong>
-        <p><code>FloatingWorld.addPlayer()</code> wird aufgerufen, um einen neuen Spieler in die Welt einzufügen. Das
-            Ergebnis der Methode ist eine Referenz auf ein <code>Player</code>-Objekt.</p>
-        <p>Durch die Zuweisung wird diese zurückgegebene Referenz in der entsprechenden Variable (<code>kara</code> bzw.
-            <code>lee</code>) abgelegt. Damit haben wir nun eine Variable über die wir auf die durch
-            <code>addPlayer()</code> erzeugten Objekte zugreifen können.
-        </p>
-        <pre code>Player kara = FloatingWorld.addPlayer();
-Player lee = FloatingWorld.addPlayer();</pre>
+        <strong>Erzeugung von Spielerinstanzen mit <code>new</code>:</strong>
+        <p><code>new Player()</code> erzeugt ein neues Objekt der Klasse <code>Player</code>. Das Ergebnis ist eine
+            Referenz auf dieses Objekt, die in der Referenzvariablen <code>kara</code> bzw. <code>lee</code> abgelegt
+            wird. Über diese Variablen können wir die beiden Objekte später gezielt ansprechen.</p>
+        <pre code>Player kara = new Player();
+Player lee = new Player();</pre>
+    </li>
+    <li>
+        <strong>Spieler zur Welt hinzufügen:</strong>
+        <p><code>FloatingWorld.addPlayer(kara)</code> ist eine Klassenmethode, die ein <code>Player</code>-Objekt als
+            Parameter erhält. Erst danach ist der Spieler in der Welt zu sehen.</p>
     </li>
     <li>
         <strong>Bewegung eines Spielers:</strong>
-        <p><code> kara.moveLeft();</code> Die Instanzmethode <code>moveLeft()</code> wird auf dem von <code>kara</code>
-            referenzeirten
-            Objekt
-            aufgerufen. Durch den Aufruf wird der Interne Zustand (in diesem Fall die x-Koordinate) des referenzierten
-            Objekts verändert.
-        </p>
+        <p><code>kara.moveLeft();</code> Die Instanzmethode <code>moveLeft()</code> wird auf dem von <code>kara</code>
+            referenzierten Objekt aufgerufen. Dadurch ändert sich der Zustand (die x-Koordinate) genau dieses Objekts,
+            <code>lee</code> bleibt stehen.</p>
     </li>
 </ul>

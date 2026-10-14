@@ -3,7 +3,6 @@ class Player extends de.fau.tf.lgdv.runtime.RemoteObject{
     
     public Player(){
         this(0);
-        System.out.println("Player added");
     }
 
     public Player(int type){

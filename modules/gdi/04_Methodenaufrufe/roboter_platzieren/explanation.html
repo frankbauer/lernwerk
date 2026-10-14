@@ -1,0 +1,12 @@
+<h3>Erklärung</h3>
+<ul>
+    <li><strong>Koordinaten der Ecke:</strong> Die untere rechte Ecke liegt bei x = Breite und y = Höhe des Raumes.
+        Beide Werte liefern die Klassenmethoden <code>Room.getRoomWidth()</code> und <code>Room.getRoomHeight()</code>.</li>
+    <li><strong>Methodenaufrufe als Parameter:</strong> Die Ergebnisse der beiden Aufrufe können direkt als Parameter an
+        <code>RobotFactory.addRobotToMainRoom(int, int)</code> übergeben werden:
+        <pre code>RobotFactory.addRobotToMainRoom(Room.getRoomWidth(), Room.getRoomHeight());</pre>
+        Java wertet zuerst die beiden inneren Aufrufe aus und ruft danach <code>addRobotToMainRoom</code> mit den
+        Ergebnissen auf.</li>
+    <li><strong>Reihenfolge:</strong> Der Roboter muss vor <code>RobotFactory.startMovingRobots()</code> hinzugefügt
+        werden, sonst bewegt er sich nicht.</li>
+</ul>

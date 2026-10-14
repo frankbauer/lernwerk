@@ -104,11 +104,12 @@
       ],
       "exercises": [
         { "module": "gdi", "id": "04_Methodenaufrufe/sandkasten_flaeche" },
-        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_floating" },
-        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_robots" },
-        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_floating_int" },
+        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_schatzinsel" },
+        { "module": "gdi", "id": "04_Methodenaufrufe/kirschen" },
+        { "module": "gdi", "id": "04_Methodenaufrufe/roboter_platzieren" },
         { "module": "gdi", "id": "04_Methodenaufrufe/tank_static_aufruf" },
-        { "module": "gdi", "id": "04_Methodenaufrufe/kirschen" }
+        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_floating" },
+        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_floating_int" }
       ]
     },
     {
@@ -121,8 +122,8 @@
       "exercises": [
         { "module": "gdi", "id": "05_Objekte/beispiel_floating" },
         { "module": "gdi", "id": "05_Objekte/sandkasten_instanzen" },
-        { "module": "gdi", "id": "05_Objekte/beispiel_robots" },
         { "module": "gdi", "id": "05_Objekte/beispiel_robots_constructor" },
+        { "module": "gdi", "id": "05_Objekte/roboter_einrichten" },
         { "module": "gdi", "id": "05_Objekte/sandkasten_sonnensystem" },
         { "module": "gdi", "id": "05_Objekte/vec_sum" },
         { "module": "gdi", "id": "05_Objekte/vector" },
@@ -375,6 +376,8 @@
         "bilder"
       ],
       "exercises": [
+        { "module": "gdi", "id": "20_Bilder/sandkasten_farbe" },
+        { "module": "gdi", "id": "20_Bilder/sandkasten_rot" },
         { "module": "gdi", "id": "20_Bilder/faltung" },
         { "module": "gdi", "id": "20_Bilder/bildfilter" }
       ]

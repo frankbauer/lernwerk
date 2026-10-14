@@ -1,0 +1,27 @@
+<h2><b>class TreasureIsland</b></h2>
+
+<h4>Beschreibung</h4>
+<p>Die Klasse <code>TreasureIsland</code> zeigt eine Schatzinsel. Ein Pirat landet mit seinem Schiff an der
+    Südküste und kann über die Insel laufen. Das <b>X</b> auf der Karte markiert die Stelle, an der der Schatz
+    vergraben ist. Alle Methoden und Attribute sind <b>statisch</b> (Klassenmethoden und Klassenattribute).</p>
+
+<h4>Klassenattribute (Konstanten)</h4>
+<ul>
+    <li><code>public static final byte NORTH</code><br>Richtung Norden (auf der Karte nach oben).</li>
+    <li><code>public static final byte EAST</code><br>Richtung Osten (nach rechts).</li>
+    <li><code>public static final byte SOUTH</code><br>Richtung Süden (nach unten).</li>
+    <li><code>public static final byte WEST</code><br>Richtung Westen (nach links).</li>
+</ul>
+
+<h4>Klassenmethoden</h4>
+<ul>
+    <li><code>public static void createMap()</code><br>Erstellt die Karte der Schatzinsel und zeigt sie an.</li>
+    <li><code>public static void land()</code><br>Das Schiff segelt an den Steg an der Südküste, der Pirat geht an Land.</li>
+    <li><code>public static void walk(byte direction, int steps)</code><br>Der Pirat läuft <code>steps</code> Felder
+        in die Richtung <code>direction</code> (<code>NORTH</code>, <code>EAST</code>, <code>SOUTH</code> oder
+        <code>WEST</code>). Am Wasser bleibt er stehen.</li>
+    <li><code>public static void dig()</code><br>Der Pirat gräbt an seiner aktuellen Position. Steht er auf dem X,
+        findet er den Schatz: Die Truhe springt in das Feld über ihm.</li>
+</ul>
+
+<p style="font-size:85%;margin-top:1.5em">Tile map art by T. Miehm (CC BY-NC 4.0).</p>

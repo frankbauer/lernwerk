@@ -25,38 +25,51 @@
     <script>
         const elements = {
             uuid: "c3d90aeb-85cc-4edc-883b-5bd690ff0134",
-            title: "<b>Vorlesungsbeispiel:</b> Roboter (statisch)",
-            short: "Roboter",
+            title: "Roboter platzieren",
+            short: "Roboter platzieren",
             content: [
+                {
+                    type: "aufgabe",
+                    content: "./exercise.html"
+                },
                 {
                     type: "tabs",
                     class: "code",
                     tabs: [
                         {
-                            name: "Vorlesungsbeispiel",
-
-                            content: [{
-                                type: "codeblocks",
+                            codeblocks: {
                                 attributes: {},
                                 blocks: [
                                     {
-                                        type: "student",
+                                        type: "code",
                                         content: "./Robots.java"
                                     },
                                     {
                                         type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
                                         content: "./MainOverride.java"
                                     },
                                     {
                                         type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
                                         content: "@module/common/scene/robots/RobotFactory.java"
                                     },
                                     {
                                         type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
                                         content: "@module/common/scene/robots/Room.java"
                                     },
                                     {
                                         type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
                                         content: "@module/common/scene/robots/Robot.java"
                                     },
                                     {
@@ -68,10 +81,15 @@
                                         content: "@module/common/scene/robots/robotfactory.js"
                                     }
                                 ]
-                            }, {
-                                type: "explain",
-                                content: "./explanation.html"
-                            }]
+                            },
+                            content: [],
+                            solution: [
+                                {
+                                    type: "explain",
+                                    class: "q-mt-xl",
+                                    content: "./explanation.html"
+                                }
+                            ]
                         },
                         {
                             name: "RobotFactory",
@@ -90,10 +108,6 @@
                             }]
                         }
                     ]
-                },
-                {
-                    type: "experiment",
-                    content: "./experiments.html"
                 }
             ]
         }

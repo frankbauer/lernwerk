@@ -11,6 +11,7 @@
     <script src="../../../../helper.js?v=1.0.7"></script>
     <script src="../../../../content.js?v=1.0.11"></script>
     <link rel="stylesheet" href="../../../../js/codeblocks-js/codeblocks.css?v=1.0.4">
+    <link rel="stylesheet" href="../../common/scene/floatingworld/floatingworld.css">
 </head>
 
 <body>
@@ -35,6 +36,56 @@
                     class: "code",
                     tabs: [
                         {
+                            name: "Teil 1",
+                            codeblocks: {
+                                attributes: {},
+                                blocks: [
+                                    {
+                                        type: "code",
+                                        content: "./CherryWorld.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
+                                        content: "./MainOverrideWorld.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
+                                        content: "@module/common/scene/floatingworld/FloatingWorld.java"
+                                    },
+                                    {
+                                        type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
+                                        content: "@module/common/scene/floatingworld/Player.java"
+                                    },
+                                    {
+                                        type: "playground",
+                                        attributes: {
+                                            width: "445px",
+                                            height: "315px"
+                                        },
+                                        content: "@module/common/scene/floatingworld/floatingworld.js"
+                                    }
+                                ]
+                            },
+                            content: [],
+                            solution: [
+                                {
+                                    type: "explain",
+                                    class: "q-mt-xl",
+                                    content: "./explanationWorld.html"
+                                }
+                            ]
+                        },
+                        {
+                            name: "Teil 2",
                             codeblocks: {
                                 attributes: {},
                                 blocks: [
@@ -44,10 +95,16 @@
                                     },
                                     {
                                         type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
                                         content: "./MainOverride.java"
                                     },
                                     {
                                         type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
                                         content: "@module/common/scene/cherrygame/FloatingWorld.java"
                                     },
                                     {
@@ -75,7 +132,7 @@
                             class: "api",
                             content: [{
                                 type: "aufgabe",
-                                content: "@module/common/scene/cherrygame/FloatingWorld.html"
+                                content: "@module/common/scene/floatingworld/FloatingWorld.html"
                             }]
                         }
                     ]

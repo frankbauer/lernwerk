@@ -11,7 +11,6 @@
     <script src="../../../../helper.js?v=1.0.7"></script>
     <script src="../../../../content.js?v=1.0.11"></script>
     <link rel="stylesheet" href="../../../../js/codeblocks-js/codeblocks.css?v=1.0.4">
-    <link rel="stylesheet" href="../../common/scene/robots/robotfactory.css">
 </head>
 
 <body>
@@ -24,9 +23,9 @@
     </div>
     <script>
         const elements = {
-            uuid: "2c56bf21-e7ba-4624-b54a-c8f369c135fb",
-            title: "<b>Vorlesungsbeispiel:</b> Roboter",
-            short: "Roboter",
+            uuid: "d0e31dd7-68b6-4b5b-bccc-6f151154d196",
+            title: "<b>Vorlesungsbeispiel:</b> Schatzinsel",
+            short: "Schatzinsel",
             content: [
                 {
                     type: "tabs",
@@ -37,56 +36,67 @@
 
                             content: [{
                                 type: "codeblocks",
-                                attributes: {},
+                                attributes: {
+                                    dataMessagePassing: true,
+                                    dataKeepAlive: true
+                                },
                                 blocks: [
                                     {
+                                        type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
+                                        content: "@module/common/scene/treasureisland/Imports.java"
+                                    },
+                                    {
                                         type: "student",
-                                        content: "./Robotic.java"
+                                        content: "./TreasureHunt.java"
                                     },
                                     {
                                         type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
                                         content: "./MainOverride.java"
                                     },
                                     {
                                         type: "api",
-                                        content: "@module/common/scene/robots/RobotFactory.java"
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
+                                        content: "@module/common/scene/treasureisland/TreasureIsland.java"
                                     },
                                     {
-                                        type: "api",
-                                        content: "@module/common/scene/robots/Room.java"
+                                        type: "library",
+                                        content: "objectManager"
                                     },
                                     {
-                                        type: "api",
-                                        content: "@module/common/scene/robots/Robot.java"
+                                        type: "library",
+                                        content: "tileMap"
                                     },
                                     {
                                         type: "playground",
                                         attributes: {
-                                            width: "600px",
-                                            height: "338px"
+                                            width: "640px",
+                                            height: "384px"
                                         },
-                                        content: "@module/common/scene/robots/robotfactory.js"
+                                        content: "@module/common/scene/treasureisland/playground.js"
                                     }
                                 ]
                             }, {
                                 type: "explain",
                                 content: "./explanation.html"
+                            }, {
+                                type: "explain",
+                                content: "./focus.html"
                             }]
                         },
                         {
-                            name: "Room",
+                            name: "TreasureIsland",
                             class: "api",
                             content: [{
                                 type: "aufgabe",
-                                content: "@module/common/scene/robots/Room.html"
-                            }]
-                        },
-                        {
-                            name: "Robot",
-                            class: "api",
-                            content: [{
-                                type: "aufgabe",
-                                content: "@module/common/scene/robots/Robot.html"
+                                content: "@module/common/scene/treasureisland/TreasureIsland.html"
                             }]
                         }
                     ]

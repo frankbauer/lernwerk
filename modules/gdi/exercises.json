@@ -590,6 +590,22 @@
       "image": "img/previews/04_Methodenaufrufe-sandkasten_flaeche.webp"
     },
     {
+      "id": "04_Methodenaufrufe/beispiel_schatzinsel",
+      "title": "Schatzinsel",
+      "description": "Lotse einen Piraten mit Klassenmethoden und den Konstanten NORTH, EAST, SOUTH und WEST zum Schatz.",
+      "link": "04_Methodenaufrufe/beispiel_schatzinsel",
+      "type": "lecture",
+      "difficulty": 1,
+      "tags": [
+        "methodenaufrufe-statisch"
+      ],
+      "hasSolution": false,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "image": "img/previews/04_Methodenaufrufe-beispiel_schatzinsel.webp"
+    },
+    {
       "id": "04_Methodenaufrufe/beispiel_floating",
       "title": "Kirschenessen (statisch)",
       "description": "Programmiere eine Spielsequenz, in der eine Spielfigur per Klassenmethoden eine Kirsche einsammelt.",
@@ -603,23 +619,24 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": "img/previews/04_Methodenaufrufe-beispiel_floating.webp"
+      "image": "img/previews/04_Methodenaufrufe-beispiel_floating.webp",
+      "isDraft": true
     },
     {
-      "id": "04_Methodenaufrufe/beispiel_robots",
-      "title": "Roboter (statisch)",
-      "description": "Platziere Roboter in einem Raum, indem du Klassenmethoden von Room und RobotFactory aufrufst.",
-      "link": "04_Methodenaufrufe/beispiel_robots/",
-      "type": "lecture",
-      "difficulty": 1,
+      "id": "04_Methodenaufrufe/roboter_platzieren",
+      "title": "Roboter platzieren",
+      "description": "Setze mit Klassenmethoden von Room und RobotFactory einen zweiten Roboter genau in die untere rechte Ecke des Raumes.",
+      "link": "04_Methodenaufrufe/roboter_platzieren",
+      "type": "exercise",
+      "difficulty": 2,
       "tags": [
         "methodenaufrufe-statisch"
       ],
       "hasSolution": true,
       "hasExplanation": true,
-      "hasExperiments": true,
-      "isNew": false,
-      "image": "img/previews/04_Methodenaufrufe-beispiel_robots.webp",
+      "hasExperiments": false,
+      "isNew": true,
+      "image": "img/previews/04_Methodenaufrufe-roboter_platzieren.webp",
       "imagePosition": "65% center"
     },
     {
@@ -637,7 +654,8 @@
       "hasExplanation": true,
       "hasExperiments": true,
       "isNew": false,
-      "image": "img/previews/04_Methodenaufrufe-beispiel_floating_int.webp"
+      "image": "img/previews/04_Methodenaufrufe-beispiel_floating_int.webp",
+      "isDraft": true
     },
     {
       "id": "04_Methodenaufrufe/tank_static_aufruf",
@@ -661,7 +679,7 @@
     {
       "id": "04_Methodenaufrufe/kirschen",
       "title": "Kirschenessen mit Klassenmethoden",
-      "description": "Steuere zwei Spieler mit Klassenmethoden der FloatingWorld so, dass der rote Spieler die Kirsche holt – und achte darauf, wie sich die Indizes nach dem Löschen verschieben.",
+      "description": "Sammle die Kirsche zuerst durch Verschieben der ganzen Welt ein und steuere dann zwei Spieler über ihre Nummer – alles mit Klassenmethoden der FloatingWorld.",
       "link": "04_Methodenaufrufe/kirschen",
       "type": "exercise",
       "difficulty": 2,
@@ -672,13 +690,12 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
       "image": "img/previews/04_Methodenaufrufe-kirschen.webp"
     },
     {
       "id": "05_Objekte/beispiel_floating",
       "title": "Kirschenessen",
-      "description": "Erzeuge Spieler-Objekte, merke dir ihre Referenzen und steuere sie über Instanzmethoden.",
+      "description": "Erzeuge Spieler-Objekte mit new, füge sie der Welt hinzu und steuere sie über Instanzmethoden.",
       "link": "05_Objekte/beispiel_floating/",
       "type": "lecture",
       "difficulty": 2,
@@ -709,21 +726,21 @@
       "image": "img/previews/05_Objekte-sandkasten_instanzen.webp"
     },
     {
-      "id": "05_Objekte/beispiel_robots",
-      "title": "Roboter",
-      "description": "Erzeuge einen Raum und Roboter als Objekte und steuere sie über Instanzmethoden.",
-      "link": "05_Objekte/beispiel_robots/",
-      "type": "lecture",
-      "difficulty": 1,
+      "id": "05_Objekte/roboter_einrichten",
+      "title": "Roboter einrichten",
+      "description": "Erzeuge zwei Roboter mit dem Standardkonstruktor und lege Position und Raum mit Instanzmethoden fest.",
+      "link": "05_Objekte/roboter_einrichten",
+      "type": "exercise",
+      "difficulty": 2,
       "tags": [
         "objekte",
         "methodenaufrufe-instanz"
       ],
       "hasSolution": true,
       "hasExplanation": true,
-      "hasExperiments": true,
-      "isNew": false,
-      "image": "img/previews/05_Objekte-beispiel_robots.webp",
+      "hasExperiments": false,
+      "isNew": true,
+      "image": "img/previews/05_Objekte-roboter_einrichten.webp",
       "imagePosition": "left center"
     },
     {
@@ -2780,6 +2797,39 @@
       "isNew": true,
       "isDraft": true,
       "image": "img/previews/19_Zahlen-b2_komplement.webp"
+    },
+    {
+      "id": "20_Bilder/sandkasten_farbe",
+      "title": "MeineFarbe",
+      "description": "Packe die drei Farbkomponenten r, g und b mit Bitoperationen in einen einzigen int-Wert.",
+      "link": "20_Bilder/sandkasten_farbe",
+      "type": "sandbox",
+      "difficulty": 2,
+      "tags": [
+        "bilder",
+        "operationen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": true
+    },
+    {
+      "id": "20_Bilder/sandkasten_rot",
+      "title": "MeineRotTrennung",
+      "description": "Schreibe eine Bildoperation, die auf einem Feld gepackter Farben eine Rot-Trennung durchführt.",
+      "link": "20_Bilder/sandkasten_rot",
+      "type": "sandbox",
+      "difficulty": 3,
+      "tags": [
+        "bilder",
+        "arrays-ndim",
+        "schleifen"
+      ],
+      "hasSolution": false,
+      "hasExplanation": false,
+      "hasExperiments": false,
+      "isNew": true
     },
     {
       "id": "20_Bilder/faltung",
