@@ -203,7 +203,8 @@ async function generateCodeBlocks(item) {
         dataExecutionTimeout: 5000,
         dataMaxCharacters: 6000,
         dataOutputParser: "data",
-        dataScopeSelector: "div#content"
+        dataScopeSelector: "div#content",
+        dataEnableCompletionInViewMode: "false"
     }, codeblocks)
     setAttributes(item.attributes, codeblocks)
     //codeblocks.attr('codeblockseditor', 'true')
