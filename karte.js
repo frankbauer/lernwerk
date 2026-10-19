@@ -3,6 +3,7 @@
 // sandboxes), up to three houses (one exercise each), a village (the remaining exercises) and, where
 // the chapter has homework, a volcano with its due date (see data/karte.json). Ships sail along
 // dotted routes from island to island; a port only opens when all houses of its island are done.
+// From chapter closedFrom (data/karte.json) on, no ship sails: those islands are listed, but not reachable.
 //
 // The art and the tile logic (coasts, paths, fog) come from the tileMap library of CodeBlocks
 // (assets/tilemap/tilemap.json). The map's progress (fog, position, ships) is kept in localStorage;
@@ -1231,8 +1232,12 @@
         }
         let i = chapterIndex(state.at);
         if (i < 0) i = 0;
+        // the hero was on an island that is closed now: back to the last open one
+        const closed = isClosed(i);
+        while (i > 0 && isClosed(i)) i--;
+        if (closed) state.at = islands[i].chapter.number;
         const h = state.hero;
-        const ok = h && Number.isInteger(h.c) && Number.isInteger(h.r) && walkable(h.c, h.r);
+        const ok = !closed && h && Number.isInteger(h.c) && Number.isInteger(h.r) && walkable(h.c, h.r);
         const startCell = ok ? [h.c, h.r] : islands[i].arrival.land;
         hero.c = hero.fc = startCell[0];
         hero.r = hero.fr = startCell[1];
@@ -1353,7 +1358,10 @@
             hero.queue = [];
             pending = null;
             const open = openHouses(islands[dock.island]);
-            if (dock.end === "a" && dock.route >= 0 && open.length) {
+            if (dock.end === "a" && dock.route >= 0 && isClosed(dock.island + 1)) {
+                hero.queue = [islands[dock.island].departure.land];
+                announce(closedText(dock.island + 1));
+            } else if (dock.end === "a" && dock.route >= 0 && open.length) {
                 // the next island waits until every house here is done: step back onto the island
                 const isl = islands[dock.island];
                 hero.queue = [isl.departure.land];
@@ -1371,6 +1379,12 @@
 
     /** Houses of an island whose exercise is not done yet; the island can only be left forward without them. */
     const openHouses = (isl) => isl.houses.filter((it) => !done.has(it.ex.id));
+
+    /** Islands from chapter closedFrom (data/karte.json) on are not open yet: no ship sails there. */
+    const isClosed = (i) =>
+        config.closedFrom != null && i < islands.length && Number(islands[i].chapter.number) >= Number(config.closedFrom);
+
+    const closedText = (i) => `Die Überfahrt nach Kapitel ${islands[i].chapter.number} ist noch nicht freigegeben.`;
 
     function enterIsland(i) {
         if (i === currentIsland || i < 0) return;
@@ -1457,7 +1471,7 @@
 
     /** A ship waits at the departure port only once all houses of that island are done. */
     const shipWaiting = (route) =>
-        (state.ships[route.index] || "a") === "b" || !openHouses(islands[route.a.island]).length;
+        !isClosed(route.b.island) && ((state.ships[route.index] || "a") === "b" || !openHouses(islands[route.a.island]).length);
 
     const shipCell = (route) => ((state.ships[route.index] || "a") === "a" ? route.a.ship : route.b.ship);
 
@@ -1825,8 +1839,9 @@
 
     const THEME_SWATCH = { valley: "#5f9e2f", beach: "#f0d39a", desert: "#a8653a", snow: "#e9f3f7" };
 
-    /** Visited, or the port of the island before it is open (then the ship would go there). */
+    /** Visited, or the port of the island before it is open (then the ship would go there); never a closed island. */
     function reachable(i) {
+        if (isClosed(i)) return false;
         if (state.visited.includes(islands[i].chapter.number)) return true;
         return i > 0 && reachable(i - 1) && !openHouses(islands[i - 1]).length;
     }
@@ -1845,7 +1860,9 @@
             exercisesTotal += isl.items.length;
             const status = i === currentIsland
                 ? "Du bist hier"
-                : !reach
+                : isClosed(i)
+                  ? "Noch nicht freigegeben"
+                  : !reach
                   ? "Noch nicht erreicht"
                   : n === isl.items.length
                     ? "Alles erledigt"
@@ -2005,7 +2022,10 @@
         if (busy() || !isl) return;
         toggleHelp(false);
         const open = openHouses(isl).length;
-        if (open && currentIsland < islands.length - 1) {
+        if (isClosed(currentIsland + 1)) {
+            announce(closedText(currentIsland + 1));
+            walkTo(...isl.departure.land);
+        } else if (open && currentIsland < islands.length - 1) {
             // locked: walk up to the port, but not onto the dock
             announce(`Der Hafen ist noch gesperrt: ${open === 1 ? "ein Haus ist" : `${open} Häuser sind`} noch nicht erledigt.`);
             walkTo(...isl.departure.land);
@@ -2847,6 +2867,17 @@
     async function init() {
         // karte.html?ua shows the browser's user agent (to recognise browsers like Arc on iOS)
         if (params.has("ua")) {
+            // what the browser reports about its own bars: the viewport units, the visual viewport and the safe area
+            const probe = document.createElement("div");
+            probe.style.cssText = "position:fixed;visibility:hidden;width:0;pointer-events:none";
+            const measure = (height) => {
+                probe.style.height = height;
+                document.body.append(probe);
+                const px = probe.getBoundingClientRect().height;
+                probe.remove();
+                return Math.round(px);
+            };
+            const vv = window.visualViewport;
             const box = document.createElement("textarea");
             box.readOnly = true;
             box.value = [
@@ -2854,8 +2885,16 @@
                 `touch points: ${navigator.maxTouchPoints}, screen: ${screen.width} x ${screen.height}, ` +
                     `window: ${innerWidth} x ${innerHeight}, pixel ratio: ${devicePixelRatio}`,
                 `lifted: ${document.documentElement.classList.contains("is-lifted")}`,
+                `svh/dvh/lvh: ${measure("100svh")} / ${measure("100dvh")} / ${measure("100lvh")}, ` +
+                    `visual viewport: ${vv ? `${Math.round(vv.height)} (top ${Math.round(vv.offsetTop)})` : "-"}, ` +
+                    `page: ${Math.round(document.body.getBoundingClientRect().height)}`,
+                `safe area bottom: ${measure("env(safe-area-inset-bottom, 0px)")}, ` +
+                    `top: ${measure("env(safe-area-inset-top, 0px)")}`,
+                `html: ${document.documentElement.clientHeight}, avail: ${screen.availHeight}, ` +
+                    `map: ${Math.round(document.getElementById("map").getBoundingClientRect().height)}, ` +
+                    `game bar bottom: ${Math.round(document.getElementById("gamebar").getBoundingClientRect().bottom)}`,
             ].join("\n");
-            box.style.cssText = "position:fixed;left:10px;right:10px;top:64px;z-index:60;height:90px;font:12px monospace;padding:8px";
+            box.style.cssText = "position:fixed;left:10px;right:10px;top:64px;z-index:60;height:150px;font:12px monospace;padding:8px";
             document.body.append(box);
         }
         canvas = $("map");

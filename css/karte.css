@@ -23,6 +23,11 @@
     overscroll-behavior: none;
 }
 
+/* the themes give the body "min-height: 100vh": on Android 100vh reaches beneath Chrome's bottom bar */
+html[data-lw-theme] body.map-page {
+    min-height: 0;
+}
+
 #map {
     position: absolute;
     inset: 0;
