@@ -179,15 +179,15 @@
 
     /**
      * A concept rated "sicher": three blasts of stars, one after the other (first small ones in all colours,
-     * then two of glowing light yellow and white, a softer one and a full one), and a fountain of stars.
+     * then two of glowing light yellow and white, a softer one and, after the fountain of stars, a full one).
      */
     function confident(target, button) {
         pop(button);
         const blast = { big: true, count: 40, kinds: () => "glyph", speed: [320, 820], size: [14, 28] };
         const yellow = { ...blast, glyphs: ["★", "★", "✦"], colors: LIGHTS, ring: "#fde047", glow: "gold", vibrate: null };
-        burst(target, { ...blast, glyphs: ["★", "✦"], colors: [...STARS, ...COLORS], size: [7, 14], ring: "#a855f7", vibrate: [24, 166, 16, 174, 40] }); // a thump for each blast
+        burst(target, { ...blast, glyphs: ["★", "✦"], colors: [...STARS, ...COLORS], size: [7, 14], ring: "#a855f7", vibrate: [24, 166, 16, 694, 40] }); // a thump for each blast
         setTimeout(() => burst(target, { ...yellow, count: 28, speed: [200, 500] }), 190);
-        setTimeout(() => burst(target, yellow), 380);
+        setTimeout(() => burst(target, yellow), 900); // a while after the fountain (0.4 s) has run dry
         burst(target, {
             count: 30,
             kinds: () => "glyph",
