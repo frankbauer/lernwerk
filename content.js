@@ -55,18 +55,29 @@ function resolvePath(path) {
 (function keepScrollPosition() {
     const key = `lernwerk.scroll:${location.pathname}${location.search}`
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
+    const saved = () => {
+        try {
+            return Number(sessionStorage.getItem(key))
+        } catch (e) {
+            return 0
+        }
+    }
     window.addEventListener('pagehide', () => {
         try {
             sessionStorage.setItem(key, String(Math.round(window.scrollY)))
         } catch (e) { }
     })
+    // aus dem Back-Forward-Cache: die Seite steht schon, Safari zeigt sie aber oben an
+    window.addEventListener('pageshow', e => {
+        const y = e.persisted && saved()
+        if (!y) return
+        window.scrollTo(0, y)
+        requestAnimationFrame(() => window.scrollTo(0, y))
+    })
 
     const nav = performance.getEntriesByType?.('navigation')[0]
     if (!nav || (nav.type !== 'back_forward' && nav.type !== 'reload')) return
-    let y = 0
-    try {
-        y = Number(sessionStorage.getItem(key))
-    } catch (e) { }
+    const y = saved()
     if (!y) return
 
     const userEvents = ['wheel', 'touchstart', 'keydown', 'pointerdown']

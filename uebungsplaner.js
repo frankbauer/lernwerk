@@ -892,6 +892,19 @@
     // The list only exists once the data has loaded, too late for the browser's own scroll restoration.
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.addEventListener("pagehide", saveScroll);
+    // Restored from the back-forward cache, init() does not run again, and Safari shows the page at the top.
+    window.addEventListener("pageshow", (e) => {
+        if (!e.persisted) return;
+        let y = null;
+        try {
+            y = sessionStorage.getItem(SCROLL_KEY);
+        } catch (err) {
+            return;
+        }
+        if (y === null) return;
+        window.scrollTo(0, Number(y));
+        requestAnimationFrame(() => window.scrollTo(0, Number(y)));
+    });
 
     document.addEventListener("DOMContentLoaded", init);
 })();
