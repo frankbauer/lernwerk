@@ -793,8 +793,20 @@
             if (!el || el.disabled || !actions[el.dataset.action]) return;
             // the chapter badge on a card sits inside the card's link
             if (el.closest("a")) ev.preventDefault();
+            const nowDone = el.dataset.action === "toggle-done" && !state.done.includes(el.dataset.id);
+            const rated = el.dataset.action === "rate" && conceptState(el.dataset.concept) !== el.dataset.state && el.dataset.state;
+            const rect = window.LernwerkCelebrate?.at(ev, el);
             actions[el.dataset.action](el.dataset);
             renderInPlace(el);
+            if (nowDone) {
+                const ex = catalog.exercises.find((x) => x.id === el.dataset.id);
+                const icons = (ex?.tags || []).map((t) => conceptById[t]?.icon).filter(Boolean);
+                window.LernwerkCelebrate?.done(rect, `[data-action="toggle-done"][data-id="${CSS.escape(el.dataset.id)}"]`, icons);
+            }
+            if (rated === "known" || rated === "confident") {
+                const btn = document.querySelector(`.rate-btn[data-concept="${CSS.escape(el.dataset.concept)}"][data-state="${rated}"]`);
+                window.LernwerkCelebrate?.[rated](rect, btn);
+            }
         });
 
         $("last-heard").addEventListener("change", (ev) => {

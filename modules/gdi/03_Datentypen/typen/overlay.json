@@ -4,85 +4,85 @@
             "pillAlign": "right",
             "highlights": [
                 {
-                    "range": "13:32-13:36",
+                    "range": "3:17-3:21",
                     "color": "blue",
                     "comment": "Typ: <code>int</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "14:32-14:41",
+                    "range": "4:20-4:29",
                     "color": "blue",
                     "comment": "Typ: <code>double</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "15:32-15:39",
+                    "range": "5:19-5:26",
                     "color": "blue",
                     "comment": "Typ: <code>float</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "16:32-16:38",
+                    "range": "6:20-6:26",
                     "color": "blue",
                     "comment": "Typ: <code>double</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "17:32-17:34",
+                    "range": "7:18-7:20",
                     "color": "blue",
                     "comment": "Typ: <code>char</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "18:32-18:34",
+                    "range": "8:20-8:22",
                     "color": "blue",
                     "comment": "Typ: <code>String</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "19:32-19:54",
-                    "color": "blue",
-                    "comment": "Typ: <code>int</code>",
-                    "display": "inline"
-                },
-                {
-                    "range": "20:32-20:39",
+                    "range": "9:18-9:42",
                     "color": "blue",
                     "comment": "Typ: <code>long</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "21:32-21:43",
+                    "range": "10:18-10:25",
+                    "color": "blue",
+                    "comment": "Typ: <code>long</code>",
+                    "display": "inline"
+                },
+                {
+                    "range": "11:21-11:32",
                     "color": "blue",
                     "comment": "Typ: <code>boolean</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "22:32-22:50",
+                    "range": "12:21-12:39",
                     "color": "blue",
                     "comment": "Typ: <code>boolean</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "23:32-23:45",
+                    "range": "13:19-13:29",
                     "color": "blue",
-                    "comment": "Typ: <code>int</code>",
+                    "comment": "Typ: <code>float</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "24:32-24:77",
+                    "range": "14:21-14:66",
                     "color": "blue",
                     "comment": "Typ: <code>boolean</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "25:32-25:42",
+                    "range": "15:20-15:30",
                     "color": "blue",
                     "comment": "Typ: <code>String</code>",
                     "display": "inline"
                 },
                 {
-                    "range": "26:32-26:40",
+                    "range": "16:17-16:25",
                     "color": "blue",
                     "comment": "Typ: <code>int</code>",
                     "display": "inline"

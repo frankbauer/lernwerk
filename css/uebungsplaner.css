@@ -2008,3 +2008,165 @@ tr.is-done .c-title a {
         margin-top: 12px;
     }
 }
+
+/* --- Celebrations (celebrate.js): confetti and a pop when an exercise is done ------------------------- */
+
+.lw-burst {
+    position: fixed;
+    z-index: 100;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.lw-burst > i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-style: normal;
+    will-change: transform, opacity;
+}
+
+/* a soft flash and a ring where it all starts */
+.lw-burst-flash {
+    width: 120px;
+    height: 120px;
+    margin: -60px 0 0 -60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(255 255 255 / 0.95), color-mix(in srgb, var(--ring, #ffd23f) 55%, transparent) 35%, transparent 70%);
+    animation: lw-flash 0.5s ease-out forwards;
+}
+
+.lw-burst.is-big .lw-burst-flash {
+    width: 260px;
+    height: 260px;
+    margin: -130px 0 0 -130px;
+}
+
+@keyframes lw-flash {
+    from {
+        opacity: 1;
+        transform: scale(0.2);
+    }
+    to {
+        opacity: 0;
+        transform: scale(1.3);
+    }
+}
+
+.lw-burst-ring {
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 4px solid var(--ring, #ffd23f);
+    border-radius: 50%;
+    animation: lw-ring 0.65s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.lw-burst.is-big .lw-burst-ring {
+    border-width: 6px;
+    animation-duration: 0.9s;
+}
+
+@keyframes lw-ring {
+    from {
+        opacity: 1;
+        transform: scale(0.3);
+    }
+    to {
+        opacity: 0;
+        transform: scale(6);
+    }
+}
+
+/* the confetti, moved by celebrate.js */
+.lw-bit-paper {
+    width: 9px;
+    height: 13px;
+    margin: -6px 0 0 -4px;
+    border-radius: 2px;
+    background: var(--c);
+    box-shadow: inset 0 -3px 0 rgb(0 0 0 / 0.15);
+}
+
+.lw-bit-streamer {
+    width: 4px;
+    height: 22px;
+    margin: -11px 0 0 -2px;
+    border-radius: 2px;
+    background: linear-gradient(var(--c), color-mix(in srgb, var(--c), #fff 45%));
+}
+
+.lw-bit-dot {
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background: var(--c);
+}
+
+.lw-bit-glyph {
+    margin: -0.5em 0 0 -0.4em; /* centred on the origin at any size (set by celebrate.js) */
+    color: var(--c);
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* the checkmarks of "kann ich" */
+.lw-burst.is-glowing .lw-bit-glyph {
+    text-shadow: 0 0 6px rgb(255 255 255 / 0.9), 0 1px 0 rgb(0 0 0 / 0.25);
+}
+
+/* the second blast of "sicher": light yellow and white stars that shine */
+.lw-burst.is-glowing-gold .lw-bit-glyph {
+    text-shadow: 0 0 8px rgb(250 204 21 / 0.9), 0 0 2px rgb(161 98 7 / 0.7);
+}
+
+/* the concept icons of a card that was marked as done (celebrate.js sets the size) */
+.lw-bit-img {
+    margin: -0.5em 0 0 -0.5em;
+    image-rendering: pixelated;
+}
+
+.done-btn.is-popping,
+.rate-btn.is-popping {
+    animation: lw-pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes lw-pop {
+    0% {
+        transform: scale(0.75);
+    }
+    45% {
+        transform: scale(1.22);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.card.is-celebrating {
+    animation: lw-glow 0.9s ease-out;
+}
+
+@keyframes lw-glow {
+    0% {
+        box-shadow: 0 0 0 0 rgb(34 197 94 / 0.6);
+    }
+    100% {
+        box-shadow: 0 0 0 16px rgb(34 197 94 / 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lw-burst {
+        display: none;
+    }
+
+    .done-btn.is-popping,
+    .rate-btn.is-popping,
+    .card.is-celebrating {
+        animation: none;
+    }
+}

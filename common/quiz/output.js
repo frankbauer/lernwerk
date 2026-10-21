@@ -54,7 +54,12 @@ export default {
         this.inputs = []
         this.config.lines.forEach((line, nr) => {
             if (line.label !== undefined) {
-                code.appendChild(this.el('div', 'quiz-output-label', line.label))
+                const label = this.el('div', 'quiz-output-label')
+                // "a)" wird als "a" in der Box angezeigt
+                const badge = this.el('span', '', line.label.replace(/\)\s*$/, ''))
+                badge.style.setProperty('--rot', (Math.random() * 14 - 7).toFixed(1) + 'deg')
+                label.appendChild(badge)
+                code.appendChild(label)
                 return
             }
             const row = this.el('div', 'quiz-output-line')

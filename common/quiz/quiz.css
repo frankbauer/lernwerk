@@ -211,14 +211,38 @@
     line-height: 1.6;
 }
 
+/* Teilaufgaben-Überschrift: Trennlinie über die ganze Breite, Label als kleines Badge darauf */
 .quiz-output-label {
     grid-column: 1 / -1;
-    font-weight: 500;
-    margin: 12px 0 2px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 6px 0;
+}
+
+/* Box im Stil der Eingabefelder des Themes, leicht schief (--rot setzt output.js zufällig) */
+.quiz-output-label>span {
+    display: inline-block;
+    padding: 1px 8px;
+    border: var(--quiz-input-border-width) solid var(--quiz-input-border);
+    border-radius: var(--quiz-input-radius);
+    background: var(--quiz-input-bg);
+    color: var(--quiz-input-fg);
+    box-shadow: var(--quiz-input-shadow);
+    font-weight: 700;
+    font-size: 0.8em;
+    line-height: 1.5;
+    transform: rotate(var(--rot, 0deg));
+}
+
+.quiz-output-label::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid var(--quiz-border);
 }
 
 .quiz-output-label:first-child {
-    margin-top: 0;
+    margin-top: 2px;
 }
 
 .quiz-output-line.has-gap>* {

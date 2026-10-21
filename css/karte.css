@@ -1065,14 +1065,388 @@ html[data-lw-theme="tafel"] :is(.scroll-paper, .sign-card) .card {
     background: #ffd23f;
 }
 
+/* the Wissensstand of a chapter (uebersicht.html): in the castle below the slides and in the island award */
+/* a heading (like the counts above the cards), then one row: the heard button and the concepts share
+   one height and one centre line */
+.lore {
+    --lore-h: 52px;
+    margin-top: 16px;
+}
+
+.lore .lore-ask {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #3b2314;
+}
+
+.lore-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.heard-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    min-height: var(--lore-h);
+    padding: 6px 14px 6px 8px;
+    border: 2px dashed var(--wood-dark);
+    border-radius: 12px;
+    box-shadow: 0 3px 0 rgb(74 42 20 / 0.35);
+    line-height: 1.2;
+    background: rgb(255 250 240 / 0.6);
+    color: #3b2314;
+    font-weight: 800;
+    text-align: left;
+}
+
+.heard-btn small {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b4b2e;
+}
+
+.heard-btn:hover {
+    background: #fffaf0;
+}
+
+.heard-btn.is-heard {
+    border-style: solid;
+    border-color: #15803d;
+    background: #dcfce7;
+    color: #14532d;
+}
+
+.heard-btn.is-heard small {
+    color: #166534;
+}
+
+.heard-seal {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border: 2px dashed var(--wood-dark);
+    border-radius: 50%;
+    font-size: 18px;
+    color: #fff;
+}
+
+.heard-btn.is-heard .heard-seal {
+    border: 2px solid #14532d;
+    background: #22c55e;
+    box-shadow: inset 0 -3px 0 rgb(0 0 0 / 0.18);
+}
+
+.heard-btn.is-popping {
+    animation: lw-pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.heard-btn.is-popping .heard-seal {
+    animation: seal-stamp 0.45s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes seal-stamp {
+    from {
+        transform: scale(2.2) rotate(-25deg);
+        opacity: 0;
+    }
+}
+
+.lore-concepts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lore-concept {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    min-height: var(--lore-h);
+    padding: 6px 8px 6px 8px;
+    border: 2px solid var(--wood-dark);
+    border-radius: 12px;
+    background: #fffaf0;
+    box-shadow: 0 3px 0 rgb(74 42 20 / 0.35);
+}
+
+.lore-concept.state-shaky {
+    border-color: #d97706;
+    background: #fef3c7;
+}
+
+.lore-concept.state-confident {
+    border-color: #7c3aed;
+}
+
+.lore-icon {
+    width: 30px;
+    height: 30px;
+    image-rendering: pixelated;
+}
+
+.lore-concept:is(.state-unknown, .state-none) .lore-icon {
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+.lore-label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.lore-rate {
+    display: flex;
+    gap: 4px;
+}
+
+/* light buttons on the parchment and the award, also in dark themes */
+.lore .rate-btn {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1;
+    border-color: rgb(74 42 20 / 0.35);
+    background: #fff;
+    color: #6b625c;
+}
+
+.lore .rate-btn[aria-pressed="true"] {
+    border-color: transparent;
+    color: #fff;
+}
+
+/* --- award for a newly discovered island --- */
+.award {
+    position: relative;
+    width: min(480px, 100%);
+    margin-top: 70px;
+    padding: 86px 22px 20px;
+    border: 3px solid var(--wood-dark);
+    border-radius: 22px;
+    background:
+        radial-gradient(ellipse at 50% 0, rgb(255 210 63 / 0.35), transparent 60%),
+        var(--parchment);
+    box-shadow: inset 0 0 0 3px #e7c98d, 6px 6px 0 rgb(0 0 0 / 0.35);
+    text-align: center;
+    color: #1a1614;
+    --ink: #1a1614;
+    --muted: #6b625c;
+}
+
+.overlay.is-open .award {
+    animation: award-in 0.55s cubic-bezier(0.2, 1.5, 0.4, 1);
+}
+
+@keyframes award-in {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.85);
+    }
+}
+
+.award-medal {
+    position: absolute;
+    left: 50%;
+    top: -70px;
+    width: 140px;
+    height: 140px;
+    translate: -50% 0;
+}
+
+.award-rays {
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, rgb(255 210 63 / 0.75) 0 9deg, transparent 9deg 22.5deg);
+    mask: radial-gradient(circle, #000 30%, transparent 70%);
+    animation: award-spin 14s linear infinite;
+}
+
+@keyframes award-spin {
+    to {
+        rotate: 1turn;
+    }
+}
+
+.award-disc {
+    position: absolute;
+    inset: 10px;
+    display: grid;
+    place-items: center;
+    border: 4px solid #7a4a24;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff3b0, #ffd23f 45%, #d99a1c);
+    box-shadow: inset 0 0 0 6px rgb(255 255 255 / 0.35), 0 6px 0 #4a2a14;
+}
+
+.overlay.is-open .award-disc {
+    animation: award-drop 0.8s cubic-bezier(0.25, 1.6, 0.4, 1) 0.1s backwards;
+}
+
+@keyframes award-drop {
+    from {
+        transform: translateY(-60px) scale(0.3) rotate(-160deg);
+        opacity: 0;
+    }
+}
+
+.award-disc b {
+    font-family: "Grenze Gotisch", serif;
+    font-size: 56px;
+    color: #4a2a14;
+}
+
+.award-icon {
+    width: 72px;
+    height: 72px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 2px 0 rgb(74 42 20 / 0.4));
+}
+
+.award-stamp {
+    position: absolute;
+    right: -22px;
+    bottom: 16px;
+    padding: 3px 10px;
+    border: 3px solid #15803d;
+    border-radius: 8px;
+    background: #dcfce7;
+    color: #15803d;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    rotate: -12deg;
+    opacity: 0;
+}
+
+.award-medal.is-heard .award-stamp {
+    opacity: 1;
+    animation: award-stamp 0.45s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes award-stamp {
+    from {
+        opacity: 0;
+        scale: 2.4;
+    }
+}
+
+.award-ribbon {
+    display: inline-block;
+    margin: 0;
+    padding: 4px 16px;
+    border-radius: 6px;
+    background: #9a3f28;
+    color: #fff6df;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.award-title {
+    margin: 8px 0 6px;
+    font-family: "Caveat", cursive;
+    font-size: 36px;
+    line-height: 1.05;
+    color: #3b2314;
+}
+
+.award-body p {
+    margin: 0;
+    color: #5b4630;
+    font-weight: 600;
+}
+
+.award-body .lore {
+    margin-top: 14px;
+}
+
+.award-body .lore-ask {
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.award-body .lore-row {
+    justify-content: center;
+}
+
+.award-body .award-hint {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #7a6248;
+}
+
+.award-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.award-actions .btn {
+    border-color: var(--wood-dark);
+    color: var(--ink);
+}
+
+.award-actions .btn-primary {
+    border-color: var(--hud-ink);
+    background: #ffd23f;
+    color: var(--hud-ink);
+    box-shadow: 3px 3px 0 var(--hud-ink);
+}
+
+/* all houses of an island done: the medallion cheers */
+.medallion.is-cheering {
+    animation: medallion-cheer 0.9s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes medallion-cheer {
+    0% {
+        scale: 1;
+    }
+    30% {
+        scale: 1.25;
+        rotate: -8deg;
+    }
+    60% {
+        rotate: 6deg;
+    }
+    100% {
+        scale: 1;
+        rotate: 0deg;
+    }
+}
+
 /* --- list of all islands (Seekarte) --- */
 .scroll.is-list {
     width: min(900px, 100%);
 }
 
+/* the rows share their columns (subgrid), so the homework column is as wide as its longest badge */
 .isles {
     display: grid;
-    gap: 8px;
+    /* max-content at the edges: there the rows' padding is added to the column */
+    grid-template-columns: max-content minmax(0, 1fr) 84px 84px max-content max-content;
+    gap: 8px 14px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -1080,7 +1454,8 @@ html[data-lw-theme="tafel"] :is(.scroll-paper, .sign-card) .card {
 
 .isle {
     display: grid;
-    grid-template-columns: 38px minmax(0, 1fr) 84px 84px 196px 92px;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
     align-items: center;
     gap: 14px;
     padding: 8px 14px 8px 10px;
@@ -1218,15 +1593,87 @@ html[data-lw-theme="tafel"] :is(.scroll-paper, .sign-card) .card {
     background: #cfc8c1;
 }
 
-.isle-hw {
-    justify-self: end;
-    font-size: 12px;
+@supports not (grid-template-columns: subgrid) {
+    .isle {
+        grid-template-columns: 38px minmax(0, 1fr) 84px 84px 250px 92px;
+    }
+}
+
+/* homework badge with the island's concepts below it */
+.isle-side {
+    display: grid;
+    justify-items: start;
+    gap: 5px;
+}
+
+/* the lecture's state at the start of the column, the concepts at its end: both line up across the rows */
+.isle-know {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    justify-self: stretch;
+    gap: 4px 14px;
+}
+
+.isle-heard {
+    padding: 2px 7px;
+    border: 1.5px dashed rgb(74 42 20 / 0.45);
+    border-radius: 7px;
+    color: #6b4f33;
+    font-size: 11px;
     font-weight: 700;
-    text-align: right;
     white-space: nowrap;
 }
 
-.isle-hw:not(:empty) {
+.isle-heard.is-heard {
+    border: 1.5px solid #15803d;
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.isle.is-locked .isle-heard {
+    border-color: #d8d2cc;
+    background: none;
+    color: #a39a92;
+}
+
+.isle-concepts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+.isle-concepts .concept {
+    width: 24px;
+    height: 24px;
+}
+
+.isle-concepts .concept .concept-icon {
+    width: 22px;
+    height: 22px;
+}
+
+.isle-concepts .concept::before {
+    width: 8px;
+    height: 8px;
+    border-color: #fffaf0;
+}
+
+.isle-concepts .concept-none .concept-icon {
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+.isle.is-locked .isle-concepts .concept {
+    opacity: 0.5;
+}
+
+.isle-hw {
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
     padding: 3px 8px;
     border-radius: 7px;
     background: #6b625c;
@@ -1243,35 +1690,85 @@ html[data-lw-theme="tafel"] :is(.scroll-paper, .sign-card) .card {
     color: #eff6ff;
 }
 
-.isle.is-locked .isle-hw:not(:empty) {
+.isle.is-locked .isle-hw {
     background: #e4dfda;
     color: #a39a92;
 }
 
-/* phones: name on top, the stats below it */
+/* phones: name and "Besuchen" on top, the two stats side by side below, then homework and concepts */
 @media (max-width: 760px) {
-    .isle {
-        grid-template-columns: 38px minmax(0, 1fr) minmax(0, 1fr);
-        grid-template-areas: "nr name name" "nr houses all" "nr hw go";
-        gap: 6px 12px;
+    .isles {
+        grid-template-columns: minmax(0, 1fr);
     }
 
-    .isle-nr { grid-area: nr; align-self: start; }
+    .isle {
+        grid-template-columns: 32px minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-areas:
+            "nr name name"
+            "nr houses all"
+            "nr side side";
+        gap: 6px 12px;
+        padding: 10px 12px 10px 10px;
+    }
+
+    .isle-nr {
+        grid-area: nr;
+        align-self: start;
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+
     .isle-name { grid-area: name; }
     .isle-stat:nth-of-type(3) { grid-area: houses; }
     .isle-stat:nth-of-type(4) { grid-area: all; }
 
+    /* label and count on one line, the meter below */
+    .isle-stat {
+        grid-template-columns: 1fr auto;
+        align-items: baseline;
+        column-gap: 6px;
+    }
+
+    .isle-stat b {
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .isle-meter {
+        grid-column: 1 / -1;
+    }
+
+    .isle-side {
+        grid-area: side;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 10px;
+    }
+
+    .isle-side:empty,
+    .isle-go-none {
+        display: none;
+    }
+
+    .isle-know {
+        justify-content: flex-start;
+    }
+
     .isle-hw {
-        grid-area: hw;
-        justify-self: start;
+        font-size: 11px;
+        white-space: normal;
     }
 
-    .isle-hw:empty {
-        visibility: hidden;
-    }
-
+    /* "Besuchen" sits at the end of the name row, the name keeps clear of it */
     .isle-go {
-        grid-area: go;
+        grid-area: name;
+        align-self: start;
+    }
+
+    .isle:has(.isle-go) .isle-name {
+        padding-right: 92px;
     }
 }
 
@@ -1428,6 +1925,13 @@ html[data-lw-theme="tafel"] :is(.scroll-paper, .sign-card) .card {
     .overlay.is-open,
     .overlay.is-open .sign,
     .overlay.is-open .scroll-paper,
+    .overlay.is-open .award,
+    .overlay.is-open .award-disc,
+    .award-rays,
+    .award-medal.is-heard .award-stamp,
+    .heard-btn.is-popping,
+    .heard-btn.is-popping .heard-seal,
+    .medallion.is-cheering,
     #frame-overlay.is-open #frame,
     .toast.is-shown,
     .prompt,

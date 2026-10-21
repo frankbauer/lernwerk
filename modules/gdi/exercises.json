@@ -550,7 +550,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/03_Datentypen-ausgabe.webp"
     },
     {
@@ -568,7 +568,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/03_Datentypen-typen.webp"
     },
     {

@@ -19,7 +19,7 @@
 
     const CONFIG_URL = "./data/karte.json";
     const ASSETS = "./assets/tilemap/";
-    const PLANER_KEY = "lernwerk.uebungsplaner.v1"; // state of uebersicht.html (done exercises)
+    const PLANER_KEY = "lernwerk.uebungsplaner.v1"; // state of uebersicht.html (done exercises, Wissensstand)
     const STORAGE_KEY = `lernwerk.karte.v1${FLAG_QUERY ? `:${FLAG_QUERY}` : ""}`;
     /** Bump when the island generator changes: stored fog no longer matches the map then. */
     const GENERATOR = 15;
@@ -44,6 +44,9 @@
     const DIR_BY_ANGLE = ["E", "SE", "S", "SW", "W", "NW", "N", "NE"];
     const TYPE_ORDER = ["lecture", "sandbox", "exercise", "test", "tool"];
     const LEVELS = ["", "sehr einfach", "einfach", "mittel", "schwer", "sehr schwer"];
+    /** Self-assessment labels of uebersicht.html ("Mein Wissensstand"). */
+    const STATE_LABEL = { unknown: "neu für mich", shaky: "unsicher", known: "kann ich", confident: "sicher" };
+    const STATE_GLYPH = { unknown: "✕", shaky: "?", known: "✓", confident: "★" };
 
     // little badge on finished houses
     const CHECK_ART = [".kkkkk.", "kGGGGGk", "kGGGGwk", "kwGGwGk", "kGwwGGk", "kGGGGGk", ".kkkkk."];
@@ -68,6 +71,7 @@
     let sig;
     let state;
     let done = new Set();
+    let profile = { lastHeard: null, overrides: {} }; // Wissensstand from uebersicht.html
 
     const images = new Map();
     let sheets = []; // tile sheet image per theme
@@ -182,16 +186,44 @@
         }
     }
 
+    /** Reads the done exercises and the Wissensstand (last lecture heard, self-assessment) of uebersicht.html. */
     function refreshDone() {
         const s = readPlaner();
         done = new Set(Array.isArray(s.done) ? s.done : []);
+        profile = {
+            lastHeard: typeof s.lastHeard === "number" ? s.lastHeard : null,
+            overrides: s.overrides && typeof s.overrides === "object" ? s.overrides : {},
+        };
     }
 
-    /** Toggles an exercise in the Übungsplaner's state (read fresh, so nothing of it is overwritten). */
-    function toggleDone(id) {
+    // ------------------------------------------------------------------ Wissensstand (as in uebungsplaner.js)
+
+    const hasProfile = () => profile.lastHeard !== null;
+
+    function conceptState(id) {
+        if (profile.overrides[id]) return profile.overrides[id];
+        return hasProfile() && conceptById[id].chapter <= profile.lastHeard ? "known" : "unknown";
+    }
+
+    const conceptLabels = (ids) => ids.map((id) => conceptById[id].label).join(", ");
+
+    /** The hint at the bottom of a card, like the "Für dich" reason in uebersicht.html. */
+    function reason(ex, tags) {
+        if (!hasProfile()) return null;
+        const unknown = tags.filter((t) => conceptState(t) === "unknown");
+        const shaky = tags.filter((t) => conceptState(t) === "shaky");
+        if (done.has(ex.id)) return { kind: "done", text: "Schon erledigt" };
+        if (unknown.length) return { kind: "missing", text: `Braucht noch: ${conceptLabels(unknown)}` };
+        if (shaky.length) return { kind: "shaky", text: `Übt ${conceptLabels(shaky)} – da bist du unsicher` };
+        if (ex.chapter === profile.lastHeard) return { kind: "fresh", text: "Aus deiner letzten Vorlesung" };
+        if (tags.every((t) => conceptState(t) === "confident")) return { kind: "easy", text: "Wiederholung – das kannst du sicher" };
+        return { kind: "ok", text: "Passt zu deinem Wissensstand" };
+    }
+
+    /** Changes the Übungsplaner's state (read fresh, so nothing of it is overwritten) and shows the result. */
+    function writePlaner(change) {
         const s = readPlaner();
-        const list = Array.isArray(s.done) ? s.done : [];
-        s.done = list.includes(id) ? list.filter((x) => x !== id) : [...list, id];
+        change(s);
         try {
             localStorage.setItem(PLANER_KEY, JSON.stringify(s));
         } catch (e) {
@@ -200,6 +232,54 @@
         refreshDone();
         refreshOpenViews();
         updateHud();
+    }
+
+    /** Toggles an exercise; marking it as done is celebrated, the last open house of an island even more. */
+    function toggleDone(id, from, event) {
+        const nowDone = !done.has(id);
+        const rect = from && window.LernwerkCelebrate?.at(event, from);
+        writePlaner((s) => {
+            const list = Array.isArray(s.done) ? s.done : [];
+            s.done = list.includes(id) ? list.filter((x) => x !== id) : [...list, id];
+        });
+        if (!nowDone) return;
+        const icons = (exerciseById[id]?.tags || []).map((t) => conceptById[t]?.icon).filter(Boolean);
+        window.LernwerkCelebrate?.done(rect, `[data-done="${CSS.escape(id)}"]`, icons);
+        const isl = islands.find((x) => x.houses.some((it) => it.ex.id === id));
+        if (isl && !openHouses(isl).length) {
+            window.LernwerkCelebrate?.burst($("medallion"), { big: true });
+            window.LernwerkCelebrate?.pop($("medallion"), "is-cheering");
+            announce("Alle Häuser erledigt – der Hafen ist offen!");
+        }
+    }
+
+    const chapterNumbers = () => [-1, ...catalog.chapters.map((ch) => ch.number).sort((x, y) => x - y)];
+
+    /**
+     * "Vorlesung gehört" for one chapter, as the last lecture heard in uebersicht.html: marking it moves the
+     * last lecture forward to it, unmarking moves it back to the chapter before (so later ones count as unheard, too).
+     */
+    function setHeard(number, heard) {
+        writePlaner((s) => {
+            const last = typeof s.lastHeard === "number" ? s.lastHeard : null;
+            if (heard) s.lastHeard = Math.max(last ?? -1, number);
+            else {
+                const numbers = chapterNumbers();
+                s.lastHeard = numbers[Math.max(0, numbers.indexOf(number) - 1)];
+            }
+        });
+    }
+
+    /** Self-assessment of a concept, stored like uebersicht.html does: only where it differs from the default. */
+    function rateConcept(id, st) {
+        writePlaner((s) => {
+            if (typeof s.lastHeard !== "number") s.lastHeard = -1;
+            const overrides = s.overrides && typeof s.overrides === "object" ? s.overrides : {};
+            const byDefault = conceptById[id].chapter <= s.lastHeard ? "known" : "unknown";
+            if (st === byDefault) delete overrides[id];
+            else overrides[id] = st;
+            s.overrides = overrides;
+        });
     }
 
     const doneCount = (list) => list.filter((ex) => done.has(ex.id)).length;
@@ -1391,9 +1471,13 @@
         currentIsland = i;
         const isl = islands[i];
         state.at = isl.chapter.number;
-        if (!state.visited.includes(isl.chapter.number)) state.visited.push(isl.chapter.number);
+        const first = !state.visited.includes(isl.chapter.number);
+        const heard = hasProfile() && isl.chapter.number <= profile.lastHeard;
+        if (first) state.visited.push(isl.chapter.number);
         updateHud();
         announce(`Insel erreicht: Kapitel ${isl.chapter.number} · ${isl.chapter.title}`);
+        // the award greets a new island and asks again for its lecture, until it is heard or put off
+        if (first || (!heard && !awardPutOff.has(isl.chapter.number))) openAward(isl, first);
     }
 
     /** Shortest walk (8 directions, no corner cutting) to a cell for which `goal` holds. */
@@ -1642,12 +1726,18 @@
         const isDone = done.has(ex.id);
         const href = esc(pageHref(ex.link));
         const id = esc(ex.id);
-        const concepts = ex.tags
-            .filter((t) => conceptById[t])
-            .map((t) => `<span class="concept concept-none" tabindex="0" data-tip="${esc(conceptById[t].label)}"
-                aria-label="${esc(conceptById[t].label)}">${conceptIcon(t, "concept-icon")}</span>`)
+        const tags = ex.tags.filter((t) => conceptById[t]);
+        const concepts = tags
+            .map((t) => {
+                const st = hasProfile() ? conceptState(t) : "none";
+                const tip = hasProfile() ? `${conceptById[t].label} · ${STATE_LABEL[st]}` : conceptById[t].label;
+                return `<span class="concept concept-${st}" tabindex="0" data-tip="${esc(tip)}"
+                    aria-label="${esc(tip)}">${conceptIcon(t, "concept-icon")}</span>`;
+            })
             .join("");
-        return `<article class="card type-${ex.type}${isDone ? " is-done" : ""}">
+        const r = reason(ex, tags);
+        const locked = hasProfile() && tags.some((t) => conceptState(t) === "unknown");
+        return `<article class="card type-${ex.type}${locked ? " is-locked" : ""}${isDone ? " is-done" : ""}">
             <div class="card-body">
                 <div class="card-head">
                     <h3 class="card-title"><a href="${href}" data-open="${id}">${esc(ex.title)}</a></h3>
@@ -1660,6 +1750,7 @@
                 <div class="card-level"><span>Übungslevel</span>${levelDots(ex.difficulty)}</div>
                 <div class="concepts">${concepts}</div>
                 <div class="features">${features(ex)}</div>
+                ${r ? `<p class="reason reason-${r.kind}">${esc(r.text)}</p>` : ""}
             </div>
             <a class="card-media${ex.image ? " has-image" : ""}" href="${href}" data-open="${id}" tabindex="-1" aria-hidden="true"
                 style="--hue:${195 + ((ex.chapter * 37) % 80)}">
@@ -1669,6 +1760,40 @@
             <button type="button" class="done-btn" data-done="${id}" aria-pressed="${isDone}"
                 title="${isDone ? "Erledigt – klicken zum Zurücksetzen" : "Als erledigt markieren"}">${isDone ? "✓" : "○"} Erledigt</button>
         </article>`;
+    }
+
+    /**
+     * The Wissensstand of one chapter, as in uebersicht.html: whether its lecture was heard (optional) and how
+     * sure the student feels about the concepts it introduces. Shown in the castle and in the island award.
+     */
+    function knowledgeHtml(number, withHeard = true) {
+        const heard = hasProfile() && number <= profile.lastHeard;
+        const list = catalog.concepts.filter((c) => c.chapter === number);
+        const toggle = withHeard
+            ? `<button type="button" class="heard-btn${heard ? " is-heard" : ""}" data-heard="${number}" aria-pressed="${heard}"
+                title="${heard ? "Klicken, wenn diese Vorlesung doch noch nicht gehört wurde" : "Alle Konzepte bis hier zählen dann als bekannt"}">
+                <span class="heard-seal" aria-hidden="true">${heard ? "✓" : ""}</span>
+                <span>${heard ? "Vorlesung gehört" : "Vorlesung schon gehört?"}<small>${heard ? "Die Übungen passen sich daran an" : "Als gehört markieren"}</small></span>
+            </button>`
+            : "";
+        const concepts = list
+            .map((c) => {
+                const st = conceptState(c.id);
+                const rate = Object.keys(STATE_LABEL)
+                    .map((s) => `<button type="button" class="rate-btn state-${s}" data-rate="${esc(c.id)}" data-state="${s}"
+                        aria-pressed="${hasProfile() && st === s}" title="${esc(c.label)}: ${STATE_LABEL[s]}">${STATE_GLYPH[s]}</button>`)
+                    .join("");
+                return `<li class="lore-concept state-${hasProfile() ? st : "none"}">
+                    ${conceptIcon(c.id, "lore-icon")}<span class="lore-label">${esc(c.label)}</span>
+                    <span class="lore-rate" role="group" aria-label="Einschätzung ${esc(c.label)}">${rate}</span>
+                </li>`;
+            })
+            .join("");
+        if (!toggle && !list.length) return "";
+        return `<div class="lore">
+            <p class="lore-ask">${list.length ? "Wie sicher fühlst du dich?" : "Mein Wissensstand"}</p>
+            <div class="lore-row">${toggle}${list.length ? `<ul class="lore-concepts">${concepts}</ul>` : ""}</div>
+        </div>`;
     }
 
     // ------------------------------------------------------------------ overlays
@@ -1703,6 +1828,12 @@
         $(id).classList.remove("is-open");
         if (id === "frame-overlay") $("frame").src = "about:blank";
         if (id === "card-overlay") cardFor = null;
+        if (id === "award-overlay") {
+            const n = awardFor?.chapter.number;
+            if (n != null && !(hasProfile() && n <= profile.lastHeard)) awardPutOff.add(n);
+            awardFor = null;
+            if (!state.helpSeen) toggleHelp(true); // a new player first gets the island, then the controls
+        }
         if (id === "scroll-overlay") {
             scrollFor = null;
             listOpen = false;
@@ -1715,6 +1846,42 @@
 
     function chapterLine(isl) {
         return `Kapitel ${isl.chapter.number} · ${isl.chapter.title}`;
+    }
+
+    // --- award for a newly discovered island ---
+
+    let awardFor = null; // island shown in the award
+    const awardPutOff = new Set(); // chapters whose lecture question was closed unanswered (until the page is reloaded)
+
+    function openAward(isl, first) {
+        awardFor = isl;
+        $("award-ribbon").textContent = first ? "Neue Insel entdeckt" : "Willkommen zurück";
+        renderAward();
+        openOverlay("award-overlay");
+        window.LernwerkCelebrate?.burst($("award-medal"), { big: true });
+    }
+
+    /** The medal of the island, its question for the lecture and, once heard, the rating of its concepts. */
+    function renderAward() {
+        const isl = awardFor;
+        if (!isl) return;
+        const n = isl.chapter.number;
+        const heard = hasProfile() && n <= profile.lastHeard;
+        const main = catalog.concepts.find((c) => c.chapter === n);
+        $("award-medal").className = `award-medal${heard ? " is-heard" : ""}`;
+        $("award-medal").innerHTML = `<span class="award-rays"></span>
+            <span class="award-disc">${main ? conceptIcon(main.id, "award-icon") : `<b>${esc(n)}</b>`}</span>
+            <span class="award-stamp">Gehört</span>`;
+        $("award-title").textContent = chapterLine(isl);
+        $("award-body").innerHTML = heard
+            ? `<p>Diese Vorlesung ist schon gehört – die Übungen der Karte sind darauf abgestimmt.</p>${knowledgeHtml(n, false)}`
+            : `<p>Wurde die Vorlesung zu diesem Kapitel schon gehört? Dann passen sich die Übungen auf der Karte an deinen Wissensstand an.</p>
+                ${knowledgeHtml(n, false)}
+                ${isl.castle ? `<p class="award-hint">Später jederzeit in der Burg „${esc(isl.castleName)}“ änderbar.</p>` : ""}`;
+        $("award-actions").innerHTML = heard
+            ? `<button type="button" class="btn btn-primary" data-close data-autofocus>Auf geht's!</button>`
+            : `<button type="button" class="btn" data-close>Noch nicht</button>
+                <button type="button" class="btn btn-primary" data-heard="${n}" data-autofocus>Ja, schon gehört</button>`;
     }
 
     function openCard(it) {
@@ -1799,8 +1966,11 @@
             }[type] || ["Übung", "Übungen"];
             return `<span>${typeIcon(type)}${n} ${label[n === 1 ? 0 : 1]}</span>`;
         }).filter(Boolean);
+        const knowledge = it.kind === "castle" ? knowledgeHtml(islands[it.island].chapter.number) : "";
         $("scroll-body").innerHTML =
-            (slides ? `<section class="slides"><h3>Vorlesungsfolien</h3><ul>${slides}</ul></section>` : "") +
+            (slides || knowledge
+                ? `<section class="slides"><h3>Vorlesungsfolien</h3>${slides ? `<ul>${slides}</ul>` : ""}${knowledge}</section>`
+                : "") +
             (list.length
                 ? `<p class="scroll-count">${parts.join("")}<b>${doneCount(list)} von ${list.length} erledigt</b></p>
                     <div class="grid">${list.map(cardHtml).join("")}</div>`
@@ -1831,6 +2001,7 @@
 
     function refreshOpenViews() {
         if (cardFor && cardFor.kind === "house") $("card-slot").innerHTML = cardHtml(cardFor.ex);
+        renderAward();
         renderScroll();
         if (listOpen) renderIslandList();
     }
@@ -1870,6 +2041,17 @@
                       ? "Hafen offen"
                       : "Hafen gesperrt";
             const hw = isl.volcano?.homework;
+            // the concepts the chapter introduces, in the state of the Wissensstand (changed in the castle)
+            const concepts = catalog.concepts
+                .filter((c) => c.chapter === isl.chapter.number)
+                .map((c) => {
+                    const st = hasProfile() ? conceptState(c.id) : "none";
+                    const tip = hasProfile() ? `${c.label} · ${STATE_LABEL[st]}` : c.label;
+                    return `<span class="concept concept-${st}" data-tip="${esc(tip)}" aria-label="${esc(tip)}">${conceptIcon(c.id, "concept-icon")}</span>`;
+                })
+                .join("");
+            const heard = hasProfile() && isl.chapter.number <= profile.lastHeard;
+            const heardTag = `<span class="isle-heard${heard ? " is-heard" : ""}">${heard ? "✓ Vorlesung gehört" : "Vorlesung nicht gehört"}</span>`;
             const classes = ["isle", reach ? "" : "is-locked", i === currentIsland ? "is-current" : "", n === isl.items.length ? "is-complete" : ""];
             return `<li class="${classes.filter(Boolean).join(" ")}">
                 <span class="isle-nr" style="--swatch:${THEME_SWATCH[THEMES[isl.theme]]}">${esc(isl.chapter.number)}</span>
@@ -1880,10 +2062,10 @@
                 <span class="isle-stat" title="Erledigte Übungen der Insel">
                     <small>Übungen</small><b>${n} / ${isl.items.length}</b>${meter(n, isl.items.length, "is-all")}
                 </span>
-                <span class="isle-hw${hw ? ` is-${homeworkState(hw)}` : ""}">${hw ? `HA ${hw.nr} · ${esc(homeworkLine(hw))}` : ""}</span>
+                <span class="isle-side">${hw ? `<span class="isle-hw is-${homeworkState(hw)}">HA ${hw.nr} · ${esc(homeworkLine(hw))}</span>` : ""}<span class="isle-know">${heardTag}${concepts ? `<span class="isle-concepts">${concepts}</span>` : ""}</span></span>
                 ${i !== currentIsland && reach
                       ? `<button type="button" class="isle-go" data-travel="${i}" title="${esc(isl.chapter.title)} besuchen: zum Ankunftshafen reisen">Besuchen</button>`
-                      : `<span></span>`}
+                      : `<span class="isle-go-none"></span>`}
             </li>`;
         });
         const visited = islands.filter((_, i) => reachable(i)).length;
@@ -2827,7 +3009,32 @@
             }
             const toggle = e.target.closest("[data-done]");
             if (toggle) {
-                toggleDone(toggle.dataset.done);
+                toggleDone(toggle.dataset.done, toggle, e);
+                return;
+            }
+            const heard = e.target.closest("[data-heard]");
+            if (heard) {
+                const number = Number(heard.dataset.heard);
+                const nowHeard = !(hasProfile() && number <= profile.lastHeard);
+                const rect = window.LernwerkCelebrate?.at(e, heard);
+                const inAward = !!heard.closest("#award-overlay");
+                setHeard(number, nowHeard);
+                if (nowHeard) {
+                    window.LernwerkCelebrate?.burst(rect, { big: inAward });
+                    window.LernwerkCelebrate?.pop(document.querySelector(`.heard-btn[data-heard="${number}"]`));
+                    $("award-overlay").querySelector("[data-autofocus]")?.focus({ preventScroll: true });
+                }
+                return;
+            }
+            const rate = e.target.closest("[data-rate]");
+            if (rate) {
+                const { rate: id, state: st } = rate.dataset;
+                const changed = conceptState(id) !== st;
+                const rect = window.LernwerkCelebrate?.at(e, rate);
+                rateConcept(id, st);
+                const btn = document.querySelector(`[data-rate="${CSS.escape(id)}"][data-state="${st}"]`);
+                btn?.focus({ preventScroll: true });
+                if (changed && (st === "known" || st === "confident")) window.LernwerkCelebrate?.[st](rect, btn);
                 return;
             }
             if (e.target.closest("[data-close]")) closeOverlay(e.target.closest(".overlay")?.id);
@@ -2935,8 +3142,11 @@
         enterIsland(islandIndexAt(hero.c, hero.r));
         hero.idleStart = performance.now();
         $("loading").hidden = true;
-        if (!state.helpSeen) toggleHelp(true);
-        canvas.focus({ preventScroll: true });
+        if (awardFor) $("award-overlay").querySelector("[data-autofocus]")?.focus({ preventScroll: true });
+        else {
+            if (!state.helpSeen) toggleHelp(true);
+            canvas.focus({ preventScroll: true });
+        }
 
         let last = performance.now();
         const loop = (now) => {

@@ -36,8 +36,8 @@
             "answer": "String"
         },
         {
-            "code": "(byte)4 / (short)-200.0",
-            "answer": "int"
+            "code": "(long)4.9 / (short)-200.0",
+            "answer": "long"
         },
         {
             "code": "400L % 3",
@@ -52,8 +52,8 @@
             "answer": "boolean"
         },
         {
-            "code": "(byte)12 * 'A'",
-            "answer": "int"
+            "code": "12.5f * 'A'",
+            "answer": "float"
         },
         {
             "code": "34L * 3.0 > 0.2f && (8-3 == 5 || 6.0 % 3 == 4)",
@@ -69,5 +69,5 @@
         }
     ],
     "hint": "Bei <code>+ - * / %</code> werden <code>byte</code>, <code>short</code> und <code>char</code> immer mindestens zu <code>int</code>. Sonst bestimmt der größere der beiden Typen das Ergebnis.",
-    "successMessage": "<b>Richtig!</b> Alle Datentypen stimmen. In der Beispiellösung gibt Java die Typen selbst aus."
+    "successMessage": "<b>Richtig!</b> Alle Datentypen stimmen. In der Beispiellösung wird jeder Ausdruck einer Variablen dieses Typs zugewiesen."
 }

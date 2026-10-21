@@ -32,11 +32,12 @@
     <link rel="stylesheet" href="./js/codeblocks-js/fonts/geist.css?v=1.0.3" />
     <link rel="stylesheet" href="./fonts/caveat/caveat.css?v=1.0.0" />
     <link rel="stylesheet" href="./fonts/grenze-gotisch/grenze-gotisch.css?v=1.0.0" />
-    <link rel="stylesheet" href="./css/uebungsplaner.css?v=1.7.6" />
+    <link rel="stylesheet" href="./css/uebungsplaner.css?v=1.7.12" />
     <link rel="stylesheet" href="./css/themes-uebersicht.css?v=1.2.4" />
-    <link rel="stylesheet" href="./css/karte.css?v=1.0.27" />
+    <link rel="stylesheet" href="./css/karte.css?v=1.0.39" />
     <script src="./catalog.js?v=1.0.0" defer></script>
-    <script src="./karte.js?v=1.0.44" defer></script>
+    <script src="./celebrate.js?v=1.0.10" defer></script>
+    <script src="./karte.js?v=1.0.54" defer></script>
 </head>
 
 <body class="map-page">
@@ -149,6 +150,17 @@
             <p class="sign-eyebrow" id="card-eyebrow"></p>
             <div class="sign-card" id="card-slot"></div>
             <div class="sign-actions" id="card-actions"></div>
+        </div>
+    </div>
+
+    <!-- Auszeichnung beim ersten Besuch einer Insel: fragt nach der Vorlesung (Wissensstand wie in der Übersicht) -->
+    <div class="overlay" id="award-overlay" hidden>
+        <div class="award" role="dialog" aria-modal="true" aria-labelledby="award-title">
+            <div class="award-medal" id="award-medal" aria-hidden="true"></div>
+            <p class="award-ribbon" id="award-ribbon"></p>
+            <h2 class="award-title" id="award-title"></h2>
+            <div class="award-body" id="award-body"></div>
+            <div class="award-actions" id="award-actions"></div>
         </div>
     </div>
 

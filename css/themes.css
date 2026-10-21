@@ -1687,6 +1687,17 @@ html[data-lw-theme="abenteuer"] .colored .hint-container button {
     color: #111;
 }
 
+/* Eingabefelder zeigen den Fokus schon durch die gelbe Füllung und den angehobenen Schatten; der Umriss aus
+   site.css läge gleichmäßig um das Feld, der harte Schatten ragt aber nach rechts unten hinaus. Daher ohne Umriss.
+   Das #content-Argument hebt die Spezifität über site.css. */
+html[data-lw-theme="abenteuer"] body :is(.quiz input.quiz-answer,
+    .quiz .quiz-graph-table input,
+    .quiz .quiz-num-table input,
+    .quiz .quiz-num-choice select,
+    div#content :is(input, select, textarea):not([class*="tw-"], tabbar>div.buttonbar *, .hint-container *, .quiz *, .cm-editor *, [type=checkbox], [type=radio], [type=range], [type=color], [type=file], [type=image], [type=hidden], [type=button], [type=submit], [type=reset])):focus-visible {
+    outline: none;
+}
+
 
 /* ============================================================================
    3f. Raster – klares Schweizer Raster
