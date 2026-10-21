@@ -47,7 +47,38 @@ function resolvePath(path) {
         script.async = false // in dieser Reihenfolge ausführen: tour.js setzt seinen Knopf in das Menü von theme.js
         document.head.append(script)
     }
-})()
+})();
+
+// Scrollposition: die Seite entsteht erst nach dem Laden (buildContent, Editoren), zu spät für die
+// Wiederherstellung des Browsers. Daher die Position pro Tab und Seite merken und beim Zurückkehren
+// (Zurück/Vor, Neu laden) wieder anfahren, während die Seite wächst – bis selbst gescrollt wird.
+(function keepScrollPosition() {
+    const key = `lernwerk.scroll:${location.pathname}${location.search}`
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
+    window.addEventListener('pagehide', () => {
+        try {
+            sessionStorage.setItem(key, String(Math.round(window.scrollY)))
+        } catch (e) { }
+    })
+
+    const nav = performance.getEntriesByType?.('navigation')[0]
+    if (!nav || (nav.type !== 'back_forward' && nav.type !== 'reload')) return
+    let y = 0
+    try {
+        y = Number(sessionStorage.getItem(key))
+    } catch (e) { }
+    if (!y) return
+
+    const userEvents = ['wheel', 'touchstart', 'keydown', 'pointerdown']
+    const observer = new ResizeObserver(() => window.scrollTo(0, y))
+    const stop = () => {
+        observer.disconnect()
+        userEvents.forEach(type => window.removeEventListener(type, stop, true))
+    }
+    userEvents.forEach(type => window.addEventListener(type, stop, { capture: true, passive: true }))
+    observer.observe(document.documentElement)
+    setTimeout(stop, 10000)
+})();
 
 async function buildContent(elements) {
     console.log($('head title'))
