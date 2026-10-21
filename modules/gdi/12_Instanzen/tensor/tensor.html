@@ -1,0 +1,17 @@
+<p style="margin-bottom:4px;">Ergänzen Sie die Klasse <code>Tensor</code>:</p>
+<ul style="margin-top:0px;">
+    <li>zwei <b>Instanzattribute</b> <code>daten</code> (<code>double[]</code>) und <code>form</code>
+        (<code>int[]</code>), die nach dem Erzeugen nicht mehr verändert werden können,</li>
+    <li>einen <b>Konstruktor</b> <code>Tensor(double[] daten, int[] form)</code> und die Getter
+        <code>getDaten()</code> und <code>getForm()</code>,</li>
+    <li><code>get(int z, int s)</code>: liefert den Wert in Zeile <code>z</code> und Spalte <code>s</code> eines
+        zweidimensionalen Tensors. Er steht in <code>daten</code> an der Stelle <code>z * form[1] + s</code>.</li>
+    <li><code>static Tensor tensor2d(int[][] werte)</code>: erzeugt einen neuen Tensor aus einem 2D-Feld. Die Werte
+        werden zeilenweise in ein neues <code>double[]</code> kopiert, die Form ist
+        <code>{Zeilen, Spalten}</code>.</li>
+    <li><code>Tensor reshape(int[] neueForm)</code>: liefert einen Tensor mit denselben Werten, aber einer neuen Form.
+        Das Produkt aller Einträge von <code>neueForm</code> muss der Anzahl der Werte entsprechen, sonst wird
+        <code>null</code> zurückgegeben.</li>
+    <li><code>Tensor div(double wert)</code>: liefert einen <b>neuen</b> Tensor mit derselben Form, in dem jeder Wert
+        durch <code>wert</code> geteilt ist. Der ursprüngliche Tensor bleibt unverändert.</li>
+</ul>

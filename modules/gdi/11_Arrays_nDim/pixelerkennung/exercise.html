@@ -1,0 +1,21 @@
+<h3>Aufgabe</h3>
+<p>Im Playground unten ist ein kleines <b>neuronales Netz</b> (TensorFlow.js) eingebaut, das einfache Formen erkennt:
+    waagrechte Linie, senkrechte Linie, Kreuz, Plus und Kreis. Zeichnen Sie mit der Maus eine dieser Formen in das
+    Raster.</p>
+<p>Das Bild kommt als zweidimensionales Feld <code>int[][] bild</code> mit <b>10 Zeilen</b> und <b>12 Spalten</b> in
+    Ihrem Programm an. Jeder Eintrag ist die Helligkeit eines Pixels von <code>0</code> (leer) bis <code>255</code>
+    (voll). Das Netz kann aber nur eine <b>lange Liste von Zahlen</b> verarbeiten. Ergänzen Sie die Methode
+    <code>zuVektor</code> so, dass sie</p>
+<ul>
+    <li>ein neues Feld <code>double[]</code> mit <code>Zeilen * Spalten</code> Einträgen erzeugt,</li>
+    <li>die Pixel <b>zeilenweise</b> hineinkopiert: erst alle Pixel der Zeile 0, dann alle der Zeile 1 usw., und</li>
+    <li>jeden Wert dabei auf den Bereich <code>0.0</code> bis <code>1.0</code> umrechnet (durch <code>255.0</code>
+        teilen).</li>
+</ul>
+<p>Das Pixel <code>bild[z][s]</code> landet also an der Stelle <code>z * spalten + s</code>. Für ein Bild mit 2 Zeilen
+    und 3 Spalten:</p>
+<pre output>bild   = { {0, 255, 0}, {255, 255, 255} }
+vektor = { 0.0, 1.0, 0.0, 1.0, 1.0, 1.0 }</pre>
+<p>Führen Sie das Programm aus: Das Netz erhält genau das Feld, das <code>zuVektor</code> zurückgibt. Rechts sehen
+    Sie, wie das Netz Ihr Feld „sieht“, und mit welcher Wahrscheinlichkeit es welche Form erkennt.</p>
+<p><b>Hinweis:</b> Verwenden Sie <code>bild.length</code> und <code>bild[0].length</code> statt fester Zahlen.</p>

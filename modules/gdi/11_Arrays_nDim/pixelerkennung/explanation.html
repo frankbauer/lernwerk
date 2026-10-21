@@ -1,0 +1,17 @@
+<h3>Erklärung</h3>
+<p>Ein zweidimensionales Feld wird „flachgeklopft“, indem die Zeilen einfach hintereinandergehängt werden:</p>
+<ul>
+    <li><b>Größe:</b> Das neue Feld braucht <code>zeilen * spalten</code> Einträge, hier <code>10 * 12 = 120</code>.
+    </li>
+    <li><b>Index:</b> Vor dem Pixel <code>bild[z][s]</code> liegen <code>z</code> vollständige Zeilen mit je
+        <code>spalten</code> Pixeln und in der eigenen Zeile noch <code>s</code> Pixel. Sein Index ist daher
+        <code>z * spalten + s</code>. Ein häufiger Fehler ist <code>z * zeilen + s</code>: Bei einem nicht
+        quadratischen Bild überschreiben sich dann Einträge, und andere bleiben <code>0.0</code>.</li>
+    <li><b>Normieren:</b> <code>bild[z][s] / 255</code> wäre eine Ganzzahldivision und ergäbe nur <code>0</code> oder
+        <code>1</code>. Erst mit <code>255.0</code> wird mit Kommazahlen gerechnet, und die halbhellen Ränder (Wert
+        <code>100</code>) bleiben als <code>0.39...</code> erhalten.</li>
+</ul>
+<p>Genau so bereiten echte Bilderkennungsverfahren ihre Eingaben vor: Ein Bild mit 28 x 28 Pixeln wird zu einem Vektor
+    mit 784 Werten zwischen 0 und 1. Das Netz wurde mit zeilenweise abgelegten Bildern trainiert. Liefert
+    <code>zuVektor</code> die Pixel in einer anderen Reihenfolge, „sieht“ das Netz ein verwürfeltes Bild und rät
+    falsch, obwohl alle Zahlen im Feld vorkommen.</p>

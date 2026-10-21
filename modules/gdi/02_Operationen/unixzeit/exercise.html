@@ -1,0 +1,52 @@
+<h3>Aufgabe</h3>
+<p>Ein <b>Unix-Zeitstempel</b> ist ein <code>int</code>-Wert, der die Sekunden seit dem 1.1.1970, 0:00&nbsp;Uhr (UTC) zählt. Vervollständigen Sie das Programm so, dass es aus einem gegebenen Unix-Zeitstempel Datum und Uhrzeit berechnet. Verwenden Sie nur Zuweisungen und arithmetische Operationen, also <b>ohne <code>if</code></b>.</p>
+
+<div class="infobox">
+    <b>Der Trick mit den Schaltjahren</b>
+    <p>Die naheliegende Rechnung <code>days / 365</code> für das Jahr und <code>days % 365</code> für den Tag im Jahr
+        geht schief: Jedes Schaltjahr hat einen Tag mehr, und diese Tage summieren sich. Seit 1970 sind bis Anfang
+        2024 schon 13&nbsp;Schalttage zusammengekommen. Für den 29.2.2024 (<code>days = 19782</code>) liefert
+        <code>days % 365</code> deshalb den 14.3. statt des 29.2. Für den 31.12.2024 ergibt <code>days / 365</code>
+        sogar schon das Jahr 2025. Dazu kommen die unterschiedlich langen Monate und die Ausnahmen der Schaltjahrregel
+        (1900 war kein Schaltjahr, 2000 schon).</p>
+    <p>Zwei Tricks lösen das ohne <code>if</code>:</p>
+    <ul>
+        <li><b>Das Jahr beginnt am 1.&nbsp;März:</b> Der Schalttag (29.2.) ist dann der letzte Tag des Jahres. Alle
+            Monate liegen in jedem Jahr an derselben Stelle, nur die Jahreslänge schwankt (365 oder 366&nbsp;Tage).</li>
+        <li><b>Rechnen in 400-Jahres-Zyklen (<code>era</code>):</b> Nach 400&nbsp;Jahren (<code>DAYS_PER_ERA</code> = <code>400 * 365 + 97</code>&nbsp;Tage) wiederholt
+            sich der Kalender samt allen Schaltjahren exakt. Daher reicht es, das Datum innerhalb eines Zyklus zu
+            bestimmen.</li>
+    </ul>
+    <p>Die Idee, das Jahr im März beginnen zu lassen, stammt von Christian Zeller (1882). Die Rechnung in
+        400-Jahres-Zyklen folgt dem Algorithmus <code>civil_from_days</code> von Howard Hinnant.</p>
+</div>
+
+<p>Die meisten Formeln sind vorgegeben. Ergänzen Sie die drei markierten Stellen:</p>
+<ul>
+    <li><b>Schritt 1:</b> Berechnen Sie aus <code>timestamp</code> die vergangenen Tage <code>days</code> sowie
+        <code>hour</code>, <code>minute</code> und <code>second</code>. Die Konstanten
+        <code>SECONDS_PER_DAY</code> und <code>SECONDS_PER_HOUR</code> sind vorgegeben.</li>
+    <li><b>Schritt 3:</b> <code>shifted</code> zählt die Tage ab dem Beginn eines Zyklus:
+        <code>shifted = 0</code> ist der 1.3.0000, der 1.1.1970 entspricht <code>shifted = DAYS_TO_1970</code> (719468). Berechnen
+        Sie daraus die Anzahl vollständiger Zyklen <code>era</code> und den Tag im Zyklus <code>dayOfEra</code>.</li>
+    <li><b>Schritt 7:</b> <code>monthIndex</code> zählt ab März (0&nbsp;=&nbsp;März, …, 11&nbsp;=&nbsp;Februar).
+        Berechnen Sie daraus <code>month</code> (1&nbsp;=&nbsp;Januar, …, 12&nbsp;=&nbsp;Dezember) und
+        <code>year</code> (<code>400 * era + yearOfEra</code>, wobei Januar und Februar zum Folgejahr gehören).</li>
+</ul>
+
+<p>Zeitstempel:
+    <input type="type" id="args_0" value="1709213862" placeholder="Sekunden" style="width:220px">
+</p>
+
+<p>Erwartete Ausgabe:</p>
+<pre output>Zeitstempel: 1709213862
+Datum: 29.2.2024
+Uhrzeit: 13 Uhr 37 Minuten 42 Sekunden</pre>
+
+<p>Weitere Testwerte:</p>
+<ul>
+    <li><code>0</code> → 1.1.1970, 0:00:00</li>
+    <li><code>951868799</code> → 29.2.2000, 23:59:59</li>
+    <li><code>1735689600</code> → 1.1.2025, 0:00:00</li>
+    <li><code>2147483647</code> (<code>Integer.MAX_VALUE</code>) → 19.1.2038, 3:14:07</li>
+</ul>

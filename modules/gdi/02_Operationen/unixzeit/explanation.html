@@ -1,0 +1,65 @@
+<h3>Erklärung</h3>
+
+<p>Bei <code>int</code>-Werten liefert <code>a / b</code>, wie oft <code>b</code> vollständig in <code>a</code> passt,
+    und <code>a % b</code> den Rest. Mehr braucht das Programm nicht.</p>
+
+<ul>
+    <li>
+        <strong>Schritt 1 – Tage und Uhrzeit:</strong> Die Division durch <code>SECONDS_PER_DAY</code> (<code>24 * 60 * 60</code>) liefert
+        die Tage seit dem 1.1.1970, der Rest die Sekunden seit Mitternacht. Aus letzterem folgen Stunden, Minuten und Sekunden auf dieselbe Weise.
+        <pre code>int days = timestamp / SECONDS_PER_DAY;
+int secondsOfDay = timestamp % SECONDS_PER_DAY;
+int hour = secondsOfDay / SECONDS_PER_HOUR;
+int minute = (secondsOfDay % SECONDS_PER_HOUR) / 60;
+int second = secondsOfDay % 60;</pre>
+    </li>
+    <li>
+        <strong>Schritt 2 – Verschiebung:</strong> <code>shifted</code> = 0 soll dem 1.3.0000 entsprechen.
+        Weil die verschobene Zeitrechnung am 1.3.0000 beginnt, können wir später ausnutzen, dass sich der Kalender alle 400 Jahre exakt wiederholt. D.h. Tag 0 in einerm 400 Jahre Zyklus ist immer der 1. März im 0. Jahr der Ära, Tag 100 immer der 9. Juni im 0. Jahr der Ära, Tag 700 immer der 30. Januar im 1. Jahr der Ära und Tag 1460 ist immer der 29. Februar im 3. Jahr der Ära. 
+        <pre code>int shifted = days + DAYS_TO_1970;</pre>
+    </li>
+    <li>
+        <strong>Schritt 3 – 400-Jahres-Zyklen:</strong> 400 Jahre haben 97 Schalttage, also
+        400&nbsp;·&nbsp;365&nbsp;+&nbsp;97&nbsp;=&nbsp;146097&nbsp;Tage (<code>DAYS_PER_ERA</code>).
+        <pre code>int era = shifted / DAYS_PER_ERA;
+int dayOfEra = shifted % DAYS_PER_ERA;</pre>
+    </li>
+    <li>
+        <strong>Schritt 4 – Jahr im Zyklus:</strong> Hätte jedes Jahr 365&nbsp;Tage, wäre das Jahr einfach
+        <code>dayOfEra / 365</code>. Deshalb werden zuerst die Schalttage gezählt, die bis zu diesem Tag angefallen
+        sind, und abgezogen. Der Schalttag ist immer der letzte Tag eines Jahres ist:
+        <ul>
+            <li><code>leapAdded</code>: Nach je <code>4 * 365</code>&nbsp;Tagen kommt ein Schalttag. Der erste liegt
+                bei <code>dayOfEra = 1460</code> (29.2.0004).</li>
+            <li><code>leapSkipped</code>: Alle 100&nbsp;Jahre (<code>100 * 365 + 24</code>&nbsp;Tage) fällt ein
+                Schalttag aus, z.&nbsp;B. der 29.2.0100.</li>
+            <li><code>leapAtEnd</code>: Das Jahr 400 ist wieder ein Schaltjahr. Sein 29.2. ist der letzte Tag des
+                Zyklus (<code>DAYS_PER_ERA - 1</code>), nur dort ist der Wert 1.</li>
+        </ul>
+        <pre code>int leapDays = leapAdded - leapSkipped + leapAtEnd;
+int yearOfEra = (dayOfEra - leapDays) / 365;</pre>        
+    </li>
+    <li>
+        <strong>Schritt 5 – Tag im Jahr:</strong> Von <code>dayOfEra</code> werden die Tage aller vorherigen Jahre
+        <code>daysBefore</code> abgezogen: 365 pro Jahr, ein Schalttag für jedes 4. Jahr, außer für jedes 100.
+    </li>
+    <li>
+        <strong>Schritt 6 – Monat und Tag:</strong> Ab März wiederholen sich die Monatslängen
+        31,&nbsp;30,&nbsp;31,&nbsp;30,&nbsp;31 alle 5&nbsp;Monate (<code>DAYS_PER_5_MONTHS</code> = 153&nbsp;Tage).
+        <code>firstDayOfMonth = (DAYS_PER_5_MONTHS * monthIndex + 2) / 5</code>
+        liefert den ersten Tag des Monats im Jahr (0, 31, 61, …), <code>(5 * dayOfYear + 2) / DAYS_PER_5_MONTHS</code> kehrt das um. Der
+        Februar steht am Ende, seine Länge spielt keine Rolle.
+    </li>
+    <li>
+        <strong>Schritt 7 – zurück zum gewohnten Kalender:</strong> <code>(monthIndex + 2) % 12 + 1</code> macht aus
+        0–9 die Monate 3–12 und aus 10–11 die Monate 1–2. <code>(monthIndex + 2) / 12</code> ist nur für Januar und
+        Februar 1 und erhöht dann das Jahr, ganz ohne <code>if</code>.
+        <pre code>int month = (monthIndex + 2) % 12 + 1;
+int year = 400 * era + yearOfEra;
+year = year + (monthIndex + 2) / 12;</pre>
+    </li>
+</ul>
+
+<p><b>Jahr-2038-Problem:</b> <code>Integer.MAX_VALUE</code> (2147483647) entspricht dem 19.1.2038, 3:14:07&nbsp;Uhr.
+    Eine Sekunde später läuft ein 32-Bit-Zähler über, deshalb werden Zeitstempel heute als <code>long</code>
+    gespeichert.</p>

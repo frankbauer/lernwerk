@@ -482,6 +482,18 @@ new::before {
     margin-left: 20px;
 }
 
+div.infobox {
+    margin: 12px 0;
+    padding: 8px 14px;
+    border-left: 4px solid var(--color-quote);
+    border-radius: 4px;
+    background-color: var(--color-quote-back);
+}
+
+div.infobox p {
+    margin: 6px 0;
+}
+
 quote {
     display: inline;
     margin: 0;

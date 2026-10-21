@@ -1,0 +1,27 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Ersetzen Sie <code>255.0</code> durch <code>255</code>. Wie verändert sich das Bild, das das Netz sieht? Wird die
+    Form trotzdem erkannt?
+    <hint solution>Durch die Ganzzahldivision werden alle halbhellen Randpixel (<code>100 / 255</code>) zu
+        <code>0</code>, nur die vollen Pixel bleiben <code>1</code>. Die Linien werden dünner. Einfache Formen erkennt
+        das Netz oft noch, aber mit geringerer Sicherheit.</hint>
+</div>
+<div class="colored">
+    Legen Sie die Pixel <b>spaltenweise</b> ab, also mit dem Index <code>s * zeilen + z</code>. Zeichnen Sie eine
+    waagrechte Linie. Was erkennt das Netz?
+    <hint solution>Alle 120 Werte stehen noch im Feld, aber an den falschen Stellen. Das Netz sieht ein verwürfeltes
+        Bild (rechts in der Vorschau) und erkennt meist eine ganz andere Form. Die Reihenfolge muss also genau zu der
+        beim Training passen.</hint>
+</div>
+<div class="colored">
+    Verwenden Sie versehentlich den Index <code>z * zeilen + s</code>. Welche Einträge des Feldes bleiben
+    <code>0.0</code>? Warum fällt der Fehler bei einem quadratischen Bild nicht auf?
+    <hint solution>Mit <code>zeilen = 10</code> überlappen sich die Zeilen: Die ersten beiden Pixel jeder Zeile
+        überschreiben die letzten beiden der vorherigen. Die Einträge <code>102</code> bis <code>119</code> werden nie
+        beschrieben. Bei <code>zeilen == spalten</code> sind beide Formeln gleich.</hint>
+</div>
+<div class="colored">
+    Speichern Sie <code>1.0 - bild[z][s] / 255.0</code> (Farben invertiert). Wie reagiert das Netz?
+    <hint solution>Das Netz hat nur Formen aus Werten nahe <code>1.0</code> auf einem Hintergrund aus <code>0.0</code> gelernt. Ein invertiertes Bild kennt es nicht und
+        rät mehr oder weniger zufällig. Eingaben müssen genauso vorbereitet werden wie die Trainingsdaten.</hint>
+</div>

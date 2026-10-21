@@ -21,7 +21,7 @@ function resolvePath(path) {
 // ungestylte Grund-Design nicht aufblitzt, und die Theme-Stylesheets sowie theme.js (Menü, Fußzeile) und
 // tour.js (Rundgang durch die Übungsseite) nachladen.
 (function loadThemes() {
-    const version = '1.4.5'
+    const version = '1.4.6'
     const base = LW_BASE
     let theme = 'abenteuer'
     try {

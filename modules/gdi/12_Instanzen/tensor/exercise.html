@@ -1,0 +1,16 @@
+<h3>Aufgabe</h3>
+<p class="goal">In dieser Aufgabe schreiben Sie eine Klasse, die ein Feld kapselt, und lernen dabei die wichtigsten
+    Grundbegriffe von Bibliotheken für maschinelles Lernen wie TensorFlow kennen: <b>Tensor</b>, <b>Form</b>,
+    <b>reshape</b> und elementweise Rechenoperationen.</p>
+<p>Ein <b>Tensor</b> ist ein Objekt, das beliebig viele Zahlen speichert, die als Tabelle mit mehreren Dimensionen
+    gelesen werden. Intern liegen alle Werte in einem einfachen Feld <code>double[] daten</code>, zeilenweise
+    hintereinander. Ein zweites Feld <code>int[] form</code> gibt an, wie diese Werte zu lesen sind:</p>
+<pre output>Tabelle            daten                              form
+  0   51  102      {0, 51, 102, 153, 204, 255}        {2, 3}   (2 Zeilen, 3 Spalten)
+153  204  255</pre>
+<p>Im Playground unten ist ein kleines <b>neuronales Netz</b> eingebaut, das gezeichnete Formen erkennt (waagrechte
+    und senkrechte Linie, Kreuz, Plus, Kreis). In TensorFlow.js würde man das gezeichnete Bild so vorbereiten:</p>
+<pre code>tf.tensor2d(bild).reshape([1, 120]).div(255)</pre>
+<p>Schreiben Sie die Klasse <code>Tensor</code> so, dass dieselbe Zeile auch in Java funktioniert. Die Klasse
+    <code>Erkennung</code> testet Ihre Klasse zuerst an einem kleinen Beispiel. Erst wenn alle Tests bestanden sind,
+    erhält das Netz Ihren Tensor und erkennt die gezeichnete Form.</p>

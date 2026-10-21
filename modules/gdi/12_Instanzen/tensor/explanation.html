@@ -1,0 +1,22 @@
+<h3>Erklärung</h3>
+<p>Die Klasse <code>Tensor</code> kapselt ein eindimensionales Feld und merkt sich in <code>form</code>, wie es zu
+    lesen ist. So arbeiten auch TensorFlow, PyTorch und NumPy intern.</p>
+<ul>
+    <li><b>Attribute und Konstruktor:</b> <code>daten</code> und <code>form</code> sind <code>private final</code>.
+        Ein Tensor wird nach dem Erzeugen nie verändert. Jede Operation liefert stattdessen einen neuen Tensor.</li>
+    <li><b>tensor2d:</b> Eine statische Methode, die ein Objekt erzeugt (eine sogenannte Fabrikmethode). Die
+        verschachtelten Schleifen kopieren <code>werte[z][s]</code> an die Stelle <code>z * spalten + s</code>.
+        Dabei wird jeder <code>int</code> automatisch in einen <code>double</code> umgewandelt.</li>
+    <li><b>get:</b> Dieselbe Formel rückwärts. <code>form[1]</code> ist die Anzahl der Spalten, also die Länge einer
+        Zeile in <code>daten</code>.</li>
+    <li><b>reshape:</b> Die Werte bleiben, nur die Form ändert sich. Weil kein Tensor seine Daten verändert, dürfen
+        sich der alte und der neue Tensor <b>dasselbe Feld</b> teilen: <code>new Tensor(this.daten, neueForm)</code>
+        kopiert nur die Referenz. Das macht <code>reshape</code> auch bei Millionen von Werten schnell.</li>
+    <li><b>div:</b> Hier entstehen neue Werte, also braucht der neue Tensor ein <b>neues Feld</b>. Würde
+        <code>div</code> die Werte in <code>this.daten</code> überschreiben, änderten sich auch alle Tensoren, die
+        sich das Feld teilen.</li>
+</ul>
+<p>Die Zeile <code>Tensor.tensor2d(bild).reshape(new int[] {1, 120}).div(255)</code> funktioniert, weil jede Methode
+    wieder einen <code>Tensor</code> zurückgibt, auf dem die nächste Methode aufgerufen wird. Die Form
+    <code>{1, 120}</code> bedeutet: <b>ein</b> Bild mit 120 Werten. Netze verarbeiten meist viele Bilder auf einmal,
+    deshalb ist die erste Dimension die Anzahl der Bilder.</p>

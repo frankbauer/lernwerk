@@ -71,10 +71,12 @@
         { "module": "gdi", "id": "02_Operationen/beispiel_increment" },
         { "module": "gdi", "id": "02_Operationen/sandkasten_mod" },
         { "module": "gdi", "id": "02_Operationen/addition" },
+        { "module": "gdi", "id": "02_Operationen/add_sub_mul" },
         { "module": "gdi", "id": "02_Operationen/rechteck" },
         { "module": "gdi", "id": "02_Operationen/calculator" },
         { "module": "gdi", "id": "02_Operationen/ausgabe" },
-        { "module": "gdi", "id": "02_Operationen/ausdruecke" }
+        { "module": "gdi", "id": "02_Operationen/ausdruecke" },
+        { "module": "gdi", "id": "02_Operationen/unixzeit" }
       ]
     },
     {
@@ -87,7 +89,6 @@
         { "module": "gdi", "id": "03_Datentypen/sandkasten_type" },
         { "module": "gdi", "id": "03_Datentypen/beispiel_cast" },
         { "module": "gdi", "id": "03_Datentypen/sandkasten_index" },
-        { "module": "gdi", "id": "03_Datentypen/add_sub_mul" },
         { "module": "gdi", "id": "03_Datentypen/average" },
         { "module": "gdi", "id": "03_Datentypen/temperatur" },
         { "module": "gdi", "id": "03_Datentypen/ausdruecke" },
@@ -235,7 +236,8 @@
       ],
       "exercises": [
         { "module": "gdi", "id": "11_Arrays_nDim/sandkasten_matrix" },
-        { "module": "gdi", "id": "11_Arrays_nDim/kinosaal" }
+        { "module": "gdi", "id": "11_Arrays_nDim/kinosaal" },
+        { "module": "gdi", "id": "11_Arrays_nDim/pixelerkennung" }
       ]
     },
     {
@@ -254,7 +256,8 @@
         { "module": "gdi", "id": "12_Instanzen/tierwesen" },
         { "module": "gdi", "id": "12_Instanzen/spielbrett" },
         { "module": "gdi", "id": "12_Instanzen/internetverbindung" },
-        { "module": "gdi", "id": "12_Instanzen/gerade" }
+        { "module": "gdi", "id": "12_Instanzen/gerade" },
+        { "module": "gdi", "id": "12_Instanzen/tensor" }
       ]
     },
     {

@@ -1,6 +1,6 @@
 {
   "_comment": "Einstellungen der Abenteuerkarte (karte.html). houses.<Kapitel>: bis zu drei Übungs-IDs (z.B. \"gdi/00_einfuehrung/table\", siehe data/curriculum.json) für die Häuser am Weg, in dieser Reihenfolge; nicht sichtbare (Entwürfe ohne ?showDrafts) werden übersprungen und mit den ersten übrigen Übungen des Kapitels aufgefüllt. Alle übrigen Übungen und Tools stehen im Dorf. villages.<Kapitel> / castles.<Kapitel>: Namen der Dörfer (übrige Übungen) und Burgen (Vorlesungsbeispiele, Sandkästen und Folien). lectureChapters (Vorlesungsnummer der GdI-Webseite -> Kapitel) und homeworkChapters (Nummer der Hausaufgabe -> Kapitel, deren Insel den Vulkan bekommt) steuern tools/karte-kursdaten.mjs, das lectures und homework aus den Semesterdaten der Webseite erzeugt. closedFrom: Kapitelnummer der ersten gesperrten Insel; ab ihr fährt kein Schiff mehr, die Inseln stehen aber in der Liste (null: alle Inseln offen).",
-  "closedFrom": 3,
+  "closedFrom": 4,
   "houses": {
     "0": [
       "gdi/00_einfuehrung/table",
@@ -11,14 +11,14 @@
       "gdi/01_Variablen/swap"
     ],
     "2": [
-      "gdi/02_Operationen/addition",
-      "gdi/02_Operationen/rechteck",
-      "gdi/02_Operationen/calculator"
+      "gdi/02_Operationen/calculator",
+      "gdi/02_Operationen/add_sub_mul",
+      "gdi/02_Operationen/rechteck"      
     ],
     "3": [
-      "gdi/03_Datentypen/add_sub_mul",
-      "gdi/03_Datentypen/average",
-      "gdi/03_Datentypen/temperatur"
+      "gdi/03_Datentypen/temperatur",
+      "gdi/03_Datentypen/ects",
+      "gdi/03_Datentypen/ausdruecke"      
     ],
     "4": [
       "gdi/04_Methodenaufrufe/tank_static_aufruf",
@@ -391,7 +391,7 @@
       "start": "2026-10-16T05:00",
       "due": "2026-10-26T05:00"
     },
-    "2": {
+    "3": {
       "nr": 2,
       "topic": "Variablen & Operatoren",
       "link": "https://www.studon.fau.de/studon/go/fold/7135896",

@@ -15,13 +15,15 @@ public class ArithmeticOperations {
         int sum = a + b;
         System.out.println("Summe: " + sum);
 
-        // Subtraktion der zweiten von der ersten Ganzzahl und Ausgabe des Ergebnisses
+        // Subtraktion der zweiten von der ersten Ganzzahl 
+        // und Ausgabe des Ergebnisses
         int difference = a - b;
         System.out.println("Differenz: " + difference);
 
-        // Division der ersten Ganzzahl durch die zweite und Ausgabe des Ergebnisses
-        // Beachte: Hier wird eine Ganzzahldivision durchgeführt, daher wird das
-        //          Ergebnis automatisch abgerundet
+        // Division der ersten Ganzzahl durch die zweite und Ausgabe 
+        // des Ergebnisses
+        // Beachte: Hier wird eine Ganzzahldivision durchgeführt, daher 
+        //          wird das Ergebnis automatisch abgerundet
         int quotient = a / b;
         System.out.println("Quotient: " + quotient);
 //#START STATIC

@@ -10,6 +10,7 @@ public class Calculator {
         ECTS = 7.5f;
         float load = ECTS * hoursPerECTS / weeks;
 //#START STATIC
-        System.out.println("Bei " + ECTS + " ECTS fallen " + load + " Stunden pro Woche an.");
+        System.out.print("Bei " + ECTS + " ECTS fallen ");
+        System.out.println(load + " Stunden pro Woche an.");
     }
 }

@@ -323,6 +323,24 @@
       "image": "img/previews/02_Operationen-addition.webp"
     },
     {
+      "id": "02_Operationen/add_sub_mul",
+      "title": "Addition, Subtraktion und Division",
+      "description": "Verknüpfe zwei Ganzzahlen mit verschiedenen Rechenoperationen und gib alle Ergebnisse aus.",
+      "link": "02_Operationen/add_sub_mul",
+      "type": "exercise",
+      "difficulty": 1,
+      "tags": [
+        "operationen",
+        "variablen",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": false,
+      "image": "img/previews/02_Operationen-add_sub_mul.webp"
+    },
+    {
       "id": "02_Operationen/rechteck",
       "title": "Rechtecksfläche",
       "description": "Berechne Flächeninhalt und Umfang eines Rechtecks aus seiner Breite und Höhe.",
@@ -354,7 +372,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/02_Operationen-calculator.webp"
     },
     {
@@ -372,7 +390,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/02_Operationen-ausgabe.webp"
     },
     {
@@ -390,8 +408,26 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/02_Operationen-ausdruecke.webp"
+    },
+    {
+      "id": "02_Operationen/unixzeit",
+      "title": "Unix-Zeitstempel",
+      "description": "Rechne einen Unix-Zeitstempel nur mit / und % in Datum und Uhrzeit um, Schaltjahre inklusive.",
+      "link": "02_Operationen/unixzeit",
+      "type": "exercise",
+      "difficulty": 5,
+      "tags": [
+        "operationen",
+        "variablen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": false,
+      "isNew": true,
+      "isDraft": false,
+      "image": "img/previews/02_Operationen-unixzeit.webp"
     },
     {
       "id": "03_Datentypen/sandkasten_type",
@@ -446,24 +482,6 @@
       "image": "img/previews/03_Datentypen-sandkasten_index.webp"
     },
     {
-      "id": "03_Datentypen/add_sub_mul",
-      "title": "Addition, Subtraktion und Division",
-      "description": "Verknüpfe zwei Ganzzahlen mit verschiedenen Rechenoperationen und gib alle Ergebnisse aus.",
-      "link": "03_Datentypen/add_sub_mul",
-      "type": "exercise",
-      "difficulty": 1,
-      "tags": [
-        "datentypen",
-        "operationen",
-        "variablen"
-      ],
-      "hasSolution": true,
-      "hasExplanation": true,
-      "hasExperiments": true,
-      "isNew": false,
-      "image": "img/previews/03_Datentypen-add_sub_mul.webp"
-    },
-    {
       "id": "03_Datentypen/average",
       "title": "Durchschnitt",
       "description": "Berechne den Durchschnitt zweier Fließkommazahlen und gib ihn aus.",
@@ -513,7 +531,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/03_Datentypen-ausdruecke.webp"
     },
     {
@@ -525,7 +543,8 @@
       "difficulty": 2,
       "tags": [
         "datentypen",
-        "operationen"
+        "operationen",
+        "bedingungen"
       ],
       "hasSolution": true,
       "hasExplanation": true,
@@ -568,7 +587,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/03_Datentypen-ects.webp"
     },
     {
@@ -1813,6 +1832,26 @@
       "image": "img/previews/11_Arrays_nDim-kinosaal.webp"
     },
     {
+      "id": "11_Arrays_nDim/pixelerkennung",
+      "title": "Pixel-Erkennung",
+      "description": "Klopfe ein gezeichnetes Bild zeilenweise zu einem Feld flach, damit ein neuronales Netz die Form erkennt.",
+      "link": "11_Arrays_nDim/pixelerkennung",
+      "type": "exercise",
+      "difficulty": 3,
+      "tags": [
+        "arrays-ndim",
+        "arrays",
+        "schleifen",
+        "datentypen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/11_Arrays_nDim-pixelerkennung.webp"
+    },
+    {
       "id": "12_Instanzen/beispiel_wald",
       "title": "Wald on Stage",
       "description": "Erzeuge mehrere Bäume und verändere ihr Aussehen über ein Instanzattribut.",
@@ -1972,6 +2011,29 @@
       "isNew": true,
       "isDraft": true,
       "image": "img/previews/12_Instanzen-gerade.webp"
+    },
+    {
+      "id": "12_Instanzen/tensor",
+      "title": "Ein eigener Tensor",
+      "description": "Schreibe eine Klasse Tensor mit tensor2d, reshape und div und bereite damit ein Bild für ein neuronales Netz vor.",
+      "link": "12_Instanzen/tensor",
+      "type": "exercise",
+      "difficulty": 4,
+      "tags": [
+        "klassen",
+        "instanzattribute",
+        "instanzmethoden",
+        "klassenmethoden",
+        "arrays",
+        "arrays-ndim",
+        "schleifen"
+      ],
+      "hasSolution": true,
+      "hasExplanation": true,
+      "hasExperiments": true,
+      "isNew": true,
+      "isDraft": true,
+      "image": "img/previews/12_Instanzen-tensor.webp"
     },
     {
       "id": "13_Referenzen/sandkasten_deskrun",

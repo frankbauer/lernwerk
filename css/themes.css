@@ -271,6 +271,22 @@ html[data-lw-theme] quote {
     color: inherit;
 }
 
+html[data-lw-theme] div.infobox {
+    margin: 12px 0;
+    padding: 10px 16px;
+    border-left: 4px solid var(--lw-accent);
+    border-radius: var(--lw-radius-sm);
+    background: var(--lw-code-bg);
+}
+
+html[data-lw-theme] div.infobox p {
+    margin: 6px 0;
+}
+
+html[data-lw-theme] div.infobox ul {
+    margin: 4px 0;
+}
+
 /* --- Experimente --- */
 html[data-lw-theme] div.experiment {
     counter-reset: lw-exp;

@@ -1,0 +1,35 @@
+<h3>Experimente</h3>
+<div class="colored">
+    Ändern Sie <code>div</code> so, dass die Werte direkt in <code>this.daten</code> geteilt werden und
+    <code>this</code> zurückgegeben wird. Welcher Test schlägt fehl?
+    <hint solution>Der Test „Daten des ursprünglichen Tensors“: Der Tensor <code>t</code> enthält nach
+        <code>t.div(255)</code> plötzlich die Werte <code>0.0</code> bis <code>1.0</code>. Wer noch eine Referenz auf
+        <code>t</code> (oder auf einen Tensor mit demselben Feld) hat, sieht die veränderten Werte.</hint>
+</div>
+<div class="colored">
+    Ändern Sie in <code>Erkennung</code> die Form zu <code>{120, 1}</code>. Was passiert?
+    <hint solution><code>reshape</code> funktioniert, denn 120 Werte passen auch in 120 x 1. Die Werte im Feld sind
+        dieselben, und das Netz erkennt die Form trotzdem. Die Ausgabe weist aber darauf hin, dass das Netz die Form
+        <code>{1, 120}</code> erwartet. In TensorFlow würde <code>predict</code> hier mit einer Fehlermeldung
+        abbrechen.</hint>
+</div>
+<div class="colored">
+    Ergänzen Sie eine Methode <code>Tensor mul(double wert)</code> und eine Methode <code>Tensor sub(double wert)</code>.
+    Bereiten Sie das Bild damit so vor, dass die Werte zwischen <code>-1.0</code> und <code>1.0</code> liegen.
+    <hint solution>Mit <code>.div(255).mul(2).sub(1)</code> wird aus <code>0</code> der Wert <code>-1.0</code> und aus
+        <code>255</code> der Wert <code>1.0</code>. Das Netz wurde aber mit Werten von <code>0.0</code> bis
+        <code>1.0</code> trainiert und erkennt die Formen deshalb schlechter.</hint>
+</div>
+<div class="colored">
+    Schreiben Sie eine Methode <code>int anzahl()</code>, die die Anzahl der Werte allein aus <code>form</code>
+    berechnet, und verwenden Sie sie in <code>reshape</code>.
+    <hint solution>
+        <pre code>public int anzahl() {
+    int produkt = 1;
+    for (int i = 0; i < this.form.length; i++) {
+        produkt = produkt * this.form[i];
+    }
+    return produkt;
+}</pre>
+    </hint>
+</div>
