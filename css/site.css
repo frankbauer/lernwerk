@@ -125,7 +125,7 @@ html[data-lw-theme="abenteuer"] .lw-footer-inner {
     border-top-width: 2px;
 }
 
-/* --- Rechtstexte (impressum.html, datenschutz.html, barrierefreiheit.html) --- */
+/* --- Rechtstexte (impressum.html, datenschutz.html, barrierefreiheit.html, ki-hinweis.html) --- */
 /* editor.css setzt h2 mit !important (Abstände, Größe, Zeilenhöhe) */
 .lw-legal h2 {
     margin: 0 0 12px !important;
@@ -196,6 +196,83 @@ html[data-lw-theme="abenteuer"] .lw-footer-inner {
 .lw-legal .lw-note {
     color: var(--lw-muted, #595959);
     font-size: 0.9em;
+}
+
+/* Farbige Kopfzeilen der Boxen (ki-hinweis.html): .lw-tone-* färbt die Überschrift (h3:first-child) in den
+   Themes, die Boxen nach Typ einfärben (Abenteuer: Kopfband, Karten und Klassisch: Etikett) */
+.lw-tone-yellow { --lw-tone-head: #ffd23f; --lw-tone-soft: #fff4d6; --lw-tone-ink: #8a5a00; }
+.lw-tone-blue { --lw-tone-head: #7fd6ff; --lw-tone-soft: #e0f2fe; --lw-tone-ink: #0369a1; }
+.lw-tone-purple { --lw-tone-head: #b69cff; --lw-tone-soft: #f1e8ff; --lw-tone-ink: #6b21a8; }
+.lw-tone-green { --lw-tone-head: #8fe3a8; --lw-tone-soft: #dcfce7; --lw-tone-ink: #166534; }
+.lw-tone-coral { --lw-tone-head: #ffa58c; --lw-tone-soft: #ffe4dc; --lw-tone-ink: #a8381c; }
+
+html[data-lw-theme="abenteuer"] div.boxed[class*="lw-tone-"]>h3:first-child {
+    background: var(--lw-tone-head);
+}
+
+html[data-lw-theme="karten"] div.boxed[class*="lw-tone-"]>h3 {
+    background: var(--lw-tone-soft);
+    color: var(--lw-tone-ink);
+}
+
+html[data-lw-theme="klassisch"] div.boxed[class*="lw-tone-"] {
+    --type: var(--lw-tone-ink);
+    --type-soft: var(--lw-tone-soft);
+    --type-line: color-mix(in srgb, var(--lw-tone-ink) 30%, transparent);
+}
+
+/* KI-Kennzeichnung <lw-ai-badge> (theme.js): Highlightfarbe für menschliche Beiträge je Theme (in einigen Themes
+   ist --lw-accent schwarz). --lw-ai-hl-line ist die Kontur menschlicher Beiträge: auf hellem Grund schwarz,
+   damit z.B. Gelb auf Weiß sichtbar bleibt; in dunklen Themes keine, sie würde den Kontrast nur schwächen. */
+html[data-lw-theme="klassisch"] { --lw-ai-hl: #9a3f28; --lw-ai-hl-fg: #ffffff; }
+html[data-lw-theme="heft"] { --lw-ai-hl: #ffe27a; --lw-ai-hl-fg: #2d2a24; }
+html[data-lw-theme="karten"] { --lw-ai-hl: #f5b400; --lw-ai-hl-fg: #1d2433; }
+html[data-lw-theme="terminal"] { --lw-ai-hl: #34d399; --lw-ai-hl-fg: #04130d; --lw-ai-hl-line: transparent; }
+html[data-lw-theme="abenteuer"] { --lw-ai-hl: #ffd23f; --lw-ai-hl-fg: #111111; }
+html[data-lw-theme="raster"] { --lw-ai-hl: #e30613; --lw-ai-hl-fg: #ffffff; }
+html[data-lw-theme="tafel"] { --lw-ai-hl: #f7d774; --lw-ai-hl-fg: #1c2b23; --lw-ai-hl-line: transparent; }
+html[data-lw-theme="shadows"] { --lw-ai-hl: #a78bfa; --lw-ai-hl-fg: #160e2b; --lw-ai-hl-line: transparent; }
+html[data-lw-theme="prisma"] { --lw-ai-hl: #8b5cf6; --lw-ai-hl-fg: #ffffff; }
+html[data-lw-theme="koralle"] { --lw-ai-hl: #ff6b6b; --lw-ai-hl-fg: #1c1917; }
+
+/* KI-Kennzeichnung direkt nach der Überschrift einer Box: rechts in der Kopfzeile (die Höhe setzt theme.js);
+   beim Überfahren entfaltet sie sich nach links */
+lw-ai-badge[data-heading] {
+    position: absolute;
+    top: 0;
+    right: var(--lw-ai-heading-right, 14px);
+    z-index: 5;
+}
+
+html[data-lw-theme="raster"] {
+    --lw-ai-heading-right: 0px;
+}
+
+/* KI-Kennzeichnung als letztes Element einer Box ohne Überschrift davor: unten rechts */
+lw-ai-badge[data-foot] {
+    display: block;
+    width: fit-content;
+    margin: 8px 0 0 auto;
+}
+
+.lw-legal .lw-ai-levels {
+    display: block;
+}
+
+/* ki-hinweis.html: Plakette über ihrer Erklärung; Ziel der Plaketten-Links (#ki-...) hervorheben */
+.lw-legal .lw-ai-levels dt {
+    margin: 16px 0 6px;
+    scroll-margin-top: 24px;
+}
+
+.lw-legal .lw-ai-levels dt:first-child {
+    margin-top: 4px;
+}
+
+.lw-legal .lw-ai-levels dt:target+dd {
+    margin-left: -12px;
+    padding-left: 9px;
+    border-left: 3px solid var(--lw-accent, #1c63c7);
 }
 
 .lw-legal .lw-stand {

@@ -131,11 +131,14 @@ div.boxed> :last-child {
 }
 
 div.boxed p:nth-child(2),
-div.boxed div:nth-child(2) {
+div.boxed lw-ai-badge:nth-child(2)+p,
+div.boxed div:nth-child(2),
+div.boxed lw-ai-badge:nth-child(2)+div {
     font-style: italic;
 }
 
-div.explain p:nth-child(2) {
+div.explain p:nth-child(2),
+div.explain lw-ai-badge:nth-child(2)+p {
     font-style: normal;
 }
 
@@ -153,7 +156,8 @@ div.experiment>div {
     font-weight: 400;
 }
 
-div.experiment>div:nth-child(2) {
+div.experiment>div:nth-child(2),
+div.experiment>h3:first-child+lw-ai-badge+div {
     margin-top: 20px !important;
 }
 
@@ -492,6 +496,54 @@ div.infobox {
 
 div.infobox p {
     margin: 6px 0;
+}
+
+/* Hinweis-Box wie die noteBox der Folien: <p class="hinweis"> oder <div class="hinweis">.
+   Das Etikett kommt per ::before, ein anderer Text ist über data-label="…" möglich.
+   Farben, Neigung und Schatten setzen die Themes über --lw-note-* (css/themes.css, Abschnitt 4). */
+.hinweis {
+    display: flow-root;
+    margin: 18px 12px;
+    padding: 10px 18px;
+    border: var(--lw-note-border, none);
+    border-radius: var(--lw-note-radius, 4px);
+    background: var(--lw-note-bg, #3f6d93);
+    color: var(--lw-note-fg, #ffffff);
+    box-shadow: var(--lw-note-shadow, 3px 5px 14px rgba(0, 0, 0, 0.25));
+    transform: rotate(var(--lw-note-rotate, -0.6deg));
+}
+
+.hinweis::before {
+    content: "Hinweis";
+    float: left;
+    margin: 1px 10px 0 -6px;
+    padding: 1px 10px;
+    border: var(--lw-note-tag-border, none);
+    border-radius: var(--lw-note-tag-radius, 3px);
+    background: var(--lw-note-tag-bg, #222222);
+    color: var(--lw-note-tag-fg, #ffffff);
+    box-shadow: var(--lw-note-tag-shadow, none);
+    font: var(--lw-note-tag-weight, 700) 0.85em/1.6 var(--lw-note-tag-font, inherit);
+    letter-spacing: var(--lw-note-tag-tracking, normal);
+    text-transform: var(--lw-note-tag-case, none);
+    transform: rotate(var(--lw-note-tag-rotate, 2deg));
+}
+
+.hinweis[data-label]::before {
+    content: attr(data-label);
+}
+
+.hinweis> :first-child {
+    margin-top: 0;
+}
+
+.hinweis> :last-child {
+    margin-bottom: 0;
+}
+
+.hinweis a {
+    color: inherit;
+    text-decoration: underline;
 }
 
 quote {

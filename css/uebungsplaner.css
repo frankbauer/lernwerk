@@ -2019,7 +2019,8 @@ tr.is-done .c-title a {
     pointer-events: none;
 }
 
-.lw-burst > i {
+.lw-burst > i,
+.lw-burst > img {
     position: absolute;
     left: 0;
     top: 0;

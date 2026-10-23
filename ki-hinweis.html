@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Einsatz von KI – Lernwerk</title>
+    <link rel="icon" href="./img/brand/GdI_logo.jpg">
+    <link rel="stylesheet" href="./css/editor.css?v=1.0.4">
+    <link rel="stylesheet" href="./js/codeblocks-js/fonts/geist.css?v=1.4.0">
+    <link rel="stylesheet" href="./fonts/caveat/caveat.css?v=1.0.0">
+    <link rel="stylesheet" href="./fonts/grenze-gotisch/grenze-gotisch.css?v=1.0.0">
+    <link rel="stylesheet" href="./css/theme-menu.css?v=1.4.5">
+    <link rel="stylesheet" href="./css/themes.css?v=1.4.5">
+    <link rel="stylesheet" href="./css/site.css?v=1.4.3">
+    <!-- setzt das gespeicherte Theme sofort (html[data-lw-theme]), erzeugt Menü, Sprunglink und Fußzeile
+         und definiert die KI-Kennzeichnung <lw-ai-badge> -->
+    <script src="./theme.js?v=1.4.8"></script>
+</head>
+
+<body>
+    <div class="topbar">
+        <h1>Einsatz von KI</h1>
+        <a href="./uebersicht.html" class="backlink">Zurück zur Übersicht</a>
+    </div>
+    <div id="content">
+        <div class="boxed lw-legal">
+            <h3 id="ueberblick" aria-level="2">Auf einen Blick</h3>
+            <p>
+                Das Lernwerk entsteht am <b>Lehrstuhl für Graphische Datenverarbeitung</b> als Begleitmaterial zur Vorlesung Grundlagen der Informatik. 
+                Bei einem Teil der Texte und Bilder setzen wir generative KI ein. 
+                Hier beschreiben wir, wie wir dabei vorgehen, warum wir das tun und wie wir KI-Inhalte kennzeichnen.
+            </p>
+            <p>
+                <strong>Nicht alle Inhalte sind mit KI entstanden.</strong> Jede Aufgabenstellung, Erklärung, Experiment und Klassenbeschreibung trägt eine <a href="#kennzeichnung">Kennzeichnung</a>, die genau angibt, welcher Teil von Menschen und welcher von der KI stammt, auch wenn ein Inhalt ganz von Menschen stammt.
+            </p>
+        </div>
+
+        <div class="boxed lw-legal lw-tone-blue">
+            <h3 id="texte" aria-level="2">Texte: Die Idee kommt von Menschen</h3>
+            <p>
+                Am Anfang steht immer eine menschliche Idee: Lehrende legen fest, welches Konzept eine Übung
+                vermitteln soll, wie die Aufgabe aufgebaut ist und worauf eine Erklärung eingehen muss. Eine KI
+                formuliert daraus den Text, etwa eine Aufgabenstellung, eine Erklärung zur Lösung oder die
+                Beschreibung einer Klasse.
+            </p>
+            <p>Anschließend lesen Lehrende diese Texte Korrektur und prüfen sie fachlich. Dabei achten wir darauf,
+                dass</p>
+            <ul>
+                <li>die Inhalte fachlich korrekt sind und zur gestellten Aufgabe und dem Beispielcode der Übung passen und</li>
+                <li>Begriffe und Formulierungen denen der Vorlesung entsprechen.</li>
+            </ul>
+            <p>
+                Was dieser Prüfung nicht standhält, wird überarbeitet oder neu geschrieben. Die Verantwortung für
+                alle Inhalte liegt bei uns, nicht bei der KI. Sollte trotzdem ein Fehler durchgerutscht sein, freuen
+                wir uns über einen Hinweis an
+                <a href="mailto:cs9@fau.de?subject=Fehler%20im%20Lernwerk">cs9@fau.de</a>.
+            </p>
+        </div>
+
+        <div class="boxed lw-legal lw-tone-green">
+            <h3 id="nachhaltigkeit" aria-level="2">Nachhaltigkeit</h3>
+            <p>
+                Generative KI verbraucht bei jeder Anfrage Ressourcen wie Strom, Rechenleistung und Kühlwasser. Mit diesen Ressourcen wollen wir sparsam umgehen, deswegen setzen wir KI nur dort ein, wo sie einen echten Mehrwert bietet und versuchen auf Desktop KI-Systeme zurückzugreifen wo immer dies möglich ist.
+            </p>
+            <p>
+                Gleichzeitig beobachten wir, dass sich viele Studierende Inhalte der Vorlesung und Lösungen der
+                Übungen von einer KI erklären lassen. Stellen tausende Studierende dieselbe Frage einzeln,
+                entsteht der Aufwand tausendfach. Außerdem fällt jede Antwort etwas anders aus: ungeprüft und nicht unbedingt in der Sprache der Vorlesung.
+            </p>
+            <p>
+                Erstellen wir eine diese Erklärung dagegen selbst oder mit KI, prüfen sie und stellen sie dann allen zur Verfügung, fällt der Aufwand nur ein einziges Mal an.
+            </p>
+        </div>
+
+        <div class="boxed lw-legal lw-tone-purple">
+            <h3 id="kennzeichnung" aria-level="2">Kennzeichnung</h3>
+            <p>
+                Jede Aufgabenstellung, Erklärung, Experiment und Klassenbeschreibung trägt eine Plakette wie
+                <lw-ai-badge idea="human" written="ai" proofreading="human" compact></lw-ai-badge>.
+                Das gilt auch für Inhalte, die vollständig von Menschen stammen: So ist die Kennzeichnung überall
+                selbstverständlich, und rein menschliche Inhalte sind genauso leicht zu erkennen. Jede Plakette ist mit
+                einer Erklärung aus der folgenden Liste verlinkt.
+            </p>
+            <p>So lesen sich die Plaketten:</p>
+            <ul class="lw-ai-legend">
+                <li>
+                    Der große Kreis zeigt, worum es geht: <lw-ai-symbol kind="text" decorative></lw-ai-symbol> Text,
+                    <lw-ai-symbol kind="code" decorative></lw-ai-symbol> Code oder <lw-ai-symbol kind="image" decorative></lw-ai-symbol> Bild.
+                </li>
+                <li>
+                    Die drei kleinen Kreise stehen für die Beiträge: die <strong>Idee</strong> (was der Inhalt
+                    vermitteln soll und wie er aufgebaut ist), die <strong>Umsetzung</strong> (wer den Text, den Code
+                    oder das Bild erstellt hat) und die <strong>Prüfung</strong> (fachliche Kontrolle und Abgleich mit
+                    der Vorlesung) bzw. die <strong>Korrektur</strong> (Rechtschreibung und Ausdruck).
+                </li>
+                <li>
+                    <lw-ai-symbol kind="human" decorative></lw-ai-symbol> Mensch,
+                    <lw-ai-symbol kind="ai" decorative></lw-ai-symbol> KI,
+                    <lw-ai-symbol kind="none" decorative></lw-ai-symbol> nicht erfolgt,
+                    <lw-ai-symbol kind="na" decorative></lw-ai-symbol> entfällt (keine eigene Idee nötig).
+                </li>
+                <li>
+                    Beim Überfahren mit der Maus oder beim Ansteuern mit der Tastatur zeigt die Plakette ihre
+                    Aufschlüsselung. Screenreader lesen sie zusammen mit der Erklärung vor.
+                </li>
+            </ul>
+            <dl class="lw-ai-levels">
+                <dt id="ki-text-geprueft"><lw-ai-badge idea="human" written="ai" proofreading="human"></lw-ai-badge></dt>
+                <dd>
+                    Der Regelfall im Lernwerk. Lehrende haben Inhalt und Aufbau vorgegeben, eine KI hat den Text, den
+                    Code oder das Bild erstellt. Anschließend haben Lehrende das Ergebnis fachlich geprüft,
+                    korrigiert und an die Begriffe der Vorlesung angepasst.
+                </dd>
+                <dt id="ki-korrektur"><lw-ai-badge written="human" spellchecking="ai"></lw-ai-badge></dt>
+                <dd>
+                    Von Menschen erstellt. Eine KI hat nur korrigiert, bei Texten etwa Rechtschreibung, Grammatik und
+                    einzelne Formulierungen. Inhalt und Aufbau sind unverändert.
+                </dd>
+                <dt id="ki-text"><lw-ai-badge idea="human" written="ai" proofreading="none"></lw-ai-badge></dt>
+                <dd>
+                    Lehrende haben Inhalt und Aufbau vorgegeben, eine KI hat die Umsetzung erstellt. Die Prüfung durch
+                    Menschen steht noch aus; der Inhalt kann daher Fehler oder Begriffe enthalten, die von der
+                    Vorlesung abweichen.
+                </dd>
+                <dt id="ki-generiert-geprueft"><lw-ai-badge idea="ai" written="ai" proofreading="human"></lw-ai-badge></dt>
+                <dd>
+                    Idee und Umsetzung stammen von einer KI. Lehrende haben das Ergebnis anschließend fachlich
+                    geprüft und an die Begriffe der Vorlesung angepasst.
+                </dd>
+                <dt id="ki-generiert"><lw-ai-badge idea="ai" written="ai" proofreading="none"></lw-ai-badge></dt>
+                <dd>
+                    Idee und Umsetzung stammen vollständig von einer KI, ohne Vorgabe oder Prüfung durch Menschen.
+                </dd>
+                <dt id="ki-beschreibung-geprueft"><lw-ai-badge idea="none" written="ai" proofreading="human"></lw-ai-badge></dt>
+                <dd>
+                    Für Inhalte, die nur Vorhandenes beschreiben, etwa eine Klassenbeschreibung zum Code einer Übung.
+                    Eine eigene Idee ist dafür nicht nötig. Eine KI hat den Text formuliert, Lehrende haben ihn
+                    anschließend mit dem Code abgeglichen und fachlich geprüft.
+                </dd>
+                <dt id="ki-beschreibung"><lw-ai-badge idea="none" written="ai" proofreading="none"></lw-ai-badge></dt>
+                <dd>
+                    Wie oben beschreibt der Inhalt nur Vorhandenes und wurde von einer KI formuliert. Die Prüfung durch
+                    Menschen steht noch aus.
+                </dd>
+                <dt id="ohne-ki"><lw-ai-badge written="human"></lw-ai-badge></dt>
+                <dd>
+                    Von Menschen erstellt, ohne Beteiligung einer KI.
+                </dd>
+            </dl>
+        </div>
+
+        <div class="boxed lw-legal lw-tone-coral">
+            <h3 id="bilder" aria-level="2">Bilder</h3>
+            <p>
+                Für Grafiken, Spielfiguren und Szenen verwenden wir nach Möglichkeit Material, das von Menschen
+                gestaltet wurde, entweder selbst erstellt oder lizenziert.
+            </p>
+            <p>
+                Gleichzeitig soll das Lernwerk anschaulich sein: Viele Übungen leben von Szenen, Figuren und
+                Bildern, an denen sich das Ergebnis eines Programms direkt ablesen lässt. Diese Menge an visuellem
+                Material können wir mit unseren Mitteln nicht vollständig von Menschen gestalten lassen. Einen Teil
+                der Bilder erstellen oder bearbeiten wir deshalb mit generativer KI.
+            </p>
+        </div>
+
+        <div class="boxed lw-legal lw-tone-yellow">
+            <h3 id="diese-seite" aria-level="2">Und ja …</h3>
+            <p>
+                … auch diese Seite hat ein Mensch erdacht und eine KI geschrieben.
+            </p>
+            <p><lw-ai-badge idea="human" written="ai" proofreading="human"></lw-ai-badge></p>
+        </div>
+    </div>
+</body>
+
+</html>

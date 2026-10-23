@@ -157,7 +157,9 @@ html[data-lw-theme] div.boxed ol {
 }
 
 html[data-lw-theme] div.boxed p:nth-child(2),
-html[data-lw-theme] div.boxed div:nth-child(2) {
+html[data-lw-theme] div.boxed lw-ai-badge:nth-child(2)+p,
+html[data-lw-theme] div.boxed div:nth-child(2),
+html[data-lw-theme] div.boxed lw-ai-badge:nth-child(2)+div {
     font-style: normal;
 }
 
@@ -184,7 +186,8 @@ html[data-lw-theme] div.boxed li::marker {
     color: var(--lw-muted);
 }
 
-html[data-lw-theme] div.boxed>h3+p {
+html[data-lw-theme] div.boxed>h3+p,
+html[data-lw-theme] div.boxed>h3+lw-ai-badge+p {
     font-size: 1.06em;
 }
 
@@ -304,7 +307,8 @@ html[data-lw-theme] div.experiment>div {
     font-weight: inherit;
 }
 
-html[data-lw-theme] div.experiment>div:nth-child(2) {
+html[data-lw-theme] div.experiment>div:nth-child(2),
+html[data-lw-theme] div.experiment>h3:first-child+lw-ai-badge+div {
     margin-top: 4px !important;
 }
 
@@ -919,7 +923,8 @@ html[data-lw-theme="heft"] div.experiment>div {
     border-radius: 0;
 }
 
-html[data-lw-theme="heft"] div.experiment>div:nth-child(2) {
+html[data-lw-theme="heft"] div.experiment>div:nth-child(2),
+html[data-lw-theme="heft"] div.experiment>h3:first-child+lw-ai-badge+div {
     margin-top: 0 !important;
     border-top: none;
 }
@@ -1045,7 +1050,8 @@ html[data-lw-theme="klassisch"] div.explain {
     background-image: repeating-radial-gradient(circle at 0 0, rgb(107 63 160 / 0.07) 0 1.5px, transparent 1.5px 22px);
 }
 
-html[data-lw-theme="klassisch"] div.boxed>h3+p {
+html[data-lw-theme="klassisch"] div.boxed>h3+p,
+html[data-lw-theme="klassisch"] div.boxed>h3+lw-ai-badge+p {
     color: #453d38;
 }
 
@@ -1429,7 +1435,8 @@ html[data-lw-theme="terminal"] div.experiment>div {
     border-radius: 0;
 }
 
-html[data-lw-theme="terminal"] div.experiment>div:nth-child(2) {
+html[data-lw-theme="terminal"] div.experiment>div:nth-child(2),
+html[data-lw-theme="terminal"] div.experiment>h3:first-child+lw-ai-badge+div {
     border-top: none;
 }
 
@@ -1808,7 +1815,8 @@ html[data-lw-theme="raster"] div#content>tabbar.code>div.buttonbar::before {
     line-height: 1;
 }
 
-html[data-lw-theme="raster"] div#content>div.boxed>h3+p {
+html[data-lw-theme="raster"] div#content>div.boxed>h3+p,
+html[data-lw-theme="raster"] div#content>div.boxed>h3+lw-ai-badge+p {
     font-size: 19px;
     line-height: 1.5;
     letter-spacing: -0.01em;
@@ -1898,7 +1906,8 @@ html[data-lw-theme="raster"] div.experiment>div {
     border-bottom: 1px solid #dddddd;
 }
 
-html[data-lw-theme="raster"] div.experiment>div:nth-child(2) {
+html[data-lw-theme="raster"] div.experiment>div:nth-child(2),
+html[data-lw-theme="raster"] div.experiment>h3:first-child+lw-ai-badge+div {
     padding-top: 0;
 }
 
@@ -1915,7 +1924,8 @@ html[data-lw-theme="raster"] div.experiment>div::before {
     text-align: left;
 }
 
-html[data-lw-theme="raster"] div.experiment>div:nth-child(2)::before {
+html[data-lw-theme="raster"] div.experiment>div:nth-child(2)::before,
+html[data-lw-theme="raster"] div.experiment>h3:first-child+lw-ai-badge+div::before {
     top: 0;
 }
 
@@ -2786,6 +2796,135 @@ html[data-lw-theme] tabbar>div[data-tab].api h4 {
     font-size: 13px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+}
+
+/* --- Hinweis-Boxen (.hinweis, Grundgestaltung in editor.css) ---
+   Wie die noteBox der Folien: farbige, leicht geneigte Box mit dunklem, gegenläufig geneigtem Etikett.
+   Pro Theme werden Farben, Rahmen, Schatten und Neigung an die Formensprache angepasst. */
+html[data-lw-theme] {
+    --lw-note-radius: var(--lw-radius-sm);
+    --lw-note-tag-font: var(--lw-font);
+    --lw-note-code-bg: rgba(255, 255, 255, 0.18);
+}
+
+html[data-lw-theme] .hinweis code,
+html[data-lw-theme] .hinweis code.inline-code>span[code] {
+    color: inherit;
+}
+
+html[data-lw-theme] .hinweis code.inline-code>span[code] {
+    background: var(--lw-note-code-bg);
+}
+
+html[data-lw-theme="klassisch"] {
+    --lw-note-tag-bg: #1a1614;
+}
+
+/* Heft: gelber Klebezettel auf dem Papier */
+html[data-lw-theme="heft"] {
+    --lw-note-bg: #fbeea8;
+    --lw-note-fg: #2d2a24;
+    --lw-note-shadow: 0 1px 0 #e7d98c, 2px 6px 14px -6px rgba(80, 60, 20, 0.35);
+    --lw-note-tag-bg: #2d2a24;
+    --lw-note-tag-fg: #fffdf8;
+    --lw-note-tag-font: var(--lw-font-head);
+    --lw-note-code-bg: rgba(80, 60, 20, 0.1);
+}
+
+/* Karten: ruhig und gerade, im Akzent-Indigo */
+html[data-lw-theme="karten"] {
+    --lw-note-bg: #4f46e5;
+    --lw-note-shadow: 0 1px 2px rgba(16, 24, 40, 0.08), 0 8px 20px -6px rgba(79, 70, 229, 0.45);
+    --lw-note-rotate: 0deg;
+    --lw-note-tag-bg: #1d2433;
+    --lw-note-tag-radius: 6px;
+    --lw-note-tag-rotate: 0deg;
+}
+
+/* Terminal: dunkel mit grünem Rahmen, Etikett wie ein Prompt */
+html[data-lw-theme="terminal"] {
+    --lw-note-bg: #10201a;
+    --lw-note-fg: #c9d1dc;
+    --lw-note-border: 1px solid #34d399;
+    --lw-note-shadow: 0 0 14px -4px rgba(52, 211, 153, 0.4);
+    --lw-note-rotate: 0deg;
+    --lw-note-tag-bg: #34d399;
+    --lw-note-tag-fg: #04130d;
+    --lw-note-tag-font: var(--lw-mono);
+    --lw-note-tag-rotate: 0deg;
+    --lw-note-code-bg: #1b2130;
+}
+
+/* Abenteuer: Gelb mit kräftiger Kontur und hartem Schatten wie die Kästen */
+html[data-lw-theme="abenteuer"] {
+    --lw-note-bg: #ffd23f;
+    --lw-note-fg: #111111;
+    --lw-note-border: 2.5px solid #111111;
+    --lw-note-shadow: 4px 4px 0 #111111;
+    --lw-note-rotate: -1deg;
+    --lw-note-tag-bg: #111111;
+    --lw-note-tag-rotate: 3deg;
+    --lw-note-tag-weight: 800;
+    --lw-note-code-bg: rgba(255, 255, 255, 0.6);
+}
+
+/* Raster: schwarz, eckig, flach; Etikett im Signalrot */
+html[data-lw-theme="raster"] {
+    --lw-note-bg: #111111;
+    --lw-note-radius: 0;
+    --lw-note-shadow: none;
+    --lw-note-rotate: 0deg;
+    --lw-note-tag-bg: #e30613;
+    --lw-note-tag-radius: 0;
+    --lw-note-tag-rotate: 0deg;
+    --lw-note-tag-case: uppercase;
+    --lw-note-tag-tracking: 0.06em;
+    --lw-note-code-bg: rgba(255, 255, 255, 0.16);
+}
+
+/* Tafel: mit Kreide umrandet, Etikett in Kreidegelb */
+html[data-lw-theme="tafel"] {
+    --lw-note-bg: rgba(168, 216, 240, 0.12);
+    --lw-note-fg: #e6ece4;
+    --lw-note-border: 2px solid rgba(255, 255, 255, 0.5);
+    --lw-note-radius: 255px 14px 225px 14px / 14px 225px 14px 255px;
+    --lw-note-shadow: none;
+    --lw-note-tag-bg: #f7d774;
+    --lw-note-tag-fg: #1c2b23;
+    --lw-note-tag-font: var(--lw-font-head);
+    --lw-note-tag-weight: 700;
+    --lw-note-code-bg: rgba(0, 0, 0, 0.22);
+}
+
+html[data-lw-theme="tafel"] .hinweis::before {
+    font-size: 1.15em;
+    line-height: 1.2;
+}
+
+/* Prisma: Verlauf vom Akzent-Violett ins Blau */
+html[data-lw-theme="prisma"] {
+    --lw-note-bg: linear-gradient(120deg, #6d28d9, #2563eb);
+    --lw-note-shadow: 0 10px 30px -10px rgba(91, 63, 214, 0.5);
+    --lw-note-tag-bg: #1e1b2e;
+}
+
+/* Shadows: dunkle Fläche, die im Akzent-Violett leuchtet */
+html[data-lw-theme="shadows"] {
+    --lw-note-bg: #241d38;
+    --lw-note-fg: #e6e0ff;
+    --lw-note-border: 1px solid rgba(167, 139, 250, 0.35);
+    --lw-note-shadow: 0 0 24px -6px rgba(167, 139, 250, 0.45), 0 16px 32px -12px rgba(0, 0, 0, 0.85);
+    --lw-note-tag-bg: #a78bfa;
+    --lw-note-tag-fg: #160e2b;
+    --lw-note-tag-shadow: 0 0 12px rgba(167, 139, 250, 0.5);
+    --lw-note-code-bg: rgba(255, 255, 255, 0.08);
+}
+
+/* Koralle: im Korallenrot des Zeitplans */
+html[data-lw-theme="koralle"] {
+    --lw-note-bg: #c9401f;
+    --lw-note-shadow: 0 8px 20px -8px rgba(201, 64, 31, 0.55);
+    --lw-note-tag-bg: #1c1917;
 }
 
 /* --- Overlays der Codeblocks (Markierungen, Pills, Kommentarkarten, Sprechblasen) ---
