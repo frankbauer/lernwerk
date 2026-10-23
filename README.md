@@ -37,7 +37,7 @@ Inhalte, an denen KI beteiligt war, erhalten eine Plakette, eine pro Datei (Aufg
 | `spellchecking` | `ai`, **`none`** (nur bei `written="human"`) |
 | `content` | **`text`**, `code`, `image` (Symbol im Kern, Bezeichnung des mittleren Beitrags) |
 | `compact` | ohne Wert: beim Überfahren geht eine Sprechblase mit dem Text auf; ohne `compact` reihen sich die Monde mit ihren Etiketten auf |
-| `hide-text` | ohne Wert: kein Text neben dem Symbol; beim Überfahren reihen sich die Monde mit ihren Etiketten auf, ohne „Mehr im KI-Hinweis“ (Screenreader lesen den Text weiterhin) |
+| `hide-text` | ohne Wert: kein Text neben dem Symbol; beim Überfahren reihen sich die Monde mit ihren Etiketten auf (Screenreader lesen den Text weiterhin) |
 | `hover-text` | ohne Wert, zusammen mit `hide-text`: der Text ist in Ruhe ausgeblendet, erscheint aber beim Überfahren neben den aufgereihten Monden |
 | `size` | Höhe in px, **24** |
 

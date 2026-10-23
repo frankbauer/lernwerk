@@ -267,7 +267,7 @@
     //   written = human | **ai**, proofreading = **human** | none,
     //   spellchecking = ai | **none** (nur bei written="human"), content = **text** | code | image,
     //   compact (beim Überfahren eine Sprechblase mit dem Text statt der aufgereihten Monde mit Etiketten),
-    //   hide-text (kein Text neben dem Symbol, ohne "Mehr im KI-Hinweis"), hover-text (mit hide-text: der Text
+    //   hide-text (kein Text neben dem Symbol), hover-text (mit hide-text: der Text
     //   erscheint beim Überfahren doch), size = Höhe in px (**24**)
     // Wie sie aufgeht, bestimmen nur diese Attribute; die Lage in einer Box (followHeading) nur die Richtung.
     // Beispiel: <lw-ai-badge idea="human" written="ai" proofreading="human" content="code"></lw-ai-badge>
@@ -426,11 +426,17 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            transition: gap 0.3s ease 0.1s;
             max-width: 100%;
             color: var(--lw-muted, #595959);
             text-decoration: none;
         }
         .kb:is(:hover, :focus-visible) { color: var(--lw-fg, #111); }
+        /* aufgeklappt mehr Abstand zwischen den aufgereihten Monden und dem Text */
+        :host(:not([compact])) .kb:is(:hover, :focus-visible) {
+            gap: 16px;
+            transition: gap 0.45s ease 0.55s;
+        }
         .kb:focus-visible { outline: 2px solid var(--lw-link, var(--lw-accent, #1c63c7)); outline-offset: 3px; border-radius: 4px; }
         svg { display: block; overflow: visible; }
         .label { min-width: 0; }
@@ -540,44 +546,13 @@
             transition: opacity 0.2s calc(0.7s + var(--d)), transform 0.35s cubic-bezier(0.34, 1.5, 0.64, 1) calc(0.7s + var(--d));
         }
 
-        /* "Mehr im KI-Hinweis" mit Pfeil, bündig unter dem Text der Plakette, leicht in dessen Zeilenhöhe
-           hineingerückt (bei data-flip, wenn die Etiketten nach unten zeigen, darüber) */
+        /* Text der Plakette (Behälter, z.B. für den Abstand bei hover-text) */
         .text {
             position: relative;
             display: flex;
             min-width: 0;
         }
-        .more {
-            position: absolute;
-            top: calc(100% - 3px);
-            left: 0;
-            z-index: 20;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--lw-fg, #111);
-            font-size: 11.5px;
-            font-weight: 600;
-            line-height: 1;
-            white-space: nowrap;
-            opacity: 0;
-            translate: 0 -4px;
-            pointer-events: none;
-            transition: opacity 0.12s, translate 0.15s;
-        }
-        .kb[data-flip] .more { top: auto; bottom: calc(100% - 3px); }
-        .kb:is(:hover, :focus-visible) .more {
-            opacity: 1;
-            translate: 0 0;
-            transition: opacity 0.25s 0.9s, translate 0.3s 0.9s;
-        }
-        .more i {
-            display: inline-flex;
-            color: var(--b-ink);
-            /* optisch auf die Mitte der Kleinbuchstaben */
-            translate: 0 0.5px;
-        }
-        .kb:is(:hover, :focus-visible) .more svg { animation: nudge 1.2s ease-in-out 1.5s infinite; }
+        /* Pfeil der Sprechblase (compact) stupst beim Überfahren nach rechts */
         @keyframes nudge {
             0%, 60%, 100% { translate: 0 0; }
             30% { translate: 2px 0; }
@@ -634,8 +609,7 @@
 
         /* compact: die Monde kreisen nur auf die linke Seite des Kerns, statt Reihe und Etiketten fährt der Text als
            Sprechblase mit Pfeil heraus (für Screenreader bleibt er lesbar) */
-        :host([compact]) .tag,
-        :host([compact]) .more { display: none; }
+        :host([compact]) .tag { display: none; }
         :host([compact]) .kb:is(:hover, :focus-visible) .sym { width: var(--w0); }
         :host([compact]) .kb:is(:hover, :focus-visible) .orb {
             rotate: calc(var(--a0) - 180deg);
@@ -722,7 +696,7 @@
         :host([compact]) .kb[data-wrap]:is(:hover, :focus-visible) { border-radius: 14px; }
 
         /* hide-text: kein Text neben dem Symbol (für Screenreader bleibt er lesbar); beim Überfahren reihen sich die
-           Monde trotzdem mit ihren Etiketten auf, ohne "Mehr im KI-Hinweis" (die Plakette ist weiterhin der Link) */
+           Monde trotzdem mit ihren Etiketten auf */
         :host([hide-text]) .label {
             position: absolute;
             width: 1px;
@@ -754,15 +728,14 @@
             transition: max-width 0.45s ease 0.65s, opacity 0.3s ease 0.75s;
         }
         :host([hide-text][hover-text]:not([compact])) .kb:is(:hover, :focus-visible) .text {
-            margin-left: 8px;
+            margin-left: 16px;
             transition: margin 0.45s ease 0.65s;
         }
         /* gespiegelt steht der Text links vom Symbol */
         :host([hide-text][hover-text]:is([data-heading], [data-foot]):not([compact])) .kb:is(:hover, :focus-visible) .text {
             margin-left: 0;
-            margin-right: 8px;
+            margin-right: 16px;
         }
-        :host([hide-text]) .more,
         :host([hide-text]) .go { display: none; }
         :host([compact][hide-text]) .kb:is(:hover, :focus-visible) {
             gap: 0;
@@ -867,9 +840,8 @@
                 + `top:${f(cy * k)}px;--gap:${f(rowR * k + AI_TAG_OFFSET)}px;--d:${i * 0.07}s"><b>${roles[i]}:</b>${AI_WHO[state]}</span>`).join('')
             const arrow = '<svg viewBox="0 0 10 10" width="10" height="10"><path d="M2 5h6M5.5 2.5 8 5 5.5 7.5" '
                 + 'fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-            const more = `<span class="more" aria-hidden="true">Mehr im KI-Hinweis<i>${arrow}</i></span>`
 
-            // Für Screenreader: Grafik, Etiketten und "Mehr ..." sind ausgeblendet, stattdessen enthält der Link
+            // Für Screenreader: Grafik und Etiketten sind ausgeblendet, stattdessen enthält der Link
             // vor und nach dem sichtbaren Text dieselben Angaben als Text (der sichtbare Text bleibt Teil des Namens)
             const root = this.shadowRoot ?? this.attachShadow({ mode: 'open' })
             // compact: Platz in Ruhe (Symbol, Innenabstand 2 px und Rahmen 1 px je Seite)
@@ -877,7 +849,7 @@
                 + `<span class="box" style="--cw:${f(34 * k + 6)}px;--ch:${f(h + 6)}px"><a class="kb" part="link">`
                 + `<span class="sym" aria-hidden="true" style="--w0:${f(34 * k)}px;--w1:${f(width * k)}px">`
                 + `<svg viewBox="0 0 ${f(width)} 28" width="${f(width * k)}" height="${f(h)}">${graphic}</svg>`
-                + `${tags}</span><span class="sr sr-before"></span><span class="text"><span class="label"></span>${more}</span>`
+                + `${tags}</span><span class="sr sr-before"></span><span class="text"><span class="label"></span></span>`
                 + `<span class="sr sr-after"></span><i class="go" aria-hidden="true">${arrow}</i></a>`
                 + '<span class="measure" aria-hidden="true"></span></span>'
             const link = root.querySelector('a')
@@ -889,7 +861,7 @@
             root.querySelector('.sr-after').textContent = '. '
                 // eine entfallene Idee wird nicht vorgelesen
                 + parts.map((state, i) => state === 'na' ? null : `${roles[i]}: ${AI_WHO[state]}`).filter(Boolean).join(', ') + '. '
-                + `${AI_LEVELS[level].description} Mehr im KI-Hinweis.`
+                + AI_LEVELS[level].description
             this.dataset.level = level
         }
 
