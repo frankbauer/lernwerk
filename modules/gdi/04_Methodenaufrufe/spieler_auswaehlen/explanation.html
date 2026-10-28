@@ -1,0 +1,13 @@
+<h3>Erklärung</h3>
+<lw-ai-badge hide-text idea="human" written="ai" proofreading="human"></lw-ai-badge>
+<p>Alle Methoden in diesem Beispiel sind Klassenmethoden (also als <code>static</code> in der <a data-tab-link="FloatingWorld">Klasse
+    <code>FloatingWorld</code></a> definiert). Sie werden daher über den Klassennamen vor dem Punkt aufgerufen.</p>
+<ul>
+    <li><b>2 Spieler hinzufügen:</b> Also zweimal <code>FloatingWorld.addPlayer()</code> aufrufen. Die Spieler werden in der
+        Einfügereihenfolge, beginnend bei <code>0</code>, nummeriert. Der erste Spieler ist pink und hat die ID
+        <code>0</code>, der zweite ist rot und hat die ID <code>1</code>.</li>
+    <li><b>Roten Spieler bewegen:</b> <code>FloatingWorld.movePlayer(1, 200)</code>. Die Methode erhält zwei Eingabeparameter,
+        getrennt durch ein Komma: zuerst die ID des Spielers, dann die Strecke. Ein positiver Wert bewegt die Figur nach rechts.
+        Mit <code>movePlayerRight(1)</code> wären mehr als ein Aufruf nötig.</li>
+    <li><b>Pinken Spieler löschen:</b> <code>FloatingWorld.removePlayer(0)</code>. Pink kam als erstes auf die Insel und hat deswegen die ID <code>0</code>.</li>
+</ul>

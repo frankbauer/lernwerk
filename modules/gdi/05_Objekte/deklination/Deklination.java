@@ -11,8 +11,8 @@ public class Deklination {
         System.out.println("Tag im Jahr: " + D);
 
         // Math.cos erwartet den Winkel im Bogenmaß
-        final double orbitalAngle = Math.toRadians((360.0 * (D + 10)) / 365.0);
-        final double declination = EARTH_TILT_RAD * Math.cos(orbitalAngle);
+        double orbitalAngle = Math.toRadians((360.0 * (D + 10)) / 365.0);
+        double declination = EARTH_TILT_RAD * Math.cos(orbitalAngle);
         System.out.println("Deklination: " + Math.toDegrees(declination));
 //#START STATIC
     }

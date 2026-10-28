@@ -1,0 +1,14 @@
+<h3>Erklärung</h3>
+<lw-ai-badge hide-text idea="human" written="ai" proofreading="human"></lw-ai-badge>
+<p>Alle Methoden sind Klassenmethoden (<code>static</code>, siehe <a data-tab-link="FloatingWorld">Klasse
+    <code>FloatingWorld</code></a>). Sie werden daher über den Klassennamen vor dem Punkt aufgerufen, ohne dass vorher
+    ein Objekt erzeugt werden muss.</p>
+<ul>
+    <li><b>Welt anzeigen und Spieler hinzufügen:</b> <code>FloatingWorld.show()</code> zum Anzeigen und 
+        <code>FloatingWorld.addPlayer()</code> zum Hinzufügen. Ohne <code>show()</code> gibt es keine Insel, auf der der Spieler
+        stehen kann. Die Reihenfolge ist also wichtig.</li>
+    <li><b>Welt verschieben:</b> <code>FloatingWorld.moveRight()</code> verschiebt die gesamte Welt (Insel, Baum, Stein
+        und Kirsche) nach rechts. Der Spieler wird nicht mitbewegt, die Kirsche kommt also zur Spielfigur. Die Methode hat keine
+        Eingabeparameter, deswegen steht nichts in den Runden klammern.</li>
+    <li><b>Um einen gegebenen Wert verschieben:</b> <code>FloatingWorld.move(-202)</code> verschiebt die Welt um 202 Einheiten nach links. Der Wert wird der Methode als Eingabeparameter in den runden Klammern übergeben. Negative Werte verschieben die Welt nach links.</li>
+</ul>

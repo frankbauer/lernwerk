@@ -12,6 +12,7 @@ export default {
     //     "correctSequence": "ACA2M0-10...",           // erwartete Befehlsfolge
     //     "timePerStep": 300,                          // Dauer eines Schritts in ms
     //     "positions": { "pink": 90, "red": 250 },     // Startpositionen (left in px)
+    //     "cherry": 190,                               // Position der Kirsche (left in px)
     //     "ghost": { "sprite": "pinkGhost", "left": 79, "bottom": -1, "height": 102 }   // Umriss am Ziel
     //   }
     // Achtung: Die Datei muss mit "export default" beginnen (sonst wird es nicht entfernt).
@@ -69,7 +70,7 @@ export default {
         container.css({ width: '100%', position: 'absolute', bottom: '0' })
         canvasElement.append(container)
 
-        this.cherry = this.putImg(container, this.cherryImg, 190, 20, 33, 10)
+        this.cherry = this.putImg(container, this.cherryImg, cfg.cherry !== undefined ? cfg.cherry : 190, 20, 33, 10)
         this.red = this.putImg(container, this.redImg, pos.red, 0, 100, 20)
         this.pink = this.putImg(container, this.pinkImg, pos.pink, 0, 100, 30)
         this.monster = this.putImg(container, this.monsterImg, Math.random() * 320, 0, 100, 15)
@@ -80,7 +81,8 @@ export default {
         bt.attr('type', 'button')
         bt.text('Erneut abspielen')
         bt.css({
-            position: 'absolute', right: '6px', bottom: '6px', 'z-index': 60, 'font-size': '9pt', padding: '2px 8px',
+            // oben rechts, dort steht keine Spielfigur (unten rechts würde sie verdecken)
+            position: 'absolute', right: '6px', top: '6px', 'z-index': 60, 'font-size': '9pt', padding: '2px 8px',
             border: '1px solid rgba(255,255,255,0.5)', 'border-radius': '3px', background: 'rgba(0,0,0,0.35)',
             color: 'white', cursor: 'pointer'
         })
@@ -299,6 +301,11 @@ export default {
 
     removeItem: function (item) {
         item.removeClass('cherryShow').addClass('cherryHide')
+        // ein Spieler mit Kirsche nimmt diese beim Löschen mit
+        if (item.attr('XCherry') == 1) {
+            item.attr('XCherry', 0)
+            this.cherry.removeClass('cherryShow').addClass('cherryHide')
+        }
         this.later(() => this.nextStep(), this.timePerStep)
     },
 }

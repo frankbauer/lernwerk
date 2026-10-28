@@ -1,21 +1,15 @@
 <h3>Erklärung</h3>
-<lw-ai-badge hide-text idea="human" written="ai" proofreading="none"></lw-ai-badge>
+<lw-ai-badge hide-text idea="human" written="ai" proofreading="human"></lw-ai-badge>
 
-<p>Im Gegensatz zur Variante mit Klassenmethoden arbeiten Sie hier mit <b>Objekten</b>. Jeder Spieler ist eine Instanz
-    der Klasse <code>Player</code>, und Sie merken sich die Referenz darauf in einer Variablen.</p>
+<p>Im Gegensatz zur Variante mit Klassenmethoden arbeiten Sie hier mit <b>Objekten</b>. Jede Spielfigur ist eine Instanz
+    der Klasse <code>Player</code>, und Sie merken sich die Referenz auf diese Instanzen in Variablen.</p>
 <ul>
-    <li><b>Spieler erzeugen:</b> <code>Player pink = new Player();</code> und <code>Player red = new Player();</code>.
-        Der zuerst erzeugte Spieler ist pink, der zweite rot. Die Namen der Variablen können Sie frei wählen, sprechende
-        Namen machen den Code aber deutlich lesbarer.</li>
+    <li><b>Spieler erzeugen:</b> <code>new Player()</code> erzeugt ein neues Objekt. Eine Referenz auf dieses Objekt können sie sich mit <code>Player pink =</code> in einer Variablen speichern. Dasselbe gilt für <code>Player red = new Player();</code>.
+        Die zuerst erzeugte Spielfigur ist pink, die zweite rot. Die Namen der Variablen können Sie aber frei wählen, sprechende
+        Namen machen den Code allerdings lesbarer.</li>
     <li><b>Nach rechts bewegen:</b> <code>pink.moveRight();</code> und <code>red.moveRight();</code>. Die Instanzmethode
-        wird über die Referenz aufgerufen und wirkt nur auf genau dieses Objekt. Der rote Spieler landet dabei auf der
-        Kirsche und nimmt sie auf.</li>
-    <li><b>Pinken Spieler löschen:</b> <code>FloatingWorld.removePlayer(pink);</code>. Das ist eine Klassenmethode, sie
-        wird daher über den Klassennamen aufgerufen. Als Parameter bekommt sie die Referenz auf das zu löschende
-        Objekt.</li>
-    <li><b>Roten Spieler nach links bewegen:</b> <code>red.moveLeft();</code>. Die Falle aus der Variante mit
-        Klassenmethoden gibt es hier nicht mehr: Zwar ändert sich die ID des roten Spielers nach dem Löschen von
-        <code>1</code> auf <code>0</code> (probieren Sie es mit <code>System.out.println(red.getID());</code> aus), die
-        Referenz <code>red</code> zeigt aber weiterhin auf dasselbe Objekt. Sie müssen sich also nicht um Indizes
-        kümmern.</li>
+        wird über die Referenz (<code>pink.</code> bzw. <code>red.</code>) aufgerufen und wirkt nur auf genau das von der Variablen referenzierte Objekt. Der pinke Spieler landet durch die Bewegung auf der Kirsche und nimmt diese auf.</li>
+    <li><b>Pinke Spielfigur löschen:</b> <code>FloatingWorld.removePlayer(pink);</code>. <code>removePlayer</code> ist eine Klassenmethode, sie
+        wird daher über den Klassennamen <code>FloatingWorld.</code> aufgerufen. Als Eingabeparameter bekommt die Methode eine Referenz auf das zu löschende Objekt übergeben. Die Kirsche verschwindet zusammen mit der pinken Spielfigur.</li>
+    <li><b>Roten Spieler nach links bewegen:</b> <code>red.moveLeft();</code> bewegt die rote Spielfigur wieder nach links an ihre Ausgangsposition. Die Referenz <code>red</code> zeigt auch nach dem Löschen der pinken Spielfigur weiterhin auf dasselbe Objekt.</li>
 </ul>

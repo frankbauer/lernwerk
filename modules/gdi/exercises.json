@@ -625,20 +625,20 @@
       "image": "img/previews/04_Methodenaufrufe-beispiel_schatzinsel.webp"
     },
     {
-      "id": "04_Methodenaufrufe/beispiel_floating",
-      "title": "Kirschenessen (statisch)",
-      "description": "Programmiere eine Spielsequenz, in der eine Spielfigur per Klassenmethoden eine Kirsche einsammelt.",
-      "link": "04_Methodenaufrufe/beispiel_floating/",
-      "type": "lecture",
+      "id": "04_Methodenaufrufe/welt_verschieben",
+      "title": "Welt verschieben",
+      "description": "Lass die Kirsche zum Spieler kommen, indem du die ganze Welt per Klassenmethode verschiebst.",
+      "link": "04_Methodenaufrufe/welt_verschieben/",
+      "type": "exercise",
       "difficulty": 1,
       "tags": [
         "methodenaufrufe-statisch"
       ],
       "hasSolution": true,
       "hasExplanation": true,
-      "hasExperiments": true,
-      "isNew": false,
-      "image": "img/previews/04_Methodenaufrufe-beispiel_floating.webp",
+      "hasExperiments": false,
+      "isNew": true,
+      "image": "img/previews/04_Methodenaufrufe-welt_verschieben.webp",
       "isDraft": false
     },
     {
@@ -659,21 +659,21 @@
       "imagePosition": "65% center"
     },
     {
-      "id": "04_Methodenaufrufe/beispiel_floating_int",
-      "title": "Kirschenessen (Spieler, statisch)",
-      "description": "Wähle Spieler über Parameter aus und bewege sie mit Klassenmethoden durch die Spielwelt.",
-      "link": "04_Methodenaufrufe/beispiel_floating_int/",
-      "type": "lecture",
-      "difficulty": 2,
+      "id": "04_Methodenaufrufe/spieler_auswaehlen",
+      "title": "Spieler auswählen",
+      "description": "Wähle Spieler über ihre Nummer aus, bewege sie zur Kirsche und lösche sie wieder – alles mit Klassenmethoden.",
+      "link": "04_Methodenaufrufe/spieler_auswaehlen/",
+      "type": "exercise",
+      "difficulty": 1,
       "tags": [
         "methodenaufrufe-statisch",
         "variablen"
       ],
       "hasSolution": true,
       "hasExplanation": true,
-      "hasExperiments": true,
-      "isNew": false,
-      "image": "img/previews/04_Methodenaufrufe-beispiel_floating_int.webp",
+      "hasExperiments": false,
+      "isNew": true,
+      "image": "img/previews/04_Methodenaufrufe-spieler_auswaehlen.webp",
       "isDraft": false
     },
     {
@@ -698,7 +698,7 @@
     {
       "id": "04_Methodenaufrufe/kirschen",
       "title": "Kirschenessen mit Klassenmethoden",
-      "description": "Sammle die Kirsche zuerst durch Verschieben der ganzen Welt ein und steuere dann zwei Spieler über ihre Nummer – alles mit Klassenmethoden der FloatingWorld.",
+      "description": "Steuere zwei Spieler über ihre Nummer und lass die Kirsche durch Verschieben der Welt zum roten Spieler kommen.",
       "link": "04_Methodenaufrufe/kirschen",
       "type": "exercise",
       "difficulty": 2,
@@ -717,7 +717,7 @@
       "description": "Erzeuge Spieler-Objekte mit new, füge sie der Welt hinzu und steuere sie über Instanzmethoden.",
       "link": "05_Objekte/beispiel_floating/",
       "type": "lecture",
-      "difficulty": 2,
+      "difficulty": 1,
       "tags": [
         "objekte",
         "methodenaufrufe-instanz"
@@ -802,7 +802,7 @@
       "description": "Addiere zwei 2D-Vektoren mithilfe der API der Klasse Vec2D.",
       "link": "05_Objekte/vec_sum/",
       "type": "exercise",
-      "difficulty": 2,
+      "difficulty": 1,
       "tags": [
         "objekte",
         "methodenaufrufe-instanz"
@@ -881,7 +881,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/05_Objekte-kirschen.webp"
     },
     {
@@ -901,7 +901,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/05_Objekte-deklination.webp"
     },
     {
@@ -920,7 +920,7 @@
       "hasExplanation": true,
       "hasExperiments": false,
       "isNew": true,
-      "isDraft": true,
+      "isDraft": false,
       "image": "img/previews/05_Objekte-methodenart.webp"
     },
     {

@@ -1,25 +1,25 @@
 <h3>Erklärung</h3>
-<lw-ai-badge hide-text idea="human" written="ai" proofreading="none"></lw-ai-badge>
+<lw-ai-badge hide-text idea="human" written="ai" proofreading="human"></lw-ai-badge>
 
 <p>Ob eine Instanz- oder eine Klassenmethode aufgerufen wird, erkennen Sie daran, was <b>direkt vor dem Punkt</b>
     steht:</p>
 <ul>
     <li><b>Klassenmethode</b> (<code>static</code>): Vor dem Punkt steht ein <b>Klassenname</b>, z.B.
-        <code>FloatingWorld.addPlayer()</code>, <code>Math.random()</code> oder <code>Player.printAllPlayers()</code>.
+        <code>FloatingWorld.()</code>, <code>Math.</code> oder <code>Player.</code>.
         Für den Aufruf wird kein Objekt benötigt.</li>
-    <li><b>Instanzmethode</b>: Vor dem Punkt steht ein <b>Objekt</b>. Das kann eine Variable sein, die auf ein Objekt
-        verweist (<code>p.moveLeft()</code>), ein neu erzeugtes Objekt (<code>new Vec2D().toString()</code>) oder das
-        Ergebnis eines anderen Methodenaufrufs (<code>Player.playerWithID(3).remove()</code>).</li>
+    <li><b>Instanzmethode</b>: Vor dem Punkt steht ein Ausdruck der zu einer <b>Objektreferenz</b> auswertet. Das kann eine Variable sein, die auf ein Objekt
+        verweist (<code>p.</code>), ein neu erzeugtes Objekt (<code>new Vec2D().</code>) oder das
+        Ergebnis eines anderen Methodenaufrufs (<code>Player.playerWithID(3).</code>).</li>
 </ul>
 <p>Achten Sie auf verschachtelte Aufrufe:</p>
 <ul>
     <li><code>Player.playerWithID(3).remove()</code> Hier stehen zwei Aufrufe hintereinander.
-        <code>playerWithID</code> ist eine Klassenmethode der Klasse <code>Player</code> und liefert ein
-        <code>Player</code>-Objekt. Auf diesem Objekt wird dann die Instanzmethode <code>remove</code> aufgerufen.
+        <code>playerWithID</code> ist (wenn man den Aufruf ansieht) eine Klassenmethode der Klasse <code>Player</code>. Methoden können ie eine Klasse zurückgeben, wenn also auf dem Ergebnis eines Methodenaufrufs wine weitere Methode aufgerufen wird (hier <code>.remove()</code>) muss diese Methode eine Instanzmethodesein. Der Aufruf <code>playerWithID(3)</code> liefert im Beispiel ein
+        <code>Player</code>-Objekt zurück. Auf diesem Objekt wird dann die Instanzmethode <code>remove</code> aufgerufen.
         Dass der Name einer Klasse am Anfang der Zeile steht, sagt also noch nichts über den unterstrichenen Aufruf
         aus.</li>
     <li><code>FloatingWorld.removePlayer(p.getID())</code> Der äußere Aufruf <code>removePlayer</code> ist eine
-        Klassenmethode. Der Parameter <code>p.getID()</code> ist dagegen ein Aufruf der Instanzmethode
+        Klassenmethode. Der Parameter-Ausdruck <code>p.getID()</code> ist dagegen ein Aufruf der Instanzmethode
         <code>getID</code> auf dem Objekt <code>p</code>.</li>
     <li>Eine Klasse kann beide Arten von Methoden haben: <code>Player.printAllPlayers()</code> ist eine
         Klassenmethode, <code>p.moveLeft()</code> eine Instanzmethode derselben Klasse <code>Player</code>.</li>

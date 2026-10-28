@@ -1,0 +1,5 @@
+{
+    "positions": { "pink": 50, "red": 210 },
+    "cherry": 150,
+    "ghost": { "sprite": "redGhost", "left": 209, "bottom": -0.5, "height": 101 }
+}

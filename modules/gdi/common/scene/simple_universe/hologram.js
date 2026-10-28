@@ -341,10 +341,10 @@ export default {
             const cols = n <= 3 ? 1 : 2
             const rows = Math.ceil(n / cols)
             const top = 78
-            const cellH = Math.min(base[type] + 46, (this.H - top - 24) / rows)
+            const cellH = Math.min(base[type] + 46, (this.H - top - 40) / rows)
             const cellW = 236 / cols
             const size = Math.max(28, Math.min(base[type], cellH - 46, cellW - 14))   // room for name + hint
-            const y0 = top + (this.H - top - 24 - rows * cellH) / 2
+            const y0 = top + (this.H - top - 40 - rows * cellH) / 2
             list.forEach((o, k) => {
                 const c = k % cols
                 const r = Math.floor(k / cols)

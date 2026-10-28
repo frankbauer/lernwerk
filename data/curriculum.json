@@ -109,8 +109,8 @@
         { "module": "gdi", "id": "04_Methodenaufrufe/kirschen" },
         { "module": "gdi", "id": "04_Methodenaufrufe/roboter_platzieren" },
         { "module": "gdi", "id": "04_Methodenaufrufe/tank_static_aufruf" },
-        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_floating" },
-        { "module": "gdi", "id": "04_Methodenaufrufe/beispiel_floating_int" }
+        { "module": "gdi", "id": "04_Methodenaufrufe/welt_verschieben" },
+        { "module": "gdi", "id": "04_Methodenaufrufe/spieler_auswaehlen" }
       ]
     },
     {

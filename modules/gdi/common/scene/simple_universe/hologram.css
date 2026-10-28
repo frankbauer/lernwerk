@@ -59,7 +59,7 @@ div.playground:has(> div.holo-root) {
 .holo-column {
     position: absolute;
     top: 14px;
-    bottom: 14px;
+    bottom: 30px;   /* keeps clear of the image credit at the bottom right of backdrop.jpg */
     width: 250px;
     border-radius: 18px;
     border: 1.5px solid rgba(95, 244, 255, 0.35);

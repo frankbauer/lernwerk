@@ -25,34 +25,45 @@
     <script>
         const elements = {
             uuid: "ef0a5f1b-b6c2-4796-b657-031d842671c4",
-            title: "<b>Vorlesungsbeispiel:</b> Kirschenessen (statisch)",
-            short: "Kirschenessen",
+            title: "Welt verschieben",
+            short: "Welt verschieben",
             content: [
+                {
+                    type: "aufgabe",
+                    content: "./exercise.html"
+                },
                 {
                     type: "tabs",
                     class: "code",
                     tabs: [
                         {
-                            name: "Vorlesungsbeispiel",
-
-                            content: [{
-                                type: "codeblocks",
+                            name: "Aufgabe",
+                            codeblocks: {
                                 attributes: {},
                                 blocks: [
                                     {
-                                        type: "student",
-                                        content: "./JustAWorld.java"
+                                        type: "code",
+                                        content: "./CherryWorld.java"
                                     },
                                     {
                                         type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
                                         content: "./MainOverride.java"
                                     },
                                     {
                                         type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
                                         content: "@module/common/scene/floatingworld/FloatingWorld.java"
                                     },
                                     {
                                         type: "api",
+                                        attributes: {
+                                            dataExpanded: false
+                                        },
                                         content: "@module/common/scene/floatingworld/Player.java"
                                     },
                                     {
@@ -64,13 +75,15 @@
                                         content: "@module/common/scene/floatingworld/floatingworld.js"
                                     }
                                 ]
-                            }, {
-                                type: "explain",
-                                content: "./explanation.html"
-                            }, {
-                                type: "explain",
-                                content: "./focus.html"
-                            }]
+                            },
+                            content: [],
+                            solution: [
+                                {
+                                    type: "explain",
+                                    class: "q-mt-xl",
+                                    content: "./explanation.html"
+                                }
+                            ]
                         },
                         {
                             name: "FloatingWorld",
@@ -81,10 +94,6 @@
                             }]
                         }
                     ]
-                },
-                {
-                    type: "experiment",
-                    content: "./experiments.html"
                 }
             ]
         }
