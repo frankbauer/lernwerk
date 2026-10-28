@@ -1,20 +1,21 @@
-<h3>Erklärung Teil 2</h3>
+<h3>Erklärung</h3>
 <lw-ai-badge hide-text idea="human" written="ai" proofreading="human"></lw-ai-badge>
 
 <p>Alle Methoden sind Klassenmethoden (<code>static</code>). Sie werden daher über den Klassennamen aufgerufen,
     z.B. <code>FloatingWorld.addPlayer()</code>, ohne dass vorher ein Objekt erzeugt werden muss.</p>
 <ul>
-    <li><b>Spieler hinzufügen:</b> Zweimal <code>FloatingWorld.addPlayer();</code>. Die Spieler werden in der
-        Reihenfolge ihres Hinzufügens nummeriert, beginnend bei <code>0</code>: Der zuerst hinzugefügte pinke Spieler
-        hat die ID <code>0</code>, der rote die ID <code>1</code>.</li>
-    <li><b>Nach rechts bewegen:</b> <code>FloatingWorld.movePlayerRight(0);</code> bewegt den pinken,
-        <code>FloatingWorld.movePlayerRight(1);</code> den roten Spieler. Die ID wird der Methode als Parameter
-        übergeben. Der rote Spieler landet dabei genau auf der Kirsche und nimmt sie auf.</li>
-    <li><b>Pinken Spieler löschen:</b> <code>FloatingWorld.removePlayer(0);</code></li>
+    <li><b>Spieler hinzufügen:</b> Zweimal <code>FloatingWorld.addPlayer()</code> aufrufen nachdem die Welt angezeigt wurde. Die Spieler werden in der einfügereihenfolge, beginnend bei <code>0</code>, nummeriert. Der erste Spieler ist pink und
+        hat die ID <code>0</code>, der zweite rote mit der ID <code>1</code>.</li>
+    <li><b>Spieler bewegen:</b> <code>FloatingWorld.movePlayerRight(1)</code> bewegt den roten,
+        <code>FloatingWorld.movePlayerLeft(0)</code> den pinken Spieler. Die numerische ID wird der Methode als Parameter
+        in den rundenen Klammern übergeben.</li>
+    <li><b>Welt verschieben:</b> <code>FloatingWorld.moveLeft()</code> verschiebt die gesamte Welt (Insel, Baum, Stein
+        und Kirsche) nach links. Die Spieler werden nicht mitbewegt, die Kirsche kommt also zum roten Spieler. Die Methode hat
+        keine Parameter, die leeren Klammern sind trotzdem nötig.</li>
+    <li><b>Pinken Spieler löschen:</b> <code>FloatingWorld.removePlayer(0)</code>. Pink war der zuerst hinzugefügte Spieler und hat deswegen die ID <code>0</code>.</li>
     <li><b>Roten Spieler nach links bewegen:</b> Hier liegt die Falle. Nach dem Löschen gibt es nur noch einen
-        Spieler, und alle nachfolgenden Spieler rücken um eine Position nach vorne. Der rote Spieler hat jetzt die ID
-        <code>0</code>, daher <code>FloatingWorld.movePlayerLeft(0);</code>. Mit <code>movePlayerLeft(1)</code>
-        erscheint in der Ausgabe die Meldung, dass es keinen Spieler mit der ID <code>1</code> gibt.</li>
-    <li><b>Fehleranfällig:</b> Ob eine Nummer gültig ist und welchen Spieler sie meint, zeigt sich erst beim Ausführen.
-        Im Kapitel <i>Objekte</i> sprechen wir Spieler stattdessen über eigene Variablen an.</li>
+        Spieler, und alle nachfolgenden Spieler rücken um eine Position nach vorne. In dieser Welt hat der älteste Spieler immer die ID
+        <code>0</code>. Daher ist der einzig verbleibende Spieler über die ID <code>0</code> erreichbar. Die Methode 
+        <code>FloatingWorld.movePlayerLeft</code> wird also mit der ID <code>0</code> aufgerufen. <code>movePlayerLeft(1)</code>
+        würde nun zu einer Fehlermeldung führen, weil es keinen Spieler mehr mit der ID <code>1</code> gibt.</li>
 </ul>

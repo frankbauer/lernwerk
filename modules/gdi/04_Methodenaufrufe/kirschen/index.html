@@ -36,20 +36,25 @@
                     class: "code",
                     tabs: [
                         {
-                            name: "Teil 1",
+                            name: "Aufgabe",
                             codeblocks: {
                                 attributes: {},
                                 blocks: [
                                     {
+                                        type: "data",
+                                        name: "config",
+                                        content: "./scene.json"
+                                    },
+                                    {
                                         type: "code",
-                                        content: "./CherryWorld.java"
+                                        content: "./CherryGame.java"
                                     },
                                     {
                                         type: "api",
                                         attributes: {
                                             dataExpanded: false
                                         },
-                                        content: "./MainOverrideWorld.java"
+                                        content: "./MainOverride.java"
                                     },
                                     {
                                         type: "api",
@@ -72,49 +77,6 @@
                                             height: "315px"
                                         },
                                         content: "@module/common/scene/floatingworld/floatingworld.js"
-                                    }
-                                ]
-                            },
-                            content: [],
-                            solution: [
-                                {
-                                    type: "explain",
-                                    class: "q-mt-xl",
-                                    content: "./explanationWorld.html"
-                                }
-                            ]
-                        },
-                        {
-                            name: "Teil 2",
-                            codeblocks: {
-                                attributes: {},
-                                blocks: [
-                                    {
-                                        type: "code",
-                                        content: "./CherryGame.java"
-                                    },
-                                    {
-                                        type: "api",
-                                        attributes: {
-                                            dataExpanded: false
-                                        },
-                                        content: "./MainOverride.java"
-                                    },
-                                    {
-                                        type: "api",
-                                        attributes: {
-                                            dataExpanded: false
-                                        },
-                                        content: "@module/common/scene/cherrygame/FloatingWorld.java"
-                                    },
-                                    {
-                                        type: "playground",
-                                        attributes: {
-                                            width: "400px",
-                                            height: "150px",
-                                            align: "left"
-                                        },
-                                        content: "@module/common/scene/cherrygame/cherrygame.js"
                                     }
                                 ]
                             },

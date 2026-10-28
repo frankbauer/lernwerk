@@ -130,6 +130,12 @@ export default {
                 linkedWith: [],
                 isPicked: false
             }
+            // optional DATA block "config": { "cherryX": 250 } moves the cherry's start position
+            const cfg = (this.DATA && this.DATA.config) || {}
+            if (cfg.cherryX !== undefined) {
+                this.objects['cherry'].x = cfg.cherryX
+                this.objects['cherry'].element.css('transform', `translate(${cfg.cherryX}px, 350px)`)
+            }
             this.objects['stone'] = {
                 element: this.world.find('.stone'),
                 x: 160,
