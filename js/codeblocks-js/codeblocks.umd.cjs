@@ -5890,21 +5890,36 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         const iso = this._isIso(map)
         const dpr = window.devicePixelRatio || 1
         const s = view.scale
+        const size = Math.max(9 * dpr, Math.round((iso ? 11 : 5.5) * s))
+        const font = '700 ' + size + 'px Geist, system-ui, sans-serif'
+        // the canvas only uses a web font once it is loaded, the render loop picks it up
+        if (document.fonts && !document.fonts.check(font)) {
+            document.fonts.load(font)
+        }
         ctx.save()
         ctx.setTransform(1, 0, 0, 1, 0, 0)
-        ctx.font = Math.max(9 * dpr, Math.round((iso ? 11 : 5) * s)) + 'px sans-serif'
+        ctx.font = font
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        ctx.fillStyle = iso ? 'rgba(255,255,255,0.55)' : 'rgba(255,255,255,0.85)'
-        const off = iso ? -0.8 : -0.35
+        ctx.fillStyle = iso ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.92)'
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.35)'
+        ctx.shadowBlur = size / 4
+        ctx.shadowOffsetY = size / 12
+        // keep the numbers clear of the canvas border
+        const off = iso ? -0.8 : -0.12
         const label = (text, c, r) => {
             const p = this._ground(map, world, c, r)
             ctx.fillText(text, (p.x - view.x) * s, (p.y - view.y) * s)
         }
-        for (let r = 0; r < map.rows; r++) {
+        // in top-down maps the first row and column label would overlap: one 0 in the corner
+        const first = iso ? 0 : 1
+        if (!iso) {
+            label('0', off, off)
+        }
+        for (let r = first; r < map.rows; r++) {
             label('' + r, off, r)
         }
-        for (let c = 0; c < map.columns; c++) {
+        for (let c = first; c < map.columns; c++) {
             label('' + c, c, off)
         }
         ctx.restore()
