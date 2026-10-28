@@ -25,6 +25,8 @@ function processTabs() {
                 .attr({ 'aria-selected': 'true', tabindex: '0' })
             if (moveFocus) buttons[nr].trigger('focus')
         }
+        // für Links im Text (<a data-tab-link="...">), siehe processTabLinks
+        tabContainer.data('activate', activate)
 
         for (let nr = 0; nr < tabs.length; nr++) {
             const tab = $(tabs[nr])
@@ -62,6 +64,53 @@ function processTabs() {
         }
 
         tabContainer.prepend(buttonBar)
+    })
+    processTabLinks()
+}
+
+// Links im Text, die einen Tab der Seite öffnen: <a data-tab-link="FloatingWorld">API-Seite</a>.
+// Der Wert ist der Name des Tabs (wie im Reiter angezeigt) oder seine id aus der Seitenbeschreibung.
+function findTabPanel(target) {
+    return $('tabbar>div[data-tab]').filter((_index, panel) =>
+        panel.getAttribute('data-name') === target || panel.getAttribute('data-tab') === target).first()
+}
+
+// Aktive Tabs aller Tableisten und Scrollposition, damit der Zurück-Knopf des Browsers den Sprung rückgängig macht
+function tabHistoryState(scrollY) {
+    const active = $('tabbar').map((_index, bar) => $(bar).find('>div[data-tab]').index($(bar).find('>div[data-tab].active'))).get()
+    return { lwTabs: active, scrollY }
+}
+
+function restoreTabHistoryState(state) {
+    if (!state || !state.lwTabs) return
+    $('tabbar').each((nr, bar) => {
+        const activate = $(bar).data('activate')
+        if (activate && state.lwTabs[nr] >= 0) activate(state.lwTabs[nr], false)
+    })
+    window.scrollTo({ top: state.scrollY, behavior: 'instant' })
+}
+
+function processTabLinks() {
+    window.addEventListener('popstate', (e) => restoreTabHistoryState(e.state))
+    $('a[data-tab-link]').each((_index, link) => {
+        link = $(link)
+        const panel = findTabPanel(link.attr('data-tab-link'))
+        if (panel.length === 0) {
+            console.warn('Tab für Link nicht gefunden:', link.attr('data-tab-link'))
+            return
+        }
+        link.addClass('tab-link')
+        link.attr('href', '#' + panel.attr('id'))
+        link.on('click', (e) => {
+            e.preventDefault()
+            const tabContainer = panel.parent('tabbar')
+            const nr = tabContainer.find('>div[data-tab]').index(panel)
+            history.replaceState({ ...history.state, ...tabHistoryState(window.scrollY) }, '')
+            tabContainer.data('activate')(nr, true)
+            const top = tabContainer[0].getBoundingClientRect().top + window.scrollY
+            history.pushState(tabHistoryState(top), '')
+            window.scrollTo({ top, behavior: 'smooth' })
+        })
     })
 }
 

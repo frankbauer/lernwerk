@@ -3112,7 +3112,10 @@
             [catalog, tm, config] = await Promise.all([
                 LernwerkCatalog.load(undefined, { cache: "no-cache" }),
                 loadJson(`${ASSETS}tilemap.json`),
-                loadJson(CONFIG_URL).catch(() => ({})),
+                loadJson(CONFIG_URL).catch((err) => {
+                    console.warn("karte: data/karte.json not loaded, using defaults:", err);
+                    return {};
+                }),
             ]);
             LernwerkCatalog.migrateDone(catalog); // ids from before the exercise modules
             knownIds = new Set(catalog.exercises.map((ex) => ex.id)); // before hiding drafts

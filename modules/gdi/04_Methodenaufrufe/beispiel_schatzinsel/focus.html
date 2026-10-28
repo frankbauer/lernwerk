@@ -4,18 +4,17 @@
     <li>
         <strong>Klassenmethoden gehören zur Klasse:</strong>
         <p>Sie werden über den Klassennamen aufgerufen: <code>Klassenname.Methodenname(Parameter)</code>, zum Beispiel
-            <code>TreasureIsland.dig()</code> oder <code>Math.sin(0.5)</code>.</p>
+            <code>TreasureIsland.dig()</code> oder <code>Math.sin(0.5)</code>. In der API sind sie mit <code>static</code> gekennzeichnet.</p>
     </li>
     <li>
         <strong>Klassenattribute gehören ebenfalls zur Klasse:</strong>
         <p>Auch sie werden über den Klassennamen angesprochen: <code>Klassenname.Attributname</code>, zum Beispiel
-            <code>TreasureIsland.NORTH</code> oder <code>Math.PI</code>. Konstanten wie diese sind mit <code>final</code>
-            deklariert und können nicht verändert werden.</p>
+            <code>TreasureIsland.NORTH</code> oder <code>Math.PI</code>. Auch diese sind mit <code>static</code> gekennzeichnet. Klassenkonstanten sind spezielle Klassenattribute, die mit <code>final</code> deklariert werden und nicht verändert werden können. </p>
     </li>
     <li>
         <strong>Warum Konstanten statt Zahlen?</strong>
         <p><code>TreasureIsland.walk(TreasureIsland.NORTH, 5)</code> ist viel besser lesbar als eine Zahl für die
-            Richtung. Da die Richtung vom Typ <code>byte</code> ist, akzeptiert <code>walk</code> auch keine beliebige
+            Richtung einzusetzen. Da die Richtung vom Typ <code>byte</code> ist, akzeptiert <code>walk</code> auch keine beliebige
             <code>int</code>-Zahl: <code>TreasureIsland.walk(0, 5)</code> lässt sich nicht übersetzen.</p>
     </li>
 </ul>

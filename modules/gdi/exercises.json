@@ -639,7 +639,7 @@
       "hasExperiments": true,
       "isNew": false,
       "image": "img/previews/04_Methodenaufrufe-beispiel_floating.webp",
-      "isDraft": true
+      "isDraft": false
     },
     {
       "id": "04_Methodenaufrufe/roboter_platzieren",
@@ -674,7 +674,7 @@
       "hasExperiments": true,
       "isNew": false,
       "image": "img/previews/04_Methodenaufrufe-beispiel_floating_int.webp",
-      "isDraft": true
+      "isDraft": false
     },
     {
       "id": "04_Methodenaufrufe/tank_static_aufruf",
